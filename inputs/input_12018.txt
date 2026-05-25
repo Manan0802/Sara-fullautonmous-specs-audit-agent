@@ -1,0 +1,1864 @@
+=== SYSTEM PROMPT ===
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+---
+
+## YOUR OBJECTIVE
+
+Your job is to evaluate the existing specs and improve them only if there is clear evidence of gaps, errors, or inefficiencies — whether in spec name, option values, input type, or tier rank.
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of a gap. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+**Output format:** Three tiers of specs.
+
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+---
+
+## YOUR DATA
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers and sellers actually discuss when transacting, and what option values exist in the real market.
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+> **Note:** If any source has no data for this category, note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+- **"When sources conflict — for example, call data shows high engagement with a spec but fill rate is near zero — do not automatically favour one source over another. Instead, treat the conflict as a signal that platform data alone is insufficient. Use [WEB_SEARCH] to validate whether the spec is genuinely important for this product in the Indian B2B market, and invoke the Domain Expert skill to interpret what you find. State the conflict, your investigation, and your resolution explicitly in the Investigation Log."**
+
+---
+
+## YOUR TOOLS
+
+You have three tools available
+
+### Tool 1: Read a Skill
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. **When you read a skill, apply its logic to your reasoning and cite which skill informed which decision.** To load a skill's full content:
+```
+[READ_SKILL] skill_name [END]
+
+Example: [READ_SKILL] missing_spec_addition [END]
+```
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them. You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+### Tool 2: Search Skills
+
+If you're unsure which skill applies, search by keyword:
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+### Tool 3: Web Search
+
+Search the internet for external validation:
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+- **Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+- **Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+> **CRITICAL:** Whenever you use web search results in your reasoning, you MUST cite the actual URLs directly in your Investigation Log so the reviewer can verify them.
+
+
+### Restrictions on Tool Calls
+Read skills selectively — only the ones relevant to what the data is showing you. You do not need to read all of them. Use web search when internal signals are weak or when you need to validate an option value or spec against the real market. You decide the order and combination. Cite which skill informed which decision in your Investigation Log.
+
+---
+
+## SIGNAL CLASSIFICATION
+
+Before acting on any signal, classify it using one of the following labels:
+
+| Label | Meaning |
+|---|---|
+| `VALID_SPEC` | A discrete product attribute that a business buyer would actively filter by when searching. It has a bounded set of meaningful values and differs meaningfully across SKUs in this category|
+| `CONTEXT_TERM` |A term that describes the category's use case, setting, or application rather than a property of the product itself. Buyers already know this from the category they're browsing — it adds no filtering value. |
+| `NOT_A_PRODUCT_SPEC` | A commercial or transactional attribute — not something that describes the physical product. Examples: MOQ, delivery time, payment terms. These belong in seller terms, not the spec sheet. |
+| `DUPLICATE` | The same underlying attribute already exists in the spec sheet under a different name, or two signals from different data sources refer to the same attribute. |
+| `COMPOSITE` | A single signal that is actually describing two or more separate attributes bundled together (e.g. "Size & Weight" or "Voltage and Current Rating").|
+| `MISCLASSIFIED` | A valid attribute whose value has been placed under the wrong spec in the existing sheet.. |
+
+---
+
+## RULES
+
+**Evidence before action.** Every change needs data support. State the evidence and the confidence level:
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+**Review selectively, but acknowledge every spec.** Focus deep analysis on specs where data signals suggest gaps, errors, or improvement opportunities. However, every spec — including those you don't change — must receive at least a one-line acknowledgment in the Investigation Log (e.g. "Reviewed — no signals requiring change.").
+
+**Before finalising any significant change, ask yourself: what is the strongest argument against this decision?** If you cannot answer that question, your evidence is not yet sufficient.
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+---
+
+## OUTPUT
+
+**Produce exactly these 7 sections.** Each piece of information appears in exactly one section.
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, and what you decided. Immediately after proposing each action, state the strongest argument against it and your verdict (`approved` / `caution` / `reject`) — do not group these at the end. End with a holistic review of the full action set, plus a one-line acknowledgment of every spec you did not individually investigate.
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+### 4. Corrected Specs JSON
+
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Do not skip any spec that was removed. Include one row per change — the table may have as many rows as needed.
+
+| # | Action | Spec | Detail | Confidence | Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|---------|----------|--------------|
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec where options were added, removed, merged, or renamed. Specs with no option changes are not listed. Include one row per change — the table may have as many rows as needed.
+
+Valid actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+| # | Action | Spec | Option Value(s) | Detail | Confidence | Verdict | Decision | Key Evidence |
+|---|--------|------|-----------------|--------|------------|---------|----------|--------------|
+
+
+
+
+### 7. Self-Reflection
+Were all high-signal gaps addressed? Any contradictions? Was every spec acknowledged in the log (including untouched ones)? Were tier and option count limits respected? Any low-confidence actions flagged for human review? One paragraph overall assessment.
+
+---
+
+## BEGIN
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with reasoning frameworks available via the `[READ_SKILL]` tool. Additionally If you need web search for external validation, use [WEB_SEARCH].
+
+Analyse the data, use the tools and skills you judge necessary, and produce the corrected specs.
+
+---
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 12018
+category_name: Dry Red Chilli
+seller_specs (current spec sheet): {
+  "category_name": "Dry Red Chilli",
+  "mcat_id": 12018,
+  "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Variety",
+          "options": [
+            "Teja (S17)",
+            "Sannam (S4/334)",
+            "Byadgi",
+            "Guntur",
+            "341",
+            "Endo 5 (No. 5)",
+            "DD (Devanur)",
+            "Super 10 (S10)",
+            "Kashmiri",
+            "Bhut Jolokia"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Grade",
+          "options": [
+            "Super Deluxe",
+            "Deluxe (DLX)",
+            "Best",
+            "Medium",
+            "Fatki"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "The analysis of buyer-seller calls (Files 1, 3, 45) and supplier catalogs (Files 34, 40, 52) consistently shows that the `Variety` of the chilli (e.g., Teja, Sannam, Byadgi) is the most critical initial factor, as it dictates the core attributes like pungency, color, and price. The `Grade` (e.g., Super Deluxe, Medium) is the next most important factor, directly influencing quality and cost, as highlighted in conversations about \"deluxe quality\" (File 1, 9) and the structured grading system outlined in the marketing report (File 66). These two specs are the primary drivers of differentiation and pricing, making them suitable for product titles."
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Stem Presence",
+          "options": [
+            "With Stem",
+            "Without Stem"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Drying Process",
+          "options": [
+            "Sun Dried",
+            "Machine Dried",
+            "Air Dried"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "The presence or absence of the stem (`Stem Presence`) is a crucial functional detail frequently discussed by buyers, especially those intending to powder the chillies (File 15). It directly impacts the final weight and processing cost. The `Drying Process` (File 6) is another key quality indicator that affects the chilli's shelf life, color, and susceptibility to moisture and mold, making it an essential secondary specification."
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Pungency (SHU)",
+          "options": [
+            "Above 75,000 SHU",
+            "50,000-75,000 SHU",
+            "30,000-50,000 SHU",
+            "15,000-30,000 SHU",
+            "Below 15,000 SHU"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Color (ASTA)",
+          "options": [
+            "Above 120 ASTA",
+            "100-120 ASTA",
+            "80-100 ASTA",
+            "60-80 ASTA",
+            "Below 60 ASTA"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Packaging Type",
+          "options": [
+            "Jute Bag",
+            "PP Bag"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Moisture Content",
+          "options": [
+            "Below 12%",
+            "Below 14%"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "While pungency and color are intrinsically linked to the `Variety`, their technical measures\u2014`Pungency (SHU)` and `Color (ASTA)`\u2014are vital for industrial buyers, exporters, and those with precise formulation needs (Files 28, 34). These are treated as tertiary specs because the primary choice of `Variety` often serves as a proxy for them in initial discussions. `Packaging Type` and `Moisture Content` are standard logistical and quality control parameters mentioned across multiple technical documents (Files 28, 34, 66) that are important for finalizing bulk orders."
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 17 specs) ---
+[
+  {
+    "spec_name": "Chilli Variety",
+    "total_product_count": 109,
+    "example_values": [
+      "Teja",
+      "Guntur",
+      "5531",
+      "2043",
+      "334"
+    ]
+  },
+  {
+    "spec_name": "Quality Grade",
+    "total_product_count": 86,
+    "example_values": [
+      "Deluxe",
+      "Export Quality",
+      "Best Quality",
+      "Medium",
+      "First Quality"
+    ]
+  },
+  {
+    "spec_name": "Form",
+    "total_product_count": 46,
+    "example_values": [
+      "Whole",
+      "Powder",
+      "Dry",
+      "Raw",
+      "As per image"
+    ]
+  },
+  {
+    "spec_name": "Stem Type",
+    "total_product_count": 35,
+    "example_values": [
+      "With Stem",
+      "Without Stem"
+    ]
+  },
+  {
+    "spec_name": "Spiciness Level",
+    "total_product_count": 24,
+    "example_values": [
+      "High",
+      "Medium",
+      "Less Spicy",
+      "Spicy",
+      "Medium Spicy"
+    ]
+  },
+  {
+    "spec_name": "Origin",
+    "total_product_count": 20,
+    "example_values": [
+      "Guntur",
+      "Kurnool",
+      "Bareilly",
+      "Gujarat",
+      "Guntur / Khammam"
+    ]
+  },
+  {
+    "spec_name": "Color",
+    "total_product_count": 12,
+    "example_values": [
+      "Red",
+      "Good Color",
+      "Dark Red",
+      "Low Color"
+    ]
+  },
+  {
+    "spec_name": "Packaging Size",
+    "total_product_count": 10,
+    "example_values": [
+      "30 kg",
+      "1 kg",
+      "10 kg",
+      "25 kg",
+      "40-45 kg"
+    ]
+  },
+  {
+    "spec_name": "Crop Year",
+    "total_product_count": 9,
+    "example_values": [
+      "New Crop",
+      "Old Stock"
+    ]
+  },
+  {
+    "spec_name": "Stock Condition",
+    "total_product_count": 8,
+    "example_values": [
+      "Dry",
+      "New",
+      "Slight Moisture"
+    ]
+  },
+  {
+    "spec_name": "Color Intensity",
+    "total_product_count": 7,
+    "example_values": [
+      "Red",
+      "Good",
+      "Chocolate",
+      "High"
+    ]
+  },
+  {
+    "spec_name": "Storage Type",
+    "total_product_count": 6,
+    "example_values": [
+      "Cold Storage"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 5,
+    "example_values": [
+      "Syngenta",
+      "Myco",
+      "Spice Monk",
+      "Utsav"
+    ]
+  },
+  {
+    "spec_name": "End Use",
+    "total_product_count": 5,
+    "example_values": [
+      "Grinding",
+      "Counter Sale",
+      "For Color",
+      "Idli Podi"
+    ]
+  },
+  {
+    "spec_name": "Packaging Type",
+    "total_product_count": 4,
+    "example_values": [
+      "Loose in bag",
+      "Gunny Bag",
+      "Jute Bag",
+      "Sack"
+    ]
+  },
+  {
+    "spec_name": "Physical State",
+    "total_product_count": 4,
+    "example_values": [
+      "Dried"
+    ]
+  },
+  {
+    "spec_name": "Chilli Shape",
+    "total_product_count": 4,
+    "example_values": [
+      "Long",
+      "Round"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "Shelf Life",
+    "count": 20,
+    "options": [
+      "12 Months",
+      "2 Months",
+      "24 Month",
+      "9 Months",
+      "1 Years"
+    ]
+  },
+  {
+    "spec_name": "Pack Size",
+    "count": 14,
+    "options": [
+      "Jute Bag",
+      "Loose",
+      "100 g",
+      "10kg"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 8 specs) ---
+[
+  {
+    "spec_name": "form",
+    "total_impressions": 38396,
+    "options": [
+      "dry",
+      "whole"
+    ]
+  },
+  {
+    "spec_name": "packaging size",
+    "total_impressions": 11035,
+    "options": [
+      "1 kg",
+      "100 kg"
+    ]
+  },
+  {
+    "spec_name": "model number",
+    "total_impressions": 9935,
+    "options": [
+      "2043",
+      "5531"
+    ]
+  },
+  {
+    "spec_name": "type of chilli",
+    "total_impressions": 2382,
+    "options": [
+      "teja"
+    ]
+  },
+  {
+    "spec_name": "variety available",
+    "total_impressions": 2012,
+    "options": [
+      "chilli",
+      "lal mirch",
+      "longi",
+      "reshampatti",
+      "sirarakhong"
+    ]
+  },
+  {
+    "spec_name": "usage",
+    "total_impressions": 277,
+    "options": [
+      "market"
+    ]
+  },
+  {
+    "spec_name": "brand",
+    "total_impressions": 229,
+    "options": [
+      "deepika",
+      "khadi",
+      "syngenta"
+    ]
+  },
+  {
+    "spec_name": "variety of chilli available",
+    "total_impressions": 63,
+    "options": [
+      "341",
+      "endo",
+      "sannam",
+      "sannam 334"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (42 specs) ---
+[
+  {
+    "spec_name": "Variety",
+    "spec_fill_rate": "70.8",
+    "product_count": "63"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_fill_rate": "67.4",
+    "product_count": "60"
+  },
+  {
+    "spec_name": "Drying Process",
+    "spec_fill_rate": "64",
+    "product_count": "57"
+  },
+  {
+    "spec_name": "Stem Presence",
+    "spec_fill_rate": "61.8",
+    "product_count": "55"
+  },
+  {
+    "spec_name": "Moisture Content",
+    "spec_fill_rate": "43.8",
+    "product_count": "39"
+  },
+  {
+    "spec_name": "Pungency (SHU)",
+    "spec_fill_rate": "36",
+    "product_count": "32"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "32.6",
+    "product_count": "29"
+  },
+  {
+    "spec_name": "Color (ASTA)",
+    "spec_fill_rate": "30.3",
+    "product_count": "27"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_fill_rate": "30.3",
+    "product_count": "27"
+  },
+  {
+    "spec_name": "Form",
+    "spec_fill_rate": "9",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_fill_rate": "6.7",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Heat Level",
+    "spec_fill_rate": "4.5",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_fill_rate": "4.5",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Processing Type",
+    "spec_fill_rate": "3.4",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_fill_rate": "2.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "ASTA (Color Value)",
+    "spec_fill_rate": "2.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Purity",
+    "spec_fill_rate": "2.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Organic",
+    "spec_fill_rate": "2.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "2.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Origin",
+    "spec_fill_rate": "2.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Is It Organic",
+    "spec_fill_rate": "2.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Pack Type",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Colors",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Variety Of Chilli",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Color (ASTA) Used",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Pungency (SHU) Used",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Packaging Types",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "pack size",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Processing Method",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Storage Instructions",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Stem Type",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Product Grade",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Spice Name",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Moisture Content (%)",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Type",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Color Value (ASTA)",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Heat Level (SHU)",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "5\"",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Chilli Type Available",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Clove Bud Size (mm)",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Grinding Technology",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (204 rows) ---
+[
+  {
+    "spec_name": "Purity",
+    "spec_option_name": "No Preservatives",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Storage Instructions",
+    "spec_option_name": "Dry Place",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "FSSAI Certified",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Colour",
+    "spec_option_name": "Red",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usages",
+    "spec_option_name": "For cooking purpose",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "pack size",
+    "spec_option_name": "45 kg",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Packaging Types",
+    "spec_option_name": "Loose",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Spice Name",
+    "spec_option_name": "Chilli",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Human Consumption",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Processing Type",
+    "spec_option_name": "Sun Dried",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Deep Red",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Stem Type",
+    "spec_option_name": "With Stem",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Made in",
+    "spec_option_name": "India",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Chilly Type",
+    "spec_option_name": "Dry Red Chilli",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Storage Instruction",
+    "spec_option_name": "Dry Place",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Chilli Type Available",
+    "spec_option_name": "with stem",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Package Type",
+    "spec_option_name": "Loose",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Variety",
+    "spec_option_name": "Super 10",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_option_name": "India Organic",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Grinding Technology",
+    "spec_option_name": "Standard",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "I DEAL IN",
+    "spec_option_name": "New only",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Package Size",
+    "spec_option_name": "Loose",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Colors",
+    "spec_option_name": "Red",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_option_name": "FSSAI",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Organic",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Minimum Order Quantity",
+    "spec_option_name": "100 kg",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Size",
+    "spec_option_name": "Loose",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Clove Bud Size (mm)",
+    "spec_option_name": "Below 7 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Net Quantity",
+    "spec_option_name": "35g",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Packing Type",
+    "spec_option_name": "Jute Gunny Bag",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Spice Level",
+    "spec_option_name": "Hot",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Grade",
+    "spec_option_name": "Fatki",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Chili Color",
+    "spec_option_name": "Red",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Is It Organic",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Color (ASTA) Used",
+    "spec_option_name": "50 ASTA",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pungency (SHU) Used",
+    "spec_option_name": "75000 SHU",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Moisture Content",
+    "spec_option_name": "12%",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Processing Method",
+    "spec_option_name": "Sun-Dried",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Moisture Content (%)",
+    "spec_option_name": "Upto 10%",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Variety Of Chilli",
+    "spec_option_name": "Teja",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "5\"",
+    "spec_option_name": "1\"",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Type",
+    "spec_option_name": "Whole",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "End Use",
+    "spec_option_name": "Food Colouring",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "I deal in",
+    "spec_option_name": "New only",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Drying Process",
+    "spec_option_name": "Sun Dried",
+    "option_fill_rate": "95.5"
+  },
+  {
+    "spec_name": "Moisture Content",
+    "spec_option_name": "Below 12%",
+    "option_fill_rate": "87.4"
+  },
+  {
+    "spec_name": "Chilli Type",
+    "spec_option_name": "Dry Red Chilli",
+    "option_fill_rate": "85.7"
+  },
+  {
+    "spec_name": "Stem Presence",
+    "spec_option_name": "With Stem",
+    "option_fill_rate": "81.5"
+  },
+  {
+    "spec_name": "Heat Level",
+    "spec_option_name": "Hot",
+    "option_fill_rate": "80"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "Loose",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Heat Level (SHU)",
+    "spec_option_name": "Medium",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Color Value (ASTA)",
+    "spec_option_name": "High",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "1 Year",
+    "option_fill_rate": "72.2"
+  },
+  {
+    "spec_name": "Pungency (SHU)",
+    "spec_option_name": "Above 75000 SHU",
+    "option_fill_rate": "58.4"
+  },
+  {
+    "spec_name": "Color (ASTA)",
+    "spec_option_name": "Above 120 ASTA",
+    "option_fill_rate": "55.6"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Jute Bag",
+    "option_fill_rate": "52.2"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "25 Kg",
+    "option_fill_rate": "52.2"
+  },
+  {
+    "spec_name": "ASTA (Color Value)",
+    "spec_option_name": "Color Value: 30 - 35 ASTA",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Purity",
+    "spec_option_name": "Agmark Grade",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Purity",
+    "spec_option_name": "No Added Color",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "ASTA (Color Value)",
+    "spec_option_name": "Very High Color",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "PP Bag",
+    "option_fill_rate": "41.6"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Whole",
+    "option_fill_rate": "41.2"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Super Deluxe",
+    "option_fill_rate": "39.3"
+  },
+  {
+    "spec_name": "Pack Type",
+    "spec_option_name": "PP Bag",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Pack Type",
+    "spec_option_name": "Packet",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Pack Type",
+    "spec_option_name": "Jute Bag",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Teja (S17)",
+    "option_fill_rate": "27.7"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "Loose",
+    "option_fill_rate": "26.1"
+  },
+  {
+    "spec_name": "Origin",
+    "spec_option_name": "Guntur",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Heat Level (SHU)",
+    "spec_option_name": "Very Low",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Origin",
+    "spec_option_name": "Karnataka",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Color Value (ASTA)",
+    "spec_option_name": "Very High",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Origin",
+    "spec_option_name": "gujarat",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Origin",
+    "spec_option_name": "Byadgi; Karnataka",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Deluxe (DLX)",
+    "option_fill_rate": "24.4"
+  },
+  {
+    "spec_name": "Color (ASTA)",
+    "spec_option_name": "100-120 ASTA",
+    "option_fill_rate": "23.6"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Silorganic",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Tops",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Suruchi",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Heat Level",
+    "spec_option_name": "Extra Hot",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Eleve Pearl",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Pure Crop",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Best",
+    "option_fill_rate": "19.4"
+  },
+  {
+    "spec_name": "Stem Presence",
+    "spec_option_name": "Without Stem",
+    "option_fill_rate": "15.2"
+  },
+  {
+    "spec_name": "Chilli Type",
+    "spec_option_name": "Dry Chilli",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Pungency (SHU)",
+    "spec_option_name": "30000-50000 SHU",
+    "option_fill_rate": "12.9"
+  },
+  {
+    "spec_name": "Pungency (SHU)",
+    "spec_option_name": "50000-75000 SHU",
+    "option_fill_rate": "11.9"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Without Stem",
+    "option_fill_rate": "11.8"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Whole without Stem",
+    "option_fill_rate": "11.8"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Sannam (S4/334)",
+    "option_fill_rate": "11.4"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "12 Months",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Pungency (SHU)",
+    "spec_option_name": "15000-30000 SHU",
+    "option_fill_rate": "10.9"
+  },
+  {
+    "spec_name": "Moisture Content",
+    "spec_option_name": "Below 14%",
+    "option_fill_rate": "9.5"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "50 kg",
+    "option_fill_rate": "8.7"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "Jute Bag",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "10Kg",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100 g",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Guntur",
+    "option_fill_rate": "8.2"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Byadgi",
+    "option_fill_rate": "7.3"
+  },
+  {
+    "spec_name": "Color (ASTA)",
+    "spec_option_name": "60-80 ASTA",
+    "option_fill_rate": "6.9"
+  },
+  {
+    "spec_name": "Color (ASTA)",
+    "spec_option_name": "Below 60 ASTA",
+    "option_fill_rate": "6.9"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Medium",
+    "option_fill_rate": "6.5"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Dried",
+    "option_fill_rate": "5.9"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Flakes",
+    "option_fill_rate": "5.9"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "With Stem",
+    "option_fill_rate": "5.9"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Whole Dried",
+    "option_fill_rate": "5.9"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Whole with Stem",
+    "option_fill_rate": "5.9"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Whole Cloves",
+    "option_fill_rate": "5.9"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Kashmiri",
+    "option_fill_rate": "5.9"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "24 Month",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "6 Month",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "2 Year",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Color (ASTA)",
+    "spec_option_name": "80-100 ASTA",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Cartoon Box",
+    "option_fill_rate": "4.4"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "500 g",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "25 kg",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "20 Kg",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "341",
+    "option_fill_rate": "4.1"
+  },
+  {
+    "spec_name": "Drying Process",
+    "spec_option_name": "Machine Dried",
+    "option_fill_rate": "4"
+  },
+  {
+    "spec_name": "Pungency (SHU)",
+    "spec_option_name": "Below 15000 SHU",
+    "option_fill_rate": "4"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Super 10 (S10)",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Syngenta 2043",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Moisture Content",
+    "spec_option_name": "< 12%",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Food Grade",
+    "option_fill_rate": "2"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Bag",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Premium",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Fatki",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Good",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Endo 5 (No. 5)",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Color (ASTA)",
+    "spec_option_name": "High (120-160)",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Moisture Content",
+    "spec_option_name": "Below 8%",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Pungency (SHU)",
+    "spec_option_name": "Very High Heat",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "IPM",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Pungency (SHU)",
+    "spec_option_name": "35000-40000 SHU",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Bullet",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "355 Byadgi",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Chapata",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "DD (Devanur)",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Super 10",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Sannam (334/S4)",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Drying Process",
+    "spec_option_name": "Air Dried",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Kaddi / KDL",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Wrinkle-273",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Shaniya",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "khandar",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Stem Presence",
+    "spec_option_name": "steam and without steam",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Kashmiri Byadgi",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Bangaram",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Wonder Hot",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Shark 1",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "tameto",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "DC",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "ARMOR",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "BULLET",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "gundu",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Samba",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Stem Presence",
+    "spec_option_name": "Vary by specification",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Stem Presence",
+    "spec_option_name": "both",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Desi",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Classic",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Super 10 Gantur",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "all varieties of red chilli",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "S 9 Mundu",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Indam 5",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Teja",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Syngenta Byadgi",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Deluxe",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "A Grade",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Super10 , Sannam , Teja",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "KL1",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Mahi super delux",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Vary by specification",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "334",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "273 Wrinkle",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Deluxe, medium, best",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "KDL Byadgi",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Maharashtra",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Shankasuri desi",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "5531",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "shark 1,armoor,teja,341,345,etc",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Mannakattu chillies",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Stem Presence",
+    "spec_option_name": "Both",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "FAQ (Standard)",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Armor",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Gujrat",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Stem Presence",
+    "spec_option_name": "with stem , without stem",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Sygenta Byadgi 5531",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Sygenta Byadgi 2043",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Dabbi Byadgi",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "334 Fatki",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Teja Fatki",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "334 Guntur",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "LCA-334",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Guntur, Byadgi, 341, Teja, Sannam",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Mizoram",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Armoor",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Vary by variety",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Sesonta",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Stem Presence",
+    "spec_option_name": "With stem, stemcut, stemless",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "Indori",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "273",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "DD",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Variety",
+    "spec_option_name": "TN Gundu Red Chilli",
+    "option_fill_rate": "0.5"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.

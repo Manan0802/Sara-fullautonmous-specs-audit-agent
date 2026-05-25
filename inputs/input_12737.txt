@@ -1,0 +1,1843 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 12737
+category_name: Dehydrated Garlics
+seller_specs (current spec sheet): {
+  "category_name": "Dehydrated Garlics",
+  "mcat_id": 12737,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Form",
+          "options": [
+            "Flakes",
+            "Powder",
+            "Chopped",
+            "Granules",
+            "Minced",
+            "Cloves"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Color",
+          "options": [
+            "Creamish White",
+            "Brownish",
+            "White"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Primary Specifications (Form, Color) were chosen because they are the most fundamental visual and application-based differentiators. 'What form is it?' (flakes, powder, etc.) and 'What is its color?' (white, brownish) are often the first questions asked. Form is designated for a title suffix as it creates the most common product naming convention (e.g., 'Dehydrated Garlic Flakes')."
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Quality Grade",
+          "options": [
+            "A-Grade",
+            "Premium Quality",
+            "Standard Quality",
+            "B-Grade",
+            "Commercial Grade",
+            "Unsorted"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Moisture Content",
+          "options": [
+            "Less than 5%",
+            "Less than 6%",
+            "Less than 7%",
+            "Less than 4%"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Processing Type",
+          "options": [
+            "Dehydrated",
+            "Toasted",
+            "Fried"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Secondary Specifications (Quality Grade, Moisture Content, Processing Type) represent the next tier of decision-making. Quality Grade directly impacts price and usability. Moisture Content is a critical technical parameter for shelf life and quality. Processing Type distinguishes standard dehydrated products from value-added versions like 'Toasted' or 'Fried', which have different applications and price points."
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Organic",
+          "options": [
+            "No",
+            "Yes"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Certifications",
+          "options": [
+            "FSSAI",
+            "ISO",
+            "HACCP",
+            "HALAL",
+            "KOSHER",
+            "US FDA",
+            "BRC",
+            "APEDA"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Packaging Size",
+          "options": [
+            "25 kg",
+            "20 kg",
+            "14 kg",
+            "1 kg",
+            "5 kg",
+            "50 kg",
+            "500 g"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Shelf Life",
+          "options": [
+            "12 Months",
+            "24 Months"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Tertiary Specifications (Organic, Certifications, Packaging Size, Shelf Life) cover essential logistical and trust-building information. The question of being Organic is a key qualifier for a niche market. Certifications like FSSAI, ISO, and HALAL are crucial for B2B trust. Packaging Size is a vital logistical detail for bulk buyers, and Shelf Life is a standard data point for product viability."
+    }
+  },
+  "scratchpad": "The specification structure was designed by prioritizing attributes that B2B buyers consistently inquire about and that sellers use to differentiate their products. Primary specs (Form, Color) are fundamental differentiators. Secondary specs (Quality Grade, Moisture Content, Processing Type) are for the next tier of decision-making related to quality and price. Tertiary specs (Organic, Certifications, Packaging Size, Shelf Life) cover essential logistical and trust-building information."
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 16 specs) ---
+[
+  {
+    "spec_name": "Physical Form",
+    "total_product_count": 61,
+    "example_values": [
+      "Chopped",
+      "Cloves",
+      "Flakes",
+      "Flakes/Chopped",
+      "Granules"
+    ]
+  },
+  {
+    "spec_name": "Processing Type",
+    "total_product_count": 46,
+    "example_values": [
+      "Dehydrated",
+      "Fresh",
+      "Fried",
+      "Natural",
+      "Roasted"
+    ]
+  },
+  {
+    "spec_name": "Grade",
+    "total_product_count": 32,
+    "example_values": [
+      "A+",
+      "A-Grade",
+      "B-Grade",
+      "Best Quality",
+      "Bold"
+    ]
+  },
+  {
+    "spec_name": "Size",
+    "total_product_count": 25,
+    "example_values": [
+      "1-3 mm",
+      "10-15 mm",
+      "100",
+      "10x10 mm",
+      "2 mm"
+    ]
+  },
+  {
+    "spec_name": "Color",
+    "total_product_count": 16,
+    "example_values": [
+      "Black and Brown",
+      "Black-Yellow",
+      "Brown",
+      "Creamy White",
+      "Dark"
+    ]
+  },
+  {
+    "spec_name": "Sorting and Purity",
+    "total_product_count": 15,
+    "example_values": [
+      "95 %",
+      "Non-Sortex",
+      "Sorted",
+      "Unsorted",
+      "With Husk"
+    ]
+  },
+  {
+    "spec_name": "Origin",
+    "total_product_count": 12,
+    "example_values": [
+      "Gujarat",
+      "Madhya Pradesh (MP)",
+      "Rajasthan"
+    ]
+  },
+  {
+    "spec_name": "Packaging Size",
+    "total_product_count": 8,
+    "example_values": [
+      "1 kg",
+      "25 kg",
+      "50 kg"
+    ]
+  },
+  {
+    "spec_name": "Packaging Type",
+    "total_product_count": 8,
+    "example_values": [
+      "Jar",
+      "Loose",
+      "Packet",
+      "Paper Bag",
+      "Plastic Bag"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 7,
+    "example_values": [
+      "Chinese Gravies",
+      "Dehydration",
+      "Gravy preparation",
+      "Manchow Soup",
+      "Masala Grinding"
+    ]
+  },
+  {
+    "spec_name": "Variety",
+    "total_product_count": 7,
+    "example_values": [
+      "China model",
+      "Indian",
+      "Red"
+    ]
+  },
+  {
+    "spec_name": "Certification",
+    "total_product_count": 5,
+    "example_values": [
+      "FDA",
+      "Halal",
+      "ISO",
+      "Kosher",
+      "SKU"
+    ]
+  },
+  {
+    "spec_name": "Drying Method",
+    "total_product_count": 4,
+    "example_values": [
+      "Machine Dried",
+      "Sun Dried"
+    ]
+  },
+  {
+    "spec_name": "Moisture Content",
+    "total_product_count": 4,
+    "example_values": [
+      "6 %",
+      "below 6 %"
+    ]
+  },
+  {
+    "spec_name": "Shelf Life",
+    "total_product_count": 4,
+    "example_values": [
+      "12 months",
+      "6-9 months",
+      "Long term"
+    ]
+  },
+  {
+    "spec_name": "Texture",
+    "total_product_count": 4,
+    "example_values": [
+      "Coarse",
+      "Fine"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 0 specs) ---
+[]
+
+--- Buyer Search Data (aggregated, 1 specs) ---
+[
+  {
+    "spec_name": "variety available",
+    "total_impressions": 978,
+    "options": [
+      "garlic"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (17 specs) ---
+[
+  {
+    "spec_name": "Form",
+    "spec_fill_rate": "73.1",
+    "product_count": "19"
+  },
+  {
+    "spec_name": "Color",
+    "spec_fill_rate": "57.7",
+    "product_count": "15"
+  },
+  {
+    "spec_name": "Processing Type",
+    "spec_fill_rate": "42.3",
+    "product_count": "11"
+  },
+  {
+    "spec_name": "Quality Grade",
+    "spec_fill_rate": "42.3",
+    "product_count": "11"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "38.5",
+    "product_count": "10"
+  },
+  {
+    "spec_name": "Organic",
+    "spec_fill_rate": "30.8",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_fill_rate": "30.8",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_fill_rate": "26.9",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Moisture Content",
+    "spec_fill_rate": "23.1",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_fill_rate": "19.2",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Size.",
+    "spec_fill_rate": "7.7",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Aroma",
+    "spec_fill_rate": "7.7",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Qualities",
+    "spec_fill_rate": "7.7",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Packing",
+    "spec_fill_rate": "3.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Packaging.",
+    "spec_fill_rate": "3.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Cut Size",
+    "spec_fill_rate": "3.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Garlic Variety",
+    "spec_fill_rate": "3.8",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (51 rows) ---
+[
+  {
+    "spec_name": "Pungency Level",
+    "spec_option_name": "Medium",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Granule Size",
+    "spec_option_name": "2 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_option_name": "FSSAI",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Processing Type",
+    "spec_option_name": "Dehydrated",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pack Type",
+    "spec_option_name": "HDPE Bag",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Cut Size",
+    "spec_option_name": "Flakes",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Qualities",
+    "spec_option_name": "Pre-Grade, A-Grade & Commercial Grade",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Garlic Type",
+    "spec_option_name": "White Garlic",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Aroma",
+    "spec_option_name": "Strong Aroma Represents Indian Origin Product",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Packaging.",
+    "spec_option_name": "20 Kg. Strong Poly Bag Inside Paper Bag",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Garlic Variety",
+    "spec_option_name": "Organic Garlic",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Packing",
+    "spec_option_name": "20 Kg. Strong Poly Bag Inside Paper Bag",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "Loose",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "PP Bag",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Organic",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "70.6"
+  },
+  {
+    "spec_name": "Quality Grade",
+    "spec_option_name": "A-Grade",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Moisture Content",
+    "spec_option_name": "Less than 5%",
+    "option_fill_rate": "57.7"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "12 Months",
+    "option_fill_rate": "56.5"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Creamish White",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Size.",
+    "spec_option_name": "3 To 5 M.M",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Size.",
+    "spec_option_name": "1 To 3 M.M.",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "1 kg",
+    "option_fill_rate": "43.5"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "24 Months",
+    "option_fill_rate": "43.5"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Brownish",
+    "option_fill_rate": "41.7"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_option_name": "ISO",
+    "option_fill_rate": "35.3"
+  },
+  {
+    "spec_name": "Moisture Content",
+    "spec_option_name": "Less than 6%",
+    "option_fill_rate": "34.6"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Flakes",
+    "option_fill_rate": "31.7"
+  },
+  {
+    "spec_name": "Quality Grade",
+    "spec_option_name": "Premium Quality",
+    "option_fill_rate": "30"
+  },
+  {
+    "spec_name": "Organic",
+    "spec_option_name": "No",
+    "option_fill_rate": "29.4"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_option_name": "APEDA",
+    "option_fill_rate": "29.4"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Chopped",
+    "option_fill_rate": "24.4"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Minced",
+    "option_fill_rate": "24.4"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "5 kg",
+    "option_fill_rate": "21.7"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "20 kg",
+    "option_fill_rate": "17.4"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "25 kg",
+    "option_fill_rate": "13"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_option_name": "BRC",
+    "option_fill_rate": "11.8"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_option_name": "HACCP",
+    "option_fill_rate": "11.8"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_option_name": "US FDA",
+    "option_fill_rate": "11.8"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_option_name": "HALAL",
+    "option_fill_rate": "11.8"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Cloves",
+    "option_fill_rate": "9.8"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_option_name": "KOSHER",
+    "option_fill_rate": "5.9"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "White",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "14 kg",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Moisture Content",
+    "spec_option_name": "Less than 8%",
+    "option_fill_rate": "3.8"
+  },
+  {
+    "spec_name": "Moisture Content",
+    "spec_option_name": "Less than 7%",
+    "option_fill_rate": "3.8"
+  },
+  {
+    "spec_name": "Quality Grade",
+    "spec_option_name": "Unsorted",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Black and Brown",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Granules",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Whole",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Powder",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "powder,flakes,granules,raw garlic",
+    "option_fill_rate": "2.4"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(garlic varieties grown in india for dehydration) ---
+{
+  "query": "garlic varieties grown in india for dehydration",
+  "results": [
+    {
+      "title": "Types of Indian Garlic | Popular Varieties Grown Across India",
+      "url": "https://hadotifresh.com/types-of-indian-garlic/",
+      "excerpt": "WebSearchResult(url='https://hadotifresh.com/types-of-indian-garlic/', excerpts=['Nov 6, 2025 \u00b7 1. Ooty Garlic \u00b7 2. Himachal Garlic \u00b7 3. Normal Indian Garlic \u00b7 4. Kashmir Garlic \u00b7 5. G2 Garlic \u00b7 6. Super Shankar Garlic.'], publish_date=None, title='Types of Indian Garlic | Popular Varieties Grown Across India')"
+    },
+    {
+      "title": "Dehydrated Garlic Manufacturer & Exporter - Vashila Industries",
+      "url": "https://vashilaindustries.com/dehydrated-garlic/",
+      "excerpt": "WebSearchResult(url='https://vashilaindustries.com/dehydrated-garlic/', excerpts=[\"[](https://vashilaindustries.com/)\\n\\n* [Home](https://vashilaindustries.com/)\\n* [About Us](https://vashilaindustries.com/about-us/)\\n* [Products](https://vashilaindustries.com/products/)\\n  \\n    + [Fresh Vegetables](https://vashilaindustries.com/fresh-vegetables/)\\n        \\n        - [Potato](https://vashilaindustries.com/potato/)\\n        - [Onion](https://vashilaindustries.com/onion/)\\n        - [Garlic](https://vashilaindustries.com/garlic/)\\n    + [Dehydrated Vegetables](https://vashilaindustries.com/dehydrated-vegetables/)\\n        \\n        - [Dehydrated Garlic](https://vashilaindustries.com/dehydrated-garlic/)\\n        - [Dehydrated Onion](https://vashilaindustries.com/dehydrated-onion/)\\n    + [Chicory](https://vashilaindustries.com/chicory/)\\n        \\n        - [Dried Chicory Roots](https://vashilaindustries.com/dried-chicory-roots/)\\n        - [Chicory Powder](https://vashilaindustries.com/chicory-powder/)\\n        - [Chicory Grain](https://vashilaindustries.com/chicory-grain/)\\n- [Chicory Cubes](https://vashilaindustries.com/chicory-cube/)\\n        - [Liquid Chicory](https://vashilaindustries.com/liquid-chicory/)\\n* [Contact Us](https://vashilaindustries.com/contact-us/)\\n* [Blog](https://vashilaindustries.com/blog/)\\n\\n[Free Samples](https://vashilaindustries.com/free-chicory-sample/)\\n\\n# Premium Dehydrated Garlic Manufacturer & Supplier in India\\n\\nAt Vashila Industries, we take pride in being a trusted name in the global garlic processing industry. As a leading dehydrated garlic manufacturer and supplier in India, we deliver premium-quality garlic products that retain their natural flavor, aroma, and nutritional value. From dried garlic to specialized dehydrated garlic flakes, powder, chopped, minced, granules, and fried garlic bits, our range is designed to meet the diverse requirements of food processors, FMCG brands, spice traders, and pharmaceutical companies across India and worldwide.\\nWith state-of-the-art dehydration technology and strict quality control, we ensure that every batch of our dehydrated garlic products offers consistent taste, longer shelf life, and unmatched purity \u2014 making us a preferred partner for both domestic and export buyers.\\n\\n## Vashila's Dehydrated Garlic\\n\\n## Wholesale Supplier\\n\\n## Amount Available\\n\\n## Price per ton\\n\\n## Location\\n\\n## 60 Tons\\n\\n## Open \u20ac\\n\\n## Czech rupublic\\n\\n## Amount Available\\n\\n## 60 Tons\\n\\n## Price per ton\\n\\n## Open \u20ac\\n\\n## Location\\n\\n## Czech rupublic\\n\\n## Our Dehydrated Garlic Varieties\\n\\nWe offer a wide range of **dehydrated garlic** in various forms to suit multiple applications:\\n\\n* **Dehydrated Garlic Flakes** \u2013 Ideal for snacks, instant foods, and seasoning blends\\n* **Dehydrated Garlic Powder** \u2013 Perfect for spice mixes, ready-to-eat foods, and flavoring agents\\n* **Chopped Garlic (3\u20135 mm)** \u2013 Widely used in sauces, pickles, and ready meals\\n ... \\nAs one of the leading dehydrated garlic flakes manufacturers in India and a reputed garlic powder manufacturer, we understand the critical role of quality and consistency in your supply chain. We also offer [dehydrated onion](https://vashilaindustries.com/onion-dehydrated/) varieties at their best quality and taste.\\n\\n## Get Started Today\\n\\nPartner with Vashila Industries for reliable, export-ready, and premium-quality dehydrated garlic solutions. Whether you\u2019re an international importer, an Indian food processor, or an FMCG brand, our dehydrated garlic varieties are crafted to add value to your business. [Contact us](https://vashilaindustries.com/contact-us/) today.\\n\\n## We Work with distributors, food manufacturers, wholesalers & Retailers across INDIA.\\n\\n## 30 Years in Business\\n\\n## Trusted & Reliable\\n\\n## dehydrated garlic\\n\\n## Top Quality\\n\\n## supplier & Exporter\\n\\n## Deliver Worldwide\\n\\n## Wholesale prices\\n\\n## Competitive Market Prices\\n\\n## Frequently Asked Questions\\nWhat makes Vashila Industries a leading dehydrated garlic manufacturer in India?\\n\\nVashila Industries is a **premium dehydrated garlic manufacturer and supplier in India** , offering export-grade garlic products known for purity, aroma, and consistency. With advanced dehydration technology and strict quality control, we produce a wide range of garlic forms ideal for food processors, FMCG brands, and international buyers.\\n\\nWhat dehydrated garlic varieties does Vashila Industries offer?\\n\\nWe offer multiple forms of dehydrated garlic including **flakes, powder, chopped (3\u20135 mm), minced (1\u20133 mm), granules (0.2\u20131 mm),** and **fried garlic bits.** Each variant is designed for specific food applications such as snacks, sauces, seasonings, instant meals, and flavoring agents, ensuring consistent taste and easy integration into industrial production.\\n\\nHow does Vashila ensure the quality and safety of its dehydrated garlic products?\\n ... \\n##### Factory\\n\\nVashila Industries Pvt Ltd  \\nKanjari highway bypass road,  \\nbehind Vishwas weigh bridge,  \\nNadiad, Gujarat, India 387325\\n\\n Menu\"], publish_date='2025-11-10', title='Dehydrated Garlic Manufacturer & Exporter - Vashila Industries')"
+    },
+    {
+      "title": "Dehydrated Garlic Chopped Suppliers And Exporters In India",
+      "url": "https://vadindustries.com/dehydrated-products/dehydrated-garlic-chopped/?srsltid=AfmBOoqjdqDyTWhNqop3pz5cyDo107rsg8ByHIqQ-xFeWDDI7GILycuj",
+      "excerpt": "WebSearchResult(url='https://vadindustries.com/dehydrated-products/dehydrated-garlic-chopped/?srsltid=AfmBOoqjdqDyTWhNqop3pz5cyDo107rsg8ByHIqQ-xFeWDDI7GILycuj', excerpts=['dehydrated garlic chopped made from assorted raw fresh garlic, after going through a various stage of dehydration, it is come from dried and known as dehydrated'], publish_date=None, title='Dehydrated Garlic Chopped Suppliers And Exporters In India')"
+    },
+    {
+      "title": "Dehydrated Garlic \u2013 Chhatariya Foods Pvt. Ltd.",
+      "url": "https://www.chhatariyafoods.com/products/dehydrated-garlic/",
+      "excerpt": "WebSearchResult(url='https://www.chhatariyafoods.com/products/dehydrated-garlic/', excerpts=['### Verifying that you are not a robot...'], publish_date=None, title='Dehydrated Garlic \u2013 Chhatariya Foods Pvt. Ltd.')"
+    },
+    {
+      "title": "Dehydrated Garlic Powder Manufacturers & Suppliers in India | VLC Spices",
+      "url": "https://www.vlcspices.com/shop/dehydrated-garlic-granules/",
+      "excerpt": "WebSearchResult(url='https://www.vlcspices.com/shop/dehydrated-garlic-granules/', excerpts=['[](https://www.vlcspices.com/wp-content/uploads/2022/04/Layer-95.png \"Dehydrated Garlic\") \\n\\n* [](https://www.vlcspices.com/wp-content/uploads/2022/04/Layer-95.png \"Dehydrated Garlic\")\\n* [](https://www.vlcspices.com/wp-content/uploads/2022/04/Layer-96.png \"garlic powder exporters india\")\\n\\n# DEHYDRATED GARLIC\\n\\nGarlic has been used as a spice for a very long time for cooking and also as a condiment due to its pungent flavour. Dehydrated garlic granules have also gained popularity in a variety of food preparations. Granulated garlic is a form of dried garlic. It is obtained by grounding the garlic to a sand-like consistency by drying and grinding the granules. Whether it is in the form of flakes, small pieces, powdered, or minced, it is easy to pack and use in curries, sauces, and pickles. Along with making your cooking experience fun, garlic powder is easy to store and convenient to use. It also has nutritional value and holds a place in medicinal applications as well.\\nDehydrated Garlic powder is used in many dishes due to its strong taste and flavour. VLC Spices is one of the leading dehydrated garlic powder manufacturers in India. We procure garlic directly from the source and process it in hygienic conditions to give you the best quality product. The dehydration process is carried out with utmost care to ensure superior taste, aroma and flavour.  VLC Garlic Flakes come in the following varieties \u2013 Garlic Chopped 3-5mm, Garlic Minced 1-3 mm, Garlic Granules (0.5-1 MM). The colour varies from white to light cream and its pungent natural aroma is well preserved. Providing products made from the finest garlic cloves, we are the best dehydrated garlic powder suppliers & exporters in India. With several options of packaging and labelling available, you can choose from our wide range as per your requirements.\\n\\n## DEHYDRATED GARLIC\\n\\nSPEC DOWNLOAD\\n\\nSend download link to:\\n\\nCategory: [Ground Spices](https://www.vlcspices.com/product-category/ground-spices/)\\n* Description\\n\\n## Dehydrated Garlic Powder from VLC Spices\\n\\nAt VLC Spices, we are long-standing partners to food businesses, spice brands, and exporters across the globe. As one of the leading dehydrated garlic powder manufacturers in India, we combine decades of expertise, state-of-the-art processing, and strict quality control to deliver garlic products that meet the highest global standards.\\n\\nOur dehydrated garlic is processed from select, farm-fresh garlic cloves sourced directly from trusted growers. With in-house fumigation, sterilisation, and precision dehydration, we preserve the authentic flavour, pungency, and aroma that your products demand; whether you\u2019re [blending spice mixes](https://www.vlcspices.com/blendedspices/) , seasoning snacks, preparing ready-to-eat meals, or packaging for retail.\\n\\nIf you\u2019re searching for reliable dehydrated garlic suppliers, exporters, or bulk manufacturers, VLC Spices is your trusted choice for consistency, quality, and compliance.\\n## Garlic Powder Manufacturers in India\\n\\nOver the years, VLC Spices has earned a reputation as one of the most dependable dehydrated garlic powder exporters from India, shipping to markets in Asia, the Middle East, Europe, and North America.\\n\\nFrom sourcing to packaging, every step happens in our modern processing unit in Navi Mumbai, giving us end-to-end control over quality and food safety. Our processes meet international benchmarks like ISO 22000:2018, FSSC 22000, FDA, and Kosher standards; making our products export-ready from day one.\\n\\n**Our clientele includes:**\\n\\n* Food processing companies\\n* [Seasoning](https://www.vlcspices.com/private-labeling/) & spice blend manufacturers\\n* Snack & ready-meal brands\\n* Restaurant chains & catering kitchens\\n* International spice traders & exporters\\n\\n## Bulk & Wholesale Dehydrated Garlic\\n\\nAs leading garlic powder suppliers, we specialise in large-scale supply for industries that demand reliability and high capacity. With VLC, you get:\\n* Bulk supply at competitive B2B pricing\\n* 25 kg double poly bag with export carton box packaging\\n* Timely dispatch and assured delivery timelines\\n* Moisture-proof, aroma-sealed packaging to maintain freshness for 12 months\\n* Support for custom specifications on MOQ orders\\n\\nWhether you are an OEM seasoning manufacturer or a global food export brand, our processes are designed to support uninterrupted production and consistent supply chains.\\n\\n## Available Grades \u2013 Dehydrated Garlic\\n\\nWe provide multiple dehydrated garlic forms to suit your applications:\\n\\nSpecifications Dehydrated Garlic\\n\\n|Variety |Particle Size |Ideal Use |\\n| --- | --- | --- |\\n|Garlic Flakes / Chopped |3\u20135 mm |Visible garlic texture in soups, pickles, ready meals |\\n|Garlic Minced |1\u20133 mm |Sauces, marinades, condiments |\\n|Garlic Granules |0\\\\.5\u20131 mm |Seasoning blends, snack coatings, spice mixes |\\n|Garlic Powder |Fine mesh |Instant soups, spice premixes, bakery, powdered seasoning |\\n\\n|Dehydrated Garlic |'], publish_date='2025-08-21', title='Dehydrated Garlic Powder Manufacturers & Suppliers in India | VLC Spices')"
+    },
+    {
+      "title": "Dehydrated Garlic Varieties - IndiaMART",
+      "url": "https://www.indiamart.com/alfadehydrationindia/dehydrated-garlic-varieties.html?srsltid=AfmBOoqd0_qCTPkP8c_0J6p0u5zCDSkTGP55es72BednwRM1EFGBUTB4",
+      "excerpt": "WebSearchResult(url='https://www.indiamart.com/alfadehydrationindia/dehydrated-garlic-varieties.html?srsltid=AfmBOoqd0_qCTPkP8c_0J6p0u5zCDSkTGP55es72BednwRM1EFGBUTB4', excerpts=['Manufacturer of Dehydrated Garlic Varieties - Dehydrated Garlic Chopped, Dehydrated Garlic Granules, Dehydrated Garlic Minced and Dehydrated Garlic Cloves\\xa0...'], publish_date=None, title='Dehydrated Garlic Varieties - IndiaMART')"
+    },
+    {
+      "title": "High-Yielding Garlic Varieties for Indian Farmers - Global Agriculture",
+      "url": "https://www.global-agriculture.com/seed-industry/high-yielding-garlic-varieties-for-indian-farmers/",
+      "excerpt": "WebSearchResult(url='https://www.global-agriculture.com/seed-industry/high-yielding-garlic-varieties-for-indian-farmers/', excerpts=['Dec 2, 2023 \u00b7 Below are 17 high-yielding varieties of garlic for Indian farmers. A suitable state in India for each variety is mentioned.'], publish_date=None, title='High-Yielding Garlic Varieties for Indian Farmers - Global Agriculture')"
+    },
+    {
+      "title": "Garlic Dehydration Plant - Jay Bhavani Mechanical Works",
+      "url": "http://www.google.com/url?esrc=s&q=&rct=j&sa=U&url=http://www.jaybhavanimechanicalworks.co.in/garlic-dehydration-plant.html&ved=2ahUKEwjmpKeztM6TAxXhvokEHbu-EcoQFnoECAcQAg&usg=AOvVaw3qo6kuPy0PzWluveSWmPh5",
+      "excerpt": "WebSearchResult(url='http://www.google.com/url?esrc=s&q=&rct=j&sa=U&url=http://www.jaybhavanimechanicalworks.co.in/garlic-dehydration-plant.html&ved=2ahUKEwjmpKeztM6TAxXhvokEHbu-EcoQFnoECAcQAg&usg=AOvVaw3qo6kuPy0PzWluveSWmPh5', excerpts=['Being a prominent name in industrial manufacturing, we are offering Garlic Dehydration Plant processes fresh garlic into dehydrated garlic flakes, powder,\\xa0...'], publish_date=None, title='Garlic Dehydration Plant - Jay Bhavani Mechanical Works')"
+    },
+    {
+      "title": "The Process Behind Dehydrated Garlic Powder Production in India",
+      "url": "https://www.bagoradehydrates.com/blog/the-process-behind-dehydrated-garlic-powder-production-in-india.html",
+      "excerpt": "WebSearchResult(url='https://www.bagoradehydrates.com/blog/the-process-behind-dehydrated-garlic-powder-production-in-india.html', excerpts=['* Contact us for Best Pricing for Exports\\n* \\\\-\\n* [[email protected]](/cdn-cgi/l/email-protection)\\n* \\\\+91-99798 50577\\n\\n# The Process Behind Dehydrated Garlic Powder Production in India\\n\\nDehydrated garlic powder is becoming a common ingredient in kitchens all over the world because it\\'s convenient and improves food flavor. It is made in India, a major player in the world spice industry, using a careful procedure.\\n\\n[Dehydrated garlic powder](https://www.bagoradehydrates.com/dehydrated-garlic-powder.html) is produced in India using an intriguing procedure that blends traditional farming methods with contemporary technology to address the rising demand for this adaptable ingredient. Because dried garlic powder is convenient, has a longer shelf life, and maintains the flavor and scent of fresh garlic, its demand in India has grown significantly in recent years.\\n\\n## Steps in the Process of Dehydrated Garlic Powder Production\\n\\n### Harvesting and Cultivation\\nThe procedure starts with the planting of garlic, a vegetable that has been a mainstay of Indian cooking for generations. Garlic cultivars that are ideal for dehydration are carefully chosen by farmers to provide a strong flavor character. After being planted in soil that has been thoroughly prepared, the garlic bulbs are raised through several phases until they reach maturity. Harvesting is an important stage that should be completed before the rainy season arrives to prevent water damage to the garlic bulbs.\\n\\n### Preparation for Dehydration\\n\\nAfter being harvested, the garlic bulbs are carefully cleaned and sorted to get rid of any contaminants. It is an essential stage in guaranteeing the end product\\'s quality. After cleaning, the garlic bulbs are peeled, and the cloves are divided. Occasionally, the cloves may be sliced or chopped to facilitate the drying process.\\n\\n### Drying Process\\n\\nThe most important stage in the creation of garlic powder is dehydration.\\nIn India, traditional sun drying is still very common despite being weather-dependent. On a tray or mat, peeled garlic cloves are arranged in thin layers and left to dry in the sun for a few days. To provide a more regulated and effective procedure, contemporary facilities also make use of cutting-edge drying technology, including freeze-drying and hot-air dryers. This procedure helps the garlic retain its flavor and extend its shelf life by lowering the moisture content.\\n\\n### Grinding and Powdering\\n\\nThe garlic cloves are ground into a fine powder following their dehydration. It is a critical stage where the uniformity and texture of the product are mostly determined by the quality of the equipment and the accuracy of grinding the product.\\n\\nModern grinding equipment in India has greatly increased this step\\'s efficiency, guaranteeing a consistent and premium-grade dried garlic powder.\\n\\n### Quality Control\\n ... \\nThe keyword \"Dehydrated Garlic Powder India\" highlights the country\\'s prominence in the worldwide spice trade by reflecting its substantial role in both production and consumption.\\n\\nThis article explores the nuances of this procedure, outlining the important phases and emphasizing India\\'s place in the sector.\\n\\nIndia has made a significant contribution to the world spice market and is renowned for its extensive culinary legacy. An ingredient with many uses, garlic is prized for several health advantages in addition to its flavor. Dehydrated garlic powder appears as a handy way to store garlic, increasing its shelf life and facilitating global customer access.\\n\\n### Growing and Gathering\\n\\nThe process of making dehydrated garlic powder starts in the fields. India is home to the cultivation of garlic, a resilient bulbous plant. Temperature, soil type, and garlic variety all have a significant impact on how good the finished product is.\\nWhen the garlic bulbs are fully grown, they are gently removed to do the least amount of damage possible.\\n\\n### Organising and Cleaning\\n\\nThe garlic bulbs are thoroughly cleaned after harvest. To expose the immaculate cloves inside, dirt, debris, and outer layers must be removed. After sorting, the cloves are examined for quality, and any damaged or inferior ones are discarded. This careful selection is what makes for a superior dehydrated garlic powder.\\n\\n### Cutting and Peeling\\n\\nThe garlic bulbs are thoroughly cleaned after harvest. Dirt, debris, and outer layers must be removed to expose the immaculate cloves inside. After sorting, the cloves are examined for quality, and any damaged or inferior ones are discarded. This careful selection is what makes for a superior dehydrated garlic powder.\\n\\n### The Desiccation Procedure\\n\\nThe drying procedure is the key to producing dehydrated garlic powder.'], publish_date=None, title='The Process Behind Dehydrated Garlic Powder Production in India')"
+    },
+    {
+      "title": "Garlic Crop Guide(India) - Map My Crop",
+      "url": "https://mapmycrop.com/garlic-crop-guideindia/",
+      "excerpt": "WebSearchResult(url='https://mapmycrop.com/garlic-crop-guideindia/', excerpts=['[Home](https://mapmycrop.com/) \\\\- Garlic Crop Guide(India)\\n\\n# Garlic Crop Guide(India)\\n\\n[Back](https://mapmycrop.com/wp-content/uploads/2026/03/farm-detect-1-1-scaled-1.avifwp-content/uploads/2026/03/world-agri-tech-new-logo.pngwp-content/uploads/2026/03/water-irrigtaion-image-new-scaled-1.avifcrop-guide/)\\n\\n# Garlic  \\nBotanical Name \u2013 Allium sativum  \\nFamily \u2013 Alliaceae\\n\\nImportance\\n\\n* Garlic is a native of Southern Europe and a popular bulb crop cultivated throughout Asia.\\n* It is used as spice in many dishes.\\n* It has excellent medicinal properties.\\n* It is rich source of Protein, Phosphorus, Potassium etc.\\n* It helps in digestion; also it reduces cholesterol in human blood. Major Garlic producing states are Madhya Pradesh, Gujarat, Rajasthan, Orissa, Uttar Pradesh, Maharashtra, Punjab and Haryana.\\n\\nVarieties\\nThe garlic varieties developed by National Horticultural Research Development Foundation (NHRDF), Nashik, Mahatma Phule Krishi Vidyapeeth (MPKV), Rahuri, Chaudhary Charan Singh Agricultural University (CCSHAU), Hisar, Tamil Nadu Agricultural University (TNAU), Coimbatore, ICAR-Indian Agricultural Research Institute (IARI), New Delhi, ICAR-Vivekananda Parvatiya Krishi Anusandhan Sansthan (VPKAS), Almora and Junagadh Agricultural University (JAU), Junagadh are listed below.\\n\\n**Table . Other garlic varieties for different regions of the country**\\n\\n|Variety |Developed by |Colour |Region |Days to maturity |Yield potential (t/ha) |\\n| --- | --- | --- | --- | --- | --- |\\n|Short day type |\\n|Agrifound White (G-41) |NHRDF |White |Madhya Pradesh and Maharashtra |130-135 |12-14 |\\n|Yamuna Safed\\n\\n(G-1) |NHRDF |White |All India |120-130 |15-17 |\\n|Yamuna Safed-2 (G-50) |NHRDF |White |Northern India |120-130 |15-20 |\\n|Yamuna Safed-3 (G-282) |NHRDF |Creamy white |Chhattisgarh, Gujarat,Haryana,Madhya Pradesh, Maharashtra, Punjab, Rajasthan and Uttar Pradesh |120-130 |17-20 |\\n|Yamuna Safed-4 (G-323) |NHRDF |White |North and central India |165-175 |16-17 |\\n|Yamuna Safed-5  (G-189) |NHRDF |White |Andaman and Nicobar Island, Arunachal Pradesh,Bihar,Delhi Gujarat, Haryana, Jharkhand,Manipur,Meghalaya,Mizoram, Nagaland,Punjab,Rajasthan, Sikkim, Tarai region of Uttar Pradesh,TripuraandUttarakhand |150-160 |17-18 |\\n|Godavari |MPKV |Purple |Maharashtra |140-145 |10-11 |\\n|Shweta |MPKV |White |Maharashtra |130-135 |10-11 |\\n|Phule Baswant |MPKV |White |Madhya Pradesh and Maharashtra |135-140 |10\\\\.-11 |\\n|GG 4 |JAU |White |Gujarat and Maharashtra |130-140 |8-10 |\\n|Intermediate type |\\n|Ooty 1 |TNAU |Dull white |Tamil Nadu |120-130 |15-17 |\\n|Long day type |\\n|VL Garlic 1 |ICAR-VPKAS |White |Bihar,Himachal Pradesh, Jammu & Kashmir, Punjab, Uttarakhand and Uttar Pradesh |180-190 |Hills:14-15\\n\\nPlains: 9-10 |\\n ... \\n* Garlic can be grown at elevation of 1200\u20132000m from the mean sea level.\\n* It requires short days, cool(12\u201318\u00b0C) moist period during vegetative growth.\\n* In general, a cool growing period results in higher yield than warm conditions. Exposure of young plants to 20\u00b0C or lower temperature for 1-2 months depending upon the variety hastens subsequent\\n* The critical day length for bulbing is 10-12 h for short day garlic and 13-14 h for long day garlic.\\n\\nLand preparation\\n\\n* Field should be ploughed using mould board plough and tilled using cultivator 3-4 times to eliminate debris and soil clods.\\n* Organic manure equivalent to 75 kg N/ha (FYM 15 t/ha or poultry manure 7.5 t/ha or vermi-compost 7.5 t/ha) should be incorporated at the time of last ploughing and beds of appropriate size should be prepared after levelling.\\n* Mostly, flat beds of 1.5-2.0 m width and 4-6 m length are formed. But, for kharif or rainy season, flat beds should be avoided to prevent water logging.\\n ... \\n* Seed treatment with Thiram@2 gm/kg of seed + Benomyl 50WP@1 gm/liter water effectively controls damping off and smut diseases.\\n* After chemical treatment, seed treatment with bio agent _Trichoderma viride_ @2 gm/kg of seed is recommended, it help in reducing early seedling diseases and soil borne inoculum.\\n\\nSpacing\\n\\n* **Spacing**  \\n  Keep spacing of 7.5 cm between two plant and 15 cm between the rows.\\n* **Sowing Depth**  \\n  Sow garlic cloves 3 to 5 cm deep keeping their growing heads upward.\\n* **Method of sowing**  \\n  For sowing of garlic use Kera method. Sowing can be done manually or with help of Machine. Cover cloves with soil and provide light irrigation.\\n\\nFertilizers\\n\\n* Based on the field experiments carried out through All India Network Research Project on Onion and Garlic at different locations, application of 75:40:40:40 kg NPKS/ha along with a combination of two or three organic manures (FYM, Poultry manure and Vermicompost) equivalent to 75 kg N/ha (7.'], publish_date='2022-05-11', title='Garlic Crop Guide(India) - Map My Crop')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(major garlic producing states in india) ---
+{
+  "query": "major garlic producing states in india",
+  "results": [
+    {
+      "title": "Maps - Garlic Production in India (2014-2024) - Insights",
+      "url": "https://insights.dataful.in/maps/garlic-production-in-india-2014-2024",
+      "excerpt": "WebSearchResult(url='https://insights.dataful.in/maps/garlic-production-in-india-2014-2024', excerpts=[\"# Insights by\\n\\n[](https://dataful.in)\\n\\n* home\\n* Articles\\n* Maps\\n* Newsletters\\n* Reports\\n\\n### Maps\\n\\n# Garlic Production in India (2014-2024)\\n\\nAkhil Reddy\\n\\n10 July 2025\\n\\nDownload related Data\\n\\nThe map showcases garlic production across different states from 2014 to 2024. The data is presented in thousand metric tonnes, with the total production for all of India amounting to 25,563 thousand metric tonnes.\\n\\nThe map reveals [](https://google.com) significant variations in garlic production among Indian states. Madhya Pradesh emerges as the leading producer with 13,616 thousand metric tonnes, followed by Rajasthan with 4,776 thousand metric tonnes. Other major producers include Uttar Pradesh (2,177), Gujarat (1,631), and Punjab (878). In contrast, some states show minimal production, such as Tripura (1), Andhra Pradesh (1), and Mizoram (0.11). Most of the northeastern states have lower production figures, while the central and western states dominate in terms of output.\\nThe data for 2023-24 are estimates, as indicated in the image. This comprehensive visualization provides valuable insights into the geographical distribution of garlic cultivation across India, highlighting the states that contribute most significantly to the country's overall garlic production.\\n\\n[# \ud83d\udc49\ud83c\udffb 'CSR Insights' by Dataful: Chat with India\u2019s CSR Data CSR Insights is an AI-powered platform that helps you instantly explore and analyse CSR data from thousands of companies across India. Chat with the data to uncover trends, compare spending across sectors, and gain actionable insights. Powered by GoPie, with data from Dataful, both products of Factly.](https://csr.dataful.in/)\\n\\n## Tags\\n\\nagriculture production garlic\\n\\nA Factly product.\\n\\n* [FAQs](https://dataful.in/faqs/)\\n* [About Us](https://dataful.in/about-us/)\\n* [Usecases](https://dataful.in/use-cases/)\\n* [Team](https://factlymedia.com/teams/)\\n* [Counting india](https://countingindia.com/)\\n* [Contact Us](https://dataful.\\nin/contact-us/)\\n* [Who We Serve](https://dataful.in/whoweserve/)\\n* [Terms and Conditions](https://dataful.in/terms-and-conditions/)\\n\\n[](https://twitter.com/Dataful_factly) [](https://linkedin.com/products/factlyindia-dataful) [](https://www.youtube.com/@Dataful_factly) [](https://www.instagram.com/dataful_factly/) [](https://github.com/factly)\"], publish_date='2024-10-08', title='Maps - Garlic Production in India (2014-2024) - Insights')"
+    },
+    {
+      "title": "India's garlic production by state | NARINDER WALIA posted on the ...",
+      "url": "https://www.linkedin.com/posts/narinder-walia-3b436216_about-india-origin-garlic-india-has-always-activity-7319286493498208256-Yu14",
+      "excerpt": "WebSearchResult(url='https://www.linkedin.com/posts/narinder-walia-3b436216_about-india-origin-garlic-india-has-always-activity-7319286493498208256-Yu14', excerpts=['Apr 19, 2025 \u00b7 ... GARLIC. THE TOTAL SHARE IS 0.77% TO INDIA. IT IS ONE OF THE 10 LARGEST GARLIC PRODUCING STATES OF INDIA. 8. KARNATAKA OTHER THAN THE VARIOUS'], publish_date=None, title=\"India's garlic production by state | NARINDER WALIA posted on the ...\")"
+    },
+    {
+      "title": "[PDF] Transition in production and export potential of garlic in India",
+      "url": "https://www.horticultureresearch.net/jah/Transition%20in%20production%20and%20export%20potential%20of%20garlic%20in%20India.pdf",
+      "excerpt": "WebSearchResult(url='https://www.horticultureresearch.net/jah/Transition%20in%20production%20and%20export%20potential%20of%20garlic%20in%20India.pdf', excerpts=['Major garlic producing states in India are. Madhya Pradesh, Rajasthan, Uttar Pradesh, Gujarat and Assam. In. India 21 wholesale markets are exclusively'], publish_date=None, title='[PDF] Transition in production and export potential of garlic in India')"
+    },
+    {
+      "title": "[PDF] state - spice wise area and production in india",
+      "url": "https://www.indianspices.com/sites/default/files/all%20state%20item%20wise%20area%20and%20production%20of%20spices%202024-25%20web.pdf",
+      "excerpt": "WebSearchResult(url='https://www.indianspices.com/sites/default/files/all%20state%20item%20wise%20area%20and%20production%20of%20spices%202024-25%20web.pdf', excerpts=['1087\\n\\n693\\n\\n2339\\n\\n1568\\n\\nBlack pepper\\n\\n890\\n\\n531\\n\\n882\\n\\n486\\n\\n478\\n\\n248\\n\\n426\\n\\n252\\n\\n426\\n\\n252\\n\\n**Total(Incl.Others)**\\n\\n**217061**\\n\\n**885679**\\n\\n**260163**\\n\\n**511813**\\n\\n**306671**\\n\\n**1578591**\\n\\n**302414**\\n\\n**1321403**\\n\\n**218045**\\n\\n**1150207**\\n\\nGinger (Fresh)\\n\\n3278\\n\\n13384\\n\\n2974\\n\\n11522\\n\\n3804\\n\\n12742\\n\\n3433\\n\\n59463\\n\\n3498\\n\\n24175\\n\\nTurmeric (Dry)\\n\\n353\\n\\n1952\\n\\n465\\n\\n1241\\n\\n482\\n\\n2459\\n\\n558\\n\\n1704\\n\\n476\\n\\n2067\\n\\nCardamom Large\\n\\n11403\\n\\n1662\\n\\n11684\\n\\n1695\\n\\n11912\\n\\n1751\\n\\n12131\\n\\n1806\\n\\n12438\\n\\n1863\\n\\nRed Chillies\\n\\n1062\\n\\n2377\\n\\n3\\n\\n5\\n\\n323\\n\\n978\\n\\n5\\n\\n15\\n\\n5\\n\\n15\\n\\nBlack pepper\\n\\n102\\n\\n151\\n\\n61\\n\\n17\\n\\n12\\n\\n3\\n\\n50\\n\\n13\\n\\n50\\n\\n13\\n\\n**Total**\\n\\n**16198**\\n\\n**19526**\\n\\n**15187**\\n\\n**14480**\\n\\n**16533**\\n\\n**17933**\\n\\n**16177**\\n\\n**63001**\\n\\n**16467**\\n\\n**28133**\\n\\nGinger (Fresh)\\n\\n19451\\n\\n185951\\n\\n18026\\n\\n169264\\n\\n17997\\n\\n170755\\n\\n18346\\n\\n174920\\n\\n18469\\n\\n176327\\n\\nGarlic\\n\\n10765\\n\\n68916\\n\\n10805\\n\\n69422\\n\\n10913\\n\\n71316\\n\\n11043\\n\\n101037\\n\\n11105\\n\\n101745\\n\\nCoriander\\n\\n30698\\n\\n35763\\n\\n30893\\n\\n33827\\n\\n31033\\n\\n34074\\n\\n31201\\n\\n34465\\n\\n31371\\n\\n34694\\n\\nTurmeric (Dry)\\n\\n17757\\n\\n24665\\n\\n16592\\n\\n21486\\n17558\\n\\n23333\\n\\n17147\\n\\n57455\\n\\n17230\\n\\n57828\\n\\nRed Chillies\\n\\n20459\\n\\n20189\\n\\n20307\\n\\n20611\\n\\n21536\\n\\n22270\\n\\n20907\\n\\n21682\\n\\n21002\\n\\n21794\\n\\nBlack pepper\\n\\n4087\\n\\n3055\\n\\n3512\\n\\n2628\\n\\n3603\\n\\n2812\\n\\n3714\\n\\n2844\\n\\n3739\\n\\n1317\\n\\n**Total**\\n\\n**103217**\\n\\n**338539**\\n\\n**100135**\\n\\n**317238**\\n\\n**102640**\\n\\n**324560**\\n\\n**102358**\\n\\n**392403**\\n\\n**102916**\\n\\n**393705**\\n\\nRed Chillies\\n\\n1622\\n\\n3652\\n\\n1338\\n\\n3617\\n\\n1450\\n\\n2961\\n\\n2646\\n\\n4644\\n\\n2646\\n\\n4644\\n\\nGinger (Fresh)\\n\\n340\\n\\n2962\\n\\n126\\n\\n1088\\n\\n313\\n\\n2716\\n\\n631\\n\\n5450\\n\\n358\\n\\n3100\\n\\nTurmeric (Dry)\\n\\n2788\\n\\n2874\\n\\n2735\\n\\n2797\\n\\n2727\\n\\n2818\\n\\n2031\\n\\n2092\\n\\n2623\\n\\n2694\\n\\nGarlic\\n\\n1579\\n\\n2623\\n\\n1413\\n\\n2209\\n\\n1384\\n\\n2209\\n\\n1741\\n\\n2840\\n\\n1553\\n\\n2467\\n\\nCoriander\\n\\n2269\\n\\n2051\\n\\n2357\\n\\n2159\\n\\n2458\\n\\n2265\\n\\n2545\\n\\n2315\\n\\n2372\\n\\n2160\\n\\n**Total**\\n\\n**8598**\\n\\n**14162**\\n\\n**7969**\\n\\n**11870**\\n\\n**8332**\\n\\n**12969**\\n\\n**9594**\\n\\n**17341**\\n\\n**9552**\\n\\n**15065**\\n\\n**2023-24 F**\\n\\n**2024-25 (\\\\*)**\\n\\n**STATE - SPICE WISE AREA AND PRODUCTION IN INDIA**\\n\\n**2020-21**\\n\\n**2022-23**\\n\\n**2021-22**\\n\\n**SPICES**\\n\\n**Andaman &**\\n\\n**Nicobar**\\n\\n**Andhra Pradesh**\\n**Arunachal Pradesh**\\n\\n**Assam**\\n\\n**Bihar**\\n\\n**STATE**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**Area(HA.) Production**\\n\\n**(MT)**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**2023-24 F**\\n\\n**2024-25 (\\\\*)**\\n\\n**STATE - SPICE WISE AREA AND PRODUCTION IN INDIA**\\n\\n**2020-21**\\n\\n**2022-23**\\n\\n**2021-22**\\n\\n**SPICES**\\n\\n**STATE**\\n\\nGinger (Fresh)\\n\\n2064\\n\\n8442\\n\\n1180\\n\\n7849\\n\\n886\\n\\n1293\\n\\n885\\n\\n6259\\n\\n1416\\n\\n6513\\n\\nRed Chillies\\n\\n5415\\n\\n3249\\n\\n4720\\n\\n3107\\n\\n4901\\n\\n3204\\n\\n4443\\n\\n2909\\n\\n4443\\n\\n2909\\n\\nGarlic\\n\\n1573\\n\\n1681\\n\\n1174\\n\\n3022\\n\\n877\\n\\n2415\\n\\n828\\n\\n2278\\n\\n1205\\n\\n2215\\n\\nTurmeric (Dry)\\n\\n1443\\n\\n1157\\n\\n1041\\n\\n1303\\n\\n872\\n\\n1081\\n\\n686\\n\\n852\\n\\n1097\\n\\n1110\\n\\nCoriander\\n\\n3019\\n\\n905\\n\\n2475\\n\\n732\\n\\n3146\\n\\n970\\n\\n3236\\n\\n987\\n\\n2979\\n\\n900\\n\\n**Total**\\n\\n**13514**\\n\\n**15434**\\n\\n**10590**\\n\\n**16013**\\n\\n**10682**\\n\\n**8963**\\n\\n**10078**\\n\\n**13285**\\n\\n**11140**\\n\\n**13647**\\n\\nBlack Pepper\\n\\n855\\n\\n324\\n\\n858\\n\\n404\\n\\n861\\n\\n418\\n\\n868\\n\\n350\\n\\n868\\n\\n350\\n\\nNutmeg/Mace\\n\\n235\\n\\n19\\n\\n260\\n\\n18\\n\\n266\\n\\n19\\n\\n266\\n\\n16\\n\\n266\\n\\n16\\n ... \\n**11580**\\n\\n**31775**\\n\\n**10674**\\n\\n**29187**\\n\\n**10822**\\n\\n**29441**\\n\\n**Chhattisgarh**\\n\\n**Goa**\\n\\n**Gujarat**\\n\\n**Haryana**\\n\\n**Himachal Pradesh**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**Area(HA.) Production**\\n\\n**(MT)**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**2023-24 F**\\n\\n**2024-25 (\\\\*)**\\n\\n**STATE - SPICE WISE AREA AND PRODUCTION IN INDIA**\\n\\n**2020-21**\\n\\n**2022-23**\\n\\n**2021-22**\\n\\n**SPICES**\\n\\n**STATE**\\n\\nGarlic\\n\\n708\\n\\n572\\n\\n777\\n\\n565\\n\\n824\\n\\n640\\n\\n796\\n\\n598\\n\\n796\\n\\n598\\n\\nRed Chillies\\n\\n664\\n\\n551\\n\\n639\\n\\n512\\n\\n613\\n\\n470\\n\\n714\\n\\n558\\n\\n685\\n\\n520\\n\\nSaffron\\n\\n3657\\n\\n4\\n\\n3395\\n\\n3\\n\\n3435\\n\\n3\\n\\n3176\\n\\n3\\n\\n3199\\n\\n3\\n\\n**Total(Incl.Others)**\\n\\n**5069**\\n\\n**1191**\\n\\n**4849**\\n\\n**1156**\\n\\n**4909**\\n\\n**1181**\\n\\n**4724**\\n\\n**1227**\\n\\n**4717**\\n\\n**1194**\\n\\nGinger (Fresh)\\n\\n0\\n\\n0\\n\\n3780\\n\\n87327\\n\\n4224\\n\\n91731\\n\\n4225\\n\\n90588\\n\\n4280\\n\\n90823\\n\\nTurmeric (Dry)\\n\\n0\\n\\n0\\n\\n844\\n\\n3242\\n\\n990\\n\\n3919\\n\\n970\\n\\n3854\\n\\n970\\n\\n3855\\n\\n**Total**\\n\\n**0**\\n\\n**0**\\n\\n**4624**\\n\\n**90569**\\n\\n**5214**\\n\\n**95650**\\n ... \\nTejpat\\n\\n489\\n\\n1116\\n\\n98\\n\\n223\\n\\n117\\n\\n268\\n\\n117\\n\\n268\\n\\n117\\n\\n268\\n\\n**Total(Inl.Others)**\\n\\n**14529**\\n\\n**84039**\\n\\n**13791**\\n\\n**81476**\\n\\n**17242**\\n\\n**70610**\\n\\n**17121**\\n\\n**69529**\\n\\n**15466**\\n\\n**75642**\\n\\n**Tripura**\\n\\n**Uttar Pradesh**\\n\\n**Uttarakhand**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**Area(HA.) Production**\\n\\n**(MT)**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**Area(HA.)**\\n\\n**Production**\\n\\n**(MT)**\\n\\n**2023-24 F**\\n\\n**2024-25 (\\\\*)**\\n\\n**STATE - SPICE WISE AREA AND PRODUCTION IN INDIA**\\n\\n**2020-21**\\n\\n**2022-23**\\n\\n**2021-22**\\n\\n**SPICES**\\n\\n**STATE**\\n\\nGinger (Fresh)\\n\\n12700\\n\\n138998\\n\\n12863\\n\\n141078\\n\\n12235\\n\\n136660\\n\\n12438\\n\\n139537\\n\\n12549\\n\\n138577\\n\\nTurmeric (Dry)\\n\\n18482\\n\\n48183\\n\\n18772\\n\\n50938\\n\\n19692\\n\\n53068\\n\\n19781\\n\\n53394\\n\\n18908\\n\\n50246\\n\\nGarlic\\n\\n3981\\n\\n37975\\n\\n4038\\n\\n38146\\n\\n3946\\n\\n34775\\n\\n3904\\n\\n38620\\n\\n3959\\n\\n37397\\n\\nRed Chillies\\n\\n4930\\n\\n7821\\n\\n4508\\n\\n7783\\n\\n7593\\n\\n15413\\n\\n7913\\n\\n16351\\n\\n7913\\n\\n16350\\n\\nCoriander\\n\\n12670\\n\\n16443\\n\\n12959\\n\\n16111\\n\\n11302\\n\\n15802\\n\\n11583\\n\\n16623\\n\\n12082\\n\\n16125'], publish_date=None, title='[PDF] state - spice wise area and production in india')"
+    },
+    {
+      "title": "Major garlic producing states in India - production and ... - Numerical",
+      "url": "https://numerical.co.in/numerons/collection/619aeeff0b46bc28dcc57964",
+      "excerpt": "WebSearchResult(url='https://numerical.co.in/numerons/collection/619aeeff0b46bc28dcc57964', excerpts=['Nov 23, 2021 \u00b7 Annual production of garlic in Madhya Pradesh in 2018-19. Ranked #1, the state accounts for 61.93% of garlic produced in India.'], publish_date=None, title='Major garlic producing states in India - production and ... - Numerical')"
+    },
+    {
+      "title": "Do you know India's top 5 Garlic-producing states during 2023-24 ...",
+      "url": "https://www.instagram.com/reel/DAxdu9ex0d_/",
+      "excerpt": "WebSearchResult(url='https://www.instagram.com/reel/DAxdu9ex0d_/', excerpts=['Oct 5, 2024 \u00b7 Top five garlic producing states. Fifth, Punjab. Fourth, Gujarat. Third, Uttar Pradesh. Second, Rajasthan. First, Madhya Pradesh. OCR. DATAFUL\\xa0...'], publish_date=None, title=\"Do you know India's top 5 Garlic-producing states during 2023-24 ...\")"
+    },
+    {
+      "title": "Garlic Crop Guide(India) - Map My Crop",
+      "url": "https://mapmycrop.com/garlic-crop-guideindia/",
+      "excerpt": "WebSearchResult(url='https://mapmycrop.com/garlic-crop-guideindia/', excerpts=[\"Home - Garlic Crop Guide(India)\\nGarlic Crop Guide(India)\\nBack\\nGarlic Botanical Name \u2013 Allium sativum Family \u2013 Alliaceae\\nImportance\\n    * Garlic is a native of Southern Europe and a popular bulb crop cultivated throughout Asia.\\n    * It is used as spice in many dishes.\\n    * It has excellent medicinal properties.\\n    * It is rich source of Protein, Phosphorus, Potassium etc.\\n    * It helps in digestion; also it reduces cholesterol in human blood. Major Garlic producing states are Madhya Pradesh, Gujarat, Rajasthan, Orissa, Uttar Pradesh, Maharashtra, Punjab and Haryana.\\n\\nVarieties\\nThe garlic varieties developed by National Horticultural Research Development Foundation (NHRDF), Nashik, Mahatma Phule Krishi Vidyapeeth (MPKV), Rahuri, Chaudhary Charan Singh Agricultural University (CCSHAU), Hisar, Tamil Nadu Agricultural University (TNAU), Coimbatore, ICAR-Indian Agricultural Research Institute (IARI), New Delhi, ICAR-Vivekananda Parvatiya Krishi Anusandhan Sansthan (VPKAS), Almora and Junagadh Agricultural University (JAU), Junagadh are listed below.\\nTable . Other garlic varieties for different regions of the country\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\nSoil and Climate\\nSoil\\xa0\\n    * Well drained fertile loamy soil with a pH of 6-8 is desirable for growing this crop.\\n    * Like onion, garlic is sensitive to highly acidic, alkali and saline soils and water logging conditions.\\n    * In heavy soils, the bulbs produced may be deformed. Bulbs become discoloured in poorly drained soils.\\n    * The threshold electrical conductivity of a saturation extract (ECe) for garlic crop is 3.9 dS/m.\\nWhen the ECe level exceeds this, crop yield starts declining.\\n\\nClimate-\\n    * Garlic can be grown at elevation of 1200\u20132000m from the mean sea level.\\n    * It requires short days,\\xa0cool(12\u201318\u00b0C) moist period during vegetative growth.\\n    * In general, a cool growing period results in higher yield than warm conditions. Exposure of young plants to 20\u00b0C or lower temperature for 1-2 months depending upon the variety hastens subsequent\\n    * The critical day length for bulbing is 10-12 h for short day garlic and 13-14 h for long day garlic.\\n\\nLand preparation\\n    * Field should be ploughed using mould board plough and tilled using cultivator 3-4 times to eliminate debris and soil clods.\\n    * Organic manure equivalent to 75 kg N/ha (FYM 15 t/ha or poultry manure 7.5 t/ha or vermi-compost 7.5 t/ha) should be incorporated at the time of last ploughing and beds of appropriate size should be prepared after levelling.\\n    * Mostly, flat beds of 1.5-2.0 m width and 4-6 m length are formed.\\n ... \\n* Stop irrigation atleast 15days before harvesting.\\n    * Plants are pull out or uprooted, then tied into small bundle and kept in field or shade for 2-3days.\\n    * After proper drying, dry stalks are removed and bulbs are cleaned.\\n\\nYield\\n8 \u2013 12 t/ha\\n    *     *     *     *     * \\n\\nWe\u2019re Here to Help Contact Us\\n    * Terms of Use\\n    * Refund Policy\\n    * Privacy Policy\\n    * Crop Guide\\n    * Blog\\n    * News\\n    * Blog\\n\\n\u00a9 Copyright 2025 Hardcastle Agrotech Solutions Inc.| Developed by Active Webdezign Ltd.,\\nX\\nWe've received your demo request and will get back to you shortly to schedule a personalized session\\nFor further questions feel free to contact us.\\n\\n\\nBook a Demo\\nPlease share details below\\n    * United States\\n    * India (\u092d\u093e\u0930\u0924)\\n    * Canada\\n    * United Kingdom\\n    *     * Afghanistan (\\u202b\u0627\u0641\u063a\u0627\u0646\u0633\u062a\u0627\u0646\\u202c\\u200e)\\n    * \u00c5land Islands (\u00c5land)\\n    * Albania (Shqip\u00ebri)\\n    * Algeria (\\u202b\u0627\u0644\u062c\u0632\u0627\u0626\u0631\\u202c\\u200e)\\n    * American Samoa\\n    * Andorra\\n    * Angola\\n    * Anguilla\\n    * Antigua and Barbuda\\n    * Argentina\\n ... \\n* Svalbard and Jan Mayen (Svalbard og Jan Mayen)\\n    * Swaziland\\n    * Sweden (Sverige)\\n    * Switzerland (Schweiz)\\n    * Syria (\\u202b\u0633\u0648\u0631\u064a\u0627\\u202c\\u200e)\\n    * Taiwan (\u53f0\u7063)\\n    * Tajikistan\\n    * Tanzania\\n    * Thailand (\u0e44\u0e17\u0e22)\\n    * Timor-Leste\\n    * Togo\\n    * Tokelau\\n    * Tonga\\n    * Trinidad and Tobago\\n    * Tunisia (\\u202b\u062a\u0648\u0646\u0633\\u202c\\u200e)\\n    * Turkey (T\u00fcrkiye)\\n    * Turkmenistan\\n    * Turks and Caicos Islands\\n    * Tuvalu\\n    * Uganda\\n    * Ukraine (\u0423\u043a\u0440\u0430\u0457\u043d\u0430)\\n    * United Arab Emirates (\\u202b\u0627\u0644\u0625\u0645\u0627\u0631\u0627\u062a \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0645\u062a\u062d\u062f\u0629\\u202c\\u200e)\\n    * United Kingdom\\n    * United States\\n    * U.S. Minor Outlying Islands\\n    * U.S. Virgin Islands\\n    * Uruguay\\n    * Uzbekistan (O\u02bbzbekiston)\\n    * Vanuatu\\n    * Vatican City (Citt\u00e0 del Vaticano)\\n    * Venezuela\\n    * Vietnam (Vi\u1ec7t Nam)\\n    * Wallis and Futuna\\n    * Western Sahara (\\u202b\u0627\u0644\u0635\u062d\u0631\u0627\u0621 \u0627\u0644\u063a\u0631\u0628\u064a\u0629\\u202c\\u200e)\\n    * Yemen (\\u202b\u0627\u0644\u064a\u0645\u0646\\u202c\\u200e)\\n    * Zambia\\n    * Zimbabwe\\n\\nYou cannot copy the content of this page. It is protected and copyrighted by the company.\"], publish_date=None, title='Garlic Crop Guide(India) - Map My Crop')"
+    }
+  ],
+  "count": 7
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

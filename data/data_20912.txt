@@ -1,0 +1,3349 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 20912,
+        "mcat_name": "Servo Drives",
+        "current_specs": [
+            {
+                "spec_name": "Drive Type",
+                "options": [
+                    "AC Servo Drive",
+                    "DC Servo Drive",
+                    "Servo Amplifier",
+                    "Brushless Servo",
+                    "Modular Drive"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Power Rating",
+                "options": [
+                    "50 W",
+                    "100 W",
+                    "200 W",
+                    "400 W",
+                    "750 W",
+                    "1 kW",
+                    "2 kW",
+                    "3 kW",
+                    "5 kW",
+                    "10 kW"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Input Voltage",
+                "options": [
+                    "24 VDC",
+                    "48 VDC",
+                    "100 VAC",
+                    "200 VAC",
+                    "220 VAC",
+                    "230 VAC",
+                    "400 VAC",
+                    "415 VAC",
+                    "440 VAC",
+                    "480 VAC"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Phase",
+                "options": [
+                    "Single Phase",
+                    "Three Phase"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Motor Type",
+                "options": [
+                    "AC Servo",
+                    "DC Servo",
+                    "BLDC Servo",
+                    "Linear Servo",
+                    "Induction"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Control Mode",
+                "options": [
+                    "Position",
+                    "Speed",
+                    "Torque",
+                    "Position + Speed",
+                    "Speed + Torque",
+                    "Vector Control"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Feedback Type",
+                "options": [
+                    "Incremental Encoder",
+                    "Absolute Encoder",
+                    "Resolver",
+                    "Hall Sensor",
+                    "Tachogenerator"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Communication Interface",
+                "options": [
+                    "RS-485",
+                    "CANopen",
+                    "EtherCAT",
+                    "PROFIBUS",
+                    "PROFINET",
+                    "DeviceNet",
+                    "EtherNet/IP",
+                    "Modbus RTU",
+                    "Modbus TCP"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Mounting Type",
+                "options": [
+                    "Panel Mount",
+                    "Wall Mount",
+                    "DIN Rail",
+                    "Cabinet Mount",
+                    "Rack Mount"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Protection Rating",
+                "options": [
+                    "IP20",
+                    "IP21",
+                    "IP40",
+                    "IP54",
+                    "IP65"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Servo Drives",
+            "mcat_id": 20912,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Drive Type",
+                            "options": [
+                                "AC Servo Drive",
+                                "DC Servo Drive",
+                                "Servo Amplifier",
+                                "Brushless Servo",
+                                "Modular Drive"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Power Rating",
+                            "options": [
+                                "50 W",
+                                "100 W",
+                                "200 W",
+                                "400 W",
+                                "750 W",
+                                "1 kW",
+                                "2 kW",
+                                "3 kW",
+                                "5 kW",
+                                "10 kW"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Input Voltage",
+                            "options": [
+                                "24 VDC",
+                                "48 VDC",
+                                "100 VAC",
+                                "200 VAC",
+                                "220 VAC",
+                                "230 VAC",
+                                "400 VAC",
+                                "415 VAC",
+                                "440 VAC",
+                                "480 VAC"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Phase",
+                            "options": [
+                                "Single Phase",
+                                "Three Phase"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Motor Type",
+                            "options": [
+                                "AC Servo",
+                                "DC Servo",
+                                "BLDC Servo",
+                                "Linear Servo",
+                                "Induction"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Control Mode",
+                            "options": [
+                                "Position",
+                                "Speed",
+                                "Torque",
+                                "Position + Speed",
+                                "Speed + Torque",
+                                "Vector Control"
+                            ],
+                            "input_type": "multi_select"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Feedback Type",
+                            "options": [
+                                "Incremental Encoder",
+                                "Absolute Encoder",
+                                "Resolver",
+                                "Hall Sensor",
+                                "Tachogenerator"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Communication Interface",
+                            "options": [
+                                "RS-485",
+                                "CANopen",
+                                "EtherCAT",
+                                "PROFIBUS",
+                                "PROFINET",
+                                "DeviceNet",
+                                "EtherNet/IP",
+                                "Modbus RTU",
+                                "Modbus TCP"
+                            ],
+                            "input_type": "multi_select"
+                        },
+                        {
+                            "spec_name": "Mounting Type",
+                            "options": [
+                                "Panel Mount",
+                                "Wall Mount",
+                                "DIN Rail",
+                                "Cabinet Mount",
+                                "Rack Mount"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Protection Rating",
+                            "options": [
+                                "IP20",
+                                "IP21",
+                                "IP40",
+                                "IP54",
+                                "IP65"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Application",
+            "option_value": "Ball Screw Axis",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Carton Box Plant Sheet Cutting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Conveyor machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Cutting Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "General Purpose",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "LED Strip Light",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Laser Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "NC Cutter Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "PC Connection",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Power pressing machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Solar Submersible Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Spindle (Paint removal at high RPM)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Stirrer",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Aero Motion",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Arkochi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "B&R",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Bonfiglioli",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Control Techniques",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Delta",
+            "prod_count": 85
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dorna",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ecopos",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Elau",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Estun",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Fuji",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "HCFA",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Housing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "INVT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "INVT / Innovance",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Indramat",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Inovance",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Jetter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Jinjay",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kollmorgen",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kuka",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "LS",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Leadshine",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Lenze",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mitsubishi",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "NSA",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Nikki Denso",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Omron",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Panasonic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "RTN",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Rexroth",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Schneider",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Siemens",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Star Pilling",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Teco",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Topber",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Vichi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Wuyong",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Yakotec",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "USB",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "option_value": "CANopen",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Compatible Motor/Product",
+            "option_value": "Suitable for ECMA C1 11315 Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Series",
+            "option_value": "ASDA B2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component Type",
+            "option_value": "Drive Card",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Discontinued models available as used; current models available as new",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "New",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "New or Refurbished (Old)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "New or Used",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Used",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Configuration",
+            "option_value": "Base",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "CN32",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Equivalent Model",
+            "option_value": "Equivalent to TSTA-30C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "CT Module",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Control Cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Drive Only",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Drive, Motor and Cable",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Encoder Cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Motor and Drive",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Power Cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Programming Cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Phase",
+            "option_value": "Single Phase",
+            "prod_count": 17
+        },
+        {
+            "spec_name": "Input Phase",
+            "option_value": "Three Phase",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "200 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "220 V",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "240 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "400 V",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "480 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "1045",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "45",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "7305028467",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "743",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "8V1320.00-2-1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "APDV S04 G4 EN",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "APDV S15 G4 EN",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-A2",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-A2-0721-M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-A2-1521-M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-A2-4523-L",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-A2-4523-M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-A3-1021-M",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-B2-0421-B",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-B2-0721-B",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-B2-1021-B",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-B2-1521-B",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-B2-2023-B",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-B2-L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASD-B2L-0421-B",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASDA-A2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASDA-A2 5543M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASDA-A2-4543",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASDA-B2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASDA2-2043M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ASDA2R 0421U",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "C x 925 C3B LSN",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "C0320",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "C0350",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "C7 13 I A 20 L W M 3",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ELP 400Z",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ELP 750Z",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "EVS9325-EP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "EVS9329-ES",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "EcmA-C21010RS-ASDB21021B",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "FDS 5000",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "H2-758",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "HBH-86",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "HCS02.1E-W0012",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "HF-Y7FB075A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "JM-204-480-S1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "JSDAP-30A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "KSD 1-16",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "M751",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "MAX81 M-048",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "MDS SVJ 10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "MR-J2S-100A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "MR-J2S-70A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "MR-J4-100A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "MS-S3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "NCR-BB",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "PacDrive MC-4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "Pronet-10-EMG",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "RD-829",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "SV-DA200-5R5-4-S0",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "SV660NTR5R41",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "ServoStar 606",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "TSTA-30C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "TSTA-75D",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "TSTA-P 75D",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "To be shared via WhatsApp",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "V1640",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "WSTA 5R 7B",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Phase",
+            "option_value": "Three Phase",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "0.5 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "1 kW",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "1 HP",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "1.2 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "1.5 kW",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "10 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "100 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "2 kW",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "2 HP",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "2 kVA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "20 kW",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "22 kW",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "3 kW",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "3 HP",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "4 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "4.5 kW",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "400 W",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "5 HP",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "5.5 kW",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "7.5 HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "750 W",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Power Capacity",
+            "option_value": "Not specified",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Format",
+            "option_value": "Ready-made",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "AC Drive",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Data Cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Multi Drive",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Program Cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Replacement for Chinese drive",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Rotary",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Servo Drive",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Solar VFD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Universal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Rated Speed",
+            "option_value": "3000 RPM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Rated Speed",
+            "option_value": "450 RPM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "A2 Series",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "A3 Series",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "AKD PDMM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ASD-A3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Active Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "B2 Series",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "B2L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "B3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "DDM 1.2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Digitax HD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "E3 Series",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ES 700",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "J2S",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "J4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Lexium 28",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ME 300",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "MS300",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Multi Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Sigma 7",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "TSTA-P",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Test Version",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "X Plus",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "X3 Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Troubleshooting Description",
+            "option_value": "Error in pipe flow/cutting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 Year",
+            "prod_count": 2
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Module Number",
+            "option_value": "UNI2401"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Module Name",
+            "option_value": "Unidrive UNI2401 Drive"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Usage/Application",
+            "option_value": "Industrial motor control, conveyors, CNC/servo axes, pumps, fans, and automation systems."
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Manufacturer",
+            "option_value": "GE"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Module Number",
+            "option_value": "JNC350R41-TZ"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Module Name",
+            "option_value": "AC Servo Drive"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Usage/Application",
+            "option_value": "Industrial Automation"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Condition",
+            "option_value": "Brand New"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Module Name",
+            "option_value": "Industrial Servo Drive Module"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Module Number",
+            "option_value": "MÃ¢â¬âESBÃ¢â¬âYSB2020AB302"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Usage/Application",
+            "option_value": "Servo Motor Control"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model",
+            "option_value": "S70601"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Color",
+            "option_value": "White"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand",
+            "option_value": "Xinje"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Series",
+            "option_value": "DS5C2 Ethercat"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Series",
+            "option_value": "DS5K2 Full Function"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand",
+            "option_value": "Xinje"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Series",
+            "option_value": "DS5L2 Pulse"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand",
+            "option_value": "Xinje"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Series",
+            "option_value": "DS5C1 Ethercat"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand",
+            "option_value": "Xinje"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand",
+            "option_value": "Xinje"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Series",
+            "option_value": "DS5K1 Standard"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand",
+            "option_value": "Xinje"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Series",
+            "option_value": "DS5L1 Pulse"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Series",
+            "option_value": "DS5P Profinet"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand",
+            "option_value": "Xinje"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand",
+            "option_value": "Yaskawa"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Warranty",
+            "option_value": "1 Year"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "04967135 SEW Eurodrive - BE11A 400V 80NM",
+            "option_value": "MOTOR BRAKE, 400 VOLTS, 80NM, BE11 AMPS"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Category",
+            "option_value": "Servo Drives"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Manufacturer",
+            "option_value": "Rexroth"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Condition",
+            "option_value": "New Open Box"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Module Name",
+            "option_value": "Servo Drive Power Supply"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Usage/Application",
+            "option_value": "Provides stable power to Rexroth IndraDrive servo systems for industrial automation and motion contr"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Module Number",
+            "option_value": "R911297460"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand",
+            "option_value": "Rexroth"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model",
+            "option_value": "Cs HCS01"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model",
+            "option_value": "HCS01"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand",
+            "option_value": "Rexroth"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model",
+            "option_value": "HMS01"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model",
+            "option_value": "HMS02"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand",
+            "option_value": "Rexroth"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model",
+            "option_value": "HMV E Feeding"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Sub Category",
+            "option_value": "Motor Drives"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Category",
+            "option_value": "Drives"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model Name/Number",
+            "option_value": "REXROTH RD51.2-4B-015-L-NN-FW"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model Name/Number",
+            "option_value": "LENZE EVS9324-ES"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Category",
+            "option_value": "Drives"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Drives & Controls"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model Name/Number",
+            "option_value": "LENZE EVF9324-CVV003"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Category",
+            "option_value": "Drives"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Sub Category",
+            "option_value": "Motor Drives"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Category",
+            "option_value": "Drives"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model Name/Number",
+            "option_value": "LENZE EVS9322-ETV907"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Drives & Controls"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model Name/Number",
+            "option_value": "LENZE EVF8244-E"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Sub Category",
+            "option_value": "Motor Drives"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Category",
+            "option_value": "Drives"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Supply Voltage",
+            "option_value": "24Ã¢â¬â64VDC ÃÂ±25%"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Brand.",
+            "option_value": "B&R"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Model Name/Number",
+            "option_value": "80VD100PD.C000-14"
+        },
+        {
+            "mcat_id": "20912",
+            "mcat_name": "Servo Drives",
+            "spec_name": "Applications",
+            "option_value": "Servo motion control, multiÃ¢â¬âaxis systems"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "baumuller",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "dorna",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "ecomate",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "estun",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "hcfa",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "innovance",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "inovance",
+            "impression": "110"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "keb",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "kollmorgen",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "leadshine",
+            "impression": "22"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "mirle",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "sew",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "teco",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "brand",
+            "spec_option": "xinje",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "model name/number",
+            "spec_option": "1045",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Servo Drives",
+            "spec_name": "product",
+            "spec_option": "drive",
+            "impression": "15218"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "",
+            "spec_fill_rate": "64.7",
+            "product_count": "66"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_fill_rate": "35.3",
+            "product_count": "36"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_fill_rate": "34.3",
+            "product_count": "35"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_fill_rate": "32.4",
+            "product_count": "33"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_fill_rate": "31.4",
+            "product_count": "32"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_fill_rate": "28.4",
+            "product_count": "29"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_fill_rate": "25.5",
+            "product_count": "26"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_fill_rate": "22.5",
+            "product_count": "23"
+        },
+        {
+            "spec_name": "Feedback Type",
+            "spec_fill_rate": "12.7",
+            "product_count": "13"
+        },
+        {
+            "spec_name": "Protection Rating",
+            "spec_fill_rate": "11.8",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Communication Interface",
+            "spec_fill_rate": "11.8",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "9.8",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Series",
+            "spec_fill_rate": "8.8",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Category",
+            "spec_fill_rate": "7.8",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_fill_rate": "7.8",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Sub Category",
+            "spec_fill_rate": "6.9",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_fill_rate": "6.9",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_fill_rate": "3.9",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "04967135 SEW Eurodrive - BE11A 400V 80NM",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Braking Option",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Module Number",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Module Name",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Power",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Condition",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Power Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Dimensions",
+            "spec_option_name": "36mm x 104mm x 167mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "04967135 SEW Eurodrive - BE11A 400V 80NM",
+            "spec_option_name": "MOTOR BRAKE, 400 VOLTS, 80NM, BE11 AMPS",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product type",
+            "spec_option_name": "ACOPOS MULTI SERVO INVERTER MODULE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Servo Type",
+            "spec_option_name": "Servo Inverter",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Max Current Per Axis",
+            "spec_option_name": "5:00 AM",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "Ethernet",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Motor Construction",
+            "spec_option_name": "Synchronous",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand.",
+            "spec_option_name": "B&R",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Current Rating",
+            "spec_option_name": "8A",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Enclosure",
+            "spec_option_name": "Open",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Jacket Type",
+            "spec_option_name": "FANUC servo drive A06B-6087",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Output Current",
+            "spec_option_name": "1.5A to 60A RMS",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Servo Amplifier",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Applications",
+            "spec_option_name": "Servo motion control, multiÃ¢â¬âaxis systems",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model No",
+            "spec_option_name": "8BVI0028HWD0.000-1 , ACOPOS MULTI I0028D",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Core Count",
+            "spec_option_name": "FANUC servo drive A06B-6087",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "input voltage:",
+            "spec_option_name": "115-230VAC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "weight",
+            "spec_option_name": "Around 1 kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Protection Features",
+            "spec_option_name": "Over Current",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Control Interface",
+            "spec_option_name": "Pulse Dir",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Axis Count",
+            "spec_option_name": "2 Axis",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Shield Type",
+            "spec_option_name": "FANUC servo drive A06B-6087",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Conductor Size",
+            "spec_option_name": "FANUC servo drive A06B-6087",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power Type",
+            "spec_option_name": "AC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Outer Sheath Material",
+            "spec_option_name": "FANUC servo drive A06B-6087",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Protection Features",
+            "spec_option_name": "Over Voltage",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Category",
+            "spec_option_name": "Drives",
+            "option_fill_rate": "88.9"
+        },
+        {
+            "spec_name": "Braking Option",
+            "spec_option_name": "External Brake",
+            "option_fill_rate": "85.7"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "83.3"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Panel Mount",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Protection Rating",
+            "spec_option_name": "IP20",
+            "option_fill_rate": "70"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "AC Servo Drive",
+            "option_fill_rate": "69.1"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "68.7"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "AC Servo",
+            "option_fill_rate": "64.1"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "INDUSTRIAL",
+            "option_fill_rate": "61.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Xinje",
+            "option_fill_rate": "58.3"
+        },
+        {
+            "spec_name": "Condition",
+            "spec_option_name": "New Open Box",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "1 kw",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Condition",
+            "spec_option_name": "Brand New",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Sub Category",
+            "spec_option_name": "Motor Drives",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Rexroth",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "15KW",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "400VAC",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "110 vac",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Sub Category",
+            "spec_option_name": "Servo Drives & Controls",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "GE",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Feedback Type",
+            "spec_option_name": "Absolute Encoder",
+            "option_fill_rate": "45.5"
+        },
+        {
+            "spec_name": "Communication Interface",
+            "spec_option_name": "RS-485",
+            "option_fill_rate": "38.9"
+        },
+        {
+            "spec_name": "Feedback Type",
+            "spec_option_name": "Incremental Encoder",
+            "option_fill_rate": "36.4"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Position + Speed",
+            "option_fill_rate": "33.8"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_option_name": "400 V AC",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_option_name": "24Ã¢â¬â64VDC ÃÂ±25%",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_option_name": "48 V DC",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Protection Rating",
+            "spec_option_name": "IP65",
+            "option_fill_rate": "30"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Speed",
+            "option_fill_rate": "26.5"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Textile",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Communication Interface",
+            "spec_option_name": "CANopen",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "FANUC servo drive A06B-6087",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Industrial Automation",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Wall Mount",
+            "option_fill_rate": "21.2"
+        },
+        {
+            "spec_name": "Module Name",
+            "spec_option_name": "Servo Drive",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Module Number",
+            "spec_option_name": "JNC350R41-TZ",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Module Name",
+            "spec_option_name": "Unidrive UNI2401 Drive",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Module Number",
+            "spec_option_name": "R911297460",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Module Number",
+            "spec_option_name": "UNI2401",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Module Number",
+            "spec_option_name": "S21260-SRS",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Module Number",
+            "spec_option_name": "MÃ¢â¬âESBÃ¢â¬âYSB2020AB302",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Module Name",
+            "spec_option_name": "AC Servo Drive",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Module Name",
+            "spec_option_name": "Servo Drive Power Supply",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Module Name",
+            "spec_option_name": "Industrial Servo Drive Module",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Communication Interface",
+            "spec_option_name": "EtherCAT",
+            "option_fill_rate": "19.4"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "220 VAC",
+            "option_fill_rate": "19.4"
+        },
+        {
+            "spec_name": "Communication Interface",
+            "spec_option_name": "PROFINET",
+            "option_fill_rate": "19.4"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Position",
+            "option_fill_rate": "19.1"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "Sigma-7",
+            "option_fill_rate": "18.8"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Single Phase",
+            "option_fill_rate": "16.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "LENZE",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "Universal Input",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Communication Interface",
+            "spec_option_name": "PROFIBUS",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Speed + Torque",
+            "option_fill_rate": "16.2"
+        },
+        {
+            "spec_name": "Feedback Type",
+            "spec_option_name": "Resolver",
+            "option_fill_rate": "15.2"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Torque",
+            "option_fill_rate": "14.7"
+        },
+        {
+            "spec_name": "Braking Option",
+            "spec_option_name": "No Brake",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "24 VDC",
+            "option_fill_rate": "13.6"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "50 W",
+            "option_fill_rate": "12.4"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "SEW-EURODRIVE MXA81A-048-503-00/XGS11A",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "LENZE EVF8244-E",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "80VD100PD.C000-14",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "REXROTH RD51.2-4B-015-L-NN-FW",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "LENZE EVF9324-CVV003",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "LENZE EVS9322-ETV907",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "SEW-EURODRIVE MXP80A-025-503-00",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Category",
+            "spec_option_name": "Servo Drives",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "LENZE EVS9324-ES",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "MATTKE MDR2305",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "3 kW",
+            "option_fill_rate": "9.3"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "750 W",
+            "option_fill_rate": "9.3"
+        },
+        {
+            "spec_name": "Communication Interface",
+            "spec_option_name": "MECHATROLINK",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Lenze",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "B&R",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SEW-EURODRIVE",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Communication Interface",
+            "spec_option_name": "EtherNet/IP",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Communication Interface",
+            "spec_option_name": "DeviceNet",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "400 W",
+            "option_fill_rate": "8.2"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "100 W",
+            "option_fill_rate": "8.2"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "2 kW",
+            "option_fill_rate": "8.2"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "415 VAC",
+            "option_fill_rate": "7.8"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Industrial motor control, conveyors, CNC/servo axes, pumps, fans, and automation systems.",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Industrial Automation",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Provides stable power to Rexroth IndraDrive servo systems for industrial automation and motion contr",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Industrial motion control, CNC machines, robotics, packaging, automated manufacturing systems",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Servo Motor Control",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Vector Control",
+            "option_fill_rate": "7.4"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "480 VAC",
+            "option_fill_rate": "6.8"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "DS5L1 Pulse",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "ESBÃ¢â¬âYSB2020",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "DS5K1 Standard",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "MR-HPHD-01",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "DS5L2 Pulse",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "Sigma-7W",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "DS5C2 Ethercat",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "MINAS LIQI",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "RK-750",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "DS5P Profinet",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "Sigma-5",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "DS5C1 Ethercat",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "DS5K2 Full Function",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "400 VAC",
+            "option_fill_rate": "5.8"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "230 VAC",
+            "option_fill_rate": "4.9"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "200 VAC",
+            "option_fill_rate": "4.9"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1 kW",
+            "option_fill_rate": "4.1"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Cabinet Mount",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "DC Servo",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "BOTH",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Feedback Type",
+            "spec_option_name": "Encoder",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Protection",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "FANUC",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "8EI017HWS10.A600",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Communication Interface",
+            "spec_option_name": "Modbus RTU",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Communication Interface",
+            "spec_option_name": "Modbus TCP",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Servo Motor",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "SMITEC COSMOS 2000",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Synchronous",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "8EI017HWS10.A600",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "8EI017HWS10.A600",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "Protection",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SERVO INVERTER",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "DC Servo Drive",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "8EI017HWS10.A600",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "8EI017HWS10.A600",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "VARIES",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1.5kw",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "VARIES",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "8EI017HWS10.A600",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "200Ã¢â¬â230V AC",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "48 VDC",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Digital",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "SV-M010AS KEYENCE DRIVE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "SV-500L2 KEYENCE DRIVE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "SV-M005CS KEYENCE DRIVE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Servo Position",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Closed-Loop Servo Control",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "SV-M005AS KEYENCE DRIVE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "SV-M010AK KEYENCE DRIVE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "SV-M005AK KEYENCE DRIVE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "SMITEC COSMOS 2000 SERVO DRIVE KZ1057",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "SMITEC COSMOS 2000",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Servo / Vector Control",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "SV-M010CS KEYENCE DRIVE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Servo",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "SV-M010CK KEYENCE DRIVE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_option_name": "Servo / Closed-Loop",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "AC Servo Motor",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Multi servo inverter module",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Brushless AC Servo",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "SV-M005CS KEYENCE DRIVE",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "SV-500L2 KEYENCE DRIVE",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "SV-M005AS KEYENCE DRIVE",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Induction",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "SV-M010CK KEYENCE DRIVE",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Servo",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "SV-M010CS KEYENCE DRIVE",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "SV-M010AS KEYENCE DRIVE",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "SV-M010AK KEYENCE DRIVE",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Synchronous servo motor",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "SV-M005AK KEYENCE DRIVE",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "SV-M010CS KEYENCE DRIVE",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "SV-M010AS KEYENCE DRIVE",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "SV-M010AK KEYENCE DRIVE",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "SMITEC COSMOS 2000",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SV-M005CS KEYENCE DRIVE",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "Modular Drive",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "Servo Drive Power Supply",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SMITEC COSMOS 2000 SRVO DRIVE",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "AC SERVO DRIVE AND MOTOR",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "Servo drive",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "FANUC servo drive A06B-6087",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SV-M005AK KEYENCE DRIVE",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "Servo Drive",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "Brushless Servo",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SV-M010AK KEYENCE DRIVE",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SV-M010CS KEYENCE DRIVE",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SV-M010CK KEYENCE DRIVE",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SV-M005AS KEYENCE DRIVE",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SV-500L2 KEYENCE DRIVE",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "IndraDrive",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SMITEC COSMOS 2000",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "SV-M010AS KEYENCE DRIVE",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "3-Phase 380Ã¢â¬â480 V AC",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "26 kW to 29.8 kW.",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "500W",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "SV-M005AS KEYENCE DRIVE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "SV-500L2 KEYENCE DRIVE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "AVAILABLE IN SINGLE PHASE AND THREE PHASE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "2.8KW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "FANUC servo drive A06B-6087",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "283Ã¢â¬â325 V DC",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "SV-M010CS KEYENCE DRIVE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "SV-500L2 KEYENCE DRIVE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "200Ã¢â¬â240 V AC",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "230/440V",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "120Ã¢â¬â240Ã¢â¬Â¯V AC",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "440 VAC",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "560 V",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "SV-M005CS KEYENCE DRIVE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "240V",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "3.5kw",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1.5Ã¢â¬Â¯kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "SV-M010AS KEYENCE DRIVE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "100 VAC",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "230-480 VAC",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "15 kw",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "18.9 kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "200 W",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1.5 kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "200Ã¢â¬â230Ã¢â¬Â¯V AC",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "SV-M005AK KEYENCE DRIVE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "DCÃ¢â¬Â¯830+",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "18 kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "FANUC servo drive A06B-6087",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "25 KW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "4Ã¢â¬Â¯kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "~110Ã¢â¬Â¯kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "17.5 kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "300W",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "11 kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "3.0 KW (4 HP)",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "29.8 kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "7.5 kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "495Ã¢â¬â720V",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "18A",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "DC830+",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "3-Phase AC",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "400W-7.5KW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.75 kW (1 HP)",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "400/480 VAC",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "3.08 kW.",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "15KW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "SV-M010AK KEYENCE DRIVE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "SV-M010CK KEYENCE DRIVE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.2Ã¢â¬Â¯kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "380-500 V",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "5 kW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "11.0KW",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "SMITEC COSMOS 2000",
+            "option_fill_rate": "1"
+        }
+    ]
+}

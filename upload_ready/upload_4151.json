@@ -1,0 +1,172 @@
+{
+  "pmcat_id": 4151,
+  "pmcat_name": "Ayurvedic Medicine",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Ayurvedic Medicine",
+      "mcat_id": 4151,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Dosage Form",
+              "options": [
+                "Capsule",
+                "Tablet",
+                "Syrup / Juice (Ras)",
+                "Powder (Churna)",
+                "Oil (Taila)",
+                "Drops",
+                "Lehya / Avaleha",
+                "Guti / Vati (Pill)",
+                "Bhasma",
+                "Ointment / Cream",
+                "Balm"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Indication / Benefit",
+              "options": [
+                "Immunity Booster",
+                "Digestive Care",
+                "Liver Care",
+                "Diabetes Care",
+                "Joint & Pain Relief",
+                "Hair Care",
+                "Skin Care",
+                "Stress Relief",
+                "Weight Management",
+                "Sexual Wellness",
+                "Kidney Stone Treatment",
+                "Respiratory Care",
+                "Acidity Relief",
+                "Women Wellness"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Medicine Type",
+              "options": [
+                "Proprietary",
+                "Classical",
+                "Herbal",
+                "Extract-based"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Brand",
+              "options": [
+                "Dabur",
+                "Baidyanath",
+                "Patanjali",
+                "Himalaya",
+                "Zandu",
+                "Amulya Herbs",
+                "Fidalgo",
+                "Unisage",
+                "Bhrigu",
+                "Sovam",
+                "Nagarjuna",
+                "Virgo"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Net Quantity",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Primary Ingredient",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Quantity Unit",
+              "options": [
+                "Capsules",
+                "Tablets",
+                "ml",
+                "gm",
+                "L",
+                "kg",
+                "Pieces"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Strength",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Grade Standard",
+              "options": [
+                "Medicine Grade",
+                "Food Grade",
+                "IP (Indian Pharmacopoeia)",
+                "BP (British Pharmacopoeia)",
+                "USP (United States Pharmacopeia)"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Ideal For",
+              "options": [
+                "Adults",
+                "All",
+                "Women",
+                "Men",
+                "Children"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Packaging Type",
+              "options": [
+                "Bottle",
+                "Blister Pack",
+                "Box",
+                "Jar",
+                "Sachet",
+                "Pouch",
+                "Strip"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Certification",
+              "options": [
+                "GMP Certified",
+                "ISO Certified",
+                "AYUSH Standard Mark",
+                "AYUSH Premium Mark",
+                "Organic",
+                "FSSAI Certified",
+                "WHO-GMP Certified"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Shelf Life",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

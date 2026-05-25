@@ -1,0 +1,4746 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 2020,
+        "mcat_name": "Insecticides",
+        "current_specs": [
+            {
+                "spec_name": "Technical Content",
+                "options": [
+                    "Thiamethoxam+Lambda-Cy ZC",
+                    "CTPR 18.5% SC",
+                    "Emamectin 5% SG",
+                    "Fipronil 5% SC",
+                    "Lambda-Cy 5% EC",
+                    "Chlorpy+Cyper EC",
+                    "Imida 17.8% SL",
+                    "Thiamethoxam 25% WG",
+                    "Profenofos 50% EC",
+                    "Monocroto 36% SL"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Packaging Size",
+                "options": [
+                    "1 L",
+                    "500 ml",
+                    "250 ml",
+                    "100 ml",
+                    "1 kg",
+                    "500 g",
+                    "250 g",
+                    "100 g",
+                    "5 L",
+                    "50 ml"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Physical Form",
+                "options": [
+                    "Liquid",
+                    "Granules",
+                    "Powder",
+                    "Gel",
+                    "Chalk"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Target Pest",
+                "options": [
+                    "Larvae & Caterpillars",
+                    "Sucking Pests",
+                    "Bollworms",
+                    "Thrips & Mites",
+                    "Termites",
+                    "Fruit Borer",
+                    "Household Pests"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Mode of Action",
+                "options": [
+                    "Systemic",
+                    "Contact",
+                    "Stomach",
+                    "Translaminar",
+                    "Nervous System Action",
+                    "Repellent",
+                    "Fumigant"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Application",
+                "options": [
+                    "Agriculture",
+                    "Household Use",
+                    "Public Health"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Target Crops",
+                "options": [
+                    "Cotton",
+                    "Paddy",
+                    "Chilli",
+                    "Soybean",
+                    "Vegetables",
+                    "Sugarcane",
+                    "Maize",
+                    "Fruits",
+                    "Groundnut"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Toxicity Level",
+                "options": [
+                    "Blue Label",
+                    "Yellow Label",
+                    "Green Label",
+                    "Red Label"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Insecticides",
+            "mcat_id": 2020,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Technical Content",
+                            "options": [
+                                "Thiamethoxam+Lambda-Cy ZC",
+                                "CTPR 18.5% SC",
+                                "Emamectin 5% SG",
+                                "Fipronil 5% SC",
+                                "Lambda-Cy 5% EC",
+                                "Chlorpy+Cyper EC",
+                                "Imida 17.8% SL",
+                                "Thiamethoxam 25% WG",
+                                "Profenofos 50% EC",
+                                "Monocroto 36% SL"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Packaging Size",
+                            "options": [
+                                "1 L",
+                                "500 ml",
+                                "250 ml",
+                                "100 ml",
+                                "1 kg",
+                                "500 g",
+                                "250 g",
+                                "100 g",
+                                "5 L",
+                                "50 ml"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "These were chosen as they are the absolute core differentiators influencing both price and product selection. Technical Content is the most crucial specification, defining the product's efficacy and primary use. Packaging Size is a primary commercial lever in B2B transactions."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Physical Form",
+                            "options": [
+                                "Liquid",
+                                "Granules",
+                                "Powder",
+                                "Gel",
+                                "Chalk"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Target Pest",
+                            "options": [
+                                "Larvae & Caterpillars",
+                                "Sucking Pests",
+                                "Bollworms",
+                                "Thrips & Mites",
+                                "Termites",
+                                "Fruit Borer",
+                                "Household Pests"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Mode of Action",
+                            "options": [
+                                "Systemic",
+                                "Contact",
+                                "Stomach",
+                                "Translaminar",
+                                "Nervous System Action",
+                                "Repellent",
+                                "Fumigant"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "These specs define the product's functional characteristics and are essential for filtering and search. Physical Form determines application method, Target Pest addresses buyer inquiries based on need, and Mode of Action is important for experienced buyers."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Application",
+                            "options": [
+                                "Agriculture",
+                                "Household Use",
+                                "Public Health"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Target Crops",
+                            "options": [
+                                "Cotton",
+                                "Paddy",
+                                "Chilli",
+                                "Soybean",
+                                "Vegetables",
+                                "Sugarcane",
+                                "Maize",
+                                "Fruits",
+                                "Groundnut"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Toxicity Level",
+                            "options": [
+                                "Blue Label",
+                                "Yellow Label",
+                                "Green Label",
+                                "Red Label"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "These provide supplementary information for safety, compliance, and specific applications. Application filters for different buyer segments, Target Crops helps buyers find suitable products, and Toxicity Level is a mandatory regulatory requirement in India."
+                }
+            },
+            "scratchpad": "The overall strategy, based on analysis of 100 source files, was to identify attributes consistently used by buyers and sellers to describe, differentiate, and purchase insecticides in the Indian B2B market. The specifications are prioritized by commercial significance and influence on buyer decisions, with a key distinction made between agricultural and household use. Specs like Brand Name and Dosage were omitted as they are considered SKU-level details or usage instructions, not core model attributes."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "1 L",
+            "prod_count": 18
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "250 ml",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "5 L",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "100 ml",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "500 ml",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "1 kg",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "0.5 L",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "10 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "100 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "0.25 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "120 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "200 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "40 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "2 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "200 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "25 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "30 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "50 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "50 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "60 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Bayer",
+            "prod_count": 26
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Envu",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sir Farmtech",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "KK",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Indo 505",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "KBC",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kalia",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Toofan",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Agri Life",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Arbudha",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Challenge",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Edugon Pesticides",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "FMC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Feja Suraksha VGP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Fipstar Plus",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Halt",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "K-Othrine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Monostar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "NVQ",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sainath Bio Crop Science",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Solfac",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Syngenta",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "UPL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Premise",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Thrips",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Caterpillar / Larva",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Mites",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Termite",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Cockroach",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Aphids",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Bed Bugs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Insects",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Leafhoppers",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Mealybug",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Pests",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Red Spider Mite",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Sanna Nalli",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Stem Borer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Uni (white colored pest)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Pest",
+            "option_value": "Weevils",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Paddy",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Chilli",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "All Crops",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Soyabean",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Chickpea",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Groundnut",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Plants",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Vegetables",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Basement",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Brinjal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Flowering Plants",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Flowers",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "For de-oiled cake in a factory",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Fruit Trees",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Fruits",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Garlic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Horticultural Crops",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Maize",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Onion",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Orange",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Poultry Farm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Sugarcane",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Premise",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Ultra",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "121",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "KK 400",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Fly Out",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "050",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "25 EC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "AE",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Confidor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Confidor Super",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "King Fog",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Pexton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Regent Ultra",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Temprid SC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Liquid",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Powder",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "EC (Emulsifiable Concentrate)",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "BT Formulation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Dusting Powder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "EW (Emulsion, oil in water)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Flow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Gel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Granular",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "option_value": "Imidacloprid",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "option_value": "Chlorpyrifos",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "option_value": "Chlorantraniliprole",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "option_value": "Alpha plus Chloro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "option_value": "Bacillus thuringiensis",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "option_value": "Fipronil",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "option_value": "Spirotetramat",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "option_value": "Chloropyrifos",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Insecticide",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Bio",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Larvicide",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Anti-Termite",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Bait",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Biopesticide",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Fungicide",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Insecticide Spray",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Organic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "20 ml/15 L",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "2.1 ml",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "20 ml",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "10 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "1 ml/L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "15 ml/tank",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "24 pumps/L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "30.5 %",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "0.04 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "15 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "25 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Method",
+            "option_value": "Spray",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Application Method",
+            "option_value": "Soil drenching via irrigation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Method",
+            "option_value": "Spreading",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bottle",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Dilution Volume",
+            "option_value": "15 L",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dilution Volume",
+            "option_value": "100 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dilution Volume",
+            "option_value": "150 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dilution Volume",
+            "option_value": "200 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bucket",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "New",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Previous Brand",
+            "option_value": "Bayer",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Usage Purpose",
+            "option_value": "Pest Control",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Usage Purpose",
+            "option_value": "Industrial",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage Purpose",
+            "option_value": "Preventive",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Suggested Active Ingredient",
+            "option_value": "Bifenthrin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Suggested Active Ingredient",
+            "option_value": "Emamectin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Suggested Active Ingredient",
+            "option_value": "Lambda",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Authenticity Mark",
+            "option_value": "KK tape behind sticker",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "30",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Coverage Rate",
+            "option_value": "4-5 acre/L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Coverage Rate",
+            "option_value": "6-7 bigha/L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Feature",
+            "option_value": "Fly Attractant",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Feature",
+            "option_value": "Smell free",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Pure Organic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Super",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protection Duration",
+            "option_value": "10-15 days",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protection Duration",
+            "option_value": "15 days",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Scent",
+            "option_value": "Has smell",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Scent",
+            "option_value": "Non-smell",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technology",
+            "option_value": "Bio-technical",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Affected Plant Part",
+            "option_value": "Stem",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Appearance",
+            "option_value": "Petrol-like",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Light Black",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Coverage Area",
+            "option_value": "1 acre",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Efficacy",
+            "option_value": "100% effective for thrips",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Insecticide Group",
+            "option_value": "16",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Items per Package",
+            "option_value": "50 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturing Year",
+            "option_value": "Last Year",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Source",
+            "option_value": "USA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Material",
+            "option_value": "Aluminium Bottle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Result Time",
+            "option_value": "2-3 days",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tanks per Pack",
+            "option_value": "12",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Product Packaging Size",
+            "option_value": "1L"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Sumitomo"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Envu"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Product Brand",
+            "option_value": "Cannon"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Clorantraniliprole 9.3%+ Lamdacyhalthrin 4.6%zc",
+            "option_value": "200ml"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Product Brand",
+            "option_value": "Defence"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand Name",
+            "option_value": "Extra Power"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Tractor"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Product Brand",
+            "option_value": "Mankind Agritech"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Godrej"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Package Size",
+            "option_value": "100 g"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Mankind Agritech"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Formulation",
+            "option_value": "SC"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Technical Name",
+            "option_value": "Bifenthrin 10 % EC"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Concentration",
+            "option_value": "10%"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Pack Size",
+            "option_value": "500ml"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Agrilyze"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Packaging Size",
+            "option_value": "1kg"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Shelf Life",
+            "option_value": "24 Month"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Product Brand",
+            "option_value": "Green Agritech"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Model Name",
+            "option_value": "Europa"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Batch No",
+            "option_value": "GE 01"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Gramik"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Model",
+            "option_value": "Gramveer 550"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Model",
+            "option_value": "Gramveer 550"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Gramik"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Model",
+            "option_value": "Gramveer 550"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Gramik"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Agrilyze"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Product Brand",
+            "option_value": "Aventi"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Technical Name",
+            "option_value": "Chlorantraniliprole 9.3 % +  Lambdacyhalot 4.6%"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Manufacturer By",
+            "option_value": "Nilhari Biochem"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Doses",
+            "option_value": "100ml Per Acre"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Package Type",
+            "option_value": "Packet"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Click"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Packaging Size",
+            "option_value": "1L"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand Name",
+            "option_value": "F1"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Accurate"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand Nmae",
+            "option_value": "Formula"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Vartago"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Accurate"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Safex"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Package Type",
+            "option_value": "Bottle"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Package Size",
+            "option_value": "200ml"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Safex"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Size",
+            "option_value": "150ml"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand Name",
+            "option_value": "Safex"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Package Type",
+            "option_value": "Bottle"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Nandi Kaal"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "PackageType",
+            "option_value": "Jar"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Product Formulation",
+            "option_value": "WG"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Package Size",
+            "option_value": "1 kg"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Warrier"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Technical Name",
+            "option_value": "Deltamethrin 11 %"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Manufacturer By",
+            "option_value": "Nilhari Biochem"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Doses",
+            "option_value": "110ml Per Acre"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Carrat"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Technical Name",
+            "option_value": "Dinotefuran 15 % + Pymetrozine 45 %"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Manufacturer By",
+            "option_value": "Nilhari Biochem"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Doses",
+            "option_value": "133.2 gm Per Acre"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Brand",
+            "option_value": "Prostar"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Technical Name",
+            "option_value": "Diafenthiuron 47 %+ Bifenthrin 9.4 %"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Manufacturer By",
+            "option_value": "Nilhari Biochem"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Doses",
+            "option_value": "50ml Per Acre"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Item Brand",
+            "option_value": "Gamma"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Composition",
+            "option_value": "Acephate 75% SP"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Shelf Life",
+            "option_value": "23 Months"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Form.",
+            "option_value": "Liquid"
+        },
+        {
+            "mcat_id": "2020",
+            "mcat_name": "Insecticides",
+            "spec_name": "Manufacture By",
+            "option_value": "Welcome Biotech"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "book name",
+            "spec_option": "crop science",
+            "impression": "23"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "book name",
+            "spec_option": "tagban",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "abacin",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "action 505",
+            "impression": "115"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "agro",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "arrow",
+            "impression": "54"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "bang",
+            "impression": "45"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "basf",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "bayer",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "bharat",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "black gold",
+            "impression": "65"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "bsf",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "canon",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "confidor",
+            "impression": "353"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "coragen",
+            "impression": "15390"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "coral",
+            "impression": "249"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "coromandel",
+            "impression": "146"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "cyclone",
+            "impression": "84"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "dursban",
+            "impression": "18"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "gharda",
+            "impression": "1491"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "global",
+            "impression": "189"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "godrej",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "gorilla",
+            "impression": "64"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "gsp",
+            "impression": "754"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "guru",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "hamla",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "hilban",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "hindustan",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "iil",
+            "impression": "47"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "indofil",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "indogulf",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "jai",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "jashn",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "ju",
+            "impression": "146"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "k",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "kalia",
+            "impression": "558"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "killer",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "king",
+            "impression": "900"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "kingdoxa",
+            "impression": "67"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "kisan",
+            "impression": "103"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "kri",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "kunal",
+            "impression": "112"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "kundan",
+            "impression": "34"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "lamdex",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "lava",
+            "impression": "45"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "leoni",
+            "impression": "50"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "lethal",
+            "impression": "1003"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "mac",
+            "impression": "828"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "mahindra",
+            "impression": "487"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "matador",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "mission",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "mythri",
+            "impression": "118"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "nisco",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "nuvan",
+            "impression": "9943"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "oswal",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "ozo",
+            "impression": "132"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "panama",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "prithvi",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "profit",
+            "impression": "56"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "regent",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "safari",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "safex",
+            "impression": "56"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "sahib",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "sai",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "sharp",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "shriram",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "sixer",
+            "impression": "133"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "skystar",
+            "impression": "469"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "sri chakra",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "sumi",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "sumil",
+            "impression": "285"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "sumitomo",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "syngenta",
+            "impression": "212"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "tag",
+            "impression": "1566"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "tata",
+            "impression": "694"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "tiger",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "tractor",
+            "impression": "106"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "trishul",
+            "impression": "23"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "tropical",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "unique",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "uttam",
+            "impression": "96"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "victor",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "viper",
+            "impression": "68"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "viraat",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "brand",
+            "spec_option": "vitara",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "color",
+            "spec_option": "black",
+            "impression": "3720"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "color",
+            "spec_option": "gold",
+            "impression": "207"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "color",
+            "spec_option": "white",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "form",
+            "spec_option": "cream",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "form",
+            "spec_option": "gel",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "form",
+            "spec_option": "granule",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "form",
+            "spec_option": "liquid",
+            "impression": "75"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "form",
+            "spec_option": "powder",
+            "impression": "194"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "form",
+            "spec_option": "solution",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "form",
+            "spec_option": "syrup",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "form",
+            "spec_option": "tablet",
+            "impression": "49674"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "grade standard",
+            "spec_option": "technical",
+            "impression": "125"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "language",
+            "spec_option": "hindi",
+            "impression": "1260"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "language",
+            "spec_option": "telugu",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "model name/number",
+            "spec_option": "550",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "model name/number",
+            "spec_option": "fighter 505",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "model name/number",
+            "spec_option": "slayer pro",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "model name/number",
+            "spec_option": "super",
+            "impression": "128"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "model name/number",
+            "spec_option": "super 505",
+            "impression": "232"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "model name/number",
+            "spec_option": "super 550",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "model number",
+            "spec_option": "505",
+            "impression": "25"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "1 kg",
+            "impression": "8829"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "1 litre",
+            "impression": "1147"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "1 ltr",
+            "impression": "207"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "10 g",
+            "impression": "148"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "10 gm",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "10 ml",
+            "impression": "3997"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "100 g",
+            "impression": "49"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "100 gm",
+            "impression": "78"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "100 gram",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "100 ml",
+            "impression": "10605"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "150 ml",
+            "impression": "37"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "160 ml",
+            "impression": "595"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "180 ml",
+            "impression": "308"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "20 ml",
+            "impression": "45"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "250 gm",
+            "impression": "417"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "250 gram",
+            "impression": "280"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "250 ml",
+            "impression": "411"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "300 ml",
+            "impression": "958"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "5 kg",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "5 litre",
+            "impression": "37"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "50 ml",
+            "impression": "91"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "500 g",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "500 gm",
+            "impression": "42"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "500 ml",
+            "impression": "10723"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "60 gm",
+            "impression": "64"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "60 ml",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "packaging size",
+            "spec_option": "litre",
+            "impression": "1560"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "product",
+            "spec_option": "kharpatwar nashak",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "strength",
+            "spec_option": "20",
+            "impression": "331"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "strength",
+            "spec_option": "25",
+            "impression": "18"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "strength",
+            "spec_option": "80",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "target",
+            "spec_option": "stem borer",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "target",
+            "spec_option": "whitefly",
+            "impression": "25"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "technical name",
+            "spec_option": "dichlorvo",
+            "impression": "26"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "technical name",
+            "spec_option": "endosulfan",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "technical name",
+            "spec_option": "premise",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "type",
+            "spec_option": "systemic",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "Insecticides",
+            "spec_name": "vehicle model",
+            "spec_option": "bilbo 505",
+            "impression": "41"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "68.3",
+            "product_count": "41"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_fill_rate": "55",
+            "product_count": "33"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_fill_rate": "48.3",
+            "product_count": "29"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_fill_rate": "46.7",
+            "product_count": "28"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_fill_rate": "40",
+            "product_count": "24"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_fill_rate": "38.3",
+            "product_count": "23"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_fill_rate": "38.3",
+            "product_count": "23"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_fill_rate": "31.7",
+            "product_count": "19"
+        },
+        {
+            "spec_name": "Pesticide Type",
+            "spec_fill_rate": "30",
+            "product_count": "18"
+        },
+        {
+            "spec_name": "Target Crops",
+            "spec_fill_rate": "28.3",
+            "product_count": "17"
+        },
+        {
+            "spec_name": "Farming Type",
+            "spec_fill_rate": "28.3",
+            "product_count": "17"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "25",
+            "product_count": "15"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_fill_rate": "23.3",
+            "product_count": "14"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_fill_rate": "20",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_fill_rate": "18.3",
+            "product_count": "11"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_fill_rate": "13.3",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_fill_rate": "13.3",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "10",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_fill_rate": "10",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Product Name",
+            "spec_fill_rate": "8.3",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Recommended Crops",
+            "spec_fill_rate": "8.3",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_fill_rate": "8.3",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "8.3",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Crop Usage",
+            "spec_fill_rate": "6.7",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_fill_rate": "6.7",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_fill_rate": "5",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Application Type",
+            "spec_fill_rate": "5",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Type",
+            "spec_fill_rate": "5",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_fill_rate": "3.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Toxicity Level",
+            "spec_fill_rate": "3.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Physical State",
+            "spec_fill_rate": "3.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Target Insect",
+            "spec_fill_rate": "3.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Form",
+            "spec_fill_rate": "3.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Target Pests",
+            "spec_fill_rate": "3.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Batch No",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Mode Of Action",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Grade Standard",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Mode Of Operation",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "25 kg",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Purity",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Application Method",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Chemical Group",
+            "spec_fill_rate": "1.7",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Packing Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Downy Mildew",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "Europa",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Batch No",
+            "spec_option_name": "GE 01",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Insect Stage",
+            "spec_option_name": "Larvae",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Neem Content",
+            "spec_option_name": "Cyfluthrin 5% EW",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Application",
+            "spec_option_name": "Residual spray",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "25 kg",
+            "spec_option_name": "100 kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crop",
+            "spec_option_name": "Groundnut",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crop",
+            "spec_option_name": "Paddy",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Toxicity Level",
+            "spec_option_name": "Blue Label",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Powdery Mildew",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application Method",
+            "spec_option_name": "Foliar Spray",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pesticide Type",
+            "spec_option_name": "Insecticide",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crop",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crop",
+            "spec_option_name": "Pulses",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crop",
+            "spec_option_name": "Tomato",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "CAS Number",
+            "spec_option_name": "2921-88-2",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Form",
+            "spec_option_name": "Formulation",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crop",
+            "spec_option_name": "Rice",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "IS Standard",
+            "spec_option_name": "IS 14609",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_option_name": "New Only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Bulk Density",
+            "spec_option_name": "0.8 g/ml",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crop",
+            "spec_option_name": "Vegetables",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Manufacture By",
+            "spec_option_name": "Welcome Biotech",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cypermethrin Content",
+            "spec_option_name": "5%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Item Brand",
+            "spec_option_name": "Gamma",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Mode Of Operation",
+            "spec_option_name": "Contact Kill",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crop",
+            "spec_option_name": "Sugarcane",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Compatible Fire Class",
+            "spec_option_name": "Class A",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crop",
+            "spec_option_name": "Chilli",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Organic Certified",
+            "spec_option_name": "No",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Manufacturer By",
+            "spec_option_name": "Nilhari Biochem",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crop",
+            "spec_option_name": "Fruits",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Chemical Group",
+            "spec_option_name": "Thiourea",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pest Type",
+            "spec_option_name": "Fruit Borer",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1 litre",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Grade Standard",
+            "spec_option_name": "Agro Grade",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pest Type",
+            "spec_option_name": "Bollworms",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Insecticide",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pest Type",
+            "spec_option_name": "Caterpillars",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Powder Type",
+            "spec_option_name": "Soluble Powder",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Form.",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target Crops",
+            "spec_option_name": "Vegetables",
+            "option_fill_rate": "82.4"
+        },
+        {
+            "spec_name": "Farming Type",
+            "spec_option_name": "Conventional",
+            "option_fill_rate": "80"
+        },
+        {
+            "spec_name": "Target Crops",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "76.5"
+        },
+        {
+            "spec_name": "Recommended Crops",
+            "spec_option_name": "All Crops",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Application Type",
+            "spec_option_name": "Insecticide",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Agriculture",
+            "option_fill_rate": "70"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "68.4"
+        },
+        {
+            "spec_name": "Source",
+            "spec_option_name": "Mineral Based",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Physical State",
+            "spec_option_name": "Solid",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Insecticide",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "65.4"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Foliar Spray",
+            "option_fill_rate": "63.6"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "59.4"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Vegetables",
+            "option_fill_rate": "57.7"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Paddy",
+            "option_fill_rate": "57.7"
+        },
+        {
+            "spec_name": "Target Crops",
+            "spec_option_name": "Chilli",
+            "option_fill_rate": "52.9"
+        },
+        {
+            "spec_name": "Target Crops",
+            "spec_option_name": "Paddy",
+            "option_fill_rate": "52.9"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Defence",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Mode Of Action",
+            "spec_option_name": "Neurotoxin",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Target Pests",
+            "spec_option_name": "Whiteflies",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Mode Of Action",
+            "spec_option_name": "Insect Growth Regulator",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Purity",
+            "spec_option_name": "99%",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Active Ingredient(s) (%)",
+            "spec_option_name": "20%",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Crop Usage",
+            "spec_option_name": "Wheat",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Target Insect",
+            "spec_option_name": "Whitefly",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Green Agritech",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Active Ingredient(s) (%)",
+            "spec_option_name": "50%",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Target Insect",
+            "spec_option_name": "Thrips",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Purity",
+            "spec_option_name": "90%",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Target Crops",
+            "spec_option_name": "Sugarcane",
+            "option_fill_rate": "47.1"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Contact",
+            "option_fill_rate": "45.2"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Paddy",
+            "option_fill_rate": "42.1"
+        },
+        {
+            "spec_name": "Target Crops",
+            "spec_option_name": "Soybean",
+            "option_fill_rate": "41.2"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Systemic",
+            "option_fill_rate": "35.7"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Sugarcane",
+            "option_fill_rate": "34.6"
+        },
+        {
+            "spec_name": "Crop Usage",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Physical State",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Sigma",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Biological",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 Months",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Extra Power",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made in India",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Crop Usage",
+            "spec_option_name": "Vegetables",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Sucking Pests",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Marshal",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Source",
+            "spec_option_name": "Neem Seed Kernel",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "SC",
+            "option_fill_rate": "30.8"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Plastic Bottle",
+            "option_fill_rate": "30"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Soil Application",
+            "option_fill_rate": "30"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "25%",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Leaf Folder",
+            "option_fill_rate": "27.5"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Stem Borer",
+            "option_fill_rate": "27.5"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Grapes",
+            "option_fill_rate": "26.9"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Fruits",
+            "option_fill_rate": "26.9"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "1-2 Ltr/Acre",
+            "option_fill_rate": "26.7"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Vegetables",
+            "option_fill_rate": "26.3"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "EC",
+            "option_fill_rate": "26.2"
+        },
+        {
+            "spec_name": "Target Insect",
+            "spec_option_name": "Termite",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Target Insect",
+            "spec_option_name": "Stem Borer",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Recommended Crops",
+            "spec_option_name": "Paddy",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Application Type",
+            "spec_option_name": "Agriculture",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "EC (Emulsifiable)",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Target Insect",
+            "spec_option_name": "Leaf Folder",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Target Insect",
+            "spec_option_name": "Aphid",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Target Insect",
+            "spec_option_name": "Leafhopper",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "EC",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "36 month",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Sugarcane",
+            "option_fill_rate": "21.1"
+        },
+        {
+            "spec_name": "Doses",
+            "spec_option_name": "133.2 gm Per Acre",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Doses",
+            "spec_option_name": "110ml Per Acre",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Doses",
+            "spec_option_name": "80 gm Per Acre",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Doses",
+            "spec_option_name": "250ml Per Acre",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Doses",
+            "spec_option_name": "50ml Per Acre",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Farming Type",
+            "spec_option_name": "Organic",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Soybean",
+            "option_fill_rate": "19.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "19"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 Ltr",
+            "option_fill_rate": "18.4"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Soil Application",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Soil Drench",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Target Crops",
+            "spec_option_name": "Fruits",
+            "option_fill_rate": "17.6"
+        },
+        {
+            "spec_name": "Target Crops",
+            "spec_option_name": "Maize",
+            "option_fill_rate": "17.6"
+        },
+        {
+            "spec_name": "Crop Usage",
+            "spec_option_name": "Paddy",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Target Pests",
+            "spec_option_name": "Fly",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Crop Usage",
+            "spec_option_name": "ALL CROP",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Crop Usage",
+            "spec_option_name": "All corp",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Target Pests",
+            "spec_option_name": "Thrips",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Crop Usage",
+            "spec_option_name": "Soybean",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Crop Usage",
+            "spec_option_name": "Sugarcane",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Crop Usage",
+            "spec_option_name": "Maize",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Target Pests",
+            "spec_option_name": "Red Spider Mite",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Crop Usage",
+            "spec_option_name": "Pulses",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Thrips",
+            "option_fill_rate": "15.7"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Chilli",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "WG",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "Lambda Cyhalothrin",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "50%",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "5%",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "47.80%",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "Acephate 75% SP",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "14.50%",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Bollworms",
+            "option_fill_rate": "13.7"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Caterpillars",
+            "option_fill_rate": "13.7"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "5-10 ml/Litre",
+            "option_fill_rate": "13.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 L",
+            "option_fill_rate": "13.2"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Chlorpyrifos",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Spray",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "DP (Dustable Powder)",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "LITER",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "SC",
+            "option_fill_rate": "11.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "green crop",
+            "option_fill_rate": "11.8"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "GR",
+            "option_fill_rate": "11.5"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Wheat",
+            "option_fill_rate": "11.5"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "23 Months",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 Month",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 month",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "12 months",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Soybean",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Wheat",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Okra",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Maize",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Pulses",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Product Name",
+            "spec_option_name": "Hamla550",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Aluminium bottle",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Name",
+            "spec_option_name": "Keefun",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Name",
+            "spec_option_name": "Kitazin",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Name",
+            "spec_option_name": "Temprid",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Name",
+            "spec_option_name": "Nagarjuna Rogor",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Spray Can",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Name",
+            "spec_option_name": "ALECTO",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Name",
+            "spec_option_name": "Enfuse",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Name",
+            "spec_option_name": "Tata Metri",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Name",
+            "spec_option_name": "Naga Super",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Name",
+            "spec_option_name": "Coragen",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Termites",
+            "option_fill_rate": "9.8"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Botanical Extract",
+            "option_fill_rate": "9.7"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Neem (Azadirachtin)",
+            "option_fill_rate": "9.7"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "5.0% SG",
+            "option_fill_rate": "9.5"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Thiamethoxam 30% FS",
+            "option_fill_rate": "9.4"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Seed Treatment",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Drip Application",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Agriculture",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "250 ml",
+            "option_fill_rate": "7.9"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Mites",
+            "option_fill_rate": "7.8"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Groundnut",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Systemic & Contact",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "150-200 ml/acre",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "1 ml/Litre",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "20-30 ml/Pump",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "2.1 per ltr",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "Per Pump",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "100 ml/acre",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "200-400 ml/Acre",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "500gm",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "250 ml/acre",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 kg",
+            "option_fill_rate": "6.6"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Insecticide",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Thiamethoxam+Lambda-Cy ZC",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Agrilyze",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "UPL",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "greencrop",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Target Crops",
+            "spec_option_name": "Groundnut",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Extra Power",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Warrier",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Envu",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Borer",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Loose",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "DUMAX",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "ZIVISTA",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Carrat",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Oxitec",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "IIL",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Terminator",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Prostar",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Whitefly",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "vaibhav agritech",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Tomato",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Oilseeds",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Grapes",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Brinjal",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 Kg",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Chilli",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Groundnut",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "CHILLI ,BRINJAL",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "100 ml",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "1.50%",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "1.5 % & 3.5%",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "20%",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "30%",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "WP",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "'50' %",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "20%",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "S-400",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "12%",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "5%",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "18.50%",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "50% + 5% Cyper",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Contact and Stomach",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "1500 ppm",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "GR",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "10%",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "10000 ppm",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "3000 ppm",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "25%",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "ZC",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Stomach",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "SE",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Early Shoot Borer",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Fruit Borer",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "4 Kg",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Jassid",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "100 g",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Larvae & Caterpillars",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Aphid",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Thrips & Mites",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "Azadirachtin 5% w/w",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "SP",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Rice and Cotton",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "SG (Soluble Granules)",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "FS",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "SG",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Urban Pest",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Profenofos 40% + Cypermethrin 4%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Chlorantraniliprole 0.4%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Thiamethoxam 1.0% Chlorantraniliprole 0.5%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Fipronil 0.6%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Imidachlopride",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Glyphosate",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Bifenthrin 10%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Acephate",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Cartap Hydrochloride 50%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Plant Based",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Chlorantraniliprole 9.3% + Lambda Cyhaloththrin 4.6%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Pymetrozine 50%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "imidacloprid",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Diafenthiuron 50%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Chlorantraniliprole 18.5%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Abamectin 1.9%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Emamectin Benzoate 5%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "buprofenzin acephate",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Profenofos 50%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Emamectin Benzoate",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Cyphenothrin",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Ethion 40% + Cypermethrin 5%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Cypermethrin 25%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Chlorpyriphos 50% + Cypermthrin 5%",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Mancozeb",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Sulfoxaflor",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Dineto15% + Paymetozene 45%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Chlorpyriphos 1.5% DP",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Dinotefuran",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Diafenthiuron 47 %+ Bifenthrin 9.4 %",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Broflanilide 20% SC",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Cypermethrin 25 EC",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_option_name": "Granules",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Thiamethoxam 12.6 % + Lambda - Cyhalothrin 9.5%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Chlorantraniliprole 0.4%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Bifenthrin 10%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Lambda Cyhalothrin",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Cartap Hydrochloride 50%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Pyriproxyfen 5% + Diafenthiuron 25% SE",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Cypermethrin 25%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Imidacloprid",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Deltamethrin 11 %",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Spinetoram 11.7% SC",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Imidacloprid 70%wg",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Buprofezin",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Chlorpyriphos 50% + Cyperme 5%thin",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Chlorpyriphos 20%EC Cypermethrin 5%EC",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Chlorantraniliprole 0.4% GR",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Chlorpyriphos 50 % + cypermethrin 5%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Lambda Cyhalothrin 5% EC",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Chlorpy+Cyper EC",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Chlorantraniliprole 18.5%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Emamectin Benzoate 5%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Diafenthiuron 50%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Profenofos 40% + Cypermethrin 4%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Ethion 40% + Cypermethrin 5%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Bifenthrin 10 % EC",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Profenofos 50% EC",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Thiamethoxam 1.0% Chlorantraniliprole 0.5%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Cartap Hydrochloride 50% SP",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Dinotefuran 15 % + Pymetrozine 45 %",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Hamla550",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Fipronil 0.3% GR",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "stinosad",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Imida 17.8% SL",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Diafenthiuron 47.8% SC",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Cypermethrin",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Insecticide",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Monocrotophos",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Diafenthiuron 25% WP",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Fipronil 0.6%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Novaluron 5.25% SC",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Fipronil 80% WG",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Ethion 50% EC",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Imidacloprid 70%Wg",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Abamectin 1.9%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Liquid Fipronil 2.92 Ec",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Beta Cyfluthrin",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Chlorantraniliprole 9.3% + Lambda Cyhaloththrin 4.6%",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "500 ml",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "500 g",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "250 g",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1L",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Granules (GR)",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Contact + Stomach",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "SG",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "WW/GR",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Wettable Powder(WP)",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "5.25% SC",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Protective",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "WDG (Water Dispersible)",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Systemic and Contact",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "WG",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "WG / WDG",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "SP",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "BPH & Hoppers",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Public health pests",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Leaf Miner",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Top Borer",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Pod Borer",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Bollworm",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "bollworm",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Mealybug",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Household insects",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Aphids",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "300 ml",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "30gm",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "4kg",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "500 gm",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "4 kg",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "500 mL",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "25 kg",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "150 ml",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "100gm",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "40GM, 100GM",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "500ml",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1000 ml",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "150 mL",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "75g",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "25 ML",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 litre",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "75 ml",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "5 L",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "250 gm",
+            "option_fill_rate": "1.3"
+        }
+    ]
+}

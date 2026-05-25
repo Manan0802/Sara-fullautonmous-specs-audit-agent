@@ -1,0 +1,166 @@
+{
+  "pmcat_id": 8719,
+  "pmcat_name": "Promotional Clothing & Accessories",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Promotional Polo T-Shirts",
+      "mcat_id": 8726,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Neck Type",
+              "options": [
+                "Polo Collar",
+                "Round Neck",
+                "V-Neck",
+                "Henley Neck",
+                "Mandarin Collar"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Fabric",
+              "options": [
+                "Cotton",
+                "Poly Cotton",
+                "Polyester",
+                "Pique",
+                "Dry Fit",
+                "Spun Polyester",
+                "Matty"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Print Type",
+              "options": [
+                "Embroidery",
+                "Screen Print",
+                "Digital Print",
+                "Heat Transfer",
+                "Vinyl Printing",
+                "Sublimation",
+                "Blank (No Printing)"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "GSM",
+              "options": [
+                "Below 180",
+                "180-200",
+                "201-220",
+                "221-240",
+                "Above 240"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Color",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Size",
+              "options": [
+                "XS (34 in)",
+                "S (36 in)",
+                "M (38 in)",
+                "L (40 in)",
+                "XL (42 in)",
+                "XXL (44 in)",
+                "3XL (46 in)",
+                "4XL (48 in)"
+              ],
+              "input_type": "multi_select"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Sleeve Type",
+              "options": [
+                "Half Sleeve",
+                "Full Sleeve"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Fit Type",
+              "options": [
+                "Regular Fit",
+                "Slim Fit",
+                "Comfort Fit"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Pattern",
+              "options": [
+                "Plain",
+                "Striped",
+                "Tipping (Contrast Collar/Cuff)",
+                "Color Block"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Gender",
+              "options": [
+                "Men",
+                "Women",
+                "Unisex"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Usage",
+              "options": [
+                "Corporate Gift",
+                "Promotional Wear",
+                "Staff Uniform",
+                "Team Wear",
+                "Event Wear"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Button Placket",
+              "options": [
+                "2 Button",
+                "3 Button"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Logo Placement",
+              "options": [
+                "Front",
+                "Back",
+                "Sleeve",
+                "Chest"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Pocket Availability",
+              "options": [
+                "With Pocket",
+                "Without Pocket"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

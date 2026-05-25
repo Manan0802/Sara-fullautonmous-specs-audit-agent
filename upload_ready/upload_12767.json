@@ -1,0 +1,159 @@
+{
+  "pmcat_id": 12767,
+  "pmcat_name": "Detergent Powder",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Detergent Powder",
+      "mcat_id": 12767,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Packaging Size",
+              "options": [
+                "100 g",
+                "150 g",
+                "200 g",
+                "500 g",
+                "1 kg",
+                "1.5 kg",
+                "2 kg",
+                "3 kg",
+                "5 kg",
+                "10 kg",
+                "20 kg",
+                "25 kg",
+                "50 kg"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Brand",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Type / Grade",
+              "options": [
+                "Economy / Basic",
+                "Medium / Standard",
+                "Premium"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Usage",
+              "options": [
+                "Hand Wash",
+                "Machine Wash",
+                "Hand & Machine Wash"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Machine Type Compatibility",
+              "options": [
+                "Top Load",
+                "Front Load",
+                "Top & Front Load"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Color of Powder",
+              "options": [
+                "White",
+                "Blue",
+                "Pink",
+                "Yellow",
+                "Orange",
+                "White with Colored Speckles",
+                "Blue with Colored Speckles"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Fragrance",
+              "options": [
+                "Lemon",
+                "Jasmine",
+                "Rose",
+                "Floral",
+                "Lavender",
+                "Sandal",
+                "Mild Fragrance",
+                "Unscented / Odorless"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Product Form",
+              "options": [
+                "Packaged Powder",
+                "Loose Powder"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Packaging Type",
+              "options": [
+                "Pouch",
+                "Zipper Pouch",
+                "Bag/Sack",
+                "Bucket",
+                "Carton",
+                "Jar",
+                "Tub"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Key Feature",
+              "options": [
+                "Stain Removal",
+                "Brightening",
+                "Color Safe",
+                "Enzymatic",
+                "Hard Water Formula",
+                "Germ Protection",
+                "Optical Brighteners"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Foam Level",
+              "options": [
+                "Low",
+                "Medium",
+                "High"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Active Matter Content (%)",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Country of Origin",
+              "options": [
+                "India"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

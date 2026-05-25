@@ -1,0 +1,2854 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 12018,
+        "mcat_name": "Dry Red Chilli",
+        "current_specs": [
+            {
+                "spec_name": "Variety",
+                "options": [
+                    "Teja (S17)",
+                    "Sannam (S4/334)",
+                    "Byadgi",
+                    "Guntur",
+                    "341",
+                    "Endo 5 (No. 5)",
+                    "DD (Devanur)",
+                    "Super 10 (S10)",
+                    "Kashmiri",
+                    "Bhut Jolokia"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Grade",
+                "options": [
+                    "Super Deluxe",
+                    "Deluxe (DLX)",
+                    "Best",
+                    "Medium",
+                    "Fatki"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Stem Presence",
+                "options": [
+                    "With Stem",
+                    "Without Stem"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Drying Process",
+                "options": [
+                    "Sun Dried",
+                    "Machine Dried",
+                    "Air Dried"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Pungency (SHU)",
+                "options": [
+                    "Above 75,000 SHU",
+                    "50,000-75,000 SHU",
+                    "30,000-50,000 SHU",
+                    "15,000-30,000 SHU",
+                    "Below 15,000 SHU"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Color (ASTA)",
+                "options": [
+                    "Above 120 ASTA",
+                    "100-120 ASTA",
+                    "80-100 ASTA",
+                    "60-80 ASTA",
+                    "Below 60 ASTA"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Packaging Type",
+                "options": [
+                    "Jute Bag",
+                    "PP Bag"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Moisture Content",
+                "options": [
+                    "Below 12%",
+                    "Below 14%"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Dry Red Chilli",
+            "mcat_id": 12018,
+            "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Variety",
+                            "options": [
+                                "Teja (S17)",
+                                "Sannam (S4/334)",
+                                "Byadgi",
+                                "Guntur",
+                                "341",
+                                "Endo 5 (No. 5)",
+                                "DD (Devanur)",
+                                "Super 10 (S10)",
+                                "Kashmiri",
+                                "Bhut Jolokia"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Grade",
+                            "options": [
+                                "Super Deluxe",
+                                "Deluxe (DLX)",
+                                "Best",
+                                "Medium",
+                                "Fatki"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "The analysis of buyer-seller calls (Files 1, 3, 45) and supplier catalogs (Files 34, 40, 52) consistently shows that the `Variety` of the chilli (e.g., Teja, Sannam, Byadgi) is the most critical initial factor, as it dictates the core attributes like pungency, color, and price. The `Grade` (e.g., Super Deluxe, Medium) is the next most important factor, directly influencing quality and cost, as highlighted in conversations about \"deluxe quality\" (File 1, 9) and the structured grading system outlined in the marketing report (File 66). These two specs are the primary drivers of differentiation and pricing, making them suitable for product titles."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Stem Presence",
+                            "options": [
+                                "With Stem",
+                                "Without Stem"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Drying Process",
+                            "options": [
+                                "Sun Dried",
+                                "Machine Dried",
+                                "Air Dried"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "The presence or absence of the stem (`Stem Presence`) is a crucial functional detail frequently discussed by buyers, especially those intending to powder the chillies (File 15). It directly impacts the final weight and processing cost. The `Drying Process` (File 6) is another key quality indicator that affects the chilli's shelf life, color, and susceptibility to moisture and mold, making it an essential secondary specification."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Pungency (SHU)",
+                            "options": [
+                                "Above 75,000 SHU",
+                                "50,000-75,000 SHU",
+                                "30,000-50,000 SHU",
+                                "15,000-30,000 SHU",
+                                "Below 15,000 SHU"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Color (ASTA)",
+                            "options": [
+                                "Above 120 ASTA",
+                                "100-120 ASTA",
+                                "80-100 ASTA",
+                                "60-80 ASTA",
+                                "Below 60 ASTA"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Packaging Type",
+                            "options": [
+                                "Jute Bag",
+                                "PP Bag"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Moisture Content",
+                            "options": [
+                                "Below 12%",
+                                "Below 14%"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "While pungency and color are intrinsically linked to the `Variety`, their technical measures—`Pungency (SHU)` and `Color (ASTA)`—are vital for industrial buyers, exporters, and those with precise formulation needs (Files 28, 34). These are treated as tertiary specs because the primary choice of `Variety` often serves as a proxy for them in initial discussions. `Packaging Type` and `Moisture Content` are standard logistical and quality control parameters mentioned across multiple technical documents (Files 28, 34, 66) that are important for finalizing bulk orders."
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Teja",
+            "prod_count": 39
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Guntur",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "5531",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "2043",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "334",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Armoor",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "S10 (Super 10)",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "341",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Bhut Jolokia",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Byadgi",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Desi",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Kaddi",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Local",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Mathania",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Sannam",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Armar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Padma",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Sonam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "334 Sannam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "668",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Bareilly",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Broad Variety",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "C5",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Chapata",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Fursani",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "G4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Gondal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Gundu",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Indo 5",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Mixed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Naga",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "New",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Punjab Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Red Chilli",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Resham Patto",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Salwali Mirch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Sanam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Super 10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Teja Gauri",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Tepa",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Thai Chilli",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chilli Variety",
+            "option_value": "Wonder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Deluxe",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Export Quality",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Best Quality",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Medium",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "First Quality",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Good Quality",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Super Deluxe",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "High Quality",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Good Color",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Medium Quality",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Powder Quality",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Shiny",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Small/Chota",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "A1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Barik",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Chocolate Kayi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "DLS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Fatki",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Fine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Good Size",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Grade A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Graded Mix",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "High",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Large Size",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Large/Thick Pods",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Light Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Low Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Lower Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Medium Best",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Mixed Size",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Number One Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Original",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Premium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Quality Graded",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Rejection",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "S17",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Second Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Standard",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Super Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Thick Appearance",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Top Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Whole",
+            "prod_count": 33
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Powder",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Dry",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Raw",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "As per image",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Seeds",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Stem Type",
+            "option_value": "With Stem",
+            "prod_count": 18
+        },
+        {
+            "spec_name": "Stem Type",
+            "option_value": "Without Stem",
+            "prod_count": 17
+        },
+        {
+            "spec_name": "Spiciness Level",
+            "option_value": "High",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Spiciness Level",
+            "option_value": "Medium",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Spiciness Level",
+            "option_value": "Less Spicy",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Spiciness Level",
+            "option_value": "Spicy",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Spiciness Level",
+            "option_value": "Medium Spicy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spiciness Level",
+            "option_value": "Smoky",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Guntur",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Kurnool",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Bareilly",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Gujarat",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Guntur / Khammam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Illandu",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Imported",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Jahanabad",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Karnataka",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Khammam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Nagaland",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Sikkim",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "30 kg",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "1 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "10 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "25 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "40-45 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "40-50 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Stock Condition",
+            "option_value": "Dry",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Stock Condition",
+            "option_value": "New",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Stock Condition",
+            "option_value": "Slight Moisture",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Intensity",
+            "option_value": "Red",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Color Intensity",
+            "option_value": "Good",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color Intensity",
+            "option_value": "Chocolate",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Intensity",
+            "option_value": "High",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Loose in bag",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Gunny Bag",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Jute Bag",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Sack",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Red",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Good Color",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Dark Red",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Low Color",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Crop Year",
+            "option_value": "New Crop",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Crop Year",
+            "option_value": "Old Stock",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Storage Type",
+            "option_value": "Cold Storage",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Syngenta",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "End Use",
+            "option_value": "Grinding",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Myco",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Spice Monk",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Utsav",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "End Use",
+            "option_value": "Counter Sale",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "End Use",
+            "option_value": "For Color",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "End Use",
+            "option_value": "Idli Podi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical State",
+            "option_value": "Dried",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Chilli Shape",
+            "option_value": "Long",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Chilli Shape",
+            "option_value": "Round",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Usage",
+            "option_value": "Grinding",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Aroma Intensity",
+            "option_value": "Distinct Aroma",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Aroma Intensity",
+            "option_value": "High Aroma",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cultivation Method",
+            "option_value": "NPM Practice",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cultivation Method",
+            "option_value": "Semi-organic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drying Method",
+            "option_value": "Smoked",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drying Method",
+            "option_value": "Sun Dry",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Appearance",
+            "option_value": "Long",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Business Type",
+            "option_value": "Distributor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Defect Percentage",
+            "option_value": "5-10 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Appearance",
+            "option_value": "Dal Phool Wali",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Processing Method",
+            "option_value": "Sortex Clean",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Processing Type",
+            "option_value": "Sortex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Age",
+            "option_value": "7-8 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Size",
+            "option_value": "8 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pungency Level (SHU)",
+            "option_value": "90000-100000 SHU",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purity Details",
+            "option_value": "High Purity",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purity Level",
+            "option_value": "100% Pure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shelf Life",
+            "option_value": "2-4 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Storage Condition",
+            "option_value": "Non-Cold Storage",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Packaging Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Usages",
+            "option_value": "For cooking purpose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Jute Bag"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Type",
+            "option_value": "Jute Bag"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "12 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "12 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Packaging Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Product Packaging Type",
+            "option_value": "Bag"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Product Packaging Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "2 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "2 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "2 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "2 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "2 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "2 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "12 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Variety",
+            "option_value": "Khammam Teja"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Drying Process",
+            "option_value": "Sun Dried"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "2 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Brand",
+            "option_value": "Pure Crop"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "100 g"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Type",
+            "option_value": "Packet"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "24 Month"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Usage",
+            "option_value": "Used For Cooking"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Packaging Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Product Type",
+            "option_value": "Premium Red Chilli"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Manufactured By",
+            "option_value": "Healthy Hurry"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "12 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Is It Organic",
+            "option_value": "Yes"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pungency (SHU) Used",
+            "option_value": "75000 SHU"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Color (ASTA) Used",
+            "option_value": "50 ASTA"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Form",
+            "option_value": "Whole"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "9 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Brand",
+            "option_value": "Eleve Pearl"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "10kg"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Brand",
+            "option_value": "Eleve Pearl"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "9 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Product Pungency (SHU)",
+            "option_value": "50000 SHU"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Product Color (ASTA)",
+            "option_value": "80 ASTA"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "1 Years"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Type",
+            "option_value": "PP Bag"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "6 Month"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Type",
+            "option_value": "Whole"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Colour",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "5\"",
+            "option_value": "1\""
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Variety Of Chilli",
+            "option_value": "Teja"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Chilli Type Available",
+            "option_value": "with stem"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Colors",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Packaging Types",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "2 Year"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Storage Instructions",
+            "option_value": "Dry Place"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Form",
+            "option_value": "Flakes"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Product Grade",
+            "option_value": "Fatki"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "1 Years"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Product Color (ASTA)",
+            "option_value": "100  ASTA"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "pack size",
+            "option_value": "45 kg"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "6 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Packing Size",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "100 kg"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Shelf Life",
+            "option_value": "12 Months"
+        },
+        {
+            "mcat_id": "12018",
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "Pack Size",
+            "option_value": "Loose"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "brand",
+            "spec_option": "deepika",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "brand",
+            "spec_option": "khadi",
+            "impression": "155"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "brand",
+            "spec_option": "syngenta",
+            "impression": "70"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "flavour",
+            "spec_option": "mirchi",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "form",
+            "spec_option": "dry",
+            "impression": "38229"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "form",
+            "spec_option": "whole",
+            "impression": "167"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "model number",
+            "spec_option": "2043",
+            "impression": "853"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "model number",
+            "spec_option": "5531",
+            "impression": "9082"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "packaging size",
+            "spec_option": "1 kg",
+            "impression": "11031"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "packaging size",
+            "spec_option": "100 kg",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "state of origin",
+            "spec_option": "india",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "type of chilli",
+            "spec_option": "teja",
+            "impression": "2382"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "usage",
+            "spec_option": "market",
+            "impression": "277"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety available",
+            "spec_option": "chilli",
+            "impression": "50"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety available",
+            "spec_option": "lal mirch",
+            "impression": "686"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety available",
+            "spec_option": "longi",
+            "impression": "1176"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety available",
+            "spec_option": "reshampatti",
+            "impression": "35"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety available",
+            "spec_option": "sirarakhong",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety available",
+            "spec_option": "sukha mirch",
+            "impression": "40"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety available",
+            "spec_option": "sukhi",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety",
+            "spec_option": "kashmiri",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety of chilli available",
+            "spec_option": "341",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety of chilli available",
+            "spec_option": "endo",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety of chilli available",
+            "spec_option": "sannam",
+            "impression": "3"
+        },
+        {
+            "mcat_name": "Dry Red Chilli",
+            "spec_name": "variety of chilli available",
+            "spec_option": "sannam 334",
+            "impression": "31"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Variety",
+            "spec_fill_rate": "70.8",
+            "product_count": "63"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_fill_rate": "67.4",
+            "product_count": "60"
+        },
+        {
+            "spec_name": "Drying Process",
+            "spec_fill_rate": "64",
+            "product_count": "57"
+        },
+        {
+            "spec_name": "Stem Presence",
+            "spec_fill_rate": "61.8",
+            "product_count": "55"
+        },
+        {
+            "spec_name": "Moisture Content",
+            "spec_fill_rate": "43.8",
+            "product_count": "39"
+        },
+        {
+            "spec_name": "Pungency (SHU)",
+            "spec_fill_rate": "36",
+            "product_count": "32"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "32.6",
+            "product_count": "29"
+        },
+        {
+            "spec_name": "Color (ASTA)",
+            "spec_fill_rate": "30.3",
+            "product_count": "27"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_fill_rate": "30.3",
+            "product_count": "27"
+        },
+        {
+            "spec_name": "Form",
+            "spec_fill_rate": "9",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_fill_rate": "6.7",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Heat Level",
+            "spec_fill_rate": "4.5",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "4.5",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Processing Type",
+            "spec_fill_rate": "3.4",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_fill_rate": "2.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "ASTA (Color Value)",
+            "spec_fill_rate": "2.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Purity",
+            "spec_fill_rate": "2.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Organic",
+            "spec_fill_rate": "2.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "2.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Origin",
+            "spec_fill_rate": "2.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Is It Organic",
+            "spec_fill_rate": "2.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Colors",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Variety Of Chilli",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Color (ASTA) Used",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Pungency (SHU) Used",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Packaging Types",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "pack size",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Processing Method",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Storage Instructions",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Stem Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Product Grade",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Spice Name",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Moisture Content (%)",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Color Value (ASTA)",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Heat Level (SHU)",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "5\"",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Chilli Type Available",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Clove Bud Size (mm)",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Grinding Technology",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Purity",
+            "spec_option_name": "No Preservatives",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Storage Instructions",
+            "spec_option_name": "Dry Place",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "FSSAI Certified",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Red",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usages",
+            "spec_option_name": "For cooking purpose",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "pack size",
+            "spec_option_name": "45 kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging Types",
+            "spec_option_name": "Loose",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Spice Name",
+            "spec_option_name": "Chilli",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Human Consumption",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Processing Type",
+            "spec_option_name": "Sun Dried",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Deep Red",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Stem Type",
+            "spec_option_name": "With Stem",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Made in",
+            "spec_option_name": "India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Chilly Type",
+            "spec_option_name": "Dry Red Chilli",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Storage Instruction",
+            "spec_option_name": "Dry Place",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Chilli Type Available",
+            "spec_option_name": "with stem",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Package Type",
+            "spec_option_name": "Loose",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Variety",
+            "spec_option_name": "Super 10",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "India Organic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Grinding Technology",
+            "spec_option_name": "Standard",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I DEAL IN",
+            "spec_option_name": "New only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Package Size",
+            "spec_option_name": "Loose",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Colors",
+            "spec_option_name": "Red",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "FSSAI",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Organic",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Minimum Order Quantity",
+            "spec_option_name": "100 kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Size",
+            "spec_option_name": "Loose",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Clove Bud Size (mm)",
+            "spec_option_name": "Below 7 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Net Quantity",
+            "spec_option_name": "35g",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_option_name": "Jute Gunny Bag",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Spice Level",
+            "spec_option_name": "Hot",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Grade",
+            "spec_option_name": "Fatki",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Chili Color",
+            "spec_option_name": "Red",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Is It Organic",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Color (ASTA) Used",
+            "spec_option_name": "50 ASTA",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pungency (SHU) Used",
+            "spec_option_name": "75000 SHU",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Moisture Content",
+            "spec_option_name": "12%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Processing Method",
+            "spec_option_name": "Sun-Dried",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Moisture Content (%)",
+            "spec_option_name": "Upto 10%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Variety Of Chilli",
+            "spec_option_name": "Teja",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "5\"",
+            "spec_option_name": "1\"",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Whole",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "End Use",
+            "spec_option_name": "Food Colouring",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I deal in",
+            "spec_option_name": "New only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Drying Process",
+            "spec_option_name": "Sun Dried",
+            "option_fill_rate": "95.5"
+        },
+        {
+            "spec_name": "Moisture Content",
+            "spec_option_name": "Below 12%",
+            "option_fill_rate": "87.4"
+        },
+        {
+            "spec_name": "Chilli Type",
+            "spec_option_name": "Dry Red Chilli",
+            "option_fill_rate": "85.7"
+        },
+        {
+            "spec_name": "Stem Presence",
+            "spec_option_name": "With Stem",
+            "option_fill_rate": "81.5"
+        },
+        {
+            "spec_name": "Heat Level",
+            "spec_option_name": "Hot",
+            "option_fill_rate": "80"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "Loose",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Heat Level (SHU)",
+            "spec_option_name": "Medium",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Color Value (ASTA)",
+            "spec_option_name": "High",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "1 Year",
+            "option_fill_rate": "72.2"
+        },
+        {
+            "spec_name": "Pungency (SHU)",
+            "spec_option_name": "Above 75000 SHU",
+            "option_fill_rate": "58.4"
+        },
+        {
+            "spec_name": "Color (ASTA)",
+            "spec_option_name": "Above 120 ASTA",
+            "option_fill_rate": "55.6"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Jute Bag",
+            "option_fill_rate": "52.2"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "25 Kg",
+            "option_fill_rate": "52.2"
+        },
+        {
+            "spec_name": "ASTA (Color Value)",
+            "spec_option_name": "Color Value: 30 - 35 ASTA",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Purity",
+            "spec_option_name": "Agmark Grade",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Purity",
+            "spec_option_name": "No Added Color",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "ASTA (Color Value)",
+            "spec_option_name": "Very High Color",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "PP Bag",
+            "option_fill_rate": "41.6"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Whole",
+            "option_fill_rate": "41.2"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Super Deluxe",
+            "option_fill_rate": "39.3"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "PP Bag",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Packet",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Jute Bag",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Teja (S17)",
+            "option_fill_rate": "27.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "Loose",
+            "option_fill_rate": "26.1"
+        },
+        {
+            "spec_name": "Origin",
+            "spec_option_name": "Guntur",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Heat Level (SHU)",
+            "spec_option_name": "Very Low",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Origin",
+            "spec_option_name": "Karnataka",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Color Value (ASTA)",
+            "spec_option_name": "Very High",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Origin",
+            "spec_option_name": "gujarat",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Origin",
+            "spec_option_name": "Byadgi; Karnataka",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Deluxe (DLX)",
+            "option_fill_rate": "24.4"
+        },
+        {
+            "spec_name": "Color (ASTA)",
+            "spec_option_name": "100-120 ASTA",
+            "option_fill_rate": "23.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Silorganic",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Tops",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Suruchi",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Heat Level",
+            "spec_option_name": "Extra Hot",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Eleve Pearl",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Pure Crop",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Best",
+            "option_fill_rate": "19.4"
+        },
+        {
+            "spec_name": "Stem Presence",
+            "spec_option_name": "Without Stem",
+            "option_fill_rate": "15.2"
+        },
+        {
+            "spec_name": "Chilli Type",
+            "spec_option_name": "Dry Chilli",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Pungency (SHU)",
+            "spec_option_name": "30000-50000 SHU",
+            "option_fill_rate": "12.9"
+        },
+        {
+            "spec_name": "Pungency (SHU)",
+            "spec_option_name": "50000-75000 SHU",
+            "option_fill_rate": "11.9"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Without Stem",
+            "option_fill_rate": "11.8"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Whole without Stem",
+            "option_fill_rate": "11.8"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Sannam (S4/334)",
+            "option_fill_rate": "11.4"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "12 Months",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Pungency (SHU)",
+            "spec_option_name": "15000-30000 SHU",
+            "option_fill_rate": "10.9"
+        },
+        {
+            "spec_name": "Moisture Content",
+            "spec_option_name": "Below 14%",
+            "option_fill_rate": "9.5"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "50 kg",
+            "option_fill_rate": "8.7"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "Jute Bag",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "10Kg",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100 g",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Guntur",
+            "option_fill_rate": "8.2"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Byadgi",
+            "option_fill_rate": "7.3"
+        },
+        {
+            "spec_name": "Color (ASTA)",
+            "spec_option_name": "60-80 ASTA",
+            "option_fill_rate": "6.9"
+        },
+        {
+            "spec_name": "Color (ASTA)",
+            "spec_option_name": "Below 60 ASTA",
+            "option_fill_rate": "6.9"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Medium",
+            "option_fill_rate": "6.5"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Dried",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Flakes",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "With Stem",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Whole Dried",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Whole with Stem",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Whole Cloves",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Kashmiri",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 Month",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "6 Month",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "2 Year",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Color (ASTA)",
+            "spec_option_name": "80-100 ASTA",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Cartoon Box",
+            "option_fill_rate": "4.4"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "500 g",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "25 kg",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "20 Kg",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "341",
+            "option_fill_rate": "4.1"
+        },
+        {
+            "spec_name": "Drying Process",
+            "spec_option_name": "Machine Dried",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Pungency (SHU)",
+            "spec_option_name": "Below 15000 SHU",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Super 10 (S10)",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Syngenta 2043",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Moisture Content",
+            "spec_option_name": "< 12%",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Food Grade",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Bag",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Premium",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Fatki",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Good",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Endo 5 (No. 5)",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Color (ASTA)",
+            "spec_option_name": "High (120-160)",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Moisture Content",
+            "spec_option_name": "Below 8%",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Pungency (SHU)",
+            "spec_option_name": "Very High Heat",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "IPM",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Pungency (SHU)",
+            "spec_option_name": "35000-40000 SHU",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Bullet",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "355 Byadgi",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Chapata",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "DD (Devanur)",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Super 10",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Sannam (334/S4)",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Drying Process",
+            "spec_option_name": "Air Dried",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Kaddi / KDL",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Wrinkle-273",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Shaniya",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "khandar",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Stem Presence",
+            "spec_option_name": "steam and without steam",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Kashmiri Byadgi",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Bangaram",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Wonder Hot",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Shark 1",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "tameto",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "DC",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "ARMOR",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "BULLET",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "gundu",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Samba",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Stem Presence",
+            "spec_option_name": "Vary by specification",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Stem Presence",
+            "spec_option_name": "both",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Desi",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Classic",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Super 10 Gantur",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "all varieties of red chilli",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "S 9 Mundu",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Indam 5",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Teja",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Syngenta Byadgi",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Deluxe",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "A Grade",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Super10 , Sannam , Teja",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "KL1",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Mahi super delux",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Vary by specification",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "334",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "273 Wrinkle",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Deluxe, medium, best",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "KDL Byadgi",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Maharashtra",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Shankasuri desi",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "5531",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "shark 1,armoor,teja,341,345,etc",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Mannakattu chillies",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Stem Presence",
+            "spec_option_name": "Both",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "FAQ (Standard)",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Armor",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Gujrat",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Stem Presence",
+            "spec_option_name": "with stem , without stem",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Sygenta Byadgi 5531",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Sygenta Byadgi 2043",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Dabbi Byadgi",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "334 Fatki",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Teja Fatki",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "334 Guntur",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "LCA-334",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Guntur, Byadgi, 341, Teja, Sannam",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Mizoram",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Armoor",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Vary by variety",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Sesonta",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Stem Presence",
+            "spec_option_name": "With stem, stemcut, stemless",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Indori",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "273",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "DD",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "TN Gundu Red Chilli",
+            "option_fill_rate": "0.5"
+        }
+    ]
+}

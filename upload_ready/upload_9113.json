@@ -1,0 +1,204 @@
+{
+  "pmcat_id": 11363,
+  "pmcat_name": "Lathe Machine",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Heavy Duty Lathe Machines",
+      "mcat_id": 9113,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Bed Length",
+              "options": [
+                "1370 mm / 4.5 ft",
+                "1500 mm / 5 ft",
+                "1800 mm / 6 ft",
+                "2000 mm / 6.5 ft",
+                "2500 mm / 8 ft",
+                "2750 mm / 9 ft",
+                "3000 mm / 10 ft",
+                "3650 mm / 12 ft",
+                "4000 mm / 13 ft",
+                "4500 mm / 15 ft",
+                "5000 mm / 16.5 ft"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Center Height",
+              "options": [
+                "250 mm / 10 inch",
+                "300 mm / 12 inch",
+                "380 mm / 15 inch",
+                "450 mm / 18 inch",
+                "500 mm / 20 inch",
+                "600 mm / 24 inch"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Spindle Bore",
+              "options": [
+                "52 mm / ~2 inch",
+                "80 mm / ~3 inch",
+                "100 mm / 4 inch",
+                "130 mm / ~5 inch",
+                "150 mm / 6 inch",
+                "200 mm / 8 inch"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Distance Between Centers",
+              "options": [
+                "750 mm",
+                "1000 mm",
+                "1500 mm",
+                "2000 mm",
+                "2500 mm",
+                "3000 mm",
+                "4000 mm",
+                "5000 mm"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Swing Over Bed",
+              "options": [
+                "500 mm",
+                "600 mm",
+                "750 mm",
+                "900 mm",
+                "1000 mm",
+                "1200 mm"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Motor Power",
+              "options": [
+                "3 HP",
+                "5 HP",
+                "7.5 HP",
+                "10 HP",
+                "12.5 HP",
+                "15 HP",
+                "20 HP"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Bed Width",
+              "options": [
+                "330 mm / 13 inch",
+                "380 mm / 15 inch",
+                "400 mm / 16 inch",
+                "450 mm / 18 inch",
+                "500 mm / 20 inch"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Chuck Size",
+              "options": [
+                "200 mm / 8 inch",
+                "250 mm / 10 inch",
+                "300 mm / 12 inch",
+                "400 mm / 16 inch",
+                "500 mm / 20 inch",
+                "600 mm / 24 inch"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Machine Type",
+              "options": [
+                "All Geared",
+                "V Belt Drive",
+                "Norton Gearbox",
+                "Oil Country",
+                "Roll Turning",
+                "Gap Bed"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Spindle Speed Range",
+              "options": [
+                "25-800 rpm",
+                "40-800 rpm",
+                "40-1000 rpm",
+                "40-1200 rpm",
+                "25-1600 rpm",
+                "40-2000 rpm"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Machine Condition",
+              "options": [
+                "New",
+                "Used"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Brand",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Bed Type",
+              "options": [
+                "Single Wall",
+                "Double Wall",
+                "Heavy Ribbed",
+                "Flat Bed",
+                "V Bed",
+                "Hard Bed",
+                "Planer Bed"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Swing Over Cross Slide",
+              "options": [
+                "220 mm",
+                "275 mm",
+                "355 mm",
+                "450 mm",
+                "550 mm",
+                "650 mm"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Phase",
+              "options": [
+                "Three Phase",
+                "Single Phase"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Approximate Weight",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

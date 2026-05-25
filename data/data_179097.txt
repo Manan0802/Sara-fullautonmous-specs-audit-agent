@@ -1,0 +1,2486 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 179097,
+        "mcat_name": "TSC Barcode & Label Printers",
+        "current_specs": [
+            {
+                "spec_name": "Usage Type",
+                "options": [
+                    "Desktop",
+                    "Industrial",
+                    "Mobile"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Print Technology",
+                "options": [
+                    "Direct Thermal",
+                    "Thermal Transfer",
+                    "DT/TT Dual"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Print Width",
+                "options": [
+                    "2 inch",
+                    "3 inch",
+                    "4 inch",
+                    "6 inch",
+                    "1.89 inch",
+                    "2.05 inch",
+                    "2.13 inch",
+                    "2.24 inch",
+                    "2.83 inch",
+                    "4.09 inch",
+                    "4.16 inch",
+                    "4.17 inch",
+                    "4.21 inch",
+                    "4.25 inch",
+                    "6.61 inch",
+                    "8.5 inch",
+                    "8.64 inch"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Print Resolution",
+                "options": [
+                    "203 dpi",
+                    "300 dpi",
+                    "600 dpi"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Print Series",
+                "options": [
+                    "TE Series",
+                    "DA Series",
+                    "TTP Series",
+                    "ME Series",
+                    "MH Series",
+                    "MX Series",
+                    "Alpha Series",
+                    "DH Series",
+                    "MB Series",
+                    "MLP Series",
+                    "PEX Series",
+                    "TA Series",
+                    "TDM Series",
+                    "TDP Series",
+                    "TH Series",
+                    "TX Series"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Connectivity",
+                "options": [
+                    "USB",
+                    "USB + Ethernet",
+                    "USB + Wi‑Fi",
+                    "USB + BT",
+                    "USB + Eth + Wi‑Fi",
+                    "Bluetooth",
+                    "Centronics",
+                    "Ethernet",
+                    "GPIO",
+                    "NFC",
+                    "RS-232",
+                    "USB Host",
+                    "Wi-Fi"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Print Speed",
+                "options": [
+                    "4 ips",
+                    "6 ips",
+                    "8 ips",
+                    "10 ips",
+                    "3 ips",
+                    "5 ips",
+                    "9 ips",
+                    "12 ips",
+                    "14 ips",
+                    "18 ips",
+                    "2 ips"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Max Roll Diameter",
+                "options": [
+                    "100 mm",
+                    "127 mm",
+                    "200 mm",
+                    "30 mm",
+                    "40 mm",
+                    "50 mm",
+                    "55 mm",
+                    "57 mm",
+                    "67 mm",
+                    "67.3 mm",
+                    "109 mm",
+                    "109.2 mm",
+                    "139.7 mm",
+                    "165 mm",
+                    "203.2 mm",
+                    "208.3 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Ribbon Length",
+                "options": [
+                    "74 m",
+                    "300 m",
+                    "450 m",
+                    "90 m",
+                    "110 m",
+                    "600 m"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Media Type",
+                "options": [
+                    "Labels",
+                    "Tags",
+                    "Fan‑fold",
+                    "Black Mark",
+                    "Care Label",
+                    "Continuous",
+                    "Die-cut",
+                    "Linerless",
+                    "Notched",
+                    "Perforated",
+                    "Receipt Paper",
+                    "Wristband"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "TSC"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Certifications",
+                "options": [
+                    "Cerner certified",
+                    "ENERGY STAR"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Depth",
+                "options": [
+                    "156 mm",
+                    "164 mm",
+                    "165 mm",
+                    "210 mm",
+                    "231 mm",
+                    "235 mm",
+                    "240 mm",
+                    "258 mm",
+                    "260 mm",
+                    "280 mm",
+                    "286 mm",
+                    "288 mm",
+                    "294 mm",
+                    "330 mm",
+                    "332 mm",
+                    "390 mm",
+                    "434 mm",
+                    "436 mm",
+                    "450 mm",
+                    "49.5 mm",
+                    "502 mm",
+                    "505 mm",
+                    "510 mm",
+                    "514 mm",
+                    "515 mm",
+                    "56.5 mm",
+                    "68 mm",
+                    "70 mm",
+                    "79 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Display",
+                "options": [
+                    "2.3\" color LCD",
+                    "3.5\" color touch display",
+                    "4.3\" color touch LCD",
+                    "Graphic type, 128 x 64 pixel",
+                    "LED icon panel"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Enclosure Material",
+                "options": [
+                    "ABS plastic",
+                    "Clamshell with double-walled plastic",
+                    "Die-cast aluminum base and frame/Metal cover",
+                    "Die-cast based print mechanism",
+                    "Die-cast based print mechanism/Metal cover",
+                    "Die-cast print mechanism/Metal cover",
+                    "Double-walled plastic",
+                    "Plastic",
+                    "Plastic with double-walled clamshell design",
+                    "Plastic with rubber over-mold construction",
+                    "Plastic with rubber over molded"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Flash Memory",
+                "options": [
+                    "128 MB",
+                    "16 MB",
+                    "2 MB",
+                    "4 MB",
+                    "512 MB",
+                    "8 MB"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Height",
+                "options": [
+                    "116 mm",
+                    "134.5 mm",
+                    "148 mm",
+                    "156 mm",
+                    "158 mm",
+                    "164 mm",
+                    "170 mm",
+                    "172 mm",
+                    "173 mm",
+                    "179 mm",
+                    "186 mm",
+                    "188 mm",
+                    "191 mm",
+                    "191.6 mm",
+                    "198 mm",
+                    "200 mm",
+                    "210 mm",
+                    "245 mm",
+                    "259 mm",
+                    "274 mm",
+                    "300 mm",
+                    "308 mm",
+                    "313 mm",
+                    "326 mm",
+                    "336 mm",
+                    "337 mm",
+                    "393 mm",
+                    "412 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "IP Rating",
+                "options": [
+                    "IP42",
+                    "IP54"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Media Core Diameter",
+                "options": [
+                    "12.7 mm",
+                    "12.7 mm - 25.4 mm",
+                    "19.1 mm",
+                    "25.4 mm",
+                    "25.4 mm - 38 mm",
+                    "25.4 mm - 38.1 mm",
+                    "25.4 mm - 76.2 mm",
+                    "38.1 mm",
+                    "38.1 mm/76.2 mm",
+                    "76.2 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Media Thickness",
+                "options": [
+                    "0.05 mm - 0.1 mm",
+                    "0.0508 mm - 0.1016 mm",
+                    "0.055 mm - 0.165 mm",
+                    "0.055 mm - 0.19 mm",
+                    "0.055 mm - 0.254 mm",
+                    "0.06 mm - 0.1 mm",
+                    "0.06 mm - 0.16 mm",
+                    "0.06 mm - 0.19 mm",
+                    "0.06 mm - 0.25 mm",
+                    "0.06 mm - 0.254 mm",
+                    "0.06 mm - 0.268 mm",
+                    "0.06 mm - 0.28 mm",
+                    "0.06 mm - 0.30 mm",
+                    "0.076 mm - 0.305 mm",
+                    "Up to 0.14 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Media Width",
+                "options": [
+                    "15 mm-120 mm",
+                    "15 mm-60 mm",
+                    "16 mm - 118 mm",
+                    "19 mm - 112 mm",
+                    "19 mm - 114 mm",
+                    "20 mm - 112 mm",
+                    "20 mm - 114 mm",
+                    "20 mm-114 mm",
+                    "20 mm-118 mm",
+                    "20 mm-120 mm",
+                    "25.4 mm - 112 mm",
+                    "25.4 mm - 114 mm",
+                    "25.4 mm - 114.3 mm",
+                    "25.4 mm - 118 mm",
+                    "25.4 mm-80 mm",
+                    "40 mm - 110 mm",
+                    "50.8 mm - 112 mm",
+                    "50.8 mm - 172.7 mm",
+                    "50.8 mm - 80 mm",
+                    "50.8 mm-180 mm",
+                    "50.8 mm-78 mm",
+                    "Max 58 mm",
+                    "Max 80 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Printer Language",
+                "options": [
+                    "CPCL",
+                    "DPL",
+                    "EPL",
+                    "ESC-POS",
+                    "SBPL",
+                    "TSPL",
+                    "TSPL-EZ",
+                    "TSPL-EZC",
+                    "TSPL-EZD",
+                    "TPLE",
+                    "TPLZ",
+                    "ZPL",
+                    "ZPL II"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Processor",
+                "options": [
+                    "32-bit RISC CPU"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Real Time Clock",
+                "options": [
+                    "N/A",
+                    "Optional",
+                    "Standard"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Ribbon Width",
+                "options": [
+                    "25.4 mm - 114.3 mm",
+                    "40 mm - 110 mm",
+                    "40 mm - 115 mm",
+                    "50.8 mm - 178 mm",
+                    "56 mm-58 mm",
+                    "76 mm - 180 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "SDRAM",
+                "options": [
+                    "128 MB",
+                    "16 MB",
+                    "2 MB",
+                    "256 MB",
+                    "32 MB",
+                    "512 MB",
+                    "64 MB",
+                    "8 MB"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Safety Regulation",
+                "options": [
+                    "BIS",
+                    "BSMI",
+                    "CB",
+                    "CCC",
+                    "CE",
+                    "C-Tick",
+                    "CUL",
+                    "EAC",
+                    "EN50498",
+                    "FCC",
+                    "IC",
+                    "IMDA",
+                    "KC",
+                    "KCC",
+                    "MIC",
+                    "MSIP",
+                    "NBTC",
+                    "NOM",
+                    "NTRA",
+                    "RCM",
+                    "SDPPI",
+                    "SRRC",
+                    "TUV",
+                    "UL",
+                    "cTUVus"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Warranty",
+                "options": [
+                    "1 Year",
+                    "2 Years"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Weight",
+                "options": [
+                    "0.22 kg",
+                    "0.35 kg",
+                    "0.38 kg",
+                    "0.55 kg",
+                    "0.65 kg",
+                    "0.75 kg",
+                    "0.99 kg",
+                    "1.1 kg",
+                    "1.2 kg",
+                    "1.3 kg",
+                    "1.5 kg",
+                    "1.6 kg",
+                    "1.8 kg",
+                    "1.9 kg",
+                    "2.1 kg",
+                    "2.3 kg",
+                    "2.4 kg",
+                    "2.45 kg",
+                    "2.5 kg",
+                    "2.8 kg",
+                    "3.7 kg",
+                    "3.75 kg",
+                    "4.03 kg",
+                    "4.08 kg",
+                    "7.6 kg",
+                    "9 kg",
+                    "9.2 kg",
+                    "11 kg",
+                    "12.7 kg",
+                    "14.35 kg",
+                    "15 kg",
+                    "15.6 kg",
+                    "15.7 kg",
+                    "17.8 kg",
+                    "18 kg",
+                    "18.93 kg",
+                    "23 kg",
+                    "23.7 kg"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Width",
+                "options": [
+                    "105 mm",
+                    "109 mm",
+                    "116 mm",
+                    "117 mm",
+                    "118 mm",
+                    "138 mm",
+                    "146 mm",
+                    "160 mm",
+                    "195 mm",
+                    "200 mm",
+                    "202 mm",
+                    "204 mm",
+                    "208 mm",
+                    "213 mm",
+                    "223 mm",
+                    "224 mm",
+                    "226 mm",
+                    "232 mm",
+                    "240 mm",
+                    "245 mm",
+                    "248 mm",
+                    "270 mm",
+                    "276 mm",
+                    "286 mm",
+                    "288 mm",
+                    "300 mm",
+                    "355 mm",
+                    "357 mm",
+                    "440 mm",
+                    "79 mm",
+                    "89.3 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "TSC Barcode & Label Printers",
+            "mcat_id": 179097,
+            "generated_by": "Standard_Product_Specs",
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Usage Type",
+                            "options": [
+                                "Desktop",
+                                "Industrial",
+                                "Mobile"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Print Technology",
+                            "options": [
+                                "Direct Thermal",
+                                "Thermal Transfer",
+                                "DT/TT Dual"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Print Width",
+                            "options": [
+                                "2 inch",
+                                "3 inch",
+                                "4 inch",
+                                "6 inch",
+                                "1.89 inch",
+                                "2.05 inch",
+                                "2.13 inch",
+                                "2.24 inch",
+                                "2.83 inch",
+                                "4.09 inch",
+                                "4.16 inch",
+                                "4.17 inch",
+                                "4.21 inch",
+                                "4.25 inch",
+                                "6.61 inch",
+                                "8.5 inch",
+                                "8.64 inch"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Print Resolution",
+                            "options": [
+                                "203 dpi",
+                                "300 dpi",
+                                "600 dpi"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Print Series",
+                            "options": [
+                                "TE Series",
+                                "DA Series",
+                                "TTP Series",
+                                "ME Series",
+                                "MH Series",
+                                "MX Series",
+                                "Alpha Series",
+                                "DH Series",
+                                "MB Series",
+                                "MLP Series",
+                                "PEX Series",
+                                "TA Series",
+                                "TDM Series",
+                                "TDP Series",
+                                "TH Series",
+                                "TX Series"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Connectivity",
+                            "options": [
+                                "USB",
+                                "USB + Ethernet",
+                                "USB + Wi‑Fi",
+                                "USB + BT",
+                                "USB + Eth + Wi‑Fi",
+                                "Bluetooth",
+                                "Centronics",
+                                "Ethernet",
+                                "GPIO",
+                                "NFC",
+                                "RS-232",
+                                "USB Host",
+                                "Wi-Fi"
+                            ],
+                            "input_type": "multi_select"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Print Speed",
+                            "options": [
+                                "4 ips",
+                                "6 ips",
+                                "8 ips",
+                                "10 ips",
+                                "3 ips",
+                                "5 ips",
+                                "9 ips",
+                                "12 ips",
+                                "14 ips",
+                                "18 ips",
+                                "2 ips"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Max Roll Diameter",
+                            "options": [
+                                "100 mm",
+                                "127 mm",
+                                "200 mm",
+                                "30 mm",
+                                "40 mm",
+                                "50 mm",
+                                "55 mm",
+                                "57 mm",
+                                "67 mm",
+                                "67.3 mm",
+                                "109 mm",
+                                "109.2 mm",
+                                "139.7 mm",
+                                "165 mm",
+                                "203.2 mm",
+                                "208.3 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Ribbon Length",
+                            "options": [
+                                "74 m",
+                                "300 m",
+                                "450 m",
+                                "90 m",
+                                "110 m",
+                                "600 m"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Media Type",
+                            "options": [
+                                "Labels",
+                                "Tags",
+                                "Fan‑fold",
+                                "Black Mark",
+                                "Care Label",
+                                "Continuous",
+                                "Die-cut",
+                                "Linerless",
+                                "Notched",
+                                "Perforated",
+                                "Receipt Paper",
+                                "Wristband"
+                            ],
+                            "input_type": "multi_select"
+                        },
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "TSC"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Certifications",
+                            "options": [
+                                "Cerner certified",
+                                "ENERGY STAR"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Depth",
+                            "options": [
+                                "156 mm",
+                                "164 mm",
+                                "165 mm",
+                                "210 mm",
+                                "231 mm",
+                                "235 mm",
+                                "240 mm",
+                                "258 mm",
+                                "260 mm",
+                                "280 mm",
+                                "286 mm",
+                                "288 mm",
+                                "294 mm",
+                                "330 mm",
+                                "332 mm",
+                                "390 mm",
+                                "434 mm",
+                                "436 mm",
+                                "450 mm",
+                                "49.5 mm",
+                                "502 mm",
+                                "505 mm",
+                                "510 mm",
+                                "514 mm",
+                                "515 mm",
+                                "56.5 mm",
+                                "68 mm",
+                                "70 mm",
+                                "79 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Display",
+                            "options": [
+                                "2.3\" color LCD",
+                                "3.5\" color touch display",
+                                "4.3\" color touch LCD",
+                                "Graphic type, 128 x 64 pixel",
+                                "LED icon panel"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Enclosure Material",
+                            "options": [
+                                "ABS plastic",
+                                "Clamshell with double-walled plastic",
+                                "Die-cast aluminum base and frame/Metal cover",
+                                "Die-cast based print mechanism",
+                                "Die-cast based print mechanism/Metal cover",
+                                "Die-cast print mechanism/Metal cover",
+                                "Double-walled plastic",
+                                "Plastic",
+                                "Plastic with double-walled clamshell design",
+                                "Plastic with rubber over-mold construction",
+                                "Plastic with rubber over molded"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Flash Memory",
+                            "options": [
+                                "128 MB",
+                                "16 MB",
+                                "2 MB",
+                                "4 MB",
+                                "512 MB",
+                                "8 MB"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Height",
+                            "options": [
+                                "116 mm",
+                                "134.5 mm",
+                                "148 mm",
+                                "156 mm",
+                                "158 mm",
+                                "164 mm",
+                                "170 mm",
+                                "172 mm",
+                                "173 mm",
+                                "179 mm",
+                                "186 mm",
+                                "188 mm",
+                                "191 mm",
+                                "191.6 mm",
+                                "198 mm",
+                                "200 mm",
+                                "210 mm",
+                                "245 mm",
+                                "259 mm",
+                                "274 mm",
+                                "300 mm",
+                                "308 mm",
+                                "313 mm",
+                                "326 mm",
+                                "336 mm",
+                                "337 mm",
+                                "393 mm",
+                                "412 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "IP Rating",
+                            "options": [
+                                "IP42",
+                                "IP54"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Media Core Diameter",
+                            "options": [
+                                "12.7 mm",
+                                "12.7 mm - 25.4 mm",
+                                "19.1 mm",
+                                "25.4 mm",
+                                "25.4 mm - 38 mm",
+                                "25.4 mm - 38.1 mm",
+                                "25.4 mm - 76.2 mm",
+                                "38.1 mm",
+                                "38.1 mm/76.2 mm",
+                                "76.2 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Media Thickness",
+                            "options": [
+                                "0.05 mm - 0.1 mm",
+                                "0.0508 mm - 0.1016 mm",
+                                "0.055 mm - 0.165 mm",
+                                "0.055 mm - 0.19 mm",
+                                "0.055 mm - 0.254 mm",
+                                "0.06 mm - 0.1 mm",
+                                "0.06 mm - 0.16 mm",
+                                "0.06 mm - 0.19 mm",
+                                "0.06 mm - 0.25 mm",
+                                "0.06 mm - 0.254 mm",
+                                "0.06 mm - 0.268 mm",
+                                "0.06 mm - 0.28 mm",
+                                "0.06 mm - 0.30 mm",
+                                "0.076 mm - 0.305 mm",
+                                "Up to 0.14 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Media Width",
+                            "options": [
+                                "15 mm-120 mm",
+                                "15 mm-60 mm",
+                                "16 mm - 118 mm",
+                                "19 mm - 112 mm",
+                                "19 mm - 114 mm",
+                                "20 mm - 112 mm",
+                                "20 mm - 114 mm",
+                                "20 mm-114 mm",
+                                "20 mm-118 mm",
+                                "20 mm-120 mm",
+                                "25.4 mm - 112 mm",
+                                "25.4 mm - 114 mm",
+                                "25.4 mm - 114.3 mm",
+                                "25.4 mm - 118 mm",
+                                "25.4 mm-80 mm",
+                                "40 mm - 110 mm",
+                                "50.8 mm - 112 mm",
+                                "50.8 mm - 172.7 mm",
+                                "50.8 mm - 80 mm",
+                                "50.8 mm-180 mm",
+                                "50.8 mm-78 mm",
+                                "Max 58 mm",
+                                "Max 80 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Printer Language",
+                            "options": [
+                                "CPCL",
+                                "DPL",
+                                "EPL",
+                                "ESC-POS",
+                                "SBPL",
+                                "TSPL",
+                                "TSPL-EZ",
+                                "TSPL-EZC",
+                                "TSPL-EZD",
+                                "TPLE",
+                                "TPLZ",
+                                "ZPL",
+                                "ZPL II"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Processor",
+                            "options": [
+                                "32-bit RISC CPU"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Real Time Clock",
+                            "options": [
+                                "N/A",
+                                "Optional",
+                                "Standard"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Ribbon Width",
+                            "options": [
+                                "25.4 mm - 114.3 mm",
+                                "40 mm - 110 mm",
+                                "40 mm - 115 mm",
+                                "50.8 mm - 178 mm",
+                                "56 mm-58 mm",
+                                "76 mm - 180 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "SDRAM",
+                            "options": [
+                                "128 MB",
+                                "16 MB",
+                                "2 MB",
+                                "256 MB",
+                                "32 MB",
+                                "512 MB",
+                                "64 MB",
+                                "8 MB"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Safety Regulation",
+                            "options": [
+                                "BIS",
+                                "BSMI",
+                                "CB",
+                                "CCC",
+                                "CE",
+                                "C-Tick",
+                                "CUL",
+                                "EAC",
+                                "EN50498",
+                                "FCC",
+                                "IC",
+                                "IMDA",
+                                "KC",
+                                "KCC",
+                                "MIC",
+                                "MSIP",
+                                "NBTC",
+                                "NOM",
+                                "NTRA",
+                                "RCM",
+                                "SDPPI",
+                                "SRRC",
+                                "TUV",
+                                "UL",
+                                "cTUVus"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Warranty",
+                            "options": [
+                                "1 Year",
+                                "2 Years"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Weight",
+                            "options": [
+                                "0.22 kg",
+                                "0.35 kg",
+                                "0.38 kg",
+                                "0.55 kg",
+                                "0.65 kg",
+                                "0.75 kg",
+                                "0.99 kg",
+                                "1.1 kg",
+                                "1.2 kg",
+                                "1.3 kg",
+                                "1.5 kg",
+                                "1.6 kg",
+                                "1.8 kg",
+                                "1.9 kg",
+                                "2.1 kg",
+                                "2.3 kg",
+                                "2.4 kg",
+                                "2.45 kg",
+                                "2.5 kg",
+                                "2.8 kg",
+                                "3.7 kg",
+                                "3.75 kg",
+                                "4.03 kg",
+                                "4.08 kg",
+                                "7.6 kg",
+                                "9 kg",
+                                "9.2 kg",
+                                "11 kg",
+                                "12.7 kg",
+                                "14.35 kg",
+                                "15 kg",
+                                "15.6 kg",
+                                "15.7 kg",
+                                "17.8 kg",
+                                "18 kg",
+                                "18.93 kg",
+                                "23 kg",
+                                "23.7 kg"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Width",
+                            "options": [
+                                "105 mm",
+                                "109 mm",
+                                "116 mm",
+                                "117 mm",
+                                "118 mm",
+                                "138 mm",
+                                "146 mm",
+                                "160 mm",
+                                "195 mm",
+                                "200 mm",
+                                "202 mm",
+                                "204 mm",
+                                "208 mm",
+                                "213 mm",
+                                "223 mm",
+                                "224 mm",
+                                "226 mm",
+                                "232 mm",
+                                "240 mm",
+                                "245 mm",
+                                "248 mm",
+                                "270 mm",
+                                "276 mm",
+                                "286 mm",
+                                "288 mm",
+                                "300 mm",
+                                "355 mm",
+                                "357 mm",
+                                "440 mm",
+                                "79 mm",
+                                "89.3 mm"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Brand",
+            "option_value": "TSC",
+            "prod_count": 73
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Cloudwood",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TE-244",
+            "prod_count": 19
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TTP-244 Pro",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "DA-310",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TTP-244",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TTP-345",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TE-244 Pro",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Pro",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TA-220",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TE",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TE-310",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "6552",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Alpha-40L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "DA-210",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "DA-220",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "MB Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "MB240T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "MD-240T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "MH641T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "ML-340P",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "ML-341P",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "MS-640",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Normal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Old Model",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TA-222",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TE-210",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TTP-244 PE",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TX-600",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Printing Technology",
+            "option_value": "Thermal",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Printing Technology",
+            "option_value": "Thermal Transfer",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Printing Technology",
+            "option_value": "Direct Thermal",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Printing Technology",
+            "option_value": "Thermal Printer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Printing Technology",
+            "option_value": "Thermal Transfer / Direct Thermal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Resolution",
+            "option_value": "203 DPI",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Resolution",
+            "option_value": "300 DPI",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Resolution",
+            "option_value": "600 DPI",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Maximum Print Width",
+            "option_value": "4 inch",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Maximum Print Width",
+            "option_value": "110 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Maximum Print Width",
+            "option_value": "2 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Print Width",
+            "option_value": "4 - 4.5 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Barcode Printer",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Desktop",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Industrial",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Desktop Thermal Printer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Industrial Printer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Thermal Printer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connectivity/Interface",
+            "option_value": "USB",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Connectivity/Interface",
+            "option_value": "Ethernet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connectivity/Interface",
+            "option_value": "Bluetooth",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connectivity/Interface",
+            "option_value": "LAN, Wi-Fi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connectivity/Interface",
+            "option_value": "Networking",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connectivity/Interface",
+            "option_value": "USB, Ethernet, Serial Port",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connectivity/Interface",
+            "option_value": "USB, USB 2.0",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Version/Age",
+            "option_value": "Latest",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Version/Age",
+            "option_value": "2-3 years",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Print Length",
+            "option_value": "19-100 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 year",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 Year",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "2 Year",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "3 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Laundry/Dry Cleaning tagging",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Cloth Printing (Washable Label/Taffeta)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "E-commerce Label Generation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "E-commerce Shipping Labels and Invoices",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "MRP printing on laminate poly",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Shoe Sticker",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spare Part/Component",
+            "option_value": "Print Head",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Spare Part/Component",
+            "option_value": "Barcode Printer Head",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spare Part/Component",
+            "option_value": "Ribbon Support",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spare Part/Component",
+            "option_value": "Roller (Thermal Platen)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Print Speed",
+            "option_value": "5 ips",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Media Compatibility",
+            "option_value": "Non-tearable labels",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Media Compatibility",
+            "option_value": "Supports smaller labels",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Media Compatibility",
+            "option_value": "Tafeta Label Roll",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Media Compatibility",
+            "option_value": "Taffeta roll",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Print Speed",
+            "option_value": "4 ips",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Print Speed",
+            "option_value": "High",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Printing Capability",
+            "option_value": "1 piece",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Printing Capability",
+            "option_value": "Circle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Printing Capability",
+            "option_value": "MRP Printing, Logo Printing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Printing Capability",
+            "option_value": "Variable Data Printing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Better Adhesion",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "High Contrast",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "High Darkness",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Label Size",
+            "option_value": "2x2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Label Size",
+            "option_value": "4x6",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Label Size",
+            "option_value": "55x25 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Condition",
+            "option_value": "New",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Condition",
+            "option_value": "Seal pack",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Condition",
+            "option_value": "Second-hand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Duty Type",
+            "option_value": "Heavy Duty",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Form Factor",
+            "option_value": "Desktop",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Media Length",
+            "option_value": "300 m",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Communication cable, Power cable, and Adapter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Sensor, Motherboard, Logic Card, Software",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Resin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Wax Resin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Features",
+            "option_value": "Auto-cutter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Features",
+            "option_value": "No (Manual cut)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Version/Software Version",
+            "option_value": "12.0",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Version/Software Version",
+            "option_value": "Latest model",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Software Compatibility",
+            "option_value": "Saves designs like Word or Excel files",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Software Compatibility",
+            "option_value": "Supported",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bluetooth Connectivity",
+            "option_value": "No",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Support",
+            "option_value": "Black & White",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Core Size",
+            "option_value": "1 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Taiwan",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cutter Type",
+            "option_value": "Manual cut with scissors",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Enclosure Style",
+            "option_value": "Bolt shape",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Premium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "500 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maintenance/Support",
+            "option_value": "Lining in print",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Media Capacity",
+            "option_value": "400-500 labels",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Mobile Printing Support",
+            "option_value": "Supported",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Printhead Life",
+            "option_value": "30 km",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Printing Speed",
+            "option_value": "4 inches per second",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality",
+            "option_value": "Original",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ribbon Material",
+            "option_value": "Wax",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Roll Format",
+            "option_value": "Continuous",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Side Margin",
+            "option_value": "5 - 5 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "33 mm",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model",
+            "option_value": "TH240"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "BRAND",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "MB340T"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "Alpha 3R"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "TDP-225"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "TTP-2610MT"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "MH340T"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "TTP-286MT"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "TTP-345"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "MH341T"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "TL240"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "TE210"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model",
+            "option_value": "MH240T"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "ME240"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "TX200"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "TTP-2410MT"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "Alpha 4L"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model No",
+            "option_value": "TTP-384 MT"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model Number",
+            "option_value": "TE200"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Flash",
+            "option_value": "128 MB"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model Number",
+            "option_value": "ML 241P"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Type",
+            "option_value": "Standalone"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model Number",
+            "option_value": "MH241"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "RAM",
+            "option_value": "256 MB SDRAM"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Product Print Speed",
+            "option_value": "12 ips"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Max Ribbon Length",
+            "option_value": "625 Meters"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "RAM",
+            "option_value": "512 MB"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "RAM",
+            "option_value": "128 MB"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "RAM",
+            "option_value": "128 MB SDRAM"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model Number",
+            "option_value": "Alpha 30R"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model",
+            "option_value": "TE200"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand Name",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model Number",
+            "option_value": "TTP-247/345"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TTP"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model",
+            "option_value": "TE244"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model",
+            "option_value": "TTP 244 PRO"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model Number",
+            "option_value": "ME240/340"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand Name",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand Name",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model Number",
+            "option_value": "TX200"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Model Number",
+            "option_value": "DA 210"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand Name",
+            "option_value": "TSC"
+        },
+        {
+            "mcat_id": "179097",
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "Brand",
+            "option_value": "TSC"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "brand",
+            "spec_option": "amazon",
+            "impression": "296"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "brand",
+            "spec_option": "tsc",
+            "impression": "35514"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "calculator model number",
+            "spec_option": "mb340",
+            "impression": "23"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "calculator model number",
+            "spec_option": "ml240",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "244",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "244 pro",
+            "impression": "1028"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "244 te",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "345",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "alpha 3 rb",
+            "impression": "177"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "cpx4",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "da 220",
+            "impression": "51"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "da 310",
+            "impression": "50"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "da220",
+            "impression": "31"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "da310",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "mb340 t",
+            "impression": "23"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "me 240",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "me240",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "ta 220",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "ta210",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "ta220",
+            "impression": "30"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "te 200",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "te 244",
+            "impression": "3146"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "te 244 pro",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "te 310",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "te200",
+            "impression": "28"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "te210",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "te244",
+            "impression": "788"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "ttp 244 pro",
+            "impression": "8430"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "ttp 247",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "ttp 345",
+            "impression": "359"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "tx 610",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "model name/number",
+            "spec_option": "tx600",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "type",
+            "spec_option": "barcode",
+            "impression": "9833"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "type",
+            "spec_option": "label",
+            "impression": "495"
+        },
+        {
+            "mcat_name": "TSC Barcode & Label Printers",
+            "spec_name": "usage",
+            "spec_option": "barcode scanner",
+            "impression": "6"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "",
+            "spec_fill_rate": "51.8",
+            "product_count": "29"
+        },
+        {
+            "spec_name": "Print Technology",
+            "spec_fill_rate": "48.2",
+            "product_count": "27"
+        },
+        {
+            "spec_name": "Print Width",
+            "spec_fill_rate": "46.4",
+            "product_count": "26"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_fill_rate": "44.6",
+            "product_count": "25"
+        },
+        {
+            "spec_name": "Connectivity",
+            "spec_fill_rate": "42.9",
+            "product_count": "24"
+        },
+        {
+            "spec_name": "Print Series",
+            "spec_fill_rate": "42.9",
+            "product_count": "24"
+        },
+        {
+            "spec_name": "Print Resolution",
+            "spec_fill_rate": "42.9",
+            "product_count": "24"
+        },
+        {
+            "spec_name": "Print Speed",
+            "spec_fill_rate": "35.7",
+            "product_count": "20"
+        },
+        {
+            "spec_name": "Max Roll Diameter",
+            "spec_fill_rate": "33.9",
+            "product_count": "19"
+        },
+        {
+            "spec_name": "Ribbon Length",
+            "spec_fill_rate": "30.4",
+            "product_count": "17"
+        },
+        {
+            "spec_name": "Media Type",
+            "spec_fill_rate": "28.6",
+            "product_count": "16"
+        },
+        {
+            "spec_name": "Model Number",
+            "spec_fill_rate": "5.4",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_fill_rate": "5.4",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Programming Language",
+            "spec_fill_rate": "1.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "1.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Resolution",
+            "spec_fill_rate": "1.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Supported OS",
+            "spec_fill_rate": "1.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Maximum Print Speed",
+            "spec_fill_rate": "1.8",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": []
+}

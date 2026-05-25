@@ -1,0 +1,178 @@
+{
+  "pmcat_id": 7932,
+  "pmcat_name": "Office Tables",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "conference tables",
+      "mcat_id": 3983,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Seating Capacity",
+              "options": [
+                "4 Seater",
+                "6 Seater",
+                "8 Seater",
+                "10 Seater",
+                "12 Seater",
+                "14 Seater",
+                "16 Seater",
+                "18 Seater",
+                "20 Seater",
+                "20+ Seater"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Top Material",
+              "options": [
+                "Particle Board",
+                "MDF",
+                "Solid Wood",
+                "Wood Veneer",
+                "Plywood",
+                "Glass",
+                "HPL",
+                "Metal"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Shape",
+              "options": [
+                "Rectangular",
+                "Boat",
+                "Round",
+                "Oval",
+                "U-Shape",
+                "Square"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Table Length",
+              "options": [
+                "4 ft",
+                "5 ft",
+                "6 ft",
+                "8 ft",
+                "10 ft",
+                "12 ft",
+                "14 ft",
+                "16 ft",
+                "18 ft",
+                "20 ft"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Table Width",
+              "options": [
+                "3 ft",
+                "4 ft",
+                "5 ft",
+                "6 ft"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Features",
+              "options": [
+                "Wire Management",
+                "With Pop-up Box / Power Sockets",
+                "Modular",
+                "Foldable",
+                "With Wheels"
+              ],
+              "input_type": "multi_select"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Brand",
+              "options": [
+                "Godrej Interio",
+                "Featherlite",
+                "HNI India",
+                "Durian",
+                "Geeken",
+                "Steelcase",
+                "Wipro Furniture",
+                "Herman Miller"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Color",
+              "options": [
+                "White",
+                "Black",
+                "Brown",
+                "Grey",
+                "Beige",
+                "Walnut",
+                "Teak",
+                "Oak"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Leg Type",
+              "options": [
+                "Metal Legs",
+                "Panel Base",
+                "Pedestal Base",
+                "Wooden Legs"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Top Finish Type",
+              "options": [
+                "Laminate",
+                "Veneer",
+                "Membrane",
+                "Polished",
+                "Matte",
+                "Glossy"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Frame Material",
+              "options": [
+                "Mild Steel (MS)",
+                "Stainless Steel",
+                "Aluminium",
+                "Particle Board",
+                "MDF",
+                "Solid Wood"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Top Thickness",
+              "options": [
+                "18 mm",
+                "25 mm",
+                "36 mm",
+                "45 mm",
+                "50 mm"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

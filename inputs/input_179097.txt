@@ -1,0 +1,2223 @@
+=== SYSTEM PROMPT ===
+# Spec Audit Orchestrator Agent
+
+
+
+
+You are an expert spec auditor for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+
+
+---
+
+
+
+
+## YOUR OBJECTIVE
+
+
+
+
+Every product category on this marketplace has a spec sheet — a structured set of attributes (specs) that sellers fill out and buyers use to filter. Your job is to audit the existing spec sheet and produce a corrected version.
+
+
+
+
+The existing specs are largely correct. Do not rebuild from scratch. Find and fix what is genuinely wrong: missing specs, wrong tiers, bad options wrong input types (radio vs multiselect), duplicates, or irrelevant entries. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** What a buyer asks first. What a seller must fill to have a findable listing.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one variant from another. Essential but not the first question.
+- **Tertiary:** Useful detail. Not critical for discovery.
+
+
+Each spec has `spec_name`, `options` (values sellers choose), and `input_type` (`radio_button` / `multi_select` / `text_type`).
+
+
+Your job is to audit all these aspects of the specs of a given category.
+
+
+---
+
+
+
+
+## YOUR DATA
+
+
+
+
+Five data sources are pre-fetched and in your context. Use them all.
+
+
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+
+
+
+You have three tools available. Use them whenever they help you.
+
+
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+Wait until your next turn to actually do the analysis. **Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+
+
+## RULES
+
+
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+
+
+**Every spec must be reviewed.** Even specs you don't change. For untouched specs, one line: "Reviewed — no signals requiring change."
+
+
+
+
+**Be your own critic.** Before finalising any action, ask: what is the strongest argument against this? Is there an alternative explanation for this signal? Address it.
+
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+
+
+---
+
+
+
+
+## BEGIN
+
+
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+
+Start by reading the skills you need, analyze the data, and produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 179097
+category_name: TSC Barcode & Label Printers
+seller_specs (current spec sheet): {
+  "category_name": "TSC Barcode & Label Printers",
+  "mcat_id": 179097,
+  "generated_by": "Standard_Product_Specs",
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Usage Type",
+          "options": [
+            "Desktop",
+            "Industrial",
+            "Mobile"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Print Technology",
+          "options": [
+            "Direct Thermal",
+            "Thermal Transfer",
+            "DT/TT Dual"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Print Width",
+          "options": [
+            "2 inch",
+            "3 inch",
+            "4 inch",
+            "6 inch",
+            "1.89 inch",
+            "2.05 inch",
+            "2.13 inch",
+            "2.24 inch",
+            "2.83 inch",
+            "4.09 inch",
+            "4.16 inch",
+            "4.17 inch",
+            "4.21 inch",
+            "4.25 inch",
+            "6.61 inch",
+            "8.5 inch",
+            "8.64 inch"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Print Resolution",
+          "options": [
+            "203 dpi",
+            "300 dpi",
+            "600 dpi"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Print Series",
+          "options": [
+            "TE Series",
+            "DA Series",
+            "TTP Series",
+            "ME Series",
+            "MH Series",
+            "MX Series",
+            "Alpha Series",
+            "DH Series",
+            "MB Series",
+            "MLP Series",
+            "PEX Series",
+            "TA Series",
+            "TDM Series",
+            "TDP Series",
+            "TH Series",
+            "TX Series"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Connectivity",
+          "options": [
+            "USB",
+            "USB + Ethernet",
+            "USB + Wi\u2011Fi",
+            "USB + BT",
+            "USB + Eth + Wi\u2011Fi",
+            "Bluetooth",
+            "Centronics",
+            "Ethernet",
+            "GPIO",
+            "NFC",
+            "RS-232",
+            "USB Host",
+            "Wi-Fi"
+          ],
+          "input_type": "multi_select"
+        }
+      ]
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Print Speed",
+          "options": [
+            "4 ips",
+            "6 ips",
+            "8 ips",
+            "10 ips",
+            "3 ips",
+            "5 ips",
+            "9 ips",
+            "12 ips",
+            "14 ips",
+            "18 ips",
+            "2 ips"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Max Roll Diameter",
+          "options": [
+            "100 mm",
+            "127 mm",
+            "200 mm",
+            "30 mm",
+            "40 mm",
+            "50 mm",
+            "55 mm",
+            "57 mm",
+            "67 mm",
+            "67.3 mm",
+            "109 mm",
+            "109.2 mm",
+            "139.7 mm",
+            "165 mm",
+            "203.2 mm",
+            "208.3 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Ribbon Length",
+          "options": [
+            "74 m",
+            "300 m",
+            "450 m",
+            "90 m",
+            "110 m",
+            "600 m"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Media Type",
+          "options": [
+            "Labels",
+            "Tags",
+            "Fan\u2011fold",
+            "Black Mark",
+            "Care Label",
+            "Continuous",
+            "Die-cut",
+            "Linerless",
+            "Notched",
+            "Perforated",
+            "Receipt Paper",
+            "Wristband"
+          ],
+          "input_type": "multi_select"
+        },
+        {
+          "spec_name": "Brand",
+          "options": [
+            "TSC"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Certifications",
+          "options": [
+            "Cerner certified",
+            "ENERGY STAR"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Depth",
+          "options": [
+            "156 mm",
+            "164 mm",
+            "165 mm",
+            "210 mm",
+            "231 mm",
+            "235 mm",
+            "240 mm",
+            "258 mm",
+            "260 mm",
+            "280 mm",
+            "286 mm",
+            "288 mm",
+            "294 mm",
+            "330 mm",
+            "332 mm",
+            "390 mm",
+            "434 mm",
+            "436 mm",
+            "450 mm",
+            "49.5 mm",
+            "502 mm",
+            "505 mm",
+            "510 mm",
+            "514 mm",
+            "515 mm",
+            "56.5 mm",
+            "68 mm",
+            "70 mm",
+            "79 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Display",
+          "options": [
+            "2.3\" color LCD",
+            "3.5\" color touch display",
+            "4.3\" color touch LCD",
+            "Graphic type, 128 x 64 pixel",
+            "LED icon panel"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Enclosure Material",
+          "options": [
+            "ABS plastic",
+            "Clamshell with double-walled plastic",
+            "Die-cast aluminum base and frame/Metal cover",
+            "Die-cast based print mechanism",
+            "Die-cast based print mechanism/Metal cover",
+            "Die-cast print mechanism/Metal cover",
+            "Double-walled plastic",
+            "Plastic",
+            "Plastic with double-walled clamshell design",
+            "Plastic with rubber over-mold construction",
+            "Plastic with rubber over molded"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Flash Memory",
+          "options": [
+            "128 MB",
+            "16 MB",
+            "2 MB",
+            "4 MB",
+            "512 MB",
+            "8 MB"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Height",
+          "options": [
+            "116 mm",
+            "134.5 mm",
+            "148 mm",
+            "156 mm",
+            "158 mm",
+            "164 mm",
+            "170 mm",
+            "172 mm",
+            "173 mm",
+            "179 mm",
+            "186 mm",
+            "188 mm",
+            "191 mm",
+            "191.6 mm",
+            "198 mm",
+            "200 mm",
+            "210 mm",
+            "245 mm",
+            "259 mm",
+            "274 mm",
+            "300 mm",
+            "308 mm",
+            "313 mm",
+            "326 mm",
+            "336 mm",
+            "337 mm",
+            "393 mm",
+            "412 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "IP Rating",
+          "options": [
+            "IP42",
+            "IP54"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Media Core Diameter",
+          "options": [
+            "12.7 mm",
+            "12.7 mm - 25.4 mm",
+            "19.1 mm",
+            "25.4 mm",
+            "25.4 mm - 38 mm",
+            "25.4 mm - 38.1 mm",
+            "25.4 mm - 76.2 mm",
+            "38.1 mm",
+            "38.1 mm/76.2 mm",
+            "76.2 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Media Thickness",
+          "options": [
+            "0.05 mm - 0.1 mm",
+            "0.0508 mm - 0.1016 mm",
+            "0.055 mm - 0.165 mm",
+            "0.055 mm - 0.19 mm",
+            "0.055 mm - 0.254 mm",
+            "0.06 mm - 0.1 mm",
+            "0.06 mm - 0.16 mm",
+            "0.06 mm - 0.19 mm",
+            "0.06 mm - 0.25 mm",
+            "0.06 mm - 0.254 mm",
+            "0.06 mm - 0.268 mm",
+            "0.06 mm - 0.28 mm",
+            "0.06 mm - 0.30 mm",
+            "0.076 mm - 0.305 mm",
+            "Up to 0.14 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Media Width",
+          "options": [
+            "15 mm-120 mm",
+            "15 mm-60 mm",
+            "16 mm - 118 mm",
+            "19 mm - 112 mm",
+            "19 mm - 114 mm",
+            "20 mm - 112 mm",
+            "20 mm - 114 mm",
+            "20 mm-114 mm",
+            "20 mm-118 mm",
+            "20 mm-120 mm",
+            "25.4 mm - 112 mm",
+            "25.4 mm - 114 mm",
+            "25.4 mm - 114.3 mm",
+            "25.4 mm - 118 mm",
+            "25.4 mm-80 mm",
+            "40 mm - 110 mm",
+            "50.8 mm - 112 mm",
+            "50.8 mm - 172.7 mm",
+            "50.8 mm - 80 mm",
+            "50.8 mm-180 mm",
+            "50.8 mm-78 mm",
+            "Max 58 mm",
+            "Max 80 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Printer Language",
+          "options": [
+            "CPCL",
+            "DPL",
+            "EPL",
+            "ESC-POS",
+            "SBPL",
+            "TSPL",
+            "TSPL-EZ",
+            "TSPL-EZC",
+            "TSPL-EZD",
+            "TPLE",
+            "TPLZ",
+            "ZPL",
+            "ZPL II"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Processor",
+          "options": [
+            "32-bit RISC CPU"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Real Time Clock",
+          "options": [
+            "N/A",
+            "Optional",
+            "Standard"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Ribbon Width",
+          "options": [
+            "25.4 mm - 114.3 mm",
+            "40 mm - 110 mm",
+            "40 mm - 115 mm",
+            "50.8 mm - 178 mm",
+            "56 mm-58 mm",
+            "76 mm - 180 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "SDRAM",
+          "options": [
+            "128 MB",
+            "16 MB",
+            "2 MB",
+            "256 MB",
+            "32 MB",
+            "512 MB",
+            "64 MB",
+            "8 MB"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Safety Regulation",
+          "options": [
+            "BIS",
+            "BSMI",
+            "CB",
+            "CCC",
+            "CE",
+            "C-Tick",
+            "CUL",
+            "EAC",
+            "EN50498",
+            "FCC",
+            "IC",
+            "IMDA",
+            "KC",
+            "KCC",
+            "MIC",
+            "MSIP",
+            "NBTC",
+            "NOM",
+            "NTRA",
+            "RCM",
+            "SDPPI",
+            "SRRC",
+            "TUV",
+            "UL",
+            "cTUVus"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Warranty",
+          "options": [
+            "1 Year",
+            "2 Years"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Weight",
+          "options": [
+            "0.22 kg",
+            "0.35 kg",
+            "0.38 kg",
+            "0.55 kg",
+            "0.65 kg",
+            "0.75 kg",
+            "0.99 kg",
+            "1.1 kg",
+            "1.2 kg",
+            "1.3 kg",
+            "1.5 kg",
+            "1.6 kg",
+            "1.8 kg",
+            "1.9 kg",
+            "2.1 kg",
+            "2.3 kg",
+            "2.4 kg",
+            "2.45 kg",
+            "2.5 kg",
+            "2.8 kg",
+            "3.7 kg",
+            "3.75 kg",
+            "4.03 kg",
+            "4.08 kg",
+            "7.6 kg",
+            "9 kg",
+            "9.2 kg",
+            "11 kg",
+            "12.7 kg",
+            "14.35 kg",
+            "15 kg",
+            "15.6 kg",
+            "15.7 kg",
+            "17.8 kg",
+            "18 kg",
+            "18.93 kg",
+            "23 kg",
+            "23.7 kg"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Width",
+          "options": [
+            "105 mm",
+            "109 mm",
+            "116 mm",
+            "117 mm",
+            "118 mm",
+            "138 mm",
+            "146 mm",
+            "160 mm",
+            "195 mm",
+            "200 mm",
+            "202 mm",
+            "204 mm",
+            "208 mm",
+            "213 mm",
+            "223 mm",
+            "224 mm",
+            "226 mm",
+            "232 mm",
+            "240 mm",
+            "245 mm",
+            "248 mm",
+            "270 mm",
+            "276 mm",
+            "286 mm",
+            "288 mm",
+            "300 mm",
+            "355 mm",
+            "357 mm",
+            "440 mm",
+            "79 mm",
+            "89.3 mm"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 17 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "total_product_count": 74,
+    "example_values": [
+      "TSC",
+      "Cloudwood"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "total_product_count": 70,
+    "example_values": [
+      "TE-244",
+      "TTP-244 Pro",
+      "DA-310",
+      "TTP-244",
+      "TTP-345"
+    ]
+  },
+  {
+    "spec_name": "Printing Technology",
+    "total_product_count": 23,
+    "example_values": [
+      "Thermal",
+      "Thermal Transfer",
+      "Direct Thermal",
+      "Thermal Printer",
+      "Thermal Transfer / Direct Thermal"
+    ]
+  },
+  {
+    "spec_name": "Resolution",
+    "total_product_count": 23,
+    "example_values": [
+      "203 DPI",
+      "300 DPI",
+      "600 DPI"
+    ]
+  },
+  {
+    "spec_name": "Maximum Print Width",
+    "total_product_count": 19,
+    "example_values": [
+      "4 inch",
+      "110 mm",
+      "2 inch",
+      "4 - 4.5 inch"
+    ]
+  },
+  {
+    "spec_name": "Product Type",
+    "total_product_count": 14,
+    "example_values": [
+      "Barcode Printer",
+      "Desktop",
+      "Industrial",
+      "Desktop Thermal Printer",
+      "Industrial Printer"
+    ]
+  },
+  {
+    "spec_name": "Connectivity/Interface",
+    "total_product_count": 10,
+    "example_values": [
+      "USB",
+      "Ethernet",
+      "Bluetooth",
+      "LAN, Wi-Fi",
+      "Networking"
+    ]
+  },
+  {
+    "spec_name": "Warranty",
+    "total_product_count": 7,
+    "example_values": [
+      "1 year",
+      "1 Year",
+      "2 Year",
+      "3 months"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 7,
+    "example_values": [
+      "Laundry/Dry Cleaning tagging",
+      "Cloth Printing (Washable Label/Taffeta)",
+      "E-commerce Label Generation",
+      "E-commerce Shipping Labels and Invoices",
+      "MRP printing on laminate poly"
+    ]
+  },
+  {
+    "spec_name": "Spare Part/Component",
+    "total_product_count": 5,
+    "example_values": [
+      "Print Head",
+      "Barcode Printer Head",
+      "Ribbon Support",
+      "Roller (Thermal Platen)"
+    ]
+  },
+  {
+    "spec_name": "Print Speed",
+    "total_product_count": 4,
+    "example_values": [
+      "5 ips",
+      "4 ips",
+      "High"
+    ]
+  },
+  {
+    "spec_name": "Media Compatibility",
+    "total_product_count": 4,
+    "example_values": [
+      "Non-tearable labels",
+      "Supports smaller labels",
+      "Tafeta Label Roll",
+      "Taffeta roll"
+    ]
+  },
+  {
+    "spec_name": "Printing Capability",
+    "total_product_count": 4,
+    "example_values": [
+      "1 piece",
+      "Circle",
+      "MRP Printing, Logo Printing",
+      "Variable Data Printing"
+    ]
+  },
+  {
+    "spec_name": "Model Version/Age",
+    "total_product_count": 3,
+    "example_values": [
+      "Latest",
+      "2-3 years"
+    ]
+  },
+  {
+    "spec_name": "Features",
+    "total_product_count": 3,
+    "example_values": [
+      "Better Adhesion",
+      "High Contrast",
+      "High Darkness"
+    ]
+  },
+  {
+    "spec_name": "Label Size",
+    "total_product_count": 3,
+    "example_values": [
+      "2x2",
+      "4x6",
+      "55x25 mm"
+    ]
+  },
+  {
+    "spec_name": "Product Condition",
+    "total_product_count": 3,
+    "example_values": [
+      "New",
+      "Seal pack",
+      "Second-hand"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 4 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "count": 31,
+    "options": [
+      "TSC",
+      "TTP"
+    ]
+  },
+  {
+    "spec_name": "Model No",
+    "count": 15,
+    "options": [
+      "MB340T",
+      "Alpha 3R",
+      "TDP-225",
+      "TTP-2610MT",
+      "MH340T"
+    ]
+  },
+  {
+    "spec_name": "Model Number",
+    "count": 8,
+    "options": [
+      "TE200",
+      "ML 241P",
+      "MH241",
+      "Alpha 30R",
+      "TTP-247/345"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "count": 5,
+    "options": [
+      "TH240",
+      "MH240T",
+      "TE200",
+      "TE244",
+      "TTP 244 PRO"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 3 specs) ---
+[
+  {
+    "spec_name": "brand",
+    "total_impressions": 35810,
+    "options": [
+      "amazon",
+      "tsc"
+    ]
+  },
+  {
+    "spec_name": "model name/number",
+    "total_impressions": 14256,
+    "options": [
+      "244",
+      "244 pro",
+      "244 te",
+      "345",
+      "alpha 3 rb"
+    ]
+  },
+  {
+    "spec_name": "type",
+    "total_impressions": 10328,
+    "options": [
+      "barcode",
+      "label"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (18 specs) ---
+[
+  {
+    "spec_name": "",
+    "spec_fill_rate": "51.8",
+    "product_count": "29"
+  },
+  {
+    "spec_name": "Print Technology",
+    "spec_fill_rate": "48.2",
+    "product_count": "27"
+  },
+  {
+    "spec_name": "Print Width",
+    "spec_fill_rate": "46.4",
+    "product_count": "26"
+  },
+  {
+    "spec_name": "Usage Type",
+    "spec_fill_rate": "44.6",
+    "product_count": "25"
+  },
+  {
+    "spec_name": "Connectivity",
+    "spec_fill_rate": "42.9",
+    "product_count": "24"
+  },
+  {
+    "spec_name": "Print Series",
+    "spec_fill_rate": "42.9",
+    "product_count": "24"
+  },
+  {
+    "spec_name": "Print Resolution",
+    "spec_fill_rate": "42.9",
+    "product_count": "24"
+  },
+  {
+    "spec_name": "Print Speed",
+    "spec_fill_rate": "35.7",
+    "product_count": "20"
+  },
+  {
+    "spec_name": "Max Roll Diameter",
+    "spec_fill_rate": "33.9",
+    "product_count": "19"
+  },
+  {
+    "spec_name": "Ribbon Length",
+    "spec_fill_rate": "30.4",
+    "product_count": "17"
+  },
+  {
+    "spec_name": "Media Type",
+    "spec_fill_rate": "28.6",
+    "product_count": "16"
+  },
+  {
+    "spec_name": "Model Number",
+    "spec_fill_rate": "5.4",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_fill_rate": "5.4",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Programming Language",
+    "spec_fill_rate": "1.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "1.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Resolution",
+    "spec_fill_rate": "1.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Supported OS",
+    "spec_fill_rate": "1.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Maximum Print Speed",
+    "spec_fill_rate": "1.8",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (0 rows) ---
+[]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Missing Spec Identification — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to evaluate whether specs are missing from the current platform spec
+sheet — read this document. It gives you the framework to identify genuine gaps,
+avoid false positives, define new specs completely, and generate correct option
+values. You apply all of this reasoning yourself using the data in your context.
+
+
+---
+
+
+## The core problem
+
+
+Data sources will surface many candidate specs. The hard part is not finding
+candidates — it is knowing which are genuine gaps versus duplicates under a
+different name, composite attributes already captured, or noise that looks like
+a spec but is not.
+
+
+A false positive — adding a spec that duplicates an existing one — is harder to
+fix than missing a genuine gap. When genuinely uncertain, do not add.
+
+
+---
+
+
+## How to recognise a genuine gap
+
+
+A candidate spec is a genuine gap only if all three of the following are true:
+
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same real-world
+attribute, even approximately, the candidate is not a gap.
+
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+
+---
+
+
+## Common false positives — check these before acting
+
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common synonym.
+
+
+Common equivalences in Indian B2B:
+
+
+| These terms often mean the same thing |
+|--------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Type / Variant / Form / Format / Category |
+| Size / Dimensions / Measurement / Specification |
+| Capacity / Volume / Output / Throughput |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Purity / Concentration / Assay / Composition |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade |
+| Brand / Make / Manufacturer / OEM / Make & Model |
+| Certifications / Standards / Compliance / Approvals |
+
+
+**Composite attributes**
+Some specs appearing in call or search data are natural-language composites.
+"10mm HDPE pipe" → "10mm" is not a new Diameter spec if Dimensions already exists.
+
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+
+**Call data noise**
+"Good quality", "ISI certified", "fast delivery" appearing as candidates from call
+data are purchase context, not product attributes.
+
+
+**Low-signal custom specs**
+A custom spec added by only one or two sellers is seller-idiosyncratic, not a
+category-wide gap.
+
+
+---
+
+
+## How to read each data source for gap evidence
+
+
+**Buyer-Seller Call Data (Buyer-Seller Call Data)**
+Look for attributes buyers ask about early in calls — these matter most to purchase
+decisions. Product count = signal strength. Higher count across more calls = stronger
+evidence.
+
+
+Discount: implied specs, generic values (As per requirement, Standard, Normal),
+re-statements of the category name.
+
+
+**Custom Specs Data (Custom Seller Specs)**
+Most reliable gap signal. A seller adding a custom spec is telling you buyers need
+this information and the platform has no field for it. Multiple sellers independently
+adding the same custom spec is strong confirmation.
+
+
+Discount: one-off specs from a single seller, vague or placeholder values,
+internal seller codes.
+
+
+**Buyer Search Data (Buyer Search Data)**
+Shows what attributes buyers filter by when browsing. High impressions on a
+candidate confirm buyer demand.
+
+
+Discount: platform default filters, implied category specs, single-option specs
+where >90% of impressions fall on one value.
+
+
+**Domain knowledge**
+When data signals are weak or absent, use your understanding of how this product
+is specified and sold in Indian B2B trade. What would a seller know by heart?
+What would a buyer mention first? Domain knowledge supplements data — it does not
+override clear data signals.
+
+
+---
+
+
+## Evidence strength — how much do you need
+
+
+| Evidence | Decision |
+|----------|----------|
+| 2+ independent sources agree (e.g. call data + custom specs) | Add with high confidence |
+| 1 strong source (high call count, or multiple custom spec sellers, or strong domain reasoning) | Add — note single source |
+| Weak or indirect signal only (low count, single occurrence, vague intuition) | Do not add — note as unconfirmed |
+
+
+---
+
+
+## Consolidating candidates that mean the same thing
+
+
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning.
+
+
+"Usage" from custom specs + "Application" from call data + "End Use" from search
+→ one spec, not three. Pick the most standard name and add once.
+
+
+Rule: one underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+
+---
+
+
+## How to define a spec you are adding
+
+
+When you have confirmed a genuine gap, define it completely.
+
+
+### Spec name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+
+### Input type — decide this first
+
+
+**Must be `text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Brand names only when the category has no dominant brands
+  (generate options if 3+ brands are known in Indian B2B)
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+
+**Must be `radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Yes / No, Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+
+
+**Must be `multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → multi_select
+
+
+
+
+## Platform rule — "Other" option on primary and secondary specs
+
+
+Primary and secondary specs on this platform have an "Other" button that lets sellers enter a custom value not in the list. This has a direct impact on input type decisions when adding new specs:
+
+
+- **Do not assign `text_type` to a spec just because its option list feels
+  incomplete**, if the spec is clearly important and its core values are known.
+  The "Other" button handles edge cases for primary and secondary specs.
+- If a spec has clear, standard option values AND strong signal that it will be
+  Primary or Secondary, define it as `radio_button` or `multi_select` with the
+  known options. Incompleteness alone is not a reason for `text_type`.
+- Reserve `text_type` for specs where the value is genuinely free-form or unique
+  per SKU (model numbers, catalogue codes, free-form dimensions) — not for specs
+  where you simply haven't enumerated all options yet.
+- 
+
+
+
+
+
+
+### Options — how to generate them
+
+
+Draw from example values in call data, custom spec submissions, and search option
+values. Also apply Indian B2B market knowledge to fill gaps.
+
+
+**Quality rules:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only.
+2. No vague fillers — never use: Other, Custom, NA, Various, As Required, Any, Miscellaneous, General Purpose (unless genuinely traded as a category value)
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+
+
+**Formatting rules:**
+6. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+7. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+8. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm 
+9. Categorical options by frequency — most common in Indian market first
+10. Use ISI/BIS standards where applicable
+11. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+12. Do not use range options unless they are the market standard for this spec
+13. Think like an Indian B2B seller — what values would a seller actually select?
+
+
+**How to handle values from data:**
+
+
+| Value quality | What to do |
+|---------------|------------|
+| Clean, consistent values | Use as format reference; generate full standard market set |
+| Mixed quality | Extract the pattern; discard outliers |
+| 1–2 values only | Use to confirm spec meaning; generate full options from market knowledge |
+| Completely messy | Ignore; generate entirely from category + spec name knowledge |
+| Empty | Generate entirely from category + spec name knowledge |
+| Contains NA / Other / Custom | Ignore these; treat as empty |
+
+
+### Tier placement
+
+
+Add all new specs as Tertiary by default. Tier is determined by sequencing
+reasoning using actual signal data — not at the point of addition.
+
+
+Exception: if call data product count is very high and the spec is clearly a
+primary purchase decision attribute for this category, you may propose Secondary
+or Primary as provisional. Note this explicitly and treat it as provisional until
+sequencing confirms it.
+
+
+---
+
+
+## Validation checklist — before finalising any spec addition
+
+
+- Options are directly about this spec, not adjacent attributes
+- Options make sense for this specific category
+- A real buyer would use these as search filters
+- No duplicates or near-duplicates in the option list
+- No vague or filler options
+- Correct input_type for the spec's nature
+- Logical order (ascending numeric or frequency-based categorical)
+- All options under 30 characters
+- Units are standardised
+
+
+---
+
+
+## Yes/No specs
+
+
+Options: ["Yes", "No"] with input_type: "radio_button"
+
+
+---
+
+
+## What missing spec identification does NOT do
+
+
+- Does not determine final tier placement — that is sequencing reasoning
+- Does not validate or correct options of existing specs — that is option validator
+- Does not make final decisions when evidence is genuinely ambiguous — flag
+  these clearly and explain what additional evidence would resolve the uncertainty
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(TSC barcode printer standard print width) ---
+{
+  "query": "TSC barcode printer standard print width",
+  "results": [
+    {
+      "title": "TE Series 4-Inch Performance Desktop Printers | TSC Auto ID",
+      "url": "https://usca.tscprinters.com/en/products/te-series-4-inch-performance-desktop-printers",
+      "excerpt": "WebSearchResult(url='https://usca.tscprinters.com/en/products/te-series-4-inch-performance-desktop-printers', excerpts=[\"Applications for this unique print mechanism can include use with kiosk applications, small label applicators, two color on-demand printing, and two-sided printing.\\n    * Overview\\n    * Product specifications\\n    * Resources\\n    * FAQ's\\n    * Accessories and supplies\\n\\nThe TE Series provides customers throughout the world with a competitive, durable, entry-level desktop printer that is both versatile and easy-to-use. The series now offers four models.\\nThe first two models available in the TE series are the flagship TE200 and TE210 which offer the industry standard 8 dots per mm (203 dpi) print resolution at 6-inches per second, and the 12 dots per mm (300 dpi) TE300 and TE310 for use with printing small fonts, barcodes, or graphics.\\nThe TE Series offers customers a great combination of price and performance, that features a fast 400 MHz processor, TE200 and TE300 feature 16 MB of DRAM and 8 MB of Flash storage memory, while TE210 and TE310 feature 64 MB of SDRAM and 128 MB of Flash memory, and a standard two-year warranty.\\nInnovation and Value\\nThe new TE Series of 4-inch wide desktop-class thermal label printers were designed and built to deliver high-quality performance at a competitive price point. The TE200 modular thermal transfer print mechanism protected by an outer ABS shell is designed to withstand tough environments. These affordable, hardworking printers will print high-quality labels all day long, producing thousands of clear, crisp barcode and identification labels per day.\\nInnovations include energy-saving Energy Star 2.0 rating matched with an easy to load print mechanism. The printer will take both 0.\\n5-inch core 72-meter to 110-meter, or 1-inch core 300-meter thermal transfer ribbons allowing customers to use whichever supply of ribbons they have available. The TE200 offers multiple printer language emulations right out of the box, and a powerful scalable font engine that makes it easy to replace nearly any existing label printers.\\nBoth the printhead and platen roller can be easily changed without using any tools. The printer features both Gap and Black Mark sensing to accurate label registration. And the media cabinet can handle industry standard 5-inch OD labels on 1-inch or 1.5-inch cores. The powerful hybrid electric motor is strong enough to handle larger 8-inch OD label rolls on its optional external label unwinder.\\nThe TE200 Series innovative design offers our resellers new opportunities to satisfy unique market applications.\\nThe print mechanism which normally resides within the printer may be purchased separately for those looking to integrate custom label printing capability into their own manufactured designs. Applications for this unique print mechanism can include use with kiosk applications, small label applicators, two color on-demand printing, and two-sided printing.\\nThe TE Series offers a low initial price, uses the most cost-effective supplies available, and is built to last. These virtually trouble-free units feature a standard two-year warranty. Once you plug it in, you won't have to worry about it.\\nThe TE\\xa0Series can print a wide variety of labels ranging from shipping labels to compliance and general purpose product identification labels and tags. Other applications include automobile service shops, walk-in shipping and mail centers, and inventory control for stock rooms.\\n    * Work in Progress\\n    * Item Labels\\n    * Instruction Labels\\n    * Agency Labels\\n    * Patient Identification\\n* Pharmacy\\n    * Specimen Identification\\n    * Shipping Labels\\n    * Receiving Labels\\n    * Shipping Labels\\n    * File folder labels\\n    * Product identification\\n    * Price Tags\\n    * Shelf Labels\\n    * Jewelry Tags\\n\\n    * View Datasheet\\nTE200\\nTE210\\nTE300\\nTE310\\n    * Hardware Specifications\\n       * Resolution\\n203 dpi (8 dots/mm)\\n203 dpi (8 dots/mm)\\n300 dpi (12 dots/mm)\\n300 dpi (12 dots/mm)\\n       * Print Method\\nDirect thermal/Thermal transfer\\nDirect thermal/Thermal transfer\\nDirect thermal/Thermal transfer\\nDirect thermal/Thermal transfer\\n       * Display\\nLED with buttons\\nLED with buttons\\nLED with buttons\\nLED with buttons\\n       * Hardwire Connectivity\\nUSB\\nEthernet\\nSerial RS-232\\nUSB\\nUSB Host\\nUSB\\nEthernet\\nSerial RS-232\\nUSB\\nUSB Host\\n       * Wireless Connectivity\\nBluetooth\\nBluetooth\\nWi-Fi\\nBluetooth\\nBluetooth\\nWi-Fi\\n       * Enterprise Printer Management\\nTSC Console\\nTSC Console\\nTSC Console\\nTSC Console\\n       * Type\\nDesktop\\nDesktop\\nDesktop\\nDesktop\\n       * Max. Print Speed\"], publish_date=None, title='TE Series 4-Inch Performance Desktop Printers | TSC Auto ID')"
+    },
+    {
+      "title": "TSC TE210 - Big Sales Big Inventory and Same Day Shipping",
+      "url": "https://www.barcodesinc.com/tsc/te210.htm?srsltid=AfmBOoqKcBphTiFQ0VYOYcVB_hcFt4ck1FjAmPHUS8vCthI7Zu-t-pON",
+      "excerpt": "WebSearchResult(url='https://www.barcodesinc.com/tsc/te210.htm?srsltid=AfmBOoqKcBphTiFQ0VYOYcVB_hcFt4ck1FjAmPHUS8vCthI7Zu-t-pON', excerpts=['barcodesinc.com/checkout/cart/)\\n\\n**Currency**\\n\\n**USD**\\n\\n* CAD\\n\\nSales: 1-833-299-1662 Call\\n\\nToggle Nav [](https://www.barcodesinc.com/ \"logo white.svg\")\\n\\n**Search**\\n\\nSearch\\n\\nSearch\\n\\n* [Home](https://www.barcodesinc.com/ \"Go to Home Page\")\\n* [Barcode Printing Equipment](https://www.barcodesinc.com/cats/printing.htm)\\n* [Barcode Label Printer](https://www.barcodesinc.com/cats/barcode-printers/)\\n* **TSC TE210 Barcode Label Printer**\\n\\n# TSC TE210 Barcode Label Printer\\n\\n## **SUPERIOR, FAST, AFFORDABLE PERFORMANCE, FEATURING LEGENDARY TSC DURABILITY.**\\n\\n**TSC TE210 -** The TSC TE210 4-Inch Performance Desktop Printer can print a variety of labels ranging from shipping to compliance and general-purpose product identification, with ideal uses in automobile service shops, walk-in shipping and mail centers, and inventory control for stock rooms. The TE210 offers the industry standard 8 dots per mm (203 dpi) print resolution at 6-inches per second. TSC?\\n ... \\nLarger View\\n\\n[](https://www.barcodesinc.com/tsc/)\\n\\nAccessories For TSC TE210 Barcode Label Printer\\n\\n* [Accessories](https://www.barcodesinc.com/tsc/te210-accessories.htm)\\n* [Labels](https://www.barcodesinc.com/tsc/desktop-printer-labels.htm)\\n* [Ribbons](https://www.barcodesinc.com/tsc/desktop-printer-ribbons.htm)\\n* [Printheads](https://www.barcodesinc.com/tsc/te200-printhead.htm)\\n* [Service Contracts](https://www.barcodesinc.com/tsc/te210-warranty.htm)\\n\\nAll Options\\n\\n### Max Print Width\\n\\n* [4 inch](https://www.barcodesinc.com/tsc/te210.htm?filters.max_print_width=22135) (1)\\n\\n### Label Core Size\\n\\n* [1 inch](https://www.barcodesinc.com/tsc/te210.htm?filters.label_core=13888) (1)\\n\\n### Printer Type\\n\\n* [Desktop](https://www.barcodesinc.com/tsc/te210.htm?filters.printer_type=13648) (1)\\n\\n### Printing Technology\\n\\n* [Thermal Transfer](https://www.barcodesinc.com/tsc/te210.htm?filters.printing_technology=21279) (1)\\n\\n### Print Resolution\\n\\n* [203 dpi](https://www.barcodesinc.com/tsc/te210.htm?\\nfilters.print_resolution=13531) (1)\\n\\n### Interface Options\\n\\n* [Ethernet](https://www.barcodesinc.com/tsc/te210.htm?filters.interface_options=13565) (1)\\n* [USB](https://www.barcodesinc.com/tsc/te210.htm?filters.interface_options=13603) (1)\\n* [Serial](https://www.barcodesinc.com/tsc/te210.htm?filters.interface_options=21251) (1)\\n\\n## TSC TE210 Barcode Label Printer Options\\n\\n* [](https://www.barcodesinc.com/tsc/part-99-065a300-00lf00.htm)\\n  \\n  [### TSC 99-065A300-00LF00 Barcode Label Printer](https://www.barcodesinc.com/tsc/part-99-065a300-00lf00.htm)\\n  \\n  Desktop Label Printer, TSC TE210, Thermal Transfer, 203 dpi, 4.25\" Print Width, Ethernet/RS-232 Serial/USB/USB Host, 6 ips\\n  \\n  In Stock\\n  \\n  $378.99\\n  \\n  1 2 3 4 5 6 7 8 9 10+ Add to Cart\\n  \\n  [Add to Quote](https://www.barcodesinc.com/support/online_quote_add.php?99-065A300-00LF00)\\n* [](https://www.barcodesinc.com/tsc/part-99-065a300-s1lf00.htm)\\n  \\n  [### TSC 99-065A300-S1LF00 Barcode Label Printer](https://www.barcodesinc.\\ncom/tsc/part-99-065a300-s1lf00.htm)\\n  \\n  Desktop Label Printer, TSC TE210, Thermal Transfer, 203 dpi, 4.25\" Print Width, Ethernet/RS-232 Serial/USB/USB Host/Wi-Fi, 6 ips, Real-Time Clock\\n  \\n  [Discontinued See Replacement](https://www.barcodesinc.com/tsc/part-99-059a001-1201.htm)\\n\\nFAQs\\n\\nOverview\\n\\n[**Full specifications (PDF)**](https://www.barcodesinc.com/media/pdf/TSC/te200-series-2017.pdf)\\n\\n## TSC TE210 Barcode Label Printer Model Overview\\n\\nThe TSC TE210 4-Inch Performance Desktop Printer can print a variety of labels ranging from shipping to compliance and general-purpose product identification, with ideal uses in automobile service shops, walk-in shipping and mail centers, and inventory control for stock rooms. The TE210 offers the industry standard 8 dots per mm (203 dpi) print resolution at 6-inches per second. TSC?s TE210 includes the standard connectivity options of Ethernet, Serial RS-232, USB, and USB Host, with 64 MB of SDRAM and 128 MB of flash memory.\\n\\nAccessories\\n## Recommended Accessories\\n\\n### Category\\n\\n* Printer Accessories (1)\\n\\n## Recommended Accessories for Model: TSC TE210 Barcode Label Printer\\n\\n### Top Printer Accessories Purchased With TSC TE210\\n\\n* [](https://www.barcodesinc.com/tsc/part-cut-te200-0001.htm)\\n  \\n  [TSC CUT-TE200-0001 Accessory](https://www.barcodesinc.com/tsc/part-cut-te200-0001.htm)\\n  \\n  Printer Accessories, TSC, Accessory Cutter Module, Full/Partial Cut, for TE210, 1 Set per Box, Thermal Cutter\\n  \\n  In Stock\\n  \\n  $268.85\\n  \\n  1 2 3 4 5 6 7 8 9 10+ Add to Cart\\n  \\n  [Add to Quote](https://www.barcodesinc.com/support/online_quote_add.php?CUT-TE200-0001)\\n\\n[**See All Accessories** for TSC TE210 Barcode Label Printer >](https://www.barcodesinc.com/tsc/te210-accessories.htm)\\n\\nLabels\\n\\nRibbons\\n\\nPrintheads\\n\\nService Contracts\\n\\nGet a Quote for  \\nCustomer Name\\n\\nCustomer Email\\n\\nTelephone\\n\\nComment\\n\\nSubmit'], publish_date=None, title='TSC TE210 - Big Sales Big Inventory and Same Day Shipping')"
+    },
+    {
+      "title": "MB240T SERIES",
+      "url": "https://fs.tscprinters.com/system/files/RS-11/mb240t-eng-datasheet-a4-web.pdf",
+      "excerpt": "WebSearchResult(url='https://fs.tscprinters.com/system/files/RS-11/mb240t-eng-datasheet-a4-web.pdf', excerpts=['print speed. 254 mm (10\u201d)/second. 178 mm (7\u201d)/second. Max. print width. 108 mm (4.25\"). 105.7 mm (4.16\"). Max. print length. 25,400 mm (1000\"). 11,430 mm (450'], publish_date=None, title='MB240T SERIES')"
+    },
+    {
+      "title": "TH240-A001-0001 - TSC TH240T TT Label Printer [203dpi, Ethernet]",
+      "url": "https://www.barcodefactory.com/tsc/printers/th-dh-series/th-series/th240/th240-a001-0001?srsltid=AfmBOor-aWqwuqFfRiF-5YKJXUKLF7FvsdhqdQ-b47PZGgpNkppPzDtQ",
+      "excerpt": "WebSearchResult(url='https://www.barcodefactory.com/tsc/printers/th-dh-series/th-series/th240/th240-a001-0001?srsltid=AfmBOor-aWqwuqFfRiF-5YKJXUKLF7FvsdhqdQ-b47PZGgpNkppPzDtQ', excerpts=['Please enable Browser cookie at least at medium level in Browser Setting to work site properly.\\n\\n Tsc Printers Th-dh-series Th-series Th240 TH240-A001-0001\\n\\nPrice: $769.00\\n\\n$ 769\\\\.00\\n\\n**See Price in Cart**\\n\\nQuantity Discounts\\n\\n5+\\n\\nContact\\n\\n* * *\\n\\nEligible Free Or Flat Rate Shipping\\\\*\\n\\n* * *\\n\\n30 Day Return Policy\\n\\n* * *\\n\\nSecured Transaction\\n\\n* * *\\n\\nProtect Your Purchase\\n\\n* * *\\n\\nFind Matching Labels\\n\\n# TSC TH240T TT Label Printer [203dpi, Ethernet]\\n\\nSKU: TH240-A001-0001\\n\\n|\\n\\nWeight: 9 lbs.\\n\\n* * *\\n\\n|**Printer Type** |Desktop |\\n| --- | --- |\\n|**Print Technology** |Thermal Transfer |\\n|**Interface** |Bluetooth 5 Serial USB Ethernet USB-A |\\n|**RAM Memory** |128 MB |\\n|**Device Storage** |128 MB |\\n|**dpi (dots per inch)** |203dpi |\\n|**Printer Options** |LCD Display Real-Time Clock Touch Display |\\n|**Max Media Width** |4\\\\.0-4.9 inch |\\n|**Color** |Black |\\n|**Printer Language** |DPL EPL ZPL |\\n\\n* * *\\n\\n## Product Highlights\\nTSC, Printer TSC, TH240T, Thermal Transfer Label Printer, 203DPI, Color Touch LCD, Dram 128MB/Flash 128MB, USB, RS-232, Ethernet, USB Host, **Includes: Real-Time-Clock, Buzzer** , US TH240T, Emulates Datamax and Zebra Programing Languages, Auto Emulation TSPL-EZD (Compatible to EPL, ZPL, ZPL II, DPL)\\n\\nPrints both Thermal Transfer and Direct Thermal\\n\\nSpec. Sheet\\n\\n## Description\\n\\n## TH DH Series Desktop Barcode Printer\\n\\nThe TH DH Series Desktop Barcode Printers, available in 2-inch and 4-inch models, offer unparalleled versatility for a wide range of printing needs. With the ability to handle difficult labels such as thick, tiny, long, and vertical market labels, this series is ideal for diverse applications.\\n\\nTSC\\'s printer language emulation ensures seamless integration, making the TH DH Series plug-and-play. Its firmware automatically detects major printer languages, allowing for immediate printing without the need to change label templates.\\nThis streamlines operations and reduces downtime.\\n\\nEquipped with comprehensive printer management tools like the Internal Embedded Webpage, virtual control panel, TSC Console, and SOTI Connect, the TH DH Series enhances efficiency and supports network security configurations for optimal printer management.\\n\\nThe series boasts a wide media width, high-precision printing capabilities, and future-proof options, empowering businesses to adapt to evolving requirements. Furthermore, its eco-friendly design features 100% recyclable packaging and plastic casing, with over 90% of components recyclable at the end of the printer\\'s life cycle, contributing to a reduced environmental footprint.\\n\\n## Key Features:\\n\\n**Seamless Integration, Effortless Deployment**\\n\\n* Out-of-the-box auto-switch print language emulation\\n* User-friendly and convenient label printing with TSC Standalone Creator and TSCPRTGo\\n**Minimizing Downtime, Maximizing Uptime**\\n ... \\nEligible Free\\\\* Or Flat Rate Shipping\\n* \\n  \\n  [## TSC Standard Service - TH Series [Priority Depot, 3-Year]](/tsc/service/thxx0-00-a0-36-10 \"TSC Standard Service - TH Series [Priority Depot, 3-Year]\")\\n  \\n  ( SKU: THXX0-00-A0-36-10 )\\n  \\n  TSC \u00bb TSC Service\\n  \\n  TSC, Warranty, TH220T, TH320T, TH220HC, TH320HC, TH240T, TH340T, TH240HC, TH340HC Standard, Priority Depot, 3-Year, Buy With Printer, United States\\n  \\n  $45.93\\n  \\n  **Add To Cart**\\n  \\n  Quantity Discounts\\n  \\n  2+\\n  \\n  Contact\\n  \\n  Eligible Free\\\\* Or Flat Rate Shipping\\n* \\n  \\n  [## TSC Standard Service - TH Series [Priority Depot, 5 Year]](/tsc/service/thxx0-00-a0-60-10 \"TSC Standard Service - TH Series [Priority Depot, 5 Year]\")\\n  \\n  ( SKU: THXX0-00-A0-60-10 )\\n  \\n  TSC \u00bb TSC Service\\n  \\n  TSC, Warranty, TH220T, TH320T, TH220HC, TH320HC, TH240T, TH340T, TH240HC, TH340HC Standard, Priority Depot, 5 Year, Buy With Printer, US\\n  \\n  $86.67\\n  \\n  **Add To Cart**\\n  \\n  Quantity Discounts\\n  \\n  2+\\n  \\n  Contact\\nEligible Free\\\\* Or Flat Rate Shipping\\n* Can\\'t find what you are looking for? See all.\\n\\n* Our Company\\n* About Barcode Factory\\n* Contact Us\\n* Our Partners\\n* Responsibility & Charitable Giving\\n* Careers\\n\\n* Support\\n* Return Policy\\n* Shipping Information\\n* Payment Options\\n* Privacy & Security\\n* Terms of Use\\n\\n* Resources\\n* Sitemap\\n* Solutions\\n* Free Barcode Generator\\n* [Barcode Factory Blog](https://blog.barcodefactory.com)\\n\\n**Barcode Factory**\\n\\nA Paragon Print Systems Company\\n\\n_Our resources. Your solution.\u2122_ Since 1994\\n\\n2021 Paragon Drive | Erie, PA 16510\\n\\np. (814) 456-8331 (814) 456-8331 | f. (814) 456-7905 (814) 456-7905\\n\\nToll Free: 888\\\\.237.8525 888\\\\.237.8525\\n\\nMonday - Thursday: 8:30 AM - 8 PM\\n\\nFriday: 8:30 AM - 6:30 PM\\n\\n* Quick Quote\\n* + [](https://www.youtube.com/channel/UCFO4hGFff2L2BsjndhNSqnw?feature=mhee)\\n    + [](https://www.facebook.com/barcodefactory)\\n    + [](https://www.linkedin.com/company/barcodefactory)\\n* [](https://www.bbb.'], publish_date=None, title='TH240-A001-0001 - TSC TH240T TT Label Printer [203dpi, Ethernet]')"
+    },
+    {
+      "title": "Tsc Barcode Printers - Tsc Ttp384m Printer Manufacturer from Mumbai",
+      "url": "https://www.labelindia.net/tsc-barcode-printers.html",
+      "excerpt": "WebSearchResult(url='https://www.labelindia.net/tsc-barcode-printers.html', excerpts=['1. [Home](https://www.labelindia.net/)\\n2. Our Products\\n3. Tsc Barcode Printers\\n\\n## Tsc Barcode Printers\\n\\nProminent & Leading Manufacturer from Mumbai, we offer tsc ttp384m printer, tsc mb240t barcode printer, direct thermal label printer, tsc label printer ta210, tsc label printer tx200 and tsc label printer ttp-247.\\n\\n### Tsc Ttp384m Printer\\n\\nGet Best Quote\\n\\n* \\n* \\n* \\n*\\n\\nRequest Callback\\n\\nGet Latest Price\\n\\nProduct Brochure\\n\\n|Max.Print Width |8\\\\.64 Inch |\\n| --- | --- |\\n|Max. Print Width |6 inches |\\n|Resolution |300 DPI (12 dots/mm) |\\n|Model Name/Number |TSC TTP 384 |\\n|Max. Print Length |200 inches |\\n|Print Resolution |300dpi |\\n|Maximum Print Speed |4 inch/second |\\n|Brand |TSC |\\n\\nTSC TTP-384MT Thermal Transfer Printer 8.64\u2033 (industrial)  \\n* 4\\\\.3\u201d touch LCD display with 6-button menus\\n* Ethernet, USB 2.0, serial, parallel and USB Host\\\\*1 connectivity are standard.\\n* 512 MB Flash and 256 MB SDRAM memory\\n* SD Flash memory expansion up to 32 GB\\n\\nYes! I am interested\\n### TSC MB240T Barcode Printer\\n\\nGet Best Quote\\n\\n* \\n* \\n* \\n* \\n*\\n\\nRequest Callback\\n\\nGet Latest Price\\n\\nProduct Brochure\\n\\n|Max.Print Width |4 Inch |\\n| --- | --- |\\n|Print Speed |203dpi |\\n|Max. Print Length |1000 inches |\\n|Print Resolution |203dpi |\\n|CPU Type |32 Bit RISC |\\n|Product Dimension (W x H X D) |249mm(W) x 274mm(H) x 436mm (D) |\\n|Weight |9\\\\.2kg (20.28lbs) |\\n|Power Source |Input: AC 100-240V, 2.0A, 50-60Hz Output: DC 24V, 3.75A, 90W |\\n|Ribbon Capacity |450m long, max. O.D. 81.3mm, 1\"core (ink coated outside or inside) |\\n|Ribbon Width |40mm~110mm(1.6\"~4.3\") |\\n\\nThe new high-performance MH240 Series was designed to deliver the high quality barcodes. It features a die-cast print mechanism housed in a very strong yet lightweight cabinet. This new design results in a more durable printer that is suited for your most heavyduty demand cycles.\\nThe MH240 Series printers are loaded with standard features including a color touch display with brand-new GUI design and six menu buttons to provide a great user experience, support for 600 meter long ribbons, 8\u201d OD media rolls, built-in Ethernet, RS-232 interface, two USB hosts for keyboard and barcode scanner connections, USB 2.0 and serial interfaces. Parallel, GPIO ports, WiFi module and internal Bluetooth module are available as an option.\\n\\nYes! I am interested\\n\\n### Direct Thermal Label Printer\\n\\nGet Best Quote\\n\\n* \\n* \\n* \\n*\\n\\nRequest Callback\\n\\nGet Latest Price\\n\\nProduct Brochure\\n\\n|Max.Print Width |4 Inch |\\n| --- | --- |\\n|Max. Print Width |4 inches |\\n|Resolution |300 DPI (12 dots/mm) |\\n|Print Resolution |300dpi |\\n|Brand |TSC |\\n|Maximum Print Speed |6 inch/second |\\n|Machine Type |Automatic |\\n|Printing Method |Direct Thermal & Thermal Transfer |\\n\\n**Direct Thermal Label Printer** is ideal for Higher volume applications.  \\n  \\nIt offers quality, performance, and reliability.\\n ... \\n* User-friendly clamshell design\\n* Serial, internal Ethernet USB 2.0 & USB host interfaces standard\\n* 3\\\\.5\u201d color TFT Display (Standard for TX600, Optional for TX200 & TX300)\\n* Label capacity up to 127 mm (5\u201d) OD\\n* Ribbon capacity up to 300 m (984\u2019)\\n* TSPL-EZ\u2122 firmware for plug-n-play ease\\n* Optional peel-off module, cutter module, external Bluetooth module, slot-in 802.11 a/b/g/n wireless module, stand-alone keyboard\\n* ENERGY STAR\u00ae qualified\\n\\n  \\nAPPLICATIONS\\n\\n* Business/Office\\n* Product Marking\\n* Compliance Labeling\\n* Asset Tracking\\n* Document Management\\n* Shelf-Labeling\\n* Shipping/Receiving\\n* Specimen Labeling\\n* Inventory Control\\n* Patient Tracking\\n*\\n\\nYes! I am interested\\n\\n### TSC Label Printer TTP-247\\n\\nGet Best Quote\\n\\n* \\n* \\n* \\n* \\n*\\n\\nRequest Callback\\n\\nGet Latest Price\\n\\nProduct Brochure\\n\\n|Max.Print Width |4 Inch |\\n| --- | --- |\\n|Max. Print Width |4 inches |\\n|Resolution |203 DPI (8 dots/mm) |\\n|Model Name/Number |TTP-247 |\\n|Print Resolution |203dpi |\\n|Brand |TSC |\\n ... \\n8 mm (7\u201d) per second print speed\\n* Easy media loading\\n* Label capacity up to 214 mm (8.4\u201d) OD\\n* SD Flash memory expansion up to 4 GB\\n* Head open sensor\\n* USB 2.0, parallel and serial connectivity standard\\n* Optional internal Ethernet interface, Bluetooth module, cutter, standalone keyboard and peel-and-present assembly\\n* ENERGY STAR\u00ae qualified\\n* Cerner certified\\n\\n  \\n_**APPLICATIONS**_\\n\\n* Small Office/Home Office Mailing\\n* Product Marking\\n* High Resolution Print & Graphics Applications\\n* File-Folder Labeling\\n* Retail Point-of-Sale\\n* Shelf Labeling\\n* Healthcare Specimen Labeling\\n* Inventory & Asset Management\\n* Shipping\\n\\nYes! I am interested\\n\\n### Barcode Label Printer\\n\\nGet Best Quote\\n\\n* \\n* \\n*\\n\\nRequest Callback\\n\\nGet Latest Price\\n\\nProduct Brochure\\n\\n|Maximum Print Width |6 Inch |\\n| --- | --- |\\n|Max. Print Width |6 inches |\\n|Type |Standalone |\\n|Maximum Print Speed |8 inch/second |\\n|Connectivity |USB |\\n|Model |CITIZEN-CLS-631 |\\n|Resolution |300 DPI / 203 DPI |\\n|Memory |RAM |'], publish_date=None, title='Tsc Barcode Printers - Tsc Ttp384m Printer Manufacturer from Mumbai')"
+    },
+    {
+      "title": "TSC TE 244 Thermal Transfer Barcode Printer | 4 inch",
+      "url": "https://www.srkinnovations.com/products/barcode-printer-te-244?srsltid=AfmBOorljVlft9Q4AG2IdQApJyhjPqOKZ47dKJzp2rQXyYaSZBDAe798",
+      "excerpt": "WebSearchResult(url='https://www.srkinnovations.com/products/barcode-printer-te-244?srsltid=AfmBOorljVlft9Q4AG2IdQApJyhjPqOKZ47dKJzp2rQXyYaSZBDAe798', excerpts=['Rs. 12,900.00\\n\\n(Tax & Fright Extra)\\n\\nPrice Excluded GST Tax & Shipping\\n\\nDefault Title\\n\\nQuantity\\n\\nAdd to cart\\n\\nBuy it now This item is a recurring or deferred purchase. By continuing, I agree to the cancellation policy and authorize you to charge my payment method at the prices, frequency and dates listed on this page until my order is fulfilled or I cancel, if permitted.\\n\\n### Click Here For Bulk Enquiry\\n\\n \\\\+91 8411958300\\n\\n info@srkinnovations.com\\n\\n* Category: Label Printers, Thermal and Label Printers, TSC\\n\\n* **Brand :** TSC\\n* **Model Name :** TE 244\\n* **Special Feature :** Desktop\\n* **DPI :** 203 dpi\\n* **Interface :** USB\\n  / Ethernet\\n* **Max Print Width :** 4 inch\\n* **Max Print Speed :** 152\\\\.4 mm/s\\n* **Weight :** 2\\\\.4 kg\\n* **Warranty :** 2 Year Warranty in all products\\n*** SDK and APIs are available for support\\n**\\n\\nX\\n\\nProduct Name\\n\\nName\\n\\nEmail\\n\\nPhone\\n\\nMessage\\n\\nSend message\\n\\nX\\n\\nProduct Name\\n\\nName\\n\\nEmail\\n\\nPhone\\n\\nMessage\\n\\nSend message\\n\\n* Description\\n* Specification\\n* Shipping & Returns\\n* FAQ\\n* Download\\n\\nThe **TSC TE 244 Thermal Transfer Barcode Printer** is a top-performing desktop-class barcode label printer designed for efficiency, durability, and versatility. This entry-level yet powerful printer boasts a fast printing speed of up to 6 inches per second, making it ideal for handling various labeling tasks with precision and ease. Featuring the largest memory capacity in its class and a robust dual-motor design, the TE244 ensures smooth operation for a wide range of applications.\\n\\nWith its compact footprint and user-friendly design, the TSC TE244 is perfect for businesses looking for high-quality barcode printing without the burden of high ownership costs. This printer supports both thermal transfer and direct thermal printing methods, delivering sharp and durable labels with 203 DPI resolution.\\n\\n**Features :**\\n\\n* Prints at 8 dots/mm (203 DPI) resolution, ensuring crisp and clear barcode labels.\\n* Supports thermal transfer and direct thermal printing methods.\\n* Accommodates ribbon widths ranging from 40 mm to 110 mm (1.6\u201d to 4.3\u201d).\\n* Equipped with 8 MB Flash memory and 16 MB SDRAM for seamless operation.\\n* Powered by a 32-bit RISC CPU for fast and efficient label processing.\\n* Supports label rolls with an outer diameter of up to 127 mm (5 inches).\\n* Compatible with 300 m ribbons, reducing the need for frequent replacements.\\n* Operates with an external universal switching power supply for reliable and efficient performance.\\n\\n**Advantages :**\\n\\n* Low maintenance and ownership costs make it an ideal choice for businesses on a budget.\\n* Dual printing methods and wide media compatibility cater to various labeling needs.\\n* Built with a rugged dual-motor design to withstand high-volume operations.\\n* Space-saving and lightweight, perfect for small to medium-sized workspaces.\\n* Simple setup and operation ensure minimal learning curve.\\n\\n**Applications :**\\n\\n* + Print shipping labels, compliance tags, and inventory management labels.\\n ... \\nThis entry-level yet powerful printer boasts a fast printing speed of up to 6 inches per second, making it ideal for handling various labeling tasks with precision and ease. Featuring the largest memory capacity in its class and a robust dual-motor design, the TE244 ensures smooth operation for a wide range of applications.\\n\\nWith its compact footprint and user-friendly design, the TSC TE244 is perfect for businesses looking for high-quality barcode printing without the burden of high ownership costs. This printer supports both thermal transfer and direct thermal printing methods, delivering sharp and durable labels with 203 DPI resolution.\\n\\n**Features :**\\n\\n* Prints at 8 dots/mm (203 DPI) resolution, ensuring crisp and clear barcode labels.\\n* Supports thermal transfer and direct thermal printing methods.\\n* Accommodates ribbon widths ranging from 40 mm to 110 mm (1.6\u201d to 4.3\u201d).\\n* Equipped with 8 MB Flash memory and 16 MB SDRAM for seamless operation.\\n ... \\n+ Use for product labeling, asset tracking, and work-in-process labels.\\n    + Generate inventory labels and storage tracking tags for streamlined operations.\\n    + Efficiently print address labels, return labels, and branded tags.\\n\\nThe TSC TE244 Barcode Label Printer combines speed, efficiency, and durability to deliver a dependable labeling solution for various industries. Its compact design, robust features, and low operating costs make it an excellent choice for businesses looking to optimize their label printing processes.\\n\\n|Resolution |8 dots/mm (203 DPI) |\\n| --- | --- |\\n|Printing method |Thermal Transfer & Direct Thermal |\\n|Max. print speed |152\\\\.4 mm (6\u201d)/second |\\n|Max. print width |108 mm (4.25\u201c) |\\n|Max. print length |2,794 mm (110\u201c) |\\n|Physical dimension |204 mm (W) x 164 mm (H) x 280 mm (D)\\n\\n8\\\\.03\u201c (W) x 6.46\u201c (H) x 11.02\u201c (D) |\\n|Weight |2\\\\.4 kg (5.29 lbs) |\\n|Label roll capacity |127 mm (5\u201c) OD |\\n|Ribbon |300 m long, max.'], publish_date='2020-05-04', title='TSC TE 244 Thermal Transfer Barcode Printer | 4 inch')"
+    },
+    {
+      "title": "Products - TSC Printers",
+      "url": "https://usca.tscprinters.com/en/products",
+      "excerpt": "WebSearchResult(url='https://usca.tscprinters.com/en/products', excerpts=[\"Skip to main content\\n    * Home\\n    * Products\\n\\nProducts\\nOur Products\\nTSC Printronix Auto ID is a leading designer and manufacturer of innovative thermal printing solutions. TSC Auto ID offers budget-friendly desktop printers to high-performance industrial solutions including rugged mobile printers. Printronix Auto ID offers premium, enterprise-level applications with a selection of high-end features including RFID encoding and integrated barcode verification.\\nMobile Printers\\nPrint receipts and labels on the go and on-demand. Our small, lightweight, and rugged mobile printers with long battery life are made to last the entire workday and efficiently print at the point of application to reduce downtime and increase production. Our mobile printers are capable of printing linerless labels that help reduce waste and boost productivity. A full line of accessories is available.\\nExplore Mobile Printers\\nDesktop Printers\\nWe manufacture one of the largest selections of desktop printers on the market. Designed to the highest quality standards, our desktop printers are also budget-friendly and customizable to adapt to a wide variety of industries and applications. Our desktop printers come standard with premium features like high-resolution, RFID, and remote printer management.\\nExplore Desktop Printers\\nIndustrial Printers\\nOur Performance industrial printer selection is built for high-performance and high-volume printing. With some of our fastest print speeds and premium printhead technology, our Performance industrial thermal printers deliver high-quality, crisp and clear labels for nearly any industrial printing application. Our industrial printers come enhanced with features like colorful LCD displays, multiple resolutions, and extensive communication options including Wi-Fi and Bluetooth.\\nExplore Industrial Printers\\nEnterprise\\xa0Printers\\nConsidered rugged workhorses, our full range of mid-range to enterprise-level industrial barcode label printers are designed for the most demanding environments. Available in a wide selection of sizes, our enterprise printers deliver high performance, flexibility, and reliability through a range of printer language emulations and secure and reliable wireless connectivity options. All of these printers are equipped with SOTI Connect remote printer management.\\nExplore Enterprise Printers\\nRFID Printers\\nOur RFID printers offer solutions for a wide range of applications from enterprise-level desktop printers to high-volume industrial printers. We offer high-performance features, including 4-inch and 6-inch print widths, the ability to print on standard RFID labels and on-metal tags and up to 600 dpi for small labels. Printronix Auto ID RFID printers are enhanced to include high-speed encoding, high-memory encoding, and RFID upgrade kits.\\nOur printers are easy to use, easy to calibrate and offer compatibility with PrintNet Enterprise remote printer management software.\\nExplore RFID Printers\\nBarcode Inspection Printers\\nPrintronix Auto ID inline data verification technology is integrated into our Printronix Auto ID industrial thermal printers. Easy to use, our barcode verification technology reads each barcode as it is printed, strikes out rejected barcodes and reprints a new label. Printronix Auto ID printers with barcode verification give customers confidence that every barcode label they send out will be accurate and printed at the highest level of quality. The ODV-2D pays for itself by eliminating costly charge backs and fines for non-conforming labels. Available as an option on the T8000 and T6000e thermal printers.\\nExplore Barcode Inspection Printers\\nPrint Engines & Modules\\nOur high-performance print engines and print modules\\xa0combine\\xa0precision print mechanisms with high-performance electronics to produce labels at a high-speed output. They are\\xa0ideal for manufacturing and logistic applications where high speed and high demand label printing is required.\\nExplore Print Engines & Modules\\nColor Label Printer\\nThe CPX4 Series is a hassle-free solution for businesses that want the flexibility to design and print color labels on-demand. The CPX4 Series can eliminate the cost of preprinted labels and provide the option to produce short-run labels. The CPX4 Series consists of a pigment and dye version, CPX4P and CPX4D, allowing for customized color labels to suit any application, including printing GHS compliant labels.\\nExplore Color Label Printers\\nMore Products\\n    * Software Tools\\nSoftware Tools\\n    * Supplies\\nSupplies\\n    * Service Programs\\nService Programs\\n\\nNews and Highlights\\nSolution\\nLabel Printing\\nBlog\\nWe're Here for Your Questions: Mobile Printers Q&A\\nNews\\nTSC Auto ID MB241 Series Linerless Printer Wins Red Dot Award\\nSold more than 7.9 million printers worldwide\\nDownload Product Guide\\nConnect with us\\n    *     *     *     * \\n\\nSubscribe for our news\\n    * \\n\\n    *     *     * \\n\\n\u00a9 2025 All rights reserved\"], publish_date=None, title='Products - TSC Printers')"
+    },
+    {
+      "title": "TSC TE200 Label Printer - Argox Barcode Label Printer Sales",
+      "url": "https://barcodeprinters.co.za/tsc-label-and-barcode-printer-sales/tsc-te200-label-printer/?srsltid=AfmBOop6LtPlVRFebljb6fu-sgyGb_59UFpZpJP6lKUuE426ZKRHZ6AP",
+      "excerpt": "WebSearchResult(url='https://barcodeprinters.co.za/tsc-label-and-barcode-printer-sales/tsc-te200-label-printer/?srsltid=AfmBOop6LtPlVRFebljb6fu-sgyGb_59UFpZpJP6lKUuE426ZKRHZ6AP', excerpts=['[](https://barcodeprinters.co.za/)\\n\\nBarcode Label Printer Sales\\n\\n|\\n\\n[Online Store](https://online.jnstech.co.za/)\\n\\n[Barcode Scanners](https://jnstech.co.za/)\\n\\nSearch\\n\\n# TSC TE200 Label Printer\\n\\n[Home](https://barcodeprinters.co.za/) \u00bb [TSC Label and Barcode Printers Sales](https://barcodeprinters.co.za/tsc-label-and-barcode-printer-sales/) \u00bb TSC TE200 Label Printer\\n\\nThe TSC TE200 Barcode Printer comes standard with USB connectivity eliminating the costs of having other interface ports that you do not need.\\n\\n## TE200 Thermal Transfer Barcode and Label Printer with USB Connectivity, 6 ips Print Speed, 203dpi.\\n\\n[](https://emea.tscprinters.com/) [](https://barcodeprinters.co.za/tsc-power-partner-silver-reseller/)\\n\\n[Direct Thermal vs Thermal Transfer](https://barcodeprinters.co.za/direct-thermal-vs-thermal-transfer-print-method/)\\n\\n**Print Method** : **Thermal Transfer**  \\n**Print Resolution:** 203dpi  \\n**Max Print Width:** 108mm  \\n**Print Speed** : 6ips  \\n**Interface Ports** : USB\\n**RTC** : No  \\n**Included Software** : Bartender UL and Drivers  \\n**Ribbon Length** : 300 meters  \\n**Warranty:** Printer 3 Years, Print Head 25km or 12 Months, Platten Roller 50km or 12 Months  \\n**Brand** : TSC  \\n**MPN:** 99-065A101-00LF00  \\n_The TE200 can connect to a PC with a USB cable._\\n\\n[](https://youtu.be/B91eJatlZC8?si=s45Gbntp6EdltnsU)\\n\\nView on Youtube\\n\\n**Warranty:** Printer 3 Years, Print Head 25km or 12 Months, Platten Roller 50km or 12 Months\\n\\n[](https://barcodeprinters.co.za/site/wp-content/uploads/2023/03/TE200_ENG_datasheet_A4.pdf)\\n\\nBrochure\\n\\n[](https://barcodeprinters.co.za/tsc/te200-series_user_manual_new_en_1%20\\\\(1\\\\).pdf)\\n\\nUser Manual\\n\\n**TSC TE200 Price**  \\nSpring Promotion!!  \\nR 3,880.00 excl vat  \\n**R 4,462.00 incl vat**  \\n_Includes 2 free wax ribbons_  \\n_Free delivery in SA_\\n\\nAvailable In Stock\\n\\n**Free delivery** to the Major Centers in South Africa or pickup at our premises.  \\nReady for Collection/Shipping 2 to 4 working days after we receive POP.\\n\\n**Downloads**\\nTSC TE200 Drivers Download Link  \\n<https://emea.tscprinters.com/en/downloads>  \\nTSC TE200 Labelling Software Link  \\n<https://emea.tscprinters.com/en/downloads>\\n\\n**Consumables**  \\nTSC TE200 Replacement Print Head:  \\nR 1 993,60 excl vat  \\nReplacement Platten Roller: R 380,80 excl vat  \\n[TSC TE200 Ribbon](https://barcodeprinters.co.za/thermal-transfer-ribbons/) 110mm x 300m on 25mm Core\\n\\n[Click here for a quote](https://barcodeprinters.co.za/site/product-quote-request/?key=TSC%20TE200%20Label%20Printer)\\n\\nThe TSC TE200 Thermal Transfer Printer is a general purpose Barcode Label Printer that can be used without Ribbon (Direct Thermal) or with a ribbon (Thermal Transfer) adding flexibility to your printing requirements.\\n\\nThe TE Series provides customers throughout the world with a competitive, durable, entry-level desktop printer that is both versatile and easy-to-use. The series now offers four models.\\n ... \\nAnd the media cabinet can handle industry standard 5-inch OD labels on 1-inch or 1.5-inch cores. The powerful hybrid electric motor is strong enough to handle larger 8-inch OD label rolls on its optional external label unwinder.\\n\\nThe TSC TE 200 Thermal Transfer Barcode Label Printer Series innovative design offers our resellers new opportunities to satisfy unique market applications. The print mechanism which normally resides within the printer may be purchased separately for those looking to integrate custom label printing capability into their own manufactured designs. Applications for this unique print mechanism can include use with kiosk applications, small label applicators, two color on-demand printing, and two-sided printing.\\n\\nThe TE Series offers a low initial price, uses the most cost-effective supplies available, and is built to last. These virtually trouble-free units feature a standard two-year warranty. Once you plug it in, you won\u2019t have to worry about it.\\n ... \\nprint speed |152\\\\.4 mm (6\u201d)/second |\\n|Max. print width |108 mm (4.25\u201c |\\n|Max. print length |2794mm |\\n|Enclosure |ABS plastic |\\n|Physical dimension |204 mm (W) x 164 mm (H) x 280 mm (D) |\\n|Weight |2\\\\.5 kg |\\n|Label roll capacity |127 mm |\\n|Ribbon |300 m long, max. OD 67 mm, 1\u201d core (ink coated outside  \\n110 m long, max. OD 40 mm, 0.5\u201d core (ink coated outside) |\\n|Ribbon width |40 mm ~ 110 mm |\\n|Processor |32-bit RISC CPU |\\n|Memory |\u2022 8 MB Flash memory  \\n\u2022 16 MB SDRAM |\\n|Interface |\u2022 USB 2.0 |\\n|Power |External universal switching power supply  \\n\u2022 Input: AC 100-240V, 2.5A, 50-60Hz  \\n\u2022 Output: DC 24V, 2.5A, 60W |\\n|Operation switch, button  \\nLED |1 power switch, 1 feed and pause button & 1 LED (3 colors: green, amber & red) |\\n|Sensors |\u2022 Transmissive gap sensor  \\n\u2022 Black mark reflective sensor (position adjustable)  \\n\u2022 Ribbon end sensor  \\n\u2022 Head open sensor |\\n|Real Time Clock |No |\\n|Internal fonts |\u2022 8 alpha-numeric bitmap fonts'], publish_date='2025-07-24', title='TSC TE200 Label Printer - Argox Barcode Label Printer Sales')"
+    },
+    {
+      "title": "TSC Barcode Printer - TSC TX200 Series Barcode Printer Trader - Wholesaler / Distributor from Tiruppur",
+      "url": "https://www.electrolabelling.com/tsc-barcode-printer.html",
+      "excerpt": "WebSearchResult(url='https://www.electrolabelling.com/tsc-barcode-printer.html', excerpts=['1. [Home](https://www.electrolabelling.com/)\\n2. Business Segments\\n3. TSC Barcode Printer\\n\\n## TSC Barcode Printer\\n\\nProminent & Leading Manufacturer from Tiruppur, we offer tsc tx200 series barcode printer, tsc ttp-247 series desktop barcode printers, tsc te300 desktop thermal transfer bar code printer, tsc mx240p barcode printer, tsc 4 inch barcode printer and tsc ttp-2610mt series barcode label printer.\\n\\n### TSC TX200 Series Barcode Printer\\n\\nGet Best Quote\\n\\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n*\\n\\nRequest Callback\\n\\n\u20b9 9999 / Piece Get Latest Price\\n\\nProduct Brochure\\n\\n|Resolution |203 DPI (8 dots/mm) |\\n| --- | --- |\\n|Max. Print Width |108 mm (4.25\") |\\n|Max. Print Length |25,400 mm (1,000\") |\\n|Maximum Print Speed |203 mm (8\")/second |\\n|Connectivity |USB 2.0, RS-232, Ethernet |\\n|Printing Method |Direct Thermal & Thermal Transfer |\\n|Product Dimension (W x H X D) |226 mm (W) x 198 mm (H) x 332 mm (D) |\\n|Weight |3\\\\.75 kg (8.27 lbs) |\\n|Ribbon Capacity |300 m long,max.\\nOD 67 mm,1\" core (ink coated outside) |\\n|Ribbon Width |40 mm ~ 110 mm (1.6\" ~ 4.3\") |\\n|Media Type |Continuous,die-cut,black mark,fan-fold,notch (outside wound) |\\n|Media Width |19 ~112 mm (0.75\" ~ 4.4\") |\\n|Media Thickness |0\\\\.055 ~ 0.254 mm (2.17 ~ 10 mil) |\\n|Media Core Diameter |25\\\\.4 ~ 38.1 mm (1\" ~ 1.5\") |\\n|Country of Origin |Made in India |\\n|Media Length |3 ~ 25,400 mm (0.1\" ~ 1,000\") |\\n|Media Roll Capacity |127 mm (5\") OD |\\n|LCD/LED |LED panel with 8 big icons |\\n|SDRAM |128 MB |\\n|Flash Memory |128 MB |\\n|Extension Memory |microSD card reader for Flash memory expansion,up to 32 GB |\\n\\nthe tx200 series of thermal transfer desktop barcode can support a variety of printing applications to meet your needs. With three models available, the four inch wide tx200 series can address everything from higher volume 4x6 shipping labels, higher resolution product marking and graphic solutions, to high resolution labels used in electronics marking applications.\\nthe tx200 series is the culmination of tsc\\'s 23 years of designing high-performance and durable desktop printers. The printers use a large 300 meter ribbon supply on a one inch core that saves both time and money. The tx200 series features a user-friendly spring-loaded center-biased clamshell design for easy drop-in media loading of 5-inch rolls of media. The printer construction features a rugged double-wall design that is stronger and more durable than other thermal transfer mechanisms on the market. Its strong motor is powerful enough to handle a 300-meter-long ribbon.\\n\\nstandard interfaces include usb 2. 0, usb-a host, 10/100 mbps ethernet and serial connectivity. Optional communications interfaces include bluetooth, 802. 11a/b/g/n wi-fi and centronics parallel. Printer options include a bright, color lcd display, label peel and present, and cutter.\\n ... \\n\u2022 Standard industry emulations right out of the box including Eltron\u00ae and Zebra\u00ae language support  \\n\u2022 USB host for stand-alone or data entry at print site\\n\\nYes! I am interested\\n\\n### TSC TTP 225 Barcode Printer\\n\\nGet Best Quote\\n\\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n*\\n\\nRequest Callback\\n\\n\u20b9 13450 / Piece Get Latest Price\\n\\nProduct Brochure\\n\\n|Resolution |203 DPI (8 dots/mm) |\\n| --- | --- |\\n|Max. Print Width |2 inches |\\n|Model Name/Number |TTP 225 |\\n|Max. Print Length |90 Inches |\\n|Brand |TSC |\\n|Printing Method |Direct Thermal & Thermal Transfer |\\n|Connectivity |USB 2.0 |\\n|CPU Type |32-bit RISC CPU |\\n|Ribbon Capacity |90 m long, max. OD 37 mm, 0.5\" core (ink coated outside |\\n|Ribbon Width |56 ~ 58 mm (2.20\" ~ 2.28\") |\\n\\n* Small size \u2013 space saving design\\n* Uses industry standard ribbons and media\\n* High quality double walled clamshell design\\n* Easy media loading\\n* Head open sensor\\n* 8 MB SDRAM, 4 MB Flash memory\\n* Serial and USB 2.0 connectivity standard, Ethernet optional\\n ... \\n3\u201d color LCD with 6-button menus and touch panel operation\\n* 300 dpi\\n* Ethernet, USB 2.0, USB host, serial and parallel connectivity are standard\\n* 256 MB SDRAM, 512 MB Flash\\n* SD Flash card memory expands storage to 32 GB\\n* Powerful 32 bit 536 MHz RISC processor\\n* Auto TPH resolution switch detection\\n* Ribbon capacity monitor widget\\n* Standard industry emulations right out of the box including Eltron\u00ae and Zebra\u00ae language support\\n* USB host for stand-alone or data entry at print site\\n\\nYes! I am interested\\n\\n### TSE TE210 Thermal Transfer Printer\\n\\nGet Best Quote\\n\\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n*\\n\\nRequest Callback\\n\\n\u20b9 13950 / Piece Get Latest Price\\n\\nProduct Brochure\\n\\n|Max. Print Width |4 inches |\\n| --- | --- |\\n|Resolution |203 DPI (8 dots/mm) |\\n|Max. Print Length |100 inches |\\n|Maximum Print Speed |4 inch/second |\\n|Connectivity |USB 2.0 |\\n|Printing Method |Thermal Transfer |\\n|Country of Origin |Made in India |'], publish_date=None, title='TSC Barcode Printer - TSC TX200 Series Barcode Printer Trader - Wholesaler / Distributor from Tiruppur')"
+    }
+  ],
+  "count": 9
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

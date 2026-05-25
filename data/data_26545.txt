@@ -1,0 +1,3732 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 26545,
+        "mcat_name": "Dirt Bike",
+        "current_specs": [
+            {
+                "spec_name": "Engine Displacement",
+                "options": [
+                    "50 cc",
+                    "125 cc",
+                    "110 cc",
+                    "250 cc"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Fuel Type",
+                "options": [
+                    "Petrol",
+                    "Electric"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Starting System",
+                "options": [
+                    "Self Start",
+                    "Pull Start",
+                    "Kick Start"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Brake Type",
+                "options": [
+                    "Front and Rear Disc",
+                    "Front Disc, Rear Drum",
+                    "Front and Rear Drum"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Transmission Type",
+                "options": [
+                    "Automatic",
+                    "Manual"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Engine Stroke Type",
+                "options": [
+                    "2-Stroke",
+                    "4-Stroke"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Seat Height",
+                "options": [
+                    "Upto 650 mm",
+                    "651-800 mm",
+                    "Above 800 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Max Speed",
+                "options": [
+                    "Upto 30 km/h",
+                    "31-50 km/h",
+                    "51-80 km/h",
+                    "Above 80 km/h"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Cooling System",
+                "options": [
+                    "Air-Cooled",
+                    "Liquid-Cooled",
+                    "Oil-Cooled"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Dirt Bike",
+            "mcat_id": 26545,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Engine Displacement",
+                            "options": [
+                                "50 cc",
+                                "125 cc",
+                                "110 cc",
+                                "250 cc"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Fuel Type",
+                            "options": [
+                                "Petrol",
+                                "Electric"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Prefix",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Engine Displacement and Fuel Type are fundamental attributes that heavily influence purchasing decisions, price, and target user. They are the first decision gates for buyers, making them essential for product configuration and titling."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Starting System",
+                            "options": [
+                                "Self Start",
+                                "Pull Start",
+                                "Kick Start"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Brake Type",
+                            "options": [
+                                "Front and Rear Disc",
+                                "Front Disc, Rear Drum",
+                                "Front and Rear Drum"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Transmission Type",
+                            "options": [
+                                "Automatic",
+                                "Manual"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Starting System, Brake Type, and Transmission Type define the core performance, user experience, and safety. These specs are crucial usability and performance indicators frequently discussed by buyers and listed in catalogs."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Engine Stroke Type",
+                            "options": [
+                                "2-Stroke",
+                                "4-Stroke"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Seat Height",
+                            "options": [
+                                "Upto 650 mm",
+                                "651-800 mm",
+                                "Above 800 mm"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Max Speed",
+                            "options": [
+                                "Upto 30 km/h",
+                                "31-50 km/h",
+                                "51-80 km/h",
+                                "Above 80 km/h"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Cooling System",
+                            "options": [
+                                "Air-Cooled",
+                                "Liquid-Cooled",
+                                "Oil-Cooled"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Engine Stroke Type, Seat Height, Max Speed, and Cooling System provide essential supplementary details. They address technical performance, rider suitability, and are key differentiators for higher-performance models."
+                }
+            },
+            "scratchpad": "The selected specifications are derived from a comprehensive analysis of 100 provided files, including buyer-seller call transcripts and product catalogs. The tiering, naming, and options are based on the frequency of mention, their commercial relevance in purchasing decisions, and their utility for search and filtering on a B2B platform."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2020"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black & Green"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Cooling Type",
+            "option_value": "Air-cooled"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Cylinder",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Max Power",
+            "option_value": "2kw/700 rpm"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Battery",
+            "option_value": "12v,4A x 1 pcs"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Mileage",
+            "option_value": "35 Kmpl"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Max Load Capacity",
+            "option_value": "90 Kgs"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Mileage",
+            "option_value": "35 Kmpl"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Cylinder",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Max Power",
+            "option_value": "2 kW (700 r/min)"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Battery",
+            "option_value": "12 V, 4A x 1Pcs"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Max Load Capacity",
+            "option_value": "90 kgs"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brand",
+            "option_value": "Imported"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2020"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "All Color Available"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "Dirt Bike For Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Yellow"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "90kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "White"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Capacity",
+            "option_value": "1.5LT"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Yellow"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "120kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brand",
+            "option_value": "Dirt bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "120 kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Motocross"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "90kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Primary Use",
+            "option_value": "Competition / Racing"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "750"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "90kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Orange"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brand",
+            "option_value": "Orange"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "90kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "No Of Wheels",
+            "option_value": "2"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Weight Capacity",
+            "option_value": "100kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Discharge Timing",
+            "option_value": "35"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Weight",
+            "option_value": "18kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Motor",
+            "option_value": "2 Stroke Engine"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Tank Capacity",
+            "option_value": "1.5 Litre"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Maximum Speed",
+            "option_value": "40Mph"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "White"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "45 km/h"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Capacity",
+            "option_value": "1.5LT"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Wheel Base",
+            "option_value": "86cm"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Type of Vehicle",
+            "option_value": "Motorcycle"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Petrol Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "90kgs"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Mileage",
+            "option_value": "35km"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Start Type",
+            "option_value": "Electric Start"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "90kgs"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "White"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brand",
+            "option_value": "Dirt"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brake System",
+            "option_value": "Front & Rear Disc Brakes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike 50cf"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Start Type",
+            "option_value": "Electric Start"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "White"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "90kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "90kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Start Type",
+            "option_value": "Electric Start"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Yellow"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brand",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brand",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2020"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike For Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "2 Stroke Engine"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Orange"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brand",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "White"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Start Type",
+            "option_value": "Electric Start"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2024"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2024"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brand",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brand",
+            "option_value": "Dirt bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "120kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Weight",
+            "option_value": "23kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Yellow"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Brand",
+            "option_value": "Dirt"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Capacity",
+            "option_value": "2 Liters"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Orange"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brand",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "White"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brand",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "White"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "White"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Start Type",
+            "option_value": "Electric Start"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Orange"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Gauge",
+            "option_value": "Digital"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Cluster Type",
+            "option_value": "Digital"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Tyre Type",
+            "option_value": "Tubeless"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brake System",
+            "option_value": "Front & Rear Disc Brakes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Tank Capacity",
+            "option_value": "5-8 Liters"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Power Output",
+            "option_value": "Upto 10 hp"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Torque",
+            "option_value": "Upto 10 Nm"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "Upto 50 Kms"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Motocross"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Adults"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Maximum Speed",
+            "option_value": "40Mph"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Tank Capacity",
+            "option_value": "1.5 Litre"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "2 Stroke"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Power Output",
+            "option_value": "49CC"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Tank",
+            "option_value": "1,5 LITRE"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "45KM"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Capacity",
+            "option_value": "1.5LT"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "45KM"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Load Capacity",
+            "option_value": "100 kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Dirt Bike",
+            "option_value": "Kids Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "45 km"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Capacity",
+            "option_value": "1.5LT"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "80kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Material",
+            "option_value": "Die-Cast Metal"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Operation Mode",
+            "option_value": "Free Wheel"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Child Age Group",
+            "option_value": "5-15 years"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Features",
+            "option_value": "Lights"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Weight",
+            "option_value": "18KG"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Size",
+            "option_value": "Medium"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Type of Vehicle",
+            "option_value": "Motorcycle"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Play Type",
+            "option_value": "Petrol bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Cluster Type",
+            "option_value": "Digital"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Gauge",
+            "option_value": "Digital"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "2023"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Emission Grade",
+            "option_value": "BS-III"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Tyre Type",
+            "option_value": "Tubeless"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Weight",
+            "option_value": "73-82 Kgs"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Tank Capacity",
+            "option_value": "5-8 Liters"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Power Output",
+            "option_value": "10-100 hp"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Torque",
+            "option_value": "Upto 10 Nm"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "Upto 50 Kms"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brake System",
+            "option_value": "Disc Brakes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Cluster Type",
+            "option_value": "Digital"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Gauge",
+            "option_value": "Digital"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Tyre Type",
+            "option_value": "Tubeless"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2023"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "2023"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Torque",
+            "option_value": "Upto 10 Nm"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "Upto 50 Kms"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Power Output",
+            "option_value": "Upto 10 hp"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Emission Grade",
+            "option_value": "BS-III"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Tank Capacity",
+            "option_value": "5-8 Liters"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Weight",
+            "option_value": "73-82 Kgs"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "80 kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "45"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Weight",
+            "option_value": "100kg Capacity"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brake System",
+            "option_value": "Disc Brakes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Capacity",
+            "option_value": "1.5 LT"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Bike 50cc"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Emission Grade",
+            "option_value": "BS III"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brake System",
+            "option_value": "Disc Brakes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Mileage",
+            "option_value": "35"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Weight",
+            "option_value": "100kg Capacity"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "45"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Capacity",
+            "option_value": "1.5 LT"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "50cc Dirt Bike"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Emission Grade",
+            "option_value": "BS III"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brake System",
+            "option_value": "Anti lock Brakes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "50CC DIRT BIKE"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "45"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Weight",
+            "option_value": "100kg Capacity"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Capacity",
+            "option_value": "1.5 LT"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Mileage",
+            "option_value": "35"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Question",
+            "option_value": "80"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "2-Stroke"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Capacity",
+            "option_value": "1.5LT"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "45KM"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Orange"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Weight",
+            "option_value": "130 Kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Tyre Type",
+            "option_value": "Tubeless"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Top Speed",
+            "option_value": "50 Kms"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Torque",
+            "option_value": "50 Nm"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Emission Grade",
+            "option_value": "BS IV"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brake System",
+            "option_value": "Disc Brakes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "50cc Super Dirt Bikes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Transmission",
+            "option_value": "Chain Drive"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brake System",
+            "option_value": "Disc Brakes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Max power",
+            "option_value": "2Kw (700r/min)"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Battery",
+            "option_value": "12v,4A x 1PCS"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Cylinder",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Absorber (rear)",
+            "option_value": "Upside d"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Emission Grade",
+            "option_value": "BS VI"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brake System",
+            "option_value": "Disc Brakes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name/Number",
+            "option_value": "Dirt Plus"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Gauge",
+            "option_value": "Analog"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Emission Grade",
+            "option_value": "BS VI"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Tyre Type",
+            "option_value": "Tubeless"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Tank Capacity",
+            "option_value": "1.5L"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "Single Cylinder"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Torque",
+            "option_value": "20 Nm"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Weight",
+            "option_value": "150 Kg"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brake System",
+            "option_value": "Disc Brakes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Power Output",
+            "option_value": "150 Hp"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Emission Grade",
+            "option_value": "BS VI"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Battery",
+            "option_value": "12v, 4A x 1PCS"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Max power",
+            "option_value": "2Kw (700r/min)"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Cylinder",
+            "option_value": "Single"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Emission Grade",
+            "option_value": "BS VI"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Target Rider",
+            "option_value": "Kids"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brake System",
+            "option_value": "Front & Rear Disc Brakes"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Speed Of Product",
+            "option_value": "45KM"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Quantity",
+            "option_value": "1.5LT"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Brakes",
+            "option_value": "DISC"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Start Type",
+            "option_value": "Electric Start"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Engine Type",
+            "option_value": "2-Stroke"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Seat Height (mm)",
+            "option_value": "600"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Fuel Capacity",
+            "option_value": "1.5LT"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Model Name",
+            "option_value": "DIRT BIKE"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2024"
+        },
+        {
+            "mcat_id": "26545",
+            "mcat_name": "Dirt Bike",
+            "spec_name": "Vehicle Model",
+            "option_value": "2022"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "age group",
+            "spec_option": "10 year",
+            "impression": "73"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "age group",
+            "spec_option": "11 year",
+            "impression": "55"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "age group",
+            "spec_option": "12 year",
+            "impression": "321"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "age group",
+            "spec_option": "13 year",
+            "impression": "120"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "age group",
+            "spec_option": "15 year",
+            "impression": "694"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "age group",
+            "spec_option": "adult",
+            "impression": "5635"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "amazon",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "duke",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "gigaglitz",
+            "impression": "148"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "hero",
+            "impression": "1227"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "honda",
+            "impression": "766"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "kawasaki",
+            "impression": "957"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "ktm",
+            "impression": "9986"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "orion",
+            "impression": "46"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "real",
+            "impression": "68"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "segway",
+            "impression": "2693"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "sur",
+            "impression": "52"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "sur ron",
+            "impression": "981"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "surron",
+            "impression": "472"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "suzuki",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "brand",
+            "spec_option": "yamaha",
+            "impression": "13084"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "color",
+            "spec_option": "black",
+            "impression": "2240"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "color",
+            "spec_option": "blue",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "color",
+            "spec_option": "green",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "color",
+            "spec_option": "orange",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "color",
+            "spec_option": "white",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "condition",
+            "spec_option": "new",
+            "impression": "1567"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "condition",
+            "spec_option": "second hand",
+            "impression": "169"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "condition",
+            "spec_option": "used",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "100 cc",
+            "impression": "7526"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "110 cc",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "120 cc",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "125 cc",
+            "impression": "188236"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "150 cc",
+            "impression": "5920"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "160 cc",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "2 stroke",
+            "impression": "77"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "250 cc",
+            "impression": "4530"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "300",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "4 stroke",
+            "impression": "53"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "49 cc",
+            "impression": "23752"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "49 cc petrol",
+            "impression": "221"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "55 cc",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "60 cc",
+            "impression": "239"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "70 cc",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "80 cc",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "85",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "electric",
+            "impression": "14670"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "engine type",
+            "spec_option": "petrol",
+            "impression": "2606"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "gender",
+            "spec_option": "boy",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "model name/number",
+            "spec_option": "2023",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "model name/number",
+            "spec_option": "bee x 2023",
+            "impression": "98"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "model name/number",
+            "spec_option": "bee x",
+            "impression": "85"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "model name/number",
+            "spec_option": "bike",
+            "impression": "660"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "model name/number",
+            "spec_option": "dirt pocket bike",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "model name/number",
+            "spec_option": "mini bike",
+            "impression": "105"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "model name/number",
+            "spec_option": "mini dirt bike",
+            "impression": "33624"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "model name/number",
+            "spec_option": "pocket dirt bike",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "model name/number",
+            "spec_option": "super dirt bike",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "power source",
+            "spec_option": "battery",
+            "impression": "31"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "product",
+            "spec_option": "shirt",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "size",
+            "spec_option": "27",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "size",
+            "spec_option": "big",
+            "impression": "249"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "size",
+            "spec_option": "full",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "size",
+            "spec_option": "small",
+            "impression": "4933"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "usage",
+            "spec_option": "showroom",
+            "impression": "848"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "dio",
+            "impression": "2078"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "dirt",
+            "impression": "15721"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "dirt e",
+            "impression": "23"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "dirt mini",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "drift",
+            "impression": "27"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "e dirt",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "edge",
+            "impression": "623"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "mini dirt",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "monkey",
+            "impression": "31"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "monster",
+            "impression": "62415"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "monster dirt",
+            "impression": "67"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "orion 27",
+            "impression": "55"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "ron x",
+            "impression": "52"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "splendor",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "stunt",
+            "impression": "217"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "sx",
+            "impression": "126"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "x",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "x160",
+            "impression": "25"
+        },
+        {
+            "mcat_name": "Dirt Bike",
+            "spec_name": "vehicle model",
+            "spec_option": "x260",
+            "impression": "6346"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "",
+            "spec_fill_rate": "56.6",
+            "product_count": "56"
+        },
+        {
+            "spec_name": "Starting System",
+            "spec_fill_rate": "29.3",
+            "product_count": "29"
+        },
+        {
+            "spec_name": "Engine Displacement",
+            "spec_fill_rate": "28.3",
+            "product_count": "28"
+        },
+        {
+            "spec_name": "Fuel Type",
+            "spec_fill_rate": "26.3",
+            "product_count": "26"
+        },
+        {
+            "spec_name": "Engine Stroke Type",
+            "spec_fill_rate": "26.3",
+            "product_count": "26"
+        },
+        {
+            "spec_name": "Brake Type",
+            "spec_fill_rate": "25.3",
+            "product_count": "25"
+        },
+        {
+            "spec_name": "Transmission Type",
+            "spec_fill_rate": "25.3",
+            "product_count": "25"
+        },
+        {
+            "spec_name": "Cooling System",
+            "spec_fill_rate": "20.2",
+            "product_count": "20"
+        },
+        {
+            "spec_name": "Color",
+            "spec_fill_rate": "20.2",
+            "product_count": "20"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_fill_rate": "19.2",
+            "product_count": "19"
+        },
+        {
+            "spec_name": "Vehicle Model",
+            "spec_fill_rate": "16.2",
+            "product_count": "16"
+        },
+        {
+            "spec_name": "Engine Type",
+            "spec_fill_rate": "14.1",
+            "product_count": "14"
+        },
+        {
+            "spec_name": "Top Speed",
+            "spec_fill_rate": "11.1",
+            "product_count": "11"
+        },
+        {
+            "spec_name": "Target Rider",
+            "spec_fill_rate": "10.1",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Seat Height",
+            "spec_fill_rate": "9.1",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Max Speed",
+            "spec_fill_rate": "9.1",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Brake System",
+            "spec_fill_rate": "9.1",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_fill_rate": "8.1",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Seat Height (mm)",
+            "spec_fill_rate": "8.1",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Fuel Capacity",
+            "spec_fill_rate": "7.1",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Question",
+            "spec_fill_rate": "6.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Emission Grade",
+            "spec_fill_rate": "6.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Fuel Tank Capacity",
+            "spec_fill_rate": "4",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "4",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Tyre Type",
+            "spec_fill_rate": "4",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Start Type",
+            "spec_fill_rate": "4",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Power Output",
+            "spec_fill_rate": "4",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Torque",
+            "spec_fill_rate": "4",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Cluster Type",
+            "spec_fill_rate": "3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Fuel Gauge",
+            "spec_fill_rate": "3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Battery",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Cylinder",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Mileage",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Max power",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Brakes",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Dirt Bike",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Model Brand",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Maximum Speed",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Play Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Absorber (rear)",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Fuel Tank",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Features",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Child Age Group",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Type of Vehicle",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Vehicle Transmission",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Material",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Operation Mode",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Speed Of Product",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Fuel Quantity",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Fuel Quantity",
+            "spec_option_name": "1.5LT",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Child Age Group",
+            "spec_option_name": "5-15 years",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Play Type",
+            "spec_option_name": "Petrol bike",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Start Type",
+            "spec_option_name": "Electric Start",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Vehicle Transmission",
+            "spec_option_name": "Chain Drive",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "ALL AGE GROUP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Seat Height (mm)",
+            "spec_option_name": "600",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Medium",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Lights",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fuel Gauge",
+            "spec_option_name": "Digital",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Tyre Type",
+            "spec_option_name": "Tubeless",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "2 Seater",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "DIRT BIKE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Maximum Speed",
+            "spec_option_name": "40Mph",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Absorber (rear)",
+            "spec_option_name": "Upside d",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Transmission",
+            "spec_option_name": "Automatic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fuel Tank",
+            "spec_option_name": "1,5 LITRE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Type of Vehicle",
+            "spec_option_name": "Motorcycle",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Mileage",
+            "spec_option_name": "35",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cluster Type",
+            "spec_option_name": "Digital",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Max power",
+            "spec_option_name": "2Kw (700r/min)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Die-Cast Metal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brakes",
+            "spec_option_name": "DISC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model Brand",
+            "spec_option_name": "Dirt",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "4x2",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Speed Of Product",
+            "spec_option_name": "45KM",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Dirt Bike",
+            "spec_option_name": "Kids Bike",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Vehicle Type",
+            "spec_option_name": "Off-Road Vehicle",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Operation Mode",
+            "spec_option_name": "Free Wheel",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target Rider",
+            "spec_option_name": "Kids",
+            "option_fill_rate": "90"
+        },
+        {
+            "spec_name": "Brake Type",
+            "spec_option_name": "Front and Rear Disc",
+            "option_fill_rate": "86.1"
+        },
+        {
+            "spec_name": "Fuel Type",
+            "spec_option_name": "Petrol",
+            "option_fill_rate": "83.5"
+        },
+        {
+            "spec_name": "Torque",
+            "spec_option_name": "Upto 10 Nm",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Fuel Tank Capacity",
+            "spec_option_name": "5-8 Liters",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Cooling System",
+            "spec_option_name": "Air-Cooled",
+            "option_fill_rate": "73.6"
+        },
+        {
+            "spec_name": "Engine Type",
+            "spec_option_name": "Single Cylinder",
+            "option_fill_rate": "71.4"
+        },
+        {
+            "spec_name": "Starting System",
+            "spec_option_name": "Self Start",
+            "option_fill_rate": "69.6"
+        },
+        {
+            "spec_name": "Transmission Type",
+            "spec_option_name": "Automatic",
+            "option_fill_rate": "68.9"
+        },
+        {
+            "spec_name": "Vehicle Model",
+            "spec_option_name": "2022",
+            "option_fill_rate": "68.8"
+        },
+        {
+            "spec_name": "Brake System",
+            "spec_option_name": "Disc Brakes",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Engine Stroke Type",
+            "spec_option_name": "2-Stroke",
+            "option_fill_rate": "59.7"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "Dirt Bike",
+            "option_fill_rate": "57.9"
+        },
+        {
+            "spec_name": "Seat Height",
+            "spec_option_name": "Upto 650 mm",
+            "option_fill_rate": "51.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Dirt bike",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Battery",
+            "spec_option_name": "12v,4A x 1PCS",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Cylinder",
+            "spec_option_name": "Single",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Cylinder",
+            "spec_option_name": "Single Cylinder",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Dirt Bike",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Battery",
+            "spec_option_name": "12v, 4A x 1PCS",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power Output",
+            "spec_option_name": "Upto 10 hp",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Engine Displacement",
+            "spec_option_name": "50 cc",
+            "option_fill_rate": "46.4"
+        },
+        {
+            "spec_name": "Fuel Capacity",
+            "spec_option_name": "1.5LT",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Fuel Capacity",
+            "spec_option_name": "1.5 LT",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Engine Stroke Type",
+            "spec_option_name": "4-Stroke",
+            "option_fill_rate": "40.3"
+        },
+        {
+            "spec_name": "Max Speed",
+            "spec_option_name": "51-80 km/h",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "100kg Capacity",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Max Speed",
+            "spec_option_name": "31-50 km/h",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Seat Height",
+            "spec_option_name": "651-800 mm",
+            "option_fill_rate": "36.4"
+        },
+        {
+            "spec_name": "Engine Displacement",
+            "spec_option_name": "125 cc",
+            "option_fill_rate": "35.7"
+        },
+        {
+            "spec_name": "Emission Grade",
+            "spec_option_name": "BS-III",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Question",
+            "spec_option_name": "120kg",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Emission Grade",
+            "spec_option_name": "BS III",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Starting System",
+            "spec_option_name": "Pull Start",
+            "option_fill_rate": "32.9"
+        },
+        {
+            "spec_name": "Starting System",
+            "spec_option_name": "Kick Start",
+            "option_fill_rate": "31.6"
+        },
+        {
+            "spec_name": "Transmission Type",
+            "spec_option_name": "Manual",
+            "option_fill_rate": "27.9"
+        },
+        {
+            "spec_name": "Top Speed",
+            "spec_option_name": "45",
+            "option_fill_rate": "27.3"
+        },
+        {
+            "spec_name": "Top Speed",
+            "spec_option_name": "Upto 50 Kms",
+            "option_fill_rate": "27.3"
+        },
+        {
+            "spec_name": "Top Speed",
+            "spec_option_name": "45KM",
+            "option_fill_rate": "27.3"
+        },
+        {
+            "spec_name": "Power Output",
+            "spec_option_name": "10-100 hp",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Power Output",
+            "spec_option_name": "49CC",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Black",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Torque",
+            "spec_option_name": "50 Nm",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Fuel Tank Capacity",
+            "spec_option_name": "1.5 Litre",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Blue",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "73-82 Kgs",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Brake System",
+            "spec_option_name": "Front & Rear Disc Brakes",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Red",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Orange",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Max Speed",
+            "spec_option_name": "Upto 30 km/h",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Vehicle Model",
+            "spec_option_name": "2024",
+            "option_fill_rate": "18.8"
+        },
+        {
+            "spec_name": "Question",
+            "spec_option_name": "80kg",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Question",
+            "spec_option_name": "80 kg",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Question",
+            "spec_option_name": "90kg",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Emission Grade",
+            "spec_option_name": "BS VI",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Question",
+            "spec_option_name": "80",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Emission Grade",
+            "spec_option_name": "BS IV",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Fuel Type",
+            "spec_option_name": "Electric",
+            "option_fill_rate": "16.5"
+        },
+        {
+            "spec_name": "Cooling System",
+            "spec_option_name": "Oil-Cooled",
+            "option_fill_rate": "15.1"
+        },
+        {
+            "spec_name": "Engine Type",
+            "spec_option_name": "2-Stroke",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Fuel Capacity",
+            "spec_option_name": "2 Liters",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "18KG",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "130 Kg",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "23kg",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Seat Height",
+            "spec_option_name": "Above 800 mm",
+            "option_fill_rate": "12.1"
+        },
+        {
+            "spec_name": "Cooling System",
+            "spec_option_name": "Liquid-Cooled",
+            "option_fill_rate": "11.3"
+        },
+        {
+            "spec_name": "Brake System",
+            "spec_option_name": "Anti lock Brakes",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "2023",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Target Rider",
+            "spec_option_name": "Adults",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Top Speed",
+            "spec_option_name": "45 km",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Top Speed",
+            "spec_option_name": "50 Kms",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Starting System",
+            "spec_option_name": "KEY",
+            "option_fill_rate": "7.6"
+        },
+        {
+            "spec_name": "Engine Type",
+            "spec_option_name": "2 Stroke",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Engine Displacement",
+            "spec_option_name": "BATTERY",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Engine Type",
+            "spec_option_name": "2 Stroke Engine",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Brake Type",
+            "spec_option_name": "Front Disc; Rear Drum",
+            "option_fill_rate": "6.9"
+        },
+        {
+            "spec_name": "Vehicle Model",
+            "spec_option_name": "Dirt Bike",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Vehicle Model",
+            "spec_option_name": "2023",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Engine Displacement",
+            "spec_option_name": "250 cc",
+            "option_fill_rate": "6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "Dirt Bike 50cc",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "Motocross",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "Dirt bike",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "50cc Super Dirt Bikes",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "50cc Dirt Bike",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "50CC DIRT BIKE",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Yellow",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Engine Displacement",
+            "spec_option_name": "49 cc",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Brake Type",
+            "spec_option_name": "Disc",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Starting System",
+            "spec_option_name": "Electric Start",
+            "option_fill_rate": "2.5"
+        },
+        {
+            "spec_name": "Max Speed",
+            "spec_option_name": "Above 80 km/h",
+            "option_fill_rate": "2.5"
+        },
+        {
+            "spec_name": "Transmission Type",
+            "spec_option_name": "Chain",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Transmission Type",
+            "spec_option_name": "4 Gear",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brake Type",
+            "spec_option_name": "Disc Brake",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Brake Type",
+            "spec_option_name": "Disc Break",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Brake Type",
+            "spec_option_name": "Front and Rear Drum",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Starting System",
+            "spec_option_name": "Pull start + Electric Start(with Emergencrake / Disc Brake",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Engine Displacement",
+            "spec_option_name": "300 cc",
+            "option_fill_rate": "1.2"
+        }
+    ]
+}

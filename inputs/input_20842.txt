@@ -1,0 +1,3220 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 20842
+category_name: Pressure Booster Pumps
+seller_specs (current spec sheet): {
+  "category_name": "Pressure Booster Pumps",
+  "mcat_id": 20842,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "System Type",
+          "options": [
+            "Single Pump",
+            "Twin Pump",
+            "Triplex Pump",
+            "Multi Pump Set"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Power Rating",
+          "options": [
+            "0.75 hp",
+            "1 hp",
+            "1.5 hp",
+            "2 hp",
+            "3 hp",
+            "5 hp",
+            "7.5 hp",
+            "10 hp"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Max Flow",
+          "options": [
+            "2 m\u00b3/hr",
+            "3 m\u00b3/hr",
+            "5 m\u00b3/hr",
+            "8 m\u00b3/hr",
+            "10 m\u00b3/hr",
+            "15 m\u00b3/hr",
+            "20 m\u00b3/hr",
+            "30 m\u00b3/hr"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Max Head",
+          "options": [
+            "20 m",
+            "30 m",
+            "40 m",
+            "50 m",
+            "60 m",
+            "80 m",
+            "100 m"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Control Type",
+          "options": [
+            "Pressure Switch",
+            "Pressure Transducer",
+            "VFD Control",
+            "Automatic Panel",
+            "Manual Panel"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Pump Brand",
+          "options": [
+            "CRI",
+            "Grundfos",
+            "Kirloskar",
+            "Crompton",
+            "Texmo",
+            "Lubi",
+            "Wilo",
+            "KSB",
+            "V Guard",
+            "Other Brand"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Application",
+          "options": [
+            "Domestic Building",
+            "Commercial Building",
+            "Hospital",
+            "Hotel",
+            "Industrial",
+            "Irrigation"
+          ],
+          "input_type": "multi_select"
+        },
+        {
+          "spec_name": "Tank Included",
+          "options": [
+            "With Tank",
+            "Without Tank"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Pump Type",
+          "options": [
+            "Horizontal Multistage",
+            "Vertical Multistage",
+            "End Suction",
+            "Inline Pump"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 23 specs) ---
+[
+  {
+    "spec_name": "Power",
+    "total_product_count": 74,
+    "example_values": [
+      "1 HP",
+      "1.5 HP",
+      "0.5 HP",
+      "0.9 HP",
+      "2 HP"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 74,
+    "example_values": [
+      "Grundfos",
+      "Crompton",
+      "Kirloskar",
+      "KSB",
+      "Lubi"
+    ]
+  },
+  {
+    "spec_name": "Pressure Tank Capacity",
+    "total_product_count": 26,
+    "example_values": [
+      "24 L",
+      "60 L",
+      "100 L",
+      "16 L",
+      "2 L"
+    ]
+  },
+  {
+    "spec_name": "Pump Type",
+    "total_product_count": 26,
+    "example_values": [
+      "Pressure Booster",
+      "Submersible",
+      "Vertical",
+      "Multi-stage",
+      "Variable Speed"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "total_product_count": 21,
+    "example_values": [
+      "10-4",
+      "Autoset",
+      "C34E518025P11010",
+      "CM",
+      "CM10"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 17,
+    "example_values": [
+      "Hot Water Recirculation",
+      "20 houses",
+      "3rd Floor",
+      "Basement",
+      "Bathrooms and Showers"
+    ]
+  },
+  {
+    "spec_name": "Motor Phase",
+    "total_product_count": 15,
+    "example_values": [
+      "Single Phase",
+      "3 Phase"
+    ]
+  },
+  {
+    "spec_name": "Flow Rate",
+    "total_product_count": 11,
+    "example_values": [
+      "4000 LPH",
+      "17 m",
+      "5000-6000 LPH",
+      "10000 LPH",
+      "133 LPM"
+    ]
+  },
+  {
+    "spec_name": "Head",
+    "total_product_count": 10,
+    "example_values": [
+      "30 m",
+      "15 m",
+      "20 m",
+      "20.3",
+      "47 m"
+    ]
+  },
+  {
+    "spec_name": "Warranty Period",
+    "total_product_count": 7,
+    "example_values": [
+      "1 yr",
+      "2 yr",
+      "18 mo"
+    ]
+  },
+  {
+    "spec_name": "Operating Pressure",
+    "total_product_count": 5,
+    "example_values": [
+      "3 bar",
+      "10 bar",
+      "4 bar",
+      "4-5 bar"
+    ]
+  },
+  {
+    "spec_name": "Pressure",
+    "total_product_count": 5,
+    "example_values": [
+      "10 bar",
+      "150 bar",
+      "3 bar",
+      "4.5 kg",
+      "8-9 kg"
+    ]
+  },
+  {
+    "spec_name": "System Configuration",
+    "total_product_count": 5,
+    "example_values": [
+      "2 Working + 1 Standby",
+      "Double",
+      "Multi-pump",
+      "Single"
+    ]
+  },
+  {
+    "spec_name": "Number of Stages",
+    "total_product_count": 4,
+    "example_values": [
+      "14",
+      "8",
+      "6 stage",
+      "8 stage"
+    ]
+  },
+  {
+    "spec_name": "Material",
+    "total_product_count": 4,
+    "example_values": [
+      "Stainless Steel",
+      "CPVC",
+      "Plastic"
+    ]
+  },
+  {
+    "spec_name": "Inlet/Outlet Size",
+    "total_product_count": 4,
+    "example_values": [
+      "2 in",
+      "3 in",
+      "32",
+      "63 mm"
+    ]
+  },
+  {
+    "spec_name": "Pump Components",
+    "total_product_count": 4,
+    "example_values": [
+      "Adapter",
+      "Motor",
+      "Tank and Motor",
+      "Wire (full set)"
+    ]
+  },
+  {
+    "spec_name": "Drive Type",
+    "total_product_count": 3,
+    "example_values": [
+      "VFD"
+    ]
+  },
+  {
+    "spec_name": "Warranty",
+    "total_product_count": 3,
+    "example_values": [
+      "1 Year",
+      "18 Months"
+    ]
+  },
+  {
+    "spec_name": "Discharge Distance",
+    "total_product_count": 3,
+    "example_values": [
+      "1 km",
+      "250 ft",
+      "400 m"
+    ]
+  },
+  {
+    "spec_name": "Drive/Control",
+    "total_product_count": 3,
+    "example_values": [
+      "Automatic",
+      "Pressure monitoring sensor",
+      "With VFD"
+    ]
+  },
+  {
+    "spec_name": "Model Name",
+    "total_product_count": 3,
+    "example_values": [
+      "5-4",
+      "81 M",
+      "Scala2"
+    ]
+  },
+  {
+    "spec_name": "Tank Configuration",
+    "total_product_count": 3,
+    "example_values": [
+      "Without Tank"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 3 specs) ---
+[
+  {
+    "spec_name": "Model Name",
+    "count": 11,
+    "options": [
+      "Smart Intelligent",
+      "Power SG 350",
+      "Power SG 3",
+      "SG 4",
+      "Power SG 2 Plus"
+    ]
+  },
+  {
+    "spec_name": "Outlet",
+    "count": 5,
+    "options": [
+      "1 Inch"
+    ]
+  },
+  {
+    "spec_name": "Suction Lift",
+    "count": 5,
+    "options": [
+      "6 Metres"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 3 specs) ---
+[
+  {
+    "spec_name": "media",
+    "total_impressions": 1236,
+    "options": [
+      "air",
+      "water"
+    ]
+  },
+  {
+    "spec_name": "usage",
+    "total_impressions": 980,
+    "options": [
+      "home",
+      "shower"
+    ]
+  },
+  {
+    "spec_name": "brand",
+    "total_impressions": 136,
+    "options": [
+      "cri",
+      "servo",
+      "texmo"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (31 specs) ---
+[
+  {
+    "spec_name": "System Type",
+    "spec_fill_rate": "60.2",
+    "product_count": "50"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_fill_rate": "56.6",
+    "product_count": "47"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_fill_rate": "54.2",
+    "product_count": "45"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_fill_rate": "54.2",
+    "product_count": "45"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_fill_rate": "45.8",
+    "product_count": "38"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_fill_rate": "41",
+    "product_count": "34"
+  },
+  {
+    "spec_name": "Application",
+    "spec_fill_rate": "37.3",
+    "product_count": "31"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "37.3",
+    "product_count": "31"
+  },
+  {
+    "spec_name": "Tank Included",
+    "spec_fill_rate": "27.7",
+    "product_count": "23"
+  },
+  {
+    "spec_name": "Pump Type",
+    "spec_fill_rate": "22.9",
+    "product_count": "19"
+  },
+  {
+    "spec_name": "Model Name",
+    "spec_fill_rate": "4.8",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Model",
+    "spec_fill_rate": "3.6",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_fill_rate": "3.6",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Head",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Discharge Capacity",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Material Of Construction",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Working Currecnt",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Membrane Capacity",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Max. Current",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Rated Flow",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Inlet Size",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Max Discharge",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Inlet Pressure",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Working Flow",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "I Deal In",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Body Material",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Working Pressure",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Suction",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Product Brand",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Operating Voltage",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (207 rows) ---
+[
+  {
+    "spec_name": "Working Currecnt",
+    "spec_option_name": "2 Amp",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Frequency",
+    "spec_option_name": "50 Hz",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "I Deal In",
+    "spec_option_name": "New Only",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "Single Phase",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Speed",
+    "spec_option_name": "2800 RPM",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pipe Size (Suction x Delivery)",
+    "spec_option_name": "1\" x 1\"",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Total Head Range",
+    "spec_option_name": "118feet",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Working Flow",
+    "spec_option_name": "2000 Ml/Min",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Max. Current",
+    "spec_option_name": "2.8 Amp",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Ambient Temperature",
+    "spec_option_name": "35 Degree C",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Maximum Suction Head",
+    "spec_option_name": "25feet",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Head",
+    "spec_option_name": "50 m",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pressure Tank Capacity",
+    "spec_option_name": "Without Tank",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "V Guard",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Power Source",
+    "spec_option_name": "Electric",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Inlet Pressure",
+    "spec_option_name": "20 PSI",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Working Pressure",
+    "spec_option_name": "80+7 PSI",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Brand",
+    "spec_option_name": "VH",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Maximum Liquid Temperature",
+    "spec_option_name": "40 Degree C",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Voltage",
+    "spec_option_name": "240 V",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suction",
+    "spec_option_name": "3 Mtr",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Domestic Building",
+    "option_fill_rate": "86.1"
+  },
+  {
+    "spec_name": "Body Material",
+    "spec_option_name": "Cast Iron",
+    "option_fill_rate": "80"
+  },
+  {
+    "spec_name": "System Type",
+    "spec_option_name": "Single Pump",
+    "option_fill_rate": "77.9"
+  },
+  {
+    "spec_name": "Tank Included",
+    "spec_option_name": "With Tank",
+    "option_fill_rate": "76.6"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "Pressure Switch",
+    "option_fill_rate": "76.5"
+  },
+  {
+    "spec_name": "Max Discharge",
+    "spec_option_name": "10 lpm",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Maximum Head",
+    "spec_option_name": "Upto 30 m",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Commercial Building",
+    "option_fill_rate": "64.4"
+  },
+  {
+    "spec_name": "Pump Type",
+    "spec_option_name": "Horizontal Multistage",
+    "option_fill_rate": "57.1"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Industrial",
+    "option_fill_rate": "55.4"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Hotel",
+    "option_fill_rate": "54.5"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Hospital",
+    "option_fill_rate": "53.5"
+  },
+  {
+    "spec_name": "Inlet Size",
+    "spec_option_name": "1 inch",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Material Of Construction",
+    "spec_option_name": "SS 304",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Rated Flow",
+    "spec_option_name": "1.5 lpm",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Operating Voltage",
+    "spec_option_name": "230 V AC",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Inlet Size",
+    "spec_option_name": "0.75 inch",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Membrane Capacity",
+    "spec_option_name": "300 GPD",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Rated Flow",
+    "spec_option_name": "2900 Ml/Min",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "150 psi",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Material Of Construction",
+    "spec_option_name": "Cast Iron",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "Made in India",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Operating Voltage",
+    "spec_option_name": "24 V DC",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Discharge Capacity",
+    "spec_option_name": "3 m\u00c3\u0082\u00c2\u00b3/hr",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Discharge Capacity",
+    "spec_option_name": "5 m\u00c3\u0082\u00c2\u00b3/hr",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "Made In India",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "80 psi",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Membrane Capacity",
+    "spec_option_name": "50 gpd",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Motor Horsepower",
+    "spec_option_name": "0.5 HP",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Maximum Flow Rate",
+    "spec_option_name": "35 LPM",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Maximum Flow Rate",
+    "spec_option_name": "Upto 100 LPM",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Maximum Head",
+    "spec_option_name": "Upto 40 m",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Maximum Flow Rate",
+    "spec_option_name": "Upto 80 LPM",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Irrigation",
+    "option_fill_rate": "31.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "1 hp",
+    "option_fill_rate": "31.4"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "2 m\u00c3\u0082\u00c2\u00b3/hr",
+    "option_fill_rate": "28.9"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "Crompton Mini Champ",
+    "option_fill_rate": "28.6"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "20 m",
+    "option_fill_rate": "28.6"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "KSB Other Model",
+    "option_fill_rate": "28.6"
+  },
+  {
+    "spec_name": "Model Name",
+    "spec_option_name": "Smart Intelligent",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Model Name",
+    "spec_option_name": "Power SG 4",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Max Discharge",
+    "spec_option_name": "40 lpm",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Model Name",
+    "spec_option_name": "Smart Power SG 2 Plus",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Model Name",
+    "spec_option_name": "Smart Power SG 3",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.75 hp",
+    "option_fill_rate": "24.8"
+  },
+  {
+    "spec_name": "Tank Included",
+    "spec_option_name": "Without Tank",
+    "option_fill_rate": "23.4"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "3 m\u00c3\u0082\u00c2\u00b3/hr",
+    "option_fill_rate": "23.1"
+  },
+  {
+    "spec_name": "Motor Horsepower",
+    "spec_option_name": "1.5 HP",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Motor Horsepower",
+    "spec_option_name": "1 HP",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Body Material",
+    "spec_option_name": "Aluminium",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Motor Horsepower",
+    "spec_option_name": "2 HP",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "30 m",
+    "option_fill_rate": "18.8"
+  },
+  {
+    "spec_name": "Pump Type",
+    "spec_option_name": "Vertical Multistage",
+    "option_fill_rate": "18.6"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "Hathi 50",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "Crompton Booster",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "Crompton Mini Series",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Crompton",
+    "option_fill_rate": "13.2"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Grundfos",
+    "option_fill_rate": "12.3"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "Automatic Panel",
+    "option_fill_rate": "12.2"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Wilo",
+    "option_fill_rate": "11.4"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "40 m",
+    "option_fill_rate": "10.7"
+  },
+  {
+    "spec_name": "System Type",
+    "spec_option_name": "Multi Pump Set",
+    "option_fill_rate": "10.3"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "10 m\u00c3\u0082\u00c2\u00b3/hr",
+    "option_fill_rate": "9.9"
+  },
+  {
+    "spec_name": "System Type",
+    "spec_option_name": "Twin Pump",
+    "option_fill_rate": "9.6"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "CRI",
+    "option_fill_rate": "9.6"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "8 m\u00c3\u0082\u00c2\u00b3/hr",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "50 m",
+    "option_fill_rate": "8.9"
+  },
+  {
+    "spec_name": "Pump Type",
+    "spec_option_name": "Inline Pump",
+    "option_fill_rate": "8.6"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "1.5 hp",
+    "option_fill_rate": "7.3"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Kirloskar",
+    "option_fill_rate": "7"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "5 m\u00c3\u0082\u00c2\u00b3/hr",
+    "option_fill_rate": "6.6"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Other Brand",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "20 m\u00c3\u0082\u00c2\u00b3/hr",
+    "option_fill_rate": "5.8"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "15 m\u00c3\u0082\u00c2\u00b3/hr",
+    "option_fill_rate": "5.8"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "2 hp",
+    "option_fill_rate": "5.8"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "30 m\u00c3\u0082\u00c2\u00b3/hr",
+    "option_fill_rate": "5"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "100 m",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "80 m",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Pump Type",
+    "spec_option_name": "Self Priming",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Domestic",
+    "option_fill_rate": "4"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "133M",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "5 hp",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "60 m",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "HYDROPLUS INTERNATIONAL",
+    "option_fill_rate": "3.5"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "HYZEN",
+    "option_fill_rate": "3.5"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Skyboost",
+    "option_fill_rate": "3.5"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.5 hp",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Pump Type",
+    "spec_option_name": "Booster Pump",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Pump Type",
+    "spec_option_name": "End Suction",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Pump Type",
+    "spec_option_name": "Self-Priming Monoblock",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "15 m",
+    "option_fill_rate": "2.7"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "83M",
+    "option_fill_rate": "2.7"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "Pressure Transducer",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "Manual Panel",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "3 hp",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.25 hp",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.5HP",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Water Supply",
+    "option_fill_rate": "2"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Fire Fighting",
+    "option_fill_rate": "2"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "217M",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Hasper technology",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Lubi",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "skyboost",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "AQUALAND",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Madhuram",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "Fixed Speed",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "10 hp",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.5 HP",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Pump Type",
+    "spec_option_name": "Inline Booster",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Pump Type",
+    "spec_option_name": "Diaphragm Pump",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Sewage Handling",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Bungalow",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Farm House",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Small Hotel",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Overhead Tank",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Building Services",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "SHARP FLOW & LAKSHMI",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "Booster pump",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "10m-40m",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "9 M",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "GLOBAL",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "35 M",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "KSB",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "72 metre",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "VFD Control",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "ANM",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "5 mm",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Glayce",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "crompton,ksb & kirloskar",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Btali",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Hyzen",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "All Brand",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "blueshell",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "V Guard",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Taro",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Kuzhali",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "HAVELLS",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "skyboost pressure pump",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "APEX PUMPS",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "35 m",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Pew make",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Silver",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Texmo",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "TAK HYDRO AND ASGO",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "Plug and Play",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "Auto",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "Manual",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "SKYBOOST",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "10 m",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "all max head",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Brand Fox",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "Cosmo pumps",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "27 m",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Pump Brand",
+    "spec_option_name": "ALGO",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "52m",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Head",
+    "spec_option_name": "33M",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "2500 litres / hour",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "200 LPM",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "750 lph",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "26 L/min",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "2310LPH",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "All max flow",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Max Flow",
+    "spec_option_name": "7000 litre/hr",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "1100 ml mint",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "System Type",
+    "spec_option_name": "Self Priming Regenerative Pump with Hydro-Pneumatic Pressure Tank",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "7.5 hp",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "System Type",
+    "spec_option_name": "Pressure Booster Pump",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "120 W",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.8HP",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.25 HP",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.5",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "18 W",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "1.25HP",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.35 hp",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.5 to 1HP",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "All  power ratings",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "1500 w",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.5Hp",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "24v dc",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "370 W",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.5 HP (0.37 kW)",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "2 HP (1.5 kW)",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "Up to 2 hp",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "System Type",
+    "spec_option_name": "Booster Pump",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "2.5",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.6hp",
+    "option_fill_rate": "0.7"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_search_analysis) ---
+# Buyer Search Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer Search Data output — use this document to understand
+what impression counts mean, how to classify each search signal, and how to use
+search findings in your audit decisions. You apply this interpretation yourself —
+no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer search data contains spec-option combinations that buyers selected as filters
+when searching the marketplace, along with impression counts showing how many times
+each filter was used. When a buyer clicks "Thickness: 3mm" as a search filter, that
+generates one impression for that spec-option combination.
+
+
+This data tells you what buyers actively want to narrow their search by. High
+impressions mean many buyers are expressing demand for this attribute as a filter.
+It is your most direct measure of buyer intent on the platform.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The name of the spec buyers used as a filter. May not match the platform spec name
+exactly — use semantic matching, not exact string matching. "Wattage" and "Power"
+refer to the same buyer intent.
+
+
+**spec_option / option value**
+The specific value buyers filtered by. Values appearing here but absent from your
+current option list are strong candidates for addition.
+
+
+**impression / total_impressions**
+How many times buyers used this spec-option combination as a filter. Your primary
+signal from this data source. Higher = more buyer demand.
+
+
+---
+
+
+## How to read impression counts — orientation thresholds
+
+
+These are not hard rules — calibrate relative to the distribution in your category.
+
+
+| Total impressions for a spec | Signal strength |
+|-----------------------------|-----------------|
+| Below 50 | Noise — do not act on this alone |
+| 50 to 500 | Weak — needs corroboration from another source |
+| 500 to 2000 | Moderate — worth investigating, check for artifacts |
+| Above 2000 | Strong — genuine buyer demand |
+
+
+A spec with 200 impressions that also appears in call data is stronger evidence than
+a spec with 1000 impressions that has zero product count and looks like a UI default.
+Always cross-reference.
+
+
+---
+
+
+## The two types of specs in search data
+
+
+**Present specs** — Buyers are using a spec the platform already has. High impressions
+for a present spec validate that it belongs where it is. Very high impressions for a
+present Tertiary spec is a signal it may be misplaced.
+
+
+**Missing specs** — Buyers are filtering on an attribute the platform does not offer
+as a standardised spec. These are discovery gaps — buyers are either finding no
+results or settling for imprecise results. High-value candidates for addition.
+
+
+Use semantic matching when classifying — "Wattage" is present if the platform has
+"Power". The buyer intent is the same regardless of the label difference.
+
+
+---
+
+
+## Signal classification — apply to every search spec before acting
+
+
+Not every high-impression term should become a spec. Classify first:
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute, impressions ≥ 50, not already covered | Addition candidate |
+| `CONTEXT_TERM` | A word describing context or setting, not a filterable attribute | Do not add |
+| `IMPLIED` | Category name already defines this value for every product | Do not add — artifact |
+| `DUPLICATE` | Semantically same as an existing platform spec under a different name | Do not add — already covered |
+| `NOT_A_PRODUCT_SPEC` | Delivery, payment, warranty, MOQ | Do not add |
+| `DATA_ARTIFACT` | One option has over 90% of impressions, or known default UI filter | Do not promote based on this alone |
+
+
+**Category-implied check — apply every time:**
+If the category name itself tells you the value of this spec for every product,
+buyer impressions are an artifact. Example: buyers searching "Material: Aluminium"
+in an Aluminium Profiles category are not expressing a new spec need. Every product
+is already aluminium. The impressions come from the filter existing, not from genuine
+buyer differentiation need.
+
+
+**Data artifact check — apply when impressions look disproportionate:**
+- Does one option account for over 90% of total impressions for this spec?
+- Is this likely a default filter the platform pre-selects for buyers?
+- Does product count in call data = 0 despite very high impressions?
+
+
+If yes to any of these, tag as `DATA_ARTIFACT` and do not promote based on this signal.
+
+
+---
+
+
+## How to use search data in your audit
+
+
+**Finding discovery gaps**
+Search for specs classified as missing with impressions above 50. These are attributes
+buyers want to filter on but the platform does not offer. High-priority addition
+candidates. Cross-reference with call data and custom specs before adding.
+
+
+**Validating tier placement**
+A spec currently in Tertiary with thousands of impressions is almost certainly
+misplaced. Bring this signal into your sequencing reasoning alongside fill rate
+and product count.
+
+
+**Finding option gaps**
+When buyers filter by a specific value that does not exist in the current option list,
+that is a direct signal to add that option. Example: "48V" appearing in search but
+absent from the Voltage spec options. Bring to your option validation reasoning with
+this as evidence.
+
+
+**Cross-source confirmation**
+A spec appearing as missing in search AND in call data is confirmed from both the
+demand side (buyers want to filter) and the transactional side (buyers and sellers
+discuss it). This combination reaches high confidence for addition.
+
+
+---
+
+
+## What search data cannot tell you alone
+
+
+**Whether a spec is genuinely missing** — High impressions may reflect an artifact,
+a context term, or a spec that already exists under a different name. Always classify
+before acting.
+
+
+**Final tier placement** — Impressions are one of three signals. You need fill rate
+ and product count  to make a well-supported tier decision.
+
+
+**Option quality** — Search data shows which values buyers look for, not whether your
+current option list is structurally correct. Use these values as evidence in your
+option validation reasoning.
+
+
+**Why impressions are high** — Search data shows that buyers filtered on something,
+not why. A spec with 5000 impressions could be a genuinely important attribute or
+a default UI filter every buyer sees. Investigate before acting.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Spec Validation and Definition 
+
+
+## What this skill is for
+
+When candidate missing specs have been surfaced by the Buyer-Seller Call, Custom Spec,
+or Buyer Search skills — read this document. It gives you the framework to
+validate whether each candidate is a genuine new spec or a false positive, and
+if genuine, define it completely and  correctly for the Indian B2B marketplace.
+
+---
+
+## Step 1 — Validate: Is this a genuine new spec?
+
+A candidate missing spec is genuine only if all three of the following are true:
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same
+real-world attribute, even approximately, the candidate is not a gap.
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+---
+
+## Common false positives — check these before acting
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common
+synonym.
+
+Common equivalences in Indian B2B:
+
+| These terms often mean the same thing |
+|---------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Size / Dimensions / Measurement / Specification |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade ||
+
+**Composite attributes**
+Some candidates are natural-language composites. "10mm HDPE pipe" → "10mm" is
+not a new Diameter spec if Dimensions already exists.
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+**Multiple candidates meaning the same thing**
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning. "Usage" from custom specs + "Application" from call data + "End Use"
+from search → one spec, not three. Pick the most standard name and add once.
+
+One underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+---
+
+## Step 2 — Define: Build the spec completely
+
+Once a candidate passes validation, define it fully across four elements.
+
+### Spec Name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+### Input Type
+
+**`text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+**`radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+- Boolean attributes where the only meaningful values are Yes and No
+  (e.g. ISI Certified, Waterproof, Fire Resistant). Options: `["Yes", "No"]`
+
+**`multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → `multi_select`
+
+
+### Options — How to Generate Them
+
+Draw from example values in call data, custom spec submissions, and search
+option values. When data values are sparse, inconsistent, or absent, generate
+the full option set from Indian B2B market knowledge for this category and spec.
+
+**Understanding option values from data sources:**
+
+Option values surfaced by the data source skills vary significantly in quality.
+Here is what each quality level looks like and what it tells you:
+
+| Data Quality | What it looks like |
+|---|---|
+| Clean and consistent | Values are specific, formatted, and repeated across sources — reliable signal for what the real market options are |
+| Mixed quality | Some specific values mixed with vague or inconsistently formatted ones — the specific values are the signal; the rest is noise |
+| 1–2 values only | Too sparse to define the full option set — useful for confirming what the spec means, but market knowledge is needed to complete the list |
+| Completely messy | No usable signal — generate entirely from Indian B2B market knowledge |
+| Empty | No data at all — generate entirely from Indian B2B market knowledge |
+| Contains NA / Other / Custom | These are non-values — ignore them and treat the remaining data at its actual quality level |
+
+**Quality rules for new option to be created:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only
+2. **No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose**
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz.
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+5. Ideally the option count should be limited to 10 most common options 
+
+**Formatting rules:**
+1. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+2. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+3. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm
+4. Categorical options by frequency — most common in Indian market first
+5. Use ISI/BIS standards where applicable
+6. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+7. Do not use range options unless they are the market standard for this spec
+
+### Tier Placement
+
+All new specs are added as Tertiary. Sequencing reasoning determines the final
+tier based on actual signal data.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 6) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

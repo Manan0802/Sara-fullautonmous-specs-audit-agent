@@ -1,0 +1,172 @@
+{
+  "pmcat_id": 42518,
+  "pmcat_name": "Garlic",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Dehydrated Garlics",
+      "mcat_id": 12737,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Form",
+              "options": [
+                "Powder",
+                "Flakes",
+                "Granules",
+                "Minced",
+                "Chopped",
+                "Cloves",
+                "Whole"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Size",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Quality Grade",
+              "options": [
+                "A-Grade",
+                "B-Grade",
+                "Premium Quality",
+                "Commercial Grade",
+                "Standard Quality"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Color",
+              "options": [
+                "Creamy White",
+                "White",
+                "Brownish"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Processing Type",
+              "options": [
+                "Dehydrated",
+                "Toasted",
+                "Fried",
+                "Roasted"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Variety",
+              "options": [
+                "Indian",
+                "Chinese",
+                "G-41 (Agrifound White)",
+                "G-282 (Yamuna Safed-3)",
+                "G-50 (Yamuna Safed-2)",
+                "Phule Baswant",
+                "Red Garlic",
+                "Ooty"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Moisture Content",
+              "options": [
+                "Upto 4%",
+                "Upto 5%",
+                "Upto 6%",
+                "Upto 7%",
+                "Upto 8%"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Organic",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Sorting & Purity",
+              "options": [
+                "Sortex Cleaned",
+                "Machine Cleaned",
+                "Hand Sorted",
+                "Unsorted"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Origin",
+              "options": [
+                "Madhya Pradesh",
+                "Rajasthan",
+                "Gujarat",
+                "Uttar Pradesh",
+                "Maharashtra",
+                "Punjab",
+                "Haryana"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Packaging Size",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Packaging Type",
+              "options": [
+                "Paper Bag",
+                "HDPE Bag",
+                "PP Bag",
+                "Carton Box",
+                "Jute Bag",
+                "Loose"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Shelf Life",
+              "options": [
+                "6 Months",
+                "9 Months",
+                "12 Months",
+                "18 Months",
+                "24 Months"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Certifications",
+              "options": [
+                "FSSAI",
+                "ISO",
+                "HACCP",
+                "HALAL",
+                "KOSHER",
+                "US FDA",
+                "BRC",
+                "APEDA"
+              ],
+              "input_type": "multi_select"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

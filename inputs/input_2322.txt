@@ -1,0 +1,1964 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+### Tool 4: Fetch DS5 Data
+
+[FETCH_DS5] — loads Option Fill Rate data on demand. 
+Use only when you need to validate specific option values.
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 2322
+category_name: PLC
+seller_specs (current spec sheet): {
+  "category_name": "PLC",
+  "mcat_id": 2322,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Brand Name",
+          "options": [
+            "Siemens",
+            "Mitsubishi",
+            "Allen-Bradley",
+            "Omron",
+            "Delta",
+            "LS Electric",
+            "Schneider Electric",
+            "Fatek",
+            "GIC",
+            "Wago"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Prefix",
+          "affix_presence_flag": "1"
+        },
+        {
+          "spec_name": "PLC Type",
+          "options": [
+            "Compact (Brick)",
+            "Modular",
+            "Smart Relay (Logo)"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "1"
+        },
+        {
+          "spec_name": "Total I/O Points",
+          "options": [
+            "10",
+            "14",
+            "16",
+            "20",
+            "24",
+            "28",
+            "32",
+            "40",
+            "60",
+            "64"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Brand Name is consistently the first filter for buyers. PLC Type is a fundamental categorization that dictates architecture, scalability, and cost. Total I/O Points is a primary technical and commercial specification, especially for compact PLCs, directly correlating to size, capability, and price."
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Output Type",
+          "options": [
+            "Relay",
+            "Transistor (Sink)",
+            "Transistor (Source)"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Communication Protocol",
+          "options": [
+            "Modbus RTU",
+            "Ethernet/IP",
+            "Modbus TCP/IP",
+            "Profinet",
+            "Profibus-DP",
+            "CANopen",
+            "DeviceNet"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Number of Analog Inputs",
+          "options": [
+            "None",
+            "2",
+            "4",
+            "6",
+            "8"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Output Type is a critical functional decision for load versatility and high-speed applications. Communication Protocol is paramount for modern connectivity with other devices like HMIs and SCADA. Number of Analog Inputs is a key differentiator for applications involving measurement."
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Number of Analog Outputs",
+          "options": [
+            "None",
+            "1",
+            "2",
+            "4"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Mounting Type",
+          "options": [
+            "DIN Rail",
+            "Panel Mount"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Power Supply",
+          "options": [
+            "24 VDC",
+            "100-240 VAC"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Programming Interface",
+          "options": [
+            "USB",
+            "Ethernet",
+            "RS-232",
+            "RS-485"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Number of Analog Outputs is crucial for controlling proportional valves or VFD speeds. Mounting Type is a standard but necessary detail for panel builders. Power Supply is a fundamental electrical requirement. Programming Interface is relevant for PC connectivity and compatibility."
+    }
+  },
+  "scratchpad": "The selection and tiering of PLC specifications are based on their commercial significance, frequency of mention in user conversations, and prominence in technical documentation. Primary specs are top-level filters, Secondary specs are critical functional choices, and Tertiary specs are necessary supplementary details for a complete product profile."
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 24 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "total_product_count": 185,
+    "example_values": [
+      "AMS Motion",
+      "Allen Bradley",
+      "BCNET",
+      "Control Technic",
+      "Delta"
+    ]
+  },
+  {
+    "spec_name": "Model Number",
+    "total_product_count": 154,
+    "example_values": [
+      "11R",
+      "1214",
+      "1215C",
+      "1221/2121",
+      "12SS2"
+    ]
+  },
+  {
+    "spec_name": "Series",
+    "total_product_count": 118,
+    "example_values": [
+      "11T",
+      "1746",
+      "1766",
+      "1769",
+      "3U"
+    ]
+  },
+  {
+    "spec_name": "Device Type",
+    "total_product_count": 74,
+    "example_values": [
+      "3G",
+      "Analog Card",
+      "Analog Combination Module",
+      "Analog Input",
+      "Broad"
+    ]
+  },
+  {
+    "spec_name": "Output Type",
+    "total_product_count": 31,
+    "example_values": [
+      "Analog Output",
+      "Relay",
+      "Sink Output",
+      "Transistor"
+    ]
+  },
+  {
+    "spec_name": "Number of Digital Outputs",
+    "total_product_count": 28,
+    "example_values": [
+      "1",
+      "10",
+      "12",
+      "16",
+      "18"
+    ]
+  },
+  {
+    "spec_name": "Number of Digital Inputs",
+    "total_product_count": 26,
+    "example_values": [
+      "10",
+      "12",
+      "16",
+      "24",
+      "4"
+    ]
+  },
+  {
+    "spec_name": "Connector Type",
+    "total_product_count": 25,
+    "example_values": [
+      "20 pin",
+      "8 Pin Round",
+      "9 Pin Female",
+      "9-hole round",
+      "D-connector"
+    ]
+  },
+  {
+    "spec_name": "Condition",
+    "total_product_count": 22,
+    "example_values": [
+      "New",
+      "Used"
+    ]
+  },
+  {
+    "spec_name": "Total I/O Points",
+    "total_product_count": 22,
+    "example_values": [
+      "14",
+      "16",
+      "20",
+      "24",
+      "32"
+    ]
+  },
+  {
+    "spec_name": "Communication Interface",
+    "total_product_count": 15,
+    "example_values": [
+      "ENET/IP",
+      "Ethernet",
+      "LAN",
+      "MPI/PPI",
+      "PPI"
+    ]
+  },
+  {
+    "spec_name": "Input Voltage",
+    "total_product_count": 10,
+    "example_values": [
+      "100-240 V AC",
+      "220 V",
+      "24 V DC",
+      "AC",
+      "DC unknown"
+    ]
+  },
+  {
+    "spec_name": "Number of Analog Inputs",
+    "total_product_count": 8,
+    "example_values": [
+      "2",
+      "4",
+      "6",
+      "8"
+    ]
+  },
+  {
+    "spec_name": "Cable Length",
+    "total_product_count": 6,
+    "example_values": [
+      "1.5 m",
+      "2 meter",
+      "2.5-3 m",
+      "2.93 m",
+      "3 m"
+    ]
+  },
+  {
+    "spec_name": "Color",
+    "total_product_count": 5,
+    "example_values": [
+      "Black",
+      "White"
+    ]
+  },
+  {
+    "spec_name": "Compatible PLC Model",
+    "total_product_count": 4,
+    "example_values": [
+      "FX 5U",
+      "S7-200",
+      "S7-300"
+    ]
+  },
+  {
+    "spec_name": "Compatible PLC Series",
+    "total_product_count": 4,
+    "example_values": [
+      "FX PLC",
+      "FX Series",
+      "SLC 500",
+      "Twido PLC"
+    ]
+  },
+  {
+    "spec_name": "Input Type",
+    "total_product_count": 4,
+    "example_values": [
+      "Analog",
+      "Thermocouple",
+      "VL DC VAC"
+    ]
+  },
+  {
+    "spec_name": "Configuration",
+    "total_product_count": 3,
+    "example_values": [
+      "DC/DC/DC",
+      "Non-Redundancy"
+    ]
+  },
+  {
+    "spec_name": "Connector Gender",
+    "total_product_count": 3,
+    "example_values": [
+      "Female",
+      "Male"
+    ]
+  },
+  {
+    "spec_name": "Device Compatibility",
+    "total_product_count": 3,
+    "example_values": [
+      "14SS2",
+      "L16ER PLC",
+      "Servo Motor"
+    ]
+  },
+  {
+    "spec_name": "Number of Analog Outputs",
+    "total_product_count": 3,
+    "example_values": [
+      "2",
+      "8 Channel"
+    ]
+  },
+  {
+    "spec_name": "Number of Pins",
+    "total_product_count": 3,
+    "example_values": [
+      "20",
+      "8 pin"
+    ]
+  },
+  {
+    "spec_name": "Warranty",
+    "total_product_count": 3,
+    "example_values": [
+      "1 year",
+      "6 months"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "Series",
+    "count": 13,
+    "options": [
+      "XDH Series",
+      "XG2 Series",
+      "XSF5 Series",
+      "XSLH Series",
+      "XSDH Series"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "count": 12,
+    "options": [
+      "2MLF-RD8A",
+      "M500",
+      "M100",
+      "M200",
+      "M300"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "brand",
+    "total_impressions": 152,
+    "options": [
+      "devanshi",
+      "gic",
+      "hcfa",
+      "porcheson",
+      "rockwell"
+    ]
+  },
+  {
+    "spec_name": "manufacturer series",
+    "total_impressions": 123,
+    "options": [
+      "logo",
+      "micrologix 1100",
+      "pet 2214",
+      "s7 1200",
+      "versamax"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (51 specs) ---
+[
+  {
+    "spec_name": "Brand Name",
+    "spec_fill_rate": "52.5",
+    "product_count": "52"
+  },
+  {
+    "spec_name": "Total I/O Points",
+    "spec_fill_rate": "47.5",
+    "product_count": "47"
+  },
+  {
+    "spec_name": "Output Type",
+    "spec_fill_rate": "46.5",
+    "product_count": "46"
+  },
+  {
+    "spec_name": "PLC Type",
+    "spec_fill_rate": "45.5",
+    "product_count": "45"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_fill_rate": "44.4",
+    "product_count": "44"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "42.4",
+    "product_count": "42"
+  },
+  {
+    "spec_name": "Number of Analog Inputs",
+    "spec_fill_rate": "41.4",
+    "product_count": "41"
+  },
+  {
+    "spec_name": "Communication Protocol",
+    "spec_fill_rate": "40.4",
+    "product_count": "40"
+  },
+  {
+    "spec_name": "Programming Interface",
+    "spec_fill_rate": "37.4",
+    "product_count": "37"
+  },
+  {
+    "spec_name": "Power Supply",
+    "spec_fill_rate": "36.4",
+    "product_count": "36"
+  },
+  {
+    "spec_name": "Number of Analog Outputs",
+    "spec_fill_rate": "33.3",
+    "product_count": "33"
+  },
+  {
+    "spec_name": "Series",
+    "spec_fill_rate": "6.1",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "5.1",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_fill_rate": "5.1",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Control Method",
+    "spec_fill_rate": "5.1",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Output Frequency",
+    "spec_fill_rate": "5.1",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Model",
+    "spec_fill_rate": "5.1",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_fill_rate": "5.1",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_fill_rate": "5.1",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Number of Digital Outputs (DO)",
+    "spec_fill_rate": "2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Supply Voltage",
+    "spec_fill_rate": "2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_fill_rate": "2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Number of Analog Outputs (AO)",
+    "spec_fill_rate": "2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Product Series",
+    "spec_fill_rate": "2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Number of Digital Inputs (DI)",
+    "spec_fill_rate": "2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Number of Analog Inputs (AI)",
+    "spec_fill_rate": "2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Work Memory",
+    "spec_fill_rate": "2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Fiber type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "MODLE",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Flow Range",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Line size",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Fiber length",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Sensor type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Min bend radius",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Display Type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Temperature range",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Sheath material",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Tip shape",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Supply voltage",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Serial",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Output type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Medium Type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Mounting type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Flow range",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Core dia",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "SERIES",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Enclosure Rating",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Medium",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Operating Temperature",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "MAKE",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data ---
+Not pre-loaded. Use [FETCH_DS5] to load when needed.
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Spec Validation and Definition 
+
+
+## What this skill is for
+
+When candidate missing specs have been surfaced by the Buyer-Seller Call, Custom Spec,
+or Buyer Search skills — read this document. It gives you the framework to
+validate whether each candidate is a genuine new spec or a false positive, and
+if genuine, define it completely and  correctly for the Indian B2B marketplace.
+
+---
+
+## Step 1 — Validate: Is this a genuine new spec?
+
+A candidate missing spec is genuine only if all three of the following are true:
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same
+real-world attribute, even approximately, the candidate is not a gap.
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+---
+
+## Common false positives — check these before acting
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common
+synonym.
+
+Common equivalences in Indian B2B:
+
+| These terms often mean the same thing |
+|---------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Size / Dimensions / Measurement / Specification |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade ||
+
+**Composite attributes**
+Some candidates are natural-language composites. "10mm HDPE pipe" → "10mm" is
+not a new Diameter spec if Dimensions already exists.
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+**Multiple candidates meaning the same thing**
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning. "Usage" from custom specs + "Application" from call data + "End Use"
+from search → one spec, not three. Pick the most standard name and add once.
+
+One underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+---
+
+## Step 2 — Define: Build the spec completely
+
+Once a candidate passes validation, define it fully across four elements.
+
+### Spec Name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+### Input Type
+
+**`text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+**`radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+- Boolean attributes where the only meaningful values are Yes and No
+  (e.g. ISI Certified, Waterproof, Fire Resistant). Options: `["Yes", "No"]`
+
+**`multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → `multi_select`
+
+
+### Options — How to Generate Them
+
+Draw from example values in call data, custom spec submissions, and search
+option values. When data values are sparse, inconsistent, or absent, generate
+the full option set from Indian B2B market knowledge for this category and spec.
+
+**Understanding option values from data sources:**
+
+Option values surfaced by the data source skills vary significantly in quality.
+Here is what each quality level looks like and what it tells you:
+
+| Data Quality | What it looks like |
+|---|---|
+| Clean and consistent | Values are specific, formatted, and repeated across sources — reliable signal for what the real market options are |
+| Mixed quality | Some specific values mixed with vague or inconsistently formatted ones — the specific values are the signal; the rest is noise |
+| 1–2 values only | Too sparse to define the full option set — useful for confirming what the spec means, but market knowledge is needed to complete the list |
+| Completely messy | No usable signal — generate entirely from Indian B2B market knowledge |
+| Empty | No data at all — generate entirely from Indian B2B market knowledge |
+| Contains NA / Other / Custom | These are non-values — ignore them and treat the remaining data at its actual quality level |
+
+**Quality rules for new option to be created:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only
+2. **No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose**
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz.
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+5. Ideally the option count should be limited to 10 most common options 
+
+**Formatting rules:**
+1. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+2. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+3. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm
+4. Categorical options by frequency — most common in Indian market first
+5. Use ISI/BIS standards where applicable
+6. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+7. Do not use range options unless they are the market standard for this spec
+
+### Tier Placement
+
+All new specs are added as Tertiary. Sequencing reasoning determines the final
+tier based on actual signal data.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(common digital input output numbers for compact PLC India) ---
+{
+  "query": "common digital input output numbers for compact PLC India",
+  "results": [
+    {
+      "title": "4 fundamentals for selecting the best PLC for your needs",
+      "url": "https://www.idec.com/en-in/blog/4-steps-select-best-plc-smart-automation",
+      "excerpt": "WebSearchResult(url='https://www.idec.com/en-in/blog/4-steps-select-best-plc-smart-automation', excerpts=['Jan 29, 2026 \u00b7 1. Inputs: devices that keep the PLC informed \u00b7 0-10V DC current signals \u00b7 0-20mA current signals \u00b7 4-20mA current signals \u00b7 Resistance temperature'], publish_date=None, title='4 fundamentals for selecting the best PLC for your needs')"
+    },
+    {
+      "title": "Understanding Digital Inputs and Outputs for PLCs - PLCTalk.net",
+      "url": "https://www.plctalk.net/technical-articles/understanding-digital-inputs-and-outputs-for-plcs/",
+      "excerpt": "WebSearchResult(url='https://www.plctalk.net/technical-articles/understanding-digital-inputs-and-outputs-for-plcs/', excerpts=['[](https://www.plctalk.net/)\\n\\n* \\n* [Join](https://www.plctalk.net/forums/register/)\\n  \\n  \\n  \\n  Join the Community\\n  \\n* * *\\n  \\n   \\n* * * *\\n  \\n  SIGN UP FOR OUR NEWSLETTER\\n  \\n  Register\\n\\nMain Menu\\n\\n* * *\\n\\n* Home\\n* Explore\\n  \\n  Categories\\n  \\n    * * *\\n  \\n    + PLCs and IPCs\\n    + Comm and Networking\\n    + HMI and SCADA\\n    + Motion and Motor Control\\n    + Peripheral Hardware\\n    + Programming and Software\\n    + Troubleshooting\\n  \\n  View all\\n  \\n  Content\\n  \\n    * * *\\n  \\n    + News\\n    + Technical Articles\\n* Articles\\n  \\n    + Latest\\n    + News\\n    + Technical Articles\\n* Forums\\n* Education\\n  \\n    + Textbook\\n    + Technical Articles\\n* Contact Us\\n\\n \\n\\nSearch...\\n\\n[](https://www.plctalk.net/)\\n\\nTechnical Articles\\n\\n## Understanding Digital Inputs and Outputs for PLCs\\n\\n* \\n* 3\\n\\n* Home\\n* Technical Articles\\n* Understanding Digital Inputs and Outputs for PLCs\\n\\nFeatured Resource\\n[News #### Wieland Electric Introduces Screw and Push-In DIN-Rail Terminal Block Series The Selos New Generation terminal blocks integrate push-in and screw connection technologies with digital planning tools to streamline control cabinet design and assembly. News](https://www.plctalk.net/news/wieland-electric-introduces-screw-and-push-in-din-rail-terminal-block-series)\\n\\n# Understanding Digital Inputs and Outputs for PLCs\\n\\nDigital signals, those that deal only with on/off information, are critical for PLCs, being by far the most common format for data shared with field device inputs and outputs.\\n\\n* * *\\n\\nTechnical Articles Sep 04, 2025 by Kelvin Findlay\\n\\n[](https://www.facebook.com/profile.php?id=61575145831496) [](https://x.com/plctalk/) [](https://www.linkedin.com/company/plc-talk/)\\n\\n* * *\\n\\nPerhaps the single most common signal used in industrial automation is a simple, binary, discrete electrical current.\\nOf all the communication protocols, buses, data packets, and continuous signals, none is more foundational or universal than the \u201con/off\u201d value given and received by a host of automation controllers and appliances. Digital inputs and outputs serve as the old faithful of industrial signals.\\n\\nExamples of how digital inputs and outputs are used vary wildly, from knowing the operating status of machinery to counting packaged goods as they roll down a conveyor. They provide start/stop commands, alarm status, flow rates, and threshold data for temperature, pressure, level, and more. They\u2019re also used between PLCs and controllers for simple relay automation, error codes, and data logging.\\n\\nUnderstanding digital inputs and outputs is absolutely critical in the quest to master automation design, implementation, and maintenance. This article serves as a deep, but ultimately limited dive into discrete digital signals, their proper use, and some of the most important wiring considerations.\\n### What are Digital Inputs and Outputs?\\n\\nDigital inputs detect a low current, typically measured at just a few milliamps. The input is the receiving device, reading the signal that comes from the peripheral device. Digital inputs are found on I/O modules that are either standalone or integrated into a controller device such as a PLC or similar smart module.\\n\\n##### _**Figure 1.** A selection of digital I/O devices and modules._\\n\\nDigital inputs are, perhaps, the most significant components of a control system due to the sheer number of digital signalling devices, such as:\\n\\n* Sensors: limit switches, counters, float switches, and more\\n* Machinery and electrical device contacts for status signals\\n* I/O modules for signal mirroring or logic-based commands\\n* Alarm systems for status alerts\\n\\nA digital output is the opposite of the input, where the PLC is the origin of the signal.\\n ... \\nsourcing can sound a lot like dry vs. wet, but the two concepts are independent from each other. Sinking and sourcing refer to the directional flow of electricity to complete a circuit, where wet simply states that power is provided and dry states that it is isolated from a current.\\n\\n##### _**Figure 3.** This input module is sourcing, since the power supply symbol at the bottom indicates that common power is supplied by each PLC terminal._\\n\\n### What is a Configurable Digital I/O?\\n\\nThese special digital I/Os are distinct from inputs and outputs because they can operate as either one, typically user-configurable on a smart I/O module. A digital I/O will be strictly a low voltage device, sending control signals only. These are preferable in many monitoring and control applications because of the flexibility. The same module can be used in a variety of situations because of its programmability.\\n\\n### Common Use Cases'], publish_date='2025-10-10', title='Understanding Digital Inputs and Outputs for PLCs - PLCTalk.net')"
+    },
+    {
+      "title": "4 Digital Input / Output PLCs | element14 India",
+      "url": "https://in.element14.com/c/automation-process-control/process-controllers-programmers-indicators/programmable-logic-controllers-plcs/digital-input-output-plcs?no-of-digital-inputs=4",
+      "excerpt": "WebSearchResult(url='https://in.element14.com/c/automation-process-control/process-controllers-programmers-indicators/programmable-logic-controllers-plcs/digital-input-output-plcs?no-of-digital-inputs=4', excerpts=['Manufacturer. CARLO GAVAZZI(1)CROUZET(4)EATON MOELLER(8)IDEC(1)SCHNEIDER ELECTRIC(1)WAGO(1) ; No. of Digital Inputs. 1. 2(2)3(1)46(2)8(21)14(1)'], publish_date=None, title='4 Digital Input / Output PLCs | element14 India')"
+    },
+    {
+      "title": "Digital Inputs and Outputs - PLC Basics Part 3 - YouTube",
+      "url": "https://www.youtube.com/watch?v=rX9htLgvBFs",
+      "excerpt": "WebSearchResult(url='https://www.youtube.com/watch?v=rX9htLgvBFs', excerpts=[\"Mar 12, 2021 \u00b7 Welcome to the ES&E PLC Basics Series. The following materials are presented by Hayden Ireland and Eric Hanley, ES&E's Automation,\\xa0...\"], publish_date=None, title='Digital Inputs and Outputs - PLC Basics Part 3 - YouTube')"
+    },
+    {
+      "title": "CPM2C Compact PLC series/Specifications - Omron Automation India",
+      "url": "https://www.omron-ap.co.in/products/family/1652/specification.html",
+      "excerpt": "WebSearchResult(url='https://www.omron-ap.co.in/products/family/1652/specification.html', excerpts=['CPU Unit Input Specifications ; ON voltage/ current \u00b7 OFF voltage/ current ; IN00000 to IN00001:17 V DC min., 5 mA. IN00002 and up:14.4 V DC min., 3.5 mA \u00b7 5.0 V DC'], publish_date=None, title='CPM2C Compact PLC series/Specifications - Omron Automation India')"
+    },
+    {
+      "title": "Types of Digital Outputs in PLC - Inst Tools",
+      "url": "https://instrumentationtools.com/types-of-digital-outputs-in-plc/",
+      "excerpt": "WebSearchResult(url='https://instrumentationtools.com/types-of-digital-outputs-in-plc/', excerpts=['+ [Instrumentation](https://instrumentationtools.com/category/instrumentation-mcq/)\\n    + [Control System](https://instrumentationtools.com/category/control-systems-mcq/)\\n    + [Electrical](https://instrumentationtools.com/category/electrical-mcq/)\\n    + [Electronics](https://instrumentationtools.com/category/electronics-mcq/)\\n    + [Analog Electronics](https://instrumentationtools.com/category/analog-electronics-mcq/)\\n    + [Digital Electronics](https://instrumentationtools.com/category/digital-electronics-mcq/)\\n    + [Power Electronics](https://instrumentationtools.com/category/power-electronics-mcq/)\\n    + [Microprocessor](https://instrumentationtools.com/category/microprocessor-mcq/)\\n* [Request](https://forms.gle/9b716x5VuXwotDgr6 \"Request Your Topic\")\\n\\nFollow US [](https://www.facebook.com/instrumentationtoolss) [](https://x.com/InstTools) [](https://www.youtube.com/c/InstrumentationTools/) [](https://www.linkedin.com/company/instrumentationtools) [](https://buymeacoffee.\\ncom/automationcommunity)\\n\\nAll rights reserved. Reproduction in whole or in part without written permission is prohibited.\\n\\n[Inst Tools](https://instrumentationtools.com \"Go to Inst Tools.\") > [Blog](https://instrumentationtools.com/blog/ \"Go to Blog.\") > [PLC Tutorials](https://instrumentationtools.com/category/plc/ \"Go to the PLC Tutorials Category archives.\") > Types of Digital Outputs in PLC\\n\\n# Types of Digital Outputs in PLC\\n\\n## In this post, we will understand the various types of digital outputs used in PLC like relay, triac, and transistor.\\n\\nLast updated: October 17, 2023 2:02 pm\\n\\n[Viral Nagda](https://instrumentationtools.com/author/viral-nagda/)\\n\\n[PLC Tutorials](https://instrumentationtools.com/category/plc/)\\n\\n[No Comments](https://instrumentationtools.com/types-of-digital-outputs-in-plc/)\\n\\n6 Min Read\\n\\n* [Facebook](https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Finstrumentationtools.\\ncom%2Ftypes-of-digital-outputs-in-plc%2F&t=Types+of+Digital+Outputs+in+PLC+-+Inst+Tools \"Share on Facebook\")\\n* WhatsApp\\n* [LinkedIn](https://www.linkedin.com/shareArticle?mini=true&ro=true&trk=EasySocialShareButtons&title=Types+of+Digital+Outputs+in+PLC+-+Inst+Tools&url=https%3A%2F%2Finstrumentationtools.com%2Ftypes-of-digital-outputs-in-plc%2F \"Share on LinkedIn\")\\n* Email\\n* \\n* [Telegram](https://telegram.me/share/url?url=https%3A%2F%2Finstrumentationtools.com%2Ftypes-of-digital-outputs-in-plc%2F&text=Types%20of%20Digital%20Outputs%20in%20PLC%20-%20Inst%20Tools \"Share on Telegram\")\\n* [Reddit](https://reddit.com/submit?url=https%3A%2F%2Finstrumentationtools.com%2Ftypes-of-digital-outputs-in-plc%2F&title=Types+of+Digital+Outputs+in+PLC+-+Inst+Tools \"Share on Reddit\")\\n* [Twitter](https://x.com/intent/post?text=Types%20of%20Digital%20Outputs%20in%20PLC%20-%20Inst%20Tools&url=https%3A%2F%2Finstrumentationtools.\\ncom%2Ftypes-of-digital-outputs-in-plc%2F&related=InstTools&via=InstTools \"Share on Twitter\")\\n* [Subscribe](https://instrumentationtools.com/subscribe/ \"Share on Subscribe\")\\n* \\n\\n_In this post, we will understand the various types of digital outputs used in PLC._\\n\\nContents\\n\\n* Digital Outputs in PLC\\n* Types of Contacts\\n* Working of a Relay\\n* PLC Outputs\\n* Types of Digital Outputs\\n* Sink\\n* Source\\n* Relay\\n* Triac\\n* Transistor\\n\\nThere are four basic types of inputs and outputs in a PLC.\\n\\n1. digital inputs,\\n2. digital outputs,\\n3. analog inputs, and\\n4. analog outputs.\\n\\n## Digital Outputs in PLC\\n\\nHere, we will consider the various types of digital outputs in the PLC. Before going into the types, let us consider how an output functions in a [PLC](https://instrumentationtools.com/plc-handbook/) .\\n\\nA digital output is nothing but a switch that a PLC operates to turn on or off the output device. It is controlled by the logic written inside the PLC.\\n\\n## Types of Contacts\\nTraditionally, there are three contacts for operating an output.\\n\\n1. COM (Common),\\n2. NO (Normally Open), and\\n3. NC (Normally Closed).\\n\\nSee the below image for reference.\\n\\nCOM is the common terminal that connects both the [NO or NC contacts](https://instrumentationtools.com/basics-of-switches/) according to the trigger given. Consider this as a part of an electrical switch.\\n\\nWhen the switch is in off condition, the COM and NC terminals are connected with each other.\\n\\nWhen the switch is in on condition, the COM and NO terminals are connected with each other.\\n\\n## Working of a Relay\\n\\nNow, let us go one step more ahead to the working of a relay.\\n\\nIn a [relay](https://instrumentationtools.com/basic-concepts-of-the-safety-relay/) , there are five contacts \u2013 two for power supply and three as mentioned above. When the relay is given supply, the contacts change from **COM and NC** to **COM and NO** .\\n\\nRefer to the below image.'], publish_date='2023-10-17', title='Types of Digital Outputs in PLC - Inst Tools')"
+    },
+    {
+      "title": "How many inputs are there for PLC? - Quora",
+      "url": "https://www.quora.com/How-many-inputs-are-there-for-PLC",
+      "excerpt": "WebSearchResult(url='https://www.quora.com/How-many-inputs-are-there-for-PLC', excerpts=['Something went wrong. Wait a moment and try again.\\nTry again'], publish_date=None, title='How many inputs are there for PLC? - Quora')"
+    },
+    {
+      "title": "Understanding PLC Input and Output - Anadi Automation",
+      "url": "https://anadiautomation.com/blog-details/understanding-plc-input-and-output",
+      "excerpt": "WebSearchResult(url='https://anadiautomation.com/blog-details/understanding-plc-input-and-output', excerpts=['[](https://anadiautomation.com/)\\n\\n# Understanding PLC Input and Output: The Foundation of Automation\\n\\n2025-06-21\\n\\nIn the world of industrial automation, nothing happens without PLC input and output . These are the essential channels that allow a Programmable Logic Controller (PLC) to interact with real-world machines and processes. Whether you\\'re an automation beginner or a technician refining your skills, understanding how PLC input and output works\u2014and knowing the types involved\u2014is a critical step in mastering control systems. * * * ## What Are Inputs and Outputs in PLC? Inputs are the signals a PLC receives from the outside world. These can come from: 1. Sensors\\n2. Switches\\n3. Pushbuttons\\n4. Proximity detectors\\n5. Temperature or pressure transmitters\\n Outputs are the actions the PLC controls in the real world. These could activate: 1. Motors\\n2. Solenoids\\n3. Alarms\\n4. Valves\\n5. Lights or displays\\n Think of inputs as \"what\u2019s happening\" and outputs as \"what to do about it.\\n\" How PLC Input and Output Work Together The PLC input and output system forms a loop: 1. Input Devices send signals to the PLC (e.g., a button is pressed).\\n2. The PLC processes those signals using the programmed logic.\\n3. Based on that logic, the PLC activates or deactivates output devices (e.g., a motor starts running).\\n This process happens in milliseconds\u2014allowing real-time control and decision-making in industrial systems.  \\n* * * ## PLC Input Output List: Common Devices Here\u2019s a basic PLC input output list to help you visualize common I/O devices used in automation: |Type |Device Example |Signal Type |\\n| --- | --- | --- |\\n|Input |Push Button |Digital (On/Off) |\\n|Input |Limit Switch |Digital |\\n|Input |Temperature Sensor (RTD) |Analog (Variable) |\\n|Input |Proximity Sensor |Digital |\\n|Output |Relay |Digital |\\n|Output |Motor Starter |Digital |\\n|Output |Analog Valve Actuator |Analog (0-10V or 4-20mA) |\\n|Output |Alarm Buzzer or Indicator |Digital |\\nThese inputs and outputs are wired to the PLC\u2019s I/O modules, and the type of signal\u2014digital or analog\u2014determines how the PLC processes them. * * * ## Digital vs. Analog Inputs and Outputs ### Digital Inputs/Outputs 1. Binary signals: only two states (ON/OFF or 1/0)\\n2. Used for devices like switches, relays, and contact sensors\\n ### Analog Inputs/Outputs 1. Variable signals: such as voltage or current\\n2. Used for devices like temperature sensors or flow meters\\n3. Requires analog-to-digital conversion for PLCs to interpret\\n Understanding this difference is crucial for choosing the right module and designing effective logic. * * * ## Types of PLC I/O Modules Modern PLCs are modular, meaning you can mix and match input and output modules based on your needs: 1. Digital Input Modules \u2013 Receive ON/OFF signals\\n2. Digital Output Modules \u2013 Send ON/OFF signals\\n3. Analog Input Modules \u2013 Measure variable data (voltage/current)\\n4.\\n ... \\nKeep wiring organized for easy maintenance.\\n5. Allow expansion: Design with future I/O needs in mind.\\n * * * Conclusion: Why Understanding PLC Input and Output Matters  \\nThe PLC input and output system is the core of any automated process. Whether you\u2019re building a simple machine or a complex production line, knowing how to select, wire, and program I/O devices ensures reliable performance. And with a solid PLC input output list , you can easily manage installations, troubleshoot issues, and scale up with confidence. Mastering I/O basics gives you the foundation to move forward in automation\u2014toward motion control, PID loops, and IoT integration. * * * ## FAQs: PLC Input and Output ### Q1: What is the difference between input and output in PLC? Inputs bring real-world signals to the PLC; outputs let the PLC control external devices. ### Q2: What are common examples of PLC inputs? Push buttons, limit switches, proximity sensors, and temperature sensors.\\n### Q3: Can a PLC have both analog and digital inputs? Yes, most PLCs support both, but you need the appropriate I/O modules. ### Q4: What is the typical voltage for PLC inputs? Usually 24V DC for industrial PLCs, but other options (like 120V AC) exist. ### Q5: How do I make a PLC input output list? List all sensors (inputs) and actuators (outputs) used in your system, along with signal types and PLC terminal numbers. ## Related Blogs\\n\\n[](https://anadiautomation.com/)\\n\\nIndustries multidisciplinary team of engineering experts can successfully carry out projects of any size and complexity. Our team offers the most up-to-date, sustainable and trusted suppliers of quality control.\\n\\n* [](https://www.facebook.com/Anadi-Automation-104623121947121)\\n* [](https://www.instagram.com/anadiautomationnsk/)\\n* [](https://www.youtube.com/channel/UCXre0LPIygh-VD3keGvVbWQ)\\n* [](https://wa.me/9822444915)\\n* [](https://www.linkedin.com/company/anadi-automation/)\\n\\n### quick links'], publish_date=None, title='Understanding PLC Input and Output - Anadi Automation')"
+    },
+    {
+      "title": "Examples of PLC Inputs and Outputs \u00ab - PDF Supply",
+      "url": "https://www.pdfsupply.com/blog/index.php/2022/05/23/examples-of-plc-inputs-and-outputs/?srsltid=AfmBOor1dETd1EpjT2dwwj06BIA3uH6urSHWDmolnRXezxBBHZ4qYy6v",
+      "excerpt": "WebSearchResult(url='https://www.pdfsupply.com/blog/index.php/2022/05/23/examples-of-plc-inputs-and-outputs/?srsltid=AfmBOor1dETd1EpjT2dwwj06BIA3uH6urSHWDmolnRXezxBBHZ4qYy6v', excerpts=['pdfsupply.com/automation/lenze)\\n* [Sick](https://www.pdfsupply.com/automation/sick)\\n* [Manuals](https://www.pdfsupply.com/automation/ge-fanuc-manuals)\\n\\nQuick Quote  \\nFast Response\\n\\n**Call for even faster help. 1-800-360-6802**\\n\\nEmail Address Part Numbers to Quote\\n\\nLoading...\\n\\n0\\n\\nCheckout\\n\\nYour Account\\n\\nSign In/View Account\\n\\nLogout\\n\\n\u00d7\\n\\n#### Login\\n\\nUsername\\n\\nClose Login\\n\\n[Homepage](https://www.pdfsupply.com/blog \"Homepage\") \u00bb [Uncategorized](https://www.pdfsupply.com/blog/index.php/category/uncategorized/) \u00bb **You are here:** Examples of PLC Inputs and Outputs\\n\\n## Examples of PLC Inputs and Outputs\\n\\n## **PLC Inputs and Outputs Overview**\\n ... \\nBecause to control a process or machinery, the PLC system must be equipped with sophisticated electronic Input and Output (I/O) modules. These I/O modules interface the PLC CPU to the real world, or rather to the field input/output devices.\\n\\nThe Input modules gather data from all field input devices and transmit it to the PLC processor (CPU) as voltage or current signals. The received signals are the PLC inputs. The CPU then processes the received information as pre-programmed data, which it uses together with the execution results of its programmed logic to control the field output devices via the Output modules. Thus, PLC outputs are the appropriate control commands that the PLC CPU sends out to control/operate physical devices upon executing the user program from its Random-Access Memory (RAM). The block diagram below illustrates the principle of operation of a PLC system:\\n\\n## **Digital PLC Inputs**\\nDigital inputs are the most common types of inputs in PLC systems; due to the fact that PLCs are digital electronic devices themselves, thus, they\u2019re able to easily process digital signals. A digital PLC input is basically a binary signal that is either ON or OFF, and which is applied to the PLC processor from a digital field input device. The concept of digital signals is based on the binary number system, which consists of only two possible digits, 1 or 0. Where 1 represents a HIGH state and 0 indicates a LOW state. However, in most PLCs, the HIGH signals are not represented by 1Volt but by 24Volts dc, because PLCs normally operate on 24V DC. In such a case, the PLC will indicate HIGH at its input side if the output voltage of the interfaced field input device is 24V DC.\\n\\nDigital Input modules in PLC systems use the digital inputs to determine the status (i.e. ON or OFF) of specific field input devices.\\nFor example, if a certain PLC input module has an operating voltage of 24Volts DC and it receives a 0V DC input signal then it\u2019ll identify the status of the connected field device as OFF. Whereas, a 24V DC input signal to that PLC input module will indicate an ON status of the field device. These digital PLC input modules usually identify the status of field input devices in different ways including:\\n\\n* **General Status:** TRUE/FALSE, HIGH/LOW, and 1/0\\n* **Load Condition:** ON/OFF\\n* **Switching Mechanism:** ENERGIZED/DE-ENERGIZED, ACTIVATED/DEACTIVATED\\n* **Switching Contact Status:** CLOSED/OPEN\\n\\n## **Examples of Digital Field Input Devices in PLCs**\\n\\nDigital field input devices provide digital input signals to the PLC system via the digital input modules. Some of the most common digital field input devices that you\u2019re likely to come across in almost all PLC applications include:\\n\\n### A) **START/STOP Push Buttons**\\n\\nStart/Stop Pushbuttons are usually located in a PLC control panel.\\n ... \\nFor example, detection of metal targets in industrial fabrication processes requires the use of inductive proximity sensors. For plastic targets consider using capacitive proximity sensors.\\n\\nLike switches, proximity sensors provide binary outputs and that\u2019s why they\u2019re sometimes referred to as proximity switches. For instance, the state of a photoelectric sensor (a common proximity sensor) will change from LOW to HIGH when emitted Infrared light hits the sensor\u2019s receiver. Such a sensor uses a Light Emitting Diode (LED) as the Infrared emitter and photodiodes/ phototransistors as receivers.\\n\\nSimilarly, PNP and NPN proximity sensors are also good examples of digital field input devices which provide HIGH or LOW voltage input signals to a PLC system. For instance, a PNP sensor will give a HIGH voltage signal on detecting an object and a LOW voltage signal when no target is detected.'], publish_date=None, title='Examples of PLC Inputs and Outputs \u00ab - PDF Supply')"
+    },
+    {
+      "title": "How to Test PLC Digital Inputs and Outputs (Step-by-Step Guide) - YouTube",
+      "url": "https://www.youtube.com/watch?v=rYv9wCbw5NQ",
+      "excerpt": "WebSearchResult(url='https://www.youtube.com/watch?v=rYv9wCbw5NQ', excerpts=[\"Go here: [http://realpars.com](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa1hadW85V0U4UjVLYU5odHlhTW82RkZoNGZJQXxBQ3Jtc0tra1Zpb2lBSk9WUXJHMDlmRXlRMmxfblVMMWJzRlQ1MzYwdDFzMG5ENk9TVTVKZmxvUFU0VTNjY190S1ZEZ3Ata2N5QWJpVmlMb2I3M3F6NkpReGkzWkp6XzAwNlRENHQ1bUxlMFMwUHl0elVxd09Daw&q=http%3A%2F%2Frealpars.com%2F&v=rYv9wCbw5NQ) \u25b6 Want to train your team in industrial automation? Go here: [http://realpars.com/business](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbVo3dTI0Nmh2ejhOQVphOWZ4NFJEN2Z4NVp0UXxBQ3Jtc0tsOGdNclBzcjdvUjBKbGFxM25vUmU3T3dRZXkwa2Q0bUFSWFZId1M0UWhDVmI3RTkweTJSQ0poVlYxdjhQUWh5OFBJNzFhYmJ1dEhhMWp2cXU2SHNXOVVUMm1qdzVhdWtleldwSlEteHBMdWptQ3VYQQ&q=http%3A%2F%2Frealpars.com%2Fbusiness&v=rYv9wCbw5NQ) \u2026 ...more\\n\\n...more\\n\\nHow this was made\\n\\nAuto-dubbed\\n\\nAudio tracks for some languages were automatically generated. Learn more Explore this course\\n\\n51 lessons 51 lessons\\n\\nPLC Programming Tutorials for Beginners\\nRealPars ### Course progress\\n\\n0 of 51 lessons complete Transcript\\n\\nFollow along using the transcript.\\n\\nShow transcript\\n\\nShow less\\n\\n PLC Programming Tutorials for Beginners\\n\\n# How to Test PLC Digital Inputs and Outputs (Step-by-Step Guide)\\n\\n46,178 views 46K views\\n\\nMar 17, 2025\\n\\n1\\\\.3K Share\\n\\nSave Download Download\\n\\nNaN / NaN\\n\\n## Comments 28\\n\\nTop\\n\\nShow featured comments Newest\\n\\nShow recent comments, including potential spam ## In this video\\n\\nChapters\\n\\nTranscript ## Description\\n\\nHow to Test PLC Digital Inputs and Outputs (Step-by-Step Guide)\\n\\n1\\\\.3K Likes 46,178 Views Mar 17 2025 \u25b6 Want to learn industrial automation? Go here: [http://realpars.com](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa2lsX252WjVzQ2Q4SFlPYUFkLWNQMDd3MGI3QXxBQ3Jtc0ttUlZ6ZXdtQTJCQl8tVXhOc1hSZjE2ZmIyc09BejdqbGJ0SUhVTGZNUjUyTE00NExYVE5jQ3hfSEZQOVk2SmRlNDlJMHVyVHlKVWEzc3l0clVZWldyd0pEV2sxTmVxemgtMFZJWENoSVVQb2ZSbVlQMA&q=http%3A%2F%2Frealpars.\\ncom%2F&v=rYv9wCbw5NQ) \u25b6 Want to train your team in industrial automation? Go here: [http://realpars.com/business](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbk9SRXNmLUFURzdTNUVzMUFIMnotOFB1di1aUXxBQ3Jtc0tscVNkSGpQMVE2MFNsYkk2djR2YVRjMC1uTEE1OXdnRVJ5aWpvWnljaUJOUFI3VEExUWFISVZWOVQ0N2JjMUNTM2dnYl9Hb3oxS1g4dFp0VWo3X0I3NjFBVl9DYVpCWWJoTVpvUWYtX0NVaEs0ajRnUQ&q=http%3A%2F%2Frealpars.com%2Fbusiness&v=rYv9wCbw5NQ) \u25b6 You can read the full article here: [https://www.realpars.com/blog/plc-dig...](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbUdvS0JzQ2JsMDZQaEwtQUJLM0pJUmlkQ1hnd3xBQ3Jtc0ttQUVNSW96UEp5MVNLZXgwSnZDT1dCUDk4S3BzeklyUzRzT3NmdzlBWUdIRnJ4enlzUm9BYVlWSXI4UTUydnRIQ0pJemVaNy1UNXRRdDJERHV3X0Y4ajdidlphYk9GWW1qdmYzRXhyS3BaVHFWUlY1OA&q=https%3A%2F%2Fwww.realpars.\\ncom%2Fblog%2Fplc-digital-io-troubleshooting&v=rYv9wCbw5NQ) \u231aTimestamps: 00:00 \\\\- Intro 01:25 \\\\- Understanding digital and analog I/O 02:27 \\\\- Troubleshooting an input circuit 07:22 \\\\- Troubleshooting the output side 10:28 \\\\- Wrap-Up This video explains how to interpret PLC LED status indicators for digital inputs and outputs and how to perform troubleshooting tests using a Digital Multimeter. You will learn how to test an input circuit containing a PBNC or Push Button normally closed switch connected to an input of an Allen Bradley 1756-IB16 Sinking digital input module. It also explains an example of a fault condition of PLC's output side, containing a lamp connected to the output of an Allen Bradley 1756-OB16D digital Sourcing output module. ============================= Course Mentioned in Video: PLC Hardware Fundamentals: Power, I/O Modules & Signals: [https://www.realpars.com/courses/plc-...](https://www.youtube.com/redirect?\\n ... \\nevent=video_description&redir_token=QUFFLUhqa0dwZlpob09Sak54ZDAycVNqVmx6dTFTd2xJZ3xBQ3Jtc0tsM0ZubWpsWkd6ZG9vWlF0WVk1azRfUHJQdXZNMlJrYkZwY2gtaG1oeGdPeldYNkpqa0dDVHp6aWEtZWlfZENQU3hCNUFOTFlVbmlEMWZGYWJCVGp5bWZoTnVsNDEzWHV2ZUhGcEt3YzhhaUg3S1NWVQ&q=https%3A%2F%2Fwww.instagram.com%2Frealparsdotcom&v=rYv9wCbw5NQ) \\\\ \\\\ \\\\ \u2026 ...more\\n\\n...more Show less How this was made\\n\\nAuto-dubbed\\n\\nAudio tracks for some languages were automatically generated. Learn more ## Chapters\\n\\nView all\\n\\n#### Intro #### Intro 0:00\\n\\n#### Intro\\n\\n0:00 #### Understanding digital and analog I/O #### Understanding digital and analog I/O 1:25\\n\\n#### Understanding digital and analog I/O\\n\\n1:25 #### Troubleshooting an input circuit #### Troubleshooting an input circuit 2:27\\n\\n#### Troubleshooting an input circuit\\n\\n2:27 #### Troubleshooting the output side #### Troubleshooting the output side 7:22\\n\\n#### Troubleshooting the output side\\n\\n7:22 Explore this course\\n\\n51 lessons 51 lessons\\n\\nPLC Programming Tutorials for Beginners\"], publish_date='2025-03-17', title='How to Test PLC Digital Inputs and Outputs (Step-by-Step Guide) - YouTube')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

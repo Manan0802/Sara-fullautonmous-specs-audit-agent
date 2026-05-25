@@ -1,0 +1,4423 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 2322,
+        "mcat_name": "PLC",
+        "current_specs": [
+            {
+                "spec_name": "Brand Name",
+                "options": [
+                    "Siemens",
+                    "Mitsubishi",
+                    "Allen-Bradley",
+                    "Omron",
+                    "Delta",
+                    "LS Electric",
+                    "Schneider Electric",
+                    "Fatek",
+                    "GIC",
+                    "Wago"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "PLC Type",
+                "options": [
+                    "Compact (Brick)",
+                    "Modular",
+                    "Smart Relay (Logo)"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Total I/O Points",
+                "options": [
+                    "10",
+                    "14",
+                    "16",
+                    "20",
+                    "24",
+                    "28",
+                    "32",
+                    "40",
+                    "60",
+                    "64"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Output Type",
+                "options": [
+                    "Relay",
+                    "Transistor (Sink)",
+                    "Transistor (Source)"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Communication Protocol",
+                "options": [
+                    "Modbus RTU",
+                    "Ethernet/IP",
+                    "Modbus TCP/IP",
+                    "Profinet",
+                    "Profibus-DP",
+                    "CANopen",
+                    "DeviceNet"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Number of Analog Inputs",
+                "options": [
+                    "None",
+                    "2",
+                    "4",
+                    "6",
+                    "8"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Number of Analog Outputs",
+                "options": [
+                    "None",
+                    "1",
+                    "2",
+                    "4"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Mounting Type",
+                "options": [
+                    "DIN Rail",
+                    "Panel Mount"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Power Supply",
+                "options": [
+                    "24 VDC",
+                    "100-240 VAC"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Programming Interface",
+                "options": [
+                    "USB",
+                    "Ethernet",
+                    "RS-232",
+                    "RS-485"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "PLC",
+            "mcat_id": 2322,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Brand Name",
+                            "options": [
+                                "Siemens",
+                                "Mitsubishi",
+                                "Allen-Bradley",
+                                "Omron",
+                                "Delta",
+                                "LS Electric",
+                                "Schneider Electric",
+                                "Fatek",
+                                "GIC",
+                                "Wago"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Prefix",
+                            "affix_presence_flag": "1"
+                        },
+                        {
+                            "spec_name": "PLC Type",
+                            "options": [
+                                "Compact (Brick)",
+                                "Modular",
+                                "Smart Relay (Logo)"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "1"
+                        },
+                        {
+                            "spec_name": "Total I/O Points",
+                            "options": [
+                                "10",
+                                "14",
+                                "16",
+                                "20",
+                                "24",
+                                "28",
+                                "32",
+                                "40",
+                                "60",
+                                "64"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Brand Name is consistently the first filter for buyers. PLC Type is a fundamental categorization that dictates architecture, scalability, and cost. Total I/O Points is a primary technical and commercial specification, especially for compact PLCs, directly correlating to size, capability, and price."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Output Type",
+                            "options": [
+                                "Relay",
+                                "Transistor (Sink)",
+                                "Transistor (Source)"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Communication Protocol",
+                            "options": [
+                                "Modbus RTU",
+                                "Ethernet/IP",
+                                "Modbus TCP/IP",
+                                "Profinet",
+                                "Profibus-DP",
+                                "CANopen",
+                                "DeviceNet"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Number of Analog Inputs",
+                            "options": [
+                                "None",
+                                "2",
+                                "4",
+                                "6",
+                                "8"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Output Type is a critical functional decision for load versatility and high-speed applications. Communication Protocol is paramount for modern connectivity with other devices like HMIs and SCADA. Number of Analog Inputs is a key differentiator for applications involving measurement."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Number of Analog Outputs",
+                            "options": [
+                                "None",
+                                "1",
+                                "2",
+                                "4"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Mounting Type",
+                            "options": [
+                                "DIN Rail",
+                                "Panel Mount"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Power Supply",
+                            "options": [
+                                "24 VDC",
+                                "100-240 VAC"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Programming Interface",
+                            "options": [
+                                "USB",
+                                "Ethernet",
+                                "RS-232",
+                                "RS-485"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Number of Analog Outputs is crucial for controlling proportional valves or VFD speeds. Mounting Type is a standard but necessary detail for panel builders. Power Supply is a fundamental electrical requirement. Programming Interface is relevant for PC connectivity and compatibility."
+                }
+            },
+            "scratchpad": "The selection and tiering of PLC specifications are based on their commercial significance, frequency of mention in user conversations, and prominence in technical documentation. Primary specs are top-level filters, Secondary specs are critical functional choices, and Tertiary specs are necessary supplementary details for a complete product profile."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Application",
+            "option_value": "PLC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Axis Control Capacity",
+            "option_value": "3 Axis",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "AMS Motion",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Allen Bradley",
+            "prod_count": 38
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "BCNET",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Control Technic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Delta",
+            "prod_count": 36
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Honeywell",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mitsubishi",
+            "prod_count": 59
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Omron",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Proface",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Rockwell",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Schneider",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Siemens",
+            "prod_count": 40
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Wecon",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cable Brand",
+            "option_value": "S.M. Motion",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Cable Length",
+            "option_value": "1.5 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cable Length",
+            "option_value": "2 meter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cable Length",
+            "option_value": "2.5-3 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cable Length",
+            "option_value": "2.93 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cable Length",
+            "option_value": "3 m",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Cable Type",
+            "option_value": "Serial",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity Attribute",
+            "option_value": "HI Cap",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Black",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "ENET/IP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "Ethernet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "LAN",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "MPI/PPI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "PPI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "RJ45",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "RS-485",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "RS232",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "RS422",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "USB",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Communication Interface",
+            "option_value": "USB to RS232",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Controller",
+            "option_value": "ControlLogix 5561",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Device",
+            "option_value": "Micrologix 1000 PLC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Model",
+            "option_value": "Micro 850",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible PLC Model",
+            "option_value": "FX 5U",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible PLC Model",
+            "option_value": "S7-200",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible PLC Model",
+            "option_value": "S7-300",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Compatible PLC Series",
+            "option_value": "FX PLC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible PLC Series",
+            "option_value": "FX Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible PLC Series",
+            "option_value": "SLC 500",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible PLC Series",
+            "option_value": "Twido PLC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Sensor Type",
+            "option_value": "PT100",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Sensor Type",
+            "option_value": "RTD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Servo Type",
+            "option_value": "Pulse",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "New",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Used",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Configuration",
+            "option_value": "DC/DC/DC",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Configuration",
+            "option_value": "Non-Redundancy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Gender",
+            "option_value": "Female",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Connector Gender",
+            "option_value": "Male",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "20 pin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "8 Pin Round",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "9 Pin Female",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "9-hole round",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "D-connector",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "DB9",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "Ethernet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "MPI PPI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "Mini DIN",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "RS232/RS422",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "RS485",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "Round Pin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "Round and Parallel Port",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "Round/USB",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "USB",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "USB MPI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "USB PPI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Construction",
+            "option_value": "Molded",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "China",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Japan",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Compatibility",
+            "option_value": "14SS2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Compatibility",
+            "option_value": "L16ER PLC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Compatibility",
+            "option_value": "Servo Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "3G",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Analog Card",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Analog Combination Module",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Analog Input",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Broad",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "CPU",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Combo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Communication Module",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Compact I/O",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "DC/DC/DC",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "DeviceNet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Digital I/O Module",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Expansion Module",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "FSC Controller",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "HMI",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "HMI PLC Based",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "HMI PLC Communication",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "I/O Extension",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "IO Card",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Input Module",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Micro Controller",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Micro PLC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Modular",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Module",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Motion Control PLC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "On-board analog module card",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Output Module",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "PID Controller",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "PLC Cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "PLC Card",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "PLC Programming",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "PLC Testing System",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "PLC and HMI inbuilt",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "PLC to Laptop Communication",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "PLC to PC/Laptop communication",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Position Controller",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Power Supply Unit",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Programmable Controller",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Pulse motor run",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "RTD Card",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Redundancy System",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Relay Card",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Without Timer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Without programming",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "X-axis Y-axis movement machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Expansion Module Type",
+            "option_value": "Temperature Module",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Feature",
+            "option_value": "With Display",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Feature",
+            "option_value": "Without Timer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form Factor",
+            "option_value": "Broad",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Identification Code",
+            "option_value": "KCC-REM-S49-LOGO",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "External IO modules",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Input Current",
+            "option_value": "0.3 A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Current",
+            "option_value": "1.1 A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Phase",
+            "option_value": "Single Phase",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Type",
+            "option_value": "Analog",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Input Type",
+            "option_value": "Thermocouple",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Type",
+            "option_value": "VL DC VAC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "100-240 V AC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "220 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "24 V DC",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "AC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "DC unknown",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Logic Type",
+            "option_value": "PNP NO",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Logic Voltage",
+            "option_value": "DC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "PVC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Memory Capacity",
+            "option_value": "64 KB",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "11R",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1214",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1215C",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1221/2121",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "12SS2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1400",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "14MT/ES",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "14SS211T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "16 MR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1734-IE2C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1734-IE8C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1734-VHSC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1746-NIO4B",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1746-P2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1756-BA2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1756-EN2T",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1756-L71",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1762-IT4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1762-OB8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1762-OW16",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1766-L32BWA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1766-L32BXBA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1768-L43",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1769",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1769-L33ER",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1769-OF4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1769-PA4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1794-IE8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1794-IR8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1794-IRT8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "2000T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "2080-IQ4OB4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "2080-L50E-24QWB",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "2080-LC50-48QBB",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "20M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "20MT-ES",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "2211",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "226",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "25 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "2EH14",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "2EK30",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "30M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "32 MR",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "43",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "64MR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "64MT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "64MT/ESS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "6EP1 333 1LB00",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "6ES7137-6AA00-0BA0",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "6ES7214-1AG40-0XB0",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "A1SJ75M2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "AJ65SBTB1-32DT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "Advance cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "CA3-USB-CB01",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "CN226",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "CPU 1214C",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "CPU 224 CN",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "ControlEdge 900 CP1",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DTC 1000",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP 12SE",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP 14SS2 11R",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP 16SP11T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP 24 ES 2 R",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP 24ES200T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP-10SX",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP-12SA2",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP-20",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP-20PM00D",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP-20SX",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP-20SX2-11S",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP04PT-S2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP06AD-S",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP08XP2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP14SS211T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP28SV",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DVP32ES200R",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "Ends with 200",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX0N-40MR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX1N-2AD-BD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX2N 16MT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX2N-2DA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX3G-24MT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX3S",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX3S-14MR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX3U-20SSC-H",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX3U-32MR",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX3U-32MT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX3U-48MR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX3U-48MT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX3U-48MT/ES",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX3U-64MR-ES/A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX5-16ER/ES",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX5-232-BD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX5-4DA-ADP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX5U",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX5U-18MR and D-2211",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX5U-32MR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX5U-32MR/ES",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX5U-32MT/ESS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "FX5U-80M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "GC-35M-16MT-DSS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "GC43MH-32MR-D",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "L30ER",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "L36ERMS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "Logo",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "MR/ES",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "MT/ES",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "P2112",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "P2113",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "P2211",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "P7",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "PM02",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "Q61P",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "R16",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "RA-232CAT-2711P-RN22C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S7-1200",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S7-200",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S7-300 Plus",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S7-412",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SC09",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SC09 FX",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SR2USB01",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SR30",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "ST20",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "ST30",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "ST40",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SVP 28 SP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "Smart",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TP-1756",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TWDXCW30K",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "USB-SC09X",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "XL3B",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "option_value": "2",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "option_value": "4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "option_value": "6",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "option_value": "8",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Number of Analog Outputs",
+            "option_value": "2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Analog Outputs",
+            "option_value": "8 Channel",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Number of Channels",
+            "option_value": "4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Channels",
+            "option_value": "8 Channels",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Digital Inputs",
+            "option_value": "10",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Number of Digital Inputs",
+            "option_value": "12",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Number of Digital Inputs",
+            "option_value": "16",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Number of Digital Inputs",
+            "option_value": "24",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Number of Digital Inputs",
+            "option_value": "4",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Number of Digital Inputs",
+            "option_value": "6",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Digital Inputs",
+            "option_value": "8",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Number of Digital Outputs",
+            "option_value": "1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Digital Outputs",
+            "option_value": "10",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Number of Digital Outputs",
+            "option_value": "12",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Number of Digital Outputs",
+            "option_value": "16",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Number of Digital Outputs",
+            "option_value": "18",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Digital Outputs",
+            "option_value": "4",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Number of Digital Outputs",
+            "option_value": "6",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Number of Digital Outputs",
+            "option_value": "8",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Number of Digital Pulse Inputs",
+            "option_value": "1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Pins",
+            "option_value": "20",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Pins",
+            "option_value": "8 pin",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "3 ports",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Current",
+            "option_value": "1.5 A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Phase",
+            "option_value": "3 Phase",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Type",
+            "option_value": "Analog Output",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Output Type",
+            "option_value": "Relay",
+            "prod_count": 17
+        },
+        {
+            "spec_name": "Output Type",
+            "option_value": "Sink Output",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Type",
+            "option_value": "Transistor",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Output Voltage",
+            "option_value": "250 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging",
+            "option_value": "Box pack",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging",
+            "option_value": "Without Box",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Part Number Suffix",
+            "option_value": "AG31",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Part Number Suffix",
+            "option_value": "AG40",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Rating",
+            "option_value": "0.75 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Serial Number",
+            "option_value": "SZVCDMR0023595",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "11T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "1746",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "1766",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "1769",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "3U",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "5343",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "A and FX Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "B",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "CA3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "CLX",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "CompactLogix",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "CompactLogix 5370",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ControlLogix",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "DVP",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "DVP-S Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ES",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ES Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ES2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ET 200 SP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "FX Series",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "FX2N",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "FX3G",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "FX3GA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "FX3S",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "FX3U",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "FX5",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "FX5U",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "GC series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "GOC",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "GuardLogix",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "LOGO!",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Logo! 8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Melsec",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Melsec FX3S",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Micro 850",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "MicroLogix",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "MicroLogix 1100",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "MicroLogix 1200",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "MicroLogix 1400",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Nexgen 2000 series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Nexgenie 2000 Plus",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "PM Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Panelview Plus 400",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Q Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "S",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "S7 121",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "S7-1200",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "S7-1500R",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "S7-200",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "S7-200 SMART",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "S7-300",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "S7-400",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "SLC 500",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "SS2",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "SX2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Series B",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Simatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Slim (SS)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Service and Support",
+            "option_value": "Customized Program Development",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Service and Support",
+            "option_value": "Wiring Diagram and Program Code",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "option_value": "14",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "option_value": "16",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "option_value": "20",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "option_value": "24",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "option_value": "32",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "option_value": "4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "option_value": "48",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "option_value": "60",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "option_value": "8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 year",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "6 months",
+            "prod_count": 2
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "MODEL 1",
+            "option_value": "H7080B3273  ML7984A4009  N05230-2POS S202N10010 N050130-2POS  \tN20010-SW2 ML7421A3004 VC7931AF1111T"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "MODEL 2",
+            "option_value": "H7080B2374  ML7984A4009  ML7421A3004 VC7931AF1111T"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "2MLF-RD8A"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Number of Channels",
+            "option_value": "8"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Usage/Application",
+            "option_value": "PLC"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Module Type",
+            "option_value": "RTD Input Module"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Brand",
+            "option_value": "Siemens"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Manufacturer Series",
+            "option_value": "S7-300"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model Name/Number",
+            "option_value": "6ES73221BH010AA0"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Power",
+            "option_value": "5W"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Category",
+            "option_value": "Controllers"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Module Number",
+            "option_value": "1MLRÃ¢â¬âPA1B"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Usage/Application",
+            "option_value": "Used for industrial automation and process control, enabling logic execution, monitoring, and contro"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Module Name",
+            "option_value": "Programmable Logic Controller (PLC)"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Condition",
+            "option_value": "New"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Number of Channels",
+            "option_value": "8"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "2MLF-RD8A"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Module Type",
+            "option_value": "RTD Input Module"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Usage/Application",
+            "option_value": "PLC"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XDH Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XG2 Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XSF5 Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XSLH Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XSDH Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XSF5 Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XA Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XSA Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "MODLE",
+            "option_value": "IVC1S-1410MAT"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "SERIES",
+            "option_value": "IVC1S"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "MAKE",
+            "option_value": "INVT"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XDME Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XD5E Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XD3E Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XDM Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Series",
+            "option_value": "XD5xDnTM Series"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model No.",
+            "option_value": "FL7"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "M500"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "M100"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "M200"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "M300"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Serial",
+            "option_value": "RS232, RS485"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Operating Temperature",
+            "option_value": "0 to 60 DegC"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "M300"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "EAS301-0808TN"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "EASY302-0808TN"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "EASY320-0808TN"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "AM522-0808TN"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model",
+            "option_value": "GL20-0008ETN-INT"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Sub Category",
+            "option_value": "PLC Expansion Modules"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model Name/Number",
+            "option_value": "XBC-DN32H"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Category",
+            "option_value": "PLCs and Accessories"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model No.",
+            "option_value": "FL8"
+        },
+        {
+            "mcat_id": "2322",
+            "mcat_name": "PLC",
+            "spec_name": "Model No.",
+            "option_value": "FC5-30MR"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "PLC",
+            "spec_name": "brand",
+            "spec_option": "devanshi",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "brand",
+            "spec_option": "gic",
+            "impression": "45"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "brand",
+            "spec_option": "hcfa",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "brand",
+            "spec_option": "porcheson",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "brand",
+            "spec_option": "rockwell",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "brand",
+            "spec_option": "sarika",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "brand",
+            "spec_option": "unimat",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "brand",
+            "spec_option": "vipa",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "brand",
+            "spec_option": "xinje",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "manufacturer series",
+            "spec_option": "logo",
+            "impression": "99"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "manufacturer series",
+            "spec_option": "micrologix 1100",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "manufacturer series",
+            "spec_option": "pet 2214",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "manufacturer series",
+            "spec_option": "s7 1200",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "PLC",
+            "spec_name": "manufacturer series",
+            "spec_option": "versamax",
+            "impression": "5"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Brand Name",
+            "spec_fill_rate": "52.5",
+            "product_count": "52"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_fill_rate": "47.5",
+            "product_count": "47"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_fill_rate": "46.5",
+            "product_count": "46"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_fill_rate": "45.5",
+            "product_count": "45"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_fill_rate": "44.4",
+            "product_count": "44"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "42.4",
+            "product_count": "42"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_fill_rate": "41.4",
+            "product_count": "41"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_fill_rate": "40.4",
+            "product_count": "40"
+        },
+        {
+            "spec_name": "Programming Interface",
+            "spec_fill_rate": "37.4",
+            "product_count": "37"
+        },
+        {
+            "spec_name": "Power Supply",
+            "spec_fill_rate": "36.4",
+            "product_count": "36"
+        },
+        {
+            "spec_name": "Number of Analog Outputs",
+            "spec_fill_rate": "33.3",
+            "product_count": "33"
+        },
+        {
+            "spec_name": "Series",
+            "spec_fill_rate": "6.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Control Method",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Output Frequency",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Number of Digital Outputs (DO)",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Number of Analog Outputs (AO)",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Product Series",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Number of Digital Inputs (DI)",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Number of Analog Inputs (AI)",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Work Memory",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Fiber type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "MODLE",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Flow Range",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Line size",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Fiber length",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Sensor type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Min bend radius",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Display Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Temperature range",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Sheath material",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Tip shape",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Supply voltage",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Serial",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Output type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Medium Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Mounting type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Flow range",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Core dia",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "SERIES",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Enclosure Rating",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Medium",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Operating Temperature",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "MAKE",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Display Size",
+            "spec_option_name": "4 inch",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Panel Voltage",
+            "spec_option_name": "110 V AC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Min bend radius",
+            "spec_option_name": "5 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Operating Temperature",
+            "spec_option_name": "0 to 60 DegC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Flow range",
+            "spec_option_name": "FD-XS20 Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Tip shape",
+            "spec_option_name": "GL-R36H Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Serial",
+            "spec_option_name": "RS232, RS485",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Line size",
+            "spec_option_name": "FD-XS20 Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Flow Range",
+            "spec_option_name": "FD-XA1 Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fiber type",
+            "spec_option_name": "Plastic fiber",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Depth",
+            "spec_option_name": "62 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Enclosure Rating",
+            "spec_option_name": "IP65",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Number of Digital Inputs (DI)",
+            "spec_option_name": "0",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Core dia",
+            "spec_option_name": "GL-R36H Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Permissible Input Voltage For Voltage Input",
+            "spec_option_name": "30 V",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Controller Type",
+            "spec_option_name": "Compact PLC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "SERIES",
+            "spec_option_name": "IVC1S",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Mounting type",
+            "spec_option_name": "GL-R36H Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "PLC Brand",
+            "spec_option_name": "Siemens",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Temperature range",
+            "spec_option_name": "0 to 60 ÃÂ°C",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Output Channels",
+            "spec_option_name": "8",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Output",
+            "spec_option_name": "16",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sensor type",
+            "spec_option_name": "FD-XS20 Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Control Method",
+            "spec_option_name": "V F Control",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Output type",
+            "spec_option_name": "FD-XS20 Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Number of Digital Inputs",
+            "spec_option_name": "X20 BC 0083",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Potential Separation Analog Inputs",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sheath material",
+            "spec_option_name": "GL-R36H Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "MAKE",
+            "spec_option_name": "INVT",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power Loss",
+            "spec_option_name": "1.8 W",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "MODLE",
+            "spec_option_name": "IVC1S-1410MAT",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "5W",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Supply voltage",
+            "spec_option_name": "FD-XS20 Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Medium Type",
+            "spec_option_name": "FD-XA1 Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Module Number",
+            "spec_option_name": "1MLRÃ¢â¬âPA1B",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Outputs",
+            "spec_option_name": "10",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Group Error SF",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Output Frequency",
+            "spec_option_name": "50 Hz",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Display Colors",
+            "spec_option_name": "64k",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Number of Channels",
+            "spec_option_name": "8",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Communication",
+            "spec_option_name": "Modbus",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Medium",
+            "spec_option_name": "FD-XS20 Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Condition",
+            "spec_option_name": "New",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Protection Class",
+            "spec_option_name": "IP20",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Module Type",
+            "spec_option_name": "RTD Input Module",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "1 Year",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "71.2 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "210 g",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "FD-XA1 Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Module Name",
+            "spec_option_name": "Programmable Logic Controller (PLC)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Programming Software",
+            "spec_option_name": "Machine Expert",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Height",
+            "spec_option_name": "80 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fiber length",
+            "spec_option_name": "GL-R36H Keyence",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "230 V AC",
+            "option_fill_rate": "83.3"
+        },
+        {
+            "spec_name": "Power Supply",
+            "spec_option_name": "24 VDC",
+            "option_fill_rate": "83.3"
+        },
+        {
+            "spec_name": "Category",
+            "spec_option_name": "PLCs and Accessories",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Programming Interface",
+            "spec_option_name": "Ethernet",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Program Memory",
+            "spec_option_name": "128 kB",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Number of Digital Outputs (DO)",
+            "spec_option_name": "0",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "Modbus RTU",
+            "option_fill_rate": "57.4"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "Relay",
+            "option_fill_rate": "57.1"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "DIN Rail",
+            "option_fill_rate": "53.8"
+        },
+        {
+            "spec_name": "No Of I O Points",
+            "spec_option_name": "16 I O",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "X20 BC 0083",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "I O Count",
+            "spec_option_name": "Up to 32 I O",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Inovance",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Manufacturer Series",
+            "spec_option_name": "S7-300",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Work Memory",
+            "spec_option_name": "100-150 KB",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Display Type",
+            "spec_option_name": "LCD Display",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_option_name": "24 V DC",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Display Type",
+            "spec_option_name": "None",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Number of Analog Inputs (AI)",
+            "spec_option_name": "0",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Modular PLC",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Model No.",
+            "spec_option_name": "FL8",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "No Of I O Points",
+            "spec_option_name": "24 I O",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Sub Category",
+            "spec_option_name": "PLC Expansion Modules",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Work Memory",
+            "spec_option_name": "NOT APPLICABLE",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Number of Analog Outputs (AO)",
+            "spec_option_name": "4",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "No Of I O",
+            "spec_option_name": "2mlr-cpuh t",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Sub Category",
+            "spec_option_name": "PLCs (Programmable Logic Controllers)",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Manufacturer Series",
+            "spec_option_name": "S7-200",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "HMI Availability",
+            "spec_option_name": "With HMI",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Number of Analog Outputs (AO)",
+            "spec_option_name": "0",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "HMI Availability",
+            "spec_option_name": "Without HMI",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Model No.",
+            "spec_option_name": "FC5-30MR",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "No Of I O",
+            "spec_option_name": "HONEYWELL PLC 2MLR-CPUHT",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "I O Count",
+            "spec_option_name": "Above 256 I O",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "Ethernet/IP",
+            "option_fill_rate": "46.5"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Panel Mount",
+            "option_fill_rate": "45.2"
+        },
+        {
+            "spec_name": "Number of Analog Outputs",
+            "spec_option_name": "None",
+            "option_fill_rate": "42.7"
+        },
+        {
+            "spec_name": "Communication Port",
+            "spec_option_name": "RS485",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "INDUSTRIAL",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "3 Hp",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Number of Analog Outputs",
+            "spec_option_name": "4",
+            "option_fill_rate": "39"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "Modular",
+            "option_fill_rate": "35.7"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "Compact (Brick)",
+            "option_fill_rate": "34.9"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Touch Screen",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "HONEYWELL 09817210",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Number of Digital Outputs (DO)",
+            "spec_option_name": "16",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Series",
+            "spec_option_name": "S7-200 SMART",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "FD-XA1 Keyence",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "XBC-DN32H",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Series",
+            "spec_option_name": "S7-300",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Series",
+            "spec_option_name": "S7-1200",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Category",
+            "spec_option_name": "Controllers",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "6ES73221BH010AA0",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Program Memory",
+            "spec_option_name": "1 MB",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "PLC",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_option_name": "None",
+            "option_fill_rate": "32.3"
+        },
+        {
+            "spec_name": "Programming Interface",
+            "spec_option_name": "USB",
+            "option_fill_rate": "28.9"
+        },
+        {
+            "spec_name": "Programming Interface",
+            "spec_option_name": "RS-485",
+            "option_fill_rate": "28.9"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "Profinet",
+            "option_fill_rate": "26.7"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_option_name": "24V DC",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Number of Analog Inputs (AI)",
+            "spec_option_name": "4",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_option_name": "FD-XA1 Keyence",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Number of Analog Inputs (AI)",
+            "spec_option_name": "2",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "Profibus-DP",
+            "option_fill_rate": "23.8"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_option_name": "6",
+            "option_fill_rate": "23.2"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "Modbus TCP/IP",
+            "option_fill_rate": "22.8"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.5 Hp",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Communication Port",
+            "spec_option_name": "HONEYWELL PLC 2MLR-CPUHT",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Used for industrial automation and process control, enabling logic execution, monitoring, and contro",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Communication Port",
+            "spec_option_name": "2mlr-cpuh t",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "Siemens S7 300",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Programming Interface",
+            "spec_option_name": "RS-232",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Honeywell",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1 Hp",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Automation",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Communication Port",
+            "spec_option_name": "Modbus",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "PLC",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "7.5 Hp",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Wago",
+            "option_fill_rate": "18.4"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "24 V DC",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_option_name": "8",
+            "option_fill_rate": "16.2"
+        },
+        {
+            "spec_name": "Power Supply",
+            "spec_option_name": "100-240 VAC",
+            "option_fill_rate": "15.6"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "Transistor (Sink)",
+            "option_fill_rate": "15.2"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "2MLF-RD8A",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "GL20-0008ETN-INT",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "EASY320-0808TN",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "EASY302-0808TN",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "EAS301-0808TN",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "AM522-0808TN",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "6ES7222-1HD22-0XA0",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "10",
+            "option_fill_rate": "12.7"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "Transistor (Source)",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Number of Analog Outputs",
+            "spec_option_name": "1",
+            "option_fill_rate": "12.2"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "16",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "24",
+            "option_fill_rate": "10.3"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "XDM Series",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SAIA",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Siemens",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "H1U",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "XD5xDnTM Series",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "XD3E Series",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Koyo",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "Sarika",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "XD5E Series",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "L Series",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "XDME Series",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "KEYENCE",
+            "option_fill_rate": "9.6"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "32",
+            "option_fill_rate": "9.5"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_option_name": "4",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_option_name": "2",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "14",
+            "option_fill_rate": "8.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "HCFA",
+            "option_fill_rate": "8.1"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "CANopen",
+            "option_fill_rate": "7.9"
+        },
+        {
+            "spec_name": "Number of Analog Outputs",
+            "spec_option_name": "2",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "64",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Haiwell",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "Any",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Siemens",
+            "option_fill_rate": "4.4"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Unimat",
+            "option_fill_rate": "4.4"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "GIC",
+            "option_fill_rate": "4.4"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "Smart Relay (Logo)",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "DeviceNet",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "HMI Controller",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "LS Electric",
+            "option_fill_rate": "3.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Xinje",
+            "option_fill_rate": "3.7"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "20",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "40",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_option_name": "0",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Hornor Automation",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "8",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "0",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "28",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "30",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Delta",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "INVT",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "B&R",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Mitsubishi",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_option_name": "16",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_option_name": "24",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "Digital",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "None",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "60",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "12",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "HCFA",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "34",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "S7-1200 CPU Module",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "CAREL",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "COOLMAY",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "HONEYWELL",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Honeywell",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Flexem",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "MPI/PPI",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_option_name": "18",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "UDP",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "KOYO PLC DIRECT LOGIC 205 DL250",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "KOYO PLC DIRECT LOGIC 205 DL250-1",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "2MLR-E12P",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_option_name": "KOYO PLC DIRECT LOGIC 205 DL250-1",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "RS232",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Wall Mount",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Supply",
+            "spec_option_name": "100-240V AC",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "EtherCAT",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "4-20 mA",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "Serial",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "spec_option_name": "Modbus",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Number of Analog Inputs",
+            "spec_option_name": "14",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "PNP/NPN",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "Analog Voltage",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "NONE",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "FD-XA1 Keyence",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "KOYO PLC DIRECT LOGIC 205 DL250",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "X20 BC 0083",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "compact",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "KOYO PLC DIRECT LOGIC 205 DL250-1",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "CV-2100 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "8 inputs , 6/8 outputs",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "LJ-X8002 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "X20 BC 0083",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "HONEYWELL PLC 2MLL-EFMT",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "GC-1000 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "LJ-X8000A Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "KV-24DT keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "KV-24DT keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "VT3-E3 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "FLOW METER, MICRO, DIN RAIL TYPE, 4-DIGIT, 7-SEGMENT OLED DISPLAY, 5-30 TIMES/SECOND DISPLAY REFRESH",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "CA-DC21E Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "CV-2100 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "FLOW METER, MICRO, DIN RAIL TYPE, 4-DIGIT, 7-SEGMENT OLED DISPLAY, 5-30 TIMES/SECOND DISPLAY REFRESH",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "HONEYWELL PLC 2MLL-EFMT",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "POWER SUPLLY",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "KOYO PLC DIRECT LOGIC 205 DL250-1",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "18",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "CV-X420F Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "LJ-X8000A Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "LJ-X8002 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "Ethernet",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "XG-X2700 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "GL-R1UB Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "16 DI + 16 DO",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "8 Ã¢â¬â 12",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "KOYO PLC DIRECT LOGIC 205 DL250-1",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "CV-X420F Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "CV-5001P Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "GL-R1UB Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "Base Module",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "XG-X2700 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "HMI PLC",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "KOYO PLC DIRECT LOGIC 205 DL250",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "CV-5001P Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "B&R PLC X20",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "XG-X2800 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "No IO",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "2MLR-E12P",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "2MLR-E12P",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "VT3-E3 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "KOYO PLC DIRECT LOGIC 205 DL250",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "XG-X2800 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "PROGRAMMABLE CONTROLLER",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "GC-1000 Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "NONE",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "48",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "CA-DC21E Keyence",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "PLC Type",
+            "spec_option_name": "Programmable Logic Controller",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Total I/O Points",
+            "spec_option_name": "48 / 60",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Allen-Bradley",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Elco",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "LS",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "AUTONICS",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "RENU",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "KOYO PLC DIRECT LOGIC 205 DL250",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Kinko PLC",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "hornor Automation",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "EATON",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "UNIOP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Autem",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "2MLR-E12P",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "YAAK",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "FLEXEM",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "X20 BC 0083",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "MESSUNG",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Inovance",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "LUTRON",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "MASTER",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "HONEYWELL PLC 2MLL-EFMT",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "KOYO PLC DIRECT LOGIC 205 DL250-1",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "horner Automation",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Eyence",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "COMAT",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Strideind",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "parker",
+            "option_fill_rate": "0.7"
+        }
+    ]
+}

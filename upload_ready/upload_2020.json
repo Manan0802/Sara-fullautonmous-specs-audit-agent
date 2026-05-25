@@ -1,0 +1,141 @@
+{
+  "pmcat_id": 2020,
+  "pmcat_name": "Insecticides",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Insecticides",
+      "mcat_id": 2020,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Brand",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Technical Name",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Packaging Size",
+              "options": [
+                "50 ml",
+                "100 ml",
+                "250 ml",
+                "500 ml",
+                "1 L",
+                "5 L",
+                "100 g",
+                "250 g",
+                "500 g",
+                "1 kg",
+                "5 kg"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Target Pest",
+              "options": [
+                "Sucking Pests",
+                "Larvae & Caterpillars",
+                "Thrips & Mites",
+                "Bollworms",
+                "Termites",
+                "Fruit Borer",
+                "Cockroach",
+                "Household Pests"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Physical Form",
+              "options": [
+                "Liquid",
+                "Powder",
+                "Granules",
+                "Gel",
+                "Chalk"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Formulation",
+              "options": [
+                "EC (Emulsifiable Concentrate)",
+                "SC (Suspension Concentrate)",
+                "SL (Soluble Concentrate)",
+                "WP (Wettable Powder)",
+                "WG (Water Dispersible Granule)",
+                "SG (Water Soluble Granule)",
+                "GR (Granule)",
+                "DP (Dustable Powder)",
+                "CS (Capsule Suspension)"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Mode of Action",
+              "options": [
+                "Systemic",
+                "Contact",
+                "Stomach",
+                "Translaminar",
+                "Nervous System Action",
+                "Repellent",
+                "Fumigant"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Target Crops",
+              "options": [
+                "All Crops",
+                "Vegetables",
+                "Cotton",
+                "Paddy",
+                "Chilli",
+                "Soybean",
+                "Sugarcane",
+                "Fruits",
+                "Maize",
+                "Groundnut"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Application",
+              "options": [
+                "Agriculture",
+                "Household Use",
+                "Public Health"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Toxicity Level",
+              "options": [
+                "Green Label",
+                "Blue Label",
+                "Yellow Label",
+                "Red Label"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

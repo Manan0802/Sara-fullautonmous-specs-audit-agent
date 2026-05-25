@@ -1,0 +1,138 @@
+{
+  "pmcat_id": 448,
+  "pmcat_name": "Servo Motor",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "AC Servo Motor",
+      "mcat_id": 14970,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Power",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Brand",
+              "options": [
+                "Delta",
+                "Mitsubishi",
+                "Siemens",
+                "Panasonic",
+                "Schneider",
+                "Leadshine",
+                "Fanuc",
+                "Allen Bradley",
+                "Inovance",
+                "Baumuller",
+                "Other"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Input Phase",
+              "options": [
+                "Single Phase",
+                "Three Phase",
+                "Two Phase"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Voltage",
+              "options": [
+                "200 V",
+                "220 V",
+                "230 V",
+                "380 V",
+                "415 V",
+                "380-440 V"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Speed",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Model Name/Number",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Usage/Application",
+              "options": [
+                "Industrial Automation",
+                "CNC Machining",
+                "Robotics",
+                "Packaging Machinery",
+                "Textile Machinery",
+                "Printing Machinery"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Brake Feature",
+              "options": [
+                "With Brake",
+                "Without Brake"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Encoder Resolution",
+              "options": [
+                "13 bit",
+                "17 bit",
+                "19 bit",
+                "20 bit",
+                "23 bit"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Mounting",
+              "options": [
+                "Flange",
+                "Foot",
+                "Foot Cum Flange"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Torque",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Flange Size",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Brake Type",
+              "options": [
+                "Electromagnetic Brake",
+                "Spring Brake",
+                "Fail-Safe Brake"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

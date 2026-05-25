@@ -1,0 +1,166 @@
+{
+  "pmcat_id": 65237,
+  "pmcat_name": "Networking Devices and Equipment",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Network Switch",
+      "mcat_id": 17652,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Number of Ports",
+              "options": [
+                "4",
+                "5",
+                "8",
+                "10",
+                "12",
+                "14",
+                "16",
+                "18",
+                "24",
+                "28",
+                "32",
+                "48",
+                "52",
+                "More Than 52"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Brand",
+              "options": [
+                "Cisco",
+                "HP",
+                "Aruba",
+                "Huawei",
+                "D-Link",
+                "TP-Link",
+                "Netgear",
+                "Ubiquiti / UniFi",
+                "Mikrotik",
+                "Arista",
+                "Hikvision",
+                "Digisol",
+                "Grandstream",
+                "Alcatel-Lucent",
+                "Ruckus",
+                "BDCOM",
+                "Tenda",
+                "CP Plus"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "PoE Support",
+              "options": [
+                "Non PoE",
+                "PoE",
+                "PoE+",
+                "PoE++",
+                "UPoE"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Switch Type",
+              "options": [
+                "Unmanaged",
+                "Managed",
+                "Smart Managed",
+                "Cloud Managed",
+                "Industrial"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Port Speed",
+              "options": [
+                "10/100 Mbps",
+                "1 Gbps",
+                "2.5 Gbps",
+                "10 Gbps",
+                "25 Gbps",
+                "40 Gbps",
+                "100 Gbps",
+                "Multi-Gigabit"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Layer",
+              "options": [
+                "Layer 2",
+                "Layer 3",
+                "Layer 2+",
+                "Layer 3+"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Model Number",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Uplink Ports",
+              "options": [
+                "No Uplink Port",
+                "2 SFP Ports",
+                "4 SFP Ports",
+                "2 SFP+ Ports",
+                "4 SFP+ Ports",
+                "6 SFP+ Ports",
+                "8 SFP+ Ports",
+                "2 QSFP+ Ports",
+                "4 QSFP+ Ports",
+                "2 QSFP28 Ports",
+                "4 QSFP28 Ports"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Mounting Type",
+              "options": [
+                "Rack Mount",
+                "Desktop",
+                "Wall Mount",
+                "DIN Rail"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Series",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Fanless Design",
+              "options": [
+                "Fanless",
+                "With Fan"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "PoE Power Budget (Watts)",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

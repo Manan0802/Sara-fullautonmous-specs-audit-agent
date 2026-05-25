@@ -1,0 +1,3032 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 16068,
+        "mcat_name": "HDPE Bottle",
+        "current_specs": [
+            {
+                "spec_name": "Capacity",
+                "options": [
+                    "50 ml",
+                    "100 ml",
+                    "200 ml",
+                    "250 ml",
+                    "500 ml",
+                    "1 l",
+                    "2 l",
+                    "5 l",
+                    "10 l",
+                    "20 l"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Bottle Use",
+                "options": [
+                    "Pharma",
+                    "Agro",
+                    "Chemicals",
+                    "Lubricants",
+                    "Household",
+                    "Food"
+                ],
+                "input_type": "multi_select",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Neck Size",
+                "options": [
+                    "18 mm",
+                    "20 mm",
+                    "24 mm",
+                    "25 mm",
+                    "28 mm",
+                    "30 mm",
+                    "38 mm",
+                    "46 mm",
+                    "63 mm",
+                    "100 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Bottle Shape",
+                "options": [
+                    "Round",
+                    "Square",
+                    "Rectangular",
+                    "Flat",
+                    "Jerry Can",
+                    "Jar"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Color",
+                "options": [
+                    "White",
+                    "Natural",
+                    "Blue",
+                    "Black",
+                    "Yellow",
+                    "Green"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Handle Type",
+                "options": [
+                    "Without Handle",
+                    "Side Handle",
+                    "Top Handle",
+                    "D Handle"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Food Grade",
+                "options": [
+                    "Yes",
+                    "No"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Cap Type",
+                "options": [
+                    "Screw Cap",
+                    "TE Cap",
+                    "CRC Cap",
+                    "Plug Cap"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Surface Finish",
+                "options": [
+                    "Matt",
+                    "Glossy",
+                    "Embossed"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "HDPE Bottle",
+            "mcat_id": 16068,
+            "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Capacity",
+                            "options": [
+                                "50 ml",
+                                "100 ml",
+                                "200 ml",
+                                "250 ml",
+                                "500 ml",
+                                "1 l",
+                                "2 l",
+                                "5 l",
+                                "10 l",
+                                "20 l"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Bottle Use",
+                            "options": [
+                                "Pharma",
+                                "Agro",
+                                "Chemicals",
+                                "Lubricants",
+                                "Household",
+                                "Food"
+                            ],
+                            "input_type": "multi_select"
+                        },
+                        {
+                            "spec_name": "Neck Size",
+                            "options": [
+                                "18 mm",
+                                "20 mm",
+                                "24 mm",
+                                "25 mm",
+                                "28 mm",
+                                "30 mm",
+                                "38 mm",
+                                "46 mm",
+                                "63 mm",
+                                "100 mm"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Bottle Shape",
+                            "options": [
+                                "Round",
+                                "Square",
+                                "Rectangular",
+                                "Flat",
+                                "Jerry Can",
+                                "Jar"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Color",
+                            "options": [
+                                "White",
+                                "Natural",
+                                "Blue",
+                                "Black",
+                                "Yellow",
+                                "Green"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Handle Type",
+                            "options": [
+                                "Without Handle",
+                                "Side Handle",
+                                "Top Handle",
+                                "D Handle"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Food Grade",
+                            "options": [
+                                "Yes",
+                                "No"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Cap Type",
+                            "options": [
+                                "Screw Cap",
+                                "TE Cap",
+                                "CRC Cap",
+                                "Plug Cap"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Surface Finish",
+                            "options": [
+                                "Matt",
+                                "Glossy",
+                                "Embossed"
+                            ],
+                            "input_type": "multi_select"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Application",
+            "option_value": "Agriculture Products",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Agriculture Products; Religious Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Aquarium Feed Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Automotive Chemicals Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Beverage Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Chemical Holding",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Chemical Packaging",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Chemical Packaging (Epoxy Resin & Hardener)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Chemicals (Harpic type)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Cleaning Products Packaging",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Coolant Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Detergent Liquid",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Engine Oil Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Floor Cleaner Packaging",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Floor Cleaner, Toilet Cleaner",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Food & Oil Packaging",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Hair Oil Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Hardner Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Industrial Solvent & Sample Packaging",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Liquid Detergent Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Milk",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Oral Care Packaging",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Packaging Pills/Tablets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Personal Care Packaging",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Pharmaceutical Packaging",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Phenyl Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Powder (Ashtagandh, Chandan)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Religious Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Repacking",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Sanitizer Packaging",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Solvent Packaging",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Solvent for UPVC pipes (Gum)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Storing Powder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Toilet Cleaner Packaging",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Toilet Cleaner, Floor Cleaner, Glass Cleaner",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "White Phenyl",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bottle Type",
+            "option_value": "Barfi Cut",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bottle Type",
+            "option_value": "Castrol Model",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bottle Type",
+            "option_value": "Churna Bottle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bottle Type",
+            "option_value": "Coex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bottle Type",
+            "option_value": "Custom",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bottle Type",
+            "option_value": "F17",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bottle Type",
+            "option_value": "Harpic type",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Bottle Type",
+            "option_value": "Nivea type",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bottle Type",
+            "option_value": "Twin Neck",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bottle Type",
+            "option_value": "Wire Bottle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Color",
+            "option_value": "Black",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Color",
+            "option_value": "Green",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Color",
+            "option_value": "Multi-color",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Color",
+            "option_value": "Red",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Color",
+            "option_value": "Yellow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Material",
+            "option_value": "Plastic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Size",
+            "option_value": "51.5 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Dropper",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Flip Top",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Harpic set type cap",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Lock type",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Mist Pump",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Nozzle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Plain",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Screw Cap",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Seal Cap",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Simple Cap",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Sponge Head",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Type",
+            "option_value": "Spray Pump",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "0.5 Litre",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "1 Litre",
+            "prod_count": 42
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "1 kg",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "1.75 Litre",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "100 ml",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "100 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "1000 ml",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "2 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "20 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "200 ml",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "2000 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "25 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "250 ml",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "250 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "250 gm to 5 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "3 Litre",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "3 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "300 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "300 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "300-500 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "5 Litre",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "50 ml",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "50 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "50-60 tablets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "500 ml",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "500 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "52 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "60 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "75 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "Not Specified",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Black",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue/Black",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Clear",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Colored",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Green",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Milky White",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Natural",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Red",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Translucent",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Transparent",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Transparent White",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Yellow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Content Quantity",
+            "option_value": "60 capsules",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Content Type",
+            "option_value": "Liquid",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Customization",
+            "option_value": "Available",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization",
+            "option_value": "Required",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Diameter",
+            "option_value": "35-40 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features & Accessories",
+            "option_value": "Airtight",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features & Accessories",
+            "option_value": "Cap",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Features & Accessories",
+            "option_value": "Cap and Wad",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features & Accessories",
+            "option_value": "Handle",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Features & Accessories",
+            "option_value": "Included",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Features & Accessories",
+            "option_value": "Inner Plug (Buch/Lead)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features & Accessories",
+            "option_value": "Inner and Outer Caps",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features & Accessories",
+            "option_value": "Internal Brush Applicator",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features & Accessories",
+            "option_value": "Leak Proof",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features & Accessories",
+            "option_value": "Nose type",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Food Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "27 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Inner Plug",
+            "option_value": "No",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturing Process",
+            "option_value": "Blow Molding",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturing Process",
+            "option_value": "IBM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "HDPE",
+            "prod_count": 68
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "HDPE/PP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Form",
+            "option_value": "Granules",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Grade",
+            "option_value": "Blow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Inner",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Mouth Type",
+            "option_value": "Narrow Mouth",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Mouth Type",
+            "option_value": "Wide Mouth",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Neck Diameter/Size",
+            "option_value": "24 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Neck Diameter/Size",
+            "option_value": "28 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Neck Diameter/Size",
+            "option_value": "Small",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product State",
+            "option_value": "Empty",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Property",
+            "option_value": "PFS chemical free",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality",
+            "option_value": "Heavy",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Quality",
+            "option_value": "Low",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality",
+            "option_value": "Sturdy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality",
+            "option_value": "Thick",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Reference Product",
+            "option_value": "Viva mayonnaise bottle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Seal Type",
+            "option_value": "Foil Seal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Custom Design Required",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Flat",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Harpic type",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Lizol type",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Long",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Round",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Square",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Transparency",
+            "option_value": "Opaque",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Transparency",
+            "option_value": "Transparent",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "100 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "17-18 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "210 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "230 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "37 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "60 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "65 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "70 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "75 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "8-10 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "90 to 100 g",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Brand",
+            "option_value": "PMK"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Brand",
+            "option_value": "PMK"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Brand",
+            "option_value": "PMK"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Brand",
+            "option_value": "PMK"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Height-135mm",
+            "option_value": "Dia-42mm"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Glyphosate"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "EW"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Partila"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Buta EW"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "CH"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Euro"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Te Ring"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Matsuri"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "CS"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Pendi"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Diamond Cut"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Star"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Rainbow"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Stair"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Ciba"
+        },
+        {
+            "mcat_id": "16068",
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "Model Name",
+            "option_value": "Bufro"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "brand",
+            "spec_option": "regent",
+            "impression": "22"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "capacity",
+            "spec_option": "1 liter",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "capacity",
+            "spec_option": "1 litre",
+            "impression": "35"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "capacity",
+            "spec_option": "100 gram",
+            "impression": "22"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "capacity",
+            "spec_option": "100 ml",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "capacity",
+            "spec_option": "1000 ml",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "capacity",
+            "spec_option": "200 ml",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "capacity",
+            "spec_option": "5 litre",
+            "impression": "43"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "capacity",
+            "spec_option": "500 ml",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "material",
+            "spec_option": "hdpe",
+            "impression": "2224"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "material",
+            "spec_option": "hdpe plastic",
+            "impression": "61"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "shape",
+            "spec_option": "diamond",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "shape",
+            "spec_option": "square",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "HDPE Bottle",
+            "spec_name": "usage",
+            "spec_option": "oil",
+            "impression": "10"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Capacity",
+            "spec_fill_rate": "62.2",
+            "product_count": "56"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_fill_rate": "55.6",
+            "product_count": "50"
+        },
+        {
+            "spec_name": "Color",
+            "spec_fill_rate": "54.4",
+            "product_count": "49"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_fill_rate": "53.3",
+            "product_count": "48"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "42.2",
+            "product_count": "38"
+        },
+        {
+            "spec_name": "Food Grade",
+            "spec_fill_rate": "42.2",
+            "product_count": "38"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_fill_rate": "41.1",
+            "product_count": "37"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_fill_rate": "33.3",
+            "product_count": "30"
+        },
+        {
+            "spec_name": "Cap Type",
+            "spec_fill_rate": "27.8",
+            "product_count": "25"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_fill_rate": "22.2",
+            "product_count": "20"
+        },
+        {
+            "spec_name": "Material",
+            "spec_fill_rate": "8.9",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "2.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "2.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Recyclable",
+            "spec_fill_rate": "2.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Bottle Color",
+            "spec_fill_rate": "2.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Bottle Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Sealing Mechanism",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Solvent Name",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Bottle color",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Sterility",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Finish Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Bottle Material",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Seal Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Dropper Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Suitable For Oil",
+            "spec_fill_rate": "1.1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Chemical Grade",
+            "spec_option_name": "Industrial Grade",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Refill Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recyclable",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "PMK",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "With Handle",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Closure Type",
+            "spec_option_name": "Screw Cap",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sterility",
+            "spec_option_name": "Non Sterile",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Can Shape",
+            "spec_option_name": "Round",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Question",
+            "spec_option_name": "100ml 60ml 50ml and 30ml capacity",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For Oil",
+            "spec_option_name": "Soybean Oil",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Segment",
+            "spec_option_name": "Factory",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Segment",
+            "spec_option_name": "Office",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "20-1000ML",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Height-135mm",
+            "spec_option_name": "Dia-42mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Solvent Name",
+            "spec_option_name": "SOLVENTS",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Bottle Material",
+            "spec_option_name": "HDPE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Seal Type",
+            "spec_option_name": "Wad Seal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Segment",
+            "spec_option_name": "Hospital",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Container Material",
+            "spec_option_name": "HDPE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Container Color",
+            "spec_option_name": "White",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "HDPE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Segment",
+            "spec_option_name": "Retail",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Printing Method",
+            "spec_option_name": "Sticker Label",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For Oil",
+            "spec_option_name": "Coconut Oil",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For Oil",
+            "spec_option_name": "Sunflower Oil",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Segment",
+            "spec_option_name": "Warehouse",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Dropper Type",
+            "spec_option_name": "Nozzle Dropper",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For Oil",
+            "spec_option_name": "Groundnut Oil",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Chemicals",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Segment",
+            "spec_option_name": "School",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "250ml",
+            "spec_option_name": "As per requirement",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "5 L",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Bottle color",
+            "spec_option_name": "White",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "HDPE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Segment",
+            "spec_option_name": "Hotel",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Pharmaceutical",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Printing Method",
+            "spec_option_name": "Shrink Label",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Handle",
+            "spec_option_name": "Without Handle",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Agrochemical",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Glossy",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Cosmetics",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Home Care",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For Oil",
+            "spec_option_name": "Rice Bran Oil",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For Oil",
+            "spec_option_name": "Mustard Oil",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pattern",
+            "spec_option_name": "Plain",
+            "option_fill_rate": "98"
+        },
+        {
+            "spec_name": "Cap Type",
+            "spec_option_name": "Screw Cap",
+            "option_fill_rate": "95.4"
+        },
+        {
+            "spec_name": "Usage and Application",
+            "spec_option_name": "Household and Cleaning Products",
+            "option_fill_rate": "86.1"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Bottle Color",
+            "spec_option_name": "White",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Recyclable",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_option_name": "Matt",
+            "option_fill_rate": "73.8"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "Without Handle",
+            "option_fill_rate": "72.2"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "Plain Seal",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Sealing Mechanism",
+            "spec_option_name": "Inner Plug",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "Non Food Grade",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "Round",
+            "option_fill_rate": "62"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White",
+            "option_fill_rate": "61.8"
+        },
+        {
+            "spec_name": "Food Grade",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "54.7"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Chemicals",
+            "option_fill_rate": "50.7"
+        },
+        {
+            "spec_name": "Finish Type",
+            "spec_option_name": "Glossy",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Food & Beverage",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Finish Type",
+            "spec_option_name": "Matte",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Reusable",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Bottle Type",
+            "spec_option_name": "As Per The Image",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Food Grade",
+            "spec_option_name": "No",
+            "option_fill_rate": "45.3"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Cylindrical",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Neck Diameter",
+            "spec_option_name": "28 mm",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Pharma",
+            "option_fill_rate": "41.8"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_option_name": "Screw Cap",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Household",
+            "option_fill_rate": "38.2"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Agro",
+            "option_fill_rate": "36"
+        },
+        {
+            "spec_name": "Neck Diameter",
+            "spec_option_name": "32 mm",
+            "option_fill_rate": "35.7"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "Tamper Evident",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "Heat Sealed",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Bottle Type",
+            "spec_option_name": "Standard Bottle",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "Leak Proof",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Sealing Mechanism",
+            "spec_option_name": "Induction Seal",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "Induction Sealed",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_option_name": "Glossy",
+            "option_fill_rate": "32.3"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Square",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Bottle Color",
+            "spec_option_name": "AS PER REQUIREMENT",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Temperature Resistance",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made In India",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "Food Grade",
+            "option_fill_rate": "23.8"
+        },
+        {
+            "spec_name": "Neck Diameter",
+            "spec_option_name": "24 mm",
+            "option_fill_rate": "21.4"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_option_name": "Flip Top Cap",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_option_name": "Wide Mouth",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_option_name": "Narrow Mouth",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "18 mm",
+            "option_fill_rate": "19.9"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "38 mm",
+            "option_fill_rate": "18.4"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Automotive Coolant",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Industrial Coolant",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Body Talc",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Baby Powder",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Radiator Coolant",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Medicated Talc",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Cosmetic",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Face Powder",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "500 ml",
+            "option_fill_rate": "17"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Built In Handle",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Bottle Type",
+            "spec_option_name": "Bottle with Pump",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Leak Proof",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "As Per The Image",
+            "option_fill_rate": "14.9"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "As Per The Image",
+            "option_fill_rate": "14.9"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Round",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Rectangular",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "28 mm",
+            "option_fill_rate": "13.5"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Food",
+            "option_fill_rate": "13.3"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Lubricants",
+            "option_fill_rate": "12.9"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Green",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "As Per The Image",
+            "option_fill_rate": "12.2"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "1 l",
+            "option_fill_rate": "11.5"
+        },
+        {
+            "spec_name": "Usage and Application",
+            "spec_option_name": "Chemical Packaging",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "250 ml",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "As Per The Image",
+            "option_fill_rate": "10.2"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "Square",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "20 mm",
+            "option_fill_rate": "9.9"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "100 ml",
+            "option_fill_rate": "9.9"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "HDPE",
+            "option_fill_rate": "9.5"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_option_name": "Embossed",
+            "option_fill_rate": "9.2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Engine Oil",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Hydraulic Oil",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Industrial Oil",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Agro Chemical",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Tablets",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Water",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Bathroom Cleaner",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Paint And Coating",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Pharma Liquid",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Gear Oil",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Grease Oil",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Any",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Cutting Oil",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Liquid Oral, Ear Drop",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Household Chemical",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "24 mm",
+            "option_fill_rate": "8.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "BPA-Free",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "Flat",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "As Per The Usage",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Natural",
+            "option_fill_rate": "6.6"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "Side Handle",
+            "option_fill_rate": "5.7"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "25 mm",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "46 mm",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "30 mm",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "4.9"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "Rectangular",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "1 liter",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "As Per The Image",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "As Per Usage",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "MULTIPLE",
+            "option_fill_rate": "3.4"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "Top Handle",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Usage and Application",
+            "spec_option_name": "Food and Beverages",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "60 ML",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "200 ml",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "100 mm",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Milky White",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Pattern",
+            "spec_option_name": "Printed",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Any",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Toner Powder",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Cap Type",
+            "spec_option_name": "Plug Cap",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Any",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Transparent",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Black",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "19 mm",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Yellow",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "1 L",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "300 ml",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "30 ML",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "Round",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Blue",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Shampoo",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "1L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Cap Type",
+            "spec_option_name": "CRC Cap",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "800ML",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "As Per the Usage",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "1000 ml",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Cap Type",
+            "spec_option_name": "Flip Top",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "5 l",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "32mm",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "50mm",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "As per requirement",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White (Base)",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "42mm",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "As per requirement",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "19",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "48mm",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "As Per The Image",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "63 mm",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "36 mm",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "24mm & 20mm",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "2 l",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "100 g",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "75 g",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "50 ml",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "800ml",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "850ML",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "30 ml",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "all",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "Screw cap",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "As Per the Image",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "Nil",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Cap Type",
+            "spec_option_name": "Pump Dispenser Cap",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "all type",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Cap Type",
+            "spec_option_name": "TE Cap",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Paint & Epoxy",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "As per requirement",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Beauty & Non-Food Packaging",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Multipurpose",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "Costmize",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "Triangle & Oval",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Sewing Machine Oil Bottle",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "all",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "MULTIPURPOSE",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "As Per Image",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Floor Cleaner",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "OIL",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Spices",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Churan",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Per Usage",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "TALCUM POWDER, DUSTING POWDER",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Use",
+            "spec_option_name": "Cosmetic",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "Curved",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "375 ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "2L",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "15 ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "125 ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Grey (Base)",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "40ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "250 gm",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "As per requirement",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "350ML",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "3 ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "30ml, 50ml, 60ml and 100ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Grey",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "50ml to 1000ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Multicolor",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "all",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "125ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "1100ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Golden",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Any colour",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "60ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "2.5 Litre",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "800 ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "100 & 200 ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "10/30/60/150/300 ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "50 to 200 ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "450",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "5 ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "60",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Black (Base)",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "200 gm",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "As Per Image",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "50ML AND 100ML",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "1 kg",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "350 gm",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "100ml ,250ml ,500ml,1 liter",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "250 & 500 ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Red",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "ULTIPLE",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "500ml, 200ml, 100ml, 50ml, 25ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Black & Dark Green",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "75 ml",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "200ML",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "300gm",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "50, 90, 100, 175ml",
+            "option_fill_rate": "0.3"
+        }
+    ]
+}

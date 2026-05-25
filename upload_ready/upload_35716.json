@@ -1,0 +1,189 @@
+{
+  "pmcat_id": 84121,
+  "pmcat_name": "Transmitter Device",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Pressure Transmitters",
+      "mcat_id": 35716,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Brand",
+              "options": [
+                "Danfoss",
+                "Wika",
+                "Rosemount",
+                "Honeywell",
+                "Baumer",
+                "Yokogawa",
+                "Siemens",
+                "ABB",
+                "Endress+Hauser",
+                "Foxboro",
+                "Gefran",
+                "Barksdale"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Pressure Range",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Output Signal",
+              "options": [
+                "4–20 mA",
+                "4–20 mA HART",
+                "0–10 V",
+                "0–5 V",
+                "1–5 V",
+                "1–10 V",
+                "RS485",
+                "Modbus RTU",
+                "PROFIBUS PA",
+                "FOUNDATION Fieldbus",
+                "Relay"
+              ],
+              "input_type": "multi_select"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Pressure Type",
+              "options": [
+                "Gauge",
+                "Absolute",
+                "Differential",
+                "Vacuum",
+                "Sealed Gauge",
+                "Compound"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Application",
+              "options": [
+                "Water",
+                "Air",
+                "Gas",
+                "Oil & Hydraulics",
+                "Steam",
+                "Food & Beverage",
+                "Pharmaceutical",
+                "Chemical",
+                "HVAC"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Connection Type",
+              "options": [
+                "NPT",
+                "BSP",
+                "G (BSPP)",
+                "Flanged",
+                "Tri-Clamp",
+                "DIN"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Connection Size",
+              "options": [
+                "1/8 inch",
+                "1/4 inch",
+                "3/8 inch",
+                "1/2 inch",
+                "3/4 inch",
+                "1 inch",
+                "1.5 inch",
+                "2 inch"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Accuracy",
+              "options": [
+                "±0.05%",
+                "±0.075%",
+                "±0.10%",
+                "±0.15%",
+                "±0.20%",
+                "±0.25%",
+                "±0.50%",
+                "±1.00%"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Diaphragm Material",
+              "options": [
+                "SS316L",
+                "SS304",
+                "Hastelloy C",
+                "Monel",
+                "Tantalum",
+                "Ceramic"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Display",
+              "options": [
+                "With Display",
+                "Without Display"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Ingress Protection",
+              "options": [
+                "IP65",
+                "IP66",
+                "IP67",
+                "IP68"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Mounting Type",
+              "options": [
+                "Direct Mount",
+                "2 in Pipe",
+                "Panel Mount",
+                "Wall Mount"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Supply Voltage",
+              "options": [
+                "24 V DC",
+                "9–36 V DC",
+                "10–30 V DC",
+                "12–36 V DC",
+                "18–32 V DC"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Model Name/Number",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

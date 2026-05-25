@@ -1,0 +1,131 @@
+category_id: 3983
+category_name: conference tables
+seller_specs:
+{
+  "category_name": "Conference Tables",
+  "mcat_id": 3983,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Seating Capacity",
+          "options": [
+            "8 Seater",
+            "10 Seater",
+            "12 Seater",
+            "6 Seater",
+            "4 Seater",
+            "14 Seater",
+            "16 Seater",
+            "18+ Seater"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Top Material",
+          "options": [
+            "Particle Board",
+            "MDF",
+            "Wood Veneer",
+            "Glass",
+            "HPL",
+            "Metal",
+            "Solid Wood"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Seating Capacity is chosen as the foremost primary spec because it's the most common starting point for a buyer's inquiry (e.g., \"8-seater table,\" \"table for 20 people\"). It directly relates to the table's size and intended use. Top Material is the second primary spec as it is a major differentiator for price, aesthetics, and durability."
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Shape",
+          "options": [
+            "Rectangular",
+            "Boat",
+            "U-Shape",
+            "Round",
+            "Oval",
+            "Square"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Leg Type",
+          "options": [
+            "Metal Legs",
+            "Panel Base",
+            "Pedestal Base"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Shape is a crucial functional and aesthetic attribute that defines the table's suitability for different room layouts. Leg Type significantly impacts the table's stability, style, and cleaning accessibility, making it a common point of comparison."
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Features",
+          "options": [
+            "Wire Management",
+            "Modular",
+            "Foldable",
+            "With Wheels"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Top Finish",
+          "options": [
+            "Wood Grain",
+            "White",
+            "Black",
+            "Grey"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Top Thickness",
+          "options": [
+            "25 mm",
+            "18 mm",
+            "36 mm",
+            "45 mm",
+            "50 mm"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Frame Material",
+          "options": [
+            "Mild Steel (MS)",
+            "Particle Board",
+            "MDF",
+            "Stainless Steel",
+            "Aluminium"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Features are listed as multi_select because not all tables have them, making them suitable for detailed filtering. Wire management is a common requirement. Top Finish and Top Thickness are important details for aesthetic matching and perceived quality, typically considered after primary selections have been made."
+    }
+  },
+  "scratchpad": "The selection and tiering of specifications are based on their commercial significance observed in buyer-seller conversations and seller catalogs. Primary specs (Seating Capacity, Top Material) are high-impact attributes for search. Secondary specs (Shape, Leg Type) are crucial for functional and aesthetic differentiation. Tertiary specs (Features, Top Finish, Top Thickness, Frame Material) are for detailed filtering of finer details."
+}

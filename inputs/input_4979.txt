@@ -1,0 +1,2891 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 4979
+category_name: Automatic Pouch Packing Machines
+seller_specs (current spec sheet): {
+  "category_name": "Automatic Pouch Packing Machines",
+  "mcat_id": 4979,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Packaging Range",
+          "options": [
+            "Upto 1kg",
+            "Upto 500g",
+            "Upto 250g",
+            "Upto 100g",
+            "Upto 5kg",
+            "Upto 10kg"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "1"
+        },
+        {
+          "spec_name": "Machine Type",
+          "options": [
+            "Pneumatic FFS",
+            "Mechanical FFS",
+            "Servo Driven FFS"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": null
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Filling System",
+          "options": [
+            "Cup Filler",
+            "Auger Filler",
+            "Weigh Filler",
+            "Multi-head Weigher",
+            "Piston Filler"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Sealing Type",
+          "options": [
+            "Center Seal",
+            "3-Side Seal",
+            "4-Side Seal"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Packaging Speed",
+          "options": [
+            "Upto 45 PPM",
+            "Upto 60 PPM",
+            "Upto 30 PPM",
+            "Upto 80 PPM",
+            "Upto 100 PPM"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": null
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Power Consumption",
+          "options": [
+            "Upto 2 kW",
+            "Upto 3 kW",
+            "Upto 5 kW",
+            "Upto 7.5 kW",
+            "Above 7.5 kW"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Contact Parts Material",
+          "options": [
+            "SS 304",
+            "SS 316"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Pouch Format",
+          "options": [
+            "Pillow Pouch",
+            "Gusseted Pouch",
+            "Stand-up Pouch",
+            "Sachet",
+            "Stick Pack"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Features",
+          "options": [
+            "Batch Coding",
+            "Nitrogen Flushing",
+            "Outfeed Conveyor",
+            "Pouch Counter",
+            "Z-Type Elevator"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": null
+    }
+  },
+  "scratchpad": "The selection and prioritization of these specifications are based on their commercial significance, frequency of mention in both sales calls and technical catalogs, and their impact on a buyer's purchasing decision. 1. Primary Specifications (Packaging Range, Machine Type) were chosen because they are the first and most critical filters for a buyer. Packaging Range defines what weight the machine can handle, and Machine Type (Pneumatic, Mechanical, Servo) is a core determinant of price, speed, and sophistication. 2. Secondary Specifications (Filling System, Sealing Type, Packaging Speed) define the machine's core capabilities and performance. The Filling System is crucial as it determines the type of product the machine can pack. Sealing Type and Packaging Speed are key performance indicators. 3. Tertiary Specifications (Power Consumption, Contact Parts Material, Pouch Format, Features) provide essential supplementary details. Power Consumption is a practical consideration. Contact Parts Material is vital for quality and compliance. Pouch Format offers specific detail on pouch style. Features are configured as multi_select for common, valuable add-ons."
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 14 specs) ---
+[
+  {
+    "spec_name": "Packing Capacity",
+    "total_product_count": 126,
+    "example_values": [
+      "1 kg",
+      "1-100 g",
+      "1-1000 g",
+      "1-2 g",
+      "10 g"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 99,
+    "example_values": [
+      "5 and 10 Rupee Packs",
+      "Animal Feed",
+      "Bakery Items",
+      "FMCG Products",
+      "Grains / Pulses / Seeds"
+    ]
+  },
+  {
+    "spec_name": "Machine Type",
+    "total_product_count": 77,
+    "example_values": [
+      "Auger Filler",
+      "Auger Filler with Weigher",
+      "Chute Type",
+      "Collar Type",
+      "Collar Type Servo Auger"
+    ]
+  },
+  {
+    "spec_name": "Accessories & Features",
+    "total_product_count": 56,
+    "example_values": [
+      "0.5 HP",
+      "1 Year",
+      "1 Year Warranty",
+      "16 inch",
+      "3 HP Compressor Required"
+    ]
+  },
+  {
+    "spec_name": "Automation Grade",
+    "total_product_count": 56,
+    "example_values": [
+      "Automatic"
+    ]
+  },
+  {
+    "spec_name": "Production Capacity",
+    "total_product_count": 36,
+    "example_values": [
+      "10-12 ppm",
+      "1000-2000 ppd",
+      "1200 pph",
+      "150-200 ppm",
+      "1800-2000 pph"
+    ]
+  },
+  {
+    "spec_name": "Body Material",
+    "total_product_count": 9,
+    "example_values": [
+      "Mild Steel (MS)",
+      "Nylon",
+      "Stainless Steel",
+      "Stainless Steel (SS 304)"
+    ]
+  },
+  {
+    "spec_name": "Accessories",
+    "total_product_count": 8,
+    "example_values": [
+      "Bucket Conveyor",
+      "Compressor",
+      "Screw Conveyor",
+      "TIG Printer"
+    ]
+  },
+  {
+    "spec_name": "Packaging Type",
+    "total_product_count": 7,
+    "example_values": [
+      "Chain",
+      "Pouch",
+      "Pouch / Lari",
+      "Printed Laminate",
+      "Zipper Pouch"
+    ]
+  },
+  {
+    "spec_name": "Warranty",
+    "total_product_count": 5,
+    "example_values": [
+      "1 year",
+      "6 month"
+    ]
+  },
+  {
+    "spec_name": "Country of Origin",
+    "total_product_count": 4,
+    "example_values": [
+      "China",
+      "India",
+      "Indian Bagger, Chinese Filler, Indian Motor",
+      "Taiwan"
+    ]
+  },
+  {
+    "spec_name": "Number of Heads",
+    "total_product_count": 4,
+    "example_values": [
+      "1",
+      "10",
+      "2",
+      "6"
+    ]
+  },
+  {
+    "spec_name": "Nitrogen Flushing",
+    "total_product_count": 3,
+    "example_values": [
+      "No",
+      "Yes"
+    ]
+  },
+  {
+    "spec_name": "Pouch Value",
+    "total_product_count": 3,
+    "example_values": [
+      "1 INR",
+      "5 INR",
+      "5, 10 INR"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 1 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "count": 5,
+    "options": [
+      "Key-Pack",
+      "Taiwan"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "usage",
+    "total_impressions": 124,
+    "options": [
+      "fish packing",
+      "ghee packing",
+      "grease",
+      "lassi",
+      "tamarind packing"
+    ]
+  },
+  {
+    "spec_name": "packaging type",
+    "total_impressions": 96,
+    "options": [
+      "box",
+      "pouch"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (47 specs) ---
+[
+  {
+    "spec_name": "Machine Type",
+    "spec_fill_rate": "54.8",
+    "product_count": "40"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_fill_rate": "49.3",
+    "product_count": "36"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_fill_rate": "45.2",
+    "product_count": "33"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "43.8",
+    "product_count": "32"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_fill_rate": "41.1",
+    "product_count": "30"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_fill_rate": "39.7",
+    "product_count": "29"
+  },
+  {
+    "spec_name": "Power Consumption",
+    "spec_fill_rate": "28.8",
+    "product_count": "21"
+  },
+  {
+    "spec_name": "Contact Parts Material",
+    "spec_fill_rate": "27.4",
+    "product_count": "20"
+  },
+  {
+    "spec_name": "Features",
+    "spec_fill_rate": "23.3",
+    "product_count": "17"
+  },
+  {
+    "spec_name": "Pouch Format",
+    "spec_fill_rate": "21.9",
+    "product_count": "16"
+  },
+  {
+    "spec_name": "Automation Grade",
+    "spec_fill_rate": "16.4",
+    "product_count": "12"
+  },
+  {
+    "spec_name": "Pouch Type",
+    "spec_fill_rate": "12.3",
+    "product_count": "9"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_fill_rate": "12.3",
+    "product_count": "9"
+  },
+  {
+    "spec_name": "Product Form",
+    "spec_fill_rate": "9.6",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Filling Range",
+    "spec_fill_rate": "8.2",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_fill_rate": "8.2",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Body Material",
+    "spec_fill_rate": "6.8",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Packing Material",
+    "spec_fill_rate": "6.8",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_fill_rate": "2.7",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "2.7",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Pouch Capacity",
+    "spec_fill_rate": "2.7",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Power Load",
+    "spec_fill_rate": "2.7",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "No Of Lanes",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Power",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Power Requirement",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Milk System",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Drink Options",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Pouch Material",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Weight",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Capacity (Pouch Weight)",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Machine Size: L50cm, W38cm, H163cm",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Optional items",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Material of Construction",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Mounting",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Bean Hopper",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Machine Speed (PPM)",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Control System",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Speed",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Filling Capacity",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Filler Type",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Usage Area",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "MACHINE POWER",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Film Type",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Serving Capacity",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Packed Product Application",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (304 rows) ---
+[
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Gels",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Oil",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "150 kg~",
+    "spec_option_name": "2\u00c3\u0083\u00e2\u0080\u00941.5\u00c3\u0083\u00e2\u0080\u00944 foot",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Machine Size: L50cm, W38cm, H163cm",
+    "spec_option_name": "Max Flim Width: 24Cm, Max Sealing Legth: 17Cm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "LENTH",
+    "spec_option_name": "2 INCH TO 8INCH",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Drink Type",
+    "spec_option_name": "Soft Drink",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Bean Hopper",
+    "spec_option_name": "Single Hopper",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Operation Mode",
+    "spec_option_name": "Fully Automatic",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Juice",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Water",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tServo motor with gear box",
+    "spec_option_name": "0.4 KW",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tZipper open attachment",
+    "spec_option_name": "optional (@ 50000)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tMachine Speed",
+    "spec_option_name": "10 to 20 zipper pouch/min. (depends on product, operator)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Filling Mechanism",
+    "spec_option_name": "Piston",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Serving Capacity",
+    "spec_option_name": "1600-1700 CPH",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Bottle Size",
+    "spec_option_name": "5-150ml pouch",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Optional items",
+    "spec_option_name": "Nitrogen Flushing ,Batch Coding",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Nozzle Type",
+    "spec_option_name": "Single",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Drink Type",
+    "spec_option_name": "Energy Drink",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Packing Range",
+    "spec_option_name": "20-50 g",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Weight",
+    "spec_option_name": "350 kg",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pulse Type",
+    "spec_option_name": "Masoor dal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Optional Features",
+    "spec_option_name": "Batch Coding Device",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tMachine weight",
+    "spec_option_name": "500~700 kgs (Depends on optional attachment)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Milk System",
+    "spec_option_name": "no",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Cosmetic Cream/Lotion",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Package Format",
+    "spec_option_name": "Pouch",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pulse Type",
+    "spec_option_name": "Moong dal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Grease/Lubricant",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Filling range",
+    "spec_option_name": "10-100 g",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Chemical Paste",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Mounting",
+    "spec_option_name": "Floor Standing",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tReq. Power",
+    "spec_option_name": "2.5 HP",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Pharmaceutical Ointment",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Number of Print Lines",
+    "spec_option_name": "1-4 Lines",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tReq. Power:",
+    "spec_option_name": "2.5 HP",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Jams & Jellies",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tMachine Speed: 10 to 20 zipper pouch/min. (depends on product, operator) \u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tElectric control",
+    "spec_option_name": "10 to 20 zipper pouch/min. (depends on product, operator)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tZipper pouch with",
+    "spec_option_name": "Top open or Bottom open (Any one)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tSuitable for pouch width",
+    "spec_option_name": "75 ~200 mm.",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pouch Width",
+    "spec_option_name": "140 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Optional Features",
+    "spec_option_name": "Nitrogen Flushing",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Adhesive/Sealant",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable Product",
+    "spec_option_name": "Spices, Detergent",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Printing Speed",
+    "spec_option_name": "Up to 40 m/min",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Packaging Speed (PPM)",
+    "spec_option_name": "20-40 PPM",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Max. Print Height",
+    "spec_option_name": "50.8 mm (2 Inch)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Drink Type",
+    "spec_option_name": "Juice Based Drink",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Film Type",
+    "spec_option_name": "Laminated Roll",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Condition",
+    "spec_option_name": "Used/Second",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pulse Type",
+    "spec_option_name": "Chana dal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Mehendi (Henna)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Cooling Type",
+    "spec_option_name": "No Chiller",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Drink Options",
+    "spec_option_name": "2 Options",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": ">2500 pouch per hour",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Area",
+    "spec_option_name": "company",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pulse Type",
+    "spec_option_name": "Whole pulses",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Packed Product Application",
+    "spec_option_name": "Kurkure",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "No Of Lanes",
+    "spec_option_name": "Single Lane",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Container Type",
+    "spec_option_name": "Pouch",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Power",
+    "spec_option_name": "2000 W",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pulse Type",
+    "spec_option_name": "Toor dal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Fill Range",
+    "spec_option_name": "200-1000 g",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pulse Type",
+    "spec_option_name": "Urad dal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Sauces & Ketchup",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Production Capacity",
+    "spec_option_name": "40 to 60 bpm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Food Paste",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tPouch length",
+    "spec_option_name": "100 ~ 250mm.",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "MACHINE POWER",
+    "spec_option_name": "1-2 HP",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Control System",
+    "spec_option_name": "PLC Based",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pouch Material",
+    "spec_option_name": "LDPE",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Milk",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a2\tCompressor",
+    "spec_option_name": "3 HP or (2 hp and vacuum pump 1 hp) (Client\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0084\u00a2s Scope)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "Pneumatic",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Contact Parts Material",
+    "spec_option_name": "SS 304",
+    "option_fill_rate": "91.4"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "Center Seal",
+    "option_fill_rate": "71.7"
+  },
+  {
+    "spec_name": "Automation Grade",
+    "spec_option_name": "Automatic",
+    "option_fill_rate": "70"
+  },
+  {
+    "spec_name": "Packed Product Application",
+    "spec_option_name": "Namkeen",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Filler Type",
+    "spec_option_name": "Multi-head Weigher",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Packing Material",
+    "spec_option_name": "Laminated Film",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Packed Product Application",
+    "spec_option_name": "Chips",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Packed Product Application",
+    "spec_option_name": "Puffs",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Packed Product Application",
+    "spec_option_name": "Dry Fruits",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Packed Product Application",
+    "spec_option_name": "Granules",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Packed Product Application",
+    "spec_option_name": "Powder",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Pouch Format",
+    "spec_option_name": "Pillow Pouch",
+    "option_fill_rate": "65.5"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Batch Coding",
+    "option_fill_rate": "64.8"
+  },
+  {
+    "spec_name": "Material of Construction",
+    "spec_option_name": "SS 304 (Contact)",
+    "option_fill_rate": "62.5"
+  },
+  {
+    "spec_name": "Packaging Range (Capacity)",
+    "spec_option_name": "100-500 gm",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Pouch Type",
+    "spec_option_name": "Center Seal",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "Single Phase",
+    "option_fill_rate": "53.8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Taiwan",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Solid Pieces",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Power Load",
+    "spec_option_name": "1 kW",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Structure Material",
+    "spec_option_name": "MS powder coated",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Number of Heads",
+    "spec_option_name": "Single Head",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Power Source",
+    "spec_option_name": "Electric",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Power Requirement",
+    "spec_option_name": "Single Phase",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Key-Pack",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Structure Material",
+    "spec_option_name": "MS Powder Coated",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Power Requirement",
+    "spec_option_name": "Three Phase",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Chips",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Power Load",
+    "spec_option_name": "6.5 kW",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Power Consumption",
+    "spec_option_name": "Upto 2 kW",
+    "option_fill_rate": "49.2"
+  },
+  {
+    "spec_name": "Product Form",
+    "spec_option_name": "Powder",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Filling Range",
+    "spec_option_name": "50-100 ml",
+    "option_fill_rate": "37.5"
+  },
+  {
+    "spec_name": "Material of Construction",
+    "spec_option_name": "SS 304",
+    "option_fill_rate": "37.5"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Nitrogen Flushing",
+    "option_fill_rate": "37"
+  },
+  {
+    "spec_name": "Machine Speed (PPM)",
+    "spec_option_name": "60-90 PPM",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Machine Speed (PPM)",
+    "spec_option_name": "30-60 PPM",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Speed",
+    "spec_option_name": "20-40 ppm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Number of Heads",
+    "spec_option_name": "2 Head",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Pouch Capacity",
+    "spec_option_name": "250-500 g",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Speed",
+    "spec_option_name": "2000 pouches/hr",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Pouch Capacity",
+    "spec_option_name": "10-50 g",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Capacity (Pouch Weight)",
+    "spec_option_name": "10-100 g",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Pouch Capacity",
+    "spec_option_name": "50-200 grams",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Capacity (Pouch Weight)",
+    "spec_option_name": "5-50 g",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Speed",
+    "spec_option_name": "500 pouches/hr",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Machine Speed (PPM)",
+    "spec_option_name": "Above 90 PPM",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Capacity (Pouch Weight)",
+    "spec_option_name": "500 g - 1 kg",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Filler Type",
+    "spec_option_name": "Cup Filler",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "Three Phase",
+    "option_fill_rate": "30.8"
+  },
+  {
+    "spec_name": "Body Material",
+    "spec_option_name": "Stainless Steel",
+    "option_fill_rate": "30"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Cup Filler",
+    "option_fill_rate": "28.7"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "Upto 45 PPM",
+    "option_fill_rate": "27.8"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "Upto 1kg",
+    "option_fill_rate": "25.3"
+  },
+  {
+    "spec_name": "Power Source",
+    "spec_option_name": "Single phase",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Power Source",
+    "spec_option_name": "Electric with air",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Pneumatic FFS",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_option_name": "20-40 pouches/min",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Pouch Counter",
+    "option_fill_rate": "24.1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Mechanical FFS",
+    "option_fill_rate": "24"
+  },
+  {
+    "spec_name": "Automation Grade",
+    "spec_option_name": "Fully Automatic",
+    "option_fill_rate": "23.3"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Auger Filler",
+    "option_fill_rate": "23"
+  },
+  {
+    "spec_name": "Packing Material",
+    "spec_option_name": "PET Poly",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Packing Material",
+    "spec_option_name": "Laminated pouch",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Packing Material",
+    "spec_option_name": "LDPE Roll",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Power Consumption",
+    "spec_option_name": "Upto 3 kW",
+    "option_fill_rate": "22"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Outfeed Conveyor",
+    "option_fill_rate": "20.4"
+  },
+  {
+    "spec_name": "Pouch Format",
+    "spec_option_name": "Stand-up Pouch",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Packaging Range (Capacity)",
+    "spec_option_name": "10-100 gm",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Filling Capacity",
+    "spec_option_name": "50 ml to 1 Ltr",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Filling Capacity",
+    "spec_option_name": "100-250 g",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Filling Capacity",
+    "spec_option_name": "50 ml",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Packaging Range (Capacity)",
+    "spec_option_name": "Up to 250g / 250ml",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Body Material",
+    "spec_option_name": "SS304",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Body Material",
+    "spec_option_name": "SS 304",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Filling Capacity",
+    "spec_option_name": "200-500 g",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Filling Capacity",
+    "spec_option_name": "500-1000 g",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Weigh Filler",
+    "option_fill_rate": "17.2"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "Upto 60 PPM",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Number of Heads",
+    "spec_option_name": "1",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "Upto 100g",
+    "option_fill_rate": "15.8"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "Single phase",
+    "option_fill_rate": "15.4"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "3-Side Seal",
+    "option_fill_rate": "14.1"
+  },
+  {
+    "spec_name": "Power Consumption",
+    "spec_option_name": "Upto 5 kW",
+    "option_fill_rate": "13.6"
+  },
+  {
+    "spec_name": "Pouch Type",
+    "spec_option_name": "Three Side Seal",
+    "option_fill_rate": "13.3"
+  },
+  {
+    "spec_name": "Filling Range",
+    "spec_option_name": "500-1000ML",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "Upto 30 PPM",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_option_name": "40-60 pouches/min",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_option_name": "10-20 pouches/min",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Filling Range",
+    "spec_option_name": "0\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c50 g",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Filling Range",
+    "spec_option_name": "100-250 ml",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Filling Range",
+    "spec_option_name": "5g to 100g",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Filling Range",
+    "spec_option_name": "0 to 1 kg",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Servo Driven FFS",
+    "option_fill_rate": "11.5"
+  },
+  {
+    "spec_name": "Packing Material",
+    "spec_option_name": "Alu Foil Laminate",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Packing Material",
+    "spec_option_name": "LDPE",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Packing Material",
+    "spec_option_name": "PE Pouch",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Packing Material",
+    "spec_option_name": "BOPP",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Body Material",
+    "spec_option_name": "Mild Steel",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Product Form",
+    "spec_option_name": "Liquid",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Body Material",
+    "spec_option_name": "SS 316",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Product Form",
+    "spec_option_name": "Paste",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Product Form",
+    "spec_option_name": "Granules",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Product Form",
+    "spec_option_name": "liquid ,granuals, paste, powder",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Product Form",
+    "spec_option_name": "Solid Pieces",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Product Form",
+    "spec_option_name": "powders and granules",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Body Material",
+    "spec_option_name": "SS with MS Frame",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "Upto 80 PPM",
+    "option_fill_rate": "9.7"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "Upto 250g",
+    "option_fill_rate": "9.5"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Z-Type Elevator",
+    "option_fill_rate": "9.3"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Multi-head Weigher",
+    "option_fill_rate": "9.2"
+  },
+  {
+    "spec_name": "Pouch Format",
+    "spec_option_name": "Sachet",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Contact Parts Material",
+    "spec_option_name": "SS 316",
+    "option_fill_rate": "8.6"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "Upto 500g",
+    "option_fill_rate": "8.4"
+  },
+  {
+    "spec_name": "Power Consumption",
+    "spec_option_name": "Upto 7.5 kW",
+    "option_fill_rate": "6.8"
+  },
+  {
+    "spec_name": "Pouch Type",
+    "spec_option_name": "Center seal",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Pouch Type",
+    "spec_option_name": "Pillow Pouch",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Pouch Type",
+    "spec_option_name": "Four side seal",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Pouch Type",
+    "spec_option_name": "Two side seal",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Automation Grade",
+    "spec_option_name": "Semi-Automatic",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "Heat Seal",
+    "option_fill_rate": "6.5"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_option_name": "10-20 pouch/min",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_option_name": "40-60 pouch/min",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_option_name": "50 Pouch/min",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_option_name": "8-12pkts/min",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_option_name": "50-70 pouch/min",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_option_name": "20-40 pouch/min",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_option_name": "100-150 pouches/min",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "Upto 5kg",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Packing Speed",
+    "spec_option_name": "5-10 bag/min",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Touch Screen",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Vertical Form Fill Seal",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "Upto 10kg",
+    "option_fill_rate": "4.2"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "Upto 100 PPM",
+    "option_fill_rate": "4.2"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Pouch Conveyor",
+    "option_fill_rate": "3.7"
+  },
+  {
+    "spec_name": "Pouch Format",
+    "spec_option_name": "Stick Pack",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Piston Filler",
+    "option_fill_rate": "3.4"
+  },
+  {
+    "spec_name": "Power Consumption",
+    "spec_option_name": "Above 7.5 kW",
+    "option_fill_rate": "3.4"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "AUTO CANTROL",
+    "option_fill_rate": "3.4"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "4-Side Seal",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "5-150ML",
+    "option_fill_rate": "3.2"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "FFS Roll Fed",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "FULLY AUTOMATIC",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Collar Type FFS",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "20 PPM",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "20 ppm",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "60 PPM",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Gravity",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "Heat seal",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "PIECES AS PER REQUIREMENT",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "3000/Hour",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "10 to 20 zipper pouch/min. (depends on product, operator)",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "Solid Items",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Barcode/QR Printing",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Z-Type Elevator, Outfeed Conveyor, Batch Coding",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Vertical FFS",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Z-Type Elevator, Batch Coding, Outfeed Conveyor",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Vertical form fill seal",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Nitrogen Flushing, Outfeed Conveyor",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Fully Automatic",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Pouch Format",
+    "spec_option_name": "Gusseted Pouch",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Power Consumption",
+    "spec_option_name": "2-3 kW",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Power Consumption",
+    "spec_option_name": "3-5 kW",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Power Consumption",
+    "spec_option_name": "1 kW",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "2500-3500 POUCH PER HOUR",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "15 PPM",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "13 CPM",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "55-60 MICRON",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "Upto 3000 PPH",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "500 \u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c 1,000 pouches per hour",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "250+",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "15-20ppm",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "80 PPM",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "upto 15ppm",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "Upto 350 PPM",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "30 packs/min",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "45 PPM",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "Upto 15 PPM",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Packaging Speed",
+    "spec_option_name": "Upto15ppm",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Gear Pump",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "100ML",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "150ml",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "10 gm to 100 gm or 25 gm to 200 gm",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "solid items",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "Customer demand",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Horizontal Pillow Wrapping",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "50gram to 5kg",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "5-100ML",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "Band seal",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "200 ml",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "FULLY AUTO CONTROLLER",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Auger filler",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "1 Kg",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "PUMP FILLING",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "10gm",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "250 g",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "100 g",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "5-150 ML",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "10ml to 100ml",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Pneumatic Paste/Liquid Filling Pump",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "ABOVE 100GRM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "milk",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "SOLENOID CUT OUT",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "0.5-5gm",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "SOLID ITEMS",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "Pillow type Packing",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Through Pusher",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "BELT WEIGHER",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Filling System",
+    "spec_option_name": "Auto control",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Packaging Range",
+    "spec_option_name": "Customised",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "FLOW WRAP MACHINE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Pouch Packing Machine",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "AUTO CUT",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "3 servo High Speed pneumatic",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Solenoid value operate",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "MOTERGEARBOX",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "pneumatic",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "PICK FILL SEAL MACHINE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Form Fill Seal",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "FILLING MACHINE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "flow wrap machine",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Multihead Weigher",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Pouch PACKING Machine",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Pneumatic and servo based",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Horizontal Pillow Wrap Machine",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Linear Weigher",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Full Automatic",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Liquid pouchpacking",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Multi Track",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "FFS pouch",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Online/Conveyor Inkjet",
+    "option_fill_rate": "1"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Spec Validation and Definition 
+
+
+## What this skill is for
+
+When candidate missing specs have been surfaced by the Buyer-Seller Call, Custom Spec,
+or Buyer Search skills — read this document. It gives you the framework to
+validate whether each candidate is a genuine new spec or a false positive, and
+if genuine, define it completely and  correctly for the Indian B2B marketplace.
+
+---
+
+## Step 1 — Validate: Is this a genuine new spec?
+
+A candidate missing spec is genuine only if all three of the following are true:
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same
+real-world attribute, even approximately, the candidate is not a gap.
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+---
+
+## Common false positives — check these before acting
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common
+synonym.
+
+Common equivalences in Indian B2B:
+
+| These terms often mean the same thing |
+|---------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Size / Dimensions / Measurement / Specification |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade ||
+
+**Composite attributes**
+Some candidates are natural-language composites. "10mm HDPE pipe" → "10mm" is
+not a new Diameter spec if Dimensions already exists.
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+**Multiple candidates meaning the same thing**
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning. "Usage" from custom specs + "Application" from call data + "End Use"
+from search → one spec, not three. Pick the most standard name and add once.
+
+One underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+---
+
+## Step 2 — Define: Build the spec completely
+
+Once a candidate passes validation, define it fully across four elements.
+
+### Spec Name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+### Input Type
+
+**`text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+**`radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+- Boolean attributes where the only meaningful values are Yes and No
+  (e.g. ISI Certified, Waterproof, Fire Resistant). Options: `["Yes", "No"]`
+
+**`multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → `multi_select`
+
+
+### Options — How to Generate Them
+
+Draw from example values in call data, custom spec submissions, and search
+option values. When data values are sparse, inconsistent, or absent, generate
+the full option set from Indian B2B market knowledge for this category and spec.
+
+**Understanding option values from data sources:**
+
+Option values surfaced by the data source skills vary significantly in quality.
+Here is what each quality level looks like and what it tells you:
+
+| Data Quality | What it looks like |
+|---|---|
+| Clean and consistent | Values are specific, formatted, and repeated across sources — reliable signal for what the real market options are |
+| Mixed quality | Some specific values mixed with vague or inconsistently formatted ones — the specific values are the signal; the rest is noise |
+| 1–2 values only | Too sparse to define the full option set — useful for confirming what the spec means, but market knowledge is needed to complete the list |
+| Completely messy | No usable signal — generate entirely from Indian B2B market knowledge |
+| Empty | No data at all — generate entirely from Indian B2B market knowledge |
+| Contains NA / Other / Custom | These are non-values — ignore them and treat the remaining data at its actual quality level |
+
+**Quality rules for new option to be created:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only
+2. **No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose**
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz.
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+5. Ideally the option count should be limited to 10 most common options 
+
+**Formatting rules:**
+1. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+2. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+3. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm
+4. Categorical options by frequency — most common in Indian market first
+5. Use ISI/BIS standards where applicable
+6. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+7. Do not use range options unless they are the market standard for this spec
+
+### Tier Placement
+
+All new specs are added as Tertiary. Sequencing reasoning determines the final
+tier based on actual signal data.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(types of automatic pouch packing machines VFFS HFFS collar type) ---
+{
+  "query": "types of automatic pouch packing machines VFFS HFFS collar type",
+  "results": [
+    {
+      "title": "VFFS vs. HFFS: Which Packaging Machine is Right for You? - Chlbpack",
+      "url": "https://www.chlbpack.com/blog/vffs-vs-hffs-which-packaging-machine-is-right-for-you/",
+      "excerpt": "WebSearchResult(url='https://www.chlbpack.com/blog/vffs-vs-hffs-which-packaging-machine-is-right-for-you/', excerpts=['# VFFS vs. HFFS: Which Packaging Machine is Right for You?\\n\\n* September 11, 2024\\n\\nChoosing the right packaging machine for your business is a big deal. The machine you select affects everything\u2014from how fast you can package products to the type of packaging you can use. It boils down to two key types: VFFS (Vertical Form Fill Seal) and HFFS (Horizontal Form Fill Seal) machines. So, how do you pick the one that\u2019s best for you? Let\u2019s dive in and explore the world of packaging machines and help you make the right choice!\\n\\n## Comparison Table: VFFS vs. HFFS Machines\\n\\n|**Feature** |**VFFS Machines** |**HFFS Machines** |\\n| --- | --- | --- |\\n|**Machine Orientation** |Vertical (packages formed, filled, and sealed vertically) |Horizontal (packages formed, filled, and sealed horizontally) |\\n|**Product Types** |Best for liquids, powders, and free-flowing products |Ideal for solid, semi-solid, and irregularly shaped products |\\n ... \\n### Key Components of HFFS Machines\\n\\n[An HFFS machine](https://www.chlbpack.com/machine_categories/flow-wrap-machine/) features a horizontal conveyor, product feeders, and sealing tools. This setup allows for gentle product handling, which is perfect if you\u2019re packaging items that are delicate or require precise placement.\\n\\n### Advantages of HFFS Machines\\n\\nThe biggest perk of an HFFS packaging machine is its flexibility. These machines are ideal for solid, semi-solid, or even irregularly shaped products. Think candy bars, [frozen food](https://www.chlbpack.com/industries_categories/frozen-food/) , or cosmetics. Unlike the vertical form fill seal machine, HFFS gives you more flexibility in the types of packaging you can create. So if you\u2019re looking for versatility, the horizontal form fill seal machine is a winner.\\n\\n## Differences Between VFFS and HFFS Machines\\n\\nOkay, now that we know how these machines work, let\u2019s compare them head-to-head!\\n\\n[](https://www.chlbpack.\\ncom/machine/vffs-machine-packing-machines-cb-420pv/) vertical form fill seal machine [](https://www.chlbpack.com/machine/cb-800xs-multi-functional-large-packaging-secondary-packaging-machine/)  \\nhorizontal form fill seal machine\\n\\n### Machine Orientation: Vertical vs. Horizontal\\n\\nThe most obvious difference? Orientation. The VFFS packaging machine works vertically, while the HFFS machine operates horizontally. This affects how products are fed and packaged, and it also impacts the types of products they can handle efficiently.\\n\\n### Types of Products Packaged\\n\\nThe VFFS machine is perfect for packaging free-flowing products like powders, grains, or liquids. On the other hand, the HFFS packaging machine is better suited for packaging solid and semi-solid items like snacks, chocolates, or pharmaceutical products.\\n\\n### Applications in Various Industries\\n\\nBecause of these differences, vffs packaging machines are commonly found in industries like food and beverages, pharmaceuticals, and chemicals.\\nMeanwhile, hffs packaging is ideal for sectors like confectionery, cosmetics, and frozen foods. So, the industry you operate in could easily dictate which machine is better for your business.\\n\\n## Key Factors to Consider When Choosing Between VFFS and HFFS\\n\\nChoosing between a VFFS and HFFS machine can be tricky, but if you break it down into the key factors that matter most to your business, the decision becomes a lot clearer. Let\u2019s take a closer look at what you should consider.\\n\\n### Type of Product Being Packaged\\n\\nThe first thing to think about is the type of product you\u2019re packaging. Are you dealing with free-flowing products like coffee grounds, grains, or liquids? If so, the VFFS packaging machine is designed with you in mind. It excels at handling these types of materials. But, if your product is solid, semi-solid, or oddly shaped\u2014like candy bars, [snacks](https://www.chlbpack.com/industries_categories/snacks/) , or cosmetics\u2014the HFFS packaging machine is your go-to.\\n ... \\nBoth machines can switch between products relatively quickly, but HFFS machines typically take longer due to their flexibility and custom packaging options.\\n\\n**4\\\\. Can either machine handle eco-friendly packaging materials?**\\n\\nYes! Both vffs and hffs packaging machines can be adapted to use biodegradable and recyclable materials, depending on the manufacturer and the product requirements.\\n\\n**5\\\\. What is the typical lifespan of a VFFS or HFFS machine?**\\n\\nWith proper maintenance, both vffs and hffs machines can last 10-15 years or more, making them a long-term investment for your packaging needs.\\n\\n### Related Blogs\\n\\n[](https://www.chlbpack.com/blog/pouch-packaging-roll-stock-vs-pouches/)\\n\\n### [Roll Stock vs. Pouches: Comparing Flexible Packaging Options](https://www.chlbpack.com/blog/pouch-packaging-roll-stock-vs-pouches/)\\n\\n[](https://www.chlbpack.com/blog/why-food-packaging-materials-matter/)\\n\\n### [Why Food Packaging Materials Matter: 5 Essential Reasons](https://www.chlbpack.'], publish_date='2024-09-11', title='VFFS vs. HFFS: Which Packaging Machine is Right for You? - Chlbpack')"
+    },
+    {
+      "title": " Automated Packaging Machinery Types: Manufacturer's Selection Guide (2026)",
+      "url": "https://www.foshansoontrue.com/article/what-types-of-automated-packaging-machinery-are-available-for-manufacturing.html",
+      "excerpt": "WebSearchResult(url='https://www.foshansoontrue.com/article/what-types-of-automated-packaging-machinery-are-available-for-manufacturing.html', excerpts=['* **Why it\\'s Essential:** While typically slower than FFS machines, pouch packers offer unparalleled flexibility in bag style and features. They can handle complex pouches (zippers, spouts, custom shapes) that are impossible to create on FFS machines, significantly boosting a product\\'s market value and consumer convenience. They are also excellent for vacuum sealing and gas flushing applications.\\n\\n### **Comparison of core primary packaging machinery**\\n\\nTo help you make an informed decision between a Horizontal Flow Wrapper (HFFS), a Vertical Form-Fill-Seal (VFFS) machine, and a Premade Pouch Packing Machine, the table below provides a direct comparison across several key dimensions.\\n\\n|**Feature / Criteria** |**Horizontal Flow Wrapper (HFFS)** |**Vertical Form-Fill-Seal (VFFS)** |**Premade Pouch Packing Machine** |\\n| --- | --- | --- | --- |\\n|Typical Speed |Very High ( 20 \\\\- 500 \\\\+ packs/min) |High ( 20 \\\\- 120 packs/min) |Low to Medium (\u2266\\n\\n80 packs/min) |\\n|Flexibility (Bag Style) |Low.\\n ... \\n**A:** You should choose a **premade pouch packing machine** . While a Horizontal Flow Wrapper (HFFS) is the ideal high-speed machine for standard energy bar wrapping, it cannot create a stand-up pouch with a zipper. Only a premade pouch packer can handle this type of complex, pre-made bag to deliver the premium features and consumer convenience you\\'re looking for.\\n\\n### **Q2: In the long run, which is more cost-effective: a VFFS machine or a premade pouch packer?**\\n\\n**A:** It depends entirely on your business model.\\n\\nThe **VFFS machine** generally has a lower long-term operating cost because its consumable is **rollstock film** , which is significantly cheaper per unit than a premade pouch. For high-volume production, the savings on materials are substantial.\\n\\nA **premade pouch packer** has higher equipment and consumable costs, but it enables a much higher **product value and brand premium** .\\nIf your product is positioned in a premium market where the packaging can command a higher price and market share, the investment is often justified.\\n\\n### **Q3: I produce multiple products\u2014some powders, some granules. Which machine offers the most flexibility for these product types?**\\n\\n**A:** For handling multiple types of **flowable bulk materials** , a **VFFS machine** offers the best combination of flexibility and efficiency. By swapping out the dosing system (e.g., an auger filler for powders, a multi-head weigher for granules), the same VFFS machine can pack a wide variety of products. While a pouch packer can also handle these, a VFFS system is typically more cost-effective and efficient for bulk goods.\\n\\n### **Q4: Why are premade pouch packing machines generally slower than VFFS or HFFS machines ?**\\n\\n**A:** The speed difference comes from their fundamental mechanics.\\nFFS machines (both VFFS and HFFS) perform an integrated \"form-fill-seal\" process in a continuous or intermittent motion, which is very fast. A premade pouch packer performs a series of more complex, **discrete mechanical steps** : picking a pouch, opening it, checking it, filling it, and sealing it. Each step requires precise robotic movements and sensors, making the overall cycle time slower than an integrated FFS system.\\n\\n### **Q5: Since premade pouches have a higher cost per unit, why do so many new brands choose them?**\\n\\n**A:** The primary reasons are **market competition and brand positioning** . In a crowded marketplace, the package is the first point of contact with the consumer. A well-designed, convenient stand-up pouch with a zipper instantly elevates a product\\'s **\"perceived value\"** and makes it stand out on the shelf. For new or upgrading brands, this marketing advantage and improved consumer experience often outweigh the higher per-unit cost.\\n\\nPre .\\nCase Packer Machine for Automatic Shipping Case Packing Next . Why Upgrade to a Servo-Driven Pillow Packing Machine?\\n\\nMachines\\n\\n* Flow Wrapping Machine\\n* Vertical Packing Machine\\n* Premade Pouch Packing Machine\\n* End of Line Packing Series\\n* Packing Line\\n\\nQuick Links\\n\\n* About Us\\n* Agent\\n* Sustainable\\n* News\\n\\n## Address\\n\\nNo 3, Huanzhen East Road, Guanglong Industrial Park, Chencun Town, Shunde District, Foshan City, Guangdong, China\\n\\n* ### Email\\n  \\n  Machinerysales@soontrue.com\\n* ### Phone / Whatsapp\\n  \\n  \\\\+86-138 2779 5469\\n\\n## Talk To Us\\n\\nWe\\'ll respond as soon as possible(within 12 hours)\\n\\nYour Name\\n\\nCompany Name\\n\\nWhatsapp / WeChat\\n\\nEmail Address\\n\\nMessage\\n\\nSubmit\\n\\n* [](http://www.facebook.com/SoontruePackagingMachine)\\n* [](http://www.linkedin.com/company/soontrue-group)\\n* \\n* [](https://www.youtube.com/@SoontruePackingMachinery)\\n\\n* Privacy Policy\\n* Cookie Policy\\n\\n* Powered by [Yige](https://www.yige-tech.com/)'], publish_date='2026-01-13', title=\" Automated Packaging Machinery Types: Manufacturer's Selection Guide (2026)\")"
+    },
+    {
+      "title": "VFFS vs HFFS | Choosing the Right Packaging Machine - Qualipak",
+      "url": "https://qualipakmachines.com/vffs-vs-hffs-choosing-the-right-machine-for-your-product/",
+      "excerpt": "WebSearchResult(url='https://qualipakmachines.com/vffs-vs-hffs-choosing-the-right-machine-for-your-product/', excerpts=['Dec 22, 2025 \u00b7 VFFS vs HFFS: Choose the right machine for your product. Compare speed, cost, and features to optimize your packaging line efficiency.'], publish_date=None, title='VFFS vs HFFS | Choosing the Right Packaging Machine - Qualipak')"
+    },
+    {
+      "title": "Top 5 Pouch Packing Machines: Boost Efficiency & Cut Costs",
+      "url": "https://www.spackmachine.com/top-pouch-packing-machines-boost-efficiency/",
+      "excerpt": "WebSearchResult(url='https://www.spackmachine.com/top-pouch-packing-machines-boost-efficiency/', excerpts=['Please wait while your request is being verified...'], publish_date=None, title='Top 5 Pouch Packing Machines: Boost Efficiency & Cut Costs')"
+    },
+    {
+      "title": "Different Types of Pouch Packaging Machines - HonorPack",
+      "url": "https://honorpack.com/what-are-the-types-of-pouch-packaging-machines/",
+      "excerpt": "WebSearchResult(url='https://honorpack.com/what-are-the-types-of-pouch-packaging-machines/', excerpts=['### [\\\\- Sachet Sorting Machine](https://honorpack.com/stick-pack-sachet-sorting-and-counting-machine/)\\n* [Case](https://honorpack.com/packaging-manufacturer-case/)\\n  \\n  \\n  \\n  ### Premade Pouch Solutions\\n  \\n    + Dried Fruit Packaging\\n    + Pet Food Packaging\\n    + Coffee Packaging\\n  \\n  \\n  \\n  ### VFFS Packaging Solution\\n  \\n    + Chips Packaging\\n    + Oatmeal Packaging\\n    + Nuts Packaging\\n  \\n  \\n  \\n  ### Sachet Packing Soulution\\n  \\n    + Tea Packaging\\n    + Powder Packaging\\n    + Soyce Packaging\\n  \\n  More Customer Case\\n* Application\\n  \\n    + [Bag Styles](https://honorpack.com/bag-styles/)\\n    + [Industries Application](https://honorpack.com/industry-packaging-solutions/)\\n* [Video](https://honorpack.com/video/)\\n* [Knowledge](https://honorpack.com/knowledge/)\\n  \\n+ Cut Costs & Increase Efficiency - Learn How With Our Blog\\n ... \\nThose fine classifications are helpful for you to better fill and seal your pouches. Let me introduce them to you next.\\n\\n## According to Different Forming Methods\\n\\nAccording to the different methods of bag forming, pouch packaging machines are mainly divided into two types. One is the pre-made pouch packaging machines and the other is the form fill seal machines.\\n\\n### Premade Pouch Packing Machines\\n\\n[Premade pouch packaging machines](https://honorpack.com/premade-pouch-packaging-machine/) have roughly two steps, filling and sealing. Because their bags are already formed and shaped before they arrive at the factory. So this type of bags can be more diverse, like stand-up pouches and flat pouches can both be packed with this machine. It is also possible to package bags with various characteristics like pouches with a zipper, with a nozzle, or with a handle. And the appearance of these packages can be designed to be more colorful so that it would be more visually appealing.\\nHowever, the cost of these bags may be slightly higher than the film used in the form fill seal machine.\\n\\n### Form Fill Seal Machines\\n\\nForm-fill-seal machines require the film to be formed into a pouch. The materials of the film can be  aluminum foil laminates, paper laminates, and polyethylene. And then filled and sealed. The whole process is more continuous and coherent. And you can easily adjust the size of your pouch according to your needs. There are two types of form-fill-seal machines, HFFS machines and VFFS machines.\\n\\nHFFS machines fill, form and seal horizontally and are ideal for products that require horizontal packaging, like candy, protein bars and baked goods. And it will operate more precisely than VFFS machines. More suitable for products that require delicate packaging, such as frozen foods and medical devices. It can also handle irregular products such as toys and parts. Because it is horizontally arranged, so it generally has a larger footprint than a VFFS machine.\\nThe [VFFS machine](https://honorpack.com/vertical-form-fill-and-seal-machine/) is a machine that forms, fills and seals vertically. It is great for free-flowing products like nuts, sugar, salt, and liquids. Because of its vertical design, it has a smaller footprint which can save you a lot of footprint.\\n\\n## According to the Degree of Automation\\n\\n### Automatic Pouch Packaging Machine\\n\\nAll the operations of this kind of machine are done automatically, including forming, metering, filling, sealing and so on. You only need to set the relevant parameters on the control panel and the machine will automatically complete the packaging process.  It is very accurate and fast, which is suitable for businesses that require high volume production.\\n\\n### Semi Automatic Pouch Packaging Machine\\n\\nWhen you use a semi-automatic bagging machine, some operations may need to be performed manually. You may need to manually feed the product into the pouch and seal the pouch manually.\\nSemi-automatic pouch packaging machines are less efficient than automatic pouch packaging machines, suitable for small and medium scale production.\\n\\n## According to Your Products\\n\\n### Powder\\n\\nUsually use an auger filler or vacuum filler in conjunction with a form-fill-seal machine or a pre-made pouch packing machine to [package powder](https://honorpack.com/powder-packaging-machine/) products. Using these combinations can make the packaging process precise and fast. Various types of powdered products such as flour, salt, spices, etc. can be handled.\\n\\n### Blocks\\n\\nYou can use a belt-feed scale, or use a multi-head combination weigher in your packaging equipment.\\n\\n### Liquid\\n\\nIn order to handle liquids, you may need linear filling machines or rotary filling machines. You can use gravity or pumps for filling, depending on the nature of your product.The [liquid filling machine](https://honorpack.'], publish_date=None, title='Different Types of Pouch Packaging Machines - HonorPack')"
+    },
+    {
+      "title": "VFFS Packaging Machine VS Premade Pouch Packaging Machine - Lintyco",
+      "url": "https://www.lintyco.com/how-to-choose-your-first-packaging-machine-vffs-machine-vs-premade-pouch-packaging-machine/",
+      "excerpt": "WebSearchResult(url='https://www.lintyco.com/how-to-choose-your-first-packaging-machine-vffs-machine-vs-premade-pouch-packaging-machine/', excerpts=['com/pt/how-to-choose-your-first-packaging-machine-vffs-machine-vs-premade-pouch-packaging-machine/)\\n    + [RU](https://www.lintyco.com/ru/how-to-choose-your-first-packaging-machine-vffs-machine-vs-premade-pouch-packaging-machine/)\\n    + [JA](https://www.lintyco.com/ja/how-to-choose-your-first-packaging-machine-vffs-machine-vs-premade-pouch-packaging-machine/)\\n    + [VI](https://www.lintyco.com/vi/how-to-choose-your-first-packaging-machine-vffs-machine-vs-premade-pouch-packaging-machine/)\\n    + [TH](https://www.lintyco.com/th/how-to-choose-your-first-packaging-machine-vffs-machine-vs-premade-pouch-packaging-machine/)\\n    + [NL](https://www.lintyco.com/nl/how-to-choose-your-first-packaging-machine-vffs-machine-vs-premade-pouch-packaging-machine/)\\n    + [MS](https://www.lintyco.com/ms/how-to-choose-your-first-packaging-machine-vffs-machine-vs-premade-pouch-packaging-machine/)\\n\\n# How to Choose Your First Packaging Machine: VFFS Machine vs. Premade Pouch Packaging Machine\\n\\n* [](https://www.\\nlintyco.com/2025/01/03/)\\n* [(VFFS)Vertical Form Fill Seal Machine](https://www.lintyco.com/machines-equipment/vertical-form-fill-seal-machine/) , [Auto Premade Pouch Machine](https://www.lintyco.com/machines-equipment/premade-pouch-machine/)\\n* 12\\\\.5K Shares\\n\\n#### Table of Contents\\n\\nSelecting the right packaging machine is crucial for businesses aiming to optimize their packaging processes, reduce costs, and enhance product quality. In this article, we\u2019ll explore two popular options for first-time buyers: the Vertical Form Fill Seal (VFFS) machine and the premade pouch packaging machine. We\u2019ll discuss their features, benefits, and factors to consider when making your decision.\\n\\nvertical form fill&seal packing machine\\n\\n## What is a VFFS Packaging Machine?\\n\\nA VFFS machine, or Vertical Form Fill Seal machine, is an automated packaging system that forms, fills, and seals packages in a vertical manner. It uses a continuous roll of film, which is formed into a pouch by a forming collar.\\nThe machine then fills the pouch with the product and seals it shut.\\n\\n## Benefits of Vertical Packaging Machines\\n\\n1. **Versatility:** VFFS machines can accommodate a wide range of products, from powders and granules to liquids and solids. They can also handle various bag styles, such as pillow bags, gusseted bags, and block bottom bags.\\n2. **Speed:** These machines can produce a high number of packages per minute, making them ideal for businesses with large production volumes.\\n3. **Cost-effectiveness:** VFFS machines use a continuous roll of film, which is typically more affordable than premade pouches. This can result in significant cost savings over time.\\n4. **Compact design:** The vertical orientation of VFFS machines saves valuable floor space in your facility.\\n\\n## DIsadvantage of VFFS Machine\\n\\n1. Packaging machine is less flexible than premade pouch packaging machine when it comes to ready meal packaging.\\n2.\\nMore maintenance and on-going adjustments may be required than premade pouch packaging machines.\\n3. May struggle with producing consistent pouches, due to filling, sizing, and sealing issues.\\n\\n## What is a Premade Pouch Packaging Machine?\\n\\nA premade pouch packaging machine, as the name suggests, uses preformed pouches to package products. The premade pouches are loaded onto the machine, which then opens, fills, and seals them. To learn more about the types of pre-made bags click [here](https://www.lintyco.com/packaging-machine-2/pouch-style/)\\n\\n## Benefits of Premade Pouch Packaging Machines\\n\\n1. **Aesthetically appealing packages:** Premade pouches often have a high-quality appearance, with various customization options such as stand-up pouches, zip closures, and spouts.\\n2. **Ease of use:** These machines are generally more user-friendly than VFFS machines, as they require less setup and adjustments.\\n3.\\n**Lower maintenance:** Premade pouch packaging machines typically have fewer moving parts, resulting in lower maintenance requirements compared to VFFS machines.\\n4. **Reduced waste:** With premade pouches, there\u2019s less chance of film waste due to incorrect sealing or cutting.\\n\\n## Disadvantage of Premade Pouch Packaging Machines\\n\\n1. Premade pouches limit the flexibility of packaging dimensions and materials.\\n2. May require additional equipment for sachet packaging.\\n\\ngranule packaging machine\\n\\n## Factors to Consider When Choosing Between VFFS Packaging Machines and Premade Pouch Packaging Machines\\n\\n1. **Product Package Type:** Consider the nature of your product. If you need to package a wide variety of products, a VFFS machine may be more suitable. If your product requires a specific type of pouch, a premade pouch packaging machine might be a better option.\\n2.'], publish_date='2025-02-02', title='VFFS Packaging Machine VS Premade Pouch Packaging Machine - Lintyco')"
+    },
+    {
+      "title": "News - Different Types of Packaging Machines",
+      "url": "https://www.zon-pack.com/news/different-types-of-packaging-machines/",
+      "excerpt": "WebSearchResult(url='https://www.zon-pack.com/news/different-types-of-packaging-machines/', excerpts=['VFFS (Vertical Fill Seal) packaging machines are used to make bags from a roll of film, fill the bags with product, and seal them. VFFS packaging machines are'], publish_date=None, title='News - Different Types of Packaging Machines')"
+    },
+    {
+      "title": "VFFS collar type Machines with Auger ( 5 & 10 Kgs powder)",
+      "url": "https://www.innovativepackpro.com/vffs-collar-type-machines-with-auger-5-10-kgs-powder/",
+      "excerpt": "WebSearchResult(url='https://www.innovativepackpro.com/vffs-collar-type-machines-with-auger-5-10-kgs-powder/', excerpts=['VFFS (Collar Type) is an PLC controlled intermittent Center Seal Bag making machine can pack up to 10 Kg of various kind of Powder suitable for wide range of\\xa0...'], publish_date=None, title='VFFS collar type Machines with Auger ( 5 & 10 Kgs powder)')"
+    },
+    {
+      "title": "Types of Pouch Packing Machines and Their Applications: \u2013 Lenismachines",
+      "url": "https://lenismachines7.home.blog/2019/11/20/types-of-pouch-packing-machines-and-their-applications/",
+      "excerpt": "WebSearchResult(url='https://lenismachines7.home.blog/2019/11/20/types-of-pouch-packing-machines-and-their-applications/', excerpts=['There are various types of packing processes and one of the very common process of packaging common grocery and food items for human consumption is flexible film packing process. Flexible film packaging is done using various types of pouch packaging machines, like horizontal form fill & seal machines or HFFS machines, rotary pre-made pouch packaging machines, vertical form fill & seal or VFFS pillow bag packaging machines, rotary vacuum pre-made pouch packing machines, mini-doypack pre-made pouch packing machine, stickpack packing machines, flow wrapping or flow-packing machines etc. If you are looking for any kind offlexible film packaging machines or pouch packaging machines for your industry, then a one-stop solution for your packaging machinery needs is LENIS. The company offers cost-effective and innovative solutions to many packaging-related problems including pouch packaging machines. The machines provided by the company are economic, highly productive and easy to operate.\\nThe machines provided by LENIS is suitable for most kinds of granular, powder and liquid products found in the market. LENIS also provides option for pouch packing machine suitable for chemicals and corrosive products using SS316 stainless steel machine components.\\n\\n* \\n\\nThe prices that the company\\noffers for its various pouch packaging machines are very affordable for start-ups. LENIS offers various kinds of pouch packaging machines\\ndepending on your productivity requirement and budget.\\n\\nFor high productivity\\ndoypack or stand-up pouch packaging at a reduced cost, LENIS has **Horizontal Form Fill & Seal Machines (HFFS)** . These machines are workhorses where a\\nhigh packaging speed at a reduced cost is required. These machines makes\\n(forms) the bags in the machine from a roll of plastic film and, thus, provides\\na very economic packing solution in the long run. LENIS has machines that can\\npack 60 to 240 bags per minute and have solution for powder, grain and liquid\\nproducts with various options. These machines are suitable for large\\nmanufacturing plants and requires significant initial investment.\\n\\nFor medium production-rate\\nbased stand-up pouch (doypack) packaging machines, LENIS offers high-end and\\neconomic **Rotary Pre-made Pouch Packing Machines** for granular, powder and\\nliquid products. These machines have moderate price and uses pre-made bags.\\nOptions available for zipper bags, bag moulding, automatic bag width control,\\nhorizontal bag loading mechanism etc. These machines are good for medium sized\\nproduction facilities and requires a lot less investment than HFFS machines.\\n\\nFor packing meat products\\nand easily perishable food items, a modern type of pouch packaging machine is\\nthe **Rotary Vacuum Pre-made Pouch Packaging Machine.** These machines are\\nmostly used in packing meat products, fish etc. pouch packing where a vacuum\\nprocess is used to make the bags free of air/oxygen which makes the product\\nlife a lot longer.\\nLENIS offers various types of Rotary Vacuum Pre-made Pouch\\nPacking Machines.\\n\\nLENIS also offers **Vertical Form Fill and Seal (VFFS) Machines** for pillow bag packing at a moderate to\\nhigh speed. LENIS offers wide range of VFFS machines from entry-level\\nproduction   machines to three-servo\\nmotor based high-speed continuous type VFFS machines for larger production\\nfacilities. These machines mostly packs pillow bags and can pack liquids,\\ngrains and powder items. VFFS quad-seal square bag packing VFFS machines are\\nalso available.\\n\\nFor entry-level doypack or\\nstand-up pouch packing needs, LENIS offers **[Mini-Doypack Pouch Packing Machines](https://www.lenismachines.com/pouch-packaging-machines/)** which are low production-rate and economic machines.\\nThese machines can pack grains, liquids and granular items.\\n\\n**Stickpack Packing Machine** is a variant of VFFS machine and packs slender stickpacks. LENIS offers\\neconomic single-lane stickpack machines to high-productivity multi-lane (2 to\\n10 lane)stickpack machines at a very competitive price. Stickpack machines are\\navailable for packing powder, grains and liquids.\\n\\nFor irregular shaped items\\nand different types of vegetables and frozen food items, LENIS offers **HorizontalFlow Wrapping or Horizontal Flow Packing Machines** . Servo-motor based horizontal\\nflow wrapping machines are high quality machines for loading and packing items\\nat a horizontal orientation.\\n\\nAll the machines above\\ncomes with various customizable options depending on the product, bag type,\\nsize, printing capability, bag loading mechanism etc.\\n\\nLENIS provides various\\ntypes of packaging solutions to its customers. The material used in these\\nmachines are of high quality and durable in nature and specifically suitable\\nfor highly controlled food industry. The electrical and mechanical components used\\nare from renowned international vendors and can withstand extreme working\\nconditions.\\n\\n### Share this:'], publish_date='2019-11-20', title='Types of Pouch Packing Machines and Their Applications: \u2013 Lenismachines')"
+    }
+  ],
+  "count": 9
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

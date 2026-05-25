@@ -1,0 +1,166 @@
+{
+  "pmcat_id": 4786,
+  "pmcat_name": "Electric Angle Grinder",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Electric Angle Grinder",
+      "mcat_id": 4786,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Brand",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Power Source",
+              "options": [
+                "Corded",
+                "Cordless"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Disc Diameter",
+              "options": [
+                "100 mm (4 inch)",
+                "115 mm (4.5 inch)",
+                "125 mm (5 inch)",
+                "150 mm (6 inch)",
+                "180 mm (7 inch)",
+                "230 mm (9 inch)"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Input Power",
+              "options": [
+                "Below 500 W",
+                "500 W",
+                "600 W",
+                "700 W",
+                "750 W",
+                "800 W",
+                "900 W",
+                "950 W",
+                "1000 W",
+                "1100 W",
+                "1200 W",
+                "1400 W",
+                "1500 W",
+                "2200 W",
+                "Above 2200 W"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "No Load Speed",
+              "options": [
+                "Below 8000 rpm",
+                "8500 rpm",
+                "9000 rpm",
+                "10000 rpm",
+                "11000 rpm",
+                "12000 rpm",
+                "Above 12000 rpm"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Model Name/Number",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Switch Type",
+              "options": [
+                "Slide Switch",
+                "Paddle Switch",
+                "Trigger Switch"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Disc Bore Size",
+              "options": [
+                "16 mm",
+                "20 mm",
+                "22.23 mm",
+                "25.4 mm"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Features",
+              "options": [
+                "Variable Speed",
+                "Soft Start",
+                "Overload Protection",
+                "Restart Protection",
+                "Anti Vibration Handle",
+                "Dust Protection",
+                "Lock On Switch",
+                "Brake System"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Spindle Thread",
+              "options": [
+                "M10",
+                "M14",
+                "5/8 inch"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Rated Voltage",
+              "options": [
+                "12 V",
+                "18 V",
+                "20 V",
+                "110 V",
+                "220 V",
+                "230 V",
+                "240 V"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Weight",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Frequency",
+              "options": [
+                "50 Hz",
+                "50/60 Hz"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Body Grip Type",
+              "options": [
+                "Slim Body",
+                "Standard Body"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

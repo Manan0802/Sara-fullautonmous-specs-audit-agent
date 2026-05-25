@@ -1,0 +1,4280 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 35716,
+        "mcat_name": "Pressure Transmitters",
+        "current_specs": [
+            {
+                "spec_name": "Pressure Type",
+                "options": [
+                    "Gauge",
+                    "Absolute",
+                    "Differential",
+                    "Vacuum",
+                    "Sealed Gauge",
+                    "Compound"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Pressure Range",
+                "options": [
+                    "0–1 bar",
+                    "0–10 bar",
+                    "0–25 bar",
+                    "0–40 bar",
+                    "0–100 bar",
+                    "0–250 bar",
+                    "−1–1 bar",
+                    "−1–10 bar"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Output Signal",
+                "options": [
+                    "4–20 mA",
+                    "4–20 mA HART",
+                    "0–10 V",
+                    "0–5 V",
+                    "RS485",
+                    "Modbus RTU",
+                    "Relay"
+                ],
+                "input_type": "multi_select",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Process Connection",
+                "options": [
+                    "¼ in NPT",
+                    "½ in NPT",
+                    "¼ in BSP",
+                    "½ in BSP",
+                    "G¼",
+                    "G½",
+                    "Flanged"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Diaphragm Material",
+                "options": [
+                    "SS316L",
+                    "Hastelloy C",
+                    "Monel",
+                    "Tantalum",
+                    "Ceramic"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Accuracy",
+                "options": [
+                    "±0.1%",
+                    "±0.25%",
+                    "±0.5%",
+                    "±1.0%"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Ingress Protection",
+                "options": [
+                    "IP65",
+                    "IP66",
+                    "IP67",
+                    "IP68"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Mounting Type",
+                "options": [
+                    "Direct Mount",
+                    "2 in Pipe",
+                    "Panel Mount",
+                    "Wall Mount"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Supply Voltage",
+                "options": [
+                    "10–30 V DC",
+                    "12–36 V DC",
+                    "18–32 V DC"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Pressure Transmitters",
+            "mcat_id": 35716,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Pressure Type",
+                            "options": [
+                                "Gauge",
+                                "Absolute",
+                                "Differential",
+                                "Vacuum",
+                                "Sealed Gauge",
+                                "Compound"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Pressure Range",
+                            "options": [
+                                "0–1 bar",
+                                "0–10 bar",
+                                "0–25 bar",
+                                "0–40 bar",
+                                "0–100 bar",
+                                "0–250 bar",
+                                "−1–1 bar",
+                                "−1–10 bar"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Output Signal",
+                            "options": [
+                                "4–20 mA",
+                                "4–20 mA HART",
+                                "0–10 V",
+                                "0–5 V",
+                                "RS485",
+                                "Modbus RTU",
+                                "Relay"
+                            ],
+                            "input_type": "multi_select"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Process Connection",
+                            "options": [
+                                "¼ in NPT",
+                                "½ in NPT",
+                                "¼ in BSP",
+                                "½ in BSP",
+                                "G¼",
+                                "G½",
+                                "Flanged"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Diaphragm Material",
+                            "options": [
+                                "SS316L",
+                                "Hastelloy C",
+                                "Monel",
+                                "Tantalum",
+                                "Ceramic"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Accuracy",
+                            "options": [
+                                "±0.1%",
+                                "±0.25%",
+                                "±0.5%",
+                                "±1.0%"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Ingress Protection",
+                            "options": [
+                                "IP65",
+                                "IP66",
+                                "IP67",
+                                "IP68"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Mounting Type",
+                            "options": [
+                                "Direct Mount",
+                                "2 in Pipe",
+                                "Panel Mount",
+                                "Wall Mount"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Supply Voltage",
+                            "options": [
+                                "10–30 V DC",
+                                "12–36 V DC",
+                                "18–32 V DC"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-10 bar",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-16 bar",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-6 bar",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "10 bar",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "400 bar",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-2 bar",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-100 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-5 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-10 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-400 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "250 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "-1 to 6 bar",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-2000 PSI",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-100 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-3 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "6 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "600 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "-1 to 0 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "-1 to 1 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "-1 to 25 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0 to 400 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-0.250 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-1000 mmWC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-15 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-150 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-17 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-25 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-250 mbar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-50 mbarA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-500 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0-600 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0.5 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "0.588 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "100 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "1000 mbar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "137 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "15 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "16 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "250 gram",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "250-275 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "4 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "40 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Range",
+            "option_value": "up to 40 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Danfoss",
+            "prod_count": 23
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Baumer",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Wika",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Rosemount",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "HK Instruments",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Huba",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mass",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Atronica",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Neptune",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Force Marshall",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Setra",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Gems",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Jumo Midas",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Keller",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Local",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Noding",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Oxy-sensor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Roxton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "SCS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Siemens",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "MBS 3000",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "3051",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "DPT 2500-R8",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "MBS 3050",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GT100",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Y911",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "S10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "2051",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "212",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "3200",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "3600",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "520",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "A10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "DST P140",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "MBS 1700",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "MBS 1900",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "O10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "P13-4B0",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "PA-21Y",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "PT 11",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "S-11",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "S11",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Y92",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Y922",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Y923",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Signal",
+            "option_value": "4-20 mA",
+            "prod_count": 30
+        },
+        {
+            "spec_name": "Output Signal",
+            "option_value": "0-10 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Signal",
+            "option_value": "1-10 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Signal",
+            "option_value": "4 to 20 mA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accuracy",
+            "option_value": "0.25 %",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Construction Type",
+            "option_value": "Diaphragm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Construction Type",
+            "option_value": "Miniature pencil type",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Body Material",
+            "option_value": "SS",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Sensing Element",
+            "option_value": "Ceramic",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Mounting Type",
+            "option_value": "Flush Type",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Mounting Type",
+            "option_value": "Head Mounted",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Seal Type",
+            "option_value": "Diaphragm Seal",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "option_value": "24 V DC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Water",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Hydraulic",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Liquid (Effluent)",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Air",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Compressor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "General",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Injection Molding Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Kusters CPB Machine Padder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Oil",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Pharma",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Pharmaceutical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Steam line",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Viscous liquid measurement",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connection Size",
+            "option_value": "1/2 inch",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Connection Size",
+            "option_value": "1/4 inch",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Connection Size",
+            "option_value": "1 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Connection Size",
+            "option_value": "1/4 unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connection Size",
+            "option_value": "18 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connection Type",
+            "option_value": "BSP",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Connection Type",
+            "option_value": "NPT M",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Connection Type",
+            "option_value": "Female BSPP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connection Type",
+            "option_value": "NPT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "24 V DC",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "0 to 24 volt",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "24 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "8-32 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Switzerland",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Denmark",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Europe",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Germany",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technology",
+            "option_value": "Smart type",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Technology",
+            "option_value": "Analog",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technology",
+            "option_value": "Digital",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technology",
+            "option_value": "Non-smart",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Display Type",
+            "option_value": "Without Display",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Output Voltage",
+            "option_value": "0 to 10 V",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Design",
+            "option_value": "Pencil type",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Display",
+            "option_value": "Display with Power Card",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Display",
+            "option_value": "LCD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Display",
+            "option_value": "With Display",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Display",
+            "option_value": "Without Display",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Display Type",
+            "option_value": "Digital",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Display Type",
+            "option_value": "With Display",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Voltage",
+            "option_value": "0-10 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Voltage",
+            "option_value": "1-10 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Design",
+            "option_value": "Diaphragm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Design",
+            "option_value": "Non-Standard",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Type",
+            "option_value": "Absolute",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Diaphragm Type",
+            "option_value": "Flush",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Media Compatibility",
+            "option_value": "Hydraulic Oil",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Diaphragm Type",
+            "option_value": "Diaphragm Seal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Media Compatibility",
+            "option_value": "Steam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Temperature Range",
+            "option_value": "125 Â°C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Temperature Range",
+            "option_value": "70-80 Â°C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Temperature Range",
+            "option_value": "Above 200 degree C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Customized Item",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Pressure Switch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Transmitter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Configuration",
+            "option_value": "Jumper Selectable",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "option_value": "HART",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "option_value": "RS485 Modbus",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatibility",
+            "option_value": "Danfoss VFD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatibility",
+            "option_value": "Pressure Transmitter (PT)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Devices",
+            "option_value": "Danfoss VFD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Devices",
+            "option_value": "Pressure Transmitter (PT)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Attachment",
+            "option_value": "Cooling Neck",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connection Gender",
+            "option_value": "Male",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connector Type",
+            "option_value": "M12",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Device Type",
+            "option_value": "Pressure Transmitter (PT)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Enclosure Type",
+            "option_value": "FLP ATEX",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Item Number",
+            "option_value": "9083545",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Labeling",
+            "option_value": "Out",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Wires",
+            "option_value": "2 wire",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Temperature",
+            "option_value": "125 Â°C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Part Number",
+            "option_value": "060G1133",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Type",
+            "option_value": "DC",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "MAKE",
+            "option_value": "HUBA CONTROLLS"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Danfoss"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Insulation Resistance",
+            "option_value": "100 M ohm"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Net Weight",
+            "option_value": "Approx 285 g"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Measuring Ranges",
+            "option_value": "100mbar to 250bar"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Over Pressure",
+            "option_value": "1.5xFS"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Operating Temperature Range",
+            "option_value": "-20 to +85 deg C"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Usage/Application",
+            "option_value": "Process Control System, Food and Beverages, Pharmaceutical, Dairy, Paper & Pulp Industries"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model Name/Number",
+            "option_value": "Flush Diaphragm Pressure Transmitter TFP-310"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Approvals",
+            "option_value": "CE, flameproof, PESO"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Trumen"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Enclosure rating IP",
+            "option_value": "IP65(Standard), IP67(Only for Flameproof enclosure)"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Process Connection Options",
+            "option_value": "DIN"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Storage Temperature Range",
+            "option_value": "-40 to +125 deg C"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Power Supply",
+            "option_value": "12-36 V DC"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Measurement range",
+            "option_value": "0-10000 psi"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "MODEL",
+            "option_value": "MBS 5153 ; 060N1201"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "BRAND",
+            "option_value": "DANFOSS"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "MADE IN",
+            "option_value": "DENMARK"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "MODEL",
+            "option_value": "PGT 23.100"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "BRAND",
+            "option_value": "WIKA"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "SERIAL NO.",
+            "option_value": "12798071"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Sub Category",
+            "option_value": "Pressure Sensors & Transducers"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model Name/Number",
+            "option_value": "DANFOSS MBS-3200-060G5939"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Category",
+            "option_value": "Transmitters"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Module Name",
+            "option_value": "Pressure Transmitter"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Condition",
+            "option_value": "Brand New"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Usage/Application",
+            "option_value": "Pressure monitoring in hydraulic, industrial, and process systems"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Part Number",
+            "option_value": "060G3805"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Category",
+            "option_value": "Transmitter"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Manufacturer",
+            "option_value": "Danfoss"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Danfoss"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Part No.",
+            "option_value": "060G1125"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Part No.",
+            "option_value": "060G1130"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Danfoss"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Manufacturer",
+            "option_value": "ABB"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Measurement Type",
+            "option_value": "Gauge / Absolute Pressure"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Primary Use",
+            "option_value": "Process Pressure Measurement"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Typical Applications",
+            "option_value": "Process pressure, pump discharge, gas & liquid services"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Display",
+            "option_value": "Optional LCD indicator"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Typical Applications",
+            "option_value": "Utility pressure, pump discharge, gas & liquid pressure"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Manufacturer",
+            "option_value": "Emerson Ã¢â¬â Rosemount"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Measurement Type",
+            "option_value": "Gauge / Absolute Pressure"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Primary Use",
+            "option_value": "General Process & Utility Pressure Measurement"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Measurement Type",
+            "option_value": "Gauge Pressure"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Manufacturer",
+            "option_value": "Siemens"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Primary Use",
+            "option_value": "General & Utility Pressure Measurement"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Typical Applications",
+            "option_value": "Process pressure, utilities, OEM, gas & liquid services"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Output Options",
+            "option_value": "4Ã¢â¬â20 mA"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Primary Use",
+            "option_value": "Process & Critical Pressure Measurement"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Typical Applications",
+            "option_value": "Process pressure, pump discharge, gas & liquid pressure"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Manufacturer",
+            "option_value": "Yokogawa Electric Corporation"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Measurement Type",
+            "option_value": "Gauge / Absolute Pressure"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model",
+            "option_value": "DS2-420"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Baumer"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model",
+            "option_value": "CTX-3.2.3.B22.00-10"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Baumer"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model",
+            "option_value": "CTX-3.2.3"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Danfoss"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model",
+            "option_value": "MBS 3000"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Manufacturer",
+            "option_value": "Rosemount"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Condition",
+            "option_value": "New"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Category",
+            "option_value": "Transmitters"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Module Number",
+            "option_value": "CD3A22A1AB4DFK5Q4"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Module Name",
+            "option_value": "CD3A22A1AB4DFK5Q4 Pressure Transmitter"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Usage/Application",
+            "option_value": "Measures and transmits pressure in industrial process systems"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Manufacturer",
+            "option_value": "Yokogawa"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Module Number:",
+            "option_value": "EJA430E-JAL4G-912EB/KU22/C2/A1"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Module Name",
+            "option_value": "EJA430E Gauge Pressure Transmitter"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Usage/Application",
+            "option_value": "Measures and transmits gauge pressure in industrial process systems"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Condition",
+            "option_value": "Brand New"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Category",
+            "option_value": "Transmitters"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model :",
+            "option_value": "MBS 3200"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Part No. :",
+            "option_value": "060G5939"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Mech.:",
+            "option_value": "G1/4 Female"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Electr.:",
+            "option_value": "ITT Canon"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Measurement Range",
+            "option_value": "0-5000 psi"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Temperature Range",
+            "option_value": "-20DegC to +70DegC"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Protection Type",
+            "option_value": "IP 68"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Yokogawa"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Product Weight",
+            "option_value": "2.1 Kg"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model Number",
+            "option_value": "ISPT-200"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "PES"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Process Connection Options",
+            "option_value": "1/2/1/4/3/4/3/8 NPT/BSP"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Made In",
+            "option_value": "india"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Usage",
+            "option_value": "Pressure Measurement"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Usage/Application",
+            "option_value": "WATER OR STEAM"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Honeywell"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Operating Range",
+            "option_value": "0-400 BAR"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Operating Range",
+            "option_value": "0-400 BAR"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Usage/Application",
+            "option_value": "PRESSURE MEASURING INSTRUMENT"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "PES"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model Name/Number Key ISQ",
+            "option_value": "ISP"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Usage/Application",
+            "option_value": "PRESSURE MEASURING TRANSMITTER"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "PES"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Output Type",
+            "option_value": "4-20 mA ( HART)"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "PES"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Operating Range",
+            "option_value": "0 to 10000 mmH20"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Made in",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "PES"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Operating Range",
+            "option_value": "0 to 200 bar"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Process Connection Options",
+            "option_value": "1/2 NPT (Male)"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Made in",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Product Weight",
+            "option_value": "2 kg"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "PES"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Output Type",
+            "option_value": "v4-20mA HART"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Operating Range",
+            "option_value": "0 to 760 mmHG"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Process Connection Options",
+            "option_value": "1/2 NPT (Male)"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Made in",
+            "option_value": "INDIA"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "PES"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model Name/Number",
+            "option_value": "ISDPT-200"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Process Connection Options",
+            "option_value": "Remote Seal with Capillary"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Output Type",
+            "option_value": "4 - 20 mA"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Voltage",
+            "option_value": "24 V dc"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Protection Type",
+            "option_value": "IP 68"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Measurement Range",
+            "option_value": "0-10000 PSI"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Operating Range",
+            "option_value": "0~100 Bar"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model Name/Number",
+            "option_value": "ISPT-200"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Operating Range",
+            "option_value": "0~100 Bar"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Emerson"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Enclosure rating IP",
+            "option_value": "68"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Output Type",
+            "option_value": "4-20mA"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Made in",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Product Weight",
+            "option_value": "2 kg"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Process Connection Options",
+            "option_value": "1/2 NPT M"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model Name/Number",
+            "option_value": "ISPT-200"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Honeywell"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model Name/Number",
+            "option_value": "ISPT-200"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Output Type",
+            "option_value": "4-20mA"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Protection Type",
+            "option_value": "IP 68"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Operating Range",
+            "option_value": "0~100 Bar"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model Name/Number",
+            "option_value": "ISPT-200"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Yokogawa"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Operating Range",
+            "option_value": "0 to 100 bar"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Enclosure rating IP",
+            "option_value": "IP68"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Output Type",
+            "option_value": "4-20mA"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Siemens"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Model",
+            "option_value": "7MF4033-1BA10-2AC7-Z"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Series",
+            "option_value": "SITRANS P DS III"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Type:",
+            "option_value": "Pressure Transmitter"
+        },
+        {
+            "mcat_id": "35716",
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "Brand",
+            "option_value": "Danfoss"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "brand",
+            "spec_option": "barksdale",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "brand",
+            "spec_option": "baumer",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "brand",
+            "spec_option": "falcon",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "brand",
+            "spec_option": "foxboro",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "brand",
+            "spec_option": "gefran",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "brand",
+            "spec_option": "honeywell",
+            "impression": "764"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "brand",
+            "spec_option": "jumo",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "brand",
+            "spec_option": "mea",
+            "impression": "135"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "brand",
+            "spec_option": "rosemount",
+            "impression": "278"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "brand",
+            "spec_option": "siemens",
+            "impression": "34"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "brand",
+            "spec_option": "yokogawa",
+            "impression": "33"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "model name/number",
+            "spec_option": "f2",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "model name/number",
+            "spec_option": "mb 3000",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "model name/number",
+            "spec_option": "p140",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "type",
+            "spec_option": "diaphragm",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "type",
+            "spec_option": "pencil",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "usage",
+            "spec_option": "flow transmitter",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Pressure Transmitters",
+            "spec_name": "usage",
+            "spec_option": "pressure",
+            "impression": "10723"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Pressure Range",
+            "spec_fill_rate": "66.3",
+            "product_count": "65"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_fill_rate": "65.3",
+            "product_count": "64"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_fill_rate": "58.2",
+            "product_count": "57"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_fill_rate": "55.1",
+            "product_count": "54"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_fill_rate": "52",
+            "product_count": "51"
+        },
+        {
+            "spec_name": "Ingress Protection",
+            "spec_fill_rate": "45.9",
+            "product_count": "45"
+        },
+        {
+            "spec_name": "Diaphragm Material",
+            "spec_fill_rate": "43.9",
+            "product_count": "43"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_fill_rate": "41.8",
+            "product_count": "41"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_fill_rate": "39.8",
+            "product_count": "39"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "27.6",
+            "product_count": "27"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "16.3",
+            "product_count": "16"
+        },
+        {
+            "spec_name": "Operating Range",
+            "spec_fill_rate": "9.2",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_fill_rate": "6.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_fill_rate": "6.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Process Connection Options",
+            "spec_fill_rate": "6.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Made in",
+            "spec_fill_rate": "6.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Sensor Type",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_fill_rate": "4.1",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Enclosure rating IP",
+            "spec_fill_rate": "4.1",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Typical Applications",
+            "spec_fill_rate": "4.1",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Measurement Type",
+            "spec_fill_rate": "4.1",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Accuracy Class",
+            "spec_fill_rate": "3.1",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Housing Material",
+            "spec_fill_rate": "3.1",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Display Type",
+            "spec_fill_rate": "3.1",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Protection Type",
+            "spec_fill_rate": "3.1",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Product Weight",
+            "spec_fill_rate": "3.1",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Medium Type",
+            "spec_fill_rate": "3.1",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Media",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Part No.",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Model Name/Number Key ISQ",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Process connection",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Temp range",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Category",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Module Name",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Model Number",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Condition",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Electr.:",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Output signal",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Measuring range",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Made In",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Part No. :",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Enclosure rating",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Electrical Rating",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Module Number",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Contact Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Mech.:",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Process Connections",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Enclosure Rating",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Output Options",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Setpoint Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Reset Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Model :",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Display",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Measuring tech",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Supply voltage",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Power-up time",
+            "spec_option_name": "10 s",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Made In",
+            "spec_option_name": "india",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Type:",
+            "spec_option_name": "Pressure Transmitter",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Max. measuring span",
+            "spec_option_name": "69 bar",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Availability",
+            "spec_option_name": "In Stock",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Measuring tech",
+            "spec_option_name": "Liquid, gas, steam",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Electr.:",
+            "spec_option_name": "ITT Canon",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Temp range",
+            "spec_option_name": "-20 to 80 C",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Long Term Drift",
+            "spec_option_name": "0.25%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model Number",
+            "spec_option_name": "ISPT-200",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Electrical Connection",
+            "spec_option_name": "M12 Connector",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "power",
+            "spec_option_name": "24V DC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "SITRANS P DS III",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Accuracies",
+            "spec_option_name": "+-0.075% of Span",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sub Category",
+            "spec_option_name": "Pressure Sensors & Transducers",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Module Number",
+            "spec_option_name": "CD3A22A1AB4DFK5Q4",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Output Options",
+            "spec_option_name": "4Ã¢â¬â20 mA",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "country of origin",
+            "spec_option_name": "india",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Part No. :",
+            "spec_option_name": "060G5939",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Wetted Part",
+            "spec_option_name": "SS",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Input Pressure (Pascal)",
+            "spec_option_name": "0.1 / 1.6 / 2.5 to 200 Bar",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model Name/Number Key ISQ",
+            "spec_option_name": "ISP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Hygenic Fittings Slotted Nut",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Output Voltage",
+            "spec_option_name": "4 to 20 mA / 0 to 10 VDC / 0 to 5 VDC / 1 to 5 VDC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Danfoss",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Part Number",
+            "spec_option_name": "060G3805",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Protection Class",
+            "spec_option_name": "IP 67",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Output signal",
+            "spec_option_name": "4-20mA, 0-5V, 0-10V, RS485",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Mech.:",
+            "spec_option_name": "G1/4 Female",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Reset Type",
+            "spec_option_name": "Auto Reset",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Setpoint Type",
+            "spec_option_name": "Adjustable Screw",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Hazardous Approval",
+            "spec_option_name": "Explosion Proof",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Enclosure rating IP.",
+            "spec_option_name": "68",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Types",
+            "spec_option_name": "Absolute Pressure Transmitters",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Supply voltage",
+            "spec_option_name": "9 to 36 V DC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made in India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Process connection",
+            "spec_option_name": "50.5mm,64mm,(Support customization)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "32 V",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Enclosure rating",
+            "spec_option_name": "IP65",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Enclosure Rating",
+            "spec_option_name": "IP65",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Measurment range",
+            "spec_option_name": "0-100 psi",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Working Temperature",
+            "spec_option_name": "-20 to 85 Degree Celcius",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model No.",
+            "spec_option_name": "STA700",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "LOAD",
+            "spec_option_name": "500 OHM",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model Number/Name",
+            "spec_option_name": "CTX",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Electrical Connections",
+            "spec_option_name": "4 - Pin Din Connector",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "MADE IN",
+            "spec_option_name": "DENMARK",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "MAKE",
+            "spec_option_name": "PREETEMP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Diaphragm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Response Time",
+            "spec_option_name": "100 ms",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "NUMBER",
+            "spec_option_name": "PT PPT-100",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Noise level referred to input",
+            "spec_option_name": "0",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Use",
+            "spec_option_name": "Level pressure",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model :",
+            "spec_option_name": "MBS 3200",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Turn Down Ratio",
+            "spec_option_name": "10:01",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "SERIAL NO.",
+            "spec_option_name": "12798071",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Protection Type",
+            "spec_option_name": "IP 68",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Min. measuring span",
+            "spec_option_name": "0.05 bar",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Contact Type",
+            "spec_option_name": "PNP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Electrical Rating",
+            "spec_option_name": "5 A 24 V DC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pressure types",
+            "spec_option_name": "Absolute Relative (gauged)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "encloser rating ip",
+            "spec_option_name": "66",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Direct Mount",
+            "option_fill_rate": "88.9"
+        },
+        {
+            "spec_name": "Temperature Range",
+            "spec_option_name": "-40DegC to +120DegC",
+            "option_fill_rate": "87.5"
+        },
+        {
+            "spec_name": "Made in",
+            "spec_option_name": "India",
+            "option_fill_rate": "83.3"
+        },
+        {
+            "spec_name": "Housing Material",
+            "spec_option_name": "Stainless Steel",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Measurement Type",
+            "spec_option_name": "Gauge / Absolute Pressure",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Diaphragm Material",
+            "spec_option_name": "SS316L",
+            "option_fill_rate": "74.5"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "4Ã¢â¬â20 mA",
+            "option_fill_rate": "67.1"
+        },
+        {
+            "spec_name": "Product Weight",
+            "spec_option_name": "2 kg",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Category",
+            "spec_option_name": "Transmitters",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Medium Type",
+            "spec_option_name": "Air, Gas",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Output Signals",
+            "spec_option_name": "12-36V",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Display",
+            "spec_option_name": "Alphanumeric or Advanced Graphics LCD",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_option_name": "10Ã¢â¬â30 V DC",
+            "option_fill_rate": "59.5"
+        },
+        {
+            "spec_name": "Sensor Type",
+            "spec_option_name": "Pressure Transmitter",
+            "option_fill_rate": "57.1"
+        },
+        {
+            "spec_name": "Process Connection Type",
+            "spec_option_name": "1/2 inch NPT",
+            "option_fill_rate": "57.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "ISPT-200",
+            "option_fill_rate": "55.6"
+        },
+        {
+            "spec_name": "Process Connections",
+            "spec_option_name": "1/2/1/4/3/4/3/8 NPT/BSP",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "4-20mA",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Part No.",
+            "spec_option_name": "060G1125",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "3.8 kg",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Measuring range",
+            "spec_option_name": "-1bar~0~35bar",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Enclosure rating IP",
+            "spec_option_name": "IP65/IP67",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Condition",
+            "spec_option_name": "New",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Media",
+            "spec_option_name": "Air & Gas",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Condition",
+            "spec_option_name": "Brand New",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Process Connections",
+            "spec_option_name": "1/4\" BSP (M)",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Module Name",
+            "spec_option_name": "CD3A22A1AB4DFK5Q4 Pressure Transmitter",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Media",
+            "spec_option_name": "Water",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Module Name",
+            "spec_option_name": "Pressure Transmitter",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "BRAND",
+            "spec_option_name": "HONEYWELL",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Level Pressure",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Part No.",
+            "spec_option_name": "060G1130",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Measuring range",
+            "spec_option_name": "68 bar",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Pressure Measurement",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "3.8 Kg",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Ingress Protection",
+            "spec_option_name": "IP65",
+            "option_fill_rate": "41.9"
+        },
+        {
+            "spec_name": "MODEL",
+            "spec_option_name": "STG77S",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Enclosure Rating IP",
+            "spec_option_name": "IP65",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Enclosure Rating IP",
+            "spec_option_name": "Explosion Proof",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Operating Range",
+            "spec_option_name": "0~100 Bar",
+            "option_fill_rate": "36.4"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_option_name": "12Ã¢â¬â36 V DC",
+            "option_fill_rate": "35.7"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "Gauge",
+            "option_fill_rate": "35"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Water",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Display Type",
+            "spec_option_name": "LCD",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Diesel",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Process Connection Options",
+            "spec_option_name": "1/2 NPT (Male)",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Oil",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Display Type",
+            "spec_option_name": "Backlit LCD",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Accuracy Class",
+            "spec_option_name": "0.5 percent",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Category",
+            "spec_option_name": "Transmitter",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Output Signals",
+            "spec_option_name": "20 mA",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Accuracy Class",
+            "spec_option_name": "1.0 percent",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Medium Type",
+            "spec_option_name": "Air, Gas, Liquid",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Industrial process pressure measurment",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Display Type",
+            "spec_option_name": "LED",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Process Connection Options",
+            "spec_option_name": "1/2/1/4/3/4/3/8 NPT/BSP",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Accuracy Class",
+            "spec_option_name": "0.25 percent",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Ingress Protection",
+            "spec_option_name": "IP67",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Display",
+            "spec_option_name": "Optional LCD indicator",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Weight",
+            "spec_option_name": "2.1 Kg",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±0.5%",
+            "option_fill_rate": "29.5"
+        },
+        {
+            "spec_name": "Sensor Type",
+            "spec_option_name": "Piezoresistive",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "PES",
+            "option_fill_rate": "27.3"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "0-1000 psi",
+            "option_fill_rate": "26.1"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_option_name": "Process Pressure Measurement",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Enclosure rating IP",
+            "spec_option_name": "IP68",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Typical Applications",
+            "spec_option_name": "Process pressure, utilities, OEM, gas & liquid services",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Typical Applications",
+            "spec_option_name": "Process pressure, pump discharge, gas & liquid services",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Media",
+            "spec_option_name": "Oil",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_option_name": "General Process & Utility Pressure Measurement",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "24 V dc",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Media",
+            "spec_option_name": "Gas",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_option_name": "General & Utility Pressure Measurement",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "24VDC",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Media",
+            "spec_option_name": "Air",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Housing Material",
+            "spec_option_name": "Aluminum",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Typical Applications",
+            "spec_option_name": "Process pressure, pump discharge, gas & liquid pressure",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_option_name": "Process & Critical Pressure Measurement",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "BRAND",
+            "spec_option_name": "DANFOSS",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "24V dc",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Media",
+            "spec_option_name": "Steam",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Enclosure rating IP",
+            "spec_option_name": "68",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "240V",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Media",
+            "spec_option_name": "Hydraulic Oil",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "BRAND",
+            "spec_option_name": "WIKA",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Typical Applications",
+            "spec_option_name": "Utility pressure, pump discharge, gas & liquid pressure",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Measurement Type",
+            "spec_option_name": "Gauge Pressure",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "Absolute",
+            "option_fill_rate": "22.4"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±0.1%",
+            "option_fill_rate": "21.7"
+        },
+        {
+            "spec_name": "Process Connection Type",
+            "spec_option_name": "G1/4",
+            "option_fill_rate": "21.4"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "ÃÂ½ in NPT",
+            "option_fill_rate": "21.1"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "GÃÂ¼",
+            "option_fill_rate": "20.2"
+        },
+        {
+            "spec_name": "MODEL",
+            "spec_option_name": "MBS 5153 ; 060N1201",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0Ã¢â¬â10 bar",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "MODEL",
+            "spec_option_name": "KH25-273",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "7MF4033-1BA10-2AC7-Z",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "STG73S",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "FBM217",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "MODEL",
+            "spec_option_name": "PGT 23.100",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "3700",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "STG74S",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "4Ã¢â¬â20 mA HART",
+            "option_fill_rate": "19.2"
+        },
+        {
+            "spec_name": "Ingress Protection",
+            "spec_option_name": "IP66",
+            "option_fill_rate": "18.3"
+        },
+        {
+            "spec_name": "Operating Range",
+            "spec_option_name": "0-400 BAR",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "0-150 psi",
+            "option_fill_rate": "17.4"
+        },
+        {
+            "spec_name": "Process Connection Options",
+            "spec_option_name": "Remote Seal with Capillary",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Siemens",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "v4-20mA HART",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Made in",
+            "spec_option_name": "INDIA",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "ABB",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Rosemount",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Process Connection Options",
+            "spec_option_name": "1/2 NPT M",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "4-20 mA ( HART)",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Emerson Ã¢â¬â Rosemount",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Output Type",
+            "spec_option_name": "4 - 20 mA",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Danfoss",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Yokogawa Electric Corporation",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Baumer",
+            "option_fill_rate": "15.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Honeywell",
+            "option_fill_rate": "15.2"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "ÃÂ¼ in NPT",
+            "option_fill_rate": "14.9"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±0.25%",
+            "option_fill_rate": "14.7"
+        },
+        {
+            "spec_name": "Sensor Type",
+            "spec_option_name": "Capacitive",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Process Connection Type",
+            "spec_option_name": "1/4 inch NPT",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "ÃÂ¼ in BSP",
+            "option_fill_rate": "13.2"
+        },
+        {
+            "spec_name": "Temperature Range",
+            "spec_option_name": "-20DegC to +70DegC",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Enclosure Rating IP",
+            "spec_option_name": "IP67",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Enclosure Rating IP",
+            "spec_option_name": "IP66",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "4-20 mA",
+            "option_fill_rate": "12.3"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "Differential",
+            "option_fill_rate": "11.2"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "Rosemount G4S22 pressure transmitter",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "ISDPT-200",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "DANFOSS MBS-3200-060G5939",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "Rosemount 2051 Pressure Transmitter",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Diaphragm Material",
+            "spec_option_name": "Hastelloy C",
+            "option_fill_rate": "10.2"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "PRESSURE MEASURING INSTRUMENT",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "PRESSURE MEASURING TRANSMITTER",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Pressure monitoring in hydraulic, industrial, and process systems",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "AIR PRESSURE",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Pressure Meusurement",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "rosemount",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "INDUSTRIAL",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Pressure Measurement",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "WATER OR STEAM",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Measures and transmits pressure in industrial process systems",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "2 in Pipe",
+            "option_fill_rate": "9.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Danfoss",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Operating Range",
+            "spec_option_name": "0 to 10000 mmH20",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Operating Range",
+            "spec_option_name": "13.8/276 BAR",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Operating Range",
+            "spec_option_name": "0 to 760 mmHG",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Operating Range",
+            "spec_option_name": "0 to 100 bar",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Operating Range",
+            "spec_option_name": "0 to 200 bar",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "0-5000 psi",
+            "option_fill_rate": "8.7"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "0-3000 psi",
+            "option_fill_rate": "8.7"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "0-2000 psi",
+            "option_fill_rate": "8.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0Ã¢â¬â250 bar",
+            "option_fill_rate": "8.6"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "Sealed Gauge",
+            "option_fill_rate": "8.4"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0Ã¢â¬â100 bar",
+            "option_fill_rate": "7.9"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "+-0.25% FS",
+            "option_fill_rate": "7.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±1.0%",
+            "option_fill_rate": "7.8"
+        },
+        {
+            "spec_name": "Process Connection Type",
+            "spec_option_name": "Tri-Clamp",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0Ã¢â¬â40 bar",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Emerson",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Yokogawa",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Rosemount",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0Ã¢â¬â1 bar",
+            "option_fill_rate": "5.7"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "0Ã¢â¬â10 V",
+            "option_fill_rate": "5.5"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "0Ã¢â¬â5 V",
+            "option_fill_rate": "5.5"
+        },
+        {
+            "spec_name": "Ingress Protection",
+            "spec_option_name": "IP68",
+            "option_fill_rate": "5.4"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "Variable",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "Gauge Pressure",
+            "option_fill_rate": "4.9"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "RS485",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "GÃÂ½",
+            "option_fill_rate": "4.4"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "ÃÂ½ in BSP",
+            "option_fill_rate": "4.4"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "0-10000 PSI",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "0-100 psi",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "-14.5038 TO 3045.79 PSI",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "-1 to 210 BAR",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0Ã¢â¬â25 bar",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "-14.5038 TO 507.632 PSI",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "-14.5038 TO 50.7632 PSI",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Measurement Range",
+            "spec_option_name": "0-1200mmH2O",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Diaphragm Material",
+            "spec_option_name": "Tantalum",
+            "option_fill_rate": "4.1"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "Compound",
+            "option_fill_rate": "3.5"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "Modbus RTU",
+            "option_fill_rate": "3.4"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "Relay",
+            "option_fill_rate": "3.4"
+        },
+        {
+            "spec_name": "Diaphragm Material",
+            "spec_option_name": "Stainless Steel",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Diaphragm Material",
+            "spec_option_name": "Ceramic",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Siemens",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Simens",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "HONEYWELL",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "CTX",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Foxboro",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "Vacuum",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "Absolute Pressure",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "10 V",
+            "option_fill_rate": "2.7"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "G1/4",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "Flanged",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_option_name": "18Ã¢â¬â32 V DC",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_option_name": "42.4 V DC",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "+-0.5% FS",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "+-0.075% of Span",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "0.08%",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "10 bar",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "INDUSTRIAL",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-16 bar",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Diaphragm Material",
+            "spec_option_name": "SS304",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Diaphragm Material",
+            "spec_option_name": "316L Stainless Steel",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "1/4 inch BSP",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "G1/4 Inch",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±0.075%",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "600 Bar",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "0-10 V",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-6 bar",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "100 bar (1450 psi)",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "-1 TO 210 BAR",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "Ã¢Ëâ1Ã¢â¬â10 bar",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Panel Mount",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Ingress Protection",
+            "spec_option_name": "IP54",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Diaphragm Material",
+            "spec_option_name": "Monel",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "1.5\" TC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "M20 x 1.5",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "ÃÂ¼\", ÃÂ½\", ÃÂ¾\", 1\", 1ÃÂ½\" BSP, ÃÂ¼\", ÃÂ½\", 1\" NPT, M20x1.5, TriClamp, flanges or sanitary",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "MBS 3050",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "NPT Optional",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "1/2\" BSP",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "GÃÂ½, GÃÂ¼, NPT ÃÂ¼Ã¢â¬Â³, ÃÂ½",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "ÃÂ½ inch NPT female or ANSI flange",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "Threaded",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "1/4\" NPT AND 1/4\" BSP",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "DIN",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "KF16",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "G1/2",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "Tri-clover clamp",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Process Connection",
+            "spec_option_name": "G 1/4 B EN 837-1 (G30).",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±0.04%",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "0.25 % FS",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±0.05Ã¢â¬Â¯%, ÃÂ±0.10Ã¢â¬Â¯%, or ÃÂ±0.20Ã¢â¬Â¯%",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±0.2% of span",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "0.75",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "+-0.5% FSL",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "0.2\\%\\",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "+- 0.075% of calibrated span",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "Ã¢â°Â¤ ÃÂ± 0.2% FS",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±0.5Ã¢â¬Â¯% FS",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±0.075Ã¢â¬Â¯%",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±0.2%",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Accuracy",
+            "spec_option_name": "ÃÂ±0.1% FS",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "4 20 mA",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0Ã¢â¬â100Ã¢â¬Â¯psi",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "-1-600 bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "All ranges",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "-1 TO 3.5 BAR",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "NONE",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "Absolute, Gauge and Negative",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "2 PNP/NPN",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "Gauge / Relative",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0 to 60 ba",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "4Ã¢â¬â20Ã¢â¬Â¯mA DC",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "gauge, absolute and hydrostatic level measurement",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "10 Bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-0.005...0...0.2bar absolute",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "200 mbar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "623 to +623Ã¢â¬Â¯mbar (millibar)",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0---100---400bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "any range",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-150 PSI",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "20 mA",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "4Ã¢â¬â20Ã¢â¬Â¯mA DC HART",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "TEMPERATURE INDICATOR",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "Differential Pressure (DP)",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-2.5bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "15 Bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "Optional 0-10 VDC, 0-5 VDC",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-1000 PSI",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-400 BAR",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "10 bar (145 psi)",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-370 bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-6-2000bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "-1...0...350bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0...1...1000bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "LIQUIDS AND GASES",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "-1 TO 35 BAR",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "any",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "PRESSURE",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-15 bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "variable",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "0 5 V",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "32 V",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "-12.5-250bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-1000 psi",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "PRESSURE TRANSMITTER",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "-1 to 200 bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0.4 bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "25Ã¢â¬Â¯mbar to 100Ã¢â¬Â¯bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0 to 25 bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0 To 400 Bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-200 BAR",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-4 bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0...4 bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "PNP/NPN",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-100mbar-1000bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "Customized Range",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Type",
+            "spec_option_name": "NONE",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "-1 to 600 Bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-10-600bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Output Signal",
+            "spec_option_name": "0 10 V",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0-400 bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "0 To 16 Bar",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Pressure Range",
+            "spec_option_name": "(Nominal pressure gauge) Ã¢Ëâ1Ã¢â¬Â¦2200 bar",
+            "option_fill_rate": "0.7"
+        }
+    ]
+}

@@ -1,0 +1,5559 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 30353,
+        "mcat_name": "High Pressure Washer",
+        "current_specs": [
+            {
+                "spec_name": "Max Pressure (bar)",
+                "options": [
+                    "120 Bar",
+                    "150 Bar",
+                    "180 Bar",
+                    "130 Bar",
+                    "200 Bar",
+                    "220 Bar",
+                    "250 Bar",
+                    "100 Bar",
+                    "300 Bar",
+                    "500 Bar"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Power (HP)",
+                "options": [
+                    "3 HP",
+                    "2 HP",
+                    "5 HP",
+                    "1 HP",
+                    "4 HP",
+                    "7.5 HP",
+                    "6.5 HP",
+                    "10 HP",
+                    "15 HP",
+                    "20 HP"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Motor Type",
+                "options": [
+                    "Induction Motor",
+                    "Carbon Brush Motor"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Flow Rate (LPM)",
+                "options": [
+                    "10 LPM",
+                    "12 LPM",
+                    "8 LPM",
+                    "15 LPM",
+                    "14 LPM",
+                    "6 LPM",
+                    "18 LPM",
+                    "11 LPM",
+                    "20 LPM",
+                    "9 LPM"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Hose Length (m)",
+                "options": [
+                    "10 m",
+                    "8 m",
+                    "15 m",
+                    "5 m",
+                    "6 m"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Power Source",
+                "options": [
+                    "Electric-1 Phase",
+                    "Electric-3 Phase",
+                    "Gasoline",
+                    "Cordless/Battery"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Portability",
+                "options": [
+                    "Trolley Mounted",
+                    "Portable/Compact"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Water Temperature",
+                "options": [
+                    "Cold Water",
+                    "Hot & Cold Water"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "Shakti",
+                    "Karcher",
+                    "Bitali",
+                    "Bosch",
+                    "STARQ",
+                    "Raajgad",
+                    "Yuri",
+                    "Vettico Gold",
+                    "Hi-Tenci",
+                    "Globe"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "High Pressure Washer",
+            "mcat_id": 30353,
+            "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Max Pressure (bar)",
+                            "options": [
+                                "120 Bar",
+                                "150 Bar",
+                                "180 Bar",
+                                "130 Bar",
+                                "200 Bar",
+                                "220 Bar",
+                                "250 Bar",
+                                "100 Bar",
+                                "300 Bar",
+                                "500 Bar"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Power (HP)",
+                            "options": [
+                                "3 HP",
+                                "2 HP",
+                                "5 HP",
+                                "1 HP",
+                                "4 HP",
+                                "7.5 HP",
+                                "6.5 HP",
+                                "10 HP",
+                                "15 HP",
+                                "20 HP"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "1"
+                        }
+                    ],
+                    "scratchpad": "Primary Specs (Max Pressure, Power): These are the most frequently mentioned specifications across all sources. They are the primary determinants of a machine's capability and price, making them crucial for initial product comparison and titling. 'Bar' is the most common unit for pressure, and 'HP' is widely used for motor power, especially in the commercial segment."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Motor Type",
+                            "options": [
+                                "Induction Motor",
+                                "Carbon Brush Motor"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Flow Rate (LPM)",
+                            "options": [
+                                "10 LPM",
+                                "12 LPM",
+                                "8 LPM",
+                                "15 LPM",
+                                "14 LPM",
+                                "6 LPM",
+                                "18 LPM",
+                                "11 LPM",
+                                "20 LPM",
+                                "9 LPM"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Hose Length (m)",
+                            "options": [
+                                "10 m",
+                                "8 m",
+                                "15 m",
+                                "5 m",
+                                "6 m"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Motor Type: The distinction between 'Induction' and 'Carbon Brush' motors was explicitly mentioned as a key quality and durability differentiator. Induction motors are preferred for commercial use. Flow Rate (LPM): This metric, along with pressure, defines the cleaning efficiency. It's a standard technical data point in almost all catalogs. LPM (Liters Per Minute) is the industry standard. Hose Length: This is a practical specification that buyers frequently inquire about, as it determines the operational reach of the washer."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Power Source",
+                            "options": [
+                                "Electric-1 Phase",
+                                "Electric-3 Phase",
+                                "Gasoline",
+                                "Cordless/Battery"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Portability",
+                            "options": [
+                                "Trolley Mounted",
+                                "Portable/Compact"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Water Temperature",
+                            "options": [
+                                "Cold Water",
+                                "Hot & Cold Water"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "Shakti",
+                                "Karcher",
+                                "Bitali",
+                                "Bosch",
+                                "STARQ",
+                                "Raajgad",
+                                "Yuri",
+                                "Vettico Gold",
+                                "Hi-Tenci",
+                                "Globe"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Power Source: This is a fundamental filter. For electric models, the distinction between Single and Three Phase is critical for commercial buyers. Portability: Catalogs consistently differentiate between compact, portable units and larger, trolley-mounted machines. Water Temperature: The inclusion of high-end 'Hot & Cold Water' models necessitates this specification. Brand: Brand name is a significant factor in purchasing decisions and acts as a primary filter for many buyers."
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "200 bar",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "150 bar",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "250 bar",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "100 bar",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "120 bar",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "130 bar",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "180 bar",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "270 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "140 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "150-200 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "160 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "210 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "220 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "350 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "500 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "High unknown",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "20 MPa",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "2900 PSI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "4000 PSI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "110 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "130-140 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "180-220 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "200-250 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "200-350 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "2500 unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "260 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "320 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "4000-6000 PSI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "45 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "5076 PSI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "60 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "60-220 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "80-100 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "800 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "High Pressure unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Pressure",
+            "option_value": "Small/Low unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "3 HP",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "4 HP",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "5 HP",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "1800 W",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "2200 W",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "7.5 HP",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "1300 W",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "2500 W",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "10 HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "1600 W",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "5.5 HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "2 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "1.4 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "3 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "0.5 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "1.6 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "15 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "1900 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "200 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "2000 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "20000 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "2100 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "240 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "2400 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "3000 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "3500 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "48 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "50 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "6 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Commercial",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Vehicle Washing",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Industrial",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Solar Panel Cleaning",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "AC Cleaning",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Building Wash",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Floor Cleaning",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Commercial and Domestic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "High Pressure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Pressure Pump",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "AC Service",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Agriculture",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Building and Oil washing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Car Washing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Car washing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Chamber Cleaning",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Dairy Farm Cleaning",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Flame-proof",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Floor cleaning, Road cleaning, Divider cleaning",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Heavy Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "High Pressure Jet Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "High Pressure Pump Connection",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Home Cleaning Service",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Industrial Cleaning",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Industrial Heavy Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Industrial Kitchen Cleaning",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Portable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Road and Divider Cleaning",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Sewer Jetting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Shot Blasting / Paint Removal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Solar panel cleaning",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Steel structure surface preparation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Tank cleaning",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Truck Cleaning",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Wall Cleaning and Painting Preparation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Phase",
+            "option_value": "Single Phase",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Motor Phase",
+            "option_value": "3 Phase",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Motor Phase",
+            "option_value": "Three Phase",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Shakti",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Bosch",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Btali",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "MX",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Neptune",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Starq",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Symbol",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Tiger",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dolphin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Imported",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Xplenzo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "ANS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "AR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Agro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Australian Company",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "BC Power",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Black & Decker",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Blue Horse",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "DCX",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Diger",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Eastman",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Excellent",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Extra Power",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Global",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Global Power",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "HMAX",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "High Rider",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Honda",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Hot Care System",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "IMX",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Jetmac",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "K-Mart",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "KPT Extra Power",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Karcher",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "KisanKraft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kranzle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "MS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Makita",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Powerbelt",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Renno",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "STS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Self Manufactured",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Starkish",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Swastik",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "TUQO",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Texam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Vertico Gold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Violet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "iBell",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "ATS LG",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Skil 760",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "PBT-CW3000",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "SR1800",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "STS-200",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Hose Length",
+            "option_value": "8 m",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Hose Length",
+            "option_value": "10 meter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Hose Length",
+            "option_value": "5 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Stainless Steel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Copper",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Rubber",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Voltage",
+            "option_value": "220 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "15 D",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "1690",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "2060",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "2160",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "BS-65",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "BT 1000 PHVP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "D5 plus",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "DT 6530",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "DT-6550",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "Imperial",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "Jumbo 700",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "MT18",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "NPW 2900",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "NPW-280",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "PT 1288",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "QL 1650",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "QT 30",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "S3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "S5",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "S7 Pro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "TGP-TW80",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "W3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "XP PW 80W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "XP-PW-572",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Hose Pipe Length",
+            "option_value": "10 m",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Hose Pipe Length",
+            "option_value": "5 m",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Included Accessories",
+            "option_value": "Foam Bottle",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Included Accessories",
+            "option_value": "Gun",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Included Accessories",
+            "option_value": "Pump",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Hose Pipe Length",
+            "option_value": "15 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Hose Pipe Length",
+            "option_value": "15 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Hose Pipe Length",
+            "option_value": "15-20 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Hose Pipe Length",
+            "option_value": "30 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Hose Pipe Length",
+            "option_value": "50 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Accessories",
+            "option_value": "Brush",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Accessories",
+            "option_value": "Foam Can",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Accessories",
+            "option_value": "Microfiber Cloth",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Accessories",
+            "option_value": "Pipe",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "6 months",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 year",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 Year",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "12 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "2 Year",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "No warranty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "15 LPM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "11 L/min",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "15 L/min",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "21 LPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "30 LPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "7 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "8 L/min",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Winding Material",
+            "option_value": "Copper",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S5",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "2160",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "6540",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "BW17",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "Electroforce",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "PW-280",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Winding Material",
+            "option_value": "Aluminium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Winding Material",
+            "option_value": "Aluminum",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Winding Material",
+            "option_value": "Silicon Copper",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Source",
+            "option_value": "Electric",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Green",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Red",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Black",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Yellow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Source",
+            "option_value": "Diesel Engine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Source",
+            "option_value": "Double Battery",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Source",
+            "option_value": "Engine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Brand",
+            "option_value": "Crompton",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Italy",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "Plunger Pump",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Pump Brand",
+            "option_value": "Hawk",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Chinese",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Italian",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Brand",
+            "option_value": "AR (Annovi Reverberi)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Brand",
+            "option_value": "Ibock",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Brand",
+            "option_value": "Udor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "3 Piston",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "HTP Pump",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "11 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "16 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "35-40 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "65 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "8 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Portability",
+            "option_value": "Portable",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Chinese",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "India",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Italian",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Italy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Portability",
+            "option_value": "Trolley Mounted",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Category",
+            "option_value": "Commercial",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Duty Rating",
+            "option_value": "Heavy Duty",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "230 V",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Phase",
+            "option_value": "Three Phase",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Duty Rating",
+            "option_value": "Continuous Use",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "220 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "Bare Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "Electric motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "Magnetic Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Phase",
+            "option_value": "Single Phase",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Engine Type",
+            "option_value": "Petrol or Diesel",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Cable Length",
+            "option_value": "10 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cable Length",
+            "option_value": "5 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Belt Drive",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Belt Operated",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Duty Type",
+            "option_value": "Heavy Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Duty Type",
+            "option_value": "Heavy duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Feature",
+            "option_value": "Hot and Cold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Feature",
+            "option_value": "With Trolley",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Auto-cut",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Long Pipe Length",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Pump, motor, 30 ft pipe, inlet, outlet, trigger gun, nozzle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "With Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Jet Pump",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Portable / Small",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Surface Cleaner (Round type)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Wireless",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Washer Type",
+            "option_value": "High Pressure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Washer Type",
+            "option_value": "Hot and Cold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Water Flow Rate",
+            "option_value": "10 LPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Water Flow Rate",
+            "option_value": "6 L/min",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Hose Diameter",
+            "option_value": "10 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Additional Cable Length",
+            "option_value": "5 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Auto Cut-off",
+            "option_value": "Yes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Auto-cut Feature",
+            "option_value": "Yes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Body Material",
+            "option_value": "Mild Steel (MS)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand Compatibility",
+            "option_value": "The Golden Tech",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cleaning Media",
+            "option_value": "Water",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Machine",
+            "option_value": "Air Compressor / Car Wash Compressor / High Pressure Washer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Model Name",
+            "option_value": "5-13C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component",
+            "option_value": "Head",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component Name",
+            "option_value": "Bearing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connection Type",
+            "option_value": "Threaded",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Continuous Operation",
+            "option_value": "5-6 hours",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Continuous Run Time",
+            "option_value": "1-2 hours",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Continuous Running Time",
+            "option_value": "30 min",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design/Structure",
+            "option_value": "Bent wire or rod-like structure at the bottom",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Equivalent Model",
+            "option_value": "Star Q QT-30",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Filter",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Foam Cannon Support",
+            "option_value": "Yes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Frequency",
+            "option_value": "50 Hz",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fuel Type",
+            "option_value": "Petrol",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Function",
+            "option_value": "Water suction and high pressure discharge",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gun Operation",
+            "option_value": "Automatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gun Quantity",
+            "option_value": "1 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gun Support",
+            "option_value": "1 gun",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gun Type",
+            "option_value": "Long Gun",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Hose Type",
+            "option_value": "Inlet Outlet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Lance",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Hose Pipe Length",
+            "option_value": "30 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Vertical Reach",
+            "option_value": "20-30 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Models Available",
+            "option_value": "2-3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Speed",
+            "option_value": "2850 RPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Mounting Type",
+            "option_value": "Trolley Fabricated",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Nozzle",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Nozzle Quantity",
+            "option_value": "4 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Nozzle Type",
+            "option_value": "Rotating",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Pistons",
+            "option_value": "3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "2 pcs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Part Number",
+            "option_value": "F016F04475",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Cable Length",
+            "option_value": "15 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Consumption",
+            "option_value": "1000 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Adjustment Type",
+            "option_value": "Adjustable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Gauge",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Regulating Valve",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Configuration",
+            "option_value": "Full Set",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Number",
+            "option_value": "100-120",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Technology",
+            "option_value": "Crankshaft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Service",
+            "option_value": "Free",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Speed Control",
+            "option_value": "Without",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Starter",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Starting System",
+            "option_value": "Self Start",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "5 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Trigger Gun",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Working Pressure",
+            "option_value": "200-220 bar",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Product Brand",
+            "option_value": "Sumo"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model",
+            "option_value": "SP PW25 800"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Hyco"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Hyco"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Hyco"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Hyco"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Hyco"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed (RPM)",
+            "option_value": "2800Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight (Kg)",
+            "option_value": "10Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Rated Voltage (V)",
+            "option_value": "220V/50Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Rated Input Power",
+            "option_value": "2500W"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed",
+            "option_value": "2800Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "11Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "PW1173"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "YR PW1170"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "10Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed",
+            "option_value": "2800Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "YR PW1171"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed",
+            "option_value": "2800Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Yuri"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "10Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed",
+            "option_value": "2800Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "YR PW1172"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "10Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed",
+            "option_value": "2800Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "10Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Rated Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "DA PW5168"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Dayuri"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Dayuri"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "DA PW5168"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed",
+            "option_value": "2800 RPM"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "11Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "11Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Dayuri"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "DA PW5169"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220 V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed",
+            "option_value": "2800Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "DA PW5171"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Dayuri"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "No-load Speed",
+            "option_value": "2850Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "17Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Dayuri"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "DA PW5172"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed",
+            "option_value": "2850Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "45Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed",
+            "option_value": "2800Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220 V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "15Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "DA PW5173"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Dayuri"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed",
+            "option_value": "2500Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Dayuri"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "DA PW5174"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "18Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name",
+            "option_value": "DA PW5174"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Speed",
+            "option_value": "2500Rpm"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "18Kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Dayuri"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Ralli Wolf"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model",
+            "option_value": "RHP130"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Quality",
+            "option_value": "Best"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Material",
+            "option_value": "Mild Steel"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220 V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Frequency",
+            "option_value": "50 Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model Name/No.",
+            "option_value": "2200 RT Plus"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Frequency",
+            "option_value": "50 Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Feature",
+            "option_value": "Self Suction, Induction Motor, Auto Stop, Compact Design, Portable Handling and Heavy Spare Parts"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Net Weight",
+            "option_value": "8 Kgs"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Power",
+            "option_value": "1800 Watt"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage/Frequency",
+            "option_value": "220V/50Hz"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model",
+            "option_value": "SKY1315CEA"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Series",
+            "option_value": "Aqua"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Series",
+            "option_value": "Aqua"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model",
+            "option_value": "0915CEA 1PH"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Battery Capacity",
+            "option_value": "5000 mAh"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Package Contains",
+            "option_value": "1 x Pressure Washer Gun, 2 x Batteries, 1 x Charger, 1 x Foam Bottle, 2 x Nozzle, 1 x Inlet..."
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "MAF India"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage (v)",
+            "option_value": "36 V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "COD",
+            "option_value": "Available,Minimum deposit 1000 for order confirmation other payment you can do cod"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "WARRANTY",
+            "option_value": "2 YEAR"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Warranty",
+            "option_value": "1 Year"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Weight",
+            "option_value": "30 kg"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand",
+            "option_value": "Kwant Clean"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "RPM",
+            "option_value": "145"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Global Brand",
+            "option_value": "JaiXAir"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Company",
+            "option_value": "JaiXAir Equipments(India)"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Global Brand",
+            "option_value": "JaiXAir"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand Name",
+            "option_value": "Lavor"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model",
+            "option_value": "Vertigo 28"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Model",
+            "option_value": "SKY1520CEA"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Series",
+            "option_value": "Aqua"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Pressure PSI",
+            "option_value": "2175"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Water Flow Lt/Min",
+            "option_value": "09 Lt/Min"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Pressure Bar",
+            "option_value": "150"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Motor HP",
+            "option_value": "3 HP"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Water Flow",
+            "option_value": "15 Lt/Min"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Voltage",
+            "option_value": "415 V"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Pressure PSI",
+            "option_value": "2900"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Motor KW",
+            "option_value": "7.45 KW"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Water Flow",
+            "option_value": "21 Lt/Min"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Pressure PSI",
+            "option_value": "2900"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Rated Flow",
+            "option_value": "1.85GPM/"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Product Brand",
+            "option_value": "Toughtek"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "MAX Flow",
+            "option_value": "2.06 GPM"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "WADFOW",
+            "option_value": "Primium Quality"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Warranty",
+            "option_value": "1 Year"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Brand",
+            "option_value": "Karcher"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Warranty",
+            "option_value": "1 Year"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Warranty",
+            "option_value": "1 Year"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Availaility",
+            "option_value": "In stock"
+        },
+        {
+            "mcat_id": "30353",
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "Nozzle Size",
+            "option_value": "1.4 mm"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "agaro",
+            "impression": "746"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "aimex",
+            "impression": "783"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "aken",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "aqua",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "aryantra",
+            "impression": "73"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "asian",
+            "impression": "56"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "asian paint",
+            "impression": "2487"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "ballorex",
+            "impression": "18"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "blue shine",
+            "impression": "105"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "bosch",
+            "impression": "247"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "btali",
+            "impression": "73"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "bull",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "clif",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "dewalt",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "dongcheng",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "elephant",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "elgi",
+            "impression": "295"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "eurofine",
+            "impression": "268"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "everest",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "fieldstar",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "gaocheng",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "global",
+            "impression": "513"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "global power",
+            "impression": "1699"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "golden bullet",
+            "impression": "120"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "graco",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "hawk",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "heugor",
+            "impression": "25"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "honda",
+            "impression": "18"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "hot star",
+            "impression": "259"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "hypermax",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "ibell",
+            "impression": "446"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "ideal",
+            "impression": "66"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "jet power",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "jetpower",
+            "impression": "106"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "jpt",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "kapicon",
+            "impression": "33"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "karcher",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "kiko",
+            "impression": "69"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "kirloskar",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "kisankraft",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "kortex",
+            "impression": "142"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "kranzle",
+            "impression": "218"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "lion",
+            "impression": "41"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "makita",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "mecano",
+            "impression": "25"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "msi",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "nilfisk",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "osaki",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "planet power",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "polymak",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "powerbilt",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "powertuff",
+            "impression": "55"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "rajdhani",
+            "impression": "31"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "ralli wolf",
+            "impression": "18"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "rit",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "saw master",
+            "impression": "36"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "shakti technology",
+            "impression": "53"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "skil",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "stallion",
+            "impression": "503"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "stanley",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "starq",
+            "impression": "402"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "stihl",
+            "impression": "50"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "tekool",
+            "impression": "55"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "thor",
+            "impression": "25"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "tiger",
+            "impression": "296"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "total",
+            "impression": "170"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "toyo",
+            "impression": "346"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "tuqo",
+            "impression": "175"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "v guard",
+            "impression": "60"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "varsha",
+            "impression": "878"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "verx",
+            "impression": "42"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "voylet",
+            "impression": "1330"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "xlnt",
+            "impression": "60"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "xtra power",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "yiking",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "yuri",
+            "impression": "61"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "brand",
+            "spec_option": "zogo",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "2100",
+            "impression": "471"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "2160 t",
+            "impression": "72"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "790",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "dt 6530",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "qt 30",
+            "impression": "137"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "re 120",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "s3",
+            "impression": "140"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "s5",
+            "impression": "2868"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "s7",
+            "impression": "37"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "s7 pro",
+            "impression": "196"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "s9 pro",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "supreme",
+            "impression": "196"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "supreme plu",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model name/number",
+            "spec_option": "trucare",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model number",
+            "spec_option": "d7",
+            "impression": "192"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model number",
+            "spec_option": "st 25",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "model number",
+            "spec_option": "tg 1809",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "motor power",
+            "spec_option": "3 hp",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "motor power",
+            "spec_option": "4 hp",
+            "impression": "82"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "phase",
+            "spec_option": "3 phase",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "phase",
+            "spec_option": "three phase",
+            "impression": "3"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "power",
+            "spec_option": "3000 watt",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "power source",
+            "spec_option": "electric",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "power source",
+            "spec_option": "gasoline",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "120 bar",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "130 bar",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "135 bar",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "140 bar",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "150 bar",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "160 bar",
+            "impression": "30"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "180 bar",
+            "impression": "69"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "200 bar",
+            "impression": "199"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "210 bar",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "230 bar",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "250 bar",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "300 bar",
+            "impression": "48"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "3000 psi",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "350 bar",
+            "impression": "126"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "500 bar",
+            "impression": "36"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "5000 psi",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "80 bar",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "high",
+            "impression": "74"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "pressure",
+            "spec_option": "high water",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "shape",
+            "spec_option": "t",
+            "impression": "33"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "type",
+            "spec_option": "high pressure cleaner",
+            "impression": "56"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "type",
+            "spec_option": "washer",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "usage",
+            "spec_option": "ac cleaning",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "usage",
+            "spec_option": "car",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "usage",
+            "spec_option": "commercial",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "usage",
+            "spec_option": "industrial",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "usage",
+            "spec_option": "washing",
+            "impression": "54"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "washer type",
+            "spec_option": "high jet",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "washer type",
+            "spec_option": "jet pressure washer",
+            "impression": "57"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "washer type",
+            "spec_option": "power",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "washer type",
+            "spec_option": "pressure",
+            "impression": "3206"
+        },
+        {
+            "mcat_name": "High Pressure Washer",
+            "spec_name": "washer type",
+            "spec_option": "water pressure washer",
+            "impression": "13"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_fill_rate": "58.3",
+            "product_count": "60"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_fill_rate": "56.3",
+            "product_count": "58"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_fill_rate": "50.5",
+            "product_count": "52"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_fill_rate": "45.6",
+            "product_count": "47"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_fill_rate": "43.7",
+            "product_count": "45"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "41.7",
+            "product_count": "43"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_fill_rate": "41.7",
+            "product_count": "43"
+        },
+        {
+            "spec_name": "Portability",
+            "spec_fill_rate": "35.9",
+            "product_count": "37"
+        },
+        {
+            "spec_name": "Water Temperature",
+            "spec_fill_rate": "33",
+            "product_count": "34"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "12.6",
+            "product_count": "13"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_fill_rate": "6.8",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Pressure",
+            "spec_fill_rate": "5.8",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Flow Rate",
+            "spec_fill_rate": "5.8",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Max Water Inlet Temp",
+            "spec_fill_rate": "4.9",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "3.9",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_fill_rate": "3.9",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_fill_rate": "3.9",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_fill_rate": "2.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Hose Length",
+            "spec_fill_rate": "2.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Pump Material",
+            "spec_fill_rate": "2.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_fill_rate": "2.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Company",
+            "spec_fill_rate": "1.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Mobility",
+            "spec_fill_rate": "1.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Global Brand",
+            "spec_fill_rate": "1.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Power",
+            "spec_fill_rate": "1.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Duty Rating",
+            "spec_fill_rate": "1.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Detergent Tank",
+            "spec_fill_rate": "1.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Voltage/Frequency",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "COD",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Voltage (v)",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Motor KW",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Availaility",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Medium",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Gun Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "WARRANTY",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Rated Flow",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "MAX Flow",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Transformer Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Inlet Size",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Wash Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Water Flow",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Nozzle Size",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Model",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Water Consumption per Car",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Volltage",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Moter KW",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Battery Capacity",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Primary Voltage",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Net Weight",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Washing Time per Car",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Cooling Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Package Contains",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "System Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Net Weight",
+            "spec_option_name": "8 Kgs",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Medium",
+            "spec_option_name": "Water",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Bike",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Water Consumption per Car",
+            "spec_option_name": "40-60 L",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Volltage",
+            "spec_option_name": "415 V",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Package Contains",
+            "spec_option_name": "1 x Pressure Washer Gun, 2 x Batteries, 1 x Charger, 1 x Foam Bottle, 2 x Nozzle, 1 x Inlet...",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cooling Type",
+            "spec_option_name": "Air Cooled",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Speed (RPM)",
+            "spec_option_name": "2800Rpm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Car",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Rated Frequency",
+            "spec_option_name": "50Hz",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Frequency",
+            "spec_option_name": "50Hz",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Heating Type",
+            "spec_option_name": "None",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "PORTABLE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Inlet & Outlet Size",
+            "spec_option_name": "1.25 x 1 inch",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "COD",
+            "spec_option_name": "Available,Minimum deposit 1000 for order confirmation other payment you can do cod",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made In India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "System Type",
+            "spec_option_name": "Rollover / Gantry",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Voltage/Frequency",
+            "spec_option_name": "220V/50Hz",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power Supply",
+            "spec_option_name": "415 V",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_option_name": "Hose Pipe",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Rated Voltage (V)",
+            "spec_option_name": "220V/50Hz",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight (Kg)",
+            "spec_option_name": "10Kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Industrial machine washer",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_option_name": "New Only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Truck",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Maximum Head",
+            "spec_option_name": "80 m",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cleaning Media",
+            "spec_option_name": "Water Only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Wash Type",
+            "spec_option_name": "Touchless",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fuel Type",
+            "spec_option_name": "Electric",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "COMPANY",
+            "spec_option_name": "HYDROPLUS",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "MAX Flow",
+            "spec_option_name": "2.06 GPM",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Nozzle Size",
+            "spec_option_name": "1.4 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight incl. packaging (kg)",
+            "spec_option_name": "2.4",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Maximum Flow Rate",
+            "spec_option_name": "1000 LPM",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Availaility",
+            "spec_option_name": "In stock",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight incl. packaging",
+            "spec_option_name": "2.4",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "MODEL",
+            "spec_option_name": "1000 RT-R HPW",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Self Suction, Induction Motor, Auto Stop, Compact Design, Portable Handling and Heavy Spare Parts",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Gun Type",
+            "spec_option_name": "Car Wash",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Dimensions (L Ãâ W Ãâ H) (mm)",
+            "spec_option_name": "708 x 280 x 995",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "200 bar",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Rated Flow",
+            "spec_option_name": "1.85GPM/",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Global Brand",
+            "spec_option_name": "JaiXAir",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "Trigger",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Washing Time per Car",
+            "spec_option_name": "3-5 min",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Battery Capacity",
+            "spec_option_name": "5000 mAh",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "WARRANTY",
+            "spec_option_name": "2 YEAR",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Transformer Type",
+            "spec_option_name": "Power",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Inlet Size",
+            "spec_option_name": "1/4 inch",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Nozzle Type",
+            "spec_option_name": "Multi Jet Nozzle",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "SS304",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Voltage (v)",
+            "spec_option_name": "36 V",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Max Pressure",
+            "spec_option_name": "150 Bar",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight (kg)",
+            "spec_option_name": "1.4",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Toughtek",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Primary Voltage",
+            "spec_option_name": "415 V",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "No-load Speed",
+            "spec_option_name": "2850Rpm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "High Pressure Washer",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Rated Input Power",
+            "spec_option_name": "2500W",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "Vertigo 28",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_option_name": "2",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Tractor",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Bus",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Moter KW",
+            "spec_option_name": "37.28 KW",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "1 Year",
+            "option_fill_rate": "85.7"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Induction Motor",
+            "option_fill_rate": "75.2"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_option_name": "Triplex Plunger",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_option_name": "Foam Nozzle",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "220V",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Automation Grade",
+            "spec_option_name": "Automatic",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "With Wheels",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Water Temperature",
+            "spec_option_name": "Cold Water",
+            "option_fill_rate": "64.5"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Electric-1 Phase",
+            "option_fill_rate": "64"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "2800Rpm",
+            "option_fill_rate": "63.6"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Single Phase",
+            "option_fill_rate": "62.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Dayuri",
+            "option_fill_rate": "61.5"
+        },
+        {
+            "spec_name": "Max Water Inlet Temp",
+            "spec_option_name": "40ÃÂ°C",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Portability",
+            "spec_option_name": "Portable/Compact",
+            "option_fill_rate": "59.3"
+        },
+        {
+            "spec_name": "Detergent Tank",
+            "spec_option_name": "Foam Bottle",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Mobility",
+            "spec_option_name": "Skid Mounted",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Water Flow",
+            "spec_option_name": "15 Lt/Min",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Motor KW",
+            "spec_option_name": "22.37 KW",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Black",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Mobility",
+            "spec_option_name": "Trolley",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Company",
+            "spec_option_name": "JaiXAir Equipments(India)",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Motor KW",
+            "spec_option_name": "14.91 KW",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "7.45 Kw",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_option_name": "Adjustable Nozzle",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_option_name": "Rotary Nozzle",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "6kv",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "black",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Company",
+            "spec_option_name": "AR - Wave Equipments",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Duty Rating",
+            "spec_option_name": "Medium Duty",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Detergent Tank",
+            "spec_option_name": "Built-in",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_option_name": "Spray Gun",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Duty Rating",
+            "spec_option_name": "Heavy Duty",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Water Flow",
+            "spec_option_name": "21 Lt/Min",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "10 m",
+            "option_fill_rate": "47.8"
+        },
+        {
+            "spec_name": "Portability",
+            "spec_option_name": "Trolley Mounted",
+            "option_fill_rate": "40.7"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Mild Steel",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Max Water Inlet Temp",
+            "spec_option_name": "60ÃÂ°C",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Karcher",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Water Temperature",
+            "spec_option_name": "Hot & Cold Water",
+            "option_fill_rate": "34.2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Commercial",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Quick Connect",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "5 hp",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Pump Material",
+            "spec_option_name": "Brass",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Pump Material",
+            "spec_option_name": "Aluminium Pump Head",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Automation Grade",
+            "spec_option_name": "Semi Automatic",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Hose Length",
+            "spec_option_name": "10 m",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Hose Length",
+            "spec_option_name": "5 m",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Hose Length",
+            "spec_option_name": "6 m",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Pump Material",
+            "spec_option_name": "Metal",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "10Kg",
+            "option_fill_rate": "30.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "10 LPM",
+            "option_fill_rate": "27.8"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Tank Cleaning",
+            "option_fill_rate": "27.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Car Exterior",
+            "option_fill_rate": "27.3"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "8 m",
+            "option_fill_rate": "27"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_option_name": "Extension Lance",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_option_name": "Dirt Blaster",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_option_name": "Trigger Gun",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_option_name": "Plunger Pump",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_option_name": "Sand Blaster",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_option_name": "Pressure Gauge",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "1.5",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Included Accessories",
+            "spec_option_name": "Surface Cleaner",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2 HP",
+            "option_fill_rate": "23.8"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "11Kg",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Pressure",
+            "spec_option_name": "150 bar",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Flow Rate",
+            "spec_option_name": "10 lpm",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "150 Bar",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "3 HP",
+            "option_fill_rate": "20.4"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Plastic",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "415 V",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Cast Iron",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Shakti",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Stainless Steel",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "2500Rpm",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Car Washing",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Bike Wash",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Car Wash",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Raajgad",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "2 hp",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "2300 watt",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "1800 Watt",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "DA PW5168",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "7.5 hp",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "DA PW5174",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Electric-3 Phase",
+            "option_fill_rate": "16"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "12 LPM",
+            "option_fill_rate": "15.8"
+        },
+        {
+            "spec_name": "Flow Rate",
+            "spec_option_name": "10 l/min",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Flow Rate",
+            "spec_option_name": "15 lpm",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "SKY",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Pressure",
+            "spec_option_name": "200 bar",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "18Kg",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "180 Bar",
+            "option_fill_rate": "14.6"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "1 year",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "220 V",
+            "option_fill_rate": "13.3"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "3400 W",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "2600 W",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "3000 W",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "1500 W",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "3 HP",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "2300W",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "120 Bar",
+            "option_fill_rate": "12"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "15 LPM",
+            "option_fill_rate": "11.3"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "15 m",
+            "option_fill_rate": "11.3"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "8 LPM",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Carbon Brush Motor",
+            "option_fill_rate": "10.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Yuri",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Fruit Processing",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Industrial Cleaning",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "2850Rpm",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Beverage Plant",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Car & Bike Washing / Home Cleaning / Garden / Terrace / Outdoor Surfaces",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Food Processing",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Surface Prep",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Meat Processing",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Vegetable Processing",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Small Workshop",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Confectionery",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Industrial Use",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "2800 RPM",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Home Use",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Professional Use",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Floor Cleaning",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Seafood Plant",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Bakery",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Patio Cleaning",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Pharma Plant",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Dairy Plant",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "1 HP",
+            "option_fill_rate": "8.8"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "YR PW1172",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "YR PW1170",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "YR PW1171",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "DA PW5173",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "DA PW5172",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "DA PW5171",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "DA PW5169",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "PW1173",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "5 HP",
+            "option_fill_rate": "8.2"
+        },
+        {
+            "spec_name": "Pressure",
+            "spec_option_name": "250 bar",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Flow Rate",
+            "spec_option_name": "12 lpm",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "17Kg",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Flow Rate",
+            "spec_option_name": "11 lpm",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pressure",
+            "spec_option_name": "180 bar",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Flow Rate",
+            "spec_option_name": "12 l/min",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pressure",
+            "spec_option_name": "80-250 bar (Adjustable)",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "MAF India",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "15Kg",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pressure",
+            "spec_option_name": "130",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Lavor",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "45Kg",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Flow Rate",
+            "spec_option_name": "6L/Min",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Flow Rate",
+            "spec_option_name": "330 Ã¢â¬â 350 L/hour",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pressure",
+            "spec_option_name": "100 bar",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pressure",
+            "spec_option_name": "120 bar",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Yuri",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pressure",
+            "spec_option_name": "160 bar",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "1.4",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pressure",
+            "spec_option_name": "140",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Flow Rate",
+            "spec_option_name": "450- 600 l/hour",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "200 Bar",
+            "option_fill_rate": "7.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "250 Bar",
+            "option_fill_rate": "7.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Globe",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Water-Cooled Motor",
+            "option_fill_rate": "6.4"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "220 Bar",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Cordless/Battery",
+            "option_fill_rate": "6"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "4 HP",
+            "option_fill_rate": "5.4"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "14 LPM",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "130 Bar",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Electric",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "High Pressure",
+            "option_fill_rate": "4.6"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "6 LPM",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "20 LPM",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Hi-Tenci",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "STARQ",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "500 Bar",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "300 Bar",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "9 LPM",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "18 LPM",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "230 V Electric",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "7.5 HP",
+            "option_fill_rate": "2.7"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "12m",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "5 m",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "22 LPM",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "4.55 HP",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2500W",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2800W",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "230 Bar",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "12 m",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "7m",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "6 m",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "450-600 LPH",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "1450 rpm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "21 LPM",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "11.8 HP",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "30 HP",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "10 HP",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "15 HP",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "6.5 HP",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "170 Bar",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "210 Bar",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Water Temperature",
+            "spec_option_name": "Hot Water",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Gasoline",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Battery",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Single Phase",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "400-440 V",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "50 ft",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "High Pressure Washer",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "20 METER",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Corded Electric Motor",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "20m",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Hose Length (m)",
+            "spec_option_name": "12 mtr",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Induction + magnet dc(pmdc)",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Triple Ceramic Direct Drive",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "15-21 LPM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "7.5lpm",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "30 lpm",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "13LPM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "16",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "6L/Min",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "17",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "16 lpm",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "450 - 600 LPH",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "500 - 1000 LPH",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "15 Lpm",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flow Rate (LPM)",
+            "spec_option_name": "520 - 900 LPH",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2100W",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "BATTERY",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2500 W",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "5.5hp",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "108KW",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "1.5hp",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "0.5",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "3.2 HP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "1000 Watt",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2.5",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "7.5 & 10 HP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "4.5 hp",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2.2hp",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2850W",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "9.25 HP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2000w",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2300 W",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2.5 HP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "ALL POWER",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2200 W",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "50 HP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2.2 hp",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "4Kw",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "2300W",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "14 HP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power (HP)",
+            "spec_option_name": "20 HP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "45kg/cmÃÂ²",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "140",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "230",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "160bar",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "90",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "300 psi",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "210",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "60_65 bar",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "ALL MAX PRESSURE",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "30-60 Bar",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "410",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "2600 PSI",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "290 Bar",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "100 Bar",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "90 bar",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "140 Bar",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "600 Bar",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "240",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "160",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "160 bar",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "110 Bar",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Max Pressure (bar)",
+            "spec_option_name": "180-200 Bar",
+            "option_fill_rate": "0.6"
+        }
+    ]
+}

@@ -1,0 +1,3919 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 32733,
+        "mcat_name": "Nitrile Gloves",
+        "current_specs": [
+            {
+                "spec_name": "Color",
+                "options": [
+                    "Blue",
+                    "Black",
+                    "White",
+                    "Green",
+                    "Violet",
+                    "Orange"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Powder Content",
+                "options": [
+                    "Powder-Free",
+                    "Powdered"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Thickness",
+                "options": [
+                    "4 mil",
+                    "3.5 mil",
+                    "5 mil",
+                    "6 mil",
+                    "8 mil",
+                    "3 mil"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Size",
+                "options": [
+                    "M",
+                    "L",
+                    "S",
+                    "XL",
+                    "XS"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Cuff Length",
+                "options": [
+                    "240 mm (~9.5 in)",
+                    "300 mm (~12 in)",
+                    "230 mm (~9 in)",
+                    "290 mm (~11.4 in)",
+                    "400 mm (~16 in)",
+                    "450 mm (~18 in)"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Texture",
+                "options": [
+                    "Fingertip Textured",
+                    "Diamond Textured",
+                    "Smooth",
+                    "Micro-Roughened"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Sterility",
+                "options": [
+                    "Non-Sterile",
+                    "Sterile"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "Kimberly-Clark",
+                    "Ansell",
+                    "GloveOn",
+                    "Halyard",
+                    "Vasco",
+                    "Medipride",
+                    "Nulife",
+                    "Dr. Safest",
+                    "Mallcom"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Usage",
+                "options": [
+                    "Medical",
+                    "Food Handling",
+                    "Industrial",
+                    "Laboratory",
+                    "Automotive",
+                    "Cleaning"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Nitrile Gloves",
+            "mcat_id": 32733,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Color",
+                            "options": [
+                                "Blue",
+                                "Black",
+                                "White",
+                                "Green",
+                                "Violet",
+                                "Orange"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Powder Content",
+                            "options": [
+                                "Powder-Free",
+                                "Powdered"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Thickness",
+                            "options": [
+                                "4 mil",
+                                "3.5 mil",
+                                "5 mil",
+                                "6 mil",
+                                "8 mil",
+                                "3 mil"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Primary Specifications (`Color`, `Powder Content`, `Thickness`) were chosen as they are the most frequent initial filtering criteria used by buyers and the primary differentiators mentioned by sellers. Buyers often begin inquiries with these attributes (e.g., \"black nitrile gloves,\" \"powder-free,\" \"what is the grammage/thickness?\"). These specs directly impact the product's appearance, core use case (allergy-sensitivity), durability, and price, making them essential for product titles."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Size",
+                            "options": [
+                                "M",
+                                "L",
+                                "S",
+                                "XL",
+                                "XS"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Cuff Length",
+                            "options": [
+                                "240 mm (~9.5 in)",
+                                "300 mm (~12 in)",
+                                "230 mm (~9 in)",
+                                "290 mm (~11.4 in)",
+                                "400 mm (~16 in)",
+                                "450 mm (~18 in)"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Texture",
+                            "options": [
+                                "Fingertip Textured",
+                                "Diamond Textured",
+                                "Smooth",
+                                "Micro-Roughened"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Secondary Specifications (`Size`, `Cuff Length`, `Texture`) represent the next layer of critical functional details. `Size` is fundamental for usability but is typically a variant selection rather than a title component. `Cuff Length` and `Texture` are key performance features that define the glove's application range (e.g., standard exam vs. industrial grip)."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Sterility",
+                            "options": [
+                                "Non-Sterile",
+                                "Sterile"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "Kimberly-Clark",
+                                "Ansell",
+                                "GloveOn",
+                                "Halyard",
+                                "Vasco",
+                                "Medipride",
+                                "Nulife",
+                                "Dr. Safest",
+                                "Mallcom"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Usage",
+                            "options": [
+                                "Medical",
+                                "Food Handling",
+                                "Industrial",
+                                "Laboratory",
+                                "Automotive",
+                                "Cleaning"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Tertiary Specifications (`Sterility`, `Brand`, `Usage`) provide supplementary information for detailed filtering. `Sterility` is crucial but applies to a smaller subset of examination gloves, with 'Non-Sterile' being the market default. `Brand` is often a secondary preference or a proxy for quality. `Usage` is a helpful `multi_select` filter that allows buyers to find gloves suitable for specific industries (Medical, Food, Automotive) as highlighted in multiple catalogs."
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Application",
+            "option_value": "Cooking",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Fire Safety",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Food Manufacturing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Hospital",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Kitchen",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "1S",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Across",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ansell",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Asian",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Branded",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Chemtech",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Equivalent to Glovon",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "First Glove",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Fortuner",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "GloveOn",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Gloveon",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Glovion International",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Hand Safe Pro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Karam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kerex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kimberly Clark",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kimtech",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kudo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Leslico",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Malaysia",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Microtouch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Midas",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "New Life",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Nitro Plus",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Pamptex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Penguin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Premium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ramson",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ramson Nytrex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Rifa",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Safe Touch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sarap",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Tection",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Udyogi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "VWR",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Wallman",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Carton/Case Quantity (Boxes)",
+            "option_value": "10 boxes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Carton/Case Quantity (Boxes)",
+            "option_value": "20 boxes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Carton/Case Quantity (Boxes)",
+            "option_value": "40 boxes",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Carton/Case Quantity (Boxes)",
+            "option_value": "50 boxes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Carton/Case Quantity (Pieces)",
+            "option_value": "2000 pcs",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Carton/Case Quantity (Pieces)",
+            "option_value": "4000 pcs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certifications",
+            "option_value": "FDA Approved",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certifications",
+            "option_value": "No",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Arctic Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Black",
+            "prod_count": 18
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Black or Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue",
+            "prod_count": 30
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Dark Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Green",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Navy Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Orange and Black",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Purple",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Royal Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Violet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White Grey",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "China",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Imported",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Malaysia",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Cut Level",
+            "option_value": "2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "5-finger",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Durability",
+            "option_value": "7-8 days",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Chemotherapy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Disposable",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Elbow length",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Examination",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Hand Gloves",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Heavy Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Industrial",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Laboratory",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Long Cuff",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Nitrile",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Non-disposable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Pharma",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Private Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Service",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Surgical",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Glove Type",
+            "option_value": "Woolen Dye",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "33",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade/Certification",
+            "option_value": "Food Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade/Certification",
+            "option_value": "Non-Medical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade/Certification",
+            "option_value": "Superior",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "11 in",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "12.5 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "16 in",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "9, 10, 12 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "9.5 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "Full",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Lining",
+            "option_value": "Flock line",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material/Coating",
+            "option_value": "Coated",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material/Coating",
+            "option_value": "Nitrile",
+            "prod_count": 61
+        },
+        {
+            "spec_name": "Material/Coating",
+            "option_value": "PU",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Material/Coating",
+            "option_value": "Plastic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "101",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "37185",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "388",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "4121",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "55082",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "605",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "6651",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "90098",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "902",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "92-600",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "92605",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "93-260",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "DPL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "Expert one pro classic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "G10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "GHE 902 RM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "GI 1000",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "HS 502",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "Hartson",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "JL NF 30",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "Kalos",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "Microflex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "NB 30",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "NB 32",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "NCC 1310",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "Nitrex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "Tection Classic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "Tiger",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "option_value": "Touch N Tuff",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size (Pieces)",
+            "option_value": "100 pcs",
+            "prod_count": 21
+        },
+        {
+            "spec_name": "Pack Size (Pieces)",
+            "option_value": "50 pairs per box",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size (Pieces)",
+            "option_value": "50 pcs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size (Pieces)",
+            "option_value": "98-102 pcs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Box",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bulk",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Gunny Bag",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Gunny Bags",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Hand Packed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Loose",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Loose packing / Gunny Bag",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Sack",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Powder Status",
+            "option_value": "Powder Free",
+            "prod_count": 19
+        },
+        {
+            "spec_name": "Powder Status",
+            "option_value": "Powdered",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Features",
+            "option_value": "Chemical Resistant",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Features",
+            "option_value": "Cut Free",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protection Feature",
+            "option_value": "Cut Resistant",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality",
+            "option_value": "A grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality",
+            "option_value": "Equivalent to Kimtech",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality",
+            "option_value": "High",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Safety Rating",
+            "option_value": "Level 1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sales Unit",
+            "option_value": "pair",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "7.5",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "7.5, 8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "9",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Large",
+            "prod_count": 23
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Medium",
+            "prod_count": 24
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Medium, Small",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Small",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "XL",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Sterility",
+            "option_value": "Non-Sterile",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Sterility",
+            "option_value": "Non-sterile",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Sterility",
+            "option_value": "Sterile",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Texture",
+            "option_value": "Smooth",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Texture",
+            "option_value": "Textured",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "15 mil",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "4 mil",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "6 mil",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "8 mil",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": ">6 mil",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "10 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "3 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "3.2 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "3.5 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "3.5-4 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "32 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "34-38 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "4 g",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "42 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "5 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "5.5 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "6 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "60-65 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "7 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "70 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "8 g",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Medx"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Medx"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Material",
+            "option_value": "100% synthetic nitrile rubber"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Design",
+            "option_value": "Ambidextrous, with a rolled or beaded cuff for easy donning and to prevent roll-down."
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "KleenGuard G80"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Cole Parmer"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Origin",
+            "option_value": "Make In India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Origin",
+            "option_value": "Make In India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Origin",
+            "option_value": "Make In India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Origin",
+            "option_value": "Make In India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Origin",
+            "option_value": "Make In India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Origin",
+            "option_value": "Make In India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Origin",
+            "option_value": "Make In India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Origin",
+            "option_value": "Make In India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Origin",
+            "option_value": "Make In India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Origin",
+            "option_value": "Make In India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Origin",
+            "option_value": "Make In India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Liv Care"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Material",
+            "option_value": "Nitrile"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Material",
+            "option_value": "Nitrile"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Hyflex"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Made in",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Model",
+            "option_value": "P55NGA"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Brand",
+            "option_value": "Mallcom"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Brand Name",
+            "option_value": "Laxmisafe"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Pack Size",
+            "option_value": "100 Pieces"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Material",
+            "option_value": "Synthetic Nitrile"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Disposable/ Reusable",
+            "option_value": "Disposable"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Glove Length",
+            "option_value": "Mid forearm"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Availability",
+            "option_value": "In Stock"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Packaging Type",
+            "option_value": "Box"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Model No.",
+            "option_value": "MS053"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Glomed"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Shelf Life",
+            "option_value": "5 years"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Fit",
+            "option_value": "Ambidextrous"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Segval Impex"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Shelf Life",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Item Name",
+            "option_value": "Nitrile Examination Gloves"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Segval Impex"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Fit",
+            "option_value": "Ambidextrous"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Segval Impex"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Material",
+            "option_value": "Latex Free"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Shelf Life",
+            "option_value": "3 year"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Fit",
+            "option_value": "Ambidextrous"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Segval Impex"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Fit",
+            "option_value": "Ambidextrous"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Latex Free",
+            "option_value": "Free"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Shelf Life",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Shelf Life",
+            "option_value": "3 year"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Latex Free",
+            "option_value": "Yes"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Fit",
+            "option_value": "Ambidextrous"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Segval Impex"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Shelf Life",
+            "option_value": "3 year"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Fit",
+            "option_value": "Ambidextrous"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Latex Free",
+            "option_value": "Yes"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Segval Impex"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Segval Impex"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Shelf Life",
+            "option_value": "3 year"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Fit",
+            "option_value": "Ambidextrous"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Segval Impex"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Segval Impex"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Shelf Life",
+            "option_value": "3 year"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Segval Impex"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Fit",
+            "option_value": "Ambidextrous"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Company",
+            "option_value": "Romsons"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Brand Name",
+            "option_value": "FOX"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Brand.",
+            "option_value": "Tegamen"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Box Contains",
+            "option_value": "100 Pieces"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Brand.",
+            "option_value": "Fortuner"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Box Contain",
+            "option_value": "100 Pieces"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Pack Type",
+            "option_value": "Box"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "AKG Plus Care"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Karam"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Material",
+            "option_value": "Nitrile"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Material",
+            "option_value": "Nitrile"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Brand",
+            "option_value": "Fortuner"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Model",
+            "option_value": "NL FL 15"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Brand",
+            "option_value": "Mallcom"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Product Brand",
+            "option_value": "Mumu"
+        },
+        {
+            "mcat_id": "32733",
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "Maker",
+            "option_value": "Tarsons"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "anbu",
+            "impression": "831"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "ansell",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "brightway",
+            "impression": "48"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "dpl",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "dr smart",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "fortuner",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "glomed",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "gloven",
+            "impression": "56"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "glovent",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "gloveon",
+            "impression": "236"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "grip o care",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "handsafe",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "kimtech",
+            "impression": "45"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "lakeland",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "matig",
+            "impression": "36"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "microflex",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "nitrex",
+            "impression": "23"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "penguin",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "rakshak",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "surf",
+            "impression": "23"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "surgi safe",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "brand",
+            "spec_option": "techtion",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "color",
+            "spec_option": "black",
+            "impression": "71"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "color",
+            "spec_option": "green",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "color",
+            "spec_option": "purple",
+            "impression": "45"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "material",
+            "spec_option": "nitrile",
+            "impression": "33607"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "material",
+            "spec_option": "nitrile rubber",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "model name/number",
+            "spec_option": "92670",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "model name/number",
+            "spec_option": "nitrochem 15",
+            "impression": "27"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "model name/number",
+            "spec_option": "paloma",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "model name/number",
+            "spec_option": "plu",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "model name/number",
+            "spec_option": "rnf 15",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "product",
+            "spec_option": "exam glove",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "product",
+            "spec_option": "glove",
+            "impression": "758"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "usage",
+            "spec_option": "examination",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "usage",
+            "spec_option": "hospital",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "usage",
+            "spec_option": "industrial",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Nitrile Gloves",
+            "spec_name": "usage",
+            "spec_option": "surgical",
+            "impression": "5"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Color",
+            "spec_fill_rate": "66.3",
+            "product_count": "122"
+        },
+        {
+            "spec_name": "Powder Content",
+            "spec_fill_rate": "62.5",
+            "product_count": "115"
+        },
+        {
+            "spec_name": "Size",
+            "spec_fill_rate": "60.9",
+            "product_count": "112"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_fill_rate": "57.1",
+            "product_count": "105"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "51.1",
+            "product_count": "94"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_fill_rate": "50.5",
+            "product_count": "93"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_fill_rate": "47.8",
+            "product_count": "88"
+        },
+        {
+            "spec_name": "Sterility",
+            "spec_fill_rate": "44",
+            "product_count": "81"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "33.7",
+            "product_count": "62"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "9.8",
+            "product_count": "18"
+        },
+        {
+            "spec_name": "Material",
+            "spec_fill_rate": "9.2",
+            "product_count": "17"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_fill_rate": "6.5",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Origin",
+            "spec_fill_rate": "6",
+            "product_count": "11"
+        },
+        {
+            "spec_name": "Fit",
+            "spec_fill_rate": "4.3",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_fill_rate": "4.3",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_fill_rate": "1.6",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Latex Free",
+            "spec_fill_rate": "1.6",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Glove Grade",
+            "spec_fill_rate": "1.6",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Surface Type",
+            "spec_fill_rate": "1.6",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Gauge",
+            "spec_fill_rate": "1.6",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Length",
+            "spec_fill_rate": "1.6",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_fill_rate": "1.6",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Is It Disposable",
+            "spec_fill_rate": "1.6",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Liner Material",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Box Contains",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Glove Size",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Brand.",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Protection Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Cotton Content",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Application Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Wear Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Grip Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Cuff Type",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Chemical Resistance",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Pattern",
+            "spec_fill_rate": "1.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Gsm",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Glove Weight",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Board Thickness",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Window Type",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Box Style",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Standard Compliance",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Glove Cuff",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Cuff Style",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Grip",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Glove Length",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Coating Material",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Box Contain",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Paper Material",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Availability",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Box Shape",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Item Name",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Company",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Packaging (Pieces Per Box)",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Box Capacity",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Closure Type",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Coating Coverage",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Disposable/ Reusable",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Glove Type",
+            "spec_fill_rate": "0.5",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Set Contains",
+            "spec_option_name": "100 Piece",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Grip Pattern",
+            "spec_option_name": "Textured Palm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Availability",
+            "spec_option_name": "In Stock",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Wear Type",
+            "spec_option_name": "Full Fingered",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Coating Material",
+            "spec_option_name": "Nitrile",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Coating Type",
+            "spec_option_name": "Nitrile Sandy",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Maintenance",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Box Capacity",
+            "spec_option_name": "Up to 250 g",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "100 Pcs",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Lining Material",
+            "spec_option_name": "Flocklined",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Glove Length",
+            "spec_option_name": "Mid forearm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Standard Compliance",
+            "spec_option_name": "EN 388",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_option_name": "Gloss Lamination",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Wash Care",
+            "spec_option_name": "Handwash",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Box Contains",
+            "spec_option_name": "100 Pieces",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Gsm",
+            "spec_option_name": "40 gsm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Medium Duty",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pattern",
+            "spec_option_name": "Knitted",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight per Glove",
+            "spec_option_name": "3.5 gm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Powder Type",
+            "spec_option_name": "Powder Free",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Metal Handling",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Box",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Reinforcement",
+            "spec_option_name": "Dual Palm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Item Name",
+            "spec_option_name": "Nitrile Examination Gloves",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Closure Type",
+            "spec_option_name": "Tuck In Flap",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Disposable",
+            "spec_option_name": "Disposable",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Box Style",
+            "spec_option_name": "Folding Carton",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Coating",
+            "spec_option_name": "Nitrile Coated",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "General Handling",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Company",
+            "spec_option_name": "Romsons",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_option_name": "Matte Lamination",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Design",
+            "spec_option_name": "Ambidextrous, with a rolled or beaded cuff for easy donning and to prevent roll-down.",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Box Contain",
+            "spec_option_name": "100 Pieces",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Warehouse",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_option_name": "New Only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application Type",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Lining",
+            "spec_option_name": "Fleece Lined",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_option_name": "Gloss UV",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Maker",
+            "spec_option_name": "Tarsons",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_option_name": "Digital Print",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fit",
+            "spec_option_name": "Ambidextrous",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made In India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cotton Content",
+            "spec_option_name": "100%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Origin",
+            "spec_option_name": "Make In India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Disposable/ Reusable",
+            "spec_option_name": "Disposable",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Box Shape",
+            "spec_option_name": "Rectangular",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Paper Material",
+            "spec_option_name": "Duplex Board",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Board Thickness",
+            "spec_option_name": "351Ã¢â¬â400 gsm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Window Type",
+            "spec_option_name": "Die Cut Window",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Construction",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Powder Content",
+            "spec_option_name": "Powder-Free",
+            "option_fill_rate": "93.4"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Medical",
+            "option_fill_rate": "80.2"
+        },
+        {
+            "spec_name": "Sterility",
+            "spec_option_name": "Non-Sterile",
+            "option_fill_rate": "76.3"
+        },
+        {
+            "spec_name": "Chemical Resistance",
+            "spec_option_name": "Acid",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Is It Disposable",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Surface Type",
+            "spec_option_name": "Textured",
+            "option_fill_rate": "71.4"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "71.4"
+        },
+        {
+            "spec_name": "Latex Free",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Nitrile",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Protection Type",
+            "spec_option_name": "General Purpose",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Coating Coverage",
+            "spec_option_name": "Palm Coated",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Packaging (Pieces Per Box)",
+            "spec_option_name": "100 Pcs",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Grip",
+            "spec_option_name": "Smooth",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "3 year",
+            "option_fill_rate": "62.5"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100 Pieces",
+            "option_fill_rate": "62.5"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Laboratory",
+            "option_fill_rate": "61.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "58.8"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Blue",
+            "option_fill_rate": "57.3"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Medical",
+            "option_fill_rate": "57.1"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Food Handling",
+            "option_fill_rate": "57.1"
+        },
+        {
+            "spec_name": "Glove Grade",
+            "spec_option_name": "Examination",
+            "option_fill_rate": "57.1"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_option_name": "Fingertip Textured",
+            "option_fill_rate": "56.6"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "240 mm (~9.5 in)",
+            "option_fill_rate": "54.7"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Food Handling",
+            "option_fill_rate": "54.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Ansell",
+            "option_fill_rate": "53.2"
+        },
+        {
+            "spec_name": "Glove Weight",
+            "spec_option_name": "90 gsm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Box",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Chemical Resistance",
+            "spec_option_name": "Grease",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Glove Material",
+            "spec_option_name": "HPPE",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Glove Type",
+            "spec_option_name": "Examination",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Box Pack",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Glove Cuff",
+            "spec_option_name": "Beaded Cuff",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Glove Material",
+            "spec_option_name": "Grain Leather",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Glove Type",
+            "spec_option_name": "Medical",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Brand.",
+            "spec_option_name": "Tegamen",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Grip Type",
+            "spec_option_name": "Smooth",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Chemical Resistance",
+            "spec_option_name": "Oil",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Brand.",
+            "spec_option_name": "Fortuner",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Cleaning",
+            "option_fill_rate": "49.8"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Segval Impex",
+            "option_fill_rate": "45.5"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Automotive",
+            "option_fill_rate": "44.4"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Laboratory",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Salon",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Cuff Type",
+            "spec_option_name": "Knit Wrist",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Gauge",
+            "spec_option_name": "7 gauge",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "4 mil",
+            "option_fill_rate": "36.7"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "M",
+            "option_fill_rate": "35.6"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_option_name": "Smooth",
+            "option_fill_rate": "34.7"
+        },
+        {
+            "spec_name": "Cuff Style",
+            "spec_option_name": "Slip-on",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Cut Level",
+            "spec_option_name": "Level 5",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Grip",
+            "spec_option_name": "Crinkle",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Full Finger",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Packaging (Pieces Per Box)",
+            "spec_option_name": "50 Pairs",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Cuff Style",
+            "spec_option_name": "Long Cuff",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Cut Level",
+            "spec_option_name": "NORMAL",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Tembi",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Liner Material",
+            "spec_option_name": "Interlock Lined",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Examination",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Liner Material",
+            "spec_option_name": "Nylon",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Latex Free",
+            "spec_option_name": "Free",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Cut Level",
+            "spec_option_name": "Ã¢â¬Â¢ EN 388:2016 Ã¢â¬â 4132P",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Surgical",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Liner Material",
+            "spec_option_name": "Unlined",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "FOX",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Cuff Style",
+            "spec_option_name": "Straight Cuff",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Sai Safety",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Qloves",
+            "option_fill_rate": "31.8"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "240 mm",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Cuff Type",
+            "spec_option_name": "Safety Cuff",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Glove Grade",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Surface Type",
+            "spec_option_name": "Smooth",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Dental",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "12 inch",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "L",
+            "option_fill_rate": "28.5"
+        },
+        {
+            "spec_name": "Glove Cuff",
+            "spec_option_name": "Straight Cuff",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Glove Weight",
+            "spec_option_name": "35 gsm",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "3 years",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "50 Pieces",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Chemical Resistance",
+            "spec_option_name": "Solvent",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Is It Disposable",
+            "spec_option_name": "Non Disposable",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Glove Cuff",
+            "spec_option_name": "Extended Cuff",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Grip Type",
+            "spec_option_name": "Sandy Grip",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Grip Type",
+            "spec_option_name": "Diamond Grip",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Glove Weight",
+            "spec_option_name": "40 gsm",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Chemical Resistance",
+            "spec_option_name": "Alcohol",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Chemical Resistance",
+            "spec_option_name": "Fuel",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Sterility",
+            "spec_option_name": "Sterile",
+            "option_fill_rate": "21.9"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "3.5 mil",
+            "option_fill_rate": "20.2"
+        },
+        {
+            "spec_name": "Gauge",
+            "spec_option_name": "10 Gauge",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Gauge",
+            "spec_option_name": "7 Gauge",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Gauge",
+            "spec_option_name": "13 G",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "300 mm (~12 in)",
+            "option_fill_rate": "19.8"
+        },
+        {
+            "spec_name": "Protection Type",
+            "spec_option_name": "Cut Resistant",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Glove Size",
+            "spec_option_name": "Medium",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Glove Size",
+            "spec_option_name": "Free Size",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Glove Size",
+            "spec_option_name": "M",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Glove Size",
+            "spec_option_name": "9",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Coating Coverage",
+            "spec_option_name": "Ã¢â¬Â¢ Palm Coated with Thumb Patch Reinforcement",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Glove Size",
+            "spec_option_name": "8",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Protection Type",
+            "spec_option_name": "Impact Protection + Mechanical Protection Ã¢â¬Â¢ Oil & Wet Grip Protection",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Coating Coverage",
+            "spec_option_name": "Fully Coated",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Glove Size",
+            "spec_option_name": "11",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Protection Type",
+            "spec_option_name": "Chemical Resistant",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "330 mm",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Cuff Type",
+            "spec_option_name": "Long Cuff",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Pharma Lab",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Housekeeping",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Automotive, Warehousing and distribution",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "4 mil",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "300 mm (12 inch)",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Chemical Lab",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Glove Grade",
+            "spec_option_name": "Surgical",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Cuff Type",
+            "spec_option_name": "Elastic Cuff",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Microbiology",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Research Lab",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "6 mil",
+            "option_fill_rate": "13.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "GloveOn",
+            "option_fill_rate": "13"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Nitrile Coated",
+            "option_fill_rate": "12.8"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "SBN 50",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "SBN 45",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "DBN 30",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "BLN30",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "WHN45",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "NL FL 15",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "SBN60",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "12 Pairs",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "SBN35",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "5 years",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Black",
+            "option_fill_rate": "12"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Kimberly-Clark",
+            "option_fill_rate": "11.7"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "5 mil",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "8gm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "3 gm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "3.5 gms",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "3gm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "5gm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "40 g",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "3.5 gm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "50 g",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "4.5gm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Green",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "4.5 gm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "230 mm (~9 in)",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Medx",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White",
+            "option_fill_rate": "6.6"
+        },
+        {
+            "spec_name": "Powder Content",
+            "spec_option_name": "Powdered",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Nulife",
+            "option_fill_rate": "5.2"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "XL",
+            "option_fill_rate": "4.6"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "S",
+            "option_fill_rate": "4.6"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Mumu",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "AKG Plus Care",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Liv Care",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "3 mil",
+            "option_fill_rate": "4.4"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_option_name": "Diamond Textured",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "400 mm (~16 in)",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Mallcom",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Violet",
+            "option_fill_rate": "3.4"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "S,M,L",
+            "option_fill_rate": "3.4"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "8 mil",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "ALL SIZE",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "100% synthetic nitrile rubber",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Medipride",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Latex Free",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "290 mm (~11.4 in)",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Butyl Rubber",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "General",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Halyard",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Cotton Knitted",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "99 percent virgin nitrile 1 % natural component",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "99 percent virgin nitrile 1 percent natural component",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Free Size",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Sterility",
+            "spec_option_name": "Non Sterile",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "22 mil",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "240 mm",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "XS",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Fortuner",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Udyogi",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Dr. Safest",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Lakshmi",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "Standard",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_option_name": "Micro-Roughened",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "All Size",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "L (Large)",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "M (Medium)",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "All",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Large",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Grey",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Orange",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Sky Blue",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Purple",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "450 mm (~18 in)",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "Extended",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "Standard (9.5\")",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "As per the requirement",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_option_name": "As per the requirement",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_option_name": "TEXTURED",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "As per the requirement",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "All",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "NOT SPECIFIED IN BOX",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "FINGER THICKNESS (MM/MIL) 0.22 / 8.7",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "FINGER THICKNESS (MM/MIL) 0.18 / 7.1",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "As per the requirement",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Dark Blue",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "all",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "S,M,L,XL",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "All sizes",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Powder Content",
+            "spec_option_name": "As per the requirement",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "As per the requirement",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "S,XL",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_option_name": "Sandpatch",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_option_name": "Medical",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_option_name": "micro-textured fingers",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_option_name": "Reversed Lozenge",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "210 to 255 mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "255-295 mm/10-11.6 inches",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "65 mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Pharma",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "33 in",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "274-284 mm/10.7-11.1 inches",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "6-12 inch",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "(9.5-inch and 12-inch extended cuff",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cuff Length",
+            "spec_option_name": "330",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Texture",
+            "spec_option_name": "Plain",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Purplr",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "15.7 MIL",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Light Blue",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "17 mil",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Any Size",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Powder Content",
+            "spec_option_name": "both",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "M,L,S,XL",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "as per pic given",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "NA",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Ocean Blue",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "9.75",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "gray and white",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "M,L",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Submit Requirement Size As Per Requirement",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "5gm",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "2.4 mil",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Regular",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "8.5mil",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "16.9",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "all size",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "0.38 mm",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Sly Blue",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "RED",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "1.15 mm.",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Xs,S,M,L",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Yellow",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "grey",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "FREE",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White and Grey",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "XS, S, M, L, XL",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "20",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "5.5mil",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "HD",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Medium",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "6",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "All Availaible",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "purple",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "XL (Extra Large)",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "M and L",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Small",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "BLUE, GREEN",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Medium, Large",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "ALL SIZES",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Blue / White / Black",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "Medium Duty",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "5.9 to 6 mil",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Size available S TO L",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Orange (Base)",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "ALL SIZES AVAILABLE",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Purpal",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "S,L",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "0.15 mil",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Brown",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Powder Content",
+            "spec_option_name": "N/A",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "0.5 mm",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Small, Medium, Large",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Multiple",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "8 (M)",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "12 mil",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "0.12 mm",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "8,9,10",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Purple color",
+            "option_fill_rate": "0.3"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "15 MIL",
+            "option_fill_rate": "0.3"
+        }
+    ]
+}

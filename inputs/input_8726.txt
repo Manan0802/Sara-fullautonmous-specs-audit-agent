@@ -1,0 +1,2000 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+### Tool 4: Fetch DS5 Data
+
+[FETCH_DS5] — loads Option Fill Rate data on demand. 
+Use only when you need to validate specific option values.
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 8726
+category_name: Promotional Polo T-Shirts
+seller_specs (current spec sheet): {
+  "category_name": "Promotional Polo T-Shirts",
+  "mcat_id": 8726,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Fabric",
+          "options": [
+            "Poly Cotton",
+            "Cotton",
+            "Polyester",
+            "Honeycomb",
+            "Pique",
+            "Dry Fit"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Print Type",
+          "options": [
+            "Embroidery",
+            "Screen Print",
+            "Digital Print",
+            "Heat Transfer"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "GSM",
+          "options": [
+            "180 GSM",
+            "200 GSM",
+            "220 GSM",
+            "240 GSM"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Sleeve Type",
+          "options": [
+            "Half Sleeve",
+            "Full Sleeve",
+            "Cap Sleeve"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Fit Type",
+          "options": [
+            "Regular Fit",
+            "Slim Fit",
+            "Comfort Fit"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Size",
+          "options": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL",
+            "3XL",
+            "4XL"
+          ],
+          "input_type": "multi_select"
+        }
+      ]
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Button Placket",
+          "options": [
+            "2 Button",
+            "3 Button",
+            "4 Button"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Usage",
+          "options": [
+            "Corporate Uniform",
+            "Event Promotion",
+            "Retail Staff",
+            "Sports Team"
+          ],
+          "input_type": "multi_select"
+        },
+        {
+          "spec_name": "Pattern",
+          "options": [
+            "Plain",
+            "Striped",
+            "Contrast Collar",
+            "Logo Printed"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 13 specs) ---
+[
+  {
+    "spec_name": "Neck Type",
+    "total_product_count": 102,
+    "example_values": [
+      "Fabric Collar",
+      "Polo",
+      "Self Collar"
+    ]
+  },
+  {
+    "spec_name": "Fabric Material",
+    "total_product_count": 84,
+    "example_values": [
+      "100 %",
+      "100 % Cotton",
+      "100% Micro Dry-Fit",
+      "Antimicrofiber Polyester",
+      "BCCI Approved"
+    ]
+  },
+  {
+    "spec_name": "Customization Method",
+    "total_product_count": 56,
+    "example_values": [
+      "Blank",
+      "Blank (No Printing)",
+      "Company Logo Printing",
+      "Custom Design Provided",
+      "Customized"
+    ]
+  },
+  {
+    "spec_name": "Color Detail",
+    "total_product_count": 53,
+    "example_values": [
+      "Black",
+      "Black & White",
+      "Black & Yellow",
+      "Black, White, Blue, Red",
+      "Blackish Green (Green Leaves)"
+    ]
+  },
+  {
+    "spec_name": "GSM",
+    "total_product_count": 39,
+    "example_values": [
+      "100 GSM",
+      "145 GSM",
+      "160 GSM",
+      "180 GSM",
+      "180-200 GSM"
+    ]
+  },
+  {
+    "spec_name": "Sizing Information",
+    "total_product_count": 32,
+    "example_values": [
+      "19 inch",
+      "20 inch",
+      "20 number",
+      "38 inch",
+      "40 inch"
+    ]
+  },
+  {
+    "spec_name": "Pattern and Design",
+    "total_product_count": 24,
+    "example_values": [
+      "Cuff",
+      "Matching Body Color",
+      "Plain",
+      "Red strips on collar and arms",
+      "Stripe Detail"
+    ]
+  },
+  {
+    "spec_name": "Usage and Application",
+    "total_product_count": 12,
+    "example_values": [
+      "Adult Men",
+      "Casual",
+      "Corporate Gifting",
+      "Office Wear",
+      "Restaurant Staff"
+    ]
+  },
+  {
+    "spec_name": "Product Quality",
+    "total_product_count": 10,
+    "example_values": [
+      "BCCI Approved",
+      "High Quality",
+      "Ludhiana Finishing",
+      "Medium",
+      "Premium"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 7,
+    "example_values": [
+      "Casablanca",
+      "S-Zone",
+      "Sri Creation",
+      "Staggly"
+    ]
+  },
+  {
+    "spec_name": "Logo Placement",
+    "total_product_count": 7,
+    "example_values": [
+      "Back",
+      "Both sides",
+      "Front",
+      "Front and Back",
+      "Left and Right pocket designs (Front) and Individual designations (Back)"
+    ]
+  },
+  {
+    "spec_name": "Features",
+    "total_product_count": 3,
+    "example_values": [
+      "No sweat, no shrinkage, no bubbling",
+      "Suitable for Sublimation",
+      "With Pocket"
+    ]
+  },
+  {
+    "spec_name": "Sleeve Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Half"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 4 specs) ---
+[
+  {
+    "spec_name": "Product Color",
+    "count": 13,
+    "options": [
+      "Black and Red",
+      "Orange",
+      "Light Grey",
+      "Blue",
+      "Lavender"
+    ]
+  },
+  {
+    "spec_name": "Size",
+    "count": 12,
+    "options": [
+      "XL",
+      "S ( 36 )",
+      "M ( 38 )",
+      "M ( 40 )",
+      "L ( 44 )"
+    ]
+  },
+  {
+    "spec_name": "Color",
+    "count": 7,
+    "options": [
+      "Navy Blue",
+      "Ink Blue",
+      "Royal Blue",
+      "Men",
+      "Blue"
+    ]
+  },
+  {
+    "spec_name": "Gender",
+    "count": 5,
+    "options": [
+      "Men",
+      "Grey"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 0 specs) ---
+[]
+
+--- Spec Fill Rate Data (42 specs) ---
+[
+  {
+    "spec_name": "Sleeve Type",
+    "spec_fill_rate": "62.3",
+    "product_count": "43"
+  },
+  {
+    "spec_name": "Fabric",
+    "spec_fill_rate": "55.1",
+    "product_count": "38"
+  },
+  {
+    "spec_name": "Fit Type",
+    "spec_fill_rate": "49.3",
+    "product_count": "34"
+  },
+  {
+    "spec_name": "GSM",
+    "spec_fill_rate": "47.8",
+    "product_count": "33"
+  },
+  {
+    "spec_name": "Print Type",
+    "spec_fill_rate": "40.6",
+    "product_count": "28"
+  },
+  {
+    "spec_name": "Pattern",
+    "spec_fill_rate": "39.1",
+    "product_count": "27"
+  },
+  {
+    "spec_name": "Size",
+    "spec_fill_rate": "34.8",
+    "product_count": "24"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_fill_rate": "33.3",
+    "product_count": "23"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "30.4",
+    "product_count": "21"
+  },
+  {
+    "spec_name": "Button Placket",
+    "spec_fill_rate": "30.4",
+    "product_count": "21"
+  },
+  {
+    "spec_name": "Neck Type",
+    "spec_fill_rate": "27.5",
+    "product_count": "19"
+  },
+  {
+    "spec_name": "GSM (Fabric Weight)",
+    "spec_fill_rate": "17.4",
+    "product_count": "12"
+  },
+  {
+    "spec_name": "Customization Type",
+    "spec_fill_rate": "17.4",
+    "product_count": "12"
+  },
+  {
+    "spec_name": "Material",
+    "spec_fill_rate": "15.9",
+    "product_count": "11"
+  },
+  {
+    "spec_name": "Gender",
+    "spec_fill_rate": "14.5",
+    "product_count": "10"
+  },
+  {
+    "spec_name": "Features",
+    "spec_fill_rate": "13",
+    "product_count": "9"
+  },
+  {
+    "spec_name": "Available Sizes",
+    "spec_fill_rate": "13",
+    "product_count": "9"
+  },
+  {
+    "spec_name": "Fit",
+    "spec_fill_rate": "11.6",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Available Colors",
+    "spec_fill_rate": "10.1",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Fabric GSM",
+    "spec_fill_rate": "5.8",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Fabric Weight (GSM)",
+    "spec_fill_rate": "4.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Sleeve Style",
+    "spec_fill_rate": "4.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Color",
+    "spec_fill_rate": "4.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Customization",
+    "spec_fill_rate": "4.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Neck Style",
+    "spec_fill_rate": "4.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "GSM (Grams per Square Meter)",
+    "spec_fill_rate": "4.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Fabric Type",
+    "spec_fill_rate": "2.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Sleeve Length",
+    "spec_fill_rate": "2.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Fit/Style",
+    "spec_fill_rate": "2.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Ideal For",
+    "spec_fill_rate": "2.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Product Color",
+    "spec_fill_rate": "2.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Fabric Finish",
+    "spec_fill_rate": "2.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Pocket Availability",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Printing Type",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Collar Type",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Fabric Treatment",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Weave",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Sleeves",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Style",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Placket Type",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Fabric Blend",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Customization Options",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data ---
+Not pre-loaded. Use [FETCH_DS5] to load when needed.
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Spec Validation and Definition 
+
+
+## What this skill is for
+
+When candidate missing specs have been surfaced by the Buyer-Seller Call, Custom Spec,
+or Buyer Search skills — read this document. It gives you the framework to
+validate whether each candidate is a genuine new spec or a false positive, and
+if genuine, define it completely and  correctly for the Indian B2B marketplace.
+
+---
+
+## Step 1 — Validate: Is this a genuine new spec?
+
+A candidate missing spec is genuine only if all three of the following are true:
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same
+real-world attribute, even approximately, the candidate is not a gap.
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+---
+
+## Common false positives — check these before acting
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common
+synonym.
+
+Common equivalences in Indian B2B:
+
+| These terms often mean the same thing |
+|---------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Size / Dimensions / Measurement / Specification |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade ||
+
+**Composite attributes**
+Some candidates are natural-language composites. "10mm HDPE pipe" → "10mm" is
+not a new Diameter spec if Dimensions already exists.
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+**Multiple candidates meaning the same thing**
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning. "Usage" from custom specs + "Application" from call data + "End Use"
+from search → one spec, not three. Pick the most standard name and add once.
+
+One underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+---
+
+## Step 2 — Define: Build the spec completely
+
+Once a candidate passes validation, define it fully across four elements.
+
+### Spec Name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+### Input Type
+
+**`text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+**`radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+- Boolean attributes where the only meaningful values are Yes and No
+  (e.g. ISI Certified, Waterproof, Fire Resistant). Options: `["Yes", "No"]`
+
+**`multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → `multi_select`
+
+
+### Options — How to Generate Them
+
+Draw from example values in call data, custom spec submissions, and search
+option values. When data values are sparse, inconsistent, or absent, generate
+the full option set from Indian B2B market knowledge for this category and spec.
+
+**Understanding option values from data sources:**
+
+Option values surfaced by the data source skills vary significantly in quality.
+Here is what each quality level looks like and what it tells you:
+
+| Data Quality | What it looks like |
+|---|---|
+| Clean and consistent | Values are specific, formatted, and repeated across sources — reliable signal for what the real market options are |
+| Mixed quality | Some specific values mixed with vague or inconsistently formatted ones — the specific values are the signal; the rest is noise |
+| 1–2 values only | Too sparse to define the full option set — useful for confirming what the spec means, but market knowledge is needed to complete the list |
+| Completely messy | No usable signal — generate entirely from Indian B2B market knowledge |
+| Empty | No data at all — generate entirely from Indian B2B market knowledge |
+| Contains NA / Other / Custom | These are non-values — ignore them and treat the remaining data at its actual quality level |
+
+**Quality rules for new option to be created:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only
+2. **No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose**
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz.
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+5. Ideally the option count should be limited to 10 most common options 
+
+**Formatting rules:**
+1. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+2. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+3. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm
+4. Categorical options by frequency — most common in Indian market first
+5. Use ISI/BIS standards where applicable
+6. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+7. Do not use range options unless they are the market standard for this spec
+
+### Tier Placement
+
+All new specs are added as Tertiary. Sequencing reasoning determines the final
+tier based on actual signal data.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 2 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+--- Result 2: WEB_SEARCH(common fabric for promotional polo t-shirts India) ---
+{
+  "query": "common fabric for promotional polo t-shirts India",
+  "results": [
+    {
+      "title": "Best Fabric for Polo Shirts: Top 6 Picks for Every Brand",
+      "url": "https://mfgmerch.com/best-fabric-for-polo-shirts/",
+      "excerpt": "WebSearchResult(url='https://mfgmerch.com/best-fabric-for-polo-shirts/', excerpts=['* **Pros:** Ultra-soft, lightweight, great drape, fashionable texture, resists wrinkles.\\n* **Cons:** Less structure, higher material cost, collars may not stay crisp.\\n\\nThey\u2019re perfect for fashion-forward or boutique brands aiming for comfort and a relaxed, modern aesthetic.\\n\\n## The \u201cBest\u201d Fabric for Specific Needs\\n\\nNow that we\u2019ve explored the common fabric types, let\u2019s address what \u201cbest\u201d truly means in practical terms, by looking at specific use cases and priorities.\\n\\n### Best for Budget-Conscious Choices\\n\\nWhen cost is a primary driver, the polyester-cotton blend often emerges as the champion. It offers a good balance of durability and comfort at a significantly lower price point than premium cottons or high-performance synthetics. A **50/50 or 65/35 polyester-to-cotton ratio** offers a reliable, affordable option that still provides decent wearability and washability.\\n\\n### Best for Premium Quality and Comfort\\n ... \\nConversely, a 100% cotton pique might feel great initially but if it\u2019s not properly pre-shrunk, the customer endures significant shrinkage, leading to returns and dissatisfaction.\\n\\nIt\u2019s also common in fabric sourcing to encounter varying quality within the same fiber type. Not all cotton is created equal. The staple length of the cotton fiber, the spinning method (ring-spun vs. open-end), and the knitting tension all play a role. Ring-spun cotton, for example, results in a smoother, stronger, and softer yarn compared to open-end spun yarn. This translates directly to a higher quality polo shirt.\\n\\n* **Cotton Pique:** The traditional choice, offering excellent breathability and a classic look, ideal for everyday comfort and embroidery.\\n* **Cotton-Polyester Blends:** A versatile, budget-friendly option that balances comfort with improved durability and wrinkle resistance.\\n* **100% Polyester:** The champion for performance, providing superior moisture-wicking and quick-dry capabilities for active use.\\n* **Blends with Spandex:** Enhance stretch, recovery, and fit for active wear or a more comfortable, form-fitting casual polo.\\n* **Sustainability:** Organic cotton and recycled polyester offer eco-conscious alternatives without compromising quality.\\n\\n## FAQs About Polo Shirt Fabrics\\n\\n### What is the most breathable fabric for a polo shirt?\\n\\nGenerally, 100% cotton pique or cotton jersey knits offer the highest natural breathability due to the porous nature of cotton fibers. However, advanced 100% polyester performance fabrics engineered with specialized knitting structures can rival or even surpass cotton in managing moisture and airflow, keeping you cooler by wicking sweat away effectively.\\n\\n### Will a polyester blend shrink?\\n\\nPolyester itself is very resistant to shrinkage.\\nIn a cotton-polyester blend, the amount of shrinkage will be significantly less than in a 100% cotton garment. If a blend does shrink, it\u2019s typically due to the cotton component, and the polyester helps to stabilize the fabric and minimize the effect.\\n\\n### What is the difference between pique and jersey knit for polos?\\n\\nPique knit has a textured, often waffle-like surface that provides more structure and breathability. Jersey knit is a smoother, flatter fabric, similar to a T-shirt, offering a softer drape and feel. Pique is generally considered more traditional for polo shirts, while jersey offers a more relaxed style.\\n\\n### How do I choose between cotton and polyester for a polo shirt?\\n\\nChoose cotton for natural softness, breathability, and a classic feel, especially in warmer climates. Opt for polyester when durability, wrinkle resistance, quick-dry performance, and vibrant printing capabilities are paramount, such as for work uniforms or activewear.\\n### Is spandex good in a polo shirt?\\n\\nYes, spandex (elastane) is beneficial in a polo shirt as it adds stretch and recovery. This means the fabric can stretch to accommodate movement and then snap back into its original shape, preventing the polo from becoming baggy or losing its form over time, particularly around the collar and cuffs.\\n\\n[Prev Previous 10 Types of Clothing Manufacturers| How to Choose the Right One?](https://mfgmerch.com/types-of-clothing-manufacturers/)\\n\\n[Next Best Fabrics for Uniforms Next](https://mfgmerch.com/best-fabrics-for-uniforms/)\\n\\nEllie\\n\\nEllie is a content specialist focused on product and branding strategy, with over 5 years of experience in brand consulting and 3 years in apparel and promotional product manufacturing. Her writing offers deep, practical insights that help readers gain a clearer understanding of product development and build brands that stand out with purpose and authenticity.\\n\\n## Read More Our Blog\\n\\n[](https://mfgmerch.'], publish_date='2025-10-27', title='Best Fabric for Polo Shirts: Top 6 Picks for Every Brand')"
+    },
+    {
+      "title": "Types of Polo Shirt Fabric | Blog | Thread Logic\n",
+      "url": "https://threadlogic.com/blogs/logo-embroidery/types-of-polo-fabrics?srsltid=AfmBOoqHuyW34p197X0SoA9-PhDqCToCaore4zlD2oNitIVebUnplg4z",
+      "excerpt": "WebSearchResult(url='https://threadlogic.com/blogs/logo-embroidery/types-of-polo-fabrics?srsltid=AfmBOoqHuyW34p197X0SoA9-PhDqCToCaore4zlD2oNitIVebUnplg4z', excerpts=[\"Talk to a real person | 800-347-1612\\n\\nOrder Process About Us\\n\\nThread Logic\\n\\nClear\\n\\nClose\\n\\nLogin / Signup\\n\\n[](https://threadlogic.com/customer_authentication/redirect?locale=en&region_country=US) [My account](https://threadlogic.com/customer_authentication/redirect?locale=en&region_country=US)\\n\\n## Login to my account\\n\\nEnter your e-mail and password:\\n\\nEmail\\n\\nLost password? Recover password\\n\\n## Recover password\\n\\nEnter your email:\\n\\nEmail\\n\\nRecover\\n\\nRemembered your password? Back to login\\n\\n0 Cart\\n\\n### Order Logo\\n\\n### Logo Preview FAQ\\n\\nWhat Embroidered Logo Might Look Like\\n\\n* Preview will not represent the exact size or location\\n* Embroidered proof will be provided before production\\n* Logos are placed in standard locations unless requested\\n\\nOne Logo Per Order\\n\\n* Logo will go on all products ordered\\n* No need to upload a logo on every product ordered\\n* Optional embroidery locations should be noted at checkout\\n\\nLegal Right to Use Logo\\n\\n* You have legal rights to use the logo uploaded\\n* We will cancel order if rights cannot be established\\n\\nContinue\\n\\nUpload Logo\\n\\nLogo on File\\n\\n* The logo preview shows how a logo might look.\\n* It is not meant to represent exact location or logo size.\\n* Logo will go on all products.\\n* There is no need to upload it to every product in the order.\\n* We can change thread colors based on the product color.\\n\\n# Types of Polo Shirt Fabric\\n\\nJeff Taxdahl Feb 12, 2025\\n\\nShare\\n\\n* [](https://www.facebook.com/sharer.php?u=https://threadlogic.com/blogs/logo-embroidery/types-of-polo-fabrics)\\n* [](https://pinterest.com/pin/create/button/?url=https://threadlogic.com/blogs/logo-embroidery/types-of-polo-fabrics&media=https://threadlogic.com/cdn/shop/articles/2c3b2b48-1279-4956-9b44-c22c82847b5c_backup_large.jpg?v=1770979747&description=Polo%20shirts%20come%20in%20a%20variety%20of%20fabrics,%20including%20cotton,%20polyester,%20poly-cotton%20blends,%20and%20other...)\\n* [](https://twitter.com/intent/tweet?\\ntext=Types%20of%20Polo%20Shirt%20Fabric&url=https://threadlogic.com/blogs/logo-embroidery/types-of-polo-fabrics)\\n* \\n\\n0 comments\\n\\nWhen you want to stay casual but not too dressed down, polo shirts are a great fashion choice. From the country club to a professional trade show, the classic polo is sure to help you make a great impression. Polo shirts are often made from knitted cotton but can also be made in a variety of performance materials like polyester, or even a blend of both! Let\u2019s take a closer look at some common types of polo shirt fabric and the features of each.\\n\\n## What makes a polo different from a t-shirt?\\n\\nPolo shirts, like regular t-shirts, are one of the most common types of upper-body clothing that almost everyone owns. However, there is one key difference: their design. Polo shirts have a collar and placket with at least two buttons running down the chest. T-shirts, on the other hand, do not have such a collar.\\n\\n## Types of Polo Fabrics\\nThere are many different types of polo fabrics, from basics like cotton and polyester to more sophisticated performance materials that wick sweat away and protect from UV rays. Let\u2019s explore some of these popular options and more.\\n\\n### Cotton\\n\\nTraditional cotton polo shirts are soft to the touch, easy to maintain and breathable for warm, summer afternoons on the yacht or at a family picnic. Chances are, you have one or two cotton shirts in your wardrobe at home, as it\u2019s the most common fabric.\\n\\n### Poly-Cotton\\n\\nIf you need material that's going to keep you a little warmer, the polyester and cotton blend provides the comfort of natural cotton with the warmth of the synthetic polyester.\\n\\n### Performance\\n\\nThis moisture-wicking fabric is the one of the best options for active people who still need to look presentable \u2013 coaches, golf enthusiasts and others will enjoy the sweat protection on top of odor reduction and sun-blocking that comes with this lightweight fabric.\\n\\n### 100% Poly\\nPolyester is a synthetic fabric that provides excellent durability and absorbency. This allows the material to dry faster than other types of fabrics, which reduces the chance of sweat and stains from becoming known.\\n\\n## Types of Polo Knits\\n\\nPolos come in many different types of knits. Compared to regular woven t-shirts, knitted fabric features looped fibers compared to the grid-like fibers in woven fabric.\\n\\n### Mesh Polo\\n\\nMesh-fabric polos are known for their distinctive screen-like weave. Normally made out of 100 percent cotton, and available in long- or short-sleeve styles, the textured look provides a casual, versatile look for all kinds of occasions.\\n\\n### Pique Polo\\n\\nCreated with a dobby loom, pique-knitted polo shirts are generally a more formal option compared to mesh or jersey alternatives. They are characterised by their geometric patterns that draw-in the eye, similar to a twill or corded cotton.\\n\\n### Jersey Polo\\n\\nThe most casual of the bunch is the jersey polo.\"], publish_date='2025-02-12', title='Types of Polo Shirt Fabric | Blog | Thread Logic\\n')"
+    },
+    {
+      "title": "Best Fabric for Polo Shirts: Find Which One Is Right for You",
+      "url": "https://www.apparelnbags.com/blog/best-fabric-for-polo-shirts/?srsltid=AfmBOooHWN9ZEYsGpRhbZV0VGZepDo7kG4e8W7jtHXwGG-4efVS7T0T2",
+      "excerpt": "WebSearchResult(url='https://www.apparelnbags.com/blog/best-fabric-for-polo-shirts/?srsltid=AfmBOooHWN9ZEYsGpRhbZV0VGZepDo7kG4e8W7jtHXwGG-4efVS7T0T2', excerpts=['apparelnbags.com/polo-sports-shirts/men-polo-shirts.htm \"shop polo shirts for men\") and [women\u2019s polo shirts](https://www.apparelnbags.com/polo-sports-shirts/women-polo-shirts.htm \"shop polo shirts for women\") . When choosing the right [polo shirts](https://www.apparelnbags.com/polo-sports-shirts/index.htm \"shop polo shirts\") , you must consider the **types of polo shirt fabric** first as it can make or break your style game. You may want to know:\\n\\n**\u2022** What is the **best fabric for polo shirts** ?\\n\\n**\u2022** What **types of polo shirt fabric** should you buy and what should you stay away from?\\n\\n**\u2022** What is the best polo material for sports activities?\\n\\nRead this blog, \u201c What is a polo shirt , different types of polo shirts , and **what is the best fabric for polo shirts** \u201d to make an informed decision.\\n\\n* **Types of Polo Shirt Fabric** \\n* **FAQ\u2019s** \\n* **Conclusion** \\n\\n## **Types of Polo Shirt Fabric**\\n\\nThe iconic [polo shirts](https://www.apparelnbags.\\n ... \\napparelnbags.com/polo-sports-shirts/index.htm \"shop polo shirts\") are better for colder work conditions as well where comfort and mobility are important. Moreover, formal [polos](https://www.apparelnbags.com/polo-sports-shirts/index.htm \"shop polo shirts\") typically come in 100% cotton, and they appear more expensive than other blends.\\n\\nHowever, with [wholesale clothing](https://www.apparelnbags.com/wholesale-clothing/index.htm \"shop wholesale clothing\") options at ApparelnBags, such as [wholesale polo shirts](https://www.apparelnbags.com/polo-sports-shirts/index.htm \"shop wholesale polo shirts\") , [wholesale collared shirts](https://www.apparelnbags.com/polo-sports-shirts/collared-shirts.htm \"shop wholesale collared shirts\") , [pima cotton polo shirts wholesale](https://www.apparelnbags.com/polo-sports-shirts/pima-pique-polo-shirts.htm \"shop pima cotton polo shirts wholesale\") , and more, you can benefit from the best cotton [polo shirts](https://www.apparelnbags.\\ncom/polo-sports-shirts/index.htm \"shop polo shirts\") while saving huge discounts.\\n\\n### **Poly/Cotton**\\n\\nPoly/cotton fabrics combine the benefits of polyester and cotton. It has more breathability than pure polyester and less crease potential than pure cotton. This results in a longer-lasting fabric with ease of wear. Along with this, it is highly durable with good absorption and low laundry requirements. Poly/cotton [polos](https://www.apparelnbags.com/polo-sports-shirts/index.htm \"shop polo shirts\") are an excellent choice for [school uniforms](https://www.apparelnbags.com/school-uniforms/index.htm \"shop school uniforms\") because they provide the best combination of comfort and ease of care. Moreover, they are good for both summer and winter styles.\\n\\nSo, it is a win-win option for individuals who want the comfort of cotton but the convenience of polyester.\\n\\n[](https://www.apparelnbags.com/custom-clothing/custom-polo-sports-shirts.htm)\\n\\n[](https://www.apparelnbags.\\ncom/custom-clothing/custom-polo-sports-shirts.htm)\\n\\n### **Pique**\\n\\nPiqu\u00e9 is the most traditional material for [men\u2019s polo shirts](https://www.apparelnbags.com/polo-sports-shirts/men-polo-shirts.htm \"shop polo shirts for men\") . It has a sturdy as well as soft cotton double weave with a waffle-like texture. The benefits of pique include a thicker and more durable fabric that shows less sweat and more appealing textured detailing. It is an easy to care fabric. The breathability and moisture-wicking quality make pique made [polos](https://www.apparelnbags.com/polo-sports-shirts/index.htm \"shop polo shirts\") excellent for any occasion \u2013 even [sports](https://www.apparelnbags.com/team-sports-apparel/index.htm \"shop custom sports team uniforms\") . Piqu\u00e9 [polos](https://www.apparelnbags.com/polo-sports-shirts/index.htm \"shop polo shirts\") have a stylish look thanks to the double weave, which is also of great quality and durability.\\n ... \\nhtm \"apparel decoration and customization services\") [polo shirts](https://www.apparelnbags.com/polo-sports-shirts/index.htm \"shop polo shirts\") . Visit ApparelnBags to find the **best polo shirt material** as per your requirements and [customize](https://www.apparelnbags.com/decoration/apparel-decoration.htm \"apparel decoration and customization services\") it with your name, logo, and branding material.\\n\\n[](https://www.apparelnbags.com/blog/author/saba-jawaid/)\\n\\n[Saba Jawaid](https://www.apparelnbags.com/blog/author/saba-jawaid/ \"Saba Jawaid\")\\n\\nSaba Jawaid became part of ApparelnBags.com in 2023, bringing with her a strong commitment to helping small businesses build credibility and recognition through the smart use of branded promo products. Her work centers on promotional products, workwear uniforms, and custom apparel, and she ensures that every recommendation supports business growth.\\n\\n#### Share This Story, Choose Your Platform!\\n\\n[](https://www.facebook.com/sharer.php?'], publish_date='2025-03-28', title='Best Fabric for Polo Shirts: Find Which One Is Right for You')"
+    },
+    {
+      "title": "What is material/fabric component for best polo t-shirt [best pique fabric]? - Quora",
+      "url": "https://www.quora.com/What-is-material-fabric-component-for-best-polo-t-shirt-best-pique-fabric",
+      "excerpt": "WebSearchResult(url='https://www.quora.com/What-is-material-fabric-component-for-best-polo-t-shirt-best-pique-fabric', excerpts=['Something went wrong. Wait a moment and try again.\\nTry again'], publish_date=None, title='What is material/fabric component for best polo t-shirt [best pique fabric]? - Quora')"
+    },
+    {
+      "title": "Discover the different Polo shirt materials | Gentleman's Gazette",
+      "url": "https://www.facebook.com/gentlemansgazette/videos/how-to-choose-the-best-polo-shirt-material-part-4/509568762780929/",
+      "excerpt": "WebSearchResult(url='https://www.facebook.com/gentlemansgazette/videos/how-to-choose-the-best-polo-shirt-material-part-4/509568762780929/', excerpts=[], publish_date=None, title=\"Discover the different Polo shirt materials | Gentleman's Gazette\")"
+    },
+    {
+      "title": "Polo Shirt Weights and Fabric Types Guide | Fifth Column",
+      "url": "https://fifthcolumn.co.uk/resources/polo-shirt-weights-fabric-types/",
+      "excerpt": "WebSearchResult(url='https://fifthcolumn.co.uk/resources/polo-shirt-weights-fabric-types/', excerpts=['[](https://fifthcolumn.co.uk)\\n\\n# Polo Shirt Weights Fabric Types\\n\\n[Fifth Column Printers](https://fifthcolumn.co.uk \"Go to Fifth Column Printers.\") > [Resources](https://fifthcolumn.co.uk/resources/ \"Go to Resources.\") > Polo Shirt Weights Fabric Types\\n\\n# Guide to Polo Shirt Weights and Fabric Types\\n\\nNow, we know that polo shirts are a super versatile piece of clothing. And, as such, they\u2019re an obvious choice for customisation. It\u2019s certainly something we do a lot of here at Fifth Column. Alongside [high quality t-shirt printing](https://fifthcolumn.co.uk/) of course. And, as with t-shirts and all custom clothes, the base garment is very important. So, having a knowledge of polo shirt weights and polo shirt fabric types can be really helpful. Because choosing the right garment to print or embroider makes a big difference to your project. For one thing, it may effect how we can decorate it. Beyond that, the base shirt needs to be suitable for your market and purpose.\\nAs mentioned, polos pop up in all walks of life. There\u2019s no doubt that we see plenty of them here in our [London workwear printing department](https://fifthcolumn.co.uk/our-services/workwear-printing/) . They\u2019re brilliant for businesses and working environments. That\u2019s hardly any surprise when you think about it. Because the humble polo is first and foremost a practical garment. It\u2019s sporting heritage ensures that. And, of course, they\u2019re still worn for their original purpose. That\u2019s to say, sport, where they\u2019re worn for game play, training and team events. And we shouldn\u2019t forget that polo shirts have become a highly desirable fashion item as well. It just goes to show that function and fashion can often go hand in hand.\\n\\n## Choosing the fabric of polo shirts.\\n\\nOkay, let\u2019s take a look at polo shirt fabric types. Like most other clothes, polos can be made from different materials.\\n\\n* Cotton.\\n* Polyester.\\n* Cotton and poly blends.\\nCotton is probably the most obvious but polyester and polo cotton blends are also very common. Although, you\u2019ll also find other fabrics such as linen, silk or wool. Admittedly, these are far less common and especially so with regard to blank clothing designed to be rebranded. However, how the fabric is made is equally relevant when it comes to rebranding.\\n\\n[High quality clothing embroidery in the UK.](https://fifthcolumn.co.uk/our-services/embroidery/)\\n\\nPicking perfect polo shirts\\n\\nCustom polo shirt fabric\\n\\nWeight with blank polos\\n\\n## What is pique fabric?\\n\\nOdds are you\u2019ll have seen this word if you\u2019ve ever searched for these garments. The term \u2018pique polo\u2019 is everywhere on product descriptions. And a classic when it comes to polo shirt fabric types. So, what does it mean? Well, pique knit is fairly easy to spot by the texture. You know the one, it has that subtle geometric look to it. As a rule it\u2019s created using something called a dobby loom.\\nAnd it tends to be durable and bring a sense of high quality to a shirt. Which is only amplified when you embroider your logo because embroidery too has a premium feel. Incidentally, this type of fabric can be found with cotton, poly cotton and synthetic shirts.\\n\\n#### Jersey knit.\\n\\nPolos made from this material usually feel somewhat more casual than the pique versions. That could be because the jersey polo is reminiscent of a t-shirt. And that similarity is the reason why you\u2019re more likely to print a jersey polo shirt fabric than embroider it. Depending to a large extent on the weight of the jersey. That is, heavier weights working better with stitched decoration.\\n\\n#### Polyester fabric.\\n\\nThere are plenty of polo shirts made entirely from polyester. And they\u2019re manufactured for lots of different sectors. With workwear polo shirts and sports polos being especially popular. It\u2019s fair to say that performance properties like sweat wicking find favour in these areas.\\nPlus, poly has a reputation for being hard wearing and practical. And easy wash and wear is definitely an attractive feature for some custom clothing markets.\\n\\n#### Styles.\\n\\nA quick word on polo shirt styles. You\u2019d be right in thinking short sleeved are the standard. But there are long sleeved options out there. And either make great logo polo shirts. That said, on the whole, uniform polo shirts tend to be short sleeve. In terms of age, polo shirts span the spectrum from kids to adult. There are many gender specific styles and both men\u2019s and women\u2019s shirts come in slim and regular fits. That said, a unisex regular styling is often a safer bet unless you\u2019ve identified some specific requirements.\\n\\nIn general, key stylistic features of this garment include:\\n\\n* Collar \u2013 usually knit and flat. Although button down and spread collars are alternatives.\\n* Placket \u2013 an opening at the neck which more often than not has a 2 or 3 button closure.\\n* Ribbed or cuffed sleeves.'], publish_date='2024-09-04', title='Polo Shirt Weights and Fabric Types Guide | Fifth Column')"
+    },
+    {
+      "title": "Buy Customized Polyester Polo T-shirt, Embroidered Collared T Shirt| VistaPrint",
+      "url": "https://www.vistaprint.in/clothing-bags/polos/polyester-polo-t-shirts",
+      "excerpt": "WebSearchResult(url='https://www.vistaprint.in/clothing-bags/polos/polyester-polo-t-shirts', excerpts=['Buy More, Save More! Flat 5% OFF on Orders \u20b910,000+ | Code: SAVE5\\n\\n* [Home](https://www.vistaprint.in/)\\n* [Custom Clothing, Caps & Bags](https://www.vistaprint.in/clothing-bags)\\n* [Custom Polo T-shirts](https://www.vistaprint.in/clothing-bags/polos)\\n* [Polyester Polo T-Shirts](https://www.vistaprint.in/clothing-bags/polos/polyester-polo-t-shirts)\\n\\n# Polyester Polo T-Shirts\\n\\n4\\\\.1 ( 19 Read 19 reviews )\\n\\n* Gender: Men\u2019s\\n* 100% Polyester\\n* Ideal for team wear and work uniforms\\n* Customisation technology: Embroidery\\n* Need help in designing? You can avail our [Design Services](https://www.vistaprint.in/graphic-design/brief/printed-product)\\n* If you want a blank product with no customization, just type a dot \u2018\u2019.\u2019\u2019 in the upload design section and proceed\\n* _Cash on Delivery available_\\n* **Price below is MRP (inclusive of all taxes)**\\n\\n  \\nSee Details\\n\\nLoading options\\n\\nSubstrate Color\\n\\nBlack Navy Blue Steel Grey White Royal Blue\\n\\nQuantity\\n\\nSelect...\\n\\nBrowse designs\\nLoading Upload design\\n\\nBrowse designs\\n\\nLoading Upload design\\n\\nSpecs & Templates\\n\\n* * *\\n\\nSizes & Dimensions\\n\\n* * *\\n\\n## Spread story of your brand while giving it a boost with customised polyester embroidered t shirt for your business\\n\\n### Embroidery Design Guidelines:\\n\\n* Simple designs look better when embroidered. Avoid detailed artwork.\\n* Keep font size above 10 points for better results.\\n* Logos and text will work best. Simple elements, clean lines. Use high-resolution images.\\n* Do not use photographs, human faces, or scenic images.\\n\\nPromoting your business and creating a brand effect has never been easy. With a never-out-of-style design, polyester polo t shirts are a great way to market your business. Not only these men\\'s polo shirts are comfortable to work around the week, but they are also stylish to try out at casual outings. The possibilities are endless. The t-shirts are 100% polyester making them breathable, providing a nice feel to the skin.\\nMoreover, your workers with sensitive skin will have no problem while working in them, as the lightweight and non-allergic material makes it one of the best choices. Get your business branding on these men\u2019s polo shirts or use them as a gifting option. These t-shirts are sure going to be a show-stealer.\\n\\nAt VistaPrint, you can print polo t shirt online effortlessly. You can get started by selecting the size, color, and quantity of polo t shirt. Next, click on the \u201cSTART DESIGNING\u201d tab, and you will be redirected to the Studio page where you can enter the text or image you want to be embroidered on your Polyester collared shirt. You can add your company name, logo or image to personalise the t-shirts. Ensure that the text you have entered is within the SAFETY LINE, as anything outside it will be trimmed! Move to the next step and review your design. If there are no edits, tick the checkbox to approve your design and add the Polyester polo tshirt to the basket.\\n ... \\nA: You can customize every t-shirt you order with us. You can also change the color of texts on different colored t-shirts.\\n\\n### Additional Information\\n\\n**Generic Name:** Polo T-Shirts\\n\\n**Size:** S, M, L, XL, 2XL, 3XL\\n\\n**Package Dimensions (l _w_ h):** 31 cm x 23 cm\\n\\n**Item Weight:** 180-260g\\n\\n**Material:** 100% Polyester\\n\\n**Color:** White, Steel Grey, Navy Blue, Royal Blue, Black\\n\\n**Included Components:** Polo T-Shirt\\n\\n**Date First Available:** May 2023\\n\\n**Wash Care Instructions:** Machine Wash with like colours, Do not Bleach, Tumble Dry Low, Warm Iron/Do not iron desired, Do not Dry Clean\\n\\n**Name and Address of the Packer:**  \\nCimpress India Private Limited, c/o Renaissance Infrastructure, Building B III, Vashere, Bhiwandi, Thane 421 302. Maharashtra. India.\\n\\n**Name and Address of the Manufacturer:** Cimpress India Private Limited, c/o Renaissance Infrastructure, Building B III, Vashere, Bhiwandi, Thane 421 302. Maharashtra. India.\\n**Delivery and shipping:** Estimated Delivery/Arrival time will be calculated at Shipping Stage\\n\\n**Terms of Returns, Refund & Grievance Officer details:** [Click Here](https://www.vistaprint.in/customer-care/terms-of-use.aspx \"Click Here\")\\n\\n**Registered Office and Branch Locations:** Mumbai, Thane (Vashere), Bangalore, Ahmedabad\\n\\n**Legal Name of Entity:** Cimpress India Private Limited\\n\\n### Easy Returns: [Free Replacement or Full Refund](https://www.vistaprint.in/satisfaction-guarantee)\\n\\n* * *\\n\\n* [](https://twitter.com/vistaprintindia/)\\n* [](https://www.facebook.com/Vistaprint.India)\\n* [](https://www.instagram.com/vistaprintindia)\\n* [](https://www.youtube.com/c/VistaprintIndiaOfficial)\\n\\nCurrent country India, click to select country.\\n\\n* 02522-669393\\n* [Home](https://www.vistaprint.in/)\\n\\nUnless stated otherwise, prices are exclusive of delivery and product options.\\n\\n* \\n* \\n*'], publish_date=None, title='Buy Customized Polyester Polo T-shirt, Embroidered Collared T Shirt| VistaPrint')"
+    },
+    {
+      "title": "Polo And Promotional T Shirt - Customized Polyester Polo T Shirt Manufacturer from Mumbai",
+      "url": "https://www.nationaltradings.com/polo-and-promotional-t-shirt.html",
+      "excerpt": "WebSearchResult(url='https://www.nationaltradings.com/polo-and-promotional-t-shirt.html', excerpts=[\"[](https://www.nationaltradings.com/)\\n\\n[National Trading Parel, Mumbai, Maharashtra GST No. **27ADGPI1756E1ZQ**](https://www.nationaltradings.com/)\\n\\nCall 08046057430 88% Response Rate\\n\\nSend Email\\n\\n* [Home](https://www.nationaltradings.com/)\\n* \u00bb\\n* Our Products\\n* \u00bb\\n* Polo And Promotional T Shirt\\n\\n# Polo And Promotional T Shirt\\n\\nWe are a leading Manufacturer of customized polyester polo t shirt, custom corporate t-shirt, promotional tshirt, printed cotton polo t shirt, custom printed polo t shirt and corporate women tshirt from Mumbai, India.\\n\\n## Customized Polyester Polo T Shirt\\n\\nGet Best Quote\\n\\nProduct Price: Rs 180 / Piece Get Best Price\\n\\nProduct Details:\\n\\n|Neck |Collar |\\n| --- | --- |\\n|Sleeve Style |Half Sleeve |\\n|Fit |Regular Fit |\\n|Occasion |Casual Wear |\\n|Pattern |Printed |\\n|Material |Polyester/Nylon |\\n\\nNational Trading Company is a manufacture of all types of T-shirt, Polo T-shirt, Shirts, Tie, Face Marks and many iteams now are offering **Customized Polyester Polo T Shirt.**\\nYes! I am Interested Request A Callback\\n\\n## Custom Corporate T-Shirt\\n\\nGet Best Quote\\n\\nGet Latest Price\\n\\nProduct Details:\\n\\n|Fabric |Blended |\\n| --- | --- |\\n|Neck |Polo |\\n|Sleeve Type |Half Sleeves |\\n|Gender |Men |\\n\\n**National Trading Company** is a manufacture of all types of T-shirt, Polo T-shirt, Shirts, Tie, many items for more details Visit our site.\\n\\nYes! I am Interested Request A Callback\\n\\n## Promotional tshirt\\n\\n* \\n* \\n*\\n\\nGet Best Quote\\n\\nGet Latest Price\\n\\nPure cotton with softer texture. Great for promotional purposes.\\n\\nYes! I am Interested Request A Callback\\n\\n## Printed Cotton Polo T Shirt\\n\\nGet Best Quote\\n\\nGet Latest Price\\n\\nProduct Details:\\n\\n|Neck |Polo |\\n| --- | --- |\\n|Design |Printed |\\n|Color |Black |\\n|Size |Medium |\\n|Fabric |Cotton |\\n|Sleeves Type |Half Sleeves |\\n|Occasion |Casual Wear |\\n|Country of Origin |Made in India |\\n\\nBeing one of the renowned names in the market, we have come up with a qualitative range of Printed Cotton Polo T Shirt.\\n\\nYes!\\nI am Interested Request A Callback\\n\\n## Custom Printed Polo T Shirt\\n\\nGet Best Quote\\n\\nProduct Price: Rs 180 / Piece Get Best Price\\n\\nProduct Details:\\n\\n|Pattern |Printed |\\n| --- | --- |\\n|Neck |Collar |\\n|Sleeve Style |Half Sleeves |\\n|Shirt Type |Polo T-Shirt |\\n|Available Color |Black, Blue, White etc. |\\n\\nWe are offering **Custom Printed Polo T Shirt.**\\n\\nYes! I am Interested Request A Callback\\n\\n## Corporate Women Tshirt\\n\\nGet Best Quote\\n\\nProduct Price: Rs 195 / Piece Get Best Price\\n\\nProduct Details:\\n\\n|Size |All Sizes |\\n| --- | --- |\\n|Sleeve Type |Half Sleeve |\\n|Neck |Polo |\\n|Fabric |Cotton |\\n\\nWe at National Trading provides all types of customized t-shirt for corporates and other industries at very reasonable price with premium quality.\\n\\nYes! I am Interested Request A Callback\\n\\n## Men's Polo T-Shirt\\n\\nGet Best Quote\\n\\nGet Latest Price\\n\\nProduct Details:\\n\\n|Pattern |Printed |\\n| --- | --- |\\n|Color |Blue |\\n|Size |Large |\\n|Material |Cotton |\\n|Sleeves Type |Half Sleeve |\\n|Country of Origin |Made in India |\\n\\nWe at National Trading provides all types of Polo t-shirt customization for corporates and other industries at very reasonable price with premium quality.\\n\\nYes! I am Interested Request A Callback\\n\\n## Polyester Collar T Shirt\\n\\nGet Best Quote\\n\\nGet Latest Price\\n\\nProduct Details:\\n\\n|Occasion |Casual Wear |\\n| --- | --- |\\n|Neck Type |Polo Neck |\\n|Sleeves Type |Half Sleeve |\\n|Fabric |Polyester |\\n|Pattern |Plain |\\n|Size |Medium |\\n|Color |Green |\\n|Country of Origin |Made in India |\\n\\nBeing one of the renowned names in the market, we have come up with a qualitative range of Polyester Collar T Shirt.\\n\\nYes! I am Interested Request A Callback\\n\\n## T-shirt Manufacturer\\n\\nGet Best Quote\\n\\nGet Latest Price\\n\\nProduct Details:\\n\\n|Size |Medium |\\n| --- | --- |\\n|Design/Pattern |Printed |\\n|Gender |Kids |\\n|Color |Green |\\n|Sports |Cricket |\\n|Sleeves Type |Half Sleeves |\\n|Neck |Collar |\\n|Country of Origin |Made in India |\\n ... \\nI am Interested Request A Callback\\n\\n## T Shirt\\n\\nGet Best Quote\\n\\nGet Latest Price\\n\\nProduct Details:\\n\\n|Fabric |Polyester |\\n| --- | --- |\\n|Design |Printed |\\n|Neck |Polo |\\n|Size |Medium |\\n|Sleeves Type |Half Sleeves |\\n|Color |Navy Blue |\\n|Occasion |Casual Wear |\\n|Gender |Men |\\n|Country of Origin |Made in India |\\n\\nBeing one of the renowned names in the market, we have come up with a qualitative range of T Shirt.\\n\\nYes! I am Interested Request A Callback\\n\\n## Customized Black Polo T Shirt\\n\\nGet Best Quote\\n\\nGet Latest Price\\n\\nProduct Details:\\n\\n|Neck |Round Neck, Polo Neck |\\n| --- | --- |\\n|Sleeve Style |Half Sleeves |\\n|Gender |Men and women |\\n|Size |S, M, L, XL |\\n|Color |Black |\\n|Material |Cotton |\\n|Occasion |Casual Wear |\\n|Pattern |Printed |\\n\\nWe are offering **Customized Black Polo T Shirt.**\\n\\nYes! I am Interested Request A Callback\\n\\n## Corporate Promotional Polo T Shirt\\n\\nGet Best Quote\\n\\nGet Latest Price\\n\\nProduct Details:\\n\\n|Occasion |Casual Wear |\\n| --- | --- |\\n|Pattern |Printed |\"], publish_date=None, title='Polo And Promotional T Shirt - Customized Polyester Polo T Shirt Manufacturer from Mumbai')"
+    },
+    {
+      "title": "How to Find Perfect Polo T-Shirt in India ...",
+      "url": "https://www.youtube.com/shorts/3eXeb-BGilQ",
+      "excerpt": "WebSearchResult(url='https://www.youtube.com/shorts/3eXeb-BGilQ', excerpts=[], publish_date=None, title='How to Find Perfect Polo T-Shirt in India ...')"
+    },
+    {
+      "title": "T-shirt fabric guide: What is the best fabric for t-shirts?",
+      "url": "https://printify.com/blog/t-shirt-fabric-guide/",
+      "excerpt": "WebSearchResult(url='https://printify.com/blog/t-shirt-fabric-guide/', excerpts=['This t-shirt fabric guide covers the different shirt materials used in [Print on Demand](https://printify.com/print-on-demand/) , from the go-to options to less common shirt material types and their advantages and disadvantages, to help you find the perfect shirt for your designs and customers.\\n\\nDisclaimer\\n\\nThis post may contain affiliate links, which means we may earn a commission if you make a purchase through those links. This comes at no additional cost to you.\\n\\n## Key takeaways\\n\\n* **Natural fibers** **,** likecotton and linen, offer breathability and comfort, while **synthetic materials** like polyester and spandex are known for their durability.\\n* Blended fabrics, such as cotton-polyester or cotton-spandex, combine natural and synthetic fibers to improve durability, stretch, and comfort.\\n* Your **design type, price range, softness level, and desired durability** all play key roles in which shirt fabrics you choose.\\n* Cotton is typically the best material for t-shirts with vibrant, long-lasting DTG or DTF prints, while synthetic fabrics like polyester are always used for dye-sublimation.\\n\\n## **How to pick the right t-shirt fabric**\\n\\nFabric plays a significant role in how a t-shirt feels, how long it will last, and whether it has a good printing surface. So, what are shirts made out of? Let\u2019s look at the most common types of fabrics for t-shirts.\\n\\n### The most common types of shirt fabric\\n\\nThe most common fabric options are cotton and polyester or a blend.\\n\\n**Cotton** is a natural, comfortable, and soft material that stays cool in the summer. It\u2019s great for direct-to-film (DTF) and direct-to-garment (DTG) prints and is the **top choice for eco-conscious customers.** On the downside, it tends to wrinkle more easily than synthetic materials.\\n\\n**Polyester** is a synthetic, durable fabric that dries quickly, making it well-suited for activewear.\\nIt\u2019s the go-to for [**sublimation printing**](https://printify.com/blog/what-is-sublimation-printing/) , creating vibrant, long-lasting designs. However, it\u2019s less breathable than cotton.\\n\\n**Polyester blends** combine polyester with natural fibers like cotton. They\u2019re softer than polyester alone and more wrinkle-resistant than natural cotton. This combo also works for sublimation printing.\\n\\n### Fabric weight\\n\\nFabric weight refers to how **heavy or thick a fabric feels** , typically measured in grams per square meter (GSM) or ounces per square yard (oz/yd\u00b2).\\n\\nA **higher fabric weight usually means the material is thicker, more durable, and often more structured. Lighter fabrics tend to be softer, more breathable, and drape more easily,** making them ideal for warm-weather wear. Medium weight offers a nice combo of light and heavy weight benefits.\\n\\nLet\u2019s see how the three stack up against each other:\\n ... \\nIt\u2019s soft, durable, has a smooth texture, and is resistant to tearing, wrinkling, and fading.\\n* **Pique cotton.** Also known as polo fabric, it\u2019s often used for polo shorts due to its durability and texture, much like an Oxford cloth cotton t-shirt.\\n\\n### **Pros and cons of** **cotton**\\n\\n**Cotton** **shirts breathe well, absorb moisture, feel comfortable, and are biodegradable.**\\n\\nHowever, although it\u2019s generally a durable t-shirt fabric, the natural fibers tend to **wear down a little faster than synthetic polyester fibers** . They **may also shrink** after your first few washes unless they\u2019ve been preshrunk by the manufacturer.\\n\\nHere are some of our customizable cotton t-shirts:\\n\\n[### Unisex Garment-Dyed T-shirt By Comfort Colors\u00ae \u00b7 1717 From $12.41 From $10.72 with Printify Premium 7 sizes 61 colors 12 print providers](https://printify.com/app/products/706/comfort-colors/unisex-garment-dyed-t-shirt/)\\n\\n[### Unisex Heavy Cotton Tee By Gildan \u00b7 5000 From $8.77 From $5.\\n ... \\ncom/product-creator/) to upload your designs or create something unique and new from scratch. Experiment with placement, colors, and AI-generated art, and our free graphics until your t-shirts look just right.\\n\\n### Connect your store\\n\\nEasily [integrate](https://printify.com/integrations/) your Printify account with popular eCommerce platforms and marketplaces like [Shopify](https://shopify.pxf.io/Vma2YR) , Etsy, [Wix](https://users.wix.com/signin/signup/password?utm_campaign=ch_printify&forceRender=true) , and TikTok Shop for seamless product listing and order management. Keep track of everything in a single dashboard for maximum convenience.\\n\\n### Publish, market, and sell t-shirts online\\n\\nWrite your product titles and descriptions, click **Publish** , and start promoting your t-shirts across. Use social media, [SEO](https://printify.com/blog/ecommerce-seo/) , and online advertising to attract customers to your store and convert visits into sales.\\n\\n## FAQ'], publish_date='2025-06-16', title='T-shirt fabric guide: What is the best fabric for t-shirts?')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

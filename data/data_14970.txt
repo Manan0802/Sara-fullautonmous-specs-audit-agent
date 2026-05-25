@@ -1,0 +1,3158 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 14970,
+        "mcat_name": "Ac Servo Motor",
+        "current_specs": [
+            {
+                "spec_name": "Input Phase",
+                "options": [
+                    "Three Phase",
+                    "Single Phase",
+                    "Two Phase",
+                    "Three Phase 380V",
+                    "Three Phase 415V"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Brake",
+                "options": [
+                    "With Brake",
+                    "Without Brake",
+                    "Electromagnetic Brake",
+                    "Spring Brake",
+                    "Fail-Safe Brake"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Encoder Resolution",
+                "options": [
+                    "17 bit",
+                    "23 bit",
+                    "20 bit",
+                    "13 bit",
+                    "19 bit"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Mounting",
+                "options": [
+                    "Flange",
+                    "Foot",
+                    "Foot Cum Flange"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "Schneider",
+                    "Leadshine",
+                    "Panasonic",
+                    "Mitsubishi",
+                    "Siemens"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Voltage",
+                "options": [
+                    "220 V",
+                    "230 V",
+                    "200 V",
+                    "415 V",
+                    "380 V"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Power",
+                "options": [
+                    "750 W",
+                    "400 W",
+                    "100 W",
+                    "200 W",
+                    "50 W"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Speed",
+                "options": [
+                    "3000 rpm",
+                    "1500 rpm",
+                    "2000 rpm",
+                    "2500 rpm",
+                    "4500 rpm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Power Type",
+                "options": [
+                    "AC"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Motor Type",
+                "options": [
+                    "Servo"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Ac Servo Motor",
+            "mcat_id": 14970,
+            "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Input Phase",
+                            "options": [
+                                "Three Phase",
+                                "Single Phase",
+                                "Two Phase",
+                                "Three Phase 380V",
+                                "Three Phase 415V"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Brake",
+                            "options": [
+                                "With Brake",
+                                "Without Brake",
+                                "Electromagnetic Brake",
+                                "Spring Brake",
+                                "Fail-Safe Brake"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Encoder Resolution",
+                            "options": [
+                                "17 bit",
+                                "23 bit",
+                                "20 bit",
+                                "13 bit",
+                                "19 bit"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Mounting",
+                            "options": [
+                                "Flange",
+                                "Foot",
+                                "Foot Cum Flange"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "Schneider",
+                                "Leadshine",
+                                "Panasonic",
+                                "Mitsubishi",
+                                "Siemens"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Voltage",
+                            "options": [
+                                "220 V",
+                                "230 V",
+                                "200 V",
+                                "415 V",
+                                "380 V"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Power",
+                            "options": [
+                                "750 W",
+                                "400 W",
+                                "100 W",
+                                "200 W",
+                                "50 W"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Speed",
+                            "options": [
+                                "3000 rpm",
+                                "1500 rpm",
+                                "2000 rpm",
+                                "2500 rpm",
+                                "4500 rpm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Power Type",
+                            "options": [
+                                "AC"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Motor Type",
+                            "options": [
+                                "Servo"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Accessories",
+            "option_value": "Cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "CNC",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "CNC Milling",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "CNC Router",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "CNC Wood Lathe",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "CNC machine XY axis",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Chinese Chamfering Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Conveyor rotary guide rail",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Draft machine gearbox",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Grinder machine automation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Injection Molding Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Labeling Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Molding Machine",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "NC Cutter machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Robome",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Rotary table indexing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Sealing Cutting Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Servo Motor Compatibility",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Spring Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Wire Cut Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Axis",
+            "option_value": "X-axis",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Axis",
+            "option_value": "Y-axis",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brake Feature",
+            "option_value": "With Brake",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Brake Feature",
+            "option_value": "Without Brake",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Afindo Spare",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Baumuller",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Delta",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Fanuc",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Flexem",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Fuji Electric",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "HF",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "High Tech",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "INVT",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Inovance",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Lust",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mayuri",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mitsubishi",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Omron",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Panasonic",
+            "prod_count": 58
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sankyo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Schneider",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Shaylin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Shilin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Siemens",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Taiko",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "VICHE",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Yaskawa",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Cable Length",
+            "option_value": "10 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cable Length",
+            "option_value": "2 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cable Length",
+            "option_value": "3 meters",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Spindle Power",
+            "option_value": "3.5 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component Compatibility",
+            "option_value": "Servo Motor and Servo Driver",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "100% Original",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "New",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Used",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Connection Pin Count",
+            "option_value": "4 pin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connection Pin Count",
+            "option_value": "9 pin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Control Mode",
+            "option_value": "Pulse",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Control Signal",
+            "option_value": "Pulse and Direction",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Current",
+            "option_value": "4.5 A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimension/Size",
+            "option_value": "Same",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Brand",
+            "option_value": "ABB",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Encoder",
+            "option_value": "With Encoder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Encoder Details",
+            "option_value": "17-bit multi-turn absolute",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Encoder Details",
+            "option_value": "Encoder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Encoder Specs",
+            "option_value": "Slot available for separate encoder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Frame Size",
+            "option_value": "60 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Gearbox Details",
+            "option_value": "Low Speed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gearbox Details",
+            "option_value": "To be checked",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grinding Wheel Diameter",
+            "option_value": "16 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Cable Connector",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Complete Set",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Connector",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Encoder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Gearbox and Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Motor, Drive and Cable Set",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Pump, Motor, and Drive",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "VFD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "With Drive",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Inertia Type",
+            "option_value": "Low Inertia",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Job Capacity",
+            "option_value": "450 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Load Capacity",
+            "option_value": "50-60 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Brand",
+            "option_value": "Goodlife",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Capacity",
+            "option_value": "650 Ton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Compatibility",
+            "option_value": "GTS Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Compatibility",
+            "option_value": "Single Needle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Model",
+            "option_value": "Sprint Wind",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Size",
+            "option_value": "Small",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Technology",
+            "option_value": "Brushless",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "AC Servo Motor",
+            "prod_count": 26
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "Cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "Geared Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "Permanent Magnet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "Remi Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "Spindle",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Operation Cycle",
+            "option_value": "1 minute reverse-forward",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "China",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "PLC Compatibility",
+            "option_value": "Mitsubishi PLC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Phase",
+            "option_value": "Single Phase",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Phase",
+            "option_value": "Three Phase",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.04 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.5 HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.75 kW",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.75 Watt",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1 kW",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1.3 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1.5 kW",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "100 Watt",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "11 kW",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "17 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "2 kW",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "200 Watt",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "2000 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "22 kW",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "28-30 HP",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "3.7 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "30 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "4 kW",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "4.4 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "400 Watt",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "42 kW",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "45 Watt",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "5 kW",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "5.5 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "5.5 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "6 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "60 Watt",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "7.5 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "750 Watt",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Pump Specification",
+            "option_value": "125-130",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Rotation Angle",
+            "option_value": "90 degree",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "152 GCGM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "1FK75",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "1FL6062-1AC61-0AA1",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "1S7 75 494 120",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "40V 30CB-A331Z-INT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "A3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "A6 Series",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "AS 485 HV",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "Alpha 5 Smart",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "Alpha Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "B3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "DA200",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "ED 730",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "G Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "GYS101DC2-T2A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "HC-SFS152",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "HG-KR73",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "IFK",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "J2 HC-KFS43",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "J4 Series HG-SR152",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "Liqi",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "M9MZ 90 GK 4 YGA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "M9MZNV0GK4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MBDKT5540E",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MDMA102P",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MDME 202 GCG",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MDME 302C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MDMF152L1G6M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MH MJ 022 G1V [MH MJ 042 P1U]",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MHMA J042P1U",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MHMD042G1S",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MHMD042G1U",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MHMF",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MS1H3-44C15CD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MSMA012A1N",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MSMA082L1V2M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "MSMJ042G1U",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "R5",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "R88M-1M20030T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "SV-ML08-0R7G-29A2-1000",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "Sigma 7",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series/Model",
+            "option_value": "X2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Service Requirement",
+            "option_value": "Bearing Change",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Speed",
+            "option_value": "1000 RPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Speed",
+            "option_value": "10000 RPM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Speed",
+            "option_value": "1500 RPM",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Speed",
+            "option_value": "20 RPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Speed",
+            "option_value": "2000 RPM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Speed",
+            "option_value": "2500 RPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Speed",
+            "option_value": "2500-3000 RPM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Speed",
+            "option_value": "300 RPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Speed",
+            "option_value": "3000 RPM",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Speed",
+            "option_value": "520 RPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Speed",
+            "option_value": "6000 RPM",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Torque",
+            "option_value": "2.39 Nm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Torque",
+            "option_value": "40 Nm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Torque",
+            "option_value": "620 Nm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Torque Type",
+            "option_value": "Normal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Voltage",
+            "option_value": "200 V",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Voltage",
+            "option_value": "220 V",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Voltage",
+            "option_value": "380-440 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 Year",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "MOOG G405-522A"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Hydraulic Motors and Parts"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Hydraulic Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "SERVO MOTOR"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "TRUTZSCHLER DS71-K35"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "MOTOR"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "OMRON R88M-G40030H-S2"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "OMRON R88M-UE40030V-S1"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "MOOG G404-5430"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Hydraulic Motors and Parts"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Hydraulic Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "MOOG G404-520"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "FUJI GYS751DC2-T2A"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "ALLEN BRADLEY VPL-A1001M-PJ12AA"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "ALLEN BRADLEY VPL-A1002F-PJ12AA"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "ALLEN BRADLEY VPL-A1002F-PJ14AA"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Series",
+            "option_value": "Sigma-7"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Warranty",
+            "option_value": "1 Year"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Series",
+            "option_value": "MS6H Series"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Flange Size",
+            "option_value": "180mm x 180mm"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Flange Size",
+            "option_value": "130mm x 130mm"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Series",
+            "option_value": "MS6H Series"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Flange Size",
+            "option_value": "80mm x 80mm"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Series",
+            "option_value": "MS6H Series"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Flange Size",
+            "option_value": "60mm x60mm"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Series",
+            "option_value": "MS6H Series"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Flange Size",
+            "option_value": "40mm x 40mm"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Series",
+            "option_value": "MS6H Series"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "F37 CMP50M/BK/KY/RH1M/SB1 SEW Eurodrive",
+            "option_value": "SERVO MOTOR, SERIES CMP, SIZE 50M, 4500 RPM, 400 V, 225 HZ, ABSOLUTE ENCODER, SB1 PLUG CONNECTOR"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "SCHNEIDER SM-100/50/030/P1/45/S1/B0"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model No.",
+            "option_value": "BMH0702P07F2A"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Brand",
+            "option_value": "Schneider"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "SCHNEIDER SM-070/60/010/P1/45/S1/B0"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "SCHNEIDER SM-100/40/050/P1/45/S1/B0"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "KINGSERVO KSMA04LG4"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "KINGSERVO KSMA04LI4P"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "KINGSERVO KSMA04LG6"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "ESTUN EMJ-08APB22"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "input power",
+            "option_value": "0.05KW-5.5KW"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Category",
+            "option_value": "Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Usage/Application",
+            "option_value": "INDUSTRIAL"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Sub Category",
+            "option_value": "Servo Motors"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model Name/Number",
+            "option_value": "SCHNEIDER BMH1402P16A2A"
+        },
+        {
+            "mcat_id": "14970",
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "Model",
+            "option_value": "1FL6044-2AF21-1AA1"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "brand",
+            "spec_option": "allen bradley",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "brand",
+            "spec_option": "dorna",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "brand",
+            "spec_option": "ekomilk",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "brand",
+            "spec_option": "hcfa",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "brand",
+            "spec_option": "inovance",
+            "impression": "95"
+        },
+        {
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "brand",
+            "spec_option": "xinje",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "AC Servo Motor",
+            "spec_name": "usage",
+            "spec_option": "servo",
+            "impression": "57"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "",
+            "spec_fill_rate": "55.9",
+            "product_count": "38"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_fill_rate": "42.6",
+            "product_count": "29"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "42.6",
+            "product_count": "29"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_fill_rate": "35.3",
+            "product_count": "24"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_fill_rate": "35.3",
+            "product_count": "24"
+        },
+        {
+            "spec_name": "Power Type",
+            "spec_fill_rate": "33.8",
+            "product_count": "23"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_fill_rate": "32.4",
+            "product_count": "22"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_fill_rate": "20.6",
+            "product_count": "14"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_fill_rate": "20.6",
+            "product_count": "14"
+        },
+        {
+            "spec_name": "Power",
+            "spec_fill_rate": "16.2",
+            "product_count": "11"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_fill_rate": "14.7",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_fill_rate": "10.3",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Category",
+            "spec_fill_rate": "10.3",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Sub Category",
+            "spec_fill_rate": "10.3",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_fill_rate": "10.3",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Number Of Phases",
+            "spec_fill_rate": "8.8",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Motor Principle",
+            "spec_fill_rate": "8.8",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Flange Size",
+            "spec_fill_rate": "7.4",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Frame Size",
+            "spec_fill_rate": "7.4",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Series",
+            "spec_fill_rate": "7.4",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_fill_rate": "7.4",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Rated Current",
+            "spec_fill_rate": "5.9",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Rated Torque",
+            "spec_fill_rate": "1.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "input power",
+            "spec_fill_rate": "1.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Torque",
+            "spec_fill_rate": "1.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "F37 CMP50M/BK/KY/RH1M/SB1 SEW Eurodrive",
+            "spec_fill_rate": "1.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "IP Rating",
+            "spec_fill_rate": "1.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_fill_rate": "1.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_fill_rate": "1.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_fill_rate": "1.5",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Brake Type",
+            "spec_fill_rate": "1.5",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "F37 CMP50M/BK/KY/RH1M/SB1 SEW Eurodrive",
+            "spec_option_name": "SERVO MOTOR, SERIES CMP, SIZE 50M, 4500 RPM, 400 V, 225 HZ, ABSOLUTE ENCODER, SB1 PLUG CONNECTOR",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Black",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Number Of Phases",
+            "spec_option_name": "Three",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cable Length:",
+            "spec_option_name": "4-meter",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Type:",
+            "spec_option_name": "Direct Drive (DD) motor, TS Type (Quick response type).",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power Type",
+            "spec_option_name": "AC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model Number",
+            "spec_option_name": "BCH2LF0433CA5C",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Maximum Torque",
+            "spec_option_name": "9 NÃÂ·m.",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Torque",
+            "spec_option_name": "0.16 Nm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made in India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Motor Principle",
+            "spec_option_name": "Synchronous",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "MODEL NUMBER",
+            "spec_option_name": "130SJT-M075D(A2)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "1 Year",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "input power",
+            "spec_option_name": "0.05KW-5.5KW",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "INDUSTRIAL",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "MS6H Series",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Inertia Type",
+            "spec_option_name": "High Inertia",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brake Type",
+            "spec_option_name": "Without Brake",
+            "option_fill_rate": "88.9"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "Servo",
+            "option_fill_rate": "88.5"
+        },
+        {
+            "spec_name": "Category",
+            "spec_option_name": "Motors",
+            "option_fill_rate": "83.3"
+        },
+        {
+            "spec_name": "Sub Category",
+            "spec_option_name": "Servo Motors",
+            "option_fill_rate": "83.3"
+        },
+        {
+            "spec_name": "Rated Speed",
+            "spec_option_name": "3000 RPM",
+            "option_fill_rate": "72.7"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "68.7"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "230V AC",
+            "option_fill_rate": "63.6"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "Die Cast Aluminum",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "IP Rating",
+            "spec_option_name": "IP67",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "AIM275AA-H50",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "1FL6044-2AF21-1AA1",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "3000 rpm",
+            "option_fill_rate": "46.5"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "17 bit",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "AC",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "AC Servo Motor",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "Flange",
+            "option_fill_rate": "39.4"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "Without Brake",
+            "option_fill_rate": "35.5"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "With Brake",
+            "option_fill_rate": "35.5"
+        },
+        {
+            "spec_name": "Frame Size",
+            "spec_option_name": "100 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "750 W",
+            "option_fill_rate": "32.4"
+        },
+        {
+            "spec_name": "IP Rating",
+            "spec_option_name": "IP65",
+            "option_fill_rate": "30"
+        },
+        {
+            "spec_name": "Rated Torque",
+            "spec_option_name": "2.4 Nm",
+            "option_fill_rate": "30"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.75 kW",
+            "option_fill_rate": "26.7"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "400 W",
+            "option_fill_rate": "26.5"
+        },
+        {
+            "spec_name": "Rated Current",
+            "spec_option_name": "6.5 Ã¢â¬â 8.5 A",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Frame Size",
+            "spec_option_name": "80 mm",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Rated Current",
+            "spec_option_name": "1.5 A",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Rated Current",
+            "spec_option_name": ".75 A",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Rated Current",
+            "spec_option_name": "5.5Ã¢â¬â6.0 A",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "220 V",
+            "option_fill_rate": "21.3"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "23 bit",
+            "option_fill_rate": "20.4"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "Aluminum Alloy Housing",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Flange Size",
+            "spec_option_name": "180mm x 180mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "IP Rating",
+            "spec_option_name": "IP54",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Flange Size",
+            "spec_option_name": "60mm x60mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Rated Torque",
+            "spec_option_name": "6.5 Nm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Flange Size",
+            "spec_option_name": "80mm x 80mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Flange Size",
+            "spec_option_name": "40mm x 40mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Flange Size",
+            "spec_option_name": "130mm x 130mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "Aluminum",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "230 V",
+            "option_fill_rate": "18"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "Single Phase",
+            "option_fill_rate": "16.4"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "DC",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "2000 rpm",
+            "option_fill_rate": "14"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.4 kW",
+            "option_fill_rate": "13.3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "Foot",
+            "option_fill_rate": "12.1"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "Panel Mount",
+            "option_fill_rate": "12.1"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "4500 rpm",
+            "option_fill_rate": "11.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "200 V",
+            "option_fill_rate": "11.5"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "Electromagnetic Brake",
+            "option_fill_rate": "11.3"
+        },
+        {
+            "spec_name": "Sub Category",
+            "spec_option_name": "Hydraulic Motors",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Brake Type",
+            "spec_option_name": "With Brake",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Category",
+            "spec_option_name": "Hydraulic Motors and Parts",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "KEYENCE",
+            "option_fill_rate": "10.7"
+        },
+        {
+            "spec_name": "Rated Torque",
+            "spec_option_name": "10 Nm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Rated Torque",
+            "spec_option_name": "8.3 Nm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Rated Torque",
+            "spec_option_name": "3.2 Nm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Rated Torque",
+            "spec_option_name": "15 Nm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Rated Torque",
+            "spec_option_name": "6 Nm",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "AC",
+            "option_fill_rate": "9.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Siemens",
+            "option_fill_rate": "9.5"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "1500 rpm",
+            "option_fill_rate": "9.3"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "220V",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Rated Speed",
+            "spec_option_name": "4500 RPM",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "480V AC",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Rated Speed",
+            "spec_option_name": "2800 RPM",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "220V or 440v",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Rated Speed",
+            "spec_option_name": "4000 RPM",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_option_name": "380V",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Frame Size",
+            "spec_option_name": "180 mm",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Frame Size",
+            "spec_option_name": "130 mm",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Frame Size",
+            "spec_option_name": "22 mm",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Frame Size",
+            "spec_option_name": "65 mm",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Frame Size",
+            "spec_option_name": "90 mm",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Schneider",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "20 bit",
+            "option_fill_rate": "8.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Itc",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "2500 rpm",
+            "option_fill_rate": "7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1 kW",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "7.5 kW",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "3.9 kW",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "175MM",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "4.4 kW",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1.5 kW",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "85W",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "3 kw",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "2 kw",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Xinje",
+            "option_fill_rate": "6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "ALLEN BRADLEY",
+            "option_fill_rate": "6"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "VPL-B1304-CK12AA",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "200 W",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "KINGSERVO KSMA04LG6",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "SCHNEIDER SM-100/50/030/P1/45/S1/B0",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "ALLEN BRADLEY VPL-A1001M-PJ12AA",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "MOOG G404-5430",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Category",
+            "spec_option_name": "MOTOR",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "OMRON R88M-G40030H-S2",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "KINGSERVO KSMA04LI4P",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "KINGSERVO KSMA04LG4",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "SCHNEIDER SM-070/60/010/P1/45/S1/B0",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "TRUTZSCHLER DS71-K35",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "ESTUN EMJ-08APB22",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "ALLEN BRADLEY VPL-A1002F-PJ12AA",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "SCHNEIDER BMH1402P16A2A",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "OMRON R88M-UE40030V-S1",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "MOOG G404-520",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "FUJI GYS751DC2-T2A",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "MOOG G405-522A",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "SCHNEIDER SM-100/40/050/P1/45/S1/B0",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "ALLEN BRADLEY VPL-A1002F-PJ14AA",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Sub Category",
+            "spec_option_name": "SERVO MOTOR",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "325 V",
+            "option_fill_rate": "4.9"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "400 V",
+            "option_fill_rate": "4.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Leadshine",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "13 bit",
+            "option_fill_rate": "4.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "HCFA",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "MOOG",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Mitsubishi",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "KINGSERVO",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "415 V",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "380 V",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "90 V",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "SHAFT",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "SV-010L1 KEYENCE MOTOR",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "SV-100P2 KEYENCE MOTOR",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "SV-020L2 KEYENCE MOTOR",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "SV-040P2 KEYENCE MOTOR",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "SV-200P2 KEYENCE MOTOR",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "SV-005L1 KEYENCE SERVO MOTOR",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "SV-010P2 KEYENCE MOTOR",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "Foot Cum Flange",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "Din Rail",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "Three Phase 415V",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "SV-020P1 KEYENCE MOTOR",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "SV-010L2 KEYENCE MOTOR",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "0.75 KW",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "0.1 KW",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "1.5 KW",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "22 KW",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "0.05 kW",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "1 KW",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "7.5 KW",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "50 W",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "4.5 KW",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "Kw",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SCHNEIDER",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Simphoenix",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "OMRON",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "VPL-B1304-CK12AA",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "240 rpm",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "RPM",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "ALLEN BVPL-B1304-CK12AA",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "6000 rpm",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "SV-100P2 KEYENCE MOTOR",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "19 bit",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "SV-010L2 KEYENCE MOTOR",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "SV-200P2 KEYENCE MOTOR",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "SV-005L1 KEYENCE SERVO MOTOR",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "SV-020L2 KEYENCE MOTOR",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "24 BIT",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "SV-010L1 KEYENCE MOTOR",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "SV-040P2 KEYENCE MOTOR",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "SV-020P1 KEYENCE MOTOR",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "SV-010P2 KEYENCE MOTOR",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Encoder Resolution",
+            "spec_option_name": "hcfa",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "SV-020P1 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "200-260",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "SV-040P2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "SV-100P2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "480 V",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "SV-100P2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "SV-020P1 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "SV-010L1 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "SV-020L2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "SV-005L1 KEYENCE SERVO MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "SV-010L2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "VPL-B1304-CK12AA",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "SV-040P2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "SV-005L1 KEYENCE SERVO MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "SV-010P2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "90 VAC",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "150v",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "Spring Brake",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "125V-240V",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "SV-200P2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "All",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "SV-020L2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "HOLDING BRAKE",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "300v",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "AC Servo",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "SV-010L1 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "SV-010P2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "AC200V to AC230V",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "SV-010L2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Brake",
+            "spec_option_name": "SV-200P2 KEYENCE MOTOR",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "SV-010L2 KEYENCE MOTOR",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "SV-100P2 KEYENCE MOTOR",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "SV-005L1 KEYENCE SERVO MOTOR",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "SV-040P2 KEYENCE MOTOR",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "SV-020P1 KEYENCE MOTOR",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "SV-010P2 KEYENCE MOTOR",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "SV-020L2 KEYENCE MOTOR",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_option_name": "SV-010L1 KEYENCE MOTOR",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "fuji, dezaw",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Delta",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Schneider Electric",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "ESTUN",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Vexta",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Balance",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "COOLMAY",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "hcfa",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Omron",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SEW EURO DRIVE",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "aalborg",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "YASKAWA",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Panasonic",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "FAN",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "B&R",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "KROMSCHRODER",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "WECON",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "FUJI",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SEW",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "GSK",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "TRUTZSCHLER",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "YAMAHA",
+            "option_fill_rate": "1.2"
+        }
+    ]
+}

@@ -1,0 +1,3032 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 182091,
+        "mcat_name": "Delta VFD",
+        "current_specs": [
+            {
+                "spec_name": "Series",
+                "options": [
+                    "VFD-E",
+                    "VFD-M",
+                    "VFD-L",
+                    "VFD-EL",
+                    "VFD-B",
+                    "C2000",
+                    "MS300",
+                    "CP2000",
+                    "VFD-S",
+                    "VFD-VL",
+                    "CT2000 Series",
+                    "CP2000 Series",
+                    "C2000 Plus",
+                    "C2000-HS Series",
+                    "CFP2000",
+                    "CH2000",
+                    "VFD-VJ-A / VFD-VJ-B Series",
+                    "ED Series",
+                    "VFD-C2000+",
+                    "ME300",
+                    "VFD-EL-W Series",
+                    "MVF23",
+                    "MVD22",
+                    "MVF20",
+                    "VFD-VE"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Power Rating",
+                "options": [
+                    "0.37 kW",
+                    "0.75 kW",
+                    "1.5 kW",
+                    "2.2 kW",
+                    "3.7 kW",
+                    "5.5 kW",
+                    "7.5 kW",
+                    "11 kW",
+                    "15 kW",
+                    "18.5 kW",
+                    "0.4 kW",
+                    "0.2 kW",
+                    "30 kW",
+                    "37 kW",
+                    "75 kW",
+                    "110 kW",
+                    "160 kW",
+                    "220 kW",
+                    "355 kW"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Input Voltage",
+                "options": [
+                    "200–240 V",
+                    "380–480 V",
+                    "220 V",
+                    "415 V",
+                    "440 V",
+                    "500 V",
+                    "525 V",
+                    "575 V",
+                    "690 V",
+                    "320–460 V",
+                    "115 V",
+                    "460 V",
+                    "100-120 V",
+                    "230 V",
+                    "3.3 kV",
+                    "6.0 kV"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Input Phase",
+                "options": [
+                    "1 Phase",
+                    "3 Phase"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Control Mode",
+                "options": [
+                    "V/F Control",
+                    "Sensorless Vector",
+                    "Closed Loop Vector",
+                    "Torque Control",
+                    "PID Control",
+                    "Multi-step Speed",
+                    "Simple PLC",
+                    "Energy Saving",
+                    "Soft Start",
+                    "Regenerative",
+                    "V/F Control with PG",
+                    "FOC with PG",
+                    "TQC with PG",
+                    "Sensorless Vector Control (SVC)",
+                    "Permanent Magnet Motor Control",
+                    "SPWM",
+                    "Open Loop Control",
+                    "Vector Control",
+                    "Scaler Control",
+                    "FOC Sensorless"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Motor Power",
+                "options": [
+                    "0.5 HP",
+                    "1 HP",
+                    "2 HP",
+                    "3 HP",
+                    "5 HP",
+                    "7.5 HP",
+                    "10 HP",
+                    "15 HP",
+                    "20 HP",
+                    "25 HP",
+                    "0.25 HP",
+                    "40 HP",
+                    "50 HP",
+                    "100 HP",
+                    "150 HP",
+                    "215 HP",
+                    "300 HP",
+                    "475 HP"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Enclosure",
+                "options": [
+                    "IP20",
+                    "IP21",
+                    "IP54",
+                    "IP55",
+                    "IP65",
+                    "Open Type",
+                    "Panel Mount",
+                    "Wall Mount",
+                    "NEMA 1",
+                    "NEMA 12",
+                    "IP00",
+                    "UL Type 1",
+                    "IP40",
+                    "IP31",
+                    "IP42",
+                    "IP41"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Application",
+                "options": [
+                    "Pump",
+                    "Fan",
+                    "Compressor",
+                    "Conveyor",
+                    "Crane",
+                    "Hoist",
+                    "HVAC",
+                    "Mixer",
+                    "Blower",
+                    "Centrifuge",
+                    "Textile",
+                    "Elevator",
+                    "Production",
+                    "Processing",
+                    "Food Industry",
+                    "Chemical Industry",
+                    "Metal Processing",
+                    "Rubber and Plastics"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Braking Type",
+                "options": [
+                    "DC Braking",
+                    "Dynamic Braking",
+                    "Regen Braking",
+                    "No Braking"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Communication",
+                "options": [
+                    "Modbus",
+                    "Profibus",
+                    "Profinet",
+                    "CANopen",
+                    "EtherNet/IP",
+                    "EtherCAT",
+                    "DeviceNet",
+                    "RS485",
+                    "BACnet",
+                    "USB",
+                    "Modbus TCP",
+                    "BACnet IP",
+                    "PROFIBUS DP",
+                    "Modbus RTU",
+                    "ProfiNet IO",
+                    "PowerLink",
+                    "ControNet"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "Delta"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Frame Size",
+                "options": [
+                    "B",
+                    "A",
+                    "C1",
+                    "D0",
+                    "F",
+                    "G",
+                    "H",
+                    "D",
+                    "E",
+                    "A1",
+                    "C",
+                    "A2"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Cooling Method",
+                "options": [
+                    "Natural Cooling",
+                    "Fan Cooling"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "EMC Filter",
+                "options": [
+                    "Optional",
+                    "Built-in",
+                    "No"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Supported Motor Type",
+                "options": [
+                    "Asynchronous Motor",
+                    "Synchronous Motor",
+                    "Induction Motor (IM)",
+                    "Interior Permanent Magnet (IPM) Motor",
+                    "Surface Permanent Magnet (SPM) Motor",
+                    "Permanent Magnet (PM) Motor",
+                    "Squirrel Cage Motor",
+                    "Slip-ring Motor",
+                    "Brush Type Synchronous Motor"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "PLC Function",
+                "options": [
+                    "Built-in (10k steps)",
+                    "Built-in"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Certifications",
+                "options": [
+                    "GB/T12668-2",
+                    "CE",
+                    "UL",
+                    "UL508C",
+                    "CUL",
+                    "RCM",
+                    "EAC",
+                    "SEMI F47-0706",
+                    "GB12668.3",
+                    "WEEE 2012/19/EU",
+                    "RoHS",
+                    "ISO 9001",
+                    "ISO 14001",
+                    "KC7",
+                    "TUV",
+                    "REACH",
+                    "EN81-1+A3",
+                    "EN81-20",
+                    "CULUS",
+                    "GB 12668.3"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "DC Reactor",
+                "options": [
+                    "Optional",
+                    "Built-in",
+                    "N/A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Braking Chopper",
+                "options": [
+                    "Built-in",
+                    "Optional",
+                    "N/A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Width",
+                "options": [
+                    "200.0 mm",
+                    "130.0 mm",
+                    "130.05 mm",
+                    "280.0 mm",
+                    "370.0 mm",
+                    "420.0 mm",
+                    "500.0 mm",
+                    "700.0 mm",
+                    "87.0 mm",
+                    "68.0 mm",
+                    "161.0 mm",
+                    "72.0 mm",
+                    "235.0 mm",
+                    "255.0 mm",
+                    "92.0 mm",
+                    "100.0 mm",
+                    "1210.0 mm",
+                    "1610.0 mm",
+                    "1910.0 mm",
+                    "2210.0 mm",
+                    "4110.0 mm",
+                    "2310.0 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Height",
+                "options": [
+                    "361.8 mm",
+                    "250.0 mm",
+                    "249.94 mm",
+                    "500.0 mm",
+                    "550.0 mm",
+                    "589.0 mm",
+                    "800.0 mm",
+                    "1000.0 mm",
+                    "1435.0 mm",
+                    "157.0 mm",
+                    "128.0 mm",
+                    "366.52 mm",
+                    "356.36 mm",
+                    "336.4 mm",
+                    "142.0 mm",
+                    "350.0 mm",
+                    "260.0 mm",
+                    "162.0 mm",
+                    "180.5 mm",
+                    "174.0 mm",
+                    "2796.0 mm",
+                    "2888.0 mm",
+                    "2668.0 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Depth",
+                "options": [
+                    "189.4 mm",
+                    "170.0 mm",
+                    "169.93 mm",
+                    "255.0 mm",
+                    "275.0 mm",
+                    "300.0 mm",
+                    "397.0 mm",
+                    "398.0 mm",
+                    "152.0 mm",
+                    "96.0 mm",
+                    "110.0 mm",
+                    "244.0 mm",
+                    "146.0 mm",
+                    "178.0 mm",
+                    "133.5 mm",
+                    "136.0 mm",
+                    "92.0 mm",
+                    "107.0 mm",
+                    "128.7 mm",
+                    "1250.0 mm",
+                    "1500.0 mm",
+                    "1400.0 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Weight",
+                "options": [
+                    "2.6 kg",
+                    "2.9 kg",
+                    "38.0 kg",
+                    "40.0 kg",
+                    "66.0 kg",
+                    "88.0 kg",
+                    "138.0 kg",
+                    "228.0 kg",
+                    "0.5 kg",
+                    "1.0 kg",
+                    "6.8 kg",
+                    "1.2 kg",
+                    "6.0 kg",
+                    "8.0 kg",
+                    "10.0 kg",
+                    "13.0 kg",
+                    "1.1 kg",
+                    "1.4 kg",
+                    "1.7 kg",
+                    "2200.0 kg",
+                    "2250.0 kg",
+                    "2300.0 kg",
+                    "3100.0 kg",
+                    "3200.0 kg",
+                    "4600.0 kg",
+                    "4700.0 kg",
+                    "3500.0 kg",
+                    "5300.0 kg",
+                    "2.7 kg",
+                    "3.2 kg",
+                    "4.5 kg",
+                    "36.0 kg"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Safety Standards",
+                "options": [
+                    "Safe Torque Off (STO)",
+                    "EN/IEC61800-5-2",
+                    "TUV Rheinland Certified",
+                    "IEC62061/IEC61508",
+                    "SIL CL2",
+                    "EN ISO13849-1",
+                    "Cat.3/PL d"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Rated Output Current (Heavy Duty)",
+                "options": [
+                    "17 A",
+                    "23 A",
+                    "30 A",
+                    "3 A",
+                    "1.7 A",
+                    "5.0 A",
+                    "1.6 A",
+                    "2.5 A",
+                    "4.8 A",
+                    "4.2 A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Rated Output Current (Normal Duty)",
+                "options": [
+                    "24 A",
+                    "32 A",
+                    "38 A",
+                    "3 A",
+                    "1.8 A",
+                    "2.7 A",
+                    "5.5 A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Output Frequency",
+                "options": [
+                    "0.01 - 599.00 Hz",
+                    "0.00 - 300.00 Hz",
+                    "599.00 Hz",
+                    "0-599 Hz",
+                    "1500 Hz",
+                    "1200 Hz",
+                    "1000 Hz",
+                    "900 Hz",
+                    "0-599 Hz",
+                    "0.1-599 Hz",
+                    "0.00-400 Hz",
+                    "0.1-400 Hz",
+                    "0.1-600 Hz",
+                    "0.5-75 Hz",
+                    "0.00-600.00 Hz"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Carrier Frequency",
+                "options": [
+                    "2-6 kHz",
+                    "2-15 kHz",
+                    "2-15 (default setting 8) kHz",
+                    "2-15 (default 10) kHz",
+                    "2-15 (default 8) kHz",
+                    "2-12 (default 8) kHz",
+                    "2-10 (default 6) kHz",
+                    "2-9 (default 6) kHz",
+                    "2-15 (default 4) kHz",
+                    "2-12 kHz",
+                    "2-15 kHz",
+                    "1-15 kHz",
+                    "5-15 kHz",
+                    "15 kHz",
+                    "9 kHz",
+                    "6 kHz"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Overload Tolerance",
+                "options": [
+                    "Light duty: 120% of rated current for 1 minute per every 5 minutes; Heavy duty: 150% of rated current for 1 minute per every 5 minutes",
+                    "120% of rated current for 1 minute during every 5 minutes",
+                    "120% of rated current for 1 minute during every 5 minutes; 160% of rated current for 3 seconds during every 25 seconds",
+                    "Heavy Duty (HD): At 150% of the rated output current, continuous operation lasts up to 1 min. in every 5 mins. At 180% of the rated output current, continuous operation lasts up to 3 secs. in every 30 secs.",
+                    "Super Heavy Duty (SHD): At 150% of the rated output current, continuous operation lasts up to 1 min. in every 5 mins. At 200% of the rated output current, continuous operation lasts up to 3 secs. in every 30 secs.",
+                    "120% of rated current: 1 minute for every 5 minutes; 160% of rated current: 3 seconds for every 30 seconds",
+                    "Normal Duty: 120% of rated output current for 60 seconds; 150% of rated output current for 3 seconds",
+                    "Heavy Duty: 150% of rated output current for 60 seconds; 200% of rated output current for 3 seconds",
+                    "120% for 60 seconds in every 5 minutes",
+                    "120% for 60 seconds in every 5 minutes, 160% for 3 seconds in every 25 seconds",
+                    "Constant torque: 150% for 60 seconds, variable torque: 180% for 10 seconds",
+                    "150% of rated current for 1 minute",
+                    "110% 1 min / 10 min",
+                    "Constant torque: 150% for 60 seconds, variable torque: 200% for 2 seconds"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Efficiency",
+                "options": [
+                    "97.8%",
+                    "97.8 %",
+                    "96.5 %",
+                    "96.8 %",
+                    "97.5 %",
+                    "97.7 %",
+                    "97.1 %",
+                    "98.4 %",
+                    "> 98.5%"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Power Factor",
+                "options": [
+                    ">0.98",
+                    "> 0.98",
+                    "> 0.96"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Operating Temperature",
+                "options": [
+                    "-10~40 °C",
+                    "-10~50 °C",
+                    "-10°C~50°C",
+                    "-10°C to +50°C (40°C for side-by-side mounting) Non-Condensing and not frozen",
+                    "-10°C~40°C, Up to 50°C under derating operation",
+                    "0~+40°C, normal operation; +40~+50°C, de-rating operation",
+                    "-10°C to 40°C for 15hp and above & -10°C to 50°C for 10hp and below",
+                    "-10°C to 50°C"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Starting Torque",
+                "options": [
+                    "Reach up to 150% or above at 0.5Hz. Under FOC+PG mode, starting torque can reach 150% at OHz.",
+                    "Reach up to 150% or above at 0.5Hz",
+                    "IMVF, IMVF+PG, IMSVC: 150%/3 Hz",
+                    "IMFOC Sensorless: 200%/0.5 Hz",
+                    "IMFOC + PG: 200%/0 Hz",
+                    "PMSVC: 100%/(motor rated frequency/20)",
+                    "PM Sensorless: 100%/(motor rated frequency/50)",
+                    "IPM Sensorless: 100%/0 Hz",
+                    "PMFOC+PG: 200%/0 Hz",
+                    "IM: Reach up to 150% at 1/50 rated rotor speed; PM: Reach up to 150% at 1/100 rated rotor speed",
+                    "Including the auto-torque/auto-slip compensation; starting torque can be 150% at 3.0 Hz",
+                    "Reach up to 150% or above at 0.5 Hz. Under FOC+PG or FOC+PM mode, starting torque can reach 150% at 0 Hz.",
+                    "200% high starting torque with a low speed control of 3Hz",
+                    "Including the auto-torque, auto-slip compensation; starting torque can be 150% at 5 Hz",
+                    "Including the auto-torque/auto-slip compensation; starting torque can be 150% at 5.0Hz",
+                    "Reach up to 200% or above at 0.5 Hz. Under FOC+PG mode, starting torque can reach 200% at 0 Hz.",
+                    "Starting torque is 150% at 0.5Hz and 0Hz with FOC + PG control mode"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "V/F Curve",
+                "options": [
+                    "4 point adjustable V/F curve and square curve",
+                    "Adjustable V/F pattern",
+                    "Adjustable V/f pattern",
+                    "Adjustable V/f curve using 4 independent points and square curve"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Rated Output Current (Light Duty)",
+                "options": [
+                    "5 A",
+                    "3 A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Rated Output Current",
+                "options": [
+                    "60 A",
+                    "73 A",
+                    "150 A",
+                    "220 A",
+                    "310 A",
+                    "460 A",
+                    "683 A",
+                    "5.0 A",
+                    "1.6 A",
+                    "2.5 A",
+                    "4.8 A",
+                    "1.7 A",
+                    "7.5 A",
+                    "11.0 A",
+                    "36 A",
+                    "50 A",
+                    "70 A",
+                    "100 A",
+                    "140 A",
+                    "180 A",
+                    "215 A",
+                    "45 A",
+                    "250 A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Rated Output Current (Super Heavy Duty)",
+                "options": [
+                    "1.7 A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Rated Input Current",
+                "options": [
+                    "4.3 A",
+                    "3.5 A",
+                    "63 A",
+                    "74 A",
+                    "157 A",
+                    "207 A",
+                    "300 A",
+                    "400 A",
+                    "625 A",
+                    "1.6 A",
+                    "2.5 A",
+                    "4.8 A",
+                    "3.0 A",
+                    "1.7 A",
+                    "6.4 A",
+                    "6.1 A",
+                    "6 A",
+                    "4.9 A",
+                    "1.9 A",
+                    "24 A",
+                    "34 A",
+                    "20 A",
+                    "23 A",
+                    "18 A",
+                    "9 A",
+                    "15.7 A",
+                    "1.8 A",
+                    "3.2 A",
+                    "7.1 A",
+                    "9.0 A",
+                    "10.0 A",
+                    "6.5 A",
+                    "9.5 A",
+                    "20.6 A",
+                    "9.9 A",
+                    "15 A",
+                    "21 A",
+                    "52 A",
+                    "68 A",
+                    "79 A",
+                    "106 A",
+                    "126 A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Rated Output Capacity (kVA)",
+                "options": [
+                    "2.4 kVA",
+                    "1.4 kVA",
+                    "0.6 kVA",
+                    "1.0 kVA",
+                    "2.9 kVA",
+                    "4.2 kVA",
+                    "2.0 kVA",
+                    "1.2 kVA",
+                    "1.9 kVA",
+                    "4.8 KVA",
+                    "6.8 KVA",
+                    "7.9 KVA",
+                    "9.5 KVA",
+                    "1.6 kVA",
+                    "48 kVA",
+                    "58 kVA",
+                    "120 kVA",
+                    "175 kVA",
+                    "247 kVA",
+                    "367 kVA",
+                    "544 kVA",
+                    "2.7 kVA",
+                    "6.5 kVA",
+                    "13 kVA",
+                    "19 kVA",
+                    "25 kVA",
+                    "29 kVA",
+                    "34 kVA",
+                    "46 kVA",
+                    "55 kVA",
+                    "3.3 kVA",
+                    "4.4 kVA",
+                    "7.4 kVA",
+                    "0.5 kVA",
+                    "210 KVA",
+                    "290 KVA",
+                    "400 KVA",
+                    "580 KVA",
+                    "800 KVA",
+                    "1050 KVA",
+                    "1250 KVA",
+                    "375 KVA",
+                    "260 KVA",
+                    "1450 KVA"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Safe Torque Off (STO)",
+                "options": [
+                    "Yes",
+                    "Built-in",
+                    "No"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Rated Output Current (Constant Torque)",
+                "options": [
+                    "5.0 A",
+                    "7.5 A",
+                    "11 A",
+                    "17 A",
+                    "25 A",
+                    "33 A",
+                    "49 A",
+                    "65 A",
+                    "75 A",
+                    "90 A",
+                    "120 A",
+                    "146 A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Rated Output Current (Variable Torque)",
+                "options": [
+                    "6.25 A",
+                    "9.4 A",
+                    "13 A",
+                    "21 A",
+                    "31 A",
+                    "41 A",
+                    "61 A",
+                    "81 A",
+                    "93 A",
+                    "112 A",
+                    "150 A",
+                    "182 A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Input Current (Heavy Duty)",
+                "options": [
+                    "19 A",
+                    "25 A",
+                    "33 A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Input Current (Normal Duty)",
+                "options": [
+                    "25 A",
+                    "33 A",
+                    "40 A"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Delta VFD",
+            "mcat_id": 182091,
+            "generated_by": "Standard_Product_Specs",
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Series",
+                            "options": [
+                                "VFD-E",
+                                "VFD-M",
+                                "VFD-L",
+                                "VFD-EL",
+                                "VFD-B",
+                                "C2000",
+                                "MS300",
+                                "CP2000",
+                                "VFD-S",
+                                "VFD-VL",
+                                "CT2000 Series",
+                                "CP2000 Series",
+                                "C2000 Plus",
+                                "C2000-HS Series",
+                                "CFP2000",
+                                "CH2000",
+                                "VFD-VJ-A / VFD-VJ-B Series",
+                                "ED Series",
+                                "VFD-C2000+",
+                                "ME300",
+                                "VFD-EL-W Series",
+                                "MVF23",
+                                "MVD22",
+                                "MVF20",
+                                "VFD-VE"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Power Rating",
+                            "options": [
+                                "0.37 kW",
+                                "0.75 kW",
+                                "1.5 kW",
+                                "2.2 kW",
+                                "3.7 kW",
+                                "5.5 kW",
+                                "7.5 kW",
+                                "11 kW",
+                                "15 kW",
+                                "18.5 kW",
+                                "0.4 kW",
+                                "0.2 kW",
+                                "30 kW",
+                                "37 kW",
+                                "75 kW",
+                                "110 kW",
+                                "160 kW",
+                                "220 kW",
+                                "355 kW"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Input Voltage",
+                            "options": [
+                                "200–240 V",
+                                "380–480 V",
+                                "220 V",
+                                "415 V",
+                                "440 V",
+                                "500 V",
+                                "525 V",
+                                "575 V",
+                                "690 V",
+                                "320–460 V",
+                                "115 V",
+                                "460 V",
+                                "100-120 V",
+                                "230 V",
+                                "3.3 kV",
+                                "6.0 kV"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Input Phase",
+                            "options": [
+                                "1 Phase",
+                                "3 Phase"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Control Mode",
+                            "options": [
+                                "V/F Control",
+                                "Sensorless Vector",
+                                "Closed Loop Vector",
+                                "Torque Control",
+                                "PID Control",
+                                "Multi-step Speed",
+                                "Simple PLC",
+                                "Energy Saving",
+                                "Soft Start",
+                                "Regenerative",
+                                "V/F Control with PG",
+                                "FOC with PG",
+                                "TQC with PG",
+                                "Sensorless Vector Control (SVC)",
+                                "Permanent Magnet Motor Control",
+                                "SPWM",
+                                "Open Loop Control",
+                                "Vector Control",
+                                "Scaler Control",
+                                "FOC Sensorless"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Motor Power",
+                            "options": [
+                                "0.5 HP",
+                                "1 HP",
+                                "2 HP",
+                                "3 HP",
+                                "5 HP",
+                                "7.5 HP",
+                                "10 HP",
+                                "15 HP",
+                                "20 HP",
+                                "25 HP",
+                                "0.25 HP",
+                                "40 HP",
+                                "50 HP",
+                                "100 HP",
+                                "150 HP",
+                                "215 HP",
+                                "300 HP",
+                                "475 HP"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Enclosure",
+                            "options": [
+                                "IP20",
+                                "IP21",
+                                "IP54",
+                                "IP55",
+                                "IP65",
+                                "Open Type",
+                                "Panel Mount",
+                                "Wall Mount",
+                                "NEMA 1",
+                                "NEMA 12",
+                                "IP00",
+                                "UL Type 1",
+                                "IP40",
+                                "IP31",
+                                "IP42",
+                                "IP41"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Application",
+                            "options": [
+                                "Pump",
+                                "Fan",
+                                "Compressor",
+                                "Conveyor",
+                                "Crane",
+                                "Hoist",
+                                "HVAC",
+                                "Mixer",
+                                "Blower",
+                                "Centrifuge",
+                                "Textile",
+                                "Elevator",
+                                "Production",
+                                "Processing",
+                                "Food Industry",
+                                "Chemical Industry",
+                                "Metal Processing",
+                                "Rubber and Plastics"
+                            ],
+                            "input_type": "multi_select"
+                        },
+                        {
+                            "spec_name": "Braking Type",
+                            "options": [
+                                "DC Braking",
+                                "Dynamic Braking",
+                                "Regen Braking",
+                                "No Braking"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Communication",
+                            "options": [
+                                "Modbus",
+                                "Profibus",
+                                "Profinet",
+                                "CANopen",
+                                "EtherNet/IP",
+                                "EtherCAT",
+                                "DeviceNet",
+                                "RS485",
+                                "BACnet",
+                                "USB",
+                                "Modbus TCP",
+                                "BACnet IP",
+                                "PROFIBUS DP",
+                                "Modbus RTU",
+                                "ProfiNet IO",
+                                "PowerLink",
+                                "ControNet"
+                            ],
+                            "input_type": "multi_select"
+                        },
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "Delta"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Frame Size",
+                            "options": [
+                                "B",
+                                "A",
+                                "C1",
+                                "D0",
+                                "F",
+                                "G",
+                                "H",
+                                "D",
+                                "E",
+                                "A1",
+                                "C",
+                                "A2"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Cooling Method",
+                            "options": [
+                                "Natural Cooling",
+                                "Fan Cooling"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "EMC Filter",
+                            "options": [
+                                "Optional",
+                                "Built-in",
+                                "No"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Supported Motor Type",
+                            "options": [
+                                "Asynchronous Motor",
+                                "Synchronous Motor",
+                                "Induction Motor (IM)",
+                                "Interior Permanent Magnet (IPM) Motor",
+                                "Surface Permanent Magnet (SPM) Motor",
+                                "Permanent Magnet (PM) Motor",
+                                "Squirrel Cage Motor",
+                                "Slip-ring Motor",
+                                "Brush Type Synchronous Motor"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "PLC Function",
+                            "options": [
+                                "Built-in (10k steps)",
+                                "Built-in"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Certifications",
+                            "options": [
+                                "GB/T12668-2",
+                                "CE",
+                                "UL",
+                                "UL508C",
+                                "CUL",
+                                "RCM",
+                                "EAC",
+                                "SEMI F47-0706",
+                                "GB12668.3",
+                                "WEEE 2012/19/EU",
+                                "RoHS",
+                                "ISO 9001",
+                                "ISO 14001",
+                                "KC7",
+                                "TUV",
+                                "REACH",
+                                "EN81-1+A3",
+                                "EN81-20",
+                                "CULUS",
+                                "GB 12668.3"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "DC Reactor",
+                            "options": [
+                                "Optional",
+                                "Built-in",
+                                "N/A"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Braking Chopper",
+                            "options": [
+                                "Built-in",
+                                "Optional",
+                                "N/A"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Width",
+                            "options": [
+                                "200.0 mm",
+                                "130.0 mm",
+                                "130.05 mm",
+                                "280.0 mm",
+                                "370.0 mm",
+                                "420.0 mm",
+                                "500.0 mm",
+                                "700.0 mm",
+                                "87.0 mm",
+                                "68.0 mm",
+                                "161.0 mm",
+                                "72.0 mm",
+                                "235.0 mm",
+                                "255.0 mm",
+                                "92.0 mm",
+                                "100.0 mm",
+                                "1210.0 mm",
+                                "1610.0 mm",
+                                "1910.0 mm",
+                                "2210.0 mm",
+                                "4110.0 mm",
+                                "2310.0 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Height",
+                            "options": [
+                                "361.8 mm",
+                                "250.0 mm",
+                                "249.94 mm",
+                                "500.0 mm",
+                                "550.0 mm",
+                                "589.0 mm",
+                                "800.0 mm",
+                                "1000.0 mm",
+                                "1435.0 mm",
+                                "157.0 mm",
+                                "128.0 mm",
+                                "366.52 mm",
+                                "356.36 mm",
+                                "336.4 mm",
+                                "142.0 mm",
+                                "350.0 mm",
+                                "260.0 mm",
+                                "162.0 mm",
+                                "180.5 mm",
+                                "174.0 mm",
+                                "2796.0 mm",
+                                "2888.0 mm",
+                                "2668.0 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Depth",
+                            "options": [
+                                "189.4 mm",
+                                "170.0 mm",
+                                "169.93 mm",
+                                "255.0 mm",
+                                "275.0 mm",
+                                "300.0 mm",
+                                "397.0 mm",
+                                "398.0 mm",
+                                "152.0 mm",
+                                "96.0 mm",
+                                "110.0 mm",
+                                "244.0 mm",
+                                "146.0 mm",
+                                "178.0 mm",
+                                "133.5 mm",
+                                "136.0 mm",
+                                "92.0 mm",
+                                "107.0 mm",
+                                "128.7 mm",
+                                "1250.0 mm",
+                                "1500.0 mm",
+                                "1400.0 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Weight",
+                            "options": [
+                                "2.6 kg",
+                                "2.9 kg",
+                                "38.0 kg",
+                                "40.0 kg",
+                                "66.0 kg",
+                                "88.0 kg",
+                                "138.0 kg",
+                                "228.0 kg",
+                                "0.5 kg",
+                                "1.0 kg",
+                                "6.8 kg",
+                                "1.2 kg",
+                                "6.0 kg",
+                                "8.0 kg",
+                                "10.0 kg",
+                                "13.0 kg",
+                                "1.1 kg",
+                                "1.4 kg",
+                                "1.7 kg",
+                                "2200.0 kg",
+                                "2250.0 kg",
+                                "2300.0 kg",
+                                "3100.0 kg",
+                                "3200.0 kg",
+                                "4600.0 kg",
+                                "4700.0 kg",
+                                "3500.0 kg",
+                                "5300.0 kg",
+                                "2.7 kg",
+                                "3.2 kg",
+                                "4.5 kg",
+                                "36.0 kg"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Safety Standards",
+                            "options": [
+                                "Safe Torque Off (STO)",
+                                "EN/IEC61800-5-2",
+                                "TUV Rheinland Certified",
+                                "IEC62061/IEC61508",
+                                "SIL CL2",
+                                "EN ISO13849-1",
+                                "Cat.3/PL d"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Rated Output Current (Heavy Duty)",
+                            "options": [
+                                "17 A",
+                                "23 A",
+                                "30 A",
+                                "3 A",
+                                "1.7 A",
+                                "5.0 A",
+                                "1.6 A",
+                                "2.5 A",
+                                "4.8 A",
+                                "4.2 A"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Rated Output Current (Normal Duty)",
+                            "options": [
+                                "24 A",
+                                "32 A",
+                                "38 A",
+                                "3 A",
+                                "1.8 A",
+                                "2.7 A",
+                                "5.5 A"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Output Frequency",
+                            "options": [
+                                "0.01 - 599.00 Hz",
+                                "0.00 - 300.00 Hz",
+                                "599.00 Hz",
+                                "0-599 Hz",
+                                "1500 Hz",
+                                "1200 Hz",
+                                "1000 Hz",
+                                "900 Hz",
+                                "0-599 Hz",
+                                "0.1-599 Hz",
+                                "0.00-400 Hz",
+                                "0.1-400 Hz",
+                                "0.1-600 Hz",
+                                "0.5-75 Hz",
+                                "0.00-600.00 Hz"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Carrier Frequency",
+                            "options": [
+                                "2-6 kHz",
+                                "2-15 kHz",
+                                "2-15 (default setting 8) kHz",
+                                "2-15 (default 10) kHz",
+                                "2-15 (default 8) kHz",
+                                "2-12 (default 8) kHz",
+                                "2-10 (default 6) kHz",
+                                "2-9 (default 6) kHz",
+                                "2-15 (default 4) kHz",
+                                "2-12 kHz",
+                                "2-15 kHz",
+                                "1-15 kHz",
+                                "5-15 kHz",
+                                "15 kHz",
+                                "9 kHz",
+                                "6 kHz"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Overload Tolerance",
+                            "options": [
+                                "Light duty: 120% of rated current for 1 minute per every 5 minutes; Heavy duty: 150% of rated current for 1 minute per every 5 minutes",
+                                "120% of rated current for 1 minute during every 5 minutes",
+                                "120% of rated current for 1 minute during every 5 minutes; 160% of rated current for 3 seconds during every 25 seconds",
+                                "Heavy Duty (HD): At 150% of the rated output current, continuous operation lasts up to 1 min. in every 5 mins. At 180% of the rated output current, continuous operation lasts up to 3 secs. in every 30 secs.",
+                                "Super Heavy Duty (SHD): At 150% of the rated output current, continuous operation lasts up to 1 min. in every 5 mins. At 200% of the rated output current, continuous operation lasts up to 3 secs. in every 30 secs.",
+                                "120% of rated current: 1 minute for every 5 minutes; 160% of rated current: 3 seconds for every 30 seconds",
+                                "Normal Duty: 120% of rated output current for 60 seconds; 150% of rated output current for 3 seconds",
+                                "Heavy Duty: 150% of rated output current for 60 seconds; 200% of rated output current for 3 seconds",
+                                "120% for 60 seconds in every 5 minutes",
+                                "120% for 60 seconds in every 5 minutes, 160% for 3 seconds in every 25 seconds",
+                                "Constant torque: 150% for 60 seconds, variable torque: 180% for 10 seconds",
+                                "150% of rated current for 1 minute",
+                                "110% 1 min / 10 min",
+                                "Constant torque: 150% for 60 seconds, variable torque: 200% for 2 seconds"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Efficiency",
+                            "options": [
+                                "97.8%",
+                                "97.8 %",
+                                "96.5 %",
+                                "96.8 %",
+                                "97.5 %",
+                                "97.7 %",
+                                "97.1 %",
+                                "98.4 %",
+                                "> 98.5%"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Power Factor",
+                            "options": [
+                                ">0.98",
+                                "> 0.98",
+                                "> 0.96"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Operating Temperature",
+                            "options": [
+                                "-10~40 °C",
+                                "-10~50 °C",
+                                "-10°C~50°C",
+                                "-10°C to +50°C (40°C for side-by-side mounting) Non-Condensing and not frozen",
+                                "-10°C~40°C, Up to 50°C under derating operation",
+                                "0~+40°C, normal operation; +40~+50°C, de-rating operation",
+                                "-10°C to 40°C for 15hp and above & -10°C to 50°C for 10hp and below",
+                                "-10°C to 50°C"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Starting Torque",
+                            "options": [
+                                "Reach up to 150% or above at 0.5Hz. Under FOC+PG mode, starting torque can reach 150% at OHz.",
+                                "Reach up to 150% or above at 0.5Hz",
+                                "IMVF, IMVF+PG, IMSVC: 150%/3 Hz",
+                                "IMFOC Sensorless: 200%/0.5 Hz",
+                                "IMFOC + PG: 200%/0 Hz",
+                                "PMSVC: 100%/(motor rated frequency/20)",
+                                "PM Sensorless: 100%/(motor rated frequency/50)",
+                                "IPM Sensorless: 100%/0 Hz",
+                                "PMFOC+PG: 200%/0 Hz",
+                                "IM: Reach up to 150% at 1/50 rated rotor speed; PM: Reach up to 150% at 1/100 rated rotor speed",
+                                "Including the auto-torque/auto-slip compensation; starting torque can be 150% at 3.0 Hz",
+                                "Reach up to 150% or above at 0.5 Hz. Under FOC+PG or FOC+PM mode, starting torque can reach 150% at 0 Hz.",
+                                "200% high starting torque with a low speed control of 3Hz",
+                                "Including the auto-torque, auto-slip compensation; starting torque can be 150% at 5 Hz",
+                                "Including the auto-torque/auto-slip compensation; starting torque can be 150% at 5.0Hz",
+                                "Reach up to 200% or above at 0.5 Hz. Under FOC+PG mode, starting torque can reach 200% at 0 Hz.",
+                                "Starting torque is 150% at 0.5Hz and 0Hz with FOC + PG control mode"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "V/F Curve",
+                            "options": [
+                                "4 point adjustable V/F curve and square curve",
+                                "Adjustable V/F pattern",
+                                "Adjustable V/f pattern",
+                                "Adjustable V/f curve using 4 independent points and square curve"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Rated Output Current (Light Duty)",
+                            "options": [
+                                "5 A",
+                                "3 A"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Rated Output Current",
+                            "options": [
+                                "60 A",
+                                "73 A",
+                                "150 A",
+                                "220 A",
+                                "310 A",
+                                "460 A",
+                                "683 A",
+                                "5.0 A",
+                                "1.6 A",
+                                "2.5 A",
+                                "4.8 A",
+                                "1.7 A",
+                                "7.5 A",
+                                "11.0 A",
+                                "36 A",
+                                "50 A",
+                                "70 A",
+                                "100 A",
+                                "140 A",
+                                "180 A",
+                                "215 A",
+                                "45 A",
+                                "250 A"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Rated Output Current (Super Heavy Duty)",
+                            "options": [
+                                "1.7 A"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Rated Input Current",
+                            "options": [
+                                "4.3 A",
+                                "3.5 A",
+                                "63 A",
+                                "74 A",
+                                "157 A",
+                                "207 A",
+                                "300 A",
+                                "400 A",
+                                "625 A",
+                                "1.6 A",
+                                "2.5 A",
+                                "4.8 A",
+                                "3.0 A",
+                                "1.7 A",
+                                "6.4 A",
+                                "6.1 A",
+                                "6 A",
+                                "4.9 A",
+                                "1.9 A",
+                                "24 A",
+                                "34 A",
+                                "20 A",
+                                "23 A",
+                                "18 A",
+                                "9 A",
+                                "15.7 A",
+                                "1.8 A",
+                                "3.2 A",
+                                "7.1 A",
+                                "9.0 A",
+                                "10.0 A",
+                                "6.5 A",
+                                "9.5 A",
+                                "20.6 A",
+                                "9.9 A",
+                                "15 A",
+                                "21 A",
+                                "52 A",
+                                "68 A",
+                                "79 A",
+                                "106 A",
+                                "126 A"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Rated Output Capacity (kVA)",
+                            "options": [
+                                "2.4 kVA",
+                                "1.4 kVA",
+                                "0.6 kVA",
+                                "1.0 kVA",
+                                "2.9 kVA",
+                                "4.2 kVA",
+                                "2.0 kVA",
+                                "1.2 kVA",
+                                "1.9 kVA",
+                                "4.8 KVA",
+                                "6.8 KVA",
+                                "7.9 KVA",
+                                "9.5 KVA",
+                                "1.6 kVA",
+                                "48 kVA",
+                                "58 kVA",
+                                "120 kVA",
+                                "175 kVA",
+                                "247 kVA",
+                                "367 kVA",
+                                "544 kVA",
+                                "2.7 kVA",
+                                "6.5 kVA",
+                                "13 kVA",
+                                "19 kVA",
+                                "25 kVA",
+                                "29 kVA",
+                                "34 kVA",
+                                "46 kVA",
+                                "55 kVA",
+                                "3.3 kVA",
+                                "4.4 kVA",
+                                "7.4 kVA",
+                                "0.5 kVA",
+                                "210 KVA",
+                                "290 KVA",
+                                "400 KVA",
+                                "580 KVA",
+                                "800 KVA",
+                                "1050 KVA",
+                                "1250 KVA",
+                                "375 KVA",
+                                "260 KVA",
+                                "1450 KVA"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Safe Torque Off (STO)",
+                            "options": [
+                                "Yes",
+                                "Built-in",
+                                "No"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Rated Output Current (Constant Torque)",
+                            "options": [
+                                "5.0 A",
+                                "7.5 A",
+                                "11 A",
+                                "17 A",
+                                "25 A",
+                                "33 A",
+                                "49 A",
+                                "65 A",
+                                "75 A",
+                                "90 A",
+                                "120 A",
+                                "146 A"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Rated Output Current (Variable Torque)",
+                            "options": [
+                                "6.25 A",
+                                "9.4 A",
+                                "13 A",
+                                "21 A",
+                                "31 A",
+                                "41 A",
+                                "61 A",
+                                "81 A",
+                                "93 A",
+                                "112 A",
+                                "150 A",
+                                "182 A"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Input Current (Heavy Duty)",
+                            "options": [
+                                "19 A",
+                                "25 A",
+                                "33 A"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Input Current (Normal Duty)",
+                            "options": [
+                                "25 A",
+                                "33 A",
+                                "40 A"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Brand",
+            "option_value": "Delta",
+            "prod_count": 148
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "3 HP",
+            "prod_count": 24
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "5 HP",
+            "prod_count": 24
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1 HP",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "2 HP",
+            "prod_count": 17
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "10 HP",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "7.5 HP",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "15 HP",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "2.2 kW",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.75 kW",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1.5 kW",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "3.7 kW",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "5.5 kW",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "20 HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.5 HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.25 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "50 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.55 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.75 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "11 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "18 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "2-3 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "25 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "30 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "30 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "4 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "40 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "55 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Phase",
+            "option_value": "Three Phase",
+            "prod_count": 55
+        },
+        {
+            "spec_name": "Input Phase",
+            "option_value": "Single Phase",
+            "prod_count": 20
+        },
+        {
+            "spec_name": "Input Phase",
+            "option_value": "2 Phase / 3 Phase",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "MS300",
+            "prod_count": 29
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "EL",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "MS",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "M",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ME300",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "C200",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "C2000",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "EL-W",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "RBCA",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "300",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "B",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "DVP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "E",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ELW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ELW or EL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "ME",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "S1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "VFD-L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Phase",
+            "option_value": "Three Phase",
+            "prod_count": 42
+        },
+        {
+            "spec_name": "Output Phase",
+            "option_value": "Single Phase",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Motor Speed Control",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "CNC Machine",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Loom",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Solar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Mixer Machine",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Conveyor",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "HDTP blow molding machine",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "for 2.2 kW motor",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Belt Application",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Blower",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Corrugation Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Heavy Duty Crane",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Knitting Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Mixer / Agitator",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Offset Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Packing Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Papad making machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Paper Angle Making Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Paper Cup Machines",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Pencil Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Pump",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Speed control for appalam machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Spindle Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Submersible Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Take-up",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Washing Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Winch Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD370C43S",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DOP 107BV",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFB4A8ME21AAA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD...9A...",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD007E23C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD007L21A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD007S21A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD022EL21A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD022EL43A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD022M43B",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD040EL43W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD0M43P",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD110B43A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD2AMS7MS43",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD5A5MS43ANSW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "VFD9A0MS43AANSAA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "AC Drive",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "VFD",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "HMI",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "PLC",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Power supply card for control card",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "440 V",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "415 V",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "220 V",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "230 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "200-240 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "220-240 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "460 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Used",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Dead",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "New",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Semi-fresh",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Phase Compatibility",
+            "option_value": "Three Phase",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Duty Cycle",
+            "option_value": "Heavy Duty",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Current",
+            "option_value": "103-105 A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Current",
+            "option_value": "17 A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Current",
+            "option_value": "25 A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Current",
+            "option_value": "5.5 A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Duty Cycle",
+            "option_value": "Normal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Voltage",
+            "option_value": "220 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Voltage",
+            "option_value": "230 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Voltage",
+            "option_value": "460 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Function",
+            "option_value": "Speed Control",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "Screw motor",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Function",
+            "option_value": "Speed Display",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "Induction Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Communication Protocol",
+            "option_value": "485",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Compatible Motor Power",
+            "option_value": "7.5 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 Year",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "EMC filter, Braking chopper",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "More than the previous model",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Source",
+            "option_value": "Electrical",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Motor RPM",
+            "option_value": "1440 RPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Apparent Power",
+            "option_value": "18.3 kVA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Associated PLC Program Version",
+            "option_value": "5.13",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Associated Software",
+            "option_value": "VPL Soft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Body Style",
+            "option_value": "White body",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cable Type",
+            "option_value": "Extension Cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatibility",
+            "option_value": "V3 card",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component",
+            "option_value": "Digital Keypad",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Digital Inputs",
+            "option_value": "8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Digital Outputs",
+            "option_value": "8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Display Program Version",
+            "option_value": "3.35",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Display Type",
+            "option_value": "Panel Mounted Display",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fittings",
+            "option_value": "Same as previous model",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Load",
+            "option_value": "10 or 15",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Information",
+            "option_value": "Equivalent new model",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Type",
+            "option_value": "Old",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Repairable",
+            "option_value": "Yes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Requirement",
+            "option_value": "To read incremental encoder pulse",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Screen Size",
+            "option_value": "7 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model / Part Number",
+            "option_value": "MS300",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model / Part Number",
+            "option_value": "100G",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model / Part Number",
+            "option_value": "VFD13AMS43AMSAA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Motor Phase",
+            "option_value": "Three Phase",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application Motor Power",
+            "option_value": "3 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Motor Power",
+            "option_value": "7.5 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Motor RPM",
+            "option_value": "960 RPM",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Frame Size",
+            "option_value": "A"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "MAKE",
+            "option_value": "DELTA"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "MODLE",
+            "option_value": "VFD022EL43-W"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model",
+            "option_value": "VFD9A0MS43ANSAA"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Current",
+            "option_value": "9A"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Current",
+            "option_value": "4.2 A"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model",
+            "option_value": "VFD4A2MS43ANSAA"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model",
+            "option_value": "VFD2A7MS43ANSAA"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Current",
+            "option_value": "9A"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model",
+            "option_value": "VFD17AMS43ANSAA"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Current",
+            "option_value": "9A"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model",
+            "option_value": "VFD004EL21W-1"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Current",
+            "option_value": "9A"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model",
+            "option_value": "VFD007EL21W-1"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Current",
+            "option_value": "9A"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Current",
+            "option_value": "9A"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model",
+            "option_value": "VFD220C43A-21"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Deals",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model Number",
+            "option_value": "VFD2A8MS21ANSAA"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model Number",
+            "option_value": "VFD 7A5ME21"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model Number",
+            "option_value": "VFD015EL43A"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model Number",
+            "option_value": "VFD002EL21W-1"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Model Number",
+            "option_value": "VFD1A5ME43ANNAA"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "Brand",
+            "option_value": "Delta"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "MAKE",
+            "option_value": "DELTA"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "MODLE",
+            "option_value": "VFD055EL43W-1"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "HP",
+            "option_value": "7.5HP"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "MAKE",
+            "option_value": "DELTA"
+        },
+        {
+            "mcat_id": "182091",
+            "mcat_name": "Delta VFD",
+            "spec_name": "MODLE",
+            "option_value": "VFD040EL43W-1"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "brand",
+            "spec_option": "asian",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "brand",
+            "spec_option": "delta",
+            "impression": "1049"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "brand",
+            "spec_option": "vl",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "input phase",
+            "spec_option": "3 phase",
+            "impression": "231"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "model name/number",
+            "spec_option": "ms300",
+            "impression": "42"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "model name/number",
+            "spec_option": "vfd015",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "motor power",
+            "spec_option": "1 hp",
+            "impression": "65"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "motor power",
+            "spec_option": "10 hp",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "motor power",
+            "spec_option": "15 hp",
+            "impression": "58"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "motor power",
+            "spec_option": "2 hp",
+            "impression": "34"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "motor power",
+            "spec_option": "20 hp",
+            "impression": "58"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "motor power",
+            "spec_option": "3 hp",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "motor power",
+            "spec_option": "40 hp",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "motor power",
+            "spec_option": "5 hp",
+            "impression": "227"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "motor power",
+            "spec_option": "50 hp",
+            "impression": "26"
+        },
+        {
+            "mcat_name": "Delta VFD",
+            "spec_name": "motor power",
+            "spec_option": "75 kw",
+            "impression": "4"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "",
+            "spec_fill_rate": "53.8",
+            "product_count": "64"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_fill_rate": "47.1",
+            "product_count": "56"
+        },
+        {
+            "spec_name": "Series",
+            "spec_fill_rate": "44.5",
+            "product_count": "53"
+        },
+        {
+            "spec_name": "Input Voltage",
+            "spec_fill_rate": "42",
+            "product_count": "50"
+        },
+        {
+            "spec_name": "Input Phase",
+            "spec_fill_rate": "38.7",
+            "product_count": "46"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_fill_rate": "36.1",
+            "product_count": "43"
+        },
+        {
+            "spec_name": "Control Mode",
+            "spec_fill_rate": "34.5",
+            "product_count": "41"
+        },
+        {
+            "spec_name": "Enclosure",
+            "spec_fill_rate": "26.9",
+            "product_count": "32"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "23.5",
+            "product_count": "28"
+        },
+        {
+            "spec_name": "Communication",
+            "spec_fill_rate": "20.2",
+            "product_count": "24"
+        },
+        {
+            "spec_name": "Braking Type",
+            "spec_fill_rate": "12.6",
+            "product_count": "15"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "10.1",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_fill_rate": "1.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Supply Voltage",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Deals",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Control Interface",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Model",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "MODLE",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Output Frequency",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "MAKE",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Current",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "IP Rating",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": []
+}

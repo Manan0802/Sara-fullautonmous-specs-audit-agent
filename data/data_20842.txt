@@ -1,0 +1,2722 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 20842,
+        "mcat_name": "Pressure Booster Pumps",
+        "current_specs": [
+            {
+                "spec_name": "System Type",
+                "options": [
+                    "Single Pump",
+                    "Twin Pump",
+                    "Triplex Pump",
+                    "Multi Pump Set"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Power Rating",
+                "options": [
+                    "0.75 hp",
+                    "1 hp",
+                    "1.5 hp",
+                    "2 hp",
+                    "3 hp",
+                    "5 hp",
+                    "7.5 hp",
+                    "10 hp"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Max Flow",
+                "options": [
+                    "2 m³/hr",
+                    "3 m³/hr",
+                    "5 m³/hr",
+                    "8 m³/hr",
+                    "10 m³/hr",
+                    "15 m³/hr",
+                    "20 m³/hr",
+                    "30 m³/hr"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Max Head",
+                "options": [
+                    "20 m",
+                    "30 m",
+                    "40 m",
+                    "50 m",
+                    "60 m",
+                    "80 m",
+                    "100 m"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Control Type",
+                "options": [
+                    "Pressure Switch",
+                    "Pressure Transducer",
+                    "VFD Control",
+                    "Automatic Panel",
+                    "Manual Panel"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Pump Brand",
+                "options": [
+                    "CRI",
+                    "Grundfos",
+                    "Kirloskar",
+                    "Crompton",
+                    "Texmo",
+                    "Lubi",
+                    "Wilo",
+                    "KSB",
+                    "V Guard",
+                    "Other Brand"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Application",
+                "options": [
+                    "Domestic Building",
+                    "Commercial Building",
+                    "Hospital",
+                    "Hotel",
+                    "Industrial",
+                    "Irrigation"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Tank Included",
+                "options": [
+                    "With Tank",
+                    "Without Tank"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Pump Type",
+                "options": [
+                    "Horizontal Multistage",
+                    "Vertical Multistage",
+                    "End Suction",
+                    "Inline Pump"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Pressure Booster Pumps",
+            "mcat_id": 20842,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "System Type",
+                            "options": [
+                                "Single Pump",
+                                "Twin Pump",
+                                "Triplex Pump",
+                                "Multi Pump Set"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Power Rating",
+                            "options": [
+                                "0.75 hp",
+                                "1 hp",
+                                "1.5 hp",
+                                "2 hp",
+                                "3 hp",
+                                "5 hp",
+                                "7.5 hp",
+                                "10 hp"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Max Flow",
+                            "options": [
+                                "2 m³/hr",
+                                "3 m³/hr",
+                                "5 m³/hr",
+                                "8 m³/hr",
+                                "10 m³/hr",
+                                "15 m³/hr",
+                                "20 m³/hr",
+                                "30 m³/hr"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Max Head",
+                            "options": [
+                                "20 m",
+                                "30 m",
+                                "40 m",
+                                "50 m",
+                                "60 m",
+                                "80 m",
+                                "100 m"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Control Type",
+                            "options": [
+                                "Pressure Switch",
+                                "Pressure Transducer",
+                                "VFD Control",
+                                "Automatic Panel",
+                                "Manual Panel"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Pump Brand",
+                            "options": [
+                                "CRI",
+                                "Grundfos",
+                                "Kirloskar",
+                                "Crompton",
+                                "Texmo",
+                                "Lubi",
+                                "Wilo",
+                                "KSB",
+                                "V Guard",
+                                "Other Brand"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Application",
+                            "options": [
+                                "Domestic Building",
+                                "Commercial Building",
+                                "Hospital",
+                                "Hotel",
+                                "Industrial",
+                                "Irrigation"
+                            ],
+                            "input_type": "multi_select"
+                        },
+                        {
+                            "spec_name": "Tank Included",
+                            "options": [
+                                "With Tank",
+                                "Without Tank"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Pump Type",
+                            "options": [
+                                "Horizontal Multistage",
+                                "Vertical Multistage",
+                                "End Suction",
+                                "Inline Pump"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Power",
+            "option_value": "1 HP",
+            "prod_count": 24
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1.5 HP",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.5 HP",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.9 HP",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "2 HP",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1.2 HP",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "7.5 HP",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "5 HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "4 HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.3 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.4 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.85 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "0.87 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "150 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "2.2 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "3 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "375 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "5.5 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Grundfos",
+            "prod_count": 42
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Crompton",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kirloskar",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "KSB",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Lubi",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "CRI",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "V-Guard",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Varuna (Baruna)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Algo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Bateli",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dab",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dharani Pumps",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Falcon",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Leo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Max",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Nexton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Taro Texmo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Tullu",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Tank Capacity",
+            "option_value": "24 L",
+            "prod_count": 14
+        },
+        {
+            "spec_name": "Pressure Tank Capacity",
+            "option_value": "60 L",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Pressure Tank Capacity",
+            "option_value": "100 L",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pressure Tank Capacity",
+            "option_value": "16 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Tank Capacity",
+            "option_value": "2 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Tank Capacity",
+            "option_value": "200 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Tank Capacity",
+            "option_value": "10-15 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Tank Capacity",
+            "option_value": "50 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "Pressure Booster",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "Submersible",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "Vertical",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "Multi-stage",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "Variable Speed",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "VFD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "18 Stages",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "Automatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "Heat Pump",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "Heavy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "High Pressure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "Twin Pump Booster",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Type",
+            "option_value": "Vertical Multistage",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Phase",
+            "option_value": "Single Phase",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Motor Phase",
+            "option_value": "3 Phase",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "4000 LPH",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "17 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "5000-6000 LPH",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "10000 LPH",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "133 LPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "20 LPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "37-34 LPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "4 KLPH",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "4 mÂ³",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "5000 LPH",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "VFD",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 Year",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "18 Months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "3 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "10 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "4 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "4-5 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Stages",
+            "option_value": "14",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Stages",
+            "option_value": "8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Stages",
+            "option_value": "6 stage",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Stages",
+            "option_value": "8 stage",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "10-4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Autoset",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "C34E518025P11010",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "CM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "CM10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "CM10-2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "CM5-3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "CM5-4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "CMB 3-37",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "CMB 5-3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "CR 10/14",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "CR 10/18",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "CRI 5-29",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "CU 3-5-2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Hydro Multi-E 2 CRE 5-6",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "MHBS-2E-04",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "MHS 5/04",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Magna 1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "P2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "PeriBoost",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "UPS 40-180",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Hot Water Recirculation",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "20 houses",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "3rd Floor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Basement",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Bathrooms and Showers",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Beauty Parlor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Farmhouse rain dance",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Hot Water Circulation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Household/Domestic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "LPG Gas",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Mineral Water Plant",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Pressure Boosting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Residential",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Restaurant with multiple tap points",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Salon (Head wash, Backwash, and Shower)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Washing Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Head",
+            "option_value": "30 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Head",
+            "option_value": "15 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Head",
+            "option_value": "20 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Head",
+            "option_value": "20.3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Head",
+            "option_value": "47 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Head",
+            "option_value": "47",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Head",
+            "option_value": "50-70 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Head",
+            "option_value": "53 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Head",
+            "option_value": "60 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Head",
+            "option_value": "80 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty Period",
+            "option_value": "1 yr",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Warranty Period",
+            "option_value": "2 yr",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Warranty Period",
+            "option_value": "18 mo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure",
+            "option_value": "10 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure",
+            "option_value": "150 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure",
+            "option_value": "3 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure",
+            "option_value": "4.5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure",
+            "option_value": "8-9 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "System Configuration",
+            "option_value": "2 Working + 1 Standby",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "System Configuration",
+            "option_value": "Double",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "System Configuration",
+            "option_value": "Multi-pump",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "System Configuration",
+            "option_value": "Single",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Stainless Steel",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Inlet/Outlet Size",
+            "option_value": "2 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Inlet/Outlet Size",
+            "option_value": "3 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Inlet/Outlet Size",
+            "option_value": "32",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Inlet/Outlet Size",
+            "option_value": "63 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "CPVC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Plastic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Components",
+            "option_value": "Adapter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Components",
+            "option_value": "Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Components",
+            "option_value": "Tank and Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pump Components",
+            "option_value": "Wire (full set)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Discharge Distance",
+            "option_value": "1 km",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Discharge Distance",
+            "option_value": "250 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Discharge Distance",
+            "option_value": "400 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive/Control",
+            "option_value": "Automatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive/Control",
+            "option_value": "Pressure monitoring sensor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive/Control",
+            "option_value": "With VFD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "5-4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "81 M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "Scala2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Configuration",
+            "option_value": "Without Tank",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Number of Outlets",
+            "option_value": "16 taps",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Dry Run Protection (DRP)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "With Tank",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Outlets",
+            "option_value": "1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Speed",
+            "option_value": "2500-2900 RPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Speed",
+            "option_value": "up to 3600 RPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Port-to-Port Length",
+            "option_value": "180 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Port-to-Port Length",
+            "option_value": "250",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage",
+            "option_value": "Commercial",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage",
+            "option_value": "Washing Machines",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Outlet Support",
+            "option_value": "4 bathrooms",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Capacity",
+            "option_value": "80 rooms",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Model",
+            "option_value": "BT10 ABP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component Size",
+            "option_value": "Small",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connection Type",
+            "option_value": "2F",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Control Mechanism",
+            "option_value": "Flow Switch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fluid Temperature",
+            "option_value": "50-55 Â°C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Horizontal Delivery Distance",
+            "option_value": "150-200 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Includes Kit and Sensor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Pressure",
+            "option_value": "5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Installation Context",
+            "option_value": "5 Bathrooms",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Installation Location",
+            "option_value": "6th",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Installation Orientation",
+            "option_value": "Horizontal or Vertical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Installation Site",
+            "option_value": "Near Tank area",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Drive Type",
+            "option_value": "VFD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Pumps",
+            "option_value": "2-3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Taps",
+            "option_value": "4 taps",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operation Mode",
+            "option_value": "Automatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operation Type",
+            "option_value": "Automatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Orientation",
+            "option_value": "Vertical Inline",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Output Pressure",
+            "option_value": "20 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pipe Connection Size",
+            "option_value": "0.5 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pipe Size",
+            "option_value": "1 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pipeline Length",
+            "option_value": "300 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Adjustment",
+            "option_value": "Adjustable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pressure Switch Type",
+            "option_value": "Auto stop and move",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Series",
+            "option_value": "SB series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Requirement/Context",
+            "option_value": "Low pressure at end-of-line houses",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Suction Type",
+            "option_value": "Positive",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sump Depth",
+            "option_value": "10 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Switch Brand",
+            "option_value": "Danfoss",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Voltage",
+            "option_value": "220-240 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Water Source",
+            "option_value": "Sump",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "BRAND",
+            "option_value": "SHAKTIFLOW"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Name",
+            "option_value": "Smart Intelligent"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Name",
+            "option_value": "Power SG 350"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Name",
+            "option_value": "Power SG 3"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Name",
+            "option_value": "SG 4"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Name",
+            "option_value": "Power SG 2 Plus"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Name",
+            "option_value": "Power SG 2"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Name",
+            "option_value": "Smart Power SG 2"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Name",
+            "option_value": "Smart Power SG 2 Plus"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Name",
+            "option_value": "Smart Power SG 3"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Name",
+            "option_value": "Power SG 4"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Voltage",
+            "option_value": "24 Volts"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Capacity",
+            "option_value": "100 GPD"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Number",
+            "option_value": "Prime  100"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model Name",
+            "option_value": "Smart Intelligent"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Outlet",
+            "option_value": "1 Inch"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Suction Lift",
+            "option_value": "6 Metres"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Suction Lift",
+            "option_value": "6 Metres"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Outlet",
+            "option_value": "1 Inch"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Suction Lift",
+            "option_value": "6 Metres"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Outlet",
+            "option_value": "1 Inch"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Suction Lift",
+            "option_value": "6 Metres"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Outlet",
+            "option_value": "1 Inch"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Suction Lift",
+            "option_value": "6 Metres"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Outlet",
+            "option_value": "1 Inch"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Inlet Pressure",
+            "option_value": "20 PSI"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Max. Current",
+            "option_value": "2.8 Amp"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Working Flow",
+            "option_value": "2000 Ml/Min"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Suction",
+            "option_value": "3 Mtr"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Working Pressure",
+            "option_value": "80+7 PSI"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Working Currecnt",
+            "option_value": "2 Amp"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Product Brand",
+            "option_value": "VH"
+        },
+        {
+            "mcat_id": "20842",
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "Model",
+            "option_value": "Hathi 50"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "brand",
+            "spec_option": "cri",
+            "impression": "22"
+        },
+        {
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "brand",
+            "spec_option": "servo",
+            "impression": "71"
+        },
+        {
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "brand",
+            "spec_option": "texmo",
+            "impression": "43"
+        },
+        {
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "media",
+            "spec_option": "air",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "media",
+            "spec_option": "water",
+            "impression": "1223"
+        },
+        {
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "pump type",
+            "spec_option": "boosting",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "usage",
+            "spec_option": "home",
+            "impression": "975"
+        },
+        {
+            "mcat_name": "Pressure Booster Pumps",
+            "spec_name": "usage",
+            "spec_option": "shower",
+            "impression": "5"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "System Type",
+            "spec_fill_rate": "60.2",
+            "product_count": "50"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_fill_rate": "56.6",
+            "product_count": "47"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_fill_rate": "54.2",
+            "product_count": "45"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_fill_rate": "54.2",
+            "product_count": "45"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_fill_rate": "45.8",
+            "product_count": "38"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_fill_rate": "41",
+            "product_count": "34"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "37.3",
+            "product_count": "31"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "37.3",
+            "product_count": "31"
+        },
+        {
+            "spec_name": "Tank Included",
+            "spec_fill_rate": "27.7",
+            "product_count": "23"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_fill_rate": "22.9",
+            "product_count": "19"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_fill_rate": "4.8",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Model",
+            "spec_fill_rate": "3.6",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_fill_rate": "3.6",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Head",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Discharge Capacity",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Material Of Construction",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Working Currecnt",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Membrane Capacity",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Max. Current",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Rated Flow",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Inlet Size",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Max Discharge",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Inlet Pressure",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Working Flow",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Working Pressure",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Suction",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Operating Voltage",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Working Currecnt",
+            "spec_option_name": "2 Amp",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Frequency",
+            "spec_option_name": "50 Hz",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_option_name": "New Only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Single Phase",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "2800 RPM",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pipe Size (Suction x Delivery)",
+            "spec_option_name": "1\" x 1\"",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Total Head Range",
+            "spec_option_name": "118feet",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Working Flow",
+            "spec_option_name": "2000 Ml/Min",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Max. Current",
+            "spec_option_name": "2.8 Amp",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ambient Temperature",
+            "spec_option_name": "35 Degree C",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Maximum Suction Head",
+            "spec_option_name": "25feet",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Head",
+            "spec_option_name": "50 m",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pressure Tank Capacity",
+            "spec_option_name": "Without Tank",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "V Guard",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Electric",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Inlet Pressure",
+            "spec_option_name": "20 PSI",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Working Pressure",
+            "spec_option_name": "80+7 PSI",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "VH",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Maximum Liquid Temperature",
+            "spec_option_name": "40 Degree C",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "240 V",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suction",
+            "spec_option_name": "3 Mtr",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Domestic Building",
+            "option_fill_rate": "86.1"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "Cast Iron",
+            "option_fill_rate": "80"
+        },
+        {
+            "spec_name": "System Type",
+            "spec_option_name": "Single Pump",
+            "option_fill_rate": "77.9"
+        },
+        {
+            "spec_name": "Tank Included",
+            "spec_option_name": "With Tank",
+            "option_fill_rate": "76.6"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Pressure Switch",
+            "option_fill_rate": "76.5"
+        },
+        {
+            "spec_name": "Max Discharge",
+            "spec_option_name": "10 lpm",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Maximum Head",
+            "spec_option_name": "Upto 30 m",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Commercial Building",
+            "option_fill_rate": "64.4"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_option_name": "Horizontal Multistage",
+            "option_fill_rate": "57.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "55.4"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Hotel",
+            "option_fill_rate": "54.5"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Hospital",
+            "option_fill_rate": "53.5"
+        },
+        {
+            "spec_name": "Inlet Size",
+            "spec_option_name": "1 inch",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Material Of Construction",
+            "spec_option_name": "SS 304",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Rated Flow",
+            "spec_option_name": "1.5 lpm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Operating Voltage",
+            "spec_option_name": "230 V AC",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Inlet Size",
+            "spec_option_name": "0.75 inch",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Membrane Capacity",
+            "spec_option_name": "300 GPD",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Rated Flow",
+            "spec_option_name": "2900 Ml/Min",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "150 psi",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Material Of Construction",
+            "spec_option_name": "Cast Iron",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made in India",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Operating Voltage",
+            "spec_option_name": "24 V DC",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Discharge Capacity",
+            "spec_option_name": "3 mÃÂ³/hr",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Discharge Capacity",
+            "spec_option_name": "5 mÃÂ³/hr",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made In India",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "80 psi",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Membrane Capacity",
+            "spec_option_name": "50 gpd",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Motor Horsepower",
+            "spec_option_name": "0.5 HP",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Maximum Flow Rate",
+            "spec_option_name": "35 LPM",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Maximum Flow Rate",
+            "spec_option_name": "Upto 100 LPM",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Maximum Head",
+            "spec_option_name": "Upto 40 m",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Maximum Flow Rate",
+            "spec_option_name": "Upto 80 LPM",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Irrigation",
+            "option_fill_rate": "31.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1 hp",
+            "option_fill_rate": "31.4"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "2 mÃÂ³/hr",
+            "option_fill_rate": "28.9"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "Crompton Mini Champ",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "20 m",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "KSB Other Model",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "Smart Intelligent",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "Power SG 4",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Max Discharge",
+            "spec_option_name": "40 lpm",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "Smart Power SG 2 Plus",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "Smart Power SG 3",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.75 hp",
+            "option_fill_rate": "24.8"
+        },
+        {
+            "spec_name": "Tank Included",
+            "spec_option_name": "Without Tank",
+            "option_fill_rate": "23.4"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "3 mÃÂ³/hr",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Motor Horsepower",
+            "spec_option_name": "1.5 HP",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Motor Horsepower",
+            "spec_option_name": "1 HP",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "Aluminium",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Motor Horsepower",
+            "spec_option_name": "2 HP",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "30 m",
+            "option_fill_rate": "18.8"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_option_name": "Vertical Multistage",
+            "option_fill_rate": "18.6"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "Hathi 50",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "Crompton Booster",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "Crompton Mini Series",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Crompton",
+            "option_fill_rate": "13.2"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Grundfos",
+            "option_fill_rate": "12.3"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Automatic Panel",
+            "option_fill_rate": "12.2"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Wilo",
+            "option_fill_rate": "11.4"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "40 m",
+            "option_fill_rate": "10.7"
+        },
+        {
+            "spec_name": "System Type",
+            "spec_option_name": "Multi Pump Set",
+            "option_fill_rate": "10.3"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "10 mÃÂ³/hr",
+            "option_fill_rate": "9.9"
+        },
+        {
+            "spec_name": "System Type",
+            "spec_option_name": "Twin Pump",
+            "option_fill_rate": "9.6"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "CRI",
+            "option_fill_rate": "9.6"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "8 mÃÂ³/hr",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "50 m",
+            "option_fill_rate": "8.9"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_option_name": "Inline Pump",
+            "option_fill_rate": "8.6"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1.5 hp",
+            "option_fill_rate": "7.3"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Kirloskar",
+            "option_fill_rate": "7"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "5 mÃÂ³/hr",
+            "option_fill_rate": "6.6"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Other Brand",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "20 mÃÂ³/hr",
+            "option_fill_rate": "5.8"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "15 mÃÂ³/hr",
+            "option_fill_rate": "5.8"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "2 hp",
+            "option_fill_rate": "5.8"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "30 mÃÂ³/hr",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "100 m",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "80 m",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_option_name": "Self Priming",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Domestic",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "133M",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "5 hp",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "60 m",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "HYDROPLUS INTERNATIONAL",
+            "option_fill_rate": "3.5"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "HYZEN",
+            "option_fill_rate": "3.5"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Skyboost",
+            "option_fill_rate": "3.5"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.5 hp",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_option_name": "Booster Pump",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_option_name": "End Suction",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_option_name": "Self-Priming Monoblock",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "15 m",
+            "option_fill_rate": "2.7"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "83M",
+            "option_fill_rate": "2.7"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Pressure Transducer",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Manual Panel",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "3 hp",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.25 hp",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.5HP",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Water Supply",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Fire Fighting",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "217M",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Hasper technology",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Lubi",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "skyboost",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "AQUALAND",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Madhuram",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Fixed Speed",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "10 hp",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.5 HP",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_option_name": "Inline Booster",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Pump Type",
+            "spec_option_name": "Diaphragm Pump",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Sewage Handling",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Bungalow",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Farm House",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Small Hotel",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Overhead Tank",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Building Services",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "SHARP FLOW & LAKSHMI",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Booster pump",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "10m-40m",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "9 M",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "GLOBAL",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "35 M",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "KSB",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "72 metre",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "VFD Control",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "ANM",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "5 mm",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Glayce",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "crompton,ksb & kirloskar",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Btali",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Hyzen",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "All Brand",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "blueshell",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "V Guard",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Taro",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Kuzhali",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "HAVELLS",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "skyboost pressure pump",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "APEX PUMPS",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "35 m",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Pew make",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Silver",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Texmo",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "TAK HYDRO AND ASGO",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Plug and Play",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Auto",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Manual",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "SKYBOOST",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "10 m",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "all max head",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Brand Fox",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "Cosmo pumps",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "27 m",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Pump Brand",
+            "spec_option_name": "ALGO",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "52m",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Head",
+            "spec_option_name": "33M",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "2500 litres / hour",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "200 LPM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "750 lph",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "26 L/min",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "2310LPH",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "All max flow",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Max Flow",
+            "spec_option_name": "7000 litre/hr",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1100 ml mint",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "System Type",
+            "spec_option_name": "Self Priming Regenerative Pump with Hydro-Pneumatic Pressure Tank",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "7.5 hp",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "System Type",
+            "spec_option_name": "Pressure Booster Pump",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "120 W",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.8HP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.25 HP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.5",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "18 W",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1.25HP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.35 hp",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.5 to 1HP",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "All  power ratings",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1500 w",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.5Hp",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "24v dc",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "370 W",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.5 HP (0.37 kW)",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "2 HP (1.5 kW)",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "Up to 2 hp",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "System Type",
+            "spec_option_name": "Booster Pump",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "2.5",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "0.6hp",
+            "option_fill_rate": "0.7"
+        }
+    ]
+}

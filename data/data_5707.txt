@@ -1,0 +1,262 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 5707,
+        "mcat_name": "Papaya Pulp",
+        "current_specs": [
+            {
+                "spec_name": "Packaging Type",
+                "options": [
+                    "Aseptic Bag",
+                    "Loose",
+                    "Aseptic Pouch",
+                    "Drum",
+                    "Canned"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Papaya Variety",
+                "options": [
+                    "Red Papaya",
+                    "Yellow Papaya",
+                    "Regular Papaya",
+                    "Hawaiian Papaya",
+                    "Golden Papaya"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Physical Form",
+                "options": [
+                    "Puree",
+                    "Concentrate",
+                    "Pulp",
+                    "Paste",
+                    "Juice"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Storage Type",
+                "options": [
+                    "Frozen",
+                    "Fresh",
+                    "Room Temperature",
+                    "Chilled",
+                    "Refrigerated"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "Mother Dairy",
+                    "Vadilal",
+                    "Kissan",
+                    "Sumeru",
+                    "Sunrise"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Ph Value",
+                "options": [
+                    "5.0",
+                    "5.2",
+                    "5.5",
+                    "4.8",
+                    "5.8"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Shelf Life",
+                "options": [
+                    "18 month",
+                    "12 month",
+                    "24 month",
+                    "6 month",
+                    "1 month"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Protein",
+                "options": [
+                    "0.5 g",
+                    "0.4 g",
+                    "0.6 g",
+                    "0.3 g",
+                    "0.7 g"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Flavour",
+                "options": [
+                    "Natural",
+                    "Sweetened",
+                    "Unsweetened",
+                    "Sugar Added",
+                    "No Added Sugar"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Vitamin C",
+                "options": [
+                    "60 mg",
+                    "65 mg",
+                    "70 mg",
+                    "55 mg",
+                    "75 mg"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "generated_by": "KNOWDIS_PIPELINE_v5_1_2",
+            "category_name": "Papaya Pulp",
+            "mcat_id": 5707,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Packaging Type",
+                            "options": [
+                                "Aseptic Bag",
+                                "Loose",
+                                "Aseptic Pouch",
+                                "Drum",
+                                "Canned"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Papaya Variety",
+                            "options": [
+                                "Red Papaya",
+                                "Yellow Papaya",
+                                "Regular Papaya",
+                                "Hawaiian Papaya",
+                                "Golden Papaya"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Physical Form",
+                            "options": [
+                                "Puree",
+                                "Concentrate",
+                                "Pulp",
+                                "Paste",
+                                "Juice"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Storage Type",
+                            "options": [
+                                "Frozen",
+                                "Fresh",
+                                "Room Temperature",
+                                "Chilled",
+                                "Refrigerated"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "Mother Dairy",
+                                "Vadilal",
+                                "Kissan",
+                                "Sumeru",
+                                "Sunrise"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Ph Value",
+                            "options": [
+                                "5.0",
+                                "5.2",
+                                "5.5",
+                                "4.8",
+                                "5.8"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Shelf Life",
+                            "options": [
+                                "18 month",
+                                "12 month",
+                                "24 month",
+                                "6 month",
+                                "1 month"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Protein",
+                            "options": [
+                                "0.5 g",
+                                "0.4 g",
+                                "0.6 g",
+                                "0.3 g",
+                                "0.7 g"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Flavour",
+                            "options": [
+                                "Natural",
+                                "Sweetened",
+                                "Unsweetened",
+                                "Sugar Added",
+                                "No Added Sugar"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Vitamin C",
+                            "options": [
+                                "60 mg",
+                                "65 mg",
+                                "70 mg",
+                                "55 mg",
+                                "75 mg"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [],
+    "DS-2 (Custom Specs)": [],
+    "DS-3 (Buyer Search Data)": [],
+    "DS-4 (Fill Rate Data)": [],
+    "DS-5 (Option Fill Rate Data)": []
+}

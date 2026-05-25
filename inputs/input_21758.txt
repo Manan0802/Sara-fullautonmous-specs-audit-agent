@@ -1,0 +1,3862 @@
+=== SYSTEM PROMPT ===
+# Spec Audit Orchestrator Agent
+
+
+You are an expert spec auditor for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Every product category on this marketplace has a spec sheet — a structured set of attributes (specs) that sellers fill out and buyers use to filter. Your job is to audit the existing spec sheet and produce a corrected version.
+
+
+The existing specs are largely correct. Do not rebuild from scratch. Find and fix what is genuinely wrong: missing specs, wrong tiers, bad options, duplicates, or irrelevant entries. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** What a buyer asks first. What a seller must fill to have a findable listing.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one variant from another. Essential but not the first question.
+- **Tertiary:** Useful detail. Not critical for discovery.
+
+
+Each spec has `spec_name`, `options` (values sellers choose), and `input_type` (`radio_button` / `multi_select` / `text_type`).
+
+
+---
+
+
+## YOUR DATA
+
+
+Five data sources are pre-fetched and in your context. Use them all.
+
+
+**DS1 — Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**DS2 — Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**DS3 — Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**DS4 — Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**DS5 — Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+## YOUR TOOLS
+
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+### Tool 2: Search Skills
+
+If you're unsure which skill applies, search by keyword:
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+Search the internet for external validation:
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+### Restrictions on Tool Calls
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it. 
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at DS1 to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+Wait until your next turn to actually do the analysis. **Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+---
+
+
+## SIGNAL CLASSIFICATION
+
+
+Before acting on any signal, classify it:
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Every spec must be reviewed.** Even specs you don't change. For untouched specs, one line: "Reviewed — no signals requiring change."
+
+
+**Be your own critic.** Before finalising any action, ask: what is the strongest argument against this? Is there an alternative explanation for this signal? Address it.
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+---
+
+
+## OUTPUT
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Action Summary Table
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+### 6. Self-Reflection
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by reading the skills you need, analyze the data, and produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 8 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret DS1 buyer-seller call data — product counts, signal classification, what high/low counts mean  
+  Tags: `ds1, buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret DS2 custom seller specs — identifying genuine gaps from seller-created specs  
+  Tags: `ds2, custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret DS3 buyer search data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `ds3, buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 21758
+category_name: Aluminium Profiles
+seller_specs (current spec sheet): {
+  "category_name": "Aluminium Profiles",
+  "mcat_id": 21758,
+  "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Profile Shape",
+          "options": [
+            "T-Slot",
+            "G-Profile",
+            "Corner Profile",
+            "Handle Profile",
+            "L-Angle",
+            "U-Channel",
+            "Shutter Profile",
+            "Square Tube",
+            "Round Tube",
+            "Flat Bar"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Prefix",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Cross-Section (WxH)",
+          "options": [
+            "40x40 mm",
+            "20x20 mm",
+            "30x30 mm"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Profile Shape and Cross-Section Dimensions were chosen as Primary because they are the most fundamental identifiers for an aluminium profile. They define the product's form and fit, making them essential for search and title creation. 'Profile Shape' is a Prefix for sub-categories, while 'Cross-Section' is a Suffix for specific sizing."
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Finish",
+          "options": [
+            "Anodized",
+            "Powder Coated Black",
+            "Matt Black",
+            "SS Brush",
+            "Rose Gold",
+            "Gold",
+            "Wooden Finish",
+            "Mill Finish",
+            "Chrome/CP Brush",
+            "Glossy"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Length",
+          "options": [
+            "3 m (10 ft)",
+            "2.7 m (9 ft)",
+            "2.5 m (8 ft)",
+            "2 m (6.5 ft)",
+            "3.65 m (12 ft)",
+            "6 m (20 ft)"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Alloy & Temper",
+          "options": [
+            "6063-T6",
+            "6063",
+            "6061-T6",
+            "6061",
+            "6082-T6",
+            "6351-T6"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Finish, Length, and Alloy & Temper are critical for function, aesthetics, and cost, but are secondary to shape and size. Finish is a major cost factor, Length is a standard logistical unit, and Alloy & Temper is a crucial technical specification for industrial applications."
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Grade",
+          "options": [
+            "Heavy Duty",
+            "Medium Duty",
+            "Light Duty"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Application",
+          "options": [
+            "Furniture/Wardrobe",
+            "LED Lighting",
+            "Window/Door",
+            "Structural Framing",
+            "Partition",
+            "Glass Railing",
+            "Kitchen Cabinet",
+            "Skirting"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Mounting Type",
+          "options": [
+            "Surface Mounted",
+            "Recessed",
+            "Corner Mounted",
+            "Hanging/Suspended"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Glass Compatibility",
+          "options": [
+            "4-6 mm",
+            "8-10 mm",
+            "10-12 mm",
+            "5 mm",
+            "6 mm",
+            "8 mm",
+            "10 mm",
+            "12 mm"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "These specs address more detailed, application-specific needs. Application helps buyers filter for end-use. Grade abstracts the frequent buyer need for 'heavy duty' or 'lightweight' profiles. Mounting Type is essential for LED profiles. Glass Compatibility is for profiles used in partitions and railings."
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- DS1: Buyer-Seller Call Data (aggregated, 30 specs) ---
+[
+  {
+    "spec_name": "Finish/Color",
+    "total_product_count": 180,
+    "example_values": [
+      "10 Colors",
+      "All Colors",
+      "Anodized",
+      "Antique",
+      "Antique Brass"
+    ]
+  },
+  {
+    "spec_name": "Length",
+    "total_product_count": 122,
+    "example_values": [
+      "10 ft",
+      "11 ft",
+      "12 ft",
+      "15 ft",
+      "16 ft"
+    ]
+  },
+  {
+    "spec_name": "Shape",
+    "total_product_count": 98,
+    "example_values": [
+      "C Section",
+      "C track top bottom",
+      "Capsule",
+      "Concealed Profile",
+      "Corner"
+    ]
+  },
+  {
+    "spec_name": "Dimensions (Cross Section)",
+    "total_product_count": 78,
+    "example_values": [
+      "0 mm",
+      "10 8 unknown",
+      "100 mm",
+      "11 mm",
+      "14 mm"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 75,
+    "example_values": [
+      "4mm Glass",
+      "AHU",
+      "Bathroom Door",
+      "Ceiling",
+      "Construction"
+    ]
+  },
+  {
+    "spec_name": "Width",
+    "total_product_count": 62,
+    "example_values": [
+      "12 inch",
+      "12 mm",
+      "150 mm",
+      "16 mm",
+      "17 mm"
+    ]
+  },
+  {
+    "spec_name": "Origin",
+    "total_product_count": 59,
+    "example_values": [
+      "China",
+      "Heavy",
+      "Imported",
+      "Imported and Indian",
+      "Indian"
+    ]
+  },
+  {
+    "spec_name": "Height",
+    "total_product_count": 57,
+    "example_values": [
+      "100 mm",
+      "12 ft",
+      "12 mm",
+      "16 mm",
+      "160 mm"
+    ]
+  },
+  {
+    "spec_name": "Thickness",
+    "total_product_count": 37,
+    "example_values": [
+      "0 mm",
+      "1 mm",
+      "1-1.2 mm",
+      "1.25 mm",
+      "1.5 mm"
+    ]
+  },
+  {
+    "spec_name": "Material",
+    "total_product_count": 36,
+    "example_values": [
+      "Aluminium",
+      "Aluminium Alloy",
+      "Aluminium Ingots",
+      "Full Aluminium",
+      "Normal Aluminium"
+    ]
+  },
+  {
+    "spec_name": "Weight",
+    "total_product_count": 32,
+    "example_values": [
+      "1.05 kg/m",
+      "1.1 kg",
+      "1.1 kg/m",
+      "1.2 kg/m",
+      "1.2 kg"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 28,
+    "example_values": [
+      "Altema",
+      "Astoria",
+      "Clozma",
+      "Domal",
+      "Eron Aluminium"
+    ]
+  },
+  {
+    "spec_name": "Accessories",
+    "total_product_count": 22,
+    "example_values": [
+      "10",
+      "2",
+      "5 per shutter",
+      "Acrylic / Polycarbonate",
+      "Beading for the glass"
+    ]
+  },
+  {
+    "spec_name": "Handle Type",
+    "total_product_count": 18,
+    "example_values": [
+      "With Handle",
+      "Without Handle"
+    ]
+  },
+  {
+    "spec_name": "Glass Thickness",
+    "total_product_count": 9,
+    "example_values": [
+      "4 mm",
+      "6 mm"
+    ]
+  },
+  {
+    "spec_name": "Glass/Infill Type",
+    "total_product_count": 9,
+    "example_values": [
+      "Fluted Glass",
+      "Mirror"
+    ]
+  },
+  {
+    "spec_name": "Opening Type",
+    "total_product_count": 8,
+    "example_values": [
+      "Openable",
+      "Sliding"
+    ]
+  },
+  {
+    "spec_name": "Glass Treatment",
+    "total_product_count": 6,
+    "example_values": [
+      "Toughened"
+    ]
+  },
+  {
+    "spec_name": "Quality Grade",
+    "total_product_count": 6,
+    "example_values": [
+      "Best",
+      "Premium",
+      "Project Approved",
+      "Top brand"
+    ]
+  },
+  {
+    "spec_name": "Duty Type",
+    "total_product_count": 5,
+    "example_values": [
+      "Heavy Duty",
+      "Light Duty"
+    ]
+  },
+  {
+    "spec_name": "Groove Width",
+    "total_product_count": 4,
+    "example_values": [
+      "1.5 - 2 mm",
+      "18 mm"
+    ]
+  },
+  {
+    "spec_name": "Temper",
+    "total_product_count": 4,
+    "example_values": [
+      "Soft",
+      "T6"
+    ]
+  },
+  {
+    "spec_name": "Board Thickness Compatibility",
+    "total_product_count": 3,
+    "example_values": [
+      "18 mm"
+    ]
+  },
+  {
+    "spec_name": "Component",
+    "total_product_count": 3,
+    "example_values": [
+      "ACP",
+      "Frame",
+      "Shutter"
+    ]
+  },
+  {
+    "spec_name": "Grade",
+    "total_product_count": 3,
+    "example_values": [
+      "6063"
+    ]
+  },
+  {
+    "spec_name": "Groove Height",
+    "total_product_count": 3,
+    "example_values": [
+      "25 mm"
+    ]
+  },
+  {
+    "spec_name": "Lock",
+    "total_product_count": 3,
+    "example_values": [
+      "Without Lock"
+    ]
+  },
+  {
+    "spec_name": "Number of Doors",
+    "total_product_count": 3,
+    "example_values": [
+      "2"
+    ]
+  },
+  {
+    "spec_name": "Number of Grooves",
+    "total_product_count": 3,
+    "example_values": [
+      "5"
+    ]
+  },
+  {
+    "spec_name": "Number of Tracks",
+    "total_product_count": 3,
+    "example_values": [
+      "3"
+    ]
+  }
+]
+
+--- DS2: Custom Seller Specs (aggregated, 5 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "count": 59,
+    "options": [
+      "Phoenix",
+      "Gibson"
+    ]
+  },
+  {
+    "spec_name": "BRAND",
+    "count": 16,
+    "options": [
+      "V-RAIL"
+    ]
+  },
+  {
+    "spec_name": "Material",
+    "count": 10,
+    "options": [
+      "Aluminium"
+    ]
+  },
+  {
+    "spec_name": "Length",
+    "count": 8,
+    "options": [
+      "3660 mm"
+    ]
+  },
+  {
+    "spec_name": "brand",
+    "count": 6,
+    "options": [
+      "v-rail"
+    ]
+  }
+]
+
+--- DS3: Buyer Search Data (aggregated, 8 specs) ---
+[
+  {
+    "spec_name": "material",
+    "total_impressions": 5199,
+    "options": [
+      "alluminium",
+      "aluminium"
+    ]
+  },
+  {
+    "spec_name": "product",
+    "total_impressions": 996,
+    "options": [
+      "profile",
+      "railing profile"
+    ]
+  },
+  {
+    "spec_name": "usage",
+    "total_impressions": 665,
+    "options": [
+      "ahu",
+      "expansion joint",
+      "gate",
+      "greenhouse",
+      "mirror frame"
+    ]
+  },
+  {
+    "spec_name": "shape",
+    "total_impressions": 558,
+    "options": [
+      "f profile",
+      "g profile",
+      "hat",
+      "i type",
+      "j"
+    ]
+  },
+  {
+    "spec_name": "color",
+    "total_impressions": 230,
+    "options": [
+      "black",
+      "rose gold"
+    ]
+  },
+  {
+    "spec_name": "brand",
+    "total_impressions": 206,
+    "options": [
+      "alom",
+      "cnr",
+      "creative",
+      "ebco",
+      "indiamart"
+    ]
+  },
+  {
+    "spec_name": "size",
+    "total_impressions": 141,
+    "options": [
+      "16 x 45",
+      "40 mm"
+    ]
+  },
+  {
+    "spec_name": "type",
+    "total_impressions": 134,
+    "options": [
+      "clip on",
+      "corner profile",
+      "gola"
+    ]
+  }
+]
+
+--- DS4: Spec Fill Rate (53 specs) ---
+[
+  {
+    "spec_name": "Finish",
+    "spec_fill_rate": "60.8",
+    "product_count": "144"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_fill_rate": "58.2",
+    "product_count": "138"
+  },
+  {
+    "spec_name": "Length",
+    "spec_fill_rate": "55.7",
+    "product_count": "132"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_fill_rate": "54",
+    "product_count": "128"
+  },
+  {
+    "spec_name": "Application",
+    "spec_fill_rate": "53.6",
+    "product_count": "127"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_fill_rate": "51.5",
+    "product_count": "122"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_fill_rate": "48.1",
+    "product_count": "114"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_fill_rate": "48.1",
+    "product_count": "114"
+  },
+  {
+    "spec_name": "Glass Compatibility",
+    "spec_fill_rate": "43.9",
+    "product_count": "104"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "37.1",
+    "product_count": "88"
+  },
+  {
+    "spec_name": "Material",
+    "spec_fill_rate": "7.2",
+    "product_count": "17"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "6.3",
+    "product_count": "15"
+  },
+  {
+    "spec_name": "Service Location",
+    "spec_fill_rate": "3.4",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Profile Type",
+    "spec_fill_rate": "2.5",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Profile Design",
+    "spec_fill_rate": "1.7",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Profile Width",
+    "spec_fill_rate": "1.7",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Compatible Panel Thickness",
+    "spec_fill_rate": "1.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Glass Thickness",
+    "spec_fill_rate": "1.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Standard Length",
+    "spec_fill_rate": "1.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_fill_rate": "0.8",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Glass Type",
+    "spec_fill_rate": "0.8",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Railing System Type",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Frame Material",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Ladder Type",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Color",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Thickness",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Number Of Keys",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Installation Location",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Features",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Overall Length",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Frame Color",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Profile Series",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Aluminium Grade",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Accessory Type",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "I Deal In",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Total Height",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Weight Category",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Track System",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Locking Mechanism",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Number of Steps",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Load Capacity",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Size (Hole to Hole)",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Step Type",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Lock Type",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Base Material",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Profile Material",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Alloy Grade",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Warranty",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Weight",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Profile Size",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Temper",
+    "spec_fill_rate": "0.4",
+    "product_count": "1"
+  }
+]
+
+--- DS5: Option Fill Rate (301 rows) ---
+[
+  {
+    "spec_name": "Total Height",
+    "spec_option_name": "14 ft",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Glazing Type",
+    "spec_option_name": "Single Glazed",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Slot Size",
+    "spec_option_name": "50X50",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Size",
+    "spec_option_name": "45 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Platform",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "brand",
+    "spec_option_name": "v-rail",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Base Material",
+    "spec_option_name": "Aluminium",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Aluminium Grade",
+    "spec_option_name": "6063-T6",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Lock Type",
+    "spec_option_name": "Shutter Lock",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Frame Finish",
+    "spec_option_name": "Powder Coated",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "slot size",
+    "spec_option_name": "10 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Slot Type",
+    "spec_option_name": "T Slot",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Window Type",
+    "spec_option_name": "Sliding",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Standard Length",
+    "spec_option_name": "3 Mtr (10 Ft)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Load Capacity",
+    "spec_option_name": "180 kg",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Profile Material",
+    "spec_option_name": "Aluminium",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Locking Mechanism",
+    "spec_option_name": "Key Lock",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Weight Category",
+    "spec_option_name": "Standard",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Size (Hole to Hole)",
+    "spec_option_name": "UP TO 48\"",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Brand prefer",
+    "spec_option_name": "Gibson",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Installation Location",
+    "spec_option_name": "Commercial",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Infill Material",
+    "spec_option_name": "Glass",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Overall Length",
+    "spec_option_name": "UP TO 1200MM",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Temper",
+    "spec_option_name": "T6",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Slot Width",
+    "spec_option_name": "10 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Door Integration",
+    "spec_option_name": "Sliding Door",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Step Type",
+    "spec_option_name": "Round/Fluted Steps",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "I Deal In",
+    "spec_option_name": "New Only",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "50 Series",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Origin",
+    "spec_option_name": "Indian",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Partition Style",
+    "spec_option_name": "Standard Aluminium",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Weight",
+    "spec_option_name": "160 gm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Service Location",
+    "spec_option_name": "All India",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Number Of Keys",
+    "spec_option_name": "2",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Frame Color",
+    "spec_option_name": "Grey",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Frame Material",
+    "spec_option_name": "Aluminium",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Width",
+    "spec_option_name": "45 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Thickness",
+    "spec_option_name": "for 8 to 18 mm floor",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "T Profile",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Number of Steps",
+    "spec_option_name": "10",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Flint brand",
+    "spec_option_name": "12pc per box",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Partition Type",
+    "spec_option_name": "Slim Profile",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "KITCHEN PROFILE",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Glazing Thickness",
+    "spec_option_name": "8\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c12 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Profile Series",
+    "spec_option_name": "30 Series",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Accessory Type",
+    "spec_option_name": "Profile",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Warranty",
+    "spec_option_name": "1 Year",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Compatible Panel Thickness",
+    "spec_option_name": "4 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Colour",
+    "spec_option_name": "Grey",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Track System",
+    "spec_option_name": "2-Track",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Glass Type",
+    "spec_option_name": "Toughened",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Railing System Type",
+    "spec_option_name": "Continuous Profile",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Ladder Type",
+    "spec_option_name": "Platform Ladder",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Country Of Origin",
+    "spec_option_name": "India",
+    "option_fill_rate": "97.7"
+  },
+  {
+    "spec_name": "BRAND",
+    "spec_option_name": "V-RAIL",
+    "option_fill_rate": "96.2"
+  },
+  {
+    "spec_name": "Material",
+    "spec_option_name": "Aluminium",
+    "option_fill_rate": "96"
+  },
+  {
+    "spec_name": "Surface Finish",
+    "spec_option_name": "Mill Finish",
+    "option_fill_rate": "95.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Phoenix",
+    "option_fill_rate": "90"
+  },
+  {
+    "spec_name": "Profile Application",
+    "spec_option_name": "Hvac Air Grill",
+    "option_fill_rate": "90"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Silver",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Architectural",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Glass Thickness",
+    "spec_option_name": "12 mm",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Industrial",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_option_name": "6063",
+    "option_fill_rate": "65.7"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "Surface Mounted",
+    "option_fill_rate": "65.6"
+  },
+  {
+    "spec_name": "Alloy Grade",
+    "spec_option_name": "6063",
+    "option_fill_rate": "57.8"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Furniture/Wardrobe",
+    "option_fill_rate": "52.2"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Heavy Duty",
+    "option_fill_rate": "51.6"
+  },
+  {
+    "spec_name": "Profile Size",
+    "spec_option_name": "20x20 mm",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Bottom",
+    "spec_option_name": "90mm x 60mm",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Profile Design",
+    "spec_option_name": "Standard",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Section Type",
+    "spec_option_name": "Structural Profile",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Profile Size",
+    "spec_option_name": "30x60 mm",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Section Type",
+    "spec_option_name": "Kitchen Profile",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Exhibition Stall",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Section Size",
+    "spec_option_name": "2.9",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Section Size",
+    "spec_option_name": "27 mm",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Partition",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Bottom",
+    "spec_option_name": "60mmx 34mm",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Glass Compatibility",
+    "spec_option_name": "8-10 mm",
+    "option_fill_rate": "49.2"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Medium Duty",
+    "option_fill_rate": "43.8"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "3 m (10 ft)",
+    "option_fill_rate": "43.6"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Anodized",
+    "option_fill_rate": "36.7"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "LED Lighting",
+    "option_fill_rate": "34.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Structural Framing",
+    "option_fill_rate": "34.3"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Angle Section",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Flat Bar",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "U-Channel",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Window/Door",
+    "option_fill_rate": "29.1"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_option_name": "6063-T6",
+    "option_fill_rate": "27.5"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Powder Coated Black",
+    "option_fill_rate": "25.9"
+  },
+  {
+    "spec_name": "Glass Compatibility",
+    "spec_option_name": "4-6 mm",
+    "option_fill_rate": "25.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Heat Sink",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Automotive",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Glass Thickness",
+    "spec_option_name": "All",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Furniture",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Rose Gold",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Drawer",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Kitchen Cabinet",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Solar Panel Frame",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Profile Design",
+    "spec_option_name": "Curve",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Profile Design",
+    "spec_option_name": "Square",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "2.7 m (9 ft)",
+    "option_fill_rate": "24.9"
+  },
+  {
+    "spec_name": "Alloy Grade",
+    "spec_option_name": "6061",
+    "option_fill_rate": "24.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "T-Slot",
+    "option_fill_rate": "23.5"
+  },
+  {
+    "spec_name": "Profile Type",
+    "spec_option_name": "Frame Profile",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Kitchen Cabinet",
+    "option_fill_rate": "21.3"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "Recessed",
+    "option_fill_rate": "20.1"
+  },
+  {
+    "spec_name": "Profile Width",
+    "spec_option_name": "22 mm",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Profile Width",
+    "spec_option_name": "22mm",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Profile Width",
+    "spec_option_name": "73.6mm",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Profile Width",
+    "spec_option_name": "68 mm",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Profile Width",
+    "spec_option_name": "30 mm",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Glass Railing",
+    "option_fill_rate": "18.7"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "17 mm",
+    "option_fill_rate": "18.1"
+  },
+  {
+    "spec_name": "Alloy Grade",
+    "spec_option_name": "6082",
+    "option_fill_rate": "17.8"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "45 mm",
+    "option_fill_rate": "17.7"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Square Tube",
+    "option_fill_rate": "15.5"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Corner Profile",
+    "option_fill_rate": "14.8"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "G-Profile",
+    "option_fill_rate": "12.6"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Skirting",
+    "option_fill_rate": "12.2"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "40x40 mm",
+    "option_fill_rate": "11.8"
+  },
+  {
+    "spec_name": "Profile Type",
+    "spec_option_name": "Frame",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Profile Type",
+    "spec_option_name": "Gola Profile",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Profile Type",
+    "spec_option_name": "Partition Profile",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Profile Type",
+    "spec_option_name": "sqar profile",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Profile Type",
+    "spec_option_name": "All",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Profile Type",
+    "spec_option_name": "G-Profile Handle",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Profile Type",
+    "spec_option_name": "Handle Profile",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Glass Compatibility",
+    "spec_option_name": "6 mm",
+    "option_fill_rate": "10.4"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "Corner Mounted",
+    "option_fill_rate": "9.5"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "20x20 mm",
+    "option_fill_rate": "9.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "50 mm",
+    "option_fill_rate": "8.7"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Mill Finish",
+    "option_fill_rate": "7.6"
+  },
+  {
+    "spec_name": "Profile Application",
+    "spec_option_name": "Hvac Clean Room",
+    "option_fill_rate": "7.5"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Rose Gold",
+    "option_fill_rate": "7.2"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Handle Profile",
+    "option_fill_rate": "6.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "6 m (20 ft)",
+    "option_fill_rate": "6.6"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Matt Black",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Glass Compatibility",
+    "spec_option_name": "10 mm",
+    "option_fill_rate": "6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "3.65 m (12 ft)",
+    "option_fill_rate": "5.8"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Shutter Profile",
+    "option_fill_rate": "5.8"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "16*45",
+    "option_fill_rate": "5.5"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "3660 mm",
+    "option_fill_rate": "5.4"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "Hanging/Suspended",
+    "option_fill_rate": "4.2"
+  },
+  {
+    "spec_name": "Material",
+    "spec_option_name": "Cast Iron",
+    "option_fill_rate": "4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "25 mm",
+    "option_fill_rate": "3.9"
+  },
+  {
+    "spec_name": "BRAND",
+    "spec_option_name": "v-rail",
+    "option_fill_rate": "3.8"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "U-Channel",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "30x30 mm",
+    "option_fill_rate": "3.1"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "2 m (6.5 ft)",
+    "option_fill_rate": "3.1"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Round Tube",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "L-Angle",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Light Duty",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Glass Compatibility",
+    "spec_option_name": "8 mm",
+    "option_fill_rate": "2.7"
+  },
+  {
+    "spec_name": "Glass Compatibility",
+    "spec_option_name": "5 mm",
+    "option_fill_rate": "2.7"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "SS Brush",
+    "option_fill_rate": "2.5"
+  },
+  {
+    "spec_name": "Profile Application",
+    "spec_option_name": "HVAC Air Grill",
+    "option_fill_rate": "2.5"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Gold",
+    "option_fill_rate": "2.5"
+  },
+  {
+    "spec_name": "Country Of Origin",
+    "spec_option_name": "China",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Surface Finish",
+    "spec_option_name": "Powder Coated",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Surface Finish",
+    "spec_option_name": "Anodised",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Glossy",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Glass Compatibility",
+    "spec_option_name": "12 mm",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_option_name": "6061",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Local/Unbranded",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "V-RAIL",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Gibson",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "RAC Extrusion",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "DIKAY",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "V-Rail",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Glass Compatibility",
+    "spec_option_name": "10-12 mm",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "70 mm",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "16 x 45",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Slim Partition",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Flat Bar",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_option_name": "6061-T6",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "custom",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "2.5 m (8 ft)",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "16\u00c3\u0083\u00e2\u0080\u009445 mm",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Imported",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Indian",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "All",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "All",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "60x60 mm",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "60x60",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "40x80",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "PVD Coating Powder",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Black, Rose Gold, Silver, Gold",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "All",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Powder Coated",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "custom",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "ALL",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_option_name": "ALl",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_option_name": "n/a",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_option_name": "6082-T6",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "Floor Mounted",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_option_name": "NA",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_option_name": "Aluminium",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_option_name": "Dk",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Alloy & Temper",
+    "spec_option_name": "AI-11",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "ALL",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "10x10 mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Wooden Finish",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Machine Frame",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "power coated",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "25x25 mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "16x45 Aluminium profile connectors",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "69x69mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "16*45",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "25mm x 25mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "all type",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "50x20.5 mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "Free size",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Grey Matt",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Shutter",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "T-Slot Profile",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "8 foot",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "handle less gola profile connectors",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "Multiple",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "50 x 50mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "19.5 FIT",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "4.5 m ( 15 ft )",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "All finish available",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "12MM",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "6m",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "80X80 mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Rectangle",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Office Partition",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "3 mtr",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "CUSTOMIZED",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "10 ft",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "L shape connector",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Aluminium",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "3.6 Mtr (12 ft)",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "CUSTOMIZED",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "3.66 m (12 ft)",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "silver",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "customize",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "SLIM PROFILE",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "400MTR",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "AS PER REQUIRMENT",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "40x120",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Glass Partition",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "16\u00c3\u0083\u00e2\u0080\u009445 & 25\u00c3\u0083\u00e2\u0080\u009445 and other",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Available in multiple finish",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "40mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "16 x 45mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "45x16",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "Various",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Kitchen",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "J type",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "All",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Black , brush gold ,  brush rose gold , antique gold",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "40x160",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Anodized Matt Black Glossy Black SS Brush Gold Brush Gold Rose Gold CP Champagne",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Partision profile",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "All finish available.",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "R80",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Mill Finish, Powder Coating, Anodised",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "H-Shape",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "80x40 mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "customize",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "ALL",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "Multiple Length Available",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Glass Partition profile",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Black , gold , rose gold , chrome finish",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Balcony",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "40x40 mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "22 mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "80x120",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "Multiple size",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Anodized as well as wooden finish",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "L connector",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "16x45 vartical",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "frame 45mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "14ft and 19ft",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Rectangular",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "glass railing",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "40X80",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "4 meter",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Mirror profile",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "16x45",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Shutter profile shutter handle",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "3 m",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Customize",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "45 Radius",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Rose gold Brush gold Black Matt",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Black Matt",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Door",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "40mm and 26mm",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "All finish availeble",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Wood Finish aluminium Profiles",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "5 miter",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Ceramic black",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "ALL",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "Custom",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "Dk",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Profile Shape",
+    "spec_option_name": "45mm Aluminium Profile",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "Aluminium shutter profile connector",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Cross-Section (WxH)",
+    "spec_option_name": "Custom",
+    "option_fill_rate": "0.4"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Tool results:
+
+=== READ_SKILL(buyer_call_analysis) ===
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (DS1) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+
+
+## How to read product count — what counts as signal
+
+
+Product count is relative. Do not use absolute thresholds. Instead, compare each
+spec's count against the full distribution of counts in this category:
+
+
+- A spec in the top 25% of counts is a strong signal regardless of the absolute number
+- A spec with count between 5 and the median is a moderate signal
+- A spec with count below 5 is a weak signal — treat as directional only
+- A spec with count of 1 or 2 is noise — do not act on it alone
+
+
+**The 90% coverage rule:** Example values shown represent 90% of real usage.
+Values with count ≤ 2 are dropped before you see them. What you see is the bulk
+of real market usage — not exhaustive, but representative.
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (DS2), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (DS4) and search impressions (DS3) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+Continue your analysis using the information above. Read more skills if needed, or produce your final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Tool results:
+
+=== READ_SKILL(custom_spec_analysis) ===
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the DS2 data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (DS2)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources (DS1, DS3) before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with DS1 and DS3 before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + DS1 call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + DS3 search impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading DS2 for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall DS2 summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with DS1 or DS3 signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+Continue your analysis using the information above. Read more skills if needed, or produce your final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Tool results:
+
+=== READ_SKILL(buyer_search_analysis) ===
+# Buyer Search Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer Search Data (DS3) output — use this document to understand
+what impression counts mean, how to classify each search signal, and how to use
+search findings in your audit decisions. You apply this interpretation yourself —
+no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer search data contains spec-option combinations that buyers selected as filters
+when searching the marketplace, along with impression counts showing how many times
+each filter was used. When a buyer clicks "Thickness: 3mm" as a search filter, that
+generates one impression for that spec-option combination.
+
+
+This data tells you what buyers actively want to narrow their search by. High
+impressions mean many buyers are expressing demand for this attribute as a filter.
+It is your most direct measure of buyer intent on the platform.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The name of the spec buyers used as a filter. May not match the platform spec name
+exactly — use semantic matching, not exact string matching. "Wattage" and "Power"
+refer to the same buyer intent.
+
+
+**spec_option / option value**
+The specific value buyers filtered by. Values appearing here but absent from your
+current option list are strong candidates for addition.
+
+
+**impression / total_impressions**
+How many times buyers used this spec-option combination as a filter. Your primary
+signal from this data source. Higher = more buyer demand.
+
+
+---
+
+
+## How to read impression counts — orientation thresholds
+
+
+These are not hard rules — calibrate relative to the distribution in your category.
+
+
+| Total impressions for a spec | Signal strength |
+|-----------------------------|-----------------|
+| Below 50 | Noise — do not act on this alone |
+| 50 to 500 | Weak — needs corroboration from another source |
+| 500 to 2000 | Moderate — worth investigating, check for artifacts |
+| Above 2000 | Strong — genuine buyer demand |
+
+
+A spec with 200 impressions that also appears in call data is stronger evidence than
+a spec with 1000 impressions that has zero product count and looks like a UI default.
+Always cross-reference.
+
+
+---
+
+
+## The two types of specs in search data
+
+
+**Present specs** — Buyers are using a spec the platform already has. High impressions
+for a present spec validate that it belongs where it is. Very high impressions for a
+present Tertiary spec is a signal it may be misplaced.
+
+
+**Missing specs** — Buyers are filtering on an attribute the platform does not offer
+as a standardised spec. These are discovery gaps — buyers are either finding no
+results or settling for imprecise results. High-value candidates for addition.
+
+
+Use semantic matching when classifying — "Wattage" is present if the platform has
+"Power". The buyer intent is the same regardless of the label difference.
+
+
+---
+
+
+## Signal classification — apply to every search spec before acting
+
+
+Not every high-impression term should become a spec. Classify first:
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute, impressions ≥ 50, not already covered | Addition candidate |
+| `CONTEXT_TERM` | A word describing context or setting, not a filterable attribute | Do not add |
+| `IMPLIED` | Category name already defines this value for every product | Do not add — artifact |
+| `DUPLICATE` | Semantically same as an existing platform spec under a different name | Do not add — already covered |
+| `NOT_A_PRODUCT_SPEC` | Delivery, payment, warranty, MOQ | Do not add |
+| `DATA_ARTIFACT` | One option has over 90% of impressions, or known default UI filter | Do not promote based on this alone |
+
+
+**Category-implied check — apply every time:**
+If the category name itself tells you the value of this spec for every product,
+buyer impressions are an artifact. Example: buyers searching "Material: Aluminium"
+in an Aluminium Profiles category are not expressing a new spec need. Every product
+is already aluminium. The impressions come from the filter existing, not from genuine
+buyer differentiation need.
+
+
+**Data artifact check — apply when impressions look disproportionate:**
+- Does one option account for over 90% of total impressions for this spec?
+- Is this likely a default filter the platform pre-selects for buyers?
+- Does product count in call data = 0 despite very high impressions?
+
+
+If yes to any of these, tag as `DATA_ARTIFACT` and do not promote based on this signal.
+
+
+---
+
+
+## How to use search data in your audit
+
+
+**Finding discovery gaps**
+Search for specs classified as missing with impressions above 50. These are attributes
+buyers want to filter on but the platform does not offer. High-priority addition
+candidates. Cross-reference with call data and custom specs before adding.
+
+
+**Validating tier placement**
+A spec currently in Tertiary with thousands of impressions is almost certainly
+misplaced. Bring this signal into your sequencing reasoning alongside fill rate
+and product count.
+
+
+**Finding option gaps**
+When buyers filter by a specific value that does not exist in the current option list,
+that is a direct signal to add that option. Example: "48V" appearing in search but
+absent from the Voltage spec options. Bring to your option validation reasoning with
+this as evidence.
+
+
+**Cross-source confirmation**
+A spec appearing as missing in search AND in call data is confirmed from both the
+demand side (buyers want to filter) and the transactional side (buyers and sellers
+discuss it). This combination reaches high confidence for addition.
+
+
+---
+
+
+## What search data cannot tell you alone
+
+
+**Whether a spec is genuinely missing** — High impressions may reflect an artifact,
+a context term, or a spec that already exists under a different name. Always classify
+before acting.
+
+
+**Final tier placement** — Impressions are one of three signals. You need fill rate
+(DS4) and product count (DS1) to make a well-supported tier decision.
+
+
+**Option quality** — Search data shows which values buyers look for, not whether your
+current option list is structurally correct. Use these values as evidence in your
+option validation reasoning.
+
+
+**Why impressions are high** — Search data shows that buyers filtered on something,
+not why. A spec with 5000 impressions could be a genuinely important attribute or
+a default UI filter every buyer sees. Investigate before acting.
+
+
+
+Continue your analysis using the information above. Read more skills if needed, or produce your final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Tool results:
+
+=== READ_SKILL(missing_spec_addition) ===
+# Missing Spec Identification — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to evaluate whether specs are missing from the current platform spec
+sheet — read this document. It gives you the framework to identify genuine gaps,
+avoid false positives, define new specs completely, and generate correct option
+values. You apply all of this reasoning yourself using the data in your context.
+
+
+---
+
+
+## The core problem
+
+
+Data sources will surface many candidate specs. The hard part is not finding
+candidates — it is knowing which are genuine gaps versus duplicates under a
+different name, composite attributes already captured, or noise that looks like
+a spec but is not.
+
+
+A false positive — adding a spec that duplicates an existing one — is harder to
+fix than missing a genuine gap. When genuinely uncertain, do not add.
+
+
+---
+
+
+## How to recognise a genuine gap
+
+
+A candidate spec is a genuine gap only if all three of the following are true:
+
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same real-world
+attribute, even approximately, the candidate is not a gap.
+
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+
+---
+
+
+## Common false positives — check these before acting
+
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common synonym.
+
+
+Common equivalences in Indian B2B:
+
+
+| These terms often mean the same thing |
+|--------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Type / Variant / Form / Format / Category |
+| Size / Dimensions / Measurement / Specification |
+| Capacity / Volume / Output / Throughput |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Purity / Concentration / Assay / Composition |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade |
+| Brand / Make / Manufacturer / OEM / Make & Model |
+| Certifications / Standards / Compliance / Approvals |
+
+
+**Composite attributes**
+Some specs appearing in call or search data are natural-language composites.
+"10mm HDPE pipe" → "10mm" is not a new Diameter spec if Dimensions already exists.
+
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+
+**Call data noise**
+"Good quality", "ISI certified", "fast delivery" appearing as candidates from call
+data are purchase context, not product attributes.
+
+
+**Low-signal custom specs**
+A custom spec added by only one or two sellers is seller-idiosyncratic, not a
+category-wide gap.
+
+
+---
+
+
+## How to read each data source for gap evidence
+
+
+**Buyer-Seller Call Data (DS1)**
+Look for attributes buyers ask about early in calls — these matter most to purchase
+decisions. Product count = signal strength. Higher count across more calls = stronger
+evidence.
+
+
+Discount: implied specs, generic values (As per requirement, Standard, Normal),
+re-statements of the category name.
+
+
+**Custom Specs Data (DS2)**
+Most reliable gap signal. A seller adding a custom spec is telling you buyers need
+this information and the platform has no field for it. Multiple sellers independently
+adding the same custom spec is strong confirmation.
+
+
+Discount: one-off specs from a single seller, vague or placeholder values,
+internal seller codes.
+
+
+**Buyer Search Data (DS3)**
+Shows what attributes buyers filter by when browsing. High impressions on a
+candidate confirm buyer demand.
+
+
+Discount: platform default filters, implied category specs, single-option specs
+where >90% of impressions fall on one value.
+
+
+**Domain knowledge**
+When data signals are weak or absent, use your understanding of how this product
+is specified and sold in Indian B2B trade. What would a seller know by heart?
+What would a buyer mention first? Domain knowledge supplements data — it does not
+override clear data signals.
+
+
+---
+
+
+## Evidence strength — how much do you need
+
+
+| Evidence | Decision |
+|----------|----------|
+| 2+ independent sources agree (e.g. call data + custom specs) | Add with high confidence |
+| 1 strong source (high call count, or multiple custom spec sellers, or strong domain reasoning) | Add — note single source |
+| Weak or indirect signal only (low count, single occurrence, vague intuition) | Do not add — note as unconfirmed |
+
+
+---
+
+
+## Consolidating candidates that mean the same thing
+
+
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning.
+
+
+"Usage" from custom specs + "Application" from call data + "End Use" from search
+→ one spec, not three. Pick the most standard name and add once.
+
+
+Rule: one underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+
+---
+
+
+## How to define a spec you are adding
+
+
+When you have confirmed a genuine gap, define it completely.
+
+
+### Spec name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+
+### Input type — decide this first
+
+
+**Must be `text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Brand names only when the category has no dominant brands
+  (generate options if 3+ brands are known in Indian B2B)
+- Exact custom dimensions (e.g. custom size, as per drawing)
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+
+**Must be `radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Yes / No, Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+
+
+**Must be `multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → multi_select
+
+
+### Options — how to generate them
+
+
+Draw from example values in call data, custom spec submissions, and search option
+values. Also apply Indian B2B market knowledge to fill gaps.
+
+
+**Quality rules:**
+1. Maximum 10 options for radio_button — the 10 most common in Indian B2B trade.
+   Up to 15 for multi_select.
+2. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only.
+3. No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose (unless genuinely traded as a category value)
+4. Under 30 characters per option
+5. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+
+
+**Formatting rules:**
+6. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+7. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+8. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm (most popular first)
+9. Categorical options by frequency — most common in Indian market first
+10. Use ISI/BIS standards where applicable
+11. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+12. Do not use range options unless they are the market standard for this spec
+13. Think like an Indian B2B seller — what values would a seller actually select?
+
+
+**How to handle sample values from data:**
+
+
+| Sample quality | What to do |
+|---------------|------------|
+| Clean, consistent values | Use as format reference; generate full standard market set |
+| Mixed quality | Extract the pattern; discard outliers |
+| 1–2 values only | Use to confirm spec meaning; generate full options from market knowledge |
+| Completely messy | Ignore; generate entirely from category + spec name knowledge |
+| Empty | Generate entirely from category + spec name knowledge |
+| Contains NA / Other / Custom | Ignore these; treat as empty |
+
+
+### Tier placement
+
+
+Add all new specs as Tertiary by default. Tier is determined by sequencing
+reasoning using actual signal data — not at the point of addition.
+
+
+Exception: if call data product count is very high and the spec is clearly a
+primary purchase decision attribute for this category, you may propose Secondary
+or Primary as provisional. Note this explicitly and treat it as provisional until
+sequencing confirms it.
+
+
+---
+
+
+## Validation checklist — before finalising any spec addition
+
+
+- Options are directly about this spec, not adjacent attributes
+- Options make sense for this specific category
+- A real buyer would use these as search filters
+- No duplicates or near-duplicates in the option list
+- No vague or filler options
+- Correct input_type for the spec's nature
+- Logical order (ascending numeric or frequency-based categorical)
+- All options under 30 characters
+- Units are standardised
+
+
+---
+
+
+## Yes/No specs
+
+
+Options: ["Yes", "No"] with input_type: "radio_button"
+
+
+---
+
+
+## What missing spec identification does NOT do
+
+
+- Does not determine final tier placement — that is sequencing reasoning
+- Does not validate or correct options of existing specs — that is option validator
+- Does not make final decisions when evidence is genuinely ambiguous — flag
+  these clearly and explain what additional evidence would resolve the uncertainty
+
+
+
+Continue your analysis using the information above. Read more skills if needed, or produce your final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Tool results:
+
+=== READ_SKILL(spec_sequencing) ===
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from DS4)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from DS3)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from DS1)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+Continue your analysis using the information above. Read more skills if needed, or produce your final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 6) ===
+Tool results:
+
+=== READ_SKILL(option_validator) ===
+---
+name: option-validator-skill
+description: >
+  Use this skill whenever you suspect a spec's option list is flawed — values are
+  missing, wrong, outdated, absurd, or poorly structured. Invoke when call data
+  shows values not in the current option list, when search data reveals high-impression
+  options that aren't selectable, when option fill rate shows near-zero adoption for
+  many options, or when options have structural problems (mixed units, overlapping
+  ranges, wrong input type). Do NOT use for discovering missing specs (use
+  missing-spec-addition-agent) or for tier decisions (use sequencing-agent).
+---
+
+# Skill 6: Option Validator skill
+## Identity
+- **Skill file**: `SKILL_option_validator_agent.md`
+- **Layer**: Strategic
+- **Purpose**: Audit the option list of a specific spec and produce a corrected version with additions, removals, corrections, and structural fixes.
+
+## What this skill does
+
+You audit a single spec's option list. Every spec has predefined options that sellers choose from and buyers filter on. When these options are wrong — values missing, misspelled, absurd, duplicated, or poorly formatted — the spec fails both sides. You produce a corrected option list with every change annotated.
+
+## Input you receive
+
+For the spec being validated:
+- `spec_name`, `current_options`, `input_type`, `current_tier`
+- **Evidence from investigator skills**:
+  - Call data values and corrections (from Buyer Call Agent)
+  - Search options and option-level gaps (from Buyer Search Agent)
+  - Custom spec options (from Custom Spec Agent)
+- **Fill rate data**: Spec-level (DS4) and option-level (DS5) fill rates
+- **Domain context** from the orchestrator
+
+## What you check
+
+### 1. Missing options
+Values in real-world data but not in the current list:
+- Call data values with meaningful product counts
+- High-impression search options
+- Custom spec values sellers repeatedly enter
+
+### 2. Incorrect options
+Call data corrections are your primary signal:
+- If the pipeline corrected a value and the old form is still in options, flag it for correction
+
+### 3. Absurd or irrelevant options
+Options that don't belong:
+- Makes no sense for this spec type
+- Zero signal in calls, zero search impressions, AND zero option fill rate
+
+**Be cautious with removals.** Only recommend when evidence is strong across multiple sources.
+
+### 4. Structural issues
+- Format inconsistency (mixed units, mixed granularity)
+- Duplicate values (different spellings of the same thing)
+- Too few options (0-2 makes the spec useless as a filter)
+- Wrong input_type (should be multi_select but is radio_button, or vice versa)
+
+### 5. Option ordering
+Numeric → ascending. Brands → alphabetical or by market share. Standard terms → most common first.
+
+## Output format
+
+```json
+{
+  "spec_name": "<name>",
+  "current_option_count": 8,
+  "corrected_option_count": 10,
+  "input_type_change": null | {"from": "old", "to": "new", "reason": "..."},
+  "additions": [
+    {"option": "value", "reason": "...", "source": "call + search"}
+  ],
+  "removals": [
+    {"option": "value", "reason": "...", "source": "fill_rate + call + search"}
+  ],
+  "corrections": [
+    {"from": "old", "to": "new", "reason": "...", "source": "call_data"}
+  ],
+  "structural_notes": ["..."],
+  "corrected_options": ["opt1", "opt2", "..."],
+  "flags": ["Any warnings about the spec overall"]
+}
+```
+
+## Boundaries
+
+- You DO modify option lists — this is your core function.
+- You do NOT add or remove the spec itself.
+- You do NOT change the spec's tier.
+- When removing options, always cite specific zero-signal evidence.
+- If ALL options show zero signal, flag the entire spec as potentially irrelevant — don't silently empty it.
+
+
+Continue your analysis using the information above. Read more skills if needed, or produce your final audit output (all 6 sections).

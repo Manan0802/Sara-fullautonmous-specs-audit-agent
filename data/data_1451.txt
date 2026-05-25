@@ -1,0 +1,3992 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 1451,
+        "mcat_name": "Fungicides",
+        "current_specs": [
+            {
+                "spec_name": "Technical Name",
+                "options": [
+                    "Mancozeb 75%",
+                    "Carbendazim 12% + Mancoze",
+                    "Sulphur 80%",
+                    "Hexaconazole 5%",
+                    "Metalaxyl 8% + Mancozeb ",
+                    "Copper Oxychloride 50%",
+                    "Carbendazim 50%",
+                    "Tebuconazole 25.9%",
+                    "Propiconazole 25%",
+                    "Trichoderma Viride 1%"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Formulation",
+                "options": [
+                    "WP (Wettable Powder)",
+                    "SC (Suspension Concentra",
+                    "WDG (Water Dispersible)",
+                    "EC (Emulsifiable Concen",
+                    "SL (Soluble Liquid)",
+                    "GR (Granules)",
+                    "DP (Dustable Powder)"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Mode of Action",
+                "options": [
+                    "Contact",
+                    "Systemic",
+                    "Protective",
+                    "Curative",
+                    "Translaminar",
+                    "Eradicant"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Type",
+                "options": [
+                    "Chemical",
+                    "Biological"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Target Disease",
+                "options": [
+                    "Powdery Mildew",
+                    "Downy Mildew",
+                    "Blight",
+                    "Rust",
+                    "Anthracnose",
+                    "Leaf Spot",
+                    "Wilt",
+                    "Root Rot",
+                    "Scab",
+                    "Dieback"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Target Crop",
+                "options": [
+                    "Grapes",
+                    "Paddy",
+                    "Potato",
+                    "Chilli",
+                    "Cotton",
+                    "Tomato",
+                    "Groundnut",
+                    "Vegetables",
+                    "Mango",
+                    "Tea"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Packaging Size",
+                "options": [
+                    "1 Kg",
+                    "500 g",
+                    "250 g",
+                    "100 g",
+                    "5 Kg",
+                    "1 Ltr",
+                    "500 ml",
+                    "250 ml"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "UPL",
+                    "Indofil",
+                    "Bayer",
+                    "Syngenta",
+                    "BASF",
+                    "Rallis India",
+                    "Dhanuka",
+                    "Sumitomo",
+                    "Crystal",
+                    "Coromandel"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Fungicides",
+            "mcat_id": 1451,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Technical Name",
+                            "options": [
+                                "Mancozeb 75%",
+                                "Carbendazim 12% + Mancoze",
+                                "Sulphur 80%",
+                                "Hexaconazole 5%",
+                                "Metalaxyl 8% + Mancozeb ",
+                                "Copper Oxychloride 50%",
+                                "Carbendazim 50%",
+                                "Tebuconazole 25.9%",
+                                "Propiconazole 25%",
+                                "Trichoderma Viride 1%"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Formulation",
+                            "options": [
+                                "WP (Wettable Powder)",
+                                "SC (Suspension Concentra",
+                                "WDG (Water Dispersible)",
+                                "EC (Emulsifiable Concen",
+                                "SL (Soluble Liquid)",
+                                "GR (Granules)",
+                                "DP (Dustable Powder)"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Technical Name and Formulation were chosen as they form the core identity of a fungicide. This is based on B2B buyer inquiries for specific active ingredients and formulations, which are critical for product differentiation and application methods."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Mode of Action",
+                            "options": [
+                                "Contact",
+                                "Systemic",
+                                "Protective",
+                                "Curative",
+                                "Translaminar",
+                                "Eradicant"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Type",
+                            "options": [
+                                "Chemical",
+                                "Biological"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Target Disease",
+                            "options": [
+                                "Powdery Mildew",
+                                "Downy Mildew",
+                                "Blight",
+                                "Rust",
+                                "Anthracnose",
+                                "Leaf Spot",
+                                "Wilt",
+                                "Root Rot",
+                                "Scab",
+                                "Dieback"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Mode of Action, Type, and Target Disease define the product's functional use. Buyers need to know if a product is Systemic or Contact, Chemical or Biological, and which specific diseases it targets, which aligns with how products are listed in technical catalogs."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Target Crop",
+                            "options": [
+                                "Grapes",
+                                "Paddy",
+                                "Potato",
+                                "Chilli",
+                                "Cotton",
+                                "Tomato",
+                                "Groundnut",
+                                "Vegetables",
+                                "Mango",
+                                "Tea"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Packaging Size",
+                            "options": [
+                                "1 Kg",
+                                "500 g",
+                                "250 g",
+                                "100 g",
+                                "5 Kg",
+                                "1 Ltr",
+                                "500 ml",
+                                "250 ml"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "UPL",
+                                "Indofil",
+                                "Bayer",
+                                "Syngenta",
+                                "BASF",
+                                "Rallis India",
+                                "Dhanuka",
+                                "Sumitomo",
+                                "Crystal",
+                                "Coromandel"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Target Crop, Packaging Size, and Brand provide essential supplementary information for purchasing and application. Buyers often search by crop, packaging size is a key logistical detail for B2B orders, and brand is a significant factor for trust."
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "50 kg",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "25 kg",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "10 kg",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "1 kg",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "100 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "5 kg",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "1 L",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "500 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "100 ml",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "250 ml",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "200 ml",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "500 ml",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "20 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "250 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "0.5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "150 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "240 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "25 units per case",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "25-50 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "40 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "400 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "50 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "80 %",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "85 %",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "99 %",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "90 %",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "99.9 %",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "80-90 %",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "99.5 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "Pure unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "10 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "20 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "40 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "5 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "50 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "75 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concentration",
+            "option_value": "98 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Powder",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Liquid",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Loose",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Dust",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Elemental",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Crystal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Formulated",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Glass",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Packing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Roll",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Agriculture",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Pesticide Formulation",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Blueberry growing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Crop top dressing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Fertilizer Testing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Fungicide",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Nutrient Supply",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Rubber (Balloon Manufacturing)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Soil Treatment",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Soil application",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Structure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Wood",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Formulation",
+            "option_value": "WDG",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Formulation",
+            "option_value": "DP",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Formulation",
+            "option_value": "WP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Formulation",
+            "option_value": "GR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Formulation",
+            "option_value": "SP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Yellow",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Soil Color",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Brown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Brownish",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Earth Color",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Light Yellow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Red",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Tebuconazole + Trifloxystrobin",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Novaluron 5.25% + Indoxacarb",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Sulphur",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Acetamiprid",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Azoxystrobin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Azoxystrobin 23%",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Cymoxanil + Mancozeb",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Difenoconazole 25%",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Mancozeb",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Pyraclostrobin + Tricyclazole",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Same as Rainbow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technical Name",
+            "option_value": "Tebuconazole",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "355 Five Star",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Amistar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Bayer",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Novacure",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Holabole",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "NACL",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Shanmuka",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "BASF",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Bharat Certis",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Biolysine Organics",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Corteva",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Gharda",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Indofil",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kursi Crop Science",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "PI Industries",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Panch Gulab",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "SRL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Shan",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Shivalik",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sumitomo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Syngenta",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Weltrex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bag",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bag (Loose)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bottle (Plain)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Case",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Drum",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "HDP Bag",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Loose",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Loose Bag",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Packet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Packet/Box",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Plain white sack",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "CIB License",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Solubility",
+            "option_value": "Not Water Soluble",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Solubility",
+            "option_value": "Insoluble in Water",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Solubility",
+            "option_value": "Water Soluble",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Agriculture",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Industrial",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Elemental",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Extra Pure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "First Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Lab or Commercial",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Technical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Paddy",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Cotton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Papaya",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Pomegranate",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Crop",
+            "option_value": "Sugarcane",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Disease/Problem",
+            "option_value": "Caterpillar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Disease/Problem",
+            "option_value": "Leaf Curl",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Disease/Problem",
+            "option_value": "Neck Blast",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Disease/Problem",
+            "option_value": "Plant Growth and Drop Prevention",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Disease/Problem",
+            "option_value": "Smut Disease",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Disease/Problem",
+            "option_value": "Telkat (Oily spot)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Organic Fungicide",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Bactericide",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Fungicide",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Coverage Area",
+            "option_value": "10 acres/kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Coverage Area",
+            "option_value": "6 acres per kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Mesh Size",
+            "option_value": "150-200",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Mesh Size",
+            "option_value": "200 mesh",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Additives",
+            "option_value": "Smell enhancing agent",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "200 g/acre",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturer",
+            "option_value": "Western Metakim",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Mode of Action",
+            "option_value": "Transmitter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Shinkufua",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Name",
+            "option_value": "Rexor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Residual Action",
+            "option_value": "25 days",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Source Material",
+            "option_value": "Lumps",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Soil pH",
+            "option_value": "4.5 to 5.5",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume per Case",
+            "option_value": "12 L",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Azala"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Manufacturing",
+            "option_value": "GCC"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "A Top"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Manufacturing",
+            "option_value": "GCC"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand",
+            "option_value": "Kriman"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Product Brand",
+            "option_value": "Tata"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand",
+            "option_value": "Caviet"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Pack Type",
+            "option_value": "Packet"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Shelf Life",
+            "option_value": "2 Years"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Shelf Life",
+            "option_value": "2 Year"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Product Brand",
+            "option_value": "Innova"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Product Brand",
+            "option_value": "Innova"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Shelf Life",
+            "option_value": "2 Years"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Atul"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Products Brand",
+            "option_value": "Brafi"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Product Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Product Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Products Brand",
+            "option_value": "Brafi"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Products Brand",
+            "option_value": "Brafi"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Product Brand",
+            "option_value": "Barfi"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Products Brand",
+            "option_value": "Brafi"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Products Brand",
+            "option_value": "Brafi"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Product Brand",
+            "option_value": "Brafi"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Vintage"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Made in",
+            "option_value": "INDIA"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Zepter"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Manufacturer By",
+            "option_value": "Nilhari Biochem"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Doses",
+            "option_value": "60ml Per Acre"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Pack Size",
+            "option_value": "300 mL"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Solution"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Package Type",
+            "option_value": "Bottle"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Safex"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Package Type",
+            "option_value": "Bottle"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Aspire"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Doses",
+            "option_value": "200 ml Per Acre"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Manufacturer By",
+            "option_value": "Nilhari Biochem"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Riseup"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Manufacturer By",
+            "option_value": "Nilhari Biochem"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Doses",
+            "option_value": "300ml Per Acre"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Doses",
+            "option_value": "100 gm Per Acre"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Manufacturer By",
+            "option_value": "Nilhari Biochem"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Aahna"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Corol"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Doses",
+            "option_value": "400ml Per Acre"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Manufacturer By",
+            "option_value": "Nilhari Biochem"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Composition",
+            "option_value": "Profenophos 50% EC"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand",
+            "option_value": "Gamma"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand",
+            "option_value": "Gamma"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Composition",
+            "option_value": "Hexaconazole 5% EC"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "15 cm",
+            "option_value": "25 cm"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "15cm",
+            "option_value": "25cm"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Brand Name",
+            "option_value": "Propixon"
+        },
+        {
+            "mcat_id": "1451",
+            "mcat_name": "Fungicides",
+            "spec_name": "Shelf Life",
+            "option_value": "35 Months"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "adama",
+            "impression": "47"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "amistar",
+            "impression": "3175"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "atal",
+            "impression": "101"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "basf",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "captan",
+            "impression": "23"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "coromandel",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "corteva",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "dupont",
+            "impression": "77"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "flick",
+            "impression": "244"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "fmc",
+            "impression": "128"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "galileo",
+            "impression": "22019"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "godrej",
+            "impression": "40"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "gsp",
+            "impression": "58"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "iffco",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "ipl",
+            "impression": "188"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "isagro",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "ju",
+            "impression": "384"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "kavach",
+            "impression": "50"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "krishi",
+            "impression": "25"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "mahindra",
+            "impression": "398"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "matco",
+            "impression": "27"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "nichino",
+            "impression": "22"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "oscar",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "rainbow",
+            "impression": "202"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "samadhan",
+            "impression": "69"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "samar",
+            "impression": "28"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "shan",
+            "impression": "66"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "sumitomo",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "syngenta",
+            "impression": "213"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "syscon",
+            "impression": "174"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "tag",
+            "impression": "41"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "tata",
+            "impression": "1429"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "visma",
+            "impression": "100"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "warden",
+            "impression": "2398"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "brand",
+            "spec_option": "zudio",
+            "impression": "42770"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "chemical group",
+            "spec_option": "fungicide",
+            "impression": "270321"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "color",
+            "spec_option": "blue",
+            "impression": "498"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "color",
+            "spec_option": "gold",
+            "impression": "2340"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "color",
+            "spec_option": "tricolor",
+            "impression": "2396"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "form",
+            "spec_option": "cream",
+            "impression": "478"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "form",
+            "spec_option": "liquid",
+            "impression": "26"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "form",
+            "spec_option": "oil",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "form",
+            "spec_option": "tablet",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "formulation",
+            "spec_option": "ec",
+            "impression": "915"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "formulation",
+            "spec_option": "sc",
+            "impression": "124"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "formulation",
+            "spec_option": "wp",
+            "impression": "82"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "grade",
+            "spec_option": "a",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "grade",
+            "spec_option": "df",
+            "impression": "343"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "grade",
+            "spec_option": "mr",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "language",
+            "spec_option": "hindi",
+            "impression": "481"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "language",
+            "spec_option": "telugu",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "material",
+            "spec_option": "paper",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "model name/number",
+            "spec_option": "acrobat",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "model name/number",
+            "spec_option": "superstar",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "model number",
+            "spec_option": "727",
+            "impression": "77"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "model number",
+            "spec_option": "mz 72",
+            "impression": "47"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "model number",
+            "spec_option": "t2",
+            "impression": "118"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "1 kg",
+            "impression": "3648"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "1 liter",
+            "impression": "1229"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "1 litre",
+            "impression": "845"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "100 g",
+            "impression": "118"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "100 ml",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "150 ml",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "250 gm",
+            "impression": "412"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "250 gram",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "250 ml",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "400 ml",
+            "impression": "231"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "5 litre",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "500 gm",
+            "impression": "31"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "500 gram",
+            "impression": "37"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "packaging size",
+            "spec_option": "500 ml",
+            "impression": "148"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "shape",
+            "spec_option": "hexagonal",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "shape",
+            "spec_option": "l",
+            "impression": "80"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "strength",
+            "spec_option": "200",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "strength",
+            "spec_option": "2000",
+            "impression": "849"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "biomycin",
+            "impression": "34"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "copper",
+            "impression": "538"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "curzate",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "famoxadone",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "fludioxonil",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "flusilazole",
+            "impression": "1337"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "fujione",
+            "impression": "26"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "iprodione",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "picoxystrobin",
+            "impression": "381"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "streptocycline",
+            "impression": "373"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "triadimefon",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "technical name",
+            "spec_option": "trifloxystrobin",
+            "impression": "340"
+        },
+        {
+            "mcat_name": "Fungicides",
+            "spec_name": "type",
+            "spec_option": "galileo fungicide",
+            "impression": "5"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Technical Name",
+            "spec_fill_rate": "67.4",
+            "product_count": "58"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_fill_rate": "51.2",
+            "product_count": "44"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_fill_rate": "51.2",
+            "product_count": "44"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_fill_rate": "46.5",
+            "product_count": "40"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_fill_rate": "45.3",
+            "product_count": "39"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "32.6",
+            "product_count": "28"
+        },
+        {
+            "spec_name": "Type",
+            "spec_fill_rate": "32.6",
+            "product_count": "28"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_fill_rate": "30.2",
+            "product_count": "26"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "25.6",
+            "product_count": "22"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_fill_rate": "23.3",
+            "product_count": "20"
+        },
+        {
+            "spec_name": "Application Method",
+            "spec_fill_rate": "16.3",
+            "product_count": "14"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "14",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_fill_rate": "11.6",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_fill_rate": "8.1",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_fill_rate": "7",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_fill_rate": "5.8",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_fill_rate": "4.7",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Recommended Dose",
+            "spec_fill_rate": "3.5",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_fill_rate": "3.5",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Form",
+            "spec_fill_rate": "2.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_fill_rate": "2.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_fill_rate": "2.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Sulphur Content",
+            "spec_fill_rate": "2.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_fill_rate": "2.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Packing Size",
+            "spec_fill_rate": "2.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Mancozeb Content",
+            "spec_fill_rate": "2.3",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Iodine Strength",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Recommended Crops",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Solubility",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Metalaxyl Content",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Purity",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "BRAND NAME",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Sulphur Content (%)",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Origin",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Mode of Application",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Dose per Acre",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Target Pests",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Hexaconazole Content",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Compatibility",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crops",
+            "spec_option_name": "Tomato",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Foliar Spray",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Purity",
+            "spec_option_name": "99.50%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pesticide Type",
+            "spec_option_name": "Fungicide",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_option_name": "New Only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Package Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Soil Application",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target Pests",
+            "spec_option_name": "leaf spot",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "BRAND NAME",
+            "spec_option_name": "BHIVA BIOTECH",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Dosage per Acre",
+            "spec_option_name": "120 g/acre",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Seed Treatment",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Farming Type",
+            "spec_option_name": "Conventional",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Innova",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Copper Content",
+            "spec_option_name": "24.50%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "15cm",
+            "spec_option_name": "25cm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crops",
+            "spec_option_name": "Onion,Rice",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Crops",
+            "spec_option_name": "Chilli",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "spec_option_name": "Carbendazim",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Manufacturer By",
+            "spec_option_name": "Nilhari Biochem",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Drip Application",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Iodine Strength",
+            "spec_option_name": "Fungal and itching",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Mode of Application",
+            "spec_option_name": "Foliar Spray",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "15 cm",
+            "spec_option_name": "25 cm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sulphur Content (%)",
+            "spec_option_name": "80%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Solubility",
+            "spec_option_name": "100%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target Pest",
+            "spec_option_name": "Fungal Disease",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Dose per Acre",
+            "spec_option_name": "200Ã¢â¬â250 ml",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Hexaconazole Content",
+            "spec_option_name": "5% w/w",
+            "option_fill_rate": "80"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Chemical",
+            "option_fill_rate": "76.7"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Sulphur Content",
+            "spec_option_name": "80%",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Agriculture Grade",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Organic Compliance",
+            "spec_option_name": "Not for Organic Use",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Systemic",
+            "option_fill_rate": "64.2"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "61.5"
+        },
+        {
+            "spec_name": "Recommended Dose",
+            "spec_option_name": "0.5 ml/L",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Mancozeb Content",
+            "spec_option_name": "63%",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Application Method",
+            "spec_option_name": "Foliar Spray",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Grapes",
+            "option_fill_rate": "57.8"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Powdery Mildew",
+            "option_fill_rate": "57"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Paddy",
+            "option_fill_rate": "56.6"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Paddy",
+            "option_fill_rate": "55.6"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Chilli",
+            "option_fill_rate": "50.6"
+        },
+        {
+            "spec_name": "Crop Type",
+            "spec_option_name": "All Crops",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Metalaxyl Content",
+            "spec_option_name": "35% WS",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "2 ml/lit water",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Dosage",
+            "spec_option_name": "1 ml/L",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Organic Certification",
+            "spec_option_name": "Not organic",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Metalaxyl Content",
+            "spec_option_name": "Metalaxyl 8 Mancozeb 64 Wp",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Crop Type",
+            "spec_option_name": "Vegetables",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packing Size",
+            "spec_option_name": "1 L",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packing Size",
+            "spec_option_name": "250 ml",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Agriculture",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Organic Certification",
+            "spec_option_name": "Not Certified",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Fungicide",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "2 years",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "44.4"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Pouch",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Fungicide",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Mancozeb Content",
+            "spec_option_name": "64%",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Compatibility",
+            "spec_option_name": "Compatible with most fungicides",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "Tricyclazole 75% WP",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Compatibility",
+            "spec_option_name": "Compatible with most insecticides",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "WP (Wettable Powder)",
+            "option_fill_rate": "39"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Tomato",
+            "option_fill_rate": "38.6"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Potato",
+            "option_fill_rate": "37.3"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Groundnut",
+            "option_fill_rate": "37.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1 L",
+            "option_fill_rate": "36.4"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Contact",
+            "option_fill_rate": "35.8"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Vegetables",
+            "option_fill_rate": "34.9"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Downy Mildew",
+            "option_fill_rate": "34.4"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "SC",
+            "option_fill_rate": "34.1"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "33.7"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Crystal",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Agricultural Grade",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Organic Compliance",
+            "spec_option_name": "No",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "Hexaconazole 5% EC",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "Profenophos 50% EC",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "50%",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "WDG / WG",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 Kg",
+            "option_fill_rate": "32.8"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Mango",
+            "option_fill_rate": "32.5"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Leaf Spot",
+            "option_fill_rate": "32.3"
+        },
+        {
+            "spec_name": "Application Method",
+            "spec_option_name": "Foliar spray",
+            "option_fill_rate": "30"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 Ltr",
+            "option_fill_rate": "27.6"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Packet",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Doses",
+            "spec_option_name": "300ml Per Acre",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Sulphur Content",
+            "spec_option_name": "55.16% SC",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "WP",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Doses",
+            "spec_option_name": "200 ml Per Acre",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Doses",
+            "spec_option_name": "100 gm Per Acre",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Doses",
+            "spec_option_name": "400ml Per Acre",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Anthracnose",
+            "option_fill_rate": "24.7"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Blight",
+            "option_fill_rate": "24.7"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Wheat",
+            "option_fill_rate": "24.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Rust",
+            "option_fill_rate": "23.7"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_option_name": "Pouch",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Wheat",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Groundnut",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Apple",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Chilli",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Grapes",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Vegetables mix",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Mango",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Tea",
+            "option_fill_rate": "21.7"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "SC (Suspension Concentra",
+            "option_fill_rate": "20.7"
+        },
+        {
+            "spec_name": "Recommended Dose",
+            "spec_option_name": "2 ml/L",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Hexaconazole Content",
+            "spec_option_name": "Hexaconazole 5% Validamycin 2.5% Sc",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "18.2%+11.4% SC",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "18.2 +11.4",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Insecticide",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "2 Years",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Single",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Technical Content",
+            "spec_option_name": "18.20%",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Recommended Dose",
+            "spec_option_name": "1 g/kg seed",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Compatibility",
+            "spec_option_name": "Compatible with most pesticides",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Combination",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Bayer",
+            "option_fill_rate": "19"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Biological",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "WG",
+            "option_fill_rate": "15.9"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_option_name": "Jar",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Plastic Pouch",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "HDPE bottle",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Aluminium pouch",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "BASF",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Maize",
+            "option_fill_rate": "13.3"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Apple",
+            "option_fill_rate": "13.3"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Scab",
+            "option_fill_rate": "12.9"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Aspire",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Safex",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Solution",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Vintage",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Riseup",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Propixon",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Corol",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Aahna",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Protective",
+            "option_fill_rate": "12.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "500 g",
+            "option_fill_rate": "12.1"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Soybean",
+            "option_fill_rate": "12"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Tomato",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Soybean",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Cumin",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "Rose",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "General Vegetables",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Crop",
+            "spec_option_name": "CITRUS",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "500 g",
+            "option_fill_rate": "10.9"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1 kg",
+            "option_fill_rate": "10.9"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "1 year",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "35 Months",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Application Method",
+            "spec_option_name": "Seed treatment",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "2 Year",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Crystal",
+            "option_fill_rate": "9.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Gamma",
+            "option_fill_rate": "9.5"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Tikka Disease",
+            "option_fill_rate": "8.6"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Carbendazim 12% + Mancoze",
+            "option_fill_rate": "7.8"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Sheath Blight",
+            "option_fill_rate": "7.5"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Root Rot",
+            "option_fill_rate": "7.5"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Curative",
+            "option_fill_rate": "7.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "WG",
+            "option_fill_rate": "7.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "500 ml",
+            "option_fill_rate": "7.3"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Sulphur 80%",
+            "option_fill_rate": "7"
+        },
+        {
+            "spec_name": "Application Method",
+            "spec_option_name": "Soil Application",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Application Method",
+            "spec_option_name": "Soil Drench",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Application Method",
+            "spec_option_name": "Seed Treatment",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "10 wg",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "11%+18.3% SC",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "50% WG",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "25% EC",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "11",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "18.3 SC",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "25% WG",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "75 WG",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "SC",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "75% WG",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "10%+65% Wg",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "6.7%+26.9 % SC",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "10%+ 65%WG",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "Azoxystrobin 11% + Tebuconazole 18.3% w/w SC",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "18.30%",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Technical Concentration",
+            "spec_option_name": "6.7",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "WDG (Water Dispersible)",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Mancozeb 75%",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "EC (Emulsifiable Concen",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Sheath blight",
+            "option_fill_rate": "5.4"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "250 ml",
+            "option_fill_rate": "5.2"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Mancozeb 63% + Carbendazim 12%",
+            "option_fill_rate": "5.2"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "250 g",
+            "option_fill_rate": "5.2"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "FUNGICIDE",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Other Indian Brand",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Nazole+",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "VAIBHAV",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Sylvan",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "green crop",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Dhanuka",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "ZIVISTA",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Innova",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "CONQUER",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Syngenta",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "EC",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "5% SC",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Wilt",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Karnal Bunt",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Late Blight",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Alternaria Blight",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Protectant",
+            "option_fill_rate": "3.7"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Paddy (Rice)",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "250 ml",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1 litre",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 L",
+            "option_fill_rate": "3.4"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "500 ml",
+            "option_fill_rate": "3.4"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Early Blight",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Dieback",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Fruit Rot",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Blast",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Metalaxyl 8% + Mancozeb",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Hexaconazole 5%",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azoxystrobin 18.2% + Difenoconazole 11.4% SC",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azo 4.8% + Chloro 40% SC",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "12%+63% WP",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "WP",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "Hexaconazole 4% + CARBENDAZIM 16% SC",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "WS",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "Hexaconazole 5% Validamycin 2.5% Sc",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "Water Dispersible Granules",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "70% + 5% WP",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "Wettable Powder (WP)",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "70%+5% Wp",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Tikka leaf spot",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Leaf spot",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Die Back",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Powdery mildew",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "300GM",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1KG, 3KG, 5KG",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100ML, 250ML, 500ML, 1 LTR",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "250gm",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "250 ml - 200 Ltr",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100 ml",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100 gm to 25 kg",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100 g",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100gm to 25kg",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "10GM, 100GM, 250GM, 500GM",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "600 ML",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "250 and 100 GM",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "500 gm",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "250 g",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "120g",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "100 g",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "15 kg",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Sulphur",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Copper Oxychloride 50%",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tebuconazole 50% + Trifloxystrobin 25% WG",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Carbendazim 12%+Mancozeb 63%",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 kg",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tebuconazole",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "600ml",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Mancozeb 64% + Metalaxyl 8%",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tebuconazole 25.9%",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Fluopicolide 5.56% + Propamocarb Hydrochloride 55.6%",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Carbendazim 12% + Mancozeb 63%",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "500 gm",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tebuconazole 50% WG",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "50 kg",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Finger Millet",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Cumin",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Systemic and protectant",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "pulses,vegetable",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Water Soluble Powder",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "SG",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Soluble powder",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Systemic+Contact",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Rice",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Grapes, Groundnut, Paddy, Vegetables",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Eradicant",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Sugarcane,Onion,Maize",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Mode of Action",
+            "spec_option_name": "Translaminar",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "CS",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Patato,Tamato",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Potatos, Chilli",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Water Soluble",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Barley",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "50% WP",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "SC",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "SE",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "SL (Soluble Liquid)",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Target Crop",
+            "spec_option_name": "Onion",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Hexythiazox 1% + Tobuconazole 1% WivSC",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "GR (Granules)",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "LATE BLIGHT",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "fungal diseases.",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Root rot",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Early blight, Late Blight  L",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Alternaria blight",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "fungal and bacterial diseases",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Rust, Root Rot, Blight, Wilt, Downy Mildew, Powdery Mildew, Leaf Spot, Anthracnose",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Rice blast disease",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Sheath rot",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Phytophthora and Pythium",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Neck blast",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Dumping water",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Sigatoka",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Node blast",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Oomycetes",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Leaf blast",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Rice blast",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Fungle diseases",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Downy mildew",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Downy mildew, Powdery mildew, fruit rot, Leaf spot, pod blight, Anthracnose, Late blight",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Target Disease",
+            "spec_option_name": "Fruit rot",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "TEBUCONAZOLE + SULPHER",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Fluopicolide 4.44% + Fosetyl-Al 66.67%",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azoxystronin + Tebuconazole",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azoxystrobin plus difenoconazole",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azoxystrobin 11% + Tebuconazole-18.3%",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azo 23% SC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "picoxystrobin 6.78",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Thiophanate Methyl 70%",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Mancozeb 40 + azoxystrobin 7os",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Lambda - Cyhalothrin 4.9 %",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tebuconazole 10% + Sulphur 65%",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Picoxystrobin 22.52% SC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azoxystrobin + Difenoconazole",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Sulphur 5.16",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "TEBUONAZOLE 6.7% + CAPTAN 26.9% SC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "FMC SIDRA 250 GM  Tebuconazole 10% + Sulphur 65%",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Propiconazole 25% EC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Picoxystrobin 7.05% + Propiconazole 11.71% SC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tebuconazole 10% + sulphur 65%",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tubiconazole 10%+sulphur65%",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Acrobat",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Hexaconazolen75%",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azoxystrobin 11% +Tebuconazole 18.30% SC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Fluopyram17.7% w/w+Tebuconazole 17.7%w/w SC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Thiofinate methyl",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Propiconazole 13.9% EC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Picoxystrobin 22.52 % Sc",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Metiram 55% + Pyraclostrobin 5% WG",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "TEBUCONAZOLE 6.7% + CAPTAN 26.9% SC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azo 11.5% + Manco 30% WP",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Carbendazim 50%",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Propined 70 Wp",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Powder Azoxystrobin 8.3 Mancozeb 66.7 Wg",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tebuconazole 10% WP",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Kasugamycin 5% + Copper Oxychloride 45% WP",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azoxystron 18.2 + Difenconazole 11.4 % SC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azoxystrobin 11% + Tebuconazole 18.3% w/w SC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azoxystrobin 11",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tebuconazole 6.7% + Captan 26.9 % SE",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tricyclazole 75%",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tebuconazole 10% + Sulphur 65% WG",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Flusilazole 40% Ec",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Plant Extract",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azoxystrobin 18.2% +  Difenoconazole 11.4%",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Carbendazim",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "carbendazim 50% wp",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Fosetyl Al 80 Wp",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "propineb 70% wp",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Abamectin 1.9 %",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Azo 11% + Tebu 18.3% SC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tebuconzole 10% Wg",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Emamectin Benzoate 5 %",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Tebuconazole 18.3% SC",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Technical Name",
+            "spec_option_name": "Emamectin Benzoate 1.9 %",
+            "option_fill_rate": "0.9"
+        }
+    ]
+}

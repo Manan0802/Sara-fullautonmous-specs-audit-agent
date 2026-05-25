@@ -1,0 +1,3512 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 9070,
+        "mcat_name": "HDPE Tarpaulin",
+        "current_specs": [
+            {
+                "spec_name": "GSM",
+                "options": [
+                    "120 GSM",
+                    "200 GSM",
+                    "150 GSM",
+                    "250 GSM",
+                    "90 GSM",
+                    "300 GSM",
+                    "170 GSM",
+                    "350 GSM",
+                    "400 GSM"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Size",
+                "options": [
+                    "18 ft x 24 ft",
+                    "12 ft x 18 ft",
+                    "24 ft x 30 ft",
+                    "15 ft x 18 ft",
+                    "20 ft x 30 ft",
+                    "30 ft x 30 ft",
+                    "12 ft x 15 ft",
+                    "40 ft x 30 ft",
+                    "9 ft x 12 ft",
+                    "60 ft x 60 ft"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Material Grade",
+                "options": [
+                    "Virgin",
+                    "Semi-Virgin",
+                    "Reprocessed"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Color",
+                "options": [
+                    "Blue",
+                    "Black",
+                    "Yellow",
+                    "Silver/Black",
+                    "Green/Silver",
+                    "White",
+                    "Orange/Blue"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Thickness",
+                "options": [
+                    "300 Micron",
+                    "250 Micron",
+                    "400 Micron",
+                    "500 Micron"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Features",
+                "options": [
+                    "UV Stabilized",
+                    "100% Waterproof",
+                    "Reinforced Edges",
+                    "Aluminum Eyelets",
+                    "Tear Resistant",
+                    "Puncture Resistant",
+                    "Stitchless"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Warranty",
+                "options": [
+                    "No Warranty",
+                    "2 Years",
+                    "3 Years",
+                    "5 Years"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "Supreme",
+                    "Silpaulin",
+                    "Paragon's",
+                    "Nakoda",
+                    "Esslene",
+                    "Maharaja"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "HDPE Tarpaulin",
+            "mcat_id": 9070,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "GSM",
+                            "options": [
+                                "120 GSM",
+                                "200 GSM",
+                                "150 GSM",
+                                "250 GSM",
+                                "90 GSM",
+                                "300 GSM",
+                                "170 GSM",
+                                "350 GSM",
+                                "400 GSM"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Size",
+                            "options": [
+                                "18 ft x 24 ft",
+                                "12 ft x 18 ft",
+                                "24 ft x 30 ft",
+                                "15 ft x 18 ft",
+                                "20 ft x 30 ft",
+                                "30 ft x 30 ft",
+                                "12 ft x 15 ft",
+                                "40 ft x 30 ft",
+                                "9 ft x 12 ft",
+                                "60 ft x 60 ft"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "GSM and Size are the most critical factors in every transaction. GSM is the primary indicator of quality, durability, and price. Size is the first requirement stated by almost every buyer. GSM is chosen for the title affix as it's a concise differentiator, while Size is too variable for a title but essential for filtering."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Material Grade",
+                            "options": [
+                                "Virgin",
+                                "Semi-Virgin",
+                                "Reprocessed"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Color",
+                            "options": [
+                                "Blue",
+                                "Black",
+                                "Yellow",
+                                "Silver/Black",
+                                "Green/Silver",
+                                "White",
+                                "Orange/Blue"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Material Grade and Color define the product's composition and appearance, crucial for performance and specific use-cases. Material Grade was a key point of discussion regarding quality and price. Color is frequently specified by buyers for particular applications."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Thickness",
+                            "options": [
+                                "300 Micron",
+                                "250 Micron",
+                                "400 Micron",
+                                "500 Micron"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Features",
+                            "options": [
+                                "UV Stabilized",
+                                "100% Waterproof",
+                                "Reinforced Edges",
+                                "Aluminum Eyelets",
+                                "Tear Resistant",
+                                "Puncture Resistant",
+                                "Stitchless"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Warranty",
+                            "options": [
+                                "No Warranty",
+                                "2 Years",
+                                "3 Years",
+                                "5 Years"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "Supreme",
+                                "Silpaulin",
+                                "Paragon's",
+                                "Nakoda",
+                                "Esslene",
+                                "Maharaja"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Thickness, Features, Warranty, and Brand provide important supplementary details. Thickness (in Microns) is key for specific applications like pond liners. Features capture value-added properties. Warranty is a trust signal, and some buyers show a preference for established Brands."
+                }
+            },
+            "scratchpad": "The specification hierarchy is determined by commercial significance in the Indian B2B market. Primary specs (GSM, Size) are essential for any inquiry. Secondary specs (Material Grade, Color) define quality and application suitability. Tertiary specs (Thickness, Features, Warranty, Brand) provide supplementary details, justify pricing, and act as trust signals."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Appearance",
+            "option_value": "Bore ke reshe jaisa",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Agriculture",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Commercial",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Multi-Purpose",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Poly House",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Pond Lining",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Poultry Farm Ceiling",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Poultry Farm Curtain",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Truck coverage",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Water storage",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "A1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "AP Gold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Agarwal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Aquaplast",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Archna",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Double Bull",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dunlop",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Eco Polin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "FPL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Gap",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Guru Tarp",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "King Tarp",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kisan",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kohinoor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mahabali",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Maharaja",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mahashakti",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Max",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Max Paullin or Eco Gold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Micropolin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Modi Gold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Monsoon Gold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Montex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "NX",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "New Vision",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Nex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Panther",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Peacock",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Porsh",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Reliance",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "SPL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "SRF",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Seller's own brand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sentron / Deko",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Silpolin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Soldier",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Toro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "True Bond",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Branding Details",
+            "option_value": "Apple logo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Capacity",
+            "option_value": "30 theli",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "ISI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "ISO Certified",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Clip Spacing",
+            "option_value": "6 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Coating Material",
+            "option_value": "LDPE",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Black",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue, Yellow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue, Yellow, and others",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Double Color",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Green",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Metallic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Orange Blue",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Orange yellow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Silver White",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White with red stripes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Yellow",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Yellow (Various)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Yellow/Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Construction Detail",
+            "option_value": "Long thread-like fibers",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Durability",
+            "option_value": "1 years",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Durability",
+            "option_value": "1-1.5 years",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Durability",
+            "option_value": "2 years",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Low shine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Non-tearable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "UV Treated",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Waterproof",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "With eyelets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Filler Content",
+            "option_value": "0 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Filler Content",
+            "option_value": "10-20 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "Mat",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "100 GSM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "120 GSM",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "120-150 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "120-300 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "125 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "130 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "140-150 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "150 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "155 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "160 GSM",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "160-200 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "170 GSM",
+            "prod_count": 14
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "170-250 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "180 GSM",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "200 GSM",
+            "prod_count": 21
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "200-250 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "225 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "250 GSM",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "280-300 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "300 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "430 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "68 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "80 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "90 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": ">150 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "2200",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "9 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Lamination",
+            "option_value": "Contains filler",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Lamination",
+            "option_value": "Laminated",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Layer Color",
+            "option_value": "Black",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Layer Color",
+            "option_value": "White",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Layer Material",
+            "option_value": "HDPE",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Layer Material",
+            "option_value": "LDPE",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Layers",
+            "option_value": "3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Layers",
+            "option_value": "Single",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "100 ft",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "100 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "110 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "12 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "130 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "135 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "14 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "140 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "15 ft",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "15 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "16.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "1600 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "18 ft",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "20 m",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "210 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "22 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "24 ft",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "24 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "30 ft",
+            "prod_count": 20
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "30 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "35-40 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "36 ft",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "4.5 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "40 ft",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "42 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "48 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "50 ft",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "5700 unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "6 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "60 ft",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "64 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "66 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "7 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "70 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "9 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "All unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Load Capacity",
+            "option_value": "5 ton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Marking",
+            "option_value": "300",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "HDPE",
+            "prod_count": 27
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "0% filler virgin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "3D",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "98",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Black Madras",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Commercial",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Detergent bag material",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Export Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Filler-added",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "First Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Good",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "HDPE",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Halki Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Heavy Duty",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "High Strength",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "High-quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "ISI",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "ISI and ISO",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "ISO Certified",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Jado (Thick)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Local",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Low",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Medium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "NF Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Natural",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Non-Virgin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Not Subsidy Verified",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Plastic",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Polypropylene",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Polythene",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Pure Virgin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Raffia",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Regular",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Second Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Semi Virgin",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Shalimar equivalent",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Shining Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Standard Virgin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Sujar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Virgin Quality",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Waterproof",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Quality",
+            "option_value": "Zero Filler",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Mesh Count",
+            "option_value": "10 x 10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "China",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Imported",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Indian",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin City",
+            "option_value": "Surat",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Bore Type",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Sheet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Source Material",
+            "option_value": "Bags",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Source Material",
+            "option_value": "Plant Waste",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tarpaulin Type",
+            "option_value": "Customized",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tarpaulin Type",
+            "option_value": "Cut Piece",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Tarpaulin Type",
+            "option_value": "Kaccha Size",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tarpaulin Type",
+            "option_value": "Multi Layer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tarpaulin Type",
+            "option_value": "Ready-made",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Tarpaulin Type",
+            "option_value": "Roll",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Tarpaulin Type",
+            "option_value": "Stitched (Silai)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tarpaulin Type",
+            "option_value": "Waste/Scrap",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "1.5 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "100-300 micron",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "12 3 unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "150 micron",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "2.5 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "250 Gauge",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "300 micron",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "350 micron",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "500 micron",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "To be confirmed by buyer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "UV Treatment",
+            "option_value": "UV",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "2 yr",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "5 yr",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "Less than 1-2 yr",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "10 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "15 to 16 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "17 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "18 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "18.5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "2 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "3.5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "35-36 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "35-40 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "38 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "4.75 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "500 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "55 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "80-85-50 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "9-10 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "9.6 - 9.8 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "10 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "100 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "12 ft",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "135 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "140 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "15 ft",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "15 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "16.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "18 ft",
+            "prod_count": 21
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "18 m",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "20 ft",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "20 m",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "210 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "2100 unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "24 ft",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "27 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "30 ft",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "36 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "40 ft",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "42 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "50 ft",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "55 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "6 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "60 ft",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "66 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "7 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "8 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "8-32 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "All unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Yield",
+            "option_value": "Pono",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Item Brand",
+            "option_value": "Shivaline"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Brand Name",
+            "option_value": "seven crystal"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Made in",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Made in",
+            "option_value": "india"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Made in",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Made in",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Made in",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Product Thickness",
+            "option_value": "2.5mm"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Product Thickness",
+            "option_value": "4mm"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Product Thickness",
+            "option_value": "3mm"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Product Thickness",
+            "option_value": "2mm"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Product Thicknes",
+            "option_value": "1.5mm"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Finish Type",
+            "option_value": "Matte"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "I deal in",
+            "option_value": "New only"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Finish",
+            "option_value": "Powder Coated"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Brand Name",
+            "option_value": "Xcel"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Product Thickness",
+            "option_value": "0.5mm"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Brand Nmae",
+            "option_value": "Raptor"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Product Brand",
+            "option_value": "Swastik"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "ISO",
+            "option_value": "Yas"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "QUALITY",
+            "option_value": "Regular"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "FABRIC",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Brand",
+            "option_value": "Farmliv"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Brand",
+            "option_value": "Farmliv"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Brand",
+            "option_value": "Farmliv"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Product Thickness",
+            "option_value": "0.5mm"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Country of Origin",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Country of Origin",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Country of Origin",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Country of Origin",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Product",
+            "option_value": "HDPE Waterproof Tarpaulin"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Product",
+            "option_value": "Tarpaulin"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Country of Origin",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Country of Origin",
+            "option_value": "India"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Product",
+            "option_value": "Tarpaulin"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Pack Type",
+            "option_value": "Roll"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Material",
+            "option_value": "HDPE"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Packaging Type",
+            "option_value": "Buddle"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Pattern",
+            "option_value": "Plain"
+        },
+        {
+            "mcat_id": "9070",
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "Usage",
+            "option_value": "Agriculture"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "brand",
+            "spec_option": "barish",
+            "impression": "47"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "brand",
+            "spec_option": "fastrack",
+            "impression": "302"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "brand",
+            "spec_option": "hippo",
+            "impression": "56"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "brand",
+            "spec_option": "shalimar",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "brand",
+            "spec_option": "vj",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "color",
+            "spec_option": "black",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "color",
+            "spec_option": "green",
+            "impression": "136"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "color",
+            "spec_option": "transparent",
+            "impression": "100"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "color",
+            "spec_option": "white",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "material",
+            "spec_option": "hdpe",
+            "impression": "1032"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "material",
+            "spec_option": "hdpe plastic",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "packaging type",
+            "spec_option": "roll",
+            "impression": "131"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "product",
+            "spec_option": "tarpaulin",
+            "impression": "142844"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "product",
+            "spec_option": "tarpaulin sheet",
+            "impression": "740"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "thickness",
+            "spec_option": "200 gsm",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "thickness",
+            "spec_option": "250 gsm",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "HDPE Tarpaulin",
+            "spec_name": "thickness",
+            "spec_option": "500 micron",
+            "impression": "7"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "GSM",
+            "spec_fill_rate": "54.9",
+            "product_count": "56"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "50",
+            "product_count": "51"
+        },
+        {
+            "spec_name": "Color",
+            "spec_fill_rate": "44.1",
+            "product_count": "45"
+        },
+        {
+            "spec_name": "Size",
+            "spec_fill_rate": "44.1",
+            "product_count": "45"
+        },
+        {
+            "spec_name": "Features",
+            "spec_fill_rate": "35.3",
+            "product_count": "36"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_fill_rate": "28.4",
+            "product_count": "29"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_fill_rate": "20.6",
+            "product_count": "21"
+        },
+        {
+            "spec_name": "Material",
+            "spec_fill_rate": "12.7",
+            "product_count": "13"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_fill_rate": "12.7",
+            "product_count": "13"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_fill_rate": "10.8",
+            "product_count": "11"
+        },
+        {
+            "spec_name": "Width",
+            "spec_fill_rate": "8.8",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "8.8",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_fill_rate": "8.8",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Waterproof Type",
+            "spec_fill_rate": "7.8",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "6.9",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_fill_rate": "5.9",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "UV Stabilization",
+            "spec_fill_rate": "5.9",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Eyelet Distance",
+            "spec_fill_rate": "2.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Product",
+            "spec_fill_rate": "2.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Eyelet Material",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Finish Type",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Coating",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Waterproof",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Base Fabric",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "QUALITY",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Coating Side",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "ISO",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Grommet Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Application Area",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Density",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Sheet Size",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Weave",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "UV Stabilized",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "I deal in",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Coating Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Application Area",
+            "spec_option_name": "Pond",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Base Fabric",
+            "spec_option_name": "HDPE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_option_name": "HDPE",
+            "option_fill_rate": "80"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_option_name": "PVC",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_option_name": "Tensile",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_option_name": "Nylon",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Supreme",
+            "option_fill_rate": "41.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Silpaulin",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Farmliv",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Solmax type",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "seven crystal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Coating",
+            "spec_option_name": "Laminated",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Coating Side",
+            "spec_option_name": "Double side",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Coating Type",
+            "spec_option_name": "PVC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Blue",
+            "option_fill_rate": "30"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Yellow",
+            "option_fill_rate": "18"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Black",
+            "option_fill_rate": "13"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "All",
+            "option_fill_rate": "7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Green",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "as per requirement",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Gray",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Brown",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Green checks, Red checks",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Orange",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "All colours",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "All Colour",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Multiple Colors",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Red",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "As per Requirement",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "RED",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "as per customer requirements",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Blue,Yellow,Green and Orange",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Neon Green",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Black or Yellow",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Lapis Blue",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "ALL TYPE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Red& green checks",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Multicolor",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Color Avalilable",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Custom Available",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "ANY",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Black",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Density",
+            "spec_option_name": "0.945 g/cc",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Eyelet Distance",
+            "spec_option_name": "1 m",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Eyelet Distance",
+            "spec_option_name": "1.5 m",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Eyelet Distance",
+            "spec_option_name": "2 m",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Eyelet Material",
+            "spec_option_name": "Aluminium",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Acid Resistant",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Oil Resistant",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Shrink Proof",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Fire Retardant",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Waterproof",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "UV Resistant",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Heat Sealed",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Rot Proof",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "100% Waterproof",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "UV Stabilized",
+            "option_fill_rate": "57.4"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Reinforced Edges",
+            "option_fill_rate": "30.9"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Tear Resistant",
+            "option_fill_rate": "27.9"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Aluminum Eyelets",
+            "option_fill_rate": "26.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Stitchless",
+            "option_fill_rate": "19.1"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Puncture Resistant",
+            "option_fill_rate": "14.7"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Waterproof",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Finish Type",
+            "spec_option_name": "Matte",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Virgin",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "HDPE",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Grommet Type",
+            "spec_option_name": "Aluminium Eyelet",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "200 GSM",
+            "option_fill_rate": "23.3"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "120 GSM",
+            "option_fill_rate": "21.7"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "150 GSM",
+            "option_fill_rate": "10.1"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "250 GSM",
+            "option_fill_rate": "6.2"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "170 GSM",
+            "option_fill_rate": "5.4"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "300 GSM",
+            "option_fill_rate": "4.7"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "All",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "400 GSM",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "120",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "500 GSM",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "340 GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "140 GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "as per customer requirements",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "160GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "130 GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "120 TO 250",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "600",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "650",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "420 GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "80 Ã¢â¬â 250 GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "160 gsm",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "200",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "70 GSM to 400 GSM Available",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "100 GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "135",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "120 GSM ,200GSM,250GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "custmized",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "120 GSM to 250 GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "180 GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "160 GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "350 GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "90 GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "All GSM",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "as per requirement",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "Customized",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "I deal in",
+            "spec_option_name": "New only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "ISO",
+            "spec_option_name": "Yas",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Lamination",
+            "spec_option_name": "Multi-Layered",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "6 m",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "20 m",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "50 m",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "Any",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "10 m",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "Unlimited length",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "50 meter & 25 meter",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "3 m",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "8 m",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Made in",
+            "spec_option_name": "India",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Made in",
+            "spec_option_name": "india",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "HDPE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "Virgin",
+            "option_fill_rate": "68.4"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "Semi-Virgin",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "Reprocessed",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "HDPE",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "Both",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "VIRGIN AND SEMI VERGIN",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "as per customer requirements",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "Virgin / Reprocessed as Per Customer Needs",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Material Grade",
+            "spec_option_name": "Customized",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Roll",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Buddle",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pattern",
+            "spec_option_name": "Plain",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product",
+            "spec_option_name": "Tarpaulin",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Product",
+            "spec_option_name": "HDPE Waterproof Tarpaulin",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "HDPE Tarpaulin",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "QUALITY",
+            "spec_option_name": "Regular",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Quality",
+            "spec_option_name": "Virgin",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Roll Length",
+            "spec_option_name": "As Per Requirment",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Roll Width",
+            "spec_option_name": "As Per Requirment",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Rectangle",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sheet Size",
+            "spec_option_name": "CUSTOMIZED",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "18 ft x 24 ft",
+            "option_fill_rate": "29.7"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "All sizes are in stock.",
+            "option_fill_rate": "6.9"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "12 ft x 18 ft",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "All",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "24 ft x 30 ft",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "30 ft x 30 ft",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "60 ft x 60 ft",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "12 X 18 ft (LXB)",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "As per requirement",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "15 ft x 18 ft",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "20 ft x 30 ft",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "12 ft x 15 ft",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "as per customer requirements",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "9x6 to 50x50",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "20x20 ft",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "All sizes available",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "6x6ft",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "18x24 ft",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "6ftÃâ150 200",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "All size",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "All Sizes Available",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "All size available",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "18x30 ft",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "as per requirement",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "16x24 ft",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "12x18 ft",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "18 X 24 ft (LXB)",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "all",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "12x15ft",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "As per buyer requirement",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "ALL SIZE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Custom sizes available",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Customized",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "5 m x 5 m",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "custmized",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "300Ãâ6 m",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "9 ft x 12 ft",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "AS PER REQUIREMENT",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "any",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "300x6m (LXW)",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "all size",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "Custom Sizes Available",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "36ft x 18ft",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "6 Feet, 9 Feet & 12 Feet available",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "30x30 ft",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "24 X 30 ft (LXB)",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Special Features",
+            "spec_option_name": "Reinforced Edges, Tear Resistant, Reinforced Eyelets",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Special Features",
+            "spec_option_name": "Reinforced Edges, Tear Resistant, Reinforced Eyelets, Rot Proof",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Supreme brand",
+            "spec_option_name": "9 kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Tear Strength",
+            "spec_option_name": "Very High",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "300 Micron",
+            "option_fill_rate": "39.4"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "250 Micron",
+            "option_fill_rate": "36.4"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "500 Micron",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "0.5 mm",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "400 Micron",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "150 micron",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Agriculture",
+            "option_fill_rate": "62.5"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Truck Cover",
+            "option_fill_rate": "62.5"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Construction",
+            "option_fill_rate": "56.3"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Machine Cover",
+            "option_fill_rate": "43.8"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Tent",
+            "option_fill_rate": "43.8"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Roof Cover",
+            "option_fill_rate": "43.8"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Monsoon Shed",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Pond Liner",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "For MachineryCovering",
+            "option_fill_rate": "18.8"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Industrial Shed",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Tarpaulin Making",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Cover Fabric",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Warehouse",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Truck Side Curtain",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Industrial Curtain",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "UV Stabilization",
+            "spec_option_name": "UV Stabilized",
+            "option_fill_rate": "91.7"
+        },
+        {
+            "spec_name": "UV Stabilization",
+            "spec_option_name": "Non UV Stabilized",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "UV Stabilized",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "No Warranty",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "2 Years",
+            "option_fill_rate": "27.3"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "5 Years",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "3 Years",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "1 Year",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Waterproof",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Waterproof Type",
+            "spec_option_name": "Laminated",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Waterproof Type",
+            "spec_option_name": "PVC Coated",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Waterproof Type",
+            "spec_option_name": "Uncoated",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Weave",
+            "spec_option_name": "Plain",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "3 m",
+            "option_fill_rate": "27.3"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "4 m",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "8 m",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "Unlimited width",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "150 cm",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "Any",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "2 m",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "9M",
+            "option_fill_rate": "9.1"
+        }
+    ]
+}

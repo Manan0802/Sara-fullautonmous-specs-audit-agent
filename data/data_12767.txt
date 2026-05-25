@@ -1,0 +1,4065 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 12767,
+        "mcat_name": "Detergent Powder",
+        "current_specs": [
+            {
+                "spec_name": "Weight",
+                "options": [
+                    "1 kg",
+                    "500 g",
+                    "5 kg",
+                    "3 kg",
+                    "2 kg",
+                    "25 kg",
+                    "50 kg",
+                    "100 g",
+                    "200 g",
+                    "150 g"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Quality Grade",
+                "options": [
+                    "Medium",
+                    "Economy",
+                    "Premium"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Usage",
+                "options": [
+                    "Hand & Machine Wash",
+                    "Hand Wash",
+                    "Machine Wash"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Fragrance",
+                "options": [
+                    "Lemon",
+                    "Jasmine",
+                    "Rose",
+                    "Floral",
+                    "Lavender",
+                    "Sandal",
+                    "Mild Fragrance"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Color of Powder",
+                "options": [
+                    "Blue",
+                    "White",
+                    "Yellow",
+                    "Orange",
+                    "Pink"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Form",
+                "options": [
+                    "Powder"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Packaging Type",
+                "options": [
+                    "Pouch",
+                    "Bag/Sack",
+                    "Tub"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Key Feature",
+                "options": [
+                    "Stain Removal",
+                    "Brightening",
+                    "Color Safe",
+                    "Enzymatic",
+                    "Hard Water Formula",
+                    "Germ Protection"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "Roli",
+                    "Asuran",
+                    "Kaju",
+                    "Dabang",
+                    "Metro",
+                    "Supermet",
+                    "Kirnal",
+                    "Namaskar",
+                    "Pooja",
+                    "Balaji"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Detergent Powder",
+            "mcat_id": 12767,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Weight",
+                            "options": [
+                                "1 kg",
+                                "500 g",
+                                "5 kg",
+                                "3 kg",
+                                "2 kg",
+                                "25 kg",
+                                "50 kg",
+                                "100 g",
+                                "200 g",
+                                "150 g"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Quality Grade",
+                            "options": [
+                                "Medium",
+                                "Economy",
+                                "Premium"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Prefix",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "`Weight` and `Quality Grade` were chosen as primary specs because they are the most frequent initial points of discussion and have the highest impact on price and bulk purchasing decisions. Buyers consistently ask for specific weights and quality tiers, making them essential for product definition."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Usage",
+                            "options": [
+                                "Hand & Machine Wash",
+                                "Hand Wash",
+                                "Machine Wash"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Fragrance",
+                            "options": [
+                                "Lemon",
+                                "Jasmine",
+                                "Rose",
+                                "Floral",
+                                "Lavender",
+                                "Sandal",
+                                "Mild Fragrance"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Color of Powder",
+                            "options": [
+                                "Blue",
+                                "White",
+                                "Yellow",
+                                "Orange",
+                                "Pink"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "`Usage`, `Fragrance`, and `Color of Powder` are essential functional attributes that define the product's performance and appeal. They are key variations offered by sellers to cater to different market preferences and are fundamental questions of applicability and sensory experience."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Form",
+                            "options": [
+                                "Powder"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Packaging Type",
+                            "options": [
+                                "Pouch",
+                                "Bag/Sack",
+                                "Tub"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Key Feature",
+                            "options": [
+                                "Stain Removal",
+                                "Brightening",
+                                "Color Safe",
+                                "Enzymatic",
+                                "Hard Water Formula",
+                                "Germ Protection"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "Roli",
+                                "Asuran",
+                                "Kaju",
+                                "Dabang",
+                                "Metro",
+                                "Supermet",
+                                "Kirnal",
+                                "Namaskar",
+                                "Pooja",
+                                "Balaji"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "`Form`, `Packaging Type`, `Key Feature`, and `Brand` provide supplementary but important details. `Form` is a foundational, category-defining spec. `Packaging Type` distinguishes between retail and bulk supply. `Key Feature` captures value-added properties, and `Brand` is significant for established products and resellers."
+                }
+            },
+            "scratchpad": "The specifications have been tiered based on their commercial significance in B2B transactions. Primary specs (Weight, Quality Grade) are the main drivers of price and bulk orders. Secondary specs (Usage, Fragrance, Color) define key functional variations and consumer appeal. Tertiary specs (Form, Packaging, Key Feature, Brand) provide important supplementary details for filtering and product differentiation."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Active Matter Content",
+            "option_value": "11 AD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Active Matter Content",
+            "option_value": "16 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Active Matter Content",
+            "option_value": "22 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Additives",
+            "option_value": "Enzymes",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Additives",
+            "option_value": "Optical Brighteners",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Additives",
+            "option_value": "Perfume",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Additives",
+            "option_value": "White Enzyme",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Clothes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Commercial Washing Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Detergent powder, cake, and liquid detergent",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Railway use",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Billing Type",
+            "option_value": "Official Company Bill",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Billing Type",
+            "option_value": "Setting/Non-bill",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ankur",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ariel",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "DNP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Diversey",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Esha / Papa ki Pari",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Fast Clean",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Fena",
+            "prod_count": 22
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ganesh Baba",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ghadi",
+            "prod_count": 20
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Impact",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Indowash",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kaveri",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Krishna Lavender",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "More",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Nirma",
+            "prod_count": 46
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Oit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Other Brand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Peena Impact",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Pratap",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "R Pari",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "RK",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Rupiya",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Shri Radhe Enterprises",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Shri Siddhi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Super Trend",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Surf Excel",
+            "prod_count": 18
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Tide",
+            "prod_count": 29
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Vener",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Wenner",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Wheel",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Brand Registration Status",
+            "option_value": "Registered",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "10 kg",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "12 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "20 kg",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "24 kg",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "25 kg",
+            "prod_count": 27
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "27 kg",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "30 kg",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "4.5 - 5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "40 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "50 kg",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "9 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bulk Bag Weight",
+            "option_value": "9.8 - 10 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chemical Strength",
+            "option_value": "Strong",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue Speckles",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue, White, Green",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White with color speckles",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Combo Component Weights",
+            "option_value": "4 kg (Powder), 1 kg (Cake), 1 kg (Dishwash Bar)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Combo Item",
+            "option_value": "Harpic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Combo Item Quantity",
+            "option_value": "1 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Comparable Brands",
+            "option_value": "Ghadi quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Comparable Brands",
+            "option_value": "Ghadi, Wheel, Fena",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Comparable Brands",
+            "option_value": "Surf Excel or Ariel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Comparable Brands",
+            "option_value": "Surf Excel type",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization",
+            "option_value": "Available (Buyer's brand 'Safed')",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Discount",
+            "option_value": "8 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "2-3 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "5 g per kg of clothes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Efficiency",
+            "option_value": "80 g per 100g standard",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fineness",
+            "option_value": "120 mesh",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Foam Level",
+            "option_value": "High",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Foam Level",
+            "option_value": "Low",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fragrance",
+            "option_value": "Available",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fragrance",
+            "option_value": "Lemon",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fragrance",
+            "option_value": "Long Lasting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "In-pack Promotion",
+            "option_value": "Coupons or Gifts (Scrub pad, Pen, Diary, etc.)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "In-pack Promotion",
+            "option_value": "Free Airtight Canister",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Acid Slurry",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "China Clay",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Dolomite",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Enzymes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "No Dolomite",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Phosphates",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Soda Ash",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Sodium Tripolyphosphate",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Tinopal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Internal Configuration",
+            "option_value": "5 packs of 5 kg each",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Logistics Terms",
+            "option_value": "Inclusive of transport",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Compatibility",
+            "option_value": "50 - 100 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Compatibility",
+            "option_value": "60 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Compatibility",
+            "option_value": "Front load and Top load",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturer",
+            "option_value": "Hindustan Unilever",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturer",
+            "option_value": "P&G",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Compatibility",
+            "option_value": "White clothes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "10 INR",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "140 per kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "152 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "199 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "355 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "5 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "62 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "65 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "70 INR",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "71 INR",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "71 - 73 INR",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "72 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "73 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "75 INR",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "840 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "85 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "9 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Color",
+            "option_value": "Blue",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Color",
+            "option_value": "Blue and Green",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bag",
+            "prod_count": 45
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bucket",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Carton",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Cartons and Sacks",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Cone",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Loose",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Packet",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Pouch",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Powder",
+            "prod_count": 35
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Tub",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Without Basket",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Place of Origin",
+            "option_value": "Kanpur, India",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Previous MRP",
+            "option_value": "1030 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Price Per Unit",
+            "option_value": "24 INR/kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Features",
+            "option_value": "Color safe",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Features",
+            "option_value": "Dust free",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Loose",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Powder",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "2 in 1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "25",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Active",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Advance",
+            "prod_count": 14
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Basic",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Better than Nirma, Fena, and Wheel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Blue",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Body Texture",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Clax Ultra",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Crushed Stone",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Easy Wash",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Easy Wash Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Economy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Economy Grade (Ghadi/Fena)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Export Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "First Copy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Ghadi Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Hara Patta",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Impact",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Jasmine and Rose",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Loose",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Low Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Mahak Like",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Matic Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Medium",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Normal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Number one",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Old / Regular",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Orange Color",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Original",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Plus",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Plus Extra Power",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Premium",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Quick Wash",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Quick Wash Easy Wash",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Red (Laal)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Shop Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Standard",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Starting Range",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Super",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Super Wash",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Surkha",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Top Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Washing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Washing Machine Powder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Washing clothes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Washing machine use",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Washing white clothes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Wheel Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant",
+            "option_value": "Yellow",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Promotional Offer",
+            "option_value": "25 kg + 2 kg free",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Promotional Offer",
+            "option_value": "5 kg + 3 kg free",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Promotional Offer",
+            "option_value": "7+2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Promotional Offer",
+            "option_value": "7+3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Promotional Offer",
+            "option_value": "Buy 1 Get 1 Free",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Average/Low",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "High Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "NH12",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "12 pcs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "120 pcs",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "20 pcs",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "24 pcs",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "25 pcs",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "27 pcs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "30 pcs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "40 pcs",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "50 pcs",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "60 pcs",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "72 pcs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Bag",
+            "option_value": "80 pcs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Safety Features",
+            "option_value": "Hand safe",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Solubility",
+            "option_value": "100 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Stain Removal",
+            "option_value": "Blood stains",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Stain Removal",
+            "option_value": "Stain remover",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Stain Removal",
+            "option_value": "Tea, coffee, blood, and grease",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Stock Age",
+            "option_value": "2 months",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Target Audience",
+            "option_value": "Professional Laundries",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Audience",
+            "option_value": "School Supply (Chaitanya)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "0.5 kg",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "1 kg",
+            "prod_count": 72
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "1.5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "130 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "2 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "200 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "250 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "3 kg",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "4 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "5 kg",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "500 g",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "7 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "75 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "8 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "80 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Unit Pack Size",
+            "option_value": "800 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage Type",
+            "option_value": "Domestic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage Type",
+            "option_value": "Front Load",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Usage Type",
+            "option_value": "Hand Wash",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Usage Type",
+            "option_value": "Machine Wash",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Wash Cycle Duration",
+            "option_value": "15 minutes",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Sun Excelent"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Gulf"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Ankur"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Self Life",
+            "option_value": "12 Month"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Ankur"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Self Life",
+            "option_value": "12 Month"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Zigg"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Pack Type",
+            "option_value": "Zipper Lock Packet"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Certification",
+            "option_value": "ISO Certified"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Best Plus"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Pack Type",
+            "option_value": "Jar"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Zigg"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Certification",
+            "option_value": "ISO Certified"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Zigg"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Certification",
+            "option_value": "ISO Certified"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Zigg"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Certification",
+            "option_value": "ISO Certified"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Zigg"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Certification",
+            "option_value": "ISO Certified"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Best Plus"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Pack Type",
+            "option_value": "Packet"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Best Plus"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Pack Type",
+            "option_value": "Packet"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Best Plus"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Pack Type",
+            "option_value": "Packet"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Pack Type",
+            "option_value": "Packet"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Best Plus"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Total Care"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Total Care"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Total Care"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Item Brand",
+            "option_value": "Fantail"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Item Brand",
+            "option_value": "Kovidar"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Bhoom"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Manufacturing By",
+            "option_value": "Ghalaxy International Industries"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Bhoom"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Manufacturing By",
+            "option_value": "Ghalaxy International Industries"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Bhoom"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Manufacturing By",
+            "option_value": "Ghalaxy International Industries"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Bhumi"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Yoomn"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Features",
+            "option_value": "Water Soluble Product with no filler mixing"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Yoomn"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brands",
+            "option_value": "Voda Feelpure"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Manufacturer",
+            "option_value": "Voda Feelpure"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Manufacturer",
+            "option_value": "Voda Chemicals Pvt Ltd"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brands",
+            "option_value": "Voda Feelpure"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brands",
+            "option_value": "Voda Feelpure"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Manufacturer",
+            "option_value": "Voda Chemicals Pvt Ltd"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Self Life",
+            "option_value": "24 Months"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "UMC White"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Raksha"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Raksha"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Raksha"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Brirak"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Himalya"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Himalya"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Himalya"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Himalya"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Mr. Best"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Bhumi"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Suryaa"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Rayon Brand",
+            "option_value": "1 kg pack"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Sewa"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Taha"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Super Bee"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Bulandi Regular"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Bertto"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Aapno"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Premium Brand",
+            "option_value": "Suryaa"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Premium Brand",
+            "option_value": "Suryaa"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Premium Brand",
+            "option_value": "Suryaa"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Premium Brand",
+            "option_value": "Suryaa"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Packing Type",
+            "option_value": "Box"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Usage",
+            "option_value": "Marking"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "FORM",
+            "option_value": "Powder"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "weight",
+            "option_value": "350gm"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Colour",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Shelf Life",
+            "option_value": "3 Years"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Product Brand",
+            "option_value": "Tikku"
+        },
+        {
+            "mcat_id": "12767",
+            "mcat_name": "Detergent Powder",
+            "spec_name": "Manufactured and Marketed By",
+            "option_value": "H R Industries"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "5 bhai",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "aaina",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "akson",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "ankur",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "arasan",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "ashwini",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "balaji",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "bm",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "braxo",
+            "impression": "129"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "brite",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "bruno",
+            "impression": "53"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "challenge",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "chamak",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "comfort",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "decide",
+            "impression": "40"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "dhaal",
+            "impression": "43"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "dhawal",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "dhoom",
+            "impression": "52"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "dhruvi",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "dnp",
+            "impression": "33"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "doctor",
+            "impression": "76"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "durga",
+            "impression": "22"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "enzo",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "eta",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "extra wash",
+            "impression": "53"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "figo",
+            "impression": "118"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "gagan",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "ganga",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "ghadi",
+            "impression": "12574"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "godrej",
+            "impression": "33"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "guide",
+            "impression": "41"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "gulf",
+            "impression": "217"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "hipolin",
+            "impression": "654"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "ifb",
+            "impression": "18"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "indiamart",
+            "impression": "578"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "jai",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "jay",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "jet",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "jhalak",
+            "impression": "102"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "jio",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "kapada",
+            "impression": "315"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "khadi",
+            "impression": "38"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "king",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "kleen",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "kohinoor",
+            "impression": "3"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "kundan",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "kvn",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "kwality",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "kylo",
+            "impression": "44"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "laxmi",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "local",
+            "impression": "48"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "lux",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "mahak",
+            "impression": "38"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "mahalaxmi",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "maharaja",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "mahek",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "max",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "mayur",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "metro",
+            "impression": "1643"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "modi",
+            "impression": "964"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "more",
+            "impression": "116"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "nakul",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "national",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "nikunj",
+            "impression": "358"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "nip",
+            "impression": "62"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "o2",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "oob",
+            "impression": "50"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "oxyzen",
+            "impression": "44"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "panki",
+            "impression": "159"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "pel",
+            "impression": "138"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "pooja",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "raj ratan",
+            "impression": "147"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "reckon",
+            "impression": "33"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "remi",
+            "impression": "37"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "rin",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "rocket",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "roshni",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "royal",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "ruby",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "sabena",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "safed",
+            "impression": "590"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "saheli",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "sangam",
+            "impression": "90"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "sara",
+            "impression": "113"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "sargam",
+            "impression": "2294"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "sasa",
+            "impression": "26"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "seema",
+            "impression": "972"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "shashi",
+            "impression": "28"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "shine",
+            "impression": "38"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "so",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "star",
+            "impression": "23"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "sun",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "sunlight",
+            "impression": "31"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "sunshine",
+            "impression": "18"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "super pride",
+            "impression": "28"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "super shine",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "super wash",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "swaraj",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "taj",
+            "impression": "23"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "tan man",
+            "impression": "451"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "tanman",
+            "impression": "66"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "tara",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "tiger",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "time",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "tiranga",
+            "impression": "27"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "tower",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "trishul",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "vanya",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "vardan",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "vestige",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "vim",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "vimal",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "volga",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "will",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "woosh",
+            "impression": "33"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "xtra",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "zero dirt",
+            "impression": "47"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "brand",
+            "spec_option": "zoom",
+            "impression": "1002"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "color",
+            "spec_option": "blue",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "color",
+            "spec_option": "white",
+            "impression": "3130"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "country of origin",
+            "spec_option": "india",
+            "impression": "60"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "features",
+            "spec_option": "best quality",
+            "impression": "42"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "features",
+            "spec_option": "low cost",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "features",
+            "spec_option": "low price",
+            "impression": "74"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "form",
+            "spec_option": "liquid",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "form",
+            "spec_option": "powder",
+            "impression": "81248"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "model name/number",
+            "spec_option": "easy wash",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging size",
+            "spec_option": "1 kg",
+            "impression": "5598"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging size",
+            "spec_option": "10 kg",
+            "impression": "101"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging size",
+            "spec_option": "2 kg",
+            "impression": "135"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging size",
+            "spec_option": "25 kg",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging size",
+            "spec_option": "3 kg",
+            "impression": "177"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging size",
+            "spec_option": "4 kg",
+            "impression": "71"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging size",
+            "spec_option": "5 kg",
+            "impression": "1633"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging size",
+            "spec_option": "500 g",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging size",
+            "spec_option": "500 gm",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging size",
+            "spec_option": "bulk",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging type",
+            "spec_option": "bucket",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging type",
+            "spec_option": "kit",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "packaging type",
+            "spec_option": "packet",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "type of service",
+            "spec_option": "advertisement",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "usage",
+            "spec_option": "backwash",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "usage",
+            "spec_option": "cloth washing",
+            "impression": "69"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "usage",
+            "spec_option": "detergent",
+            "impression": "37"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "usage",
+            "spec_option": "detergent powder making",
+            "impression": "42"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "usage",
+            "spec_option": "hand wash",
+            "impression": "52"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "usage",
+            "spec_option": "laundry",
+            "impression": "64"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "usage",
+            "spec_option": "washing",
+            "impression": "406"
+        },
+        {
+            "mcat_name": "Detergent Powder",
+            "spec_name": "usage",
+            "spec_option": "washing machine",
+            "impression": "585"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Weight",
+            "spec_fill_rate": "79.4",
+            "product_count": "77"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_fill_rate": "74.2",
+            "product_count": "72"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_fill_rate": "67",
+            "product_count": "65"
+        },
+        {
+            "spec_name": "Color of Powder",
+            "spec_fill_rate": "64.9",
+            "product_count": "63"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "63.9",
+            "product_count": "62"
+        },
+        {
+            "spec_name": "Form",
+            "spec_fill_rate": "56.7",
+            "product_count": "55"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_fill_rate": "53.6",
+            "product_count": "52"
+        },
+        {
+            "spec_name": "Key Feature",
+            "spec_fill_rate": "41.2",
+            "product_count": "40"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "22.7",
+            "product_count": "22"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_fill_rate": "7.2",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Suitable For Fabric",
+            "spec_fill_rate": "7.2",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Application Area",
+            "spec_fill_rate": "7.2",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_fill_rate": "7.2",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_fill_rate": "7.2",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_fill_rate": "7.2",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_fill_rate": "7.2",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_fill_rate": "6.2",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "5.2",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_fill_rate": "4.1",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_fill_rate": "4.1",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "3.1",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Foaming Level",
+            "spec_fill_rate": "2.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Enzyme",
+            "spec_fill_rate": "2.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Color",
+            "spec_fill_rate": "2.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "pH Level",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "150gm per pcs",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Rayon Brand",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Usage Level",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "5kg bag",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Appearance",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "I Deal In",
+            "spec_option_name": "New Only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Enzyme",
+            "spec_option_name": "With Enzyme",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Hand Wash",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "End-Use",
+            "spec_option_name": "Hospitality",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Blue",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Eco Friendly",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Rayon Brand",
+            "spec_option_name": "1 kg pack",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Manufactured and Marketed By",
+            "spec_option_name": "H R Industries",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Appearance",
+            "spec_option_name": "Speckled",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Printing Type",
+            "spec_option_name": "Printed",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Limescale Removal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "5kg bag",
+            "spec_option_name": "5kgx5bag in one outer bag",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "End-Use",
+            "spec_option_name": "Healthcare",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brands",
+            "spec_option_name": "Voda Feelpure",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Key Property",
+            "spec_option_name": "Colour Safe",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For Fabric",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Use / Application",
+            "spec_option_name": "Cloth Washing",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For Fabric",
+            "spec_option_name": "Synthetic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand Ownership",
+            "spec_option_name": "Own Branding",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Chemical Type",
+            "spec_option_name": "Whitener",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "Detergent",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "Western Toilet",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "pH Level",
+            "spec_option_name": "Alkaline",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Level",
+            "spec_option_name": "Ready To Use",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Bag Capacity",
+            "spec_option_name": "5 kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "BOPP Laminated",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "Indian Toilet",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "FORM",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_option_name": "Glossy",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "150gm per pcs",
+            "spec_option_name": "40 pcs in the 1 bag",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Water Soluble Product with no filler mixing",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "With Conditioner",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand Type",
+            "spec_option_name": "Ankur",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_option_name": "Box",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "End-Use",
+            "spec_option_name": "Commercial Laundry",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For Fabric",
+            "spec_option_name": "Mixed Fabric",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Manufacturing By",
+            "spec_option_name": "Ghalaxy International Industries",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application Area",
+            "spec_option_name": "Household Laundry",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "weight",
+            "spec_option_name": "350gm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made In India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Premium Brand",
+            "spec_option_name": "Suryaa",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Stain Removal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Key Property",
+            "spec_option_name": "Enzymatic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Color Care",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Phosphate Free",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "99.4"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "90"
+        },
+        {
+            "spec_name": "Key Feature",
+            "spec_option_name": "Stain Removal",
+            "option_fill_rate": "90"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 months",
+            "option_fill_rate": "90"
+        },
+        {
+            "spec_name": "Key Feature",
+            "spec_option_name": "Brightening",
+            "option_fill_rate": "81.8"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Hand & Machine",
+            "option_fill_rate": "81.8"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Hand & Machine Wash",
+            "option_fill_rate": "81.3"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Pouch",
+            "option_fill_rate": "78"
+        },
+        {
+            "spec_name": "Key Feature",
+            "spec_option_name": "Color Safe",
+            "option_fill_rate": "77.3"
+        },
+        {
+            "spec_name": "Self Life",
+            "spec_option_name": "12 Month",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Color of Powder",
+            "spec_option_name": "White",
+            "option_fill_rate": "70"
+        },
+        {
+            "spec_name": "Key Feature",
+            "spec_option_name": "Hard Water Formula",
+            "option_fill_rate": "69.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Multipurpose",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Floor Cleaning",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Stain Removal",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Dishwashing",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Application Area",
+            "spec_option_name": "Hotel Laundry",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Laundry",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Application Area",
+            "spec_option_name": "Hospital Laundry",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Suitable For Fabric",
+            "spec_option_name": "Woolen",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Voda Chemicals Pvt Ltd",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1 kg",
+            "option_fill_rate": "61.5"
+        },
+        {
+            "spec_name": "Key Feature",
+            "spec_option_name": "Germ Protection",
+            "option_fill_rate": "60.9"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Key Feature",
+            "spec_option_name": "Enzymatic",
+            "option_fill_rate": "52.7"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Industrial Washer",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Pouch",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Foaming Level",
+            "spec_option_name": "Medium",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Item Brand",
+            "spec_option_name": "Fantail",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "End-Use",
+            "spec_option_name": "Food Industry",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Key Property",
+            "spec_option_name": "Alkaline",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Clothes Type",
+            "spec_option_name": "Whites & Colors",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Clothes Type",
+            "spec_option_name": "Whites",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Item Brand",
+            "spec_option_name": "Kovidar",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Front Load",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "End-Use",
+            "spec_option_name": "General Industrial",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "1 kg",
+            "option_fill_rate": "47.9"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_option_name": "Premium",
+            "option_fill_rate": "40.2"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Lemon",
+            "option_fill_rate": "34"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Degreasing",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Hotel Laundry",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Household Laundry",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Voda Feelpure",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Commercial Laundry",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Hospital Laundry",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_option_name": "Medium",
+            "option_fill_rate": "32"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Packet",
+            "option_fill_rate": "31.3"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Best Plus",
+            "option_fill_rate": "31.3"
+        },
+        {
+            "spec_name": "Color of Powder",
+            "spec_option_name": "Blue",
+            "option_fill_rate": "28.5"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Himalya",
+            "option_fill_rate": "26.7"
+        },
+        {
+            "spec_name": "Foaming Level",
+            "spec_option_name": "High",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Self Life",
+            "spec_option_name": "24 Months",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_option_name": "Economy",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Supermet",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Foaming Level",
+            "spec_option_name": "Medium Foaming",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Roli",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Floral",
+            "option_fill_rate": "22.5"
+        },
+        {
+            "spec_name": "Application Area",
+            "spec_option_name": "Dhobi Use",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_option_name": "Active excel Quick wash",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_option_name": "Rapid Matic Powder",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Blue",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Total Care",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_option_name": "Best Plus",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_option_name": "Best Plus Medium Detergent Powder",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_option_name": "GLOBAL",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White with Blue Speckles",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Bag/Sack",
+            "option_fill_rate": "19.9"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Bhoom",
+            "option_fill_rate": "18.8"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Brirak",
+            "option_fill_rate": "18.8"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "5 L",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "All sizes available",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "25 kg",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "200gm",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "50 kg",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 kg",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "500 g",
+            "option_fill_rate": "14.9"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Ankur",
+            "option_fill_rate": "13.3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Yoomn",
+            "option_fill_rate": "13.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Asuran",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Metro",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Premium Brand",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Balaji",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Jasmine",
+            "option_fill_rate": "11"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "3 Years",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_option_name": "Made In India",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Mild Fragrance",
+            "option_fill_rate": "9.9"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Machine Wash",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage Type",
+            "spec_option_name": "Front Load",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Machine Wash",
+            "option_fill_rate": "8.1"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "25 kg",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "25kg & 1 Ton",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1kg",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "4 kg",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "500 g",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "5 kg",
+            "option_fill_rate": "6.9"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Bertto",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Bulandi Regular",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Sun Excelent",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Gulf",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Bucket",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Bhumi",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Jar",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Refill Pouch",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Tikku",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Hind",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "Bharat",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "One Swipe",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Hand Wash",
+            "option_fill_rate": "5.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "25 kg",
+            "option_fill_rate": "5.4"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Lavender",
+            "option_fill_rate": "4.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "2 kg",
+            "option_fill_rate": "4.6"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "3 kg",
+            "option_fill_rate": "4.6"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "For laundry cleaning, removing tough stains, dirt, and odors from fabrics",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "150 g",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "100 g",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Lemon and Rose",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "As per demand",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Sandal",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Rose",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "FLOWER",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Bright Clean DS",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_option_name": "Standard",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "50 kg",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Fresh",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Premium Quality Fragrance",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "2.5kg",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "1 Kg",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "10kg",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "4 kg",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "1.5 kg",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "500g",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Packet",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Bag",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Cake",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Ariel",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "all",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Floral-Fruits Blend",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Color of Powder",
+            "spec_option_name": "White - Blue",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Mind Blowing",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "orange",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Excel Perfume",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Sugarcane Actives",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Floral-Fruits blend",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Washing powder",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "dazzle",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Color of Powder",
+            "spec_option_name": "mild green",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Color of Powder",
+            "spec_option_name": "Yellow",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "all",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Marking",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Laundry",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "All",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "350 g",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "60gm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "450 g",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "2.5 kg",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "170 g",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_option_name": "Casual",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "400g",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "400 g",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "kg only",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "850gm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_option_name": "ALL QUALITY GRADE",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "400gm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "110g",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "50 g",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "2.5Kg",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "270g",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_option_name": "Ulra",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_option_name": "Export Quality",
+            "option_fill_rate": "0.4"
+        }
+    ]
+}

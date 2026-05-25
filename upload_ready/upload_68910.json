@@ -1,0 +1,147 @@
+{
+  "pmcat_id": 68910,
+  "pmcat_name": "Protein Powder",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Protein Powder",
+      "mcat_id": 68910,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Protein Source",
+              "options": [
+                "Whey Protein",
+                "Whey Isolate",
+                "Whey Concentrate",
+                "Whey Hydrolysate",
+                "Whey Blend",
+                "Casein",
+                "Plant-Based Protein",
+                "Plant Blend",
+                "Soy Protein",
+                "Pea Protein",
+                "Rice Protein",
+                "Egg White Protein",
+                "Beef Protein",
+                "Collagen"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Packaging Size",
+              "options": [
+                "100 g",
+                "200 g",
+                "400 g",
+                "500 g",
+                "1 kg",
+                "2 kg",
+                "2.5 kg",
+                "4 kg",
+                "5 kg",
+                "18 g (Sachet)",
+                "30 g (Sachet)"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Brand",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Flavor",
+              "options": [
+                "Chocolate",
+                "Vanilla",
+                "Strawberry",
+                "Unflavored",
+                "Coffee",
+                "Cafe Mocha",
+                "Mango",
+                "Banana",
+                "Kulfi",
+                "Dry Fruit"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Goal / Application",
+              "options": [
+                "Muscle Building",
+                "Weight Gain",
+                "Weight Loss / Lean Muscle",
+                "Meal Replacement",
+                "Post-Workout Recovery",
+                "General Wellness",
+                "Medical Nutrition",
+                "For Kids",
+                "For Women",
+                "Diabetic Nutrition"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Form",
+              "options": [
+                "Powder",
+                "Fine Powder",
+                "Granules",
+                "Sachets",
+                "Capsule",
+                "Liquid",
+                "Malt"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Dietary Features",
+              "options": [
+                "Vegetarian",
+                "Vegan",
+                "Gluten-Free",
+                "Sugar-Free",
+                "Lactose-Free",
+                "Keto-Friendly",
+                "DHA Fortified"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Packaging Type",
+              "options": [
+                "Jar",
+                "Pouch",
+                "Box",
+                "Bag",
+                "Sachet"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Protein Per Serving",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Shelf Life",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

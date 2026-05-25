@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la *.py)",
+      "Read(//c/Users/Imart/Desktop/langgraph-SARA/**)",
+      "Bash(python -m py_compile agent.py)",
+      "Bash(python -c \"import langfuse_handler; print\\('✓ langfuse_handler imports successfully'\\)\")",
+      "Bash(python -c \"import langfuse_handler; print\\('langfuse_handler imports OK'\\)\")",
+      "Bash(python -c \"from agent import run_agent; print\\('agent.py imports OK'\\)\")",
+      "Bash(ls -1 *.py)",
+      "Read(//tmp/**)",
+      "Bash(ls -1 prompts/*.md)",
+      "Bash(ls prompts/*.md)",
+      "Bash(pip install:*)",
+      "Bash(python -c ':*)"
+    ]
+  }
+}

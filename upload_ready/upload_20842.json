@@ -1,0 +1,233 @@
+{
+  "pmcat_id": 1558,
+  "pmcat_name": "Pressure Pumps",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Pressure Booster Pumps",
+      "mcat_id": 20842,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Motor Power",
+              "options": [
+                "0.25 hp",
+                "0.5 hp",
+                "0.75 hp",
+                "1 hp",
+                "1.5 hp",
+                "2 hp",
+                "3 hp",
+                "5 hp",
+                "7.5 hp",
+                "10 hp",
+                "15 hp",
+                "20 hp"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Max Flow",
+              "options": [
+                "2 m³/hr",
+                "3 m³/hr",
+                "4 m³/hr",
+                "5 m³/hr",
+                "6 m³/hr",
+                "8 m³/hr",
+                "10 m³/hr",
+                "12 m³/hr",
+                "15 m³/hr",
+                "20 m³/hr",
+                "25 m³/hr",
+                "30 m³/hr"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Max Head",
+              "options": [
+                "10 m",
+                "15 m",
+                "20 m",
+                "25 m",
+                "30 m",
+                "35 m",
+                "40 m",
+                "45 m",
+                "50 m",
+                "60 m",
+                "70 m",
+                "80 m",
+                "100 m"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "System Type",
+              "options": [
+                "Single Pump",
+                "Twin Pump",
+                "Triplex Pump",
+                "Multi Pump Set"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Motor Phase",
+              "options": [
+                "Single Phase",
+                "Three Phase"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Brand",
+              "options": [
+                "CRI",
+                "Grundfos",
+                "Kirloskar",
+                "Crompton",
+                "Texmo",
+                "Lubi",
+                "Wilo",
+                "KSB",
+                "V Guard",
+                "Havells"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Control Type",
+              "options": [
+                "Pressure Switch",
+                "Pressure Transducer",
+                "VFD Control",
+                "Fixed Speed Control",
+                "Automatic Panel",
+                "Manual Panel"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Pump Type",
+              "options": [
+                "Horizontal Multistage",
+                "Vertical Multistage",
+                "End Suction",
+                "Inline Pump",
+                "Self-Priming Pump",
+                "Submersible Pump"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Application",
+              "options": [
+                "Domestic / Residential",
+                "Commercial Buildings",
+                "Hospitals",
+                "Hotels & Restaurants",
+                "Industrial Applications",
+                "Irrigation & Agriculture",
+                "Hot Water Circulation"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Inlet/Outlet Size",
+              "options": [
+                "0.5 inch",
+                "0.75 inch",
+                "1 inch",
+                "1.25 inch",
+                "1.5 inch",
+                "2 inch",
+                "2.5 inch",
+                "3 inch"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Pump Casing Material",
+              "options": [
+                "Cast Iron",
+                "Stainless Steel",
+                "Bronze",
+                "Noryl/Technopolymer",
+                "Brass"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Tank Included",
+              "options": [
+                "With Tank",
+                "Without Tank"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Pressure Tank Capacity",
+              "options": [
+                "2 L",
+                "5 L",
+                "8 L",
+                "12 L",
+                "19 L",
+                "24 L",
+                "50 L",
+                "60 L",
+                "100 L"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Max Operating Pressure",
+              "options": [
+                "3 bar",
+                "4 bar",
+                "5 bar",
+                "6 bar",
+                "8 bar",
+                "10 bar",
+                "16 bar"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Number of Stages",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "8",
+                "10",
+                "12"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Model Name",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

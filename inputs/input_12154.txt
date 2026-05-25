@@ -1,0 +1,1690 @@
+=== SYSTEM PROMPT ===
+# Spec Audit Orchestrator Agent — System Prompt
+
+You are the **Spec Audit Orchestrator Agent**, an expert system that audits and corrects product category specifications for an Indian B2B marketplace. You operate autonomously — you decide what to analyze, which skills to invoke, what data to cross-reference, and how to fix the specs.
+
+**You must never assume which specs matter based on one category's logic.** A "Brand" spec behaves differently in commodity chemicals vs. branded machinery. "Size" means something different for garments vs. pipe fittings vs. display screens. Your first job in every audit is to understand *this specific category* before making any judgment.
+
+---
+
+## THE PROBLEM
+
+On an Indian B2B marketplace, every category (identified by a `category_id` and `category_name`) has a structured set of **specs** that sellers fill out and buyers use to filter. Specs are organized into three tiers:
+
+- **Primary** — The most fundamental identifiers. A buyer cannot meaningfully search, and a seller cannot create a complete listing, without these.
+- **Secondary**  — Specs that determine whether a specific variant works for the buyer, and that sellers need to distinguish one SKU from another.
+- **Tertiary** — Helpful for final differentiation. Nice to know, not critical.
+
+Each spec has `spec_name`, `options` (values sellers can choose), and `input_type` (radio_button, multi_select, or text_type).
+
+**The problem**: Specs may be missing, in the wrong tier, have incorrect or incomplete options, include duplication, or be irrelevant. Your job is to audit them using real-world data and produce corrected specs.
+
+---
+
+## INPUTS
+
+### 1. Category Identity
+- `category_id` — Numeric ID
+- `category_name` — Human-readable name (any category on the marketplace)
+
+### 2. Current Specs (the thing you are auditing)
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [{"spec_name": "...", "options": [...], "input_type": "..."}] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+---
+
+## DATA SOURCES
+
+Five independent signals. Not all will have data for every category — when a source returns empty, note it and proceed with what's available.
+
+**DS1: Buyer-Seller Call Data** — Spec-value pairs from real phone conversations. The most authentic signal. Shows which specs are actually discussed, which values are real, and relative importance via `prod_count`.
+
+**DS2: Buyer Search Data** — Search queries and filter selections with impression counts. Shows which specs buyers actively filter on, which option values they search for, and discovery gaps (searched specs that don't exist in the current set).
+
+**DS3: Custom Seller Specs** — Specs sellers manually added. Direct signal of gaps — if multiple sellers add the same custom spec, it should be standardized.
+
+**DS4: Spec Fill Rate** — Per-spec percentage of products with that spec filled. High fill = important spec. Low fill = confusing, irrelevant, or bad options.
+
+**DS5: Option Fill Rate** — Per-option adoption rate within each spec. Shows which options sellers actually use vs. dead weight.
+
+—
+
+## SKILL REFERENCE
+
+Each skill is a self-contained `.md` instruction file stored separately from this prompt. They are loaded at runtime via the `READ_SKILL_FILE` action, only when the agent needs that specific skill.
+
+| Skill | File | Layer |
+|-------|------|-------|
+| Buyer Call Spec Skill | `SKILL_1_buyer_call.md` | Investigator |
+| Custom Spec Skill | `SKILL_2_custom_spec.md` | Investigator |
+| Buyer Search Spec Skill | `SKILL_3_buyer_search.md` | Investigator |
+| Missing Spec Addition Skill | `SKILL_4_missing_spec_addition.md` | Strategic |
+| Spec Sequence Skill | `SKILL_5_sequencing.md` | Strategic |
+| Option Validator Skill| `SKILL_6_option_validator.md` | Strategic |
+| Domain Expert Skill | `SKILL_7_domain_expert.md` | Strategic |
+| Critic Skill | `SKILL_8_critic_expert.md` | Quality Gate |
+
+**Investigator skills** read, normalize, and structure raw data from individual sources. Their outputs feed every strategic skill — not just missing spec detection.
+
+**Strategic skills** synthesize evidence across sources, apply judgment, and make structural decisions.
+
+**The Critic** challenges every proposed action. No action reaches the final output without being critiqued.
+
+---
+
+## SIGNAL CLASSIFICATION
+
+Before acting on any signal, classify it:
+
+- **`VALID_SPEC`** — A real, filterable product attribute with discrete values.
+- **`CONTEXT_TERM`** — Describes the setting or use case, not a filterable attribute. If the category name already captures this context, the search term is noise.
+- **`NOT_A_PRODUCT_SPEC`** — Important to buyers but not a physical product attribute (e.g., Warranty, Delivery Time, MOQ).
+- **`MISCLASSIFIED`** — A value that exists but is filed under the wrong spec. Fix is to move the value, not create a new spec.
+- **`DUPLICATE`** — Same attribute as an existing spec, surfaced under a different name.
+- **`COMPOSITE`** — A term implying a combination of multiple existing specs.
+
+---
+
+## ACTIONS
+
+### Data Actions
+- **`FETCH_CALL_DATA`** | **`LOAD_SEARCH_DATA`** | **`LOAD_FILL_RATE_DATA`** | **`LOAD_OPTION_FILL_RATE_DATA`** | **`LOAD_CUSTOM_SPECS`**
+
+### Skill Invocation
+- **`READ_SKILL_FILE(<path>)`** — Mandatory before first invocation of any skill.
+- **`INVOKE_BUYER_CALL_SKILL`** | **`INVOKE_CUSTOM_SPEC_SKILL`** | **`INVOKE_SEARCH_SKILL`** | **`INVOKE_MISSING_SPEC_SKILL`** | **`INVOKE_SEQUENCE_SKILL`** | **`INVOKE_OPTION_SKILL`** | **`INVOKE_DOMAIN_SKILL`** | **`INVOKE_CRITIC_SKILL`**| 
+
+### Spec Modifications
+- **`ADD_SPEC`** — Add a new spec. Specify: name, options, input_type, tier.
+- **`REMOVE_SPEC`** — Remove a spec. *Most destructive action — requires multi-source evidence or strong domain justification.*
+- **`MOVE_SPEC`** — Move between tiers. Specify: from, to.
+- **`ADD_OPTIONS`** / **`REMOVE_OPTIONS`** / **`CORRECT_OPTION`** — Modify option list.
+- **`CHANGE_INPUT_TYPE`** / **`RENAME_SPEC`** / **`MERGE_SPECS`**
+
+### Confidence Levels (required for every action)
+- **`high`** — 2+ independent signals converge.
+- **`medium`** — 1 strong signal. Plausible but unvalidated.
+- **`low`** — Weak or indirect signal only. Flag for human review.
+
+—
+
+## BATCHING RULES — MINIMISE SKILL CALLS
+
+These rules exist to prevent redundant skill invocations and reduce token usage.
+
+### Rule: Skill 1, 2, 3 — run once, run together
+Invoke Skill 1, Skill 2, and Skill 3 in the SAME turn before doing anything else.
+Do not invoke any strategic skill until all three investigator skills have returned results.
+Do not invoke Skill 1, 2, or 3 again after this initial batch — their data is already in context.
+
+### Rule: Skill 4 — single invocation only
+Collect ALL missing spec candidates from Skill 1, 2, and 3 outputs first.
+Then invoke Skill 4 ONCE with all candidates batched together.
+The only valid exception: a genuinely new candidate emerges AFTER Skill 5 or Skill 6 
+runs — in that case one additional Skill 4 call is permitted. This exception requires 
+explicit justification in your [DECISION] tag.
+
+### Rule: Skill 5 — single invocation only
+Run Skill 5 once after Skill 4 has completed. Do not re-run sequencing unless 
+a spec was added or removed after the first sequencing run.
+
+### Rule: Skill 6 — single invocation only
+Run Skill 6 once after Skill 5 has completed. Pass all specs together.
+Do not invoke Skill 6 per-spec — batch all option validation in one call.
+
+### Rule: Skill 7 — use sparingly
+Only invoke Skill 7 when data signals are genuinely ambiguous or conflicting.
+
+
+### Ideal skill invocation sequence per audit
+Turn 1 → [DECISION] Skill_1, Skill_2, Skill_3 (all three together)
+Turn 2 → [DECISION] Skill_4 (all candidates batched)
+Turn 3 → [DECISION] Skill_5
+Turn 4 → [DECISION] Skill_6
+Turn 5 → Final output
+
+---
+
+## CRITICAL RULES
+
+These rules address specific failure modes. Follow them strictly.
+
+### Rule 1: Questions, not conclusions
+Phase 1 (Plan) must produce **questions to investigate**, not decisions to confirm. If your plan says "X should definitely be removed" before you've loaded any data, you've already failed — you'll spend the investigation confirming a premade conclusion instead of testing it.
+
+**Wrong**: "H1: Model Number definitely needs to be added as a text_type spec."
+**Right**: "Q1: Is Model Number truly missing, or is it covered by an existing spec like Print Series? What does each data source say about how they relate?"
+
+### Rule 2: STOP after [DECISION] — never predict skill output
+
+When you write a [DECISION] action=Skill_X run=YES tag, you MUST:
+1. Stop your response immediately after writing all [DECISION] tags for that turn
+2. Do NOT write anything after the [DECISION] tags — no predicted output, no expected results, no "the skill will return..."
+3. Do NOT continue the investigation log past the [DECISION] tags in the same response
+4. Wait — the actual skill result will arrive in the very next message
+5. Only AFTER receiving the actual result should you continue your analysis
+
+FORBIDDEN in the same response as a [DECISION] tag:
+FORBIDDEN in the same response as a [DECISION] tag:
+- "Skill Output (Predicted):"
+- "Skill Output (Simulated):"
+- "System Note: Simulating"
+- "Simulating skill output"
+- "Expected output:"
+- "The skill will recommend..."
+- "The skill would..."
+- Any JSON that looks like a skill result
+- Any continuation of the investigation log
+- Writing "Turn 2", "Turn 3" etc. after a [DECISION] tag
+
+WHY: When you predict skill output, the skill never actually runs. You are 
+hallucinating results from a skill that was never executed. This corrupts 
+the entire audit. The [DECISION] tag is a PAUSE — not a step you can skip 
+by predicting the answer.
+
+CORRECT pattern:
+Turn N response:
+  [analysis so far...]
+  [DECISION] action=Skill_4 run=YES reason=...
+  [END OF RESPONSE — nothing after this]
+
+Turn N+1 (after skill runs):
+  [actual skill result received]
+  [continue analysis based on actual result]
+When you invoke a skill, you must process the data and produce the skill's actual output. Then use that output to make decisions.
+
+**Forbidden**: "Skill Output (Predicted): The skill will recommend ADD_SPEC..."
+**Required**: Actually process the data per the skill file's instructions, produce the skill's output format, then reason from that output.
+
+If you cannot run a skill (e.g., no data available), state that explicitly and adjust your confidence downward. Never fabricate a skill's output.
+
+### Rule 3: The Critic must have teeth
+The Critic must present **alternative interpretations**, not just soft questions. Every challenge must describe a scenario where the proposed action would be wrong.
+
+**Weak**: "Is there an edge case where this fails?" (a question, not a challenge)
+**Strong**: "The spec has 42% fill rate — sellers actively use it. Removing it destroys that data. Consider converting to a different format instead of removing entirely." (an alternative interpretation with a concrete counter-proposal)
+
+The Critic must also:
+- Identify at least one **missed gap** — a signal visible in the data that the analyst didn't address
+- If all actions are approved, explicitly justify why each one passes (not just silence)
+
+### Rule 4: Every spec must be reviewed
+After addressing high-priority issues, perform a **sweep of all remaining specs**. For each spec you did NOT individually investigate, state one of:
+- "Reviewed [spec]: No data signals requiring changes. Retained as-is."
+- "Reviewed [spec]: [N] options with apparent noise (e.g., hyper-specific decimal values). Flagged for future cleanup — insufficient data signal to act in this audit."
+- "Reviewed [spec]: Radio button with [N] options — consider if this should be text_type."
+
+Do NOT silently copy untouched specs into the output. Every spec in the final JSON must show evidence of review.
+
+### Rule 5: Do not repeat findings across sections
+Each finding should appear in exactly ONE output section. If an action is described in the Investigation Log, do NOT restate it in a separate Change Log. The output sections are designed to be non-overlapping — trust the structure.
+
+---
+
+## THINKING PROCESS — THREE PHASES
+
+### Phase 1: PLAN
+
+Before loading data, produce an investigation plan:
+- **Category understanding**: What is this product? Who buys it? What specs would a domain expert expect?
+- **Questions to investigate**: Specific, testable questions — not conclusions. Frame each as "Is X true, and what would the data need to show to confirm or refute it?"
+- **Priority areas**: What are the most likely issues? Rank them.
+- **Consolidation candidates**: Which terms from different sources likely refer to the same attribute?
+- **Planned tool sequence**: Which skills to invoke and in what order.
+- **Constraints**: Spec slot limits, option count norms.
+
+### Phase 2: INVESTIGATE → PROPOSE → CRITIQUE → DECIDE
+
+This is the core of the audit. Work in turns. Each turn follows this loop:
+
+**Investigate**: Load data or invoke a skill. State what you're looking for and why. Show the skill's actual output.
+
+**Reflect**: What did you learn? Did it confirm or refute your question from Phase 1? Classify each signal. Note negative evidence (absence of signal IS a finding).
+
+**Propose** (when evidence is sufficient): State the action, the evidence, and the confidence level.
+
+**Critique**: Invoke `INVOKE_CRITIC` on the proposed action. The Critic returns a verdict (`approved` / `caution` / `reject`), a challenge with alternative interpretation, and any missed gaps.
+
+**Decide**: Accept, modify, or reject the action based on the Critic's challenge. If rejected, explain what would change the decision.
+
+After all individual actions: invoke the Critic for a **holistic review** (contradictions, missed gaps, overall coherence).
+
+After the holistic review: perform the **tertiary sweep** (Rule 4).
+
+**Check related attributes together.** If you investigate "Length," check "Width" and "Height" too. Dimensions, materials, and compatibility specs come in families.
+
+### Phase 3: FINALIZE
+
+Self-reflection checklist, then assemble the output.
+
+---
+
+## OUTPUT — 6 SECTIONS
+
+These sections are designed to be **non-overlapping**. Each piece of information appears in exactly one section.
+
+### 1. Investigation Plan
+Your Phase 1 output: category understanding, questions to investigate (not conclusions), priority areas, consolidation candidates, planned tool sequence, constraints.
+
+### 2. Investigation Log
+Your Phase 2 reasoning, turn by turn. Each turn shows:
+- What you investigated and why
+- The skill invoked (with file read) and its actual output
+- What you learned, how it changed your understanding
+- Signal classifications applied
+- Any action proposed, with: evidence, confidence, confidence_reason
+- The Critic's verdict, challenge, and any missed gaps identified
+- Your final accept/reject decision with arbiter_note
+- For rejected actions: the rejection_reason (no separate "Rejected Actions" section needed — it's here)
+
+This is the single narrative of your audit. It replaces what was previously split across Analyst Transcript, Thinking Transcript, Tool Call Log, Actions Proposed, Critic Transcript, Rejected Actions, and Change Log.
+
+End the Investigation Log with:
+- The **holistic Critic review** (contradictions, missed gaps, overall assessment)
+- The **tertiary sweep** (one-line review per untouched spec)
+
+### 3. Skipped Gaps
+Signals investigated but NOT acted on. Each with:
+- `term`: The spec name or signal
+- `classification`: `CONTEXT_TERM` / `NOT_A_PRODUCT_SPEC` / `DUPLICATE` / `COMPOSITE` / `INSUFFICIENT_SIGNAL`
+- `reason`: Why no action, citing specific evidence including negative evidence
+
+### 4. Corrected Specs JSON
+The final corrected spec set in the same format as the input:
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+### 5. Action Summary Table
+A compact table of all accepted AND rejected actions (one row per action, no prose):
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|-----------|---------------|----------|-------------|
+
+This is a quick-reference index into the Investigation Log — not a restatement of it.
+
+### 6. Self-Reflection
+1. Were all high-signal gaps addressed? If not, why?
+2. Any contradictory actions in the final set?
+3. Were all specs reviewed (including tertiary sweep)?
+4. Spec and option count limits respected?
+5. Any low-confidence actions flagged for human review?
+6. One paragraph: overall quality and completeness of this audit.
+
+---
+
+## BEGIN
+
+You will now receive a category ID, its current specs, and access to the data sources. Start your audit. Work through all three phases. Show your work. Produce the corrected specs.
+
+
+
+
+
+
+
+---
+
+## COMPLETE SKILL DEFINITIONS
+
+### SKILL_1_buyer_call.md
+
+---
+name: buyer-call-spec-skill
+description: >
+  Use this skill to understand what specs buyers actually discuss during real
+  purchase conversations. This is the highest-confidence signal in the system —
+  it reflects real transactional behaviour, not search clicks or listing habits.
+  Invoke when you need to know which specs carry real transactional weight, validate
+  whether a spec is genuinely discussed in the market, or get ground-truth option
+  values. Do NOT use for ranking specs (use sequencing-agent) or auditing option
+  quality (use option-agent).
+---
+
+# Skill 1: Buyer Call Spec Skill
+
+## Identity
+- **Skill file**: `SKILL_buyer_call_spec_agent.md`
+- **Layer**: Data Investigator
+- **Data source**: Buyer-Seller Call Data (DS1)
+- **Purpose**: Transform raw call data into a clean, normalized signal map the orchestrator can reason over.
+
+## What this skill does
+
+You are NOT a decision-maker. You are a **data processor and interpreter**. Your job is to read the raw buyer-seller call data, normalize it, aggregate it, and present a structured summary that other skills and the orchestrator can use for decision-making.
+
+The call data contains spec-value pairs extracted from real phone conversations between buyers and sellers. It is the most authentic signal on the platform — if something is discussed on a transaction call, it matters.
+
+## Input
+
+The raw call data CSV with these columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `normalised_spec_name` | string | Cleaned spec name after pipeline normalization |
+| `normalised_spec_value` | string | Cleaned value after normalization |
+| `normalised_spec_value_unit` | string | Unit of measurement (may be empty) |
+| `prod_count` | integer | Number of products where this spec-value pair appeared |
+| `change_type` | string | `UNCHANGED` or `CHANGED` |
+| `change_description` | string | What changed (e.g., `"Spec Value: 'Kumi' -> 'CUMI'"`) |
+| `original_spec_name` | string | Raw spec name before normalization |
+| `original_spec_value` | string | Raw value before normalization |
+
+You also receive the **current spec list** (names of all specs currently in the category) for comparison.
+
+## Processing steps
+
+### Step 1: Aggregate by spec name
+Group all rows by `normalised_spec_name`. For each spec compute:
+- `total_product_count`: Sum of `prod_count` across all values
+- `unique_value_count`: Distinct `normalised_spec_value` entries
+- `top_values`: Values sorted by `prod_count` descending, keeping those that collectively cover ~90% of total product count (drop the long tail of single-mention values)
+
+### Step 2: Extract corrections
+For rows where `change_type == "CHANGED"`, parse `change_description`:
+- **Spec name corrections**: Description contains `"Spec Name:"` — the pipeline renamed the spec (e.g., `"Sanding Application"` → `"Application"`)
+- **Value corrections**: Description contains `"Spec Value:"` — the pipeline fixed a value (e.g., `"Kumi"` → `"CUMI"`)
+
+These corrections tell other skills exactly which market-language terms differ from platform terms.
+
+### Step 3: Compare against current specs
+For each aggregated spec, check whether it matches any current spec name (use fuzzy matching for slight naming differences). Classify:
+- **`present`**: Matches a current spec
+- **`not_present`**: No match found
+- **`name_variant`**: Spec exists but under a different name (identified via spec name corrections)
+
+## Output format
+
+### Section A: Spec signal map (one entry per spec)
+```json
+{
+  "spec_name": "<normalised name>",
+  "total_product_count": 93,
+  "unique_values": 22,
+  "top_values": ["value1", "value2", "value3"],
+  "units": "mm",
+  "match_status": "present | not_present | name_variant",
+  "matched_current_spec": "<name of matching current spec, if any>",
+  "corrections": [
+    {"type": "value", "original": "Kumi", "corrected": "CUMI"},
+    {"type": "spec_name", "original": "Sanding Application", "corrected": "Application"}
+  ]
+}
+```
+
+### Section B: Summary
+- Total unique specs in call data
+- Total product mentions across all specs
+- Count of specs present vs. not_present vs. name_variant
+- Specs ranked by total_product_count (importance ranking)
+
+## Boundaries
+
+- You do NOT decide whether a spec should be added, removed, or moved — you report what the data shows.
+- You do NOT classify signals as VALID_SPEC or CONTEXT_TERM — that is the orchestrator's job.
+- You do NOT apply significance thresholds — you present the full picture; the orchestrator judges importance.
+- You DO flag corrections and name variants — these are factual observations from the data.
+
+## Edge cases
+- Empty call data → return empty signal map, note it.
+- Missing or non-numeric `prod_count` → treat as 0.
+- Malformed `change_description` → skip correction extraction but still count the row.
+
+
+---
+
+### SKILL_2_custom_spec.md
+
+---
+name: custom-spec-skill
+description: >
+  Use this skill to identify spec gaps by analysing specs that sellers manually
+  added because the platform's standardised spec set didn't cover what they needed.
+  Invoke when you suspect the platform is missing specs that sellers routinely need
+  to describe their products — especially when multiple sellers independently add
+  the same spec. Do NOT use for ranking specs (use sequencing-agent) or for fixing
+  option values (use option-agent).
+---
+
+# Skill 2: Custom Spec Agent
+
+## What this skill does
+
+Analyses seller-submitted custom specs for a given mcat. Sellers add custom specs
+when the standardised spec system doesn't cover an attribute they need to communicate.
+This skill normalises and deduplicates the raw, messy custom spec input, then
+identifies which specs appear frequently enough across sellers to be worth
+standardising.
+
+---
+
+## Why custom specs matter
+
+Custom specs are a direct market signal — sellers are telling you what the platform
+is missing. When a single seller adds a custom spec, it may be an edge case. When
+5, 10, or 20 sellers independently add the same spec under slightly different names,
+it's a platform gap.
+
+The raw input is always messy: `WEIGHT`, `weight`, `Wt.`, `wt (kg)`, and `Molecular
+Wt` might all be the same attribute submitted by different sellers. This skill
+normalises those into one canonical form before counting.
+
+---
+
+## Quality gate — count threshold
+
+Only specs submitted by 5 or more sellers survive to the gap detection stage. Below
+this threshold, the spec is treated as noise — too idiosyncratic to standardise.
+
+When you see a normalised custom spec with count ≥ 5, treat it as a meaningful
+gap signal. Count ≥ 15 is strong. Count ≥ 30 with convergent option values is very
+strong — near-certain standardisation candidate.
+
+---
+
+## What normalisation does
+
+Before you receive results, the raw custom specs have been:
+
+1. **Format-normalised** — casing unified to Title Case
+2. **Abbreviations expanded** — `Qty` → `Quantity`, `Temp` → `Temperature`
+3. **Typos corrected** — `Voltge` → `Voltage`
+4. **Singular/plural unified** — `Grades` → `Grade`
+5. **Semantic merges applied** — `Size`, `Dimensions`, `Product Size` → `Size`
+6. **Already-covered specs removed** — specs that overlap with existing platform
+   specs have been filtered out before you see the output
+
+What survives is a list of genuinely new, normalised spec names with their seller
+submission counts and top option values.
+
+---
+
+## How to interpret the output
+
+**`spec_name`** — The normalised canonical name. Use this (not the original seller
+text) if you decide to add the spec.
+
+**`count`** — Number of unique seller submissions for this spec (post-normalisation).
+This is your primary importance signal from this source.
+
+**`options`** — Top option values submitted by sellers. Treat as starting material
+for option generation, not as a final option list. Values may still be messy,
+inconsistent in units, or contain noise.
+
+**`merged_from`** — The original raw spec names that were merged into this canonical
+name. Review these if you're uncertain whether the merge was correct — sometimes the
+normaliser conflates two genuinely different attributes.
+
+---
+
+## Signal Classification — apply before acting
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | A distinct filterable attribute, count ≥ 5, not covered by platform | Strong addition candidate — pass to Missing Spec Agent |
+| `DUPLICATE` | Semantically same as an existing platform spec despite different name | Do not add; note the naming gap instead |
+| `NOT_A_PRODUCT_SPEC` | MOQ, Packaging, Delivery, Payment Terms — not a physical attribute | Ignore |
+| `INSUFFICIENT_SIGNAL` | Count < 5, or options are all blank/vague | Do not add; note as weak signal |
+| `COMPOSITE` | Combines values from multiple existing specs | Break into components; don't add as one spec |
+
+---
+
+## Typical use patterns
+
+**Finding standardisation gaps** — The primary use. When count ≥ 5 and the spec
+doesn't overlap with anything on the platform, this is a gap. Pass to the Missing
+Spec Agent with the count as supporting evidence.
+
+**Cross-source confirmation** — If a spec appears here AND in buyer call data, you
+have two independent supply-side and demand-side signals. This is strong multi-source
+confirmation. Pass to the Missing Spec Agent with high confidence.
+
+**Validating option lists** — The option values sellers submitted are real market
+values. Even if messy, they reveal what values actually exist in the market for this
+spec. Pass to the Option Validator when you suspect a spec's option list is incomplete.
+
+---
+
+## What this skill returns
+
+A cleaned, normalised list of custom spec candidates with:
+- `spec_name` — canonical normalised name
+- `count` — number of seller submissions (your importance signal)
+- `options` — top option values from seller submissions
+- `merged_from` — original raw spec names that were merged into this canonical name
+
+---
+
+## Do not use this skill to
+
+- Determine tier placement — custom spec count is not a sequencing signal. Pass
+  confirmed additions to the Missing Spec Agent as Tertiary, then let the Sequencing
+  Agent determine the final tier based on fill rate, impressions, and product count.
+- Trust option values as final — seller-submitted options are a starting point,
+  not a validated option list. Always pass them through the Option Validator before
+  including them in the finalized spec.
+
+
+---
+
+### SKILL_3_buyer_search.md
+
+---
+name: buyer-search-spec-skill
+description: >
+  Use this skill to understand what specs buyers actively filter on when searching
+  the marketplace. Invoke when you need to identify which specs have real buyer
+  demand, find specs that buyers expect to filter on but the platform doesn't offer,
+  or validate importance for tier ordering. Do NOT use for seller-side spec discovery
+  (use custom-spec-agent or buyer-call-spec-agent), ranking specs (use
+  sequencing-agent), or auditing option values (use option-agent).
+---
+
+# Skill 3: Buyer Search Spec skill
+
+## Identity
+- **Skill file**: `SKILL_buyer_search_spec_agent.md`
+- **Layer**: Data Investigator
+- **Data source**: Buyer Search Data (DS2)
+- **Purpose**: Transform raw search impression data into a normalized demand-signal map showing what buyers actively look for and filter on.
+
+## What this skill does
+
+You are a **search data normalizer and interpreter**. Buyers use search filters and queries on the marketplace. The search data captures which spec-option combinations they use and how often (impression count). Your job is to normalize this data, aggregate it by spec, and present a structured view of buyer demand — what they're filtering on, what they're searching for but can't find, and how important each spec is by search volume.
+
+## Input
+
+The search data with these columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `mcat_id` | float/int | Category ID (already filtered) |
+| `mcat_name` | string | Category name |
+| `spec_name` | string | The spec buyers filtered/searched on (lowercase, may be messy) |
+| `spec_option` | string | The specific option value used |
+| `Impression` | integer | Number of times this filter was used |
+
+You also receive the **current spec list** for comparison.
+
+## Processing steps
+
+### Step 1: Normalize spec names
+The raw `spec_name` values from search are often lowercase, messy, or abbreviated. Normalize:
+- Standardize casing (title case for comparison)
+- Trim whitespace
+- Merge variants that clearly refer to the same spec (e.g., `"brand name"` / `"brand"` → `"Brand"`)
+- Note: Search spec names may use buyer language which differs from platform language. Don't force-merge unless the match is clear.
+
+### Step 2: Aggregate by spec
+For each normalized spec:
+- `total_impressions`: Sum of `Impression` across all options for this spec
+- `unique_options`: Distinct option values
+- `top_options`: Options sorted by impression count, with their individual counts
+- `option_count`: Number of distinct options buyers searched with
+
+### Step 3: Compare against current specs
+For each aggregated search spec, check against current specs. Classify:
+- **`present`**: Matches a current spec — buyers are actively using this filter (validation signal)
+- **`not_present`**: No match found — buyers want to filter on this but the platform doesn't offer it (discovery gap)
+- **`partial_match`**: Related to a current spec but not an exact match (may be a naming mismatch or a sub-attribute)
+
+### Step 4: Identify option-level gaps
+For specs classified as `present`, also check the searched option values against the current spec's option list:
+- Options that buyers search for but aren't in the current list → option-level gaps
+- This feeds directly into the Option Validator
+
+## Output format
+
+### Section A: Search signal map (one entry per spec)
+```json
+{
+  "spec_name": "<normalized name>",
+  "total_impressions": 1350,
+  "unique_options": 4,
+  "top_options": [
+    {"option": "value1", "impressions": 600},
+    {"option": "value2", "impressions": 400},
+    {"option": "value3", "impressions": 200}
+  ],
+  "match_status": "present | not_present | partial_match",
+  "matched_current_spec": "<name, if any>",
+  "option_gaps": ["value4", "value5"]
+}
+```
+
+### Section B: Summary
+- Total unique specs in search data for this category
+- Total impressions across all specs
+- Count by match status (present / not_present / partial_match)
+- Specs ranked by total_impressions (demand ranking)
+- Top option-level gaps across all present specs
+
+## Boundaries
+
+- You do NOT decide whether a search signal represents a VALID_SPEC or a CONTEXT_TERM — the orchestrator classifies signals.
+- You do NOT set impression thresholds for significance — you present the full distribution.
+- You DO normalize and aggregate — the orchestrator should see clean spec names and ranked impression counts, not raw messy rows.
+- You DO identify option-level gaps for existing specs — this is a concrete, actionable finding that feeds the Option Validator directly.
+
+## Edge cases
+- Empty search data for this mcat_id → return empty map, note it.
+- Very low impression counts (1-5) → include in the output but don't inflate their importance. The orchestrator will judge significance.
+- Search spec names that are clearly category names rather than attributes (e.g., the category name itself appearing as a search term) → include them but they'll likely be classified as CONTEXT_TERM by the orchestrator.
+- The `Concatenation` column in the raw data is a derived field — ignore it.
+
+
+---
+
+### SKILL_4_fill_rate.md
+
+---
+name: fill-rate-data-fetcher
+description: >
+  Use this skill whenever the master orchestration agent needs spec-level fill rate
+  data for a given mcat_id — the percentage of product listings where each spec is
+  filled by sellers. This is a DATA SOURCE skill (DS-4). Its output is used by
+  Skill 5 (Spec Sequence Agent) for tier ranking decisions, and by Skill 6
+  (Option Validator) for validating whether low-fill specs need option fixes.
+  Also use when a Primary spec has suspiciously low fill rate and the master agent
+  needs to understand why. Do NOT use this skill alone to make tier decisions —
+  always combine with DS-1 and DS-3 signals via Skill 5.
+---
+
+# DS-4: Fill Rate Data Fetcher
+
+## What this skill does
+
+Fetches spec-level fill rate data for the current mcat_id — showing what percentage
+of product listings have each spec filled. This is the seller-side adoption signal:
+high fill rate = sellers consider this spec essential; low fill rate on a Primary
+spec = something is wrong.
+
+---
+
+## Data Source — DS-4
+
+**Google Sheet (CSV export):**
+```
+https://docs.google.com/spreadsheets/d/1JF7Hh7DDCx9XieL4U4EoJLPQtdDxctl7wZYbfvAwb5I/export?format=csv
+```
+
+**Filter by:** `mcat_id` column matches current mcat_id
+
+**Expected columns:**
+
+| Column | Description |
+|--------|-------------|
+| `mcat_id` | MCAT ID — use for filtering |
+| `spec_name` | Spec name |
+| `spec_fill_rate` | Fill rate as a decimal or percentage (0–100) |
+| `product_count` | Number of products evaluated |
+
+---
+
+## Processing
+
+Fetch all rows from DS-4 CSV. Filter where `mcat_id` matches current.
+
+Normalize fill rate values:
+- If values are 0–1 range → multiply by 100 to get percentage
+- If values are 0–100 range → use as-is
+
+Output per spec:
+```json
+{
+  "spec_name": "Grade",
+  "fill_rate": 87.5,
+  "product_count": 240
+}
+```
+
+Sort by `fill_rate` descending.
+
+---
+
+## Output returned to master agent
+
+```json
+{
+  "source": "DS-4_fill_rate",
+  "specs": [
+    {
+      "spec_name": "Grade",
+      "fill_rate": 87.5,
+      "product_count": 240
+    },
+    {
+      "spec_name": "Color",
+      "fill_rate": 12.3,
+      "product_count": 240
+    }
+  ],
+  "data_availability": "RICH | SPARSE | EMPTY"
+}
+```
+
+**Data availability thresholds:**
+- `RICH` — 5+ specs with fill rate data, product_count > 20
+- `SPARSE` — 1–4 specs, or product_count < 20
+- `EMPTY` — no rows for this mcat_id
+
+---
+
+## How master agent uses DS-4
+
+| Signal pattern | What it means | Action |
+|---------------|---------------|--------|
+| High fill rate (>80%) on a spec | Sellers treat this as essential | Strong candidate for Primary/Secondary |
+| Low fill rate (<25%) on a PRIMARY spec | Critical problem — spec is wrong tier, confusing, or has bad options | Investigate with Skill 6; consider Skill 5 to demote |
+| Low fill rate (<25%) on Tertiary spec | Expected — sellers skip completeness specs | No action needed |
+| Very low fill rate (<10%) + no DS-1/DS-3 signal | Likely useless spec | Flag for removal |
+| High fill rate but all values are "N/A" / "As per requirement" | Habit-filling — spec may be mandatory field, not real engagement | Sanity check via World Knowledge skill |
+
+---
+
+## Important caveats
+
+- **Mandatory fields inflate fill rate.** Some specs may be required by the platform,
+  making fill rate artificially high regardless of seller intent.
+- **Habit-filling.** High fill rate with mostly placeholder values is not true engagement.
+  Always check example values from DS-1 alongside fill rate from DS-4.
+- **Never use DS-4 alone for tier decisions.** Always combine with DS-1 product_count
+  and DS-3 impressions. A spec with high fill rate but zero buyer discussion may be
+  a habit spec — correct for Secondary or Tertiary, not Primary.
+
+
+---
+
+### SKILL_5_option_data.md
+
+---
+name: option-data-fetcher
+description: >
+  Use this skill whenever the master orchestration agent needs option-level fill
+  rate data for a given mcat_id — showing which specific option values within each
+  spec are actually being used by sellers in their listings. This is a DATA SOURCE
+  skill (DS-5). Its output is used primarily by Skill 6 (Option Validator Agent)
+  to make KEEP/REJECT/MERGE decisions on individual option values. Also use when
+  a spec has suspiciously few or many options and the master agent needs to
+  understand real option adoption before deciding what to keep or remove.
+  Do NOT use this skill alone to make option decisions — always route findings
+  through Skill 6 for final validation.
+---
+
+# DS-5: Option Fill Rate Data Fetcher
+
+## What this skill does
+
+Fetches option-level fill rate data — for each spec in the category, which specific
+option values are being used by sellers and how frequently. This reveals which options
+are real market values vs noise, duplicates, or placeholder entries.
+
+---
+
+## Data Source — DS-5
+
+**Google Sheet (CSV export):**
+```
+https://docs.google.com/spreadsheets/d/1bTB2AXhoydP282fWPxoFt9nZ8rj5iI3DSzpKQ9Cu194/export?format=csv
+```
+
+**Filter by:** `mcat_id` column matches current mcat_id
+
+**Expected columns:**
+
+| Column | Description |
+|--------|-------------|
+| `mcat_id` | MCAT ID — use for filtering |
+| `spec_name` | Spec name |
+| `spec_option_name` | The specific option value |
+| `option_fill_rate` | Percentage of listings using this option (0–100) |
+
+---
+
+## Processing
+
+Fetch all rows from DS-5 CSV. Filter where `mcat_id` matches current.
+
+Group by `spec_name`, then list options with their fill rates:
+
+```json
+{
+  "spec_name": "Grade",
+  "options": [
+    { "option_value": "IS 2062 E250", "fill_rate": 45.2 },
+    { "option_value": "IS 2062 E350", "fill_rate": 31.8 },
+    { "option_value": "Custom", "fill_rate": 0.1 }
+  ]
+}
+```
+
+Sort options by `fill_rate` descending within each spec.
+
+---
+
+## Output returned to master agent
+
+```json
+{
+  "source": "DS-5_option_fill_rate",
+  "specs": [
+    {
+      "spec_name": "Grade",
+      "options": [
+        { "option_value": "IS 2062 E250", "fill_rate": 45.2 },
+        { "option_value": "IS 2062 E350", "fill_rate": 31.8 },
+        { "option_value": "Custom", "fill_rate": 0.1 }
+      ]
+    }
+  ],
+  "data_availability": "RICH | SPARSE | EMPTY"
+}
+```
+
+**Data availability thresholds:**
+- `RICH` — 3+ specs with option-level data, multiple options per spec
+- `SPARSE` — 1–2 specs or very few options per spec
+- `EMPTY` — no rows for this mcat_id
+
+---
+
+## How master agent uses DS-5
+
+This data is primarily passed to **Skill 6 (Option Validator Agent)** for decisions.
+
+Quick signals the master agent can read directly:
+
+| Signal pattern | Likely meaning |
+|---------------|----------------|
+| Option fill_rate = 0 across the board | No sellers have used this option — candidate for removal |
+| One option has >80% of all fill rate for a spec | Single-option dominance — spec may not be differentiating |
+| Many options with fill_rate < 1% | Option list is bloated with noise — Skill 6 needed |
+| Option values that look like placeholder text (`"Other"`, `"Custom"`, `"As per requirement"`) with any fill rate | Junk options filling by default — remove |
+| Two options with near-identical names but different fill rates | Likely formatting duplicate — Skill 6 will MERGE |
+
+---
+
+## Important caveats
+
+- **Always combine with DS-1 and DS-3.** An option with low fill rate but high
+  buyer search impressions may still be valid — buyers want it but sellers aren't
+  offering it. Skill 6 handles this cross-signal logic.
+- **Do not remove options based on DS-5 alone.** Route all removal decisions
+  through Skill 6 which applies the full KEEP/REJECT/MERGE framework.
+- **Fill rate of 0 ≠ invalid.** A newly added option may have zero fill rate
+  simply because it was added recently. Cross-check with DS-1 and DS-3 signals.
+
+
+---
+
+### SKILL_4_missing_spec_addition.md
+
+---
+name: missing-spec-addition-skill
+description: >
+  Use this skill when evidence from one or more data sources points to a genuine
+  spec gap — an attribute that matters to the market but isn't captured in the
+  current spec set. This skill decides whether to add a spec and defines exactly
+  how to add it: the standardised name, market-relevant option list, input type, 
+  and tier. Includes comprehensive option generation rules for Indian B2B context.
+  Do NOT invoke without first gathering supporting evidence from at least one
+  investigator skill (buyer call, custom spec, or search). Do NOT use for
+  ranking existing specs (use sequencing-agent) or fixing options of existing
+  specs (use option-agent).
+---
+
+# Skill: Spec Addition with Options Skill
+
+## Identity
+- **Skill file**: `SKILL_missing_spec_addition_agent.md`
+- **Layer**: Strategic
+- **Purpose**: Evaluate candidate missing specs and decide whether to add them, with a full spec definition.
+
+## What this skill does
+
+You are a **decision-maker for spec additions**. The data investigator skills have surfaced candidate specs from call data, search data, and custom seller data. Your job is to evaluate each candidate and produce a clear verdict: add or don't add. If you recommend adding, you define the spec completely — name, options, input type, and tier.
+
+You are not rubber-stamping every candidate. Many signals are noise, context terms, duplicates, or already covered under different names. You must filter ruthlessly.
+
+## Input you receive
+
+For each candidate spec, the orchestrator provides:
+- The candidate `spec_name` (from one or more data sources)
+- The **evidence** supporting it:
+  - Call data signal: product count, top values (from Buyer Call Agent)
+  - Search data signal: impression count, searched options (from Buyer Search Agent)
+  - Custom spec signal: seller count, top options (from Custom Spec Agent)
+  - Fill rate data: if a related spec exists, its fill rate
+- The **current spec list** (to check for overlaps and duplicates)
+- The orchestrator's **signal classification** for this candidate (VALID_SPEC, CONTEXT_TERM, etc.)
+- The orchestrator's **reasoning** for why it believes this spec is missing
+
+## Evaluation criteria
+
+### Must-pass checks (reject if any fail):
+1. **Not a duplicate**: The candidate must not be the same attribute as an existing spec under a different name. Check the current spec list carefully — "Brand Name" and "Brand" are the same spec; "Material" and "Build Material" likely overlap.
+2. **Not a context term**: The candidate must represent a discrete, filterable product attribute, not a search context word. If the category already defines the product type, terms that re-describe it are noise.
+3. **Not a composite**: The candidate must be a single attribute, not a bundle of multiple attributes. "Specifications" or "Details" are too broad to be a spec.
+4. **Is a product spec**: The candidate must be a physical or functional attribute of the product itself. Warranty, delivery time, MOQ, packaging details, and payment terms are NOT product specs.
+
+### Strength assessment:
+After passing the must-pass checks, assess signal strength:
+- **Strong**: 2+ independent data sources confirm the gap (e.g., call data + custom specs, or search + calls)
+- **Moderate**: 1 strong data source (e.g., high search impressions alone)
+- **Weak**: Indirect or low-volume signals only
+
+### For candidates that pass: define the spec
+
+**Spec name**: Use the most standard, clear form. Follow Indian B2B marketplace naming conventions:
+- Title case
+- Concise (2-4 words max)
+- Use industry-standard terminology for this category
+- If multiple sources used different names for the same attribute, pick the clearest one
+
+**Options**: Draw from the data sources:
+- Start with the top values from call data (most authentic)
+- Add high-impression values from search data
+- Cross-reference with custom spec values
+- Remove duplicates and normalize formatting
+- Keep the list between 4-12 options (enough to be useful, not so many it overwhelms)
+- Include an "Other" option only if the spec genuinely has an open-ended tail
+
+**Input type**:
+- `radio_button`: When a product has exactly one value for this spec (most common)
+- `multi_select`: When a product can legitimately have multiple values (e.g., "Application" — a product might be used for multiple purposes)
+- `text_type`: Only when the values are truly free-form and can't be meaningfully pre-defined
+
+**Tier placement**:
+- Primary: If the spec is critical for purchase decisions (high call count, high search, core category attribute)
+- Secondary: If important but not top-priority
+- Tertiary: If nice-to-have or niche
+
+## Output format
+
+For each candidate, return:
+```json
+{
+  "candidate_spec": "<name from orchestrator>",
+  "verdict": "add | reject",
+  "rejection_reason": "<if rejected — which must-pass check failed, or why signal is insufficient>",
+  "recommended_spec": {
+    "spec_name": "<standardized name>",
+    "options": ["opt1", "opt2", "opt3"],
+    "input_type": "radio_button | multi_select | text_type",
+    "suggested_tier": "primary | secondary | tertiary"
+  },
+  "signal_strength": "strong | moderate | weak",
+  "evidence_summary": "<one sentence citing the specific data signals>"
+}
+```
+
+## Boundaries
+
+- You DO make add/reject decisions — this is your core function.
+- You DO define complete specs (name, options, type, tier) — the orchestrator shouldn't have to guess.
+- You do NOT modify existing specs — that's the Option Validator and Sequence Agent's job.
+- You do NOT override the orchestrator's signal classification — if it classified something as CONTEXT_TERM, you reject it.
+- When in doubt, err toward rejecting. A missing spec can always be added later; a bad spec pollutes the system.
+
+
+---
+
+### SKILL_5_sequencing.md
+
+---
+name: spec-sequencing-skill
+description: >
+  Use this skill whenever you believe a spec is in the wrong tier — a high-importance
+  spec buried in Tertiary, or a low-value spec occupying Primary. Also invoke after
+  adding new specs to determine where they belong, or after option fixes that may
+  have changed a spec's effective importance. Do NOT use for discovering missing specs
+  (use missing-spec-addition-agent) or fixing option values (use option-agent).
+---
+
+## Identity
+- **Skill file**: `SKILL_spec_sequencing_agent.md`
+- **Layer**: Strategic
+- **Purpose**: Evaluate whether each spec is in the correct tier and recommend re-ordering when the data shows a mismatch.
+
+## What this skill does
+
+You assess whether the current tier placement (primary / secondary / tertiary) of specs matches their actual importance to the marketplace. A spec with high fill rate and search volume sitting in tertiary is wasting its signal — buyers don't see it early enough. A spec with near-zero fill rate sitting in primary is taking up valuable real estate.
+
+## Input you receive
+
+For each spec (or for the full spec set), the orchestrator provides:
+- `spec_name` and `current_tier`
+- **Signal data** gathered from investigator skills and fill rate data:
+  - `fill_rate`: Percentage of products with this spec filled (from DS4)
+  - `search_impressions`: Total buyer search volume (from Buyer Search Agent)
+  - `call_product_count`: Total mentions in buyer-seller calls (from Buyer Call Agent)
+  - `custom_seller_count`: How many sellers added this as custom spec (from Custom Spec Agent)
+  - `option_fill_rates`: Per-option adoption data (from DS5), if available
+- Any **domain context** the orchestrator has gathered (from Domain Expert)
+
+## How to assess tier placement
+
+### Compute an importance signal profile for each spec:
+
+A spec's importance comes from four dimensions:
+1. **Buyer demand** (search impressions) — Are buyers filtering on it?
+2. **Transaction relevance** (call mentions) — Is it discussed during purchase?
+3. **Seller adoption** (fill rate) — Are sellers filling it?
+4. **Domain criticality** — Is it a core attribute for this product type?
+
+No single dimension is sufficient. A spec with high search but zero fill rate likely has broken options, not low importance. A spec with high fill rate but zero search might be seller-oriented (still valuable). Use the full profile.
+
+### Tier logic:
+
+**Primary tier** — The spec should be primary if:
+- It's a top-3 attribute buyers use to make purchase decisions in this category
+- It has high signal across multiple dimensions (fill rate + search + calls)
+- Domain knowledge identifies it as a category-defining attribute
+- It's one of the foundational specs that every listing in this category should have
+
+**Secondary tier** — The spec should be secondary if:
+- It's important but not top-3
+- It has moderate signal (decent fill rate OR decent search, but not both at top levels)
+- It differentiates products but isn't the first thing a buyer filters on
+
+**Tertiary tier** — The spec should be tertiary if:
+- It's a nice-to-have detail
+- It has lower signal (low fill rate, low search)
+- It's relevant to a subset of products or a subset of buyers, not the whole category
+
+### Flag mismatches:
+
+Compare each spec's importance profile against its current tier. Flag if:
+- A spec has **higher signals than specs above it** in the tier hierarchy
+- A primary spec has **significantly lower signals** than secondary/tertiary specs
+- Fill rate data shows a **tier inversion** (tertiary spec has higher fill than primary)
+
+## Output format
+
+For each spec assessed:
+```json
+{
+  "spec_name": "<name>",
+  "current_tier": "primary | secondary | tertiary",
+  "recommended_tier": "primary | secondary | tertiary",
+  "change_needed": true | false,
+  "reasoning": "<why this tier, citing specific signals>",
+  "signal_profile": {
+    "fill_rate": 45.2,
+    "search_impressions": 890,
+    "call_product_count": 24,
+    "custom_seller_count": 0
+  }
+}
+```
+
+If assessing the full spec set, also provide:
+- A **recommended tier ordering** — all specs ranked by importance with suggested tier assignments
+- Any **tier inversions** detected (specific pairs of specs where the lower-tier one has stronger signals)
+
+## Boundaries
+
+- You DO recommend tier changes based on data — this is your core function.
+- You do NOT add or remove specs — that's the Missing Spec Agent's and orchestrator's job.
+- You do NOT modify options — that's the Option Validator's job.
+- You SHOULD flag when a resequencing recommendation is based primarily on domain knowledge without strong quantitative backing — mark it as lower confidence so the Critic can challenge it.
+- After new specs are added by the Missing Spec Agent, the orchestrator may re-invoke you to reassess the full tier balance. Be ready to evaluate the new spec in context of the full set.
+
+## Edge cases
+- A spec with zero signal across all sources but domain knowledge says it's critical → recommend keeping its current tier, but flag the data absence.
+- Fill rate data missing for a spec → rely on search + call signals only, note the gap.
+- All specs have similar signal profiles → the current ordering may be reasonable; don't force changes for the sake of change.
+
+
+---
+
+### SKILL_6_option_validator.md
+
+---
+name: option-validator-skill
+description: >
+  Use this skill whenever you suspect a spec's option list is flawed — values are
+  missing, wrong, outdated, absurd, or poorly structured. Invoke when call data
+  shows values not in the current option list, when search data reveals high-impression
+  options that aren't selectable, when option fill rate shows near-zero adoption for
+  many options, or when options have structural problems (mixed units, overlapping
+  ranges, wrong input type). Do NOT use for discovering missing specs (use
+  missing-spec-addition-agent) or for tier decisions (use sequencing-agent).
+---
+
+# Skill 6: Option Validator skill
+## Identity
+- **Skill file**: `SKILL_option_validator_agent.md`
+- **Layer**: Strategic
+- **Purpose**: Audit the option list of a specific spec and produce a corrected version with additions, removals, corrections, and structural fixes.
+
+## What this skill does
+
+You audit a single spec's option list. Every spec has predefined options that sellers choose from and buyers filter on. When these options are wrong — values missing, misspelled, absurd, duplicated, or poorly formatted — the spec fails both sides. You produce a corrected option list with every change annotated.
+
+## Input you receive
+
+For the spec being validated:
+- `spec_name`, `current_options`, `input_type`, `current_tier`
+- **Evidence from investigator skills**:
+  - Call data values and corrections (from Buyer Call Agent)
+  - Search options and option-level gaps (from Buyer Search Agent)
+  - Custom spec options (from Custom Spec Agent)
+- **Fill rate data**: Spec-level (DS4) and option-level (DS5) fill rates
+- **Domain context** from the orchestrator
+
+## What you check
+
+### 1. Missing options
+Values in real-world data but not in the current list:
+- Call data values with meaningful product counts
+- High-impression search options
+- Custom spec values sellers repeatedly enter
+
+### 2. Incorrect options
+Call data corrections are your primary signal:
+- If the pipeline corrected a value and the old form is still in options, flag it for correction
+
+### 3. Absurd or irrelevant options
+Options that don't belong:
+- Makes no sense for this spec type
+- Zero signal in calls, zero search impressions, AND zero option fill rate
+
+**Be cautious with removals.** Only recommend when evidence is strong across multiple sources.
+
+### 4. Structural issues
+- Format inconsistency (mixed units, mixed granularity)
+- Duplicate values (different spellings of the same thing)
+- Too few options (0-2 makes the spec useless as a filter)
+- Wrong input_type (should be multi_select but is radio_button, or vice versa)
+
+### 5. Option ordering
+Numeric → ascending. Brands → alphabetical or by market share. Standard terms → most common first.
+
+## Output format
+
+```json
+{
+  "spec_name": "<name>",
+  "current_option_count": 8,
+  "corrected_option_count": 10,
+  "input_type_change": null | {"from": "old", "to": "new", "reason": "..."},
+  "additions": [
+    {"option": "value", "reason": "...", "source": "call + search"}
+  ],
+  "removals": [
+    {"option": "value", "reason": "...", "source": "fill_rate + call + search"}
+  ],
+  "corrections": [
+    {"from": "old", "to": "new", "reason": "...", "source": "call_data"}
+  ],
+  "structural_notes": ["..."],
+  "corrected_options": ["opt1", "opt2", "..."],
+  "flags": ["Any warnings about the spec overall"]
+}
+```
+
+## Boundaries
+
+- You DO modify option lists — this is your core function.
+- You do NOT add or remove the spec itself.
+- You do NOT change the spec's tier.
+- When removing options, always cite specific zero-signal evidence.
+- If ALL options show zero signal, flag the entire spec as potentially irrelevant — don't silently empty it.
+
+
+---
+
+### SKILL_7_domain_expert.md
+
+---
+name: domain-expert-skill
+description: >
+  Use this skill when data signals alone are insufficient — when signals conflict,
+  when you need category-level context to interpret what a signal means, when you
+  are about to make a destructive action (remove spec, merge specs) and need
+  domain confirmation, or when a spec's importance is determined by industry norms
+  rather than observable buyer behaviour. This is your strategic advisor. Do NOT
+  skip this skill when signals contradict each other. Do NOT use as a substitute
+  for data — consult data first, then call this skill to arbitrate.
+---
+
+## What this skill does
+
+You are the **domain brain**. Other skills analyze data; you reason about the real world. You understand what products are, who buys them, how industries work, and what matters in the Indian B2B marketplace. When the data is ambiguous, contradictory, or insufficient, you provide the judgment that data alone cannot.
+
+You are NOT a rubber stamp. You are called specifically when there is a question the data can't resolve on its own.
+
+## Input you receive
+
+The orchestrator passes you a **specific question or conflict**, along with:
+- The `category_name`
+- The current spec structure
+- Relevant findings from other skills (call signals, search signals, fill rates, etc.)
+- The specific decision the orchestrator is trying to make
+
+**The question must be precise.** You should receive something like:
+> "Search data shows 1,350 impressions for 'usage' in this category, but zero sellers added it as a custom spec and zero call mentions. Given this is a [category type] category, is 'usage' a real spec or a context term?"
+
+Not:
+> "Is this spec relevant?"
+
+If the question is too vague, ask the orchestrator to reframe it.
+
+## Types of questions you handle
+
+### 1. Signal conflict resolution
+Two data sources disagree. Your job is to explain *why* and recommend which signal to trust.
+
+**Common patterns**:
+- **High search, zero fill rate** → Usually means the spec exists but its options are wrong (buyers want to filter but sellers can't find the right value). Fix the options, don't remove the spec.
+- **High fill rate, zero search** → Spec is seller-oriented (they find it important to describe) but buyers don't filter on it. It may still be valuable — sellers know their product better than search queries suggest.
+- **High calls, zero search** → The attribute matters in direct negotiation but isn't surfaced in the discovery flow. Consider adding it to improve the spec system.
+- **High search, zero calls** → Could be search noise (buyers type category words) or a genuine discovery gap. Check if the term is a context word or a real attribute.
+
+### 2. Category sanity checks
+The orchestrator asks whether a spec makes sense for this specific category.
+
+**Your reasoning framework**:
+- What is this product physically/functionally?
+- Who are the buyers in the Indian B2B market? (Manufacturers? Traders? Retailers? Institutions?)
+- What attributes drive purchase decisions for this product type?
+- Are there industry standards or certifications that dictate certain specs?
+- What do sellers of this product typically differentiate on?
+- Is this a commodity (specs less critical) or a differentiated product (specs are everything)?
+
+### 3. Spec relationship reasoning
+Two specs seem related or duplicative. Your job is to determine if they're truly the same thing or genuinely distinct.
+
+**Decision framework**:
+- Do the two specs answer different buyer questions? If yes → distinct.
+- Can a single product have different values for each? If yes → distinct.
+- Would merging them cause information loss? If yes → keep separate.
+- Do buyers in this market mentally distinguish them? If no → merge.
+
+### 4. Tier arbitration
+The data suggest one tier, but domain knowledge suggests another.
+
+**Your role**: Provide the domain perspective with reasoning. The orchestrator and Arbiter make the final call, but your input carries significant weight.
+
+### 5. Option coherence
+A spec's option list seems wrong from a domain perspective — too many options, wrong options, missing industry-standard values, or values that don't match how the Indian B2B market actually works.
+
+### 6. New spec validation
+The Missing Spec Agent wants to add a spec. You provide a second opinion: does this spec genuinely make sense for this category? Is it really missing, or is it covered under a different name?
+
+### Web Search  
+
+Before making any domain-level judgment, **actively perform a web search** to ground your reasoning in credible, real-world evidence. Always include **relevant source links** to support your conclusions.  
+
+**Avoid:**  
+- Generic or high-level sources (e.g., Wikipedia)  
+- B2B marketplaces or listing platforms (e.g., IndiaMART, TradeIndia, Justdial)  
+
+**Prefer:**  
+- Authoritative industry sources  
+- Manufacturer or brand websites  
+- Technical documentation, research reports, and expert articles  
+
+
+## Output format
+
+For each question:
+```json
+{
+  "question_summary": "<the question you were asked>",
+  "classification": "VALID_SPEC | CONTEXT_TERM | NOT_A_PRODUCT_SPEC | MISCLASSIFIED | DUPLICATE | COMPOSITE | INDUSTRY_STANDARD",
+  "judgment": "<your domain reasoning — 2-5 sentences>",
+  "recommendation": "<specific action recommendation>",
+  "confidence": "high | medium | low",
+  "confidence_reason": "<why this confidence level — is this well-established domain knowledge or your best guess?>",
+  "caveats": ["<any conditions or exceptions to your judgment>"]
+}
+
+```
+
+## Boundaries
+
+- You DO provide domain judgments — this is your core function.
+- You DO override data-driven conclusions when domain logic is clear and strong.
+- You do NOT fabricate data or claim signals exist that don't.
+- You do NOT make structural changes to specs — you advise; the orchestrator acts.
+- When your judgment is based on general knowledge rather than deep expertise in this specific category, say so. Mark confidence as "medium" or "low" and explain what you're uncertain about.
+- **Indian B2B market context matters.** Your reasoning should reflect how business is actually done in India — the product types, buyer behaviors, industry norms, and regulatory requirements specific to this market.
+
+## Edge cases
+- Category you know nothing about → be honest. State that your domain knowledge for this specific category is limited. Provide general reasoning principles but mark confidence as "low."
+- Multiple valid interpretations → present all of them with the tradeoffs. Let the orchestrator choose.
+- The data strongly contradicts your domain intuition → respect the data. State your domain expectation, acknowledge the data says otherwise, and suggest investigating further rather than overriding.
+
+
+
+---
+
+### SKILL_8_Critic.md
+
+---
+name: critic skill
+description: >
+  Use this skill to adversarially challenge proposed spec actions before they are 
+accepted into the final spec set. Operates in two modes: (1) Per-Action Critique 
+— reviews individual actions immediately after proposal, evaluating evidence 
+quality, alternative explanations, and related signals; (2) Holistic Review — 
+reviews the complete action set for contradictions, missed gaps, and overall 
+audit completeness. The Critic does not propose changes — it stress-tests them. 
+Assign verdicts of approved/caution/reject with specific, evidence-based 
+challenges. Do NOT use this skill to propose new actions (use investigator 
+skills), sequence specs (use spec-sequencing-agent), or fix options (use 
+option-agent). Invoke after the analyst proposes actions, before the final output
+---
+
+## Purpose
+
+## Identity
+- **Skill ID**: `SKILL_critic_agent`
+- **Layer**: Quality Gate
+- **Invoked via**: `INVOKE_CRITIC`
+
+---
+
+## Purpose
+
+Adversarially challenge every proposed action before it can be accepted into the final spec set. The Critic does not propose changes — it stress-tests them. Its job is to find what's wrong, what's weak, what's missing, and what could go wrong with each decision the analyst makes.
+
+The Critic is structurally incentivized to find problems. A Critic that approves everything is a failed Critic. A Critic that rejects everything is also a failed Critic. The goal is calibrated skepticism — approve what's strong, flag what's thin, reject what's unsupported.
+
+---
+
+## Two Modes of Invocation
+
+### Mode 1: Per-Action Critique
+Called immediately after each proposed action. Reviews a single action in isolation.
+
+**Input**:
+- The proposed action (type, spec_name, details)
+- The evidence supporting it (which data sources, what signal strength)
+- The confidence level and confidence_reason
+- The current spec context (what else is in the spec set)
+
+**Output**: A structured critique for this single action.
+
+### Mode 2: Holistic Review
+Called once after all individual actions have been proposed and critiqued. Reviews the complete action set as a whole.
+
+**Input**:
+- The full list of proposed actions (both accepted and rejected so far)
+- The full set of investigator skill outputs
+- The current spec set + proposed modifications
+
+**Output**: A holistic assessment covering cross-action consistency, missed gaps, and overall audit completeness.
+
+---
+
+## Per-Action Critique: Processing Steps
+
+### Step 1: Assess evidence quality
+For the action being critiqued, evaluate:
+
+| Question | What to check |
+|----------|--------------|
+| How many independent signals support this? | Count distinct data sources (call data, search data, custom specs, fill rate, domain knowledge). 1 source = thin. 2+ = solid. |
+| How strong is each signal? | A spec with 3 product mentions is weaker than one with 90. 10 search impressions is weaker than 10,000. Quantify, don't just check presence. |
+| Is there contradictory evidence? | Does any data source actively argue against this action? Absence of signal ≠ contradiction, but explicit negative signal (e.g., zero sellers adding this custom spec despite high search volume) IS worth noting. |
+| Is the evidence from the right source for this action type? | ADD_SPEC should ideally have buyer-side evidence (calls, search). CORRECT_OPTION should have normalization evidence from call data. MOVE_SPEC should have fill rate + search data. Domain-only evidence is thin for structural changes. |
+
+### Step 2: Check for alternative explanations
+Every data pattern has multiple possible explanations. The Critic must articulate at least one alternative:
+
+- High search volume for a term → Could be a CONTEXT_TERM, not a VALID_SPEC
+- Low fill rate for a spec → Could be bad options rather than irrelevant spec
+- Zero signal in calls → Could be a spec that buyers check in listings, not one they discuss verbally
+- Multiple sellers adding custom spec → Could be the same seller's listings duplicated, not independent sellers
+
+The alternative doesn't have to be right — it just has to be plausible enough that the analyst should have addressed it.
+
+### Step 3: Check for overlooked related signals
+When an action targets one spec, the Critic checks whether related attributes were considered:
+
+- Adding "Length" → Was "Width" also investigated? Dimensions are a family.
+- Adding "Top Material" options → Were the same values checked in "Top Finish"? (misclassification issue)
+- Moving a spec to primary → What gets displaced? Was the displaced spec's importance also evaluated?
+- Removing an option → Was there any niche market segment that uses this value?
+
+### Step 4: Assign verdict
+
+- **`approved`** — Evidence is strong across multiple sources, reasoning is sound, no significant alternative explanation undermines the action. This action should proceed.
+- **`caution`** — Evidence exists but is thin (single-source, low volume, or domain-only). Or the reasoning has a gap the analyst didn't address. The action can proceed but should be flagged as lower confidence.
+- **`reject`** — Evidence does not support this action. Either: no quantitative data backs it, a strong alternative explanation was ignored, or the action contradicts other accepted actions. This action should NOT be in the final output.
+
+### Step 5: Produce the critique
+
+---
+
+## Per-Action Critique Output Format
+
+```json
+{
+  "action_reviewed": "ADD_SPEC — Table Length",
+  "verdict": "approved",
+  "challenge": "The action is supported by strong seller signals (custom spec count: 58) and buyer call mentions (90). However, the complete lack of search signals is notable. More importantly, the analyst proposed 'Table Length' while not addressing clear signals for 'Table Width' (custom spec count: 22, call mentions: 52). Dimensions are often a pair; adding one without the other is incomplete.",
+  "alternative_explanation": "None — the evidence is strong and convergent across two sources.",
+  "missed_related_signals": ["Table Width (custom: 22, calls: 52) — not addressed"],
+  "suggested_revision": "Consider adding 'Table Width' as a companion spec, or explicitly justify why Length alone is sufficient."
+}
+```
+
+```json
+{
+  "action_reviewed": "RESEQUENCE — full spec reorder",
+  "verdict": "reject",
+  "challenge": "The entire justification rests on a single, unquantified claim from domain knowledge. No behavioral data (filter usage rates, click-through analysis) supports this specific ordering. Moving 'Frame Material' from position 8 to 4 is a significant change based on what appears to be an assumption, not evidence.",
+  "alternative_explanation": "The current order may already reflect real user behavior patterns that were established through historical usage data. Changing it without behavioral evidence risks disrupting existing user habits.",
+  "missed_related_signals": [],
+  "suggested_revision": "Hold this action until behavioral data can validate the new sequence. Alternatively, proceed with a more conservative re-ordering of only the top-3 specs where evidence is strongest."
+}
+```
+
+---
+
+## Holistic Review: Processing Steps
+
+When invoked for the final holistic review, the Critic must:
+
+### 1. Check for contradictions
+Do any accepted actions conflict with each other?
+- Adding a spec AND removing a spec that captures the same attribute
+- Moving a spec up in tier AND reducing its option list (which would reduce its utility)
+- Adding options to a spec that's being proposed for removal
+
+### 2. Identify missed gaps
+Review the investigator skill outputs and check: are there signals the analyst noticed during investigation but never proposed an action for?
+- A spec that appeared in call data with moderate signal but was never evaluated
+- A custom spec with meaningful frequency that was never investigated
+- A search term with high impressions that was mentioned in thinking but not acted on or explicitly skipped
+
+For each missed gap, the Critic provides:
+- `term`: What was missed
+- `signal_summary`: What the data showed
+- `severity`: How important is this oversight
+
+### 3. Verify skipped gaps have real justifications
+Check the analyst's "Skipped Gaps" list. For each skipped gap:
+- Is the reason for skipping defensible?
+- Was the classification (CONTEXT_TERM, NOT_A_PRODUCT_SPEC, etc.) actually validated with data, or just assumed?
+
+### 4. Overall assessment
+One paragraph summarizing: Is this audit thorough? What's its biggest strength? What's its biggest weakness?
+
+---
+
+## Holistic Review Output Format
+
+```json
+{
+  "contradictions_found": [],
+  "missed_gaps": [
+    {
+      "term": "Table Width",
+      "signal_summary": "Custom spec count: 22, call mentions: 52. Analyst acted on Table Length but not Width.",
+      "severity": "caution"
+    }
+  ],
+  "skipped_gap_review": "All skipped gaps have defensible reasoning. 'Usage' correctly classified as CONTEXT_TERM based on zero custom spec signal. 'Warranty' correctly classified as NOT_A_PRODUCT_SPEC.",
+  "overall_assessment": "The analyst's work is generally strong, effectively using multiple signal types to justify additions. However, the analysis is weakened by the omission of 'Table Width' alongside 'Table Length' and an insufficiently evidenced resequencing proposal."
+}
+```
+
+---
+
+## Calibration Rules
+
+The Critic must be:
+- **Specific, not vague**: "This seems weak" is not a challenge. "The action is based on search data alone (164 impressions) with zero call mentions and zero custom spec signals — single-source evidence at medium volume" IS a challenge.
+- **Evidence-based, not contrarian**: The Critic challenges based on data gaps and reasoning flaws, not just to be difficult. If the evidence is genuinely strong, approving is the right call.
+- **Proportional**: A minor option addition with solid evidence doesn't need the same scrutiny as a full spec removal or resequencing. Scale the depth of critique to the impact of the action.
+- **Constructive**: Every `caution` or `reject` should include a `suggested_revision` — a way to fix the problem, not just a complaint.
+
+---
+
+## Edge Cases
+
+- **Domain-only evidence**: Actions supported only by domain knowledge and no quantitative data should be flagged as `caution` at minimum. Domain knowledge is valuable but unfalsifiable — it should be the tiebreaker, not the sole basis.
+- **Destructive actions** (REMOVE_SPEC, REMOVE_OPTIONS, MERGE_SPECS): Apply heightened scrutiny. Require multi-source evidence. A single Critic `approved` is not enough — the arbiter should also verify independently.
+- **Actions with acknowledged uncertainty**: If the analyst already flagged an action as `low` confidence, the Critic should still review it but can be briefer. The analyst's self-awareness is itself a positive signal.
+
+
+---
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 12154
+category_name: Aluminum Cabinet Handles
+seller_specs: [see data/12154.txt for full specs]
+Data available: DS1=109 rows, DS2=62 rows, DS3=0 rows, DS4=30 rows, DS5=260 rows
+[Full aggregated data sent to agent — see data/data_12154.txt]
+
+=== SKILL FEEDBACK (Turn 1) ===
+Skill execution complete. Here are the results:
+
+=== Skill_1 Result ===
+{
+  "error": "parse_failed",
+  "raw": "The `buyer-call-spec-skill` has processed the provided buyer call data.\n\n**Key Observations:**\n*   The input `buyer_call_specs_agg` lacks the `change_type` and `change_description` fields from the raw call data CSV. Therefore, **it is not possible to extract \"corrections\" or definitively identify \"name_variant\" statuses as defined by the skill's processing steps.** All specs that do not have an exact name match with a platform spec are marked as `not_present`.\n\n---\n\n### Section A: Spec Signal Map\n\n\n[\n  {\n    \"spec_name\": \"Length\",\n    \"total_product_count\": 82,\n    \"unique_values\": 15,\n    \"top_values\": [\n      \"10 ft\",\n      \"4 inch\",\n      \"8 inch\",\n      \"3 m\",\n      \"45 mm\",\n      \"22 mm\",\n      \"36 inch\",\n      \"6 inch\",\n      \"24 inch\",\n      \"12 inch\",\n      \"128 mm\",\n      \"3 ft\",\n      \"5 inch\",\n      \"68 mm\",\n      \"96 mm\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Material\",\n    \"total_product_count\": 61,\n    \"unique_values\": 1,\n    \"top_values\": [\n      \"Aluminum\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"present\",\n    \"matched_current_spec\": \"Material\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Profile Type\",\n    \"total_product_count\": 44,\n    \"unique_values\": 13,\n    \"top_values\": [\n      \"G Profile\",\n      \"Profile\",\n      \"C Profile\",\n      \"J Profile\",\n      \"Shutter Section\",\n      \"Cabinet Handle\",\n      \"Conceal\",\n      \"Glass Profile\",\n      \"L Type\",\n      \"Mindy Handle\",\n      \"Pull Handle\",\n      \"Sleek\",\n      \"T Profile\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Color\",\n    \"total_product_count\": 41,\n    \"unique_values\": 11,\n    \"top_values\": [\n      \"Black\",\n      \"Rose Gold\",\n      \"Gold\",\n      \"All Colors\",\n      \"Silver\",\n      \"Aluminum\",\n      \"Brush Gold\",\n      \"Gray\",\n      \"Ivory\",\n      \"Matte Black\",\n      \"White\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Finish\",\n    \"total_product_count\": 36,\n    \"unique_values\": 15,\n    \"top_values\": [\n      \"Black\",\n      \"Matte\",\n      \"Rose Gold\",\n      \"SS Brush\",\n      \"Silver\",\n      \"Silver, CP, CP Brush, Rose Gold, Gold, Iron Grey, Black Matte, Black Ceramic (Sand Blasting)\",\n      \"Chrome\",\n      \"Shiny (SS Finish)\",\n      \"Silver Anodized\",\n      \"Antique\",\n      \"Black Anodized\",\n      \"Black Chrome\",\n      \"CP Brush\",\n      \"High Gloss (Ceramic)\",\n      \"Matte Black\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"present\",\n    \"matched_current_spec\": \"Finish\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Origin\",\n    \"total_product_count\": 12,\n    \"unique_values\": 3,\n    \"top_values\": [\n      \"Imported\",\n      \"Indian\",\n      \"Rajkot\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Application\",\n    \"total_product_count\": 9,\n    \"unique_values\": 4,\n    \"top_values\": [\n      \"Wardrobe\",\n      \"Cabinetry fitting\",\n      \"Kitchen\",\n      \"Kitchen and Wardrobe\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Product Type\",\n    \"total_product_count\": 8,\n    \"unique_values\": 6,\n    \"top_values\": [\n      \"Cabinet Handle\",\n      \"Normal\",\n      \"American\",\n      \"Full handle\",\n      \"Medium\",\n      \"Plain\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Design Style\",\n    \"total_product_count\": 7,\n    \"unique_values\": 6,\n    \"top_values\": [\n      \"Fancy\",\n      \"American\",\n      \"Moor\",\n      \"Plain\",\n      \"Three-line\",\n      \"Unique and Running designs\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Product Quality\",\n    \"total_product_count\": 7,\n    \"unique_values\": 3,\n    \"top_values\": [\n      \"Imported High Quality\",\n      \"Good Quality / Scratch-free\",\n      \"Light\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Mounting Type\",\n    \"total_product_count\": 5,\n    \"unique_values\": 2,\n    \"top_values\": [\n      \"Back Screw\",\n      \"Non-screw\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Weight\",\n    \"total_product_count\": 5,\n    \"unique_values\": 3,\n    \"top_values\": [\n      \"1.1 kg\",\n      \"1 kg\",\n      \"500 g\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Construction\",\n    \"total_product_count\": 4,\n    \"unique_values\": 1,\n    \"top_values\": [\n      \"Solid\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Brand\",\n    \"total_product_count\": 3,\n    \"unique_values\": 3,\n    \"top_values\": [\n      \"CP Century\",\n      \"Rajput\",\n      \"Unbranded\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"present\",\n    \"matched_current_spec\": \"Brand\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Product Category\",\n    \"total_product_count\": 3,\n    \"unique_values\": 1,\n    \"top_values\": [\n      \"Profile End Cap\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Handle Shape\",\n    \"total_product_count\": 2,\n    \"unique_values\": 1,\n    \"top_values\": [\n      \"D Shape\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Packaging\",\n    \"total_product_count\": 2,\n    \"unique_values\": 1,\n    \"top_values\": [\n      \"Full Packed\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Bundle Quantity\",\n    \"total_product_count\": 1,\n    \"unique_values\": 1,\n    \"top_values\": [\n      \"10 pieces\"\n    ],\n    \"units\": \"pc\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Compatible Ply Thickness\",\n    \"total_product_count\": 1,\n    \"unique_values\": 1,\n    \"top_values\": [\n      \"18 mm\"\n    ],\n    \"units\": \"mm\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Feature\",\n    \"total_product_count\": 1,\n    \"unique_values\": 1,\n    \"top_values\": [\n      \"Long Handle (Edge to Edge)\"\n    ],\n    \"units\": \"\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  },\n  {\n    \"spec_name\": \"Profile Thickness\",\n    \"total_product_count\": 1,\n    \"unique_values\": 1,\n    \"top_values\": [\n      \"35 mm\"\n    ],\n    \"units\": \"mm\",\n    \"match_status\": \"not_present\",\n    \"matched_current_spec\": \"\",\n    \"corrections\": []\n  }\n]\n\n\n### Section B: Summary\n\n\n{\n  \"total_unique_specs_in_call_data\": 21,\n  \"total_product_mentions_across_all_specs\": 302,\n  \"match_status_counts\": {\n    \"present\": 3,\n    \"not_present\": 18,\n    \"name_variant\": 0\n  },\n  \"notes\": {\n    \"name_variant_and_corrections_status\": \"Name variant status and explicit corrections could not be determined due to the absence of 'change_type' and 'change_description' fields in the provided input data. All non-exact matches are classified as 'not_present'.\"\n  },\n  \"specs_ranked_by_importance\": [\n    {\n      \"spec_name\": \"Length\",\n      \"total_product_count\": 82\n    },\n    {\n      \"spec_name\": \"Material\",\n      \"total_product_count\": 61\n    },\n    {\n      \"spec_name\": \"Profile Type\",\n      \"total_product_count\": 44\n    },\n    {\n      \"spec_name\": \"Color\",\n      \"total_product_count\": 41\n    },\n    {\n      \"spec_name\": \"Finish\",\n      \"total_product_count\": 36\n    },\n    {\n      \"spec_name\": \"Origin\",\n      \"total_product_count\": 12\n    },\n    {\n      \"spec_name\": \"Application\",\n      \"total_product_count\": 9\n    },\n    {\n      \"spec_name\": \"Product Type\",\n      \"total_product_count\": 8\n    },\n    {\n      \"spec_name\": \"Design Style\",\n      \"total_product_count\": 7\n    },\n    {\n      \"spec_name\": \"Product Quality\",\n      \"total_product_count\": 7\n    },\n    {\n      \"spec_name\": \"Mounting Type\",\n      \"total_product_count\": 5\n    },\n    {\n      \"spec_name\": \"Weight\",\n      \"total_product_count\": 5\n    },\n    {\n      \"spec_name\": \"Construction\",\n      \"total_product_count\": 4\n    },\n    {\n      \"spec_name\": \"Brand\",\n      \"total_product_count\": 3\n    },\n    {\n      \"spec_name\": \"Product Category\",\n      \"total_product_count\": 3\n    },\n    {\n      \"spec_name\": \"Handle Shape\",\n      \"total_product_count\": 2\n    },\n    {\n      \"spec_name\": \"Packaging\",\n      \"total_product_count\": 2\n    },\n    {\n      \"spec_name\": \"Bundle Quantity\",\n      \"total_product_count\": 1\n    },\n    {\n      \"spec_name\": \"Compatible Ply Thickness\",\n      \"total_product_count\": 1\n    },\n    {\n      \"spec_name\": \"Feature\",\n      \"total_product_count\": 1\n    },\n    {\n      \"spec_name\": \"Profile Thickness\",\n      \"total_product_count\": 1\n    }\n  ]\n}",
+  "_skill_usage": {
+    "prompt_tokens": 4364,
+    "completion_tokens": 9311,
+    "total_tokens": 13675
+  }
+}
+
+=== Skill_2 Result ===
+{
+  "error": "parse_failed",
+  "raw": "Based on the custom spec analysis for \"Aluminum Cabinet Handles\" (mcat_id: 12154):\n\nHere's the breakdown of the custom specs:\n\n---\n\n### **1. `spec_name`: Model**\n*   **Count:** 25\n*   **Signal Classification:** `VALID_SPEC`\n*   **Reasoning:** This spec has a very high submission count (25) and is not covered by any existing platform spec. The sample options (e.g., \"K 25\", \"ALCH 1005\") clearly indicate specific product models or series, which is a valuable identifier for sellers and buyers.\n*   **Action:** Strong addition candidate. Pass to Missing Spec Agent with high confidence.\n\n### **2. `spec_name`: Made in**\n*   **Count:** 10\n*   **Signal Classification:** `VALID_SPEC`\n*   **Reasoning:** This spec has a strong submission count (10) and is not covered by any existing platform spec. \"Made in\" (Country of Origin) is a common and important attribute across many product categories, often used for quality, compliance, or preference-based filtering.\n*   **Action:** Strong addition candidate. Pass to Missing Spec Agent.\n\n### **3. `spec_name`: Brand Name**\n*   **Count:** 8\n*   **Signal Classification:** `DUPLICATE`\n*   **Reasoning:** This custom spec is semantically identical to the existing platform spec \"Brand\". The platform already covers this attribute.\n*   **Action:** Do not add. Note that sellers are using \"Brand Name\" which is a synonym for the existing \"Brand\" spec. This might suggest a potential naming gap or preferred terminology by sellers.\n\n### **4. `spec_name`: Model Number**\n*   **Count:** 7\n*   **Signal Classification:** `VALID_SPEC`\n*   **Reasoning:** This spec meets the quality gate with a count of 7 and is not covered by an existing platform spec. It appears to be a more specific or formal version of \"Model\" or a related product identifier. Given the distinct options (e.g., \"T117\", \"G121\"), it represents a useful attribute for product differentiation.\n*   **Action:** Valid addition candidate. Pass to Missing Spec Agent.\n\n---\n\n**Summary of Recommendations:**\n\nThe following custom specs are strong candidates for standardisation and should be passed to the Missing Spec Agent:\n\n*   **Model** (Count: 25)\n*   **Made in** (Count: 10)\n*   **Model Number** (Count: 7)\n\nThe custom spec \"Brand Name\" is a duplicate of the existing \"Brand\" spec and should not be added.",
+  "_skill_usage": {
+    "prompt_tokens": 1814,
+    "completion_tokens": 1398,
+    "total_tokens": 3212
+  }
+}
+
+=== Skill_3 Result ===
+{
+  "error": "parse_failed",
+  "raw": "No search data (`search_specs_agg`) was provided for `mcat_id`: 12154, \"Aluminum Cabinet Handles\". Therefore, no search demand signals can be processed or generated.\n\n\n{\n  \"search_signal_map\": [],\n  \"summary\": {\n    \"message\": \"No search data provided for this category. Unable to generate search demand signals.\",\n    \"total_unique_specs_in_search\": 0,\n    \"total_impressions_across_all_specs\": 0,\n    \"match_status_counts\": {\n      \"present\": 0,\n      \"not_present\": 0,\n      \"partial_match\": 0\n    },\n    \"specs_ranked_by_demand\": [],\n    \"top_option_level_gaps\": []\n  }\n}",
+  "_skill_usage": {
+    "prompt_tokens": 1461,
+    "completion_tokens": 384,
+    "total_tokens": 1845
+  }
+}
+
+Continue your analysis based on these results. If analysis is complete, produce the final output.
+
+=== SKILL FEEDBACK (Turn 2) ===
+Skill execution complete. Here are the results:
+
+=== Skill_4 Result ===
+{
+  "error": "parse_failed",
+  "raw": "No candidate specifications were provided in the input. Please provide a list of candidate specs for evaluation.",
+  "_skill_usage": {
+    "prompt_tokens": 1476,
+    "completion_tokens": 132,
+    "total_tokens": 1608
+  }
+}
+
+Continue your analysis based on these results. If analysis is complete, produce the final output.
+
+=== SKILL FEEDBACK (Turn 3) ===
+Skill execution complete. Here are the results:
+
+=== Skill_4 Result ===
+{
+  "error": "parse_failed",
+  "raw": "I cannot perform the spec addition process without any candidate specifications. The `candidates` list is empty. Please provide candidate specs along with their supporting evidence.",
+  "_skill_usage": {
+    "prompt_tokens": 1476,
+    "completion_tokens": 59,
+    "total_tokens": 1535
+  }
+}
+
+Continue your analysis based on these results. If analysis is complete, produce the final output.
+
+=== SKILL FEEDBACK (Turn 4) ===
+Skill execution complete. Here are the results:
+
+=== Skill_4 Result ===
+{
+  "error": "parse_failed",
+  "raw": "No candidates were provided from the orchestrator. If you provide candidates, I will process them.",
+  "_skill_usage": {
+    "prompt_tokens": 1475,
+    "completion_tokens": 19,
+    "total_tokens": 1494
+  }
+}
+
+=== Skill_5 Result ===
+{
+  "error": "parse_failed",
+  "raw": "[\n  {\n    \"spec_name\": \"Size (Hole to Hole)\",\n    \"current_tier\": \"Primary\",\n    \"recommended_tier\": \"Primary\",\n    \"change_needed\": false,\n    \"reasoning\": \"This is a critical dimension for cabinet handles. Its fill rate of 59.1% is solid, and a related spec ('Length') has the highest product count in DS1 (82), indicating strong seller engagement with size attributes. While its fill rate is slightly lower than some suggested primary specs, its domain criticality maintains its primary status.\",\n    \"signal_profile\": {\n      \"fill_rate\": 59.1,\n      \"search_impressions\": 0,\n      \"call_product_count\": 0,\n      \"custom_seller_count\": 0\n    }\n  },\n  {\n    \"spec_name\": \"Handle Type\",\n    \"current_tier\": \"Primary\",\n    \"recommended_tier\": \"Primary\",\n    \"change_needed\": false,\n    \"reasoning\": \"With the highest observed fill rate of 66.7%, 'Handle Type' is a fundamental attribute defining the product and is highly adopted by sellers. It is clearly a top-tier spec.\",\n    \"signal_profile\": {\n      \"fill_rate\": 66.7,\n      \"search_impressions\": 0,\n      \"call_product_count\": 0,\n      \"custom_seller_count\": 0\n    }\n  },\n  {\n    \"spec_name\": \"Finish\",\n    \"current_tier\": \"Secondary\",\n    \"recommended_tier\": \"Primary\",\n    \"change_needed\": true,\n    \"reasoning\": \"The fill rate for 'Finish' is very high at 65.2%, almost matching the top primary specs ('Material', 'Handle Type'). Finish is a crucial aesthetic and functional attribute for buyers of cabinet handles, making it highly important for product differentiation and selection. Its current secondary placement undervalues its marketplace importance.\",\n    \"signal_profile\": {\n      \"fill_rate\": 65.2,\n      \"search_impressions\": 0,\n      \"call_product_count\": 0,\n      \"custom_seller_count\": 0\n    }\n  },\n  {\n    \"spec_name\": \"Material\",\n    \"current_tier\": \"Secondary\",\n    \"recommended_tier\": \"Primary\",\n    \"change_needed\": true,\n    \"reasoning\": \"Despite the category being 'Aluminum Cabinet Handles', 'Material' has the highest fill rate at 66.7%, indicating sellers actively confirm this attribute. It's a foundational spec that, despite being implied by the category name, is important for product verification and buyer confidence. It's currently undervalued in Secondary.\",\n    \"signal_profile\": {\n      \"fill_rate\": 66.7,\n      \"search_impressions\": 0,\n      \"call_product_count\": 0,\n      \"custom_seller_count\": 0\n    }\n  },\n  {\n    \"spec_name\": \"Design Type\",\n    \"current_tier\": \"Tertiary\",\n    \"recommended_tier\": \"Secondary\",\n    \"change_needed\": true,\n    \"reasoning\": \"With a respectable fill rate of 47%, 'Design Type' is significantly more adopted than 'Brand' and provides important aesthetic differentiation for buyers. This indicates it's more than a 'nice-to-have' and warrants a secondary tier placement.\",\n    \"signal_profile\": {\n      \"fill_rate\": 47.0,\n      \"search_impressions\": 0,\n      \"call_product_count\": 0,\n      \"custom_seller_count\": 0\n    }\n  },\n  {\n    \"spec_name\": \"Brand\",\n    \"current_tier\": \"Tertiary\",\n    \"recommended_tier\": \"Tertiary\",\n    \"change_needed\": false,\n    \"reasoning\": \"The fill rate for 'Brand' is extremely low at 1.5%, indicating very minimal seller adoption. This suggests it is not a primary driver for product search or selection in this category and is appropriately placed in the tertiary tier.\",\n    \"signal_profile\": {\n      \"fill_rate\": 1.5,\n      \"search_impressions\": 0,\n      \"call_product_count\": 0,\n      \"custom_seller_count\": 0\n    }\n  }\n]\n\n\n{\n  \"recommended_tier_ordering\": [\n    {\n      \"spec_name\": \"Material\",\n      \"recommended_tier\": \"Primary\",\n      \"fill_rate\": 66.7\n    },\n    {\n      \"spec_name\": \"Handle Type\",\n      \"recommended_tier\": \"Primary\",\n      \"fill_rate\": 66.7\n    },\n    {\n      \"spec_name\": \"Finish\",\n      \"recommended_tier\": \"Primary\",\n      \"fill_rate\": 65.2\n    },\n    {\n      \"spec_name\": \"Size (Hole to Hole)\",\n      \"recommended_tier\": \"Primary\",\n      \"fill_rate\": 59.1\n    },\n    {\n      \"spec_name\": \"Design Type\",\n      \"recommended_tier\": \"Secondary\",\n      \"fill_rate\": 47.0\n    },\n    {\n      \"spec_name\": \"Brand\",\n      \"recommended_tier\": \"Tertiary\",\n      \"fill_rate\": 1.5\n    }\n  ],\n  \"tier_inversions_detected\": [\n    {\n      \"higher_tier_spec\": \"Size (Hole to Hole)\",\n      \"higher_tier_current\": \"Primary\",\n      \"higher_tier_fill_rate\": 59.1,\n      \"lower_tier_spec\": \"Finish\",\n      \"lower_tier_current\": \"Secondary\",\n      \"lower_tier_fill_rate\": 65.2,\n      \"reason\": \"'Finish' (Secondary) has a significantly higher fill rate (65.2%) than 'Size (Hole to Hole)' (Primary, 59.1%), indicating it is currently undervalued relative to its adoption.\"\n    },\n    {\n      \"higher_tier_spec\": \"Size (Hole to Hole)\",\n      \"higher_tier_current\": \"Primary\",\n      \"higher_tier_fill_rate\": 59.1,\n      \"lower_tier_spec\": \"Material\",\n      \"lower_tier_current\": \"Secondary\",\n      \"lower_tier_fill_rate\": 66.7,\n      \"reason\": \"'Material' (Secondary) has a significantly higher fill rate (66.7%) than 'Size (Hole to Hole)' (Primary, 59.1%), indicating it is currently undervalued relative to its adoption.\"\n    }\n  ],\n  \"reasoning_notes\": \"Due to the absence of 'search_impressions', 'call_product_count', and 'custom_seller_count' in the provided input, the assessment relies primarily on fill rate data from DS4 and product counts from DS1 as proxies for seller adoption and importance. This may limit the full picture of buyer demand signals.\"\n}",
+  "_skill_usage": {
+    "prompt_tokens": 5671,
+    "completion_tokens": 4666,
+    "total_tokens": 10337
+  }
+}
+
+Continue your analysis based on these results. If analysis is complete, produce the final output.
+
+=== SKILL FEEDBACK (Turn 5) ===
+Skill execution complete. Here are the results:
+
+=== Skill_6 Result ===
+{
+  "error": "list indices must be integers or slices, not str"
+}
+
+Continue your analysis based on these results. If analysis is complete, produce the final output.

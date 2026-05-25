@@ -1,0 +1,136 @@
+{
+  "pmcat_id": 2028,
+  "pmcat_name": "Antibiotic Medicine",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Antibiotic Medicine",
+      "mcat_id": 2028,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Composition",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Strength",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Dosage Form",
+              "options": [
+                "Tablet",
+                "Capsule",
+                "Injection",
+                "Syrup",
+                "Dry Syrup",
+                "Oral Suspension",
+                "Infusion",
+                "Ointment",
+                "Gel",
+                "Cream",
+                "Lotion",
+                "Powder",
+                "Eye Drops",
+                "Ear Drops"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Brand",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Packaging Size",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Prescription",
+              "options": [
+                "Prescription",
+                "Non Prescription"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Packing Type",
+              "options": [
+                "Alu-Alu",
+                "Blister",
+                "Strip",
+                "Bottle",
+                "Vial",
+                "Ampoule",
+                "Sachet",
+                "Tube",
+                "PFS (Pre-filled Syringe)"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Usage",
+              "options": [
+                "Human Use",
+                "Veterinary Use"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Manufacturer",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Pharmacopoeial Grade",
+              "options": [
+                "IP",
+                "BP",
+                "USP",
+                "EP",
+                "JP"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Country of Origin",
+              "options": [
+                "India"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Shelf Life",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Storage",
+              "options": [
+                "Room Temperature",
+                "Cool and dry place",
+                "Below 25°C",
+                "Below 30°C",
+                "Refrigeration (2-8°C)"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

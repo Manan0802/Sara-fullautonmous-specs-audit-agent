@@ -1,0 +1,179 @@
+[
+  {
+    "pmcat_id": 1500,
+    "pmcat_name": "Plastic Bottles",
+    "generated_by": "Spec_Audit_Orchestrator_Agent",
+    "mcats": [
+      {
+        "category_name": "HDPE Bottle",
+        "mcat_id": 16068,
+        "generated_by": "Spec_Audit_Orchestrator_Agent",
+        "finalized_specs": {
+          "finalized_primary_specs": {
+            "specs": [
+              {
+                "spec_name": "Capacity",
+                "options": [
+                  "10 ml",
+                  "15 ml",
+                  "30 ml",
+                  "50 ml",
+                  "60 ml",
+                  "100 ml",
+                  "125 ml",
+                  "200 ml",
+                  "250 ml",
+                  "500 ml",
+                  "1 L",
+                  "2 L",
+                  "5 L",
+                  "10 L",
+                  "20 L"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Material",
+                "options": [
+                  "HDPE (High-Density Polyethylene)",
+                  "PP (Polypropylene)",
+                  "Co-extruded"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Application / End Use",
+                "options": [
+                  "Chemicals",
+                  "Pesticides & Insecticides",
+                  "Fertilizers",
+                  "Lubricants & Oils",
+                  "Pharmaceuticals",
+                  "Food & Beverages",
+                  "Cosmetics & Toiletries",
+                  "Household Products"
+                ],
+                "input_type": "multi_select"
+              }
+            ]
+          },
+          "finalized_secondary_specs": {
+            "specs": [
+              {
+                "spec_name": "Bottle Shape",
+                "options": [
+                  "Round",
+                  "Cylindrical",
+                  "Square",
+                  "Rectangular",
+                  "Flat",
+                  "Jerry Can",
+                  "Jar"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Color",
+                "options": [
+                  "White",
+                  "Natural",
+                  "Blue",
+                  "Black",
+                  "Yellow",
+                  "Green",
+                  "Transparent"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Neck Size",
+                "options": [
+                  "18 mm",
+                  "20 mm",
+                  "24 mm",
+                  "25 mm",
+                  "28 mm",
+                  "30 mm",
+                  "32 mm",
+                  "38 mm",
+                  "46 mm",
+                  "63 mm",
+                  "100 mm"
+                ],
+                "input_type": "radio_button"
+              }
+            ]
+          },
+          "finalized_tertiary_specs": {
+            "specs": [
+              {
+                "spec_name": "Cap Type",
+                "options": [
+                  "Screw Cap",
+                  "Flip Top Cap",
+                  "TE (Tamper Evident) Cap",
+                  "CRC (Child Resistant) Cap",
+                  "Plug Cap",
+                  "Dropper Cap"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Handle Type",
+                "options": [
+                  "Without Handle",
+                  "Side Handle",
+                  "Top Handle",
+                  "D Handle"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Food Grade",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Weight",
+                "options": [],
+                "input_type": "text_type"
+              },
+              {
+                "spec_name": "Mouth Type",
+                "options": [
+                  "Narrow Mouth",
+                  "Wide Mouth"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Cap Color",
+                "options": [
+                  "White",
+                  "Black",
+                  "Red",
+                  "Blue",
+                  "Yellow",
+                  "Green"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Surface Finish",
+                "options": [
+                  "Matt",
+                  "Glossy",
+                  "Embossed"
+                ],
+                "input_type": "multi_select"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+]

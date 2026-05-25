@@ -1,0 +1,3229 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 9113,
+        "mcat_name": "Heavy Duty Lathe Machines",
+        "current_specs": [
+            {
+                "spec_name": "Swing Over Bed",
+                "options": [
+                    "300 mm",
+                    "400 mm",
+                    "500 mm",
+                    "600 mm",
+                    "800 mm",
+                    "1000 mm",
+                    "1200 mm",
+                    "1500 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Distance Between Centers",
+                "options": [
+                    "750 mm",
+                    "1000 mm",
+                    "1500 mm",
+                    "2000 mm",
+                    "2500 mm",
+                    "3000 mm",
+                    "4000 mm",
+                    "5000 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Bed Length",
+                "options": [
+                    "1500 mm",
+                    "2000 mm",
+                    "2500 mm",
+                    "3000 mm",
+                    "3500 mm",
+                    "4000 mm",
+                    "4500 mm",
+                    "5000 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Spindle Bore",
+                "options": [
+                    "52 mm",
+                    "80 mm",
+                    "100 mm",
+                    "150 mm",
+                    "200 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Spindle Speed Range",
+                "options": [
+                    "25–800 rpm",
+                    "40–800 rpm",
+                    "40–1000 rpm",
+                    "40–1200 rpm",
+                    "25–1600 rpm",
+                    "40–2000 rpm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Motor Power",
+                "options": [
+                    "5 hp",
+                    "7.5 hp",
+                    "10 hp",
+                    "12.5 hp",
+                    "15 hp",
+                    "20 hp"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Bed Type",
+                "options": [
+                    "Single Wall",
+                    "Double Wall",
+                    "Heavy Ribbed",
+                    "Flat Bed",
+                    "V Bed"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Machine Type",
+                "options": [
+                    "All Geared",
+                    "V Belt Drive",
+                    "Oil Country",
+                    "Roll Turning",
+                    "Gap Bed"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Chuck Size",
+                "options": [
+                    "200 mm",
+                    "250 mm",
+                    "300 mm",
+                    "400 mm",
+                    "500 mm",
+                    "600 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Phase",
+                "options": [
+                    "Three Phase",
+                    "Single Phase"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Heavy Duty Lathe Machines",
+            "mcat_id": 9113,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Swing Over Bed",
+                            "options": [
+                                "300 mm",
+                                "400 mm",
+                                "500 mm",
+                                "600 mm",
+                                "800 mm",
+                                "1000 mm",
+                                "1200 mm",
+                                "1500 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Distance Between Centers",
+                            "options": [
+                                "750 mm",
+                                "1000 mm",
+                                "1500 mm",
+                                "2000 mm",
+                                "2500 mm",
+                                "3000 mm",
+                                "4000 mm",
+                                "5000 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Bed Length",
+                            "options": [
+                                "1500 mm",
+                                "2000 mm",
+                                "2500 mm",
+                                "3000 mm",
+                                "3500 mm",
+                                "4000 mm",
+                                "4500 mm",
+                                "5000 mm"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Spindle Bore",
+                            "options": [
+                                "52 mm",
+                                "80 mm",
+                                "100 mm",
+                                "150 mm",
+                                "200 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Spindle Speed Range",
+                            "options": [
+                                "25–800 rpm",
+                                "40–800 rpm",
+                                "40–1000 rpm",
+                                "40–1200 rpm",
+                                "25–1600 rpm",
+                                "40–2000 rpm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Motor Power",
+                            "options": [
+                                "5 hp",
+                                "7.5 hp",
+                                "10 hp",
+                                "12.5 hp",
+                                "15 hp",
+                                "20 hp"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Bed Type",
+                            "options": [
+                                "Single Wall",
+                                "Double Wall",
+                                "Heavy Ribbed",
+                                "Flat Bed",
+                                "V Bed"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Machine Type",
+                            "options": [
+                                "All Geared",
+                                "V Belt Drive",
+                                "Oil Country",
+                                "Roll Turning",
+                                "Gap Bed"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Chuck Size",
+                            "options": [
+                                "200 mm",
+                                "250 mm",
+                                "300 mm",
+                                "400 mm",
+                                "500 mm",
+                                "600 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Phase",
+                            "options": [
+                                "Three Phase",
+                                "Single Phase"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Bed Length",
+            "option_value": "12 ft",
+            "prod_count": 23
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "6 ft",
+            "prod_count": 20
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "9 ft",
+            "prod_count": 19
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "10 ft",
+            "prod_count": 18
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "8 ft",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "7 ft",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "16 ft",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "20 ft",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "5 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "18 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "2 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "4 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "5 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "5-6 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "7.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "14 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "22 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "3.5 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "4.1 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "5.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "6-10 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "6-7 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "6.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "6.5 - 7 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "60 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "8.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Length",
+            "option_value": "9-10 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "4 inch",
+            "prod_count": 20
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "80 mm",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "100 mm",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "5 inch",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "150 mm",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "6 inch",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "105 mm",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "3 inch",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "104 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "125 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "2 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "8 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "100 unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "100-104 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "12 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "120 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "127 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "3.5 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "4.5 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "5.5 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "50 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "55 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "60 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "90 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "option_value": "92 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "15 inch",
+            "prod_count": 18
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "12 inch",
+            "prod_count": 18
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "18 inch",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "10 inch",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "24 inch",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "14 inch",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "16 inch",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "14-15 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "20 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "300 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "28 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "600 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "High (Ucha) unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "13 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "15-16 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "22 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "220 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "250 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "380 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "381 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "400 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "400-500 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "455 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "6 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Height",
+            "option_value": "9 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Build",
+            "option_value": "Heavy Duty",
+            "prod_count": 19
+        },
+        {
+            "spec_name": "Machine Build",
+            "option_value": "Medium Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Used",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "New",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Running",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Second Hand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Width",
+            "option_value": "16 inch",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Bed Width",
+            "option_value": "15 inch",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Bed Width",
+            "option_value": "20 inch",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Bed Width",
+            "option_value": "13 inch",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Bed Width",
+            "option_value": "18 inch",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Bed Width",
+            "option_value": "24 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Bed Width",
+            "option_value": "32 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Width",
+            "option_value": "11 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Width",
+            "option_value": "14 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Width",
+            "option_value": "400 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Width",
+            "option_value": "450 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Batala",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "HMT",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "DH",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Everest",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Haba",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Hethai Machine Tools",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kirloskar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Lotte",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Panchal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Paras",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Pathak",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Punjab",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "SK",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sonalika",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "TOS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Tadou Spain",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Turner",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "WMW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Rajkot",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Imported",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "India (Rajkot)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "German/European",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Ludhiana",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Spain (European)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Plate Thickness Capacity",
+            "option_value": "3-4 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Plate Thickness Capacity",
+            "option_value": "6 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chuck Size",
+            "option_value": "16 inch",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Chuck Size",
+            "option_value": "18 inch",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Chuck Size",
+            "option_value": "1 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chuck Size",
+            "option_value": "12 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chuck Size",
+            "option_value": "14 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chuck Size",
+            "option_value": "18-20 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chuck Size",
+            "option_value": "20 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chuck Size",
+            "option_value": "22 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chuck Size",
+            "option_value": "30 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operation Mode",
+            "option_value": "Manual",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Operation Mode",
+            "option_value": "Automatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operation Mode",
+            "option_value": "Semi-automatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Swing",
+            "option_value": "1.2 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Swing",
+            "option_value": "20 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brake Type",
+            "option_value": "Pedal Brake",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Mechanism Type",
+            "option_value": "Overcrank/Undercrank",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Norton Gearbox",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "All Geared",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "4 type gear",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "All Gear",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Bearing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Belt Driven",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Cone Pulley",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Geared",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Sarkari Type",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Semi-Geared",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Semi-Norton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "V-Belt Bearing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Without Gearbox",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Condition",
+            "option_value": "New",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Machine Condition",
+            "option_value": "Used",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Bed Type",
+            "option_value": "Hard Bed",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Bed Type",
+            "option_value": "Double V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Type",
+            "option_value": "Planer Bed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "NH 22",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "NL26",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Purshing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "SV-610",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TML 1000",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "Turn Master 45",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "semi-Newton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "option_value": "200 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "option_value": "220 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "option_value": "250 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "option_value": "36 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "option_value": "600 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "option_value": "800 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "3 HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "2 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "3 hp",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "5 kW",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Duty",
+            "option_value": "Heavy Duty",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "option_value": "2.5 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "option_value": "2015 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "option_value": "3 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "option_value": "3000 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Duty",
+            "option_value": "Extra Heavy Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Duty",
+            "option_value": "Heavy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chuck Type",
+            "option_value": "4-Jaw",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chuck Type",
+            "option_value": "Dog Chuck",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chuck Type",
+            "option_value": "Four Jaw",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Bearing and Pulley",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Chuck, Motor, Full Nut, Gearbox",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Electricals",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Inclusions",
+            "option_value": "Chuck and Motor",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Oil industry",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Rotor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Duty Type",
+            "option_value": "Heavy Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Duty Type",
+            "option_value": "Medium Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Weight",
+            "option_value": "1.9 ton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Weight",
+            "option_value": "1900 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Cast Iron",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Mild Steel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Included",
+            "option_value": "No",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Included",
+            "option_value": "Yes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Phase",
+            "option_value": "3 Phase",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Phase",
+            "option_value": "Three Phase",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shaft Type",
+            "option_value": "Double Shaft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shaft Type",
+            "option_value": "Single Shaft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Swing In Gap",
+            "option_value": "1100 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Swing In Gap",
+            "option_value": "450 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1450 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "4 ton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bed Hardening",
+            "option_value": "Induction Hardened",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bolt Size",
+            "option_value": "18 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chuck Compatibility",
+            "option_value": "3 Jaw or 4 Jaw",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Chuck Size",
+            "option_value": "16 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compatible Machine Model",
+            "option_value": "Panther Lathe Machine (6610/1)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Components Included",
+            "option_value": "Chuck and Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Configuration",
+            "option_value": "4-in-1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Depth of Cut",
+            "option_value": "5-7 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "2 axis DRO",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gap Bed Size",
+            "option_value": "24 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Accessories",
+            "option_value": "Chuck and Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Accessory",
+            "option_value": "Chuck",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Lathe Accessory Type",
+            "option_value": "Chuck Jaws (Gutka)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Lathe Type",
+            "option_value": "Oil Country",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Age",
+            "option_value": "8-10 years",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Brand",
+            "option_value": "Ramdev",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Overall Length",
+            "option_value": "2 meter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Size Description",
+            "option_value": "Large",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Facing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Machining Diameter",
+            "option_value": "500 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Max Workpiece Weight",
+            "option_value": "150 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor",
+            "option_value": "To be installed by buyer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Brand",
+            "option_value": "Crompton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Pulley",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Oil Pump",
+            "option_value": "Extra/Optional",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operation Type",
+            "option_value": "Automatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pipe Boring Capacity",
+            "option_value": "8 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Punching Force",
+            "option_value": "50 ton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Screw Rod Pitch",
+            "option_value": "2 TPI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Standard Accessories",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Starter",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Stock Availability",
+            "option_value": "Ready Stock",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tailstock",
+            "option_value": "Hardened",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technology",
+            "option_value": "Advanced",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tool Post Box",
+            "option_value": "5",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Wiring",
+            "option_value": "Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Workpiece Length",
+            "option_value": "36 inch",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Brand",
+            "option_value": "Lion"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Brand",
+            "option_value": "Lion"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Brand",
+            "option_value": "Lion"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing Over Cross Slide",
+            "option_value": "355mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Tailstock Ram Diameter",
+            "option_value": "50mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Induction Hardened Bed Ways",
+            "option_value": "Yes"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing In Gap",
+            "option_value": "825mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Approximate Weight",
+            "option_value": "1350 Kg"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Admit Between Centers",
+            "option_value": "965mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Width Of Bed",
+            "option_value": "324mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Leadscrew Diameter",
+            "option_value": "32mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Tailstock Travel",
+            "option_value": "175mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Brand",
+            "option_value": "Angada"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing Over Cross Slide",
+            "option_value": "355mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Tailstock Ram Diameter",
+            "option_value": "50mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Admit Between Centers",
+            "option_value": "508mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing In Gap",
+            "option_value": "825mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Brand",
+            "option_value": "Angada"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Width Of Bed",
+            "option_value": "324mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Induction Hardened Bed Ways",
+            "option_value": "Yes"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Tailstock Travel",
+            "option_value": "175mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Approximate Weight",
+            "option_value": "1250 Kg"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Leadscrew Diameter",
+            "option_value": "32mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Size",
+            "option_value": "6 feet"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Bore Size",
+            "option_value": "3\""
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Center Height",
+            "option_value": "15\""
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Motor",
+            "option_value": "3 Ph or 1 Ph"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Center Height",
+            "option_value": "12\""
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Width",
+            "option_value": "323 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "ARJUN",
+            "option_value": "1350kg"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Center Height",
+            "option_value": "710 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Make",
+            "option_value": "Skoda (Czech Republic)"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Max. Job Diameter over Bed",
+            "option_value": "1400 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Model",
+            "option_value": "SR-1250"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Max. Length of Job",
+            "option_value": "4000 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Chuck Diameter",
+            "option_value": "910mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Model",
+            "option_value": "SU-80A"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Max. Length of Job",
+            "option_value": "2750 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Max. Job Diameter over Cross-Slide",
+            "option_value": "495 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Make",
+            "option_value": "TOS (Czech Republic)"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Center Height",
+            "option_value": "405 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Width of Bed",
+            "option_value": "324mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing In Gap",
+            "option_value": "825mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Brand",
+            "option_value": "Angada"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Leadscrew Diameter",
+            "option_value": "32mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing Over Cross Slide",
+            "option_value": "355mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Approximate Weight",
+            "option_value": "1480 Kg"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Admit Between Centers",
+            "option_value": "1575mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Tailstock Ram Diameter",
+            "option_value": "50mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Induction Hardened Bed Ways",
+            "option_value": "Yes"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Tailstock Travel",
+            "option_value": "175mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Brand",
+            "option_value": "Angada"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing Over Cross Slide",
+            "option_value": "355mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing In Gap",
+            "option_value": "825mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Induction Hardened Bed Ways",
+            "option_value": "Yes"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Admit Between Centers",
+            "option_value": "1880mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Leadscrew Diameter",
+            "option_value": "32mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Approximate Weight",
+            "option_value": "1660 Kg"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Brand",
+            "option_value": "Angada"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Tailstock Travel",
+            "option_value": "175mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Width Of Bed",
+            "option_value": "324mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Tailstock Ram Diameter",
+            "option_value": "50mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Tailstock Ram Diameter",
+            "option_value": "50mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Tailstock Travel",
+            "option_value": "175mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Brand",
+            "option_value": "Angada"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing Over Cross Slide",
+            "option_value": "355mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Admit Between Centers",
+            "option_value": "2490mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Induction Hardened Bed Ways",
+            "option_value": "Yes"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing In Gap",
+            "option_value": "825mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Approximate Weight",
+            "option_value": "1850 Kg"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Leadscrew Diameter",
+            "option_value": "32mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Width Of Bed",
+            "option_value": "324mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Brand",
+            "option_value": "Angada"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Tailstrock Taper Size",
+            "option_value": "MT-4"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Brand",
+            "option_value": "Accumax"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing Over Carriage",
+            "option_value": "750 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Bed Width",
+            "option_value": "615 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing In Gap",
+            "option_value": "1700 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Bed Width",
+            "option_value": "510 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing In Gap",
+            "option_value": "1650 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing Over Carriage",
+            "option_value": "900 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Chuck Dia.",
+            "option_value": "1530 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing Over Carriage",
+            "option_value": "1130 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Swing In Gap",
+            "option_value": "2000 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Height",
+            "option_value": "7 Feet"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Max. Job Diameter over Cross-Slide",
+            "option_value": "590 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Make",
+            "option_value": "Skoda (Czech Republic)"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Model",
+            "option_value": "SUR-400"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Center Height",
+            "option_value": "420 mm"
+        },
+        {
+            "mcat_id": "9113",
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "Max. Length of Job",
+            "option_value": "6000 mm"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "bed length",
+            "spec_option": "6 foot",
+            "impression": "58"
+        },
+        {
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "brand",
+            "spec_option": "hmt",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "machine type",
+            "spec_option": "lathe",
+            "impression": "487"
+        },
+        {
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "model name/number",
+            "spec_option": "nh 22",
+            "impression": "18"
+        },
+        {
+            "mcat_name": "Heavy Duty Lathe Machines",
+            "spec_name": "usage",
+            "spec_option": "industrial",
+            "impression": "11"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "",
+            "spec_fill_rate": "60.8",
+            "product_count": "31"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_fill_rate": "43.1",
+            "product_count": "22"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_fill_rate": "41.2",
+            "product_count": "21"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_fill_rate": "41.2",
+            "product_count": "21"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_fill_rate": "41.2",
+            "product_count": "21"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_fill_rate": "33.3",
+            "product_count": "17"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_fill_rate": "31.4",
+            "product_count": "16"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_fill_rate": "17.6",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_fill_rate": "17.6",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Bed Type",
+            "spec_fill_rate": "15.7",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Chuck Size",
+            "spec_fill_rate": "13.7",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Swing In Gap",
+            "spec_fill_rate": "11.8",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "9.8",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Leadscrew Diameter",
+            "spec_fill_rate": "5.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Induction Hardened Bed Ways",
+            "spec_fill_rate": "5.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Approximate Weight",
+            "spec_fill_rate": "5.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Admit Between Centers",
+            "spec_fill_rate": "5.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Tailstock Ram Diameter",
+            "spec_fill_rate": "5.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Tailstock Travel",
+            "spec_fill_rate": "5.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Swing Over Carriage",
+            "spec_fill_rate": "5.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Swing Over Cross Slide",
+            "spec_fill_rate": "5.9",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Width Of Bed",
+            "spec_fill_rate": "3.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Model",
+            "spec_fill_rate": "3.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Make",
+            "spec_fill_rate": "3.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Max. Length of Job",
+            "spec_fill_rate": "3.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Bed Width",
+            "spec_fill_rate": "3.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Lathe Type",
+            "spec_fill_rate": "3.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Center Height",
+            "spec_fill_rate": "3.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Spindle Speed",
+            "spec_fill_rate": "2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Max. Job Diameter over Cross-Slide",
+            "spec_fill_rate": "2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Chuck Dia.",
+            "spec_fill_rate": "2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Between Centers",
+            "spec_fill_rate": "2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Manufacture Year",
+            "spec_fill_rate": "2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Chuck Diameter",
+            "spec_fill_rate": "2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Width of Bed",
+            "spec_fill_rate": "2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Warranty Available",
+            "spec_fill_rate": "2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_fill_rate": "2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Max. Job Diameter over Bed",
+            "spec_fill_rate": "2",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "ARJUN",
+            "spec_option_name": "1350kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Chuck Diameter",
+            "spec_option_name": "910mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Tailstock Ram Diameter",
+            "spec_option_name": "50mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Applicable Industry",
+            "spec_option_name": "Paper Mills",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Applicable Industry",
+            "spec_option_name": "Power Plant",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Chuck Dia.",
+            "spec_option_name": "1530 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Warranty Available",
+            "spec_option_name": "No Warranty",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Height of Centre",
+            "spec_option_name": "265 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Leadscrew Diameter",
+            "spec_option_name": "32mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "323 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Machine Condition",
+            "spec_option_name": "Used",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Swing Over Cross Slide",
+            "spec_option_name": "355mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Applicable Industry",
+            "spec_option_name": "Steel Rolling Mills",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Induction Hardened Bed Ways",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Tailstock Travel",
+            "spec_option_name": "175mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Job Work",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Workshop",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Number of Spindle Speeds",
+            "spec_option_name": "18",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Applicable Industry",
+            "spec_option_name": "Tool Room",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Between Centers",
+            "spec_option_name": "3500 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "55 Kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "machine Size",
+            "spec_option_name": "35.5x25.5x11.4",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Coolant System",
+            "spec_option_name": "With Coolant",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Tool Room",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Distance Between Centre",
+            "spec_option_name": "1000mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Angada",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Width Of Bed",
+            "spec_option_name": "324mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Motor",
+            "spec_option_name": "3 Ph or 1 Ph",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Training",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Width of Bed",
+            "spec_option_name": "324mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Manufacture Year",
+            "spec_option_name": "Before 2000",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Die Size",
+            "spec_option_name": "2.5To 3mm / Flat one",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made in India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Applicable Industry",
+            "spec_option_name": "Shipbuilding",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "95.5"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Conventional",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Max. Job Diameter over Cross-Slide",
+            "spec_option_name": "590 mm",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Max. Length of Job",
+            "spec_option_name": "4000 mm",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Lathe Type",
+            "spec_option_name": "Conventional",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Spindle Speed",
+            "spec_option_name": "5-620 rpm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "All Geared",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Spindle Speed",
+            "spec_option_name": "40-900 rpm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Swing In Gap",
+            "spec_option_name": "825mm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Bed Type",
+            "spec_option_name": "V Bed",
+            "option_fill_rate": "41.5"
+        },
+        {
+            "spec_name": "Make",
+            "spec_option_name": "Skoda (Czech Republic)",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "5 hp",
+            "option_fill_rate": "38.2"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "25Ã¢â¬â800 rpm",
+            "option_fill_rate": "36.4"
+        },
+        {
+            "spec_name": "Max. Job Diameter over Bed",
+            "spec_option_name": "1400 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Machine Voltage",
+            "spec_option_name": "400 V",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Approximate Weight",
+            "spec_option_name": "1660 Kg",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Machine Voltage",
+            "spec_option_name": "220 V",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Approximate Weight",
+            "spec_option_name": "1850 Kg",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Approximate Weight",
+            "spec_option_name": "1480 Kg",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Max. Job Diameter over Bed",
+            "spec_option_name": "1350 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Swing Over Carriage",
+            "spec_option_name": "1130 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Bed Width",
+            "spec_option_name": "510 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Admit Between Centers",
+            "spec_option_name": "1575mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Swing Over Carriage",
+            "spec_option_name": "900 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Bed Width",
+            "spec_option_name": "615 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Max. Job Diameter over Cross-Slide",
+            "spec_option_name": "495 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "V Belt Drive",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Bed Width",
+            "spec_option_name": "325 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Max. Job Diameter over Bed",
+            "spec_option_name": "820 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Swing Over Carriage",
+            "spec_option_name": "750 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Admit Between Centers",
+            "spec_option_name": "2490mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Admit Between Centers",
+            "spec_option_name": "1880mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Machine Voltage",
+            "spec_option_name": "440 V",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "1500 mm",
+            "option_fill_rate": "32.8"
+        },
+        {
+            "spec_name": "Chuck Size",
+            "spec_option_name": "500 mm",
+            "option_fill_rate": "29.7"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "52 mm",
+            "option_fill_rate": "29.7"
+        },
+        {
+            "spec_name": "Chuck Size",
+            "spec_option_name": "200 mm",
+            "option_fill_rate": "29.7"
+        },
+        {
+            "spec_name": "Bed Type",
+            "spec_option_name": "Single Wall",
+            "option_fill_rate": "26.8"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "DM5S",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "SR-1250",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "SU-80A",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Control Type",
+            "spec_option_name": "Auto feed",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "SUR-400",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "750 mm",
+            "option_fill_rate": "24.6"
+        },
+        {
+            "spec_name": "Make",
+            "spec_option_name": "Oerlikon (Switzerland)",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Max. Length of Job",
+            "spec_option_name": "2750 mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Lathe Type",
+            "spec_option_name": "Extra Heavy Duty",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Make",
+            "spec_option_name": "TOS (Czech Republic)",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Make",
+            "spec_option_name": "Heid (Austria)",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Lathe Type",
+            "spec_option_name": "All Geared",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Max. Length of Job",
+            "spec_option_name": "6000 mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "7.5 hp",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "80 mm",
+            "option_fill_rate": "17.2"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "1000 mm",
+            "option_fill_rate": "16.9"
+        },
+        {
+            "spec_name": "Center Height",
+            "spec_option_name": "710 mm",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Center Height",
+            "spec_option_name": "405 mm",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Center Height",
+            "spec_option_name": "675 mm",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Center Height",
+            "spec_option_name": "12\"",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Center Height",
+            "spec_option_name": "420 mm",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Center Height",
+            "spec_option_name": "410 mm",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Swing In Gap",
+            "spec_option_name": "1650 mm",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Swing In Gap",
+            "spec_option_name": "1700 mm",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Swing In Gap",
+            "spec_option_name": "2000 mm",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Chuck Size",
+            "spec_option_name": "300 mm",
+            "option_fill_rate": "16.2"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "400 mm",
+            "option_fill_rate": "15.7"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "300 mm",
+            "option_fill_rate": "15.7"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "100 mm",
+            "option_fill_rate": "15.6"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "150 mm",
+            "option_fill_rate": "15.6"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "3000 mm",
+            "option_fill_rate": "14.9"
+        },
+        {
+            "spec_name": "Bed Type",
+            "spec_option_name": "Double Wall",
+            "option_fill_rate": "14.6"
+        },
+        {
+            "spec_name": "Chuck Size",
+            "spec_option_name": "250 mm",
+            "option_fill_rate": "13.5"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "600 mm",
+            "option_fill_rate": "12.9"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "40Ã¢â¬â800 rpm",
+            "option_fill_rate": "12.7"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "2500 mm",
+            "option_fill_rate": "12.3"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "1200 mm",
+            "option_fill_rate": "11.4"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "40Ã¢â¬â1000 rpm",
+            "option_fill_rate": "10.9"
+        },
+        {
+            "spec_name": "Bed Type",
+            "spec_option_name": "Flat And V Bed",
+            "option_fill_rate": "9.8"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "20 hp",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "2000 mm",
+            "option_fill_rate": "9"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "3500 mm",
+            "option_fill_rate": "9"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "800 mm",
+            "option_fill_rate": "8.6"
+        },
+        {
+            "spec_name": "Chuck Size",
+            "spec_option_name": "600 mm",
+            "option_fill_rate": "8.1"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "200 mm",
+            "option_fill_rate": "7.8"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "1500 mm",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "2000 mm",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "40Ã¢â¬â2000 rpm",
+            "option_fill_rate": "7.3"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "3 hp",
+            "option_fill_rate": "7.3"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "3 HP",
+            "option_fill_rate": "7.3"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "40Ã¢â¬â1200 rpm",
+            "option_fill_rate": "7.3"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "1500 mm",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "500 mm",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "4000 mm",
+            "option_fill_rate": "6.2"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "10 hp",
+            "option_fill_rate": "5.5"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "25Ã¢â¬â1600 rpm",
+            "option_fill_rate": "5.5"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "2,3 hp",
+            "option_fill_rate": "5.5"
+        },
+        {
+            "spec_name": "Bed Type",
+            "spec_option_name": "Flat Bed",
+            "option_fill_rate": "4.9"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Gap Bed",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Roll Turning",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "All Geared Heavy Duty Lathe Machine",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "304mm",
+            "option_fill_rate": "4.6"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "3000 mm",
+            "option_fill_rate": "4.6"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "5000 mm",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Single Phase",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "555mm",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "458mm",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "495 RPM",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "3-400 rpm",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "53mm",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "155 mm",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "1600 mm",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "5000 mm",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "1000 mm",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "4000 mm",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "3660 mm",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "2500 mm",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Chuck Size",
+            "spec_option_name": "400 mm",
+            "option_fill_rate": "2.7"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Oil Country",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Bed Type",
+            "spec_option_name": "Heavy Ribbed",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "9-1030 rpm",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "500 RPM",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "40-900 rpm",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "25-400 rpm",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "495mm",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "3hp",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "5 HP",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "15 hp",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "10 HP",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "20-900 rpm",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Spindle Speed Range",
+            "spec_option_name": "800 RPM",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "1.5 HP",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "54 mm",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "38 mm",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "53 mm",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "86",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Spindle Bore",
+            "spec_option_name": "180mm",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "2745mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "1825mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "1200 mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "9 Feet",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "900-1000mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "2100 mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "3048 mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "15000 mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "990 MM",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "1370mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "7000mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "1200",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "750-1000 mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "2490 mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Distance Between Centers",
+            "spec_option_name": "200 mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "9 ft",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "7900mm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Bed Length",
+            "spec_option_name": "5.5 Feet",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "250 mm",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "700 mm",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "1000 mm",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "860 mm",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "1250",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "1900mm",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "500",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "555 mm",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Swing Over Bed",
+            "spec_option_name": "850mm",
+            "option_fill_rate": "1.4"
+        }
+    ]
+}

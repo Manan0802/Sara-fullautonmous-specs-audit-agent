@@ -1,0 +1,1275 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+### Tool 4: Fetch DS5 Data
+
+[FETCH_DS5] — loads Option Fill Rate data on demand. 
+Use only when you need to validate specific option values.
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 5707
+category_name: Papaya Pulp
+seller_specs (current spec sheet): {
+  "generated_by": "KNOWDIS_PIPELINE_v5_1_2",
+  "category_name": "Papaya Pulp",
+  "mcat_id": 5707,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Packaging Type",
+          "options": [
+            "Aseptic Bag",
+            "Loose",
+            "Aseptic Pouch",
+            "Drum",
+            "Canned"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Papaya Variety",
+          "options": [
+            "Red Papaya",
+            "Yellow Papaya",
+            "Regular Papaya",
+            "Hawaiian Papaya",
+            "Golden Papaya"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Physical Form",
+          "options": [
+            "Puree",
+            "Concentrate",
+            "Pulp",
+            "Paste",
+            "Juice"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Storage Type",
+          "options": [
+            "Frozen",
+            "Fresh",
+            "Room Temperature",
+            "Chilled",
+            "Refrigerated"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Brand",
+          "options": [
+            "Mother Dairy",
+            "Vadilal",
+            "Kissan",
+            "Sumeru",
+            "Sunrise"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Ph Value",
+          "options": [
+            "5.0",
+            "5.2",
+            "5.5",
+            "4.8",
+            "5.8"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Shelf Life",
+          "options": [
+            "18 month",
+            "12 month",
+            "24 month",
+            "6 month",
+            "1 month"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Protein",
+          "options": [
+            "0.5 g",
+            "0.4 g",
+            "0.6 g",
+            "0.3 g",
+            "0.7 g"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Flavour",
+          "options": [
+            "Natural",
+            "Sweetened",
+            "Unsweetened",
+            "Sugar Added",
+            "No Added Sugar"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Vitamin C",
+          "options": [
+            "60 mg",
+            "65 mg",
+            "70 mg",
+            "55 mg",
+            "75 mg"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 0 specs) ---
+[]
+
+--- Custom Seller Specs (aggregated, 0 specs) ---
+[]
+
+--- Buyer Search Data (aggregated, 0 specs) ---
+[]
+
+--- Spec Fill Rate Data (0 specs) ---
+[]
+
+--- Option Fill Rate Data ---
+Not pre-loaded. Use [FETCH_DS5] to load when needed.
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(domain_expert) ---
+# Domain Expert — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When data signals alone are insufficient — when sources conflict, when you need
+category-level context to interpret what a signal means, when you are about to
+make a destructive action and need domain confirmation, or when a spec's importance
+is determined by industry norms rather than observable buyer behaviour — apply
+the reasoning in this document yourself.
+
+
+This is not a fallback. The domain expert perspective runs alongside every
+strategic decision. Data tells you what buyers and sellers do on the platform.
+Domain knowledge tells you why — and whether the platform behaviour makes sense
+given how this product is actually traded in Indian B2B.
+
+
+---
+
+
+## The domain expert's role
+
+
+Reason about the real world. Data skills analyse signals — domain reasoning
+interprets what those signals mean in the context of how this product is
+manufactured, sold, and purchased in India. When signals are ambiguous,
+contradictory, or absent, your judgment fills the gap.
+
+
+This is not a rubber stamp. Apply it specifically when there is a question data
+alone cannot resolve.
+
+
+---
+
+
+## Types of questions domain reasoning handles
+
+
+### 1. Signal conflict resolution
+
+
+Two data sources disagree. Explain why and decide which signal to trust.
+
+
+**Common conflict patterns and what they mean:**
+
+
+| Conflict | Likely explanation | What to do |
+|----------|-------------------|------------|
+| High search + zero fill rate | Spec exists but options are wrong — buyers want to filter but can't find the right value | Fix the options, do not remove the spec |
+| High fill rate + zero search | Seller-oriented spec — they describe it even though buyers don't filter on it | Keep, but consider Secondary or Tertiary depending on call signal |
+| High calls + zero search | Attribute matters in negotiation but isn't surfaced in discovery flow | Strong candidate for addition — buyers discuss it but can't filter on it |
+| High search + zero calls | Could be search noise (buyers typing category name words) or a genuine discovery gap | Check if the term is a CONTEXT_TERM or a real filterable attribute |
+
+
+### 2. Category sanity checks
+
+
+Is a proposed spec appropriate for this specific product and market?
+
+
+Apply this reasoning framework:
+- What is this product physically and functionally?
+- Who buys it in Indian B2B? Manufacturers? Traders? Retailers? Institutions? SMEs?
+- What attributes drive purchase decisions for this product type?
+- Are there IS/BIS standards, FSSAI regulations, or industry certifications that
+  dictate certain specs as mandatory?
+- What do sellers in this category typically differentiate on?
+- Is this a commodity (specs less critical — price and quantity dominate) or a
+  differentiated product (specs are everything — buyers filter heavily)?
+
+
+### 3. Spec relationship reasoning
+
+
+Two specs seem related or duplicative. Determine if they are truly the same
+attribute or genuinely distinct.
+
+
+Ask:
+- Do the two specs answer different buyer questions? If yes → keep separate.
+- Can a single product have different values for each spec simultaneously? If yes → keep separate.
+- Would merging them cause information loss? If yes → keep separate.
+- Do buyers in this market mentally distinguish them when making a purchase? If no → merge.
+
+
+### 4. Tier arbitration
+
+
+Data suggests one tier; domain logic suggests another.
+
+
+Apply the domain perspective and state your reasoning explicitly. Data is the
+primary evidence — domain knowledge is the tiebreaker when signals are moderate
+or conflicting. If your domain judgment contradicts strong data signals, respect
+the data and note the tension rather than overriding it.
+
+
+### 5. Option coherence for Indian B2B
+
+
+An option list looks wrong from a market perspective — too many options, wrong
+options, missing industry-standard values, or values that don't match how the
+Indian B2B market actually works.
+
+
+Apply Indian B2B market context:
+- IS/BIS grades dominate in metals, construction, electrical, and chemicals
+- Local trade terminology differs from international standards ("MS" for Mild Steel
+  is universally understood; "A36" is not)
+- Regional naming conventions exist (pipe sizes often quoted in inches even when
+  metric is the standard)
+- Dominant domestic manufacturers (Tata, JSW, Hindalco, Asian Paints) define the
+  de facto option values in many categories
+- Import categories use different naming conventions than domestically manufactured goods
+
+
+### 6. Format conflict resolution — canonical format establishment
+
+
+When the format of a spec or option in the existing spec sheet differs from how
+it appears in data sources, determine the correct canonical format.
+
+
+**Common format conflicts:**
+
+
+| Conflict type | Example | What to check |
+|--------------|---------|---------------|
+| Unit inconsistency | Existing: "3 mm", Call: "3mm", "3MM" | Which format do manufacturers actually use? |
+| Abbreviation vs full form | Existing: "PVDF", Call: "Polyvinylidene Fluoride" | Which does Indian B2B use in practice? |
+| Numeric vs descriptive | Existing: "S, M, L", Call: "7.5, 8, 9" | Are these different sizing systems or the same? |
+| Mixed unit systems | Existing: "2 mm", Call: "0.08 inches" | Which system dominates in Indian B2B trade? |
+| Grade naming | Existing: "Exterior", Call: "Bond", "Chalu" | Map informal trade terms to formal grades |
+| IS standard notation | Existing: "IS 2062", Call: "E250", "E350" | Which IS grade notation is actually used? |
+
+
+**When you detect a format conflict:**
+1. Identify the conflict precisely — existing format vs data source format
+2. Apply domain knowledge of how this spec is described by manufacturers and traders
+3. If uncertain, flag for a web search: `[WEB_SEARCH] query="<spec name> <category> standard format India" [END]`
+4. Determine the canonical form — the format Indian B2B buyers and sellers actually use
+5. Recommend the specific correction action: `CORRECT_OPTION`, `RENAME_SPEC`, or `ADD_OPTIONS`
+
+
+### 7. New spec validation
+
+
+A candidate spec has been identified from data. Confirm whether it genuinely
+makes sense for this category before adding it.
+
+
+Ask:
+- Is this attribute something a seller in this category would know by heart?
+- Would a buyer mention this in the first sentence of a product enquiry?
+- Does this spec help differentiate products in this category, or do all products
+  have the same value (making it a CONTEXT_TERM or IMPLIED)?
+- Is this covered under a different name that already exists in the spec set?
+
+
+---
+
+
+## Indian B2B market context — always apply
+
+
+This is an Indian B2B marketplace. Every domain judgment must account for:
+
+
+**Market conventions:**
+- IS/BIS standards dominate in metals, construction, electrical, chemicals
+- Trade terminology often differs from international standards
+- Regional naming conventions exist (pipes in inches, textiles in yards, etc.)
+- Buyers often use informal names that map to formal spec names
+
+
+**Buyer types in Indian B2B:**
+- Industrial procurers buying in bulk on specification → primary signal: call data and fill rate
+- SME buyers buying by application or use case → primary signal: search impressions
+- Traders and distributors buying by brand and grade → primary signal: brand and grade specs
+
+
+The category's typical buyer type changes which signals to weight more heavily.
+
+
+**Supply structure:**
+- Many categories have dominant domestic manufacturers whose product ranges define
+  the de facto option values
+- Import categories often have different naming conventions than domestically
+  manufactured goods
+
+
+---
+
+
+## How to frame your domain reasoning
+
+
+The question you are applying domain reasoning to must be specific. Vague questions
+produce vague answers.
+
+
+**Specific enough:**
+"Search data shows 1,350 impressions for 'usage' in this category, but zero sellers
+added it as a custom spec and zero call mentions. For a [category type], is 'usage'
+a real spec or a context term?"
+
+
+**Too vague:**
+"Is this spec relevant?"
+
+
+If the question is not specific enough, reframe it before applying domain reasoning.
+
+
+---
+
+
+## What your domain reasoning must produce
+
+
+For each question you apply domain reasoning to:
+
+
+```
+question_summary: [the specific question being resolved]
+classification: VALID_SPEC / CONTEXT_TERM / NOT_A_PRODUCT_SPEC / MISCLASSIFIED /
+               DUPLICATE / COMPOSITE / INDUSTRY_STANDARD / FORMAT_CONFLICT
+judgment: [your domain reasoning — 2–5 sentences citing category logic, Indian B2B
+          conventions, or industry norms]
+recommendation: [specific action — what to do]
+confidence: high / medium / low
+confidence_reason: [why this confidence level — established domain knowledge or best estimate?]
+web_search_needed: [specific query if external verification would strengthen the judgment,
+                   or "None" if domain reasoning is sufficient]
+caveats: [conditions or exceptions to this judgment]
+```
+
+
+For format conflicts, also produce:
+```
+existing_format: [how it appears in current spec sheet]
+data_source_format: [how it appears in Buyer-Seller Call Data/Custom Spec Data/Buyer Search Data]
+canonical_format: [the correct format for Indian B2B]
+correction_action: CORRECT_OPTION / RENAME_SPEC / ADD_OPTIONS
+```
+
+
+---
+
+
+## Confidence calibration
+
+
+**High confidence:** Well-established domain knowledge for this category type.
+Industry standards exist and are unambiguous. You have clear reasoning grounded
+in how this market actually works.
+
+
+**Medium confidence:** General domain reasoning applied to this category. Plausible
+but you are not a specialist in this specific product. State this explicitly.
+
+
+**Low confidence:** You know little about this specific category. Provide general
+reasoning principles but flag that a subject-matter expert or web search should
+confirm before acting.
+
+
+---
+
+
+## Boundaries
+
+
+- You DO provide domain judgments — this is the core function.
+- You DO recommend canonical formats for format conflicts.
+- You DO flag when web search would strengthen a judgment.
+- You do NOT fabricate data or claim signals exist that do not.
+- You do NOT make structural changes — you advise; the decision follows from your
+  reasoning but remains with the orchestrator.
+- When data strongly contradicts your domain intuition → respect the data. State
+  your expectation, acknowledge the contradiction, suggest investigating further
+  rather than overriding the data.
+- When genuinely uncertain → say so. Mark confidence as medium or low. A wrong
+  domain judgment confidently stated is worse than an honest uncertainty.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(papaya pulp b2b specifications india) ---
+{
+  "query": "papaya pulp b2b specifications india",
+  "results": [
+    {
+      "title": "Papaya Pulp Supplier Premium Red & Yellow - Shimla Hills",
+      "url": "https://shimlahills.com/papaya-pulp-red-yellow/",
+      "excerpt": "WebSearchResult(url='https://shimlahills.com/papaya-pulp-red-yellow/', excerpts=['+ [Dairy products & Ice creams](https://shimlahills.com/dairy-products/)\\n    + [Jams & Fruit preparations](https://shimlahills.com/jams-fruit-preparations/)\\n    + [Bakery & Desserts](https://shimlahills.com/bakery-desserts/)\\n    + [Confectionary](https://shimlahills.com/confectionary/)\\n    + [Soups & Savory](https://shimlahills.com/soups-savoury/)\\n    + [Baby Food](https://shimlahills.com/baby-food/)\\n    + [Pet Foods & Cattle Feed](https://shimlahills.com/pet-foods-cattle-feed/)\\n* QUALITY\\n  \\n    + [Quality Assurance](https://shimlahills.com/quality-assurance/)\\n    + [Certifications](https://shimlahills.com/certifications/)\\n* CONTACTS US\\n  \\n    + [Connect with our team](https://shimlahills.com/connect-with-our-team/)\\n    + [Share feedback](https://shimlahills.com/share-feedback/)\\n\\n[](https://shimlahills.com)\\n\\n* \\\\+91 93185 99232\\n\\n* sales@shimlahills.com\\n\\nQuick Inquiry\\n\\n# Papaya Pulp / Puree Red/Yellow\\nMature Indian yellow or red papaya cultivars that famed for their excellent sweet taste and soft juicy pulp yet free from any genetic modifications are picked by our team for processing. The extract is filtered to remove skins, seed particles, coarse sections of papaya fruit, and other contaminants or impurities. The pulp is then placed in aseptic bags in drums with an inner polyliner, all while remaining completely sterile and sanitary.\\n\\nQuick Inquiry\\n\\nRequest a Sample\\n\\nKey Highlights Specification Seasonal Chart\\n\\nAs a trusted Papaya pulp supplier, we make sure to use cutting-edge processing equipment and technology for red papaya processing. Papaya pulp is popular due to its consistency, flavour, and potent therapeutic effects. Vitamins, antioxidants, enzymes, and minerals are also abundant in papaya pulp.\\n\\n[**Red Papaya Pulp**](https://www.linkedin.com/pulse/role-papaya-pulp-modern-food-processing-industry-shimlahills-utrjc/)\\nOur comprehensive research, together with our experience working with red papaya extract, has enabled us to create a pulp that retains its natural flavour after processing. **Nectars, fruit juices, jams, jellies, ice cream, yoghurt, baby food, bakery items, and confectionery** can all be made from red papaya pulp.\\n\\n**Yellow Papaya Pulp**\\n\\nYellow papaya pulp is rich in vitamin C and vitamin A, and is used for **fruit breads, cakes, tarts, muffins, pie-fillings, cereals, fruit bars, milkshakes, yogurts, puddings, toppings** etc.\\n\\n|PARAMETERS |VALUE |\\n| --- | --- |\\n|Brix at 20\u00b0C. |Min 9\u00b0. |\\n|Acidity (as citric acid) |0\\\\.4 \u2013 0.6 % |\\n|Foreign Matter |Absent |\\n|Color |Orangish Red to Red |\\n|Taste |Typical To Papaya |\\n|Preservatives |Absent |\\n|Additives |Absent |\\n|Flavor |Natural Flavor |\\n|Storage Conditions |Store in cool condition and avoid exposure to direct sunlight. Ideal storage temperature 4 \u2013 8\u00ba C. |\\n ... \\nGrenada Guadeloupe Guam Guatemala Guernsey Guinea Guinea-Bissau Guyana Haiti Heard Island and McDonald Islands Honduras Hong Kong Hungary Iceland India Indonesia Iran Iraq Ireland Isle of Man Israel Italy Ivory Coast Jamaica Japan Jersey Jordan Kazakhstan Kenya Kiribati Kosovo Kuwait Kyrgyzstan Laos Latvia Lebanon Lesotho Liberia Libya Liechtenstein Lithuania Luxembourg Macao S.A.R.\\n ... \\nGrenada Guadeloupe Guam Guatemala Guernsey Guinea Guinea-Bissau Guyana Haiti Heard Island and McDonald Islands Honduras Hong Kong Hungary Iceland India Indonesia Iran Iraq Ireland Isle of Man Israel Italy Ivory Coast Jamaica Japan Jersey Jordan Kazakhstan Kenya Kiribati Kosovo Kuwait Kyrgyzstan Laos Latvia Lebanon Lesotho Liberia Libya Liechtenstein Lithuania Luxembourg Macao S.A.R.\\n ... \\nGrenada Guadeloupe Guam Guatemala Guernsey Guinea Guinea-Bissau Guyana Haiti Heard Island and McDonald Islands Honduras Hong Kong Hungary Iceland India Indonesia Iran Iraq Ireland Isle of Man Israel Italy Ivory Coast Jamaica Japan Jersey Jordan Kazakhstan Kenya Kiribati Kosovo Kuwait Kyrgyzstan Laos Latvia Lebanon Lesotho Liberia Libya Liechtenstein Lithuania Luxembourg Macao S.A.R.\\n ... \\nGrenada Guadeloupe Guam Guatemala Guernsey Guinea Guinea-Bissau Guyana Haiti Heard Island and McDonald Islands Honduras Hong Kong Hungary Iceland India Indonesia Iran Iraq Ireland Isle of Man Israel Italy Ivory Coast Jamaica Japan Jersey Jordan Kazakhstan Kenya Kiribati Kosovo Kuwait Kyrgyzstan Laos Latvia Lebanon Lesotho Liberia Libya Liechtenstein Lithuania Luxembourg Macao S.A.R.\\n ... \\nGrenada Guadeloupe Guam Guatemala Guernsey Guinea Guinea-Bissau Guyana Haiti Heard Island and McDonald Islands Honduras Hong Kong Hungary Iceland India Indonesia Iran Iraq Ireland Isle of Man Israel Italy Ivory Coast Jamaica Japan Jersey Jordan Kazakhstan Kenya Kiribati Kosovo Kuwait Kyrgyzstan Laos Latvia Lebanon Lesotho Liberia Libya Liechtenstein Lithuania Luxembourg Macao S.A.R.'], publish_date='2025-06-17', title='Papaya Pulp Supplier Premium Red & Yellow - Shimla Hills')"
+    },
+    {
+      "title": "Frozen Papaya Pulp Manufacturer, Supplier and Exporter",
+      "url": "https://frutteto.in/frozen-papaya-pulp/",
+      "excerpt": "WebSearchResult(url='https://frutteto.in/frozen-papaya-pulp/', excerpts=['Shelf Life. 18 Months ; Packaging. LDPE bags(1Kg, 2Kg, 5Kg,10 Kg), Drums (35 Kg, 200 Kg) ; Storage Condition. Below -18\u00b0C Temperature ; Application. HORECA, B2B,\\xa0...'], publish_date=None, title='Frozen Papaya Pulp Manufacturer, Supplier and Exporter')"
+    },
+    {
+      "title": "Red Papaya Pulp \u2013 Bulk Wholesale Export Quality - GlobalLinker",
+      "url": "https://www.globallinker.com/products/red-papaya-pulp-bulk-wholesale-export-quality-8601982?srsltid=AfmBOophACc3aU9FZpCsbmt8oJBdDwG9b99eKnYCUZypkMHP0PkRD6ou",
+      "excerpt": "WebSearchResult(url='https://www.globallinker.com/products/red-papaya-pulp-bulk-wholesale-export-quality-8601982?srsltid=AfmBOophACc3aU9FZpCsbmt8oJBdDwG9b99eKnYCUZypkMHP0PkRD6ou', excerpts=['Material: Red Papaya Pulp \u2013 India-sourced, traceable for institutional and export applications. \u00b7 Packaging: Export-grade bulk formats suitable for fruit pulp\\xa0...'], publish_date=None, title='Red Papaya Pulp \u2013 Bulk Wholesale Export Quality - GlobalLinker')"
+    },
+    {
+      "title": "Red Papaya Pulp/Puree Manufacturer in India - ABC Fruits",
+      "url": "https://abcfruits.com/products/red-papaya-pulp-puree/",
+      "excerpt": "WebSearchResult(url='https://abcfruits.com/products/red-papaya-pulp-puree/', excerpts=['Papaya Pulp is an ideal choice for people who have diabetics. \u00b7 Red papaya puree is packed with Vitamin C, Vitamin A and Vitamin E that makes the skin brighter\\xa0...'], publish_date=None, title='Red Papaya Pulp/Puree Manufacturer in India - ABC Fruits')"
+    },
+    {
+      "title": "Papaya Fruit Pulp in Krishnagiri - Dealers, Manufacturers & Suppliers",
+      "url": "https://www.justdial.com/jdmart/Krishnagiri/Papaya-Fruit-Pulp/jdm-1049416-ent-5-28391775",
+      "excerpt": "WebSearchResult(url='https://www.justdial.com/jdmart/Krishnagiri/Papaya-Fruit-Pulp/jdm-1049416-ent-5-28391775', excerpts=['Rating 4.3 (9,652) Mar 23, 2026 \u00b7 B2B buyers looking to purchase papaya fruit pulp should consider factors such as quality, sourcing methods, and processing standards when\\xa0...'], publish_date=None, title='Papaya Fruit Pulp in Krishnagiri - Dealers, Manufacturers & Suppliers')"
+    },
+    {
+      "title": "Papaya Pulp - Indian Fruits Pulp",
+      "url": "https://indianfruitspulp.com/papaya-pulp/",
+      "excerpt": "WebSearchResult(url='https://indianfruitspulp.com/papaya-pulp/', excerpts=['[](https://indianfruitspulp.com/)\\n\\n\\ue00b\\n\\n\\\\+91 99525 38046\\n\\n\\uf232\\n\\n\\\\+91 99949 47056\\n\\n\\ue010\\n\\nfruits@rajexim.co.in\\n\\n* [Home](https://indianfruitspulp.com/)\\n* [About Us](https://indianfruitspulp.com/about-us/)\\n* [Our Products](https://indianfruitspulp.com/our-products/)\\n  \\n    + [Mango Pulp](https://indianfruitspulp.com/mango-pulp/)\\n        \\n        - [Alphonso Mango Pulp](https://indianfruitspulp.com/alphonso-mango-pulp/)\\n        - [Totapuri Mango Pulp](https://indianfruitspulp.com/totapuri-mango-pulp/)\\n        - [Kesar Mango Pulp](https://indianfruitspulp.com/kesar-mango-pulp-2/)\\n    + [Guava Pulp](https://indianfruitspulp.com/guava-pulp/)\\n    + [Banana Pulp](https://indianfruitspulp.com/banana-pulp/)\\n    + [Papaya Pulp](https://indianfruitspulp.com/papaya-pulp/)\\n* [Infrastructure](https://indianfruitspulp.com/infrastructure/)\\n* [Our Clients](https://indianfruitspulp.com/our-clients/)\\n* [Our Team](https://indianfruitspulp.com/our-team/)\\n* [Contact Us](https://indianfruitspulp.com/contact-us/)\\n[](https://indianfruitspulp.com/)\\n\\n* [Home](https://indianfruitspulp.com/)\\n* [About Us](https://indianfruitspulp.com/about-us/)\\n* [Our Products](https://indianfruitspulp.com/our-products/)\\n  \\n    + [Mango Pulp](https://indianfruitspulp.com/mango-pulp/)\\n        \\n        - [Alphonso Mango Pulp](https://indianfruitspulp.com/alphonso-mango-pulp/)\\n        - [Totapuri Mango Pulp](https://indianfruitspulp.com/totapuri-mango-pulp/)\\n        - [Kesar Mango Pulp](https://indianfruitspulp.com/kesar-mango-pulp-2/)\\n    + [Guava Pulp](https://indianfruitspulp.com/guava-pulp/)\\n    + [Banana Pulp](https://indianfruitspulp.com/banana-pulp/)\\n    + [Papaya Pulp](https://indianfruitspulp.com/papaya-pulp/)\\n* [Infrastructure](https://indianfruitspulp.com/infrastructure/)\\n* [Our Clients](https://indianfruitspulp.com/our-clients/)\\n* [Our Team](https://indianfruitspulp.com/our-team/)\\n* [Contact Us](https://indianfruitspulp.com/contact-us/)\\n\\n# Pure Papaya Goodness in Every Drop Papaya Fruits Pulp\\nPapaya Pulp is manufactured from a hand-picked chosen variety of papayas through a series of processes that include washing, peeling, ripening, inspecting and finally extraction of pulp through thermal processing. Papaya Pulp is free from any pathogenic bacteria. Papaya pulp contains nutrients that prevent the oxidation of cholesterol, occurring of heart attacks or strokes as it contains large amounts of Vitamin C and vitamin A. Papaya pulp can be blended into a creamy salad dressing, sauce and in baby foods.\\n\\n# Specifications\\n\\n|Name of Fruit |Papaya |Red Papaya |\\n| --- | --- | --- |\\n|Pulp / Concentrate / Puree |Pulp |Pulp |\\n|Brix (% TSS) at 20\u00b0 C |Min 9\u2032 |Min 9\u2032 |\\n|Color |Bright Yellow |Red |\\n|Specks per 10 grams (Brown) |< 10 |< 10 |\\n|Specks per 10 grams (Black) |5 |5 |\\n|pH |< 4.2 |< 4.2 |\\n|Taste & Flavor |Wholesome and Characteristics of sound matured, ripened Red Papaya |\\n|% Acidity (as Citric acid) |0\\\\.30 \u2013 0.60 % |0\\\\.30 \u2013 0.60 % |\\n|Consistency (Bostwick) at 20\u00b0 C |< 14 cms/ 30 sec |< 14 cms/ 30 sec |\\n|Packing details |210 kg bags in drum such 80 drums in a container/ also supplies as per customer requirements |\\n|Shelf Life |24 months when stored at ambient temperature. 24 months when stored in between +4\u2032 to +20\u2019C. |\\n|Appearance |Homogenous & free flowing, free from any kind of foreign matter. |\\n|Usages |**Bakery & Confectionaries:** The pulps are used as fillings in cakes & bread and other bakery foods, also used in icings, tarts, muffins, fruit toffees etc  \\n**Beverages:** Milkshakes, fruit drinks, nectars, etc.  \\n**Dairy:** Ice-creams, fruit bars, milkshakes, yogurts, puddings, toppings, desserts, etc.  \\n**Baby foods:** Cereals, fruit juices & mixed fruit juices  \\n**Others foods:** Fruit juices, jams, mixed fruit jams, fruit cocktails, squashes, strained fruit drinks, etc. |\\n\\n# About\\nIndian Fruits Pulp supplies a wide range of fruits pulp such as Mango, Guava, Banana, Papaya & Tomato Puree are the seasonal product in India, We procure huge volume of fruit in that time and used machine for taking pulp will not human touch.\\n\\n# Our Products\\n\\n_\\uf5d1_\\n\\nMango Pulp\\n\\n_\\uf5d1_\\n\\nGuava Pulp\\n\\n_\\uf5d1_\\n\\nBanana Pulp\\n\\n_\\uf5d1_\\n\\nPapaya Pulp\\n\\n# Contact Details\\n\\n\\ue081\\n\\nIndia\\n\\n\\uf2b6\\n\\nfruits@rajexim.co.in\\n\\n\\ue090\\n\\n\\\\+917418053337  \\n\\\\+917845063338\\n\\n[\\uf232](https://wa.me/9994947056)\\n\\n[\\\\+919952538046](https://wa.me/+919952538046)\\n\\nDesign by **[Cbra India](https://cbraindia.com/)**\\n\\n[](https://indianfruitspulp.com/wp-content/uploads/2025/03/FSSAI-New-License-2025.pdf)\\n\\n[](https://indianfruitspulp.com/wp-content/uploads/2025/03/APEDA-CERTIFICATE-Upto-2029.pdf)'], publish_date='2024-05-02', title='Papaya Pulp - Indian Fruits Pulp')"
+    },
+    {
+      "title": "Fresh Yellow Papaya Pulp at Best Price in Mumbai - Tradeindia",
+      "url": "https://www.tradeindia.com/products/fresh-yellow-papaya-pulp-6326732.html",
+      "excerpt": "WebSearchResult(url='https://www.tradeindia.com/products/fresh-yellow-papaya-pulp-6326732.html', excerpts=['Fresh Yellow Papaya Pulp ; Delivery Time, 4 Days ; Color \u00b7 Yellow ; pH \u00b7 < 4.0 ; Appearance \u00b7 Homogenous & Free Flowing, Free From Any Kind Of Foreign ; Flavor \u00b7 Papaya'], publish_date=None, title='Fresh Yellow Papaya Pulp at Best Price in Mumbai - Tradeindia')"
+    },
+    {
+      "title": "Shimla Hills offers premium Papaya Pulp/Puree, Concentrate ...",
+      "url": "https://www.facebook.com/photo.php?fbid=1338187798329973&set=a.450351783780250&type=3",
+      "excerpt": "WebSearchResult(url='https://www.facebook.com/photo.php?fbid=1338187798329973&set=a.450351783780250&type=3', excerpts=['Feb 24, 2026 \u00b7 Shimla Hills offers premium Papaya Pulp/Puree, Concentrate & IQF crafted for global F&B manufacturers. Vibrant colour, consistent quality,'], publish_date=None, title='Shimla Hills offers premium Papaya Pulp/Puree, Concentrate ...')"
+    },
+    {
+      "title": "Papaya Pulp - WorldsIndia",
+      "url": "https://www.worldsindia.com/buyleadc2.php?id=papaya-pulp-6667",
+      "excerpt": "WebSearchResult(url='https://www.worldsindia.com/buyleadc2.php?id=papaya-pulp-6667', excerpts=[\"Papaya Pulp'. ; Location: Ambala, Haryana ; Purpose: Business Purpose ; Payment Method: NEFT/RTGS ; Description: I want to purchase Papaya Pulp with best price and\\xa0...\"], publish_date=None, title='Papaya Pulp - WorldsIndia')"
+    },
+    {
+      "title": "Papaya Pulp And Concentrates Exporter, Manufacturer & Supplier, Papaya Pulp And Concentrates India",
+      "url": "https://www.zainnatural.com/papaya-pulp-concentrates.html",
+      "excerpt": "WebSearchResult(url='https://www.zainnatural.com/papaya-pulp-concentrates.html', excerpts=['Back to top\\n\\n08045801446\\n\\n||[](https://www.facebook.com/Zain-Natural-Agro-India-Pvt-Ltd-547880502219974/?modal=admin_todo_tour \"Facebook\") [](https://twitter.com/ZainNatural \"Twitter\") [](https://www.instagram.com/Zain_Natural_Agro_India/ \"Instagram\") [](https://plus.google.com/u/0/112084034590335336477 \"Google Plus\") |\\n| --- | |\\n| --- |\\n\\nGST : 27AAACZ6097K1ZN\\n\\n \\n\\n* [Home](https://www.zainnatural.com/)\\n* [Products](https://www.zainnatural.com/products.html)\\n* Papaya Pulp and Concentrates\\n\\n|# Papaya Pulp And Concentrates |\\n| --- |'], publish_date=None, title='Papaya Pulp And Concentrates Exporter, Manufacturer & Supplier, Papaya Pulp And Concentrates India')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Spec Validation and Definition 
+
+
+## What this skill is for
+
+When candidate missing specs have been surfaced by the Buyer-Seller Call, Custom Spec,
+or Buyer Search skills — read this document. It gives you the framework to
+validate whether each candidate is a genuine new spec or a false positive, and
+if genuine, define it completely and  correctly for the Indian B2B marketplace.
+
+---
+
+## Step 1 — Validate: Is this a genuine new spec?
+
+A candidate missing spec is genuine only if all three of the following are true:
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same
+real-world attribute, even approximately, the candidate is not a gap.
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+---
+
+## Common false positives — check these before acting
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common
+synonym.
+
+Common equivalences in Indian B2B:
+
+| These terms often mean the same thing |
+|---------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Size / Dimensions / Measurement / Specification |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade ||
+
+**Composite attributes**
+Some candidates are natural-language composites. "10mm HDPE pipe" → "10mm" is
+not a new Diameter spec if Dimensions already exists.
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+**Multiple candidates meaning the same thing**
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning. "Usage" from custom specs + "Application" from call data + "End Use"
+from search → one spec, not three. Pick the most standard name and add once.
+
+One underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+---
+
+## Step 2 — Define: Build the spec completely
+
+Once a candidate passes validation, define it fully across four elements.
+
+### Spec Name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+### Input Type
+
+**`text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+**`radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+- Boolean attributes where the only meaningful values are Yes and No
+  (e.g. ISI Certified, Waterproof, Fire Resistant). Options: `["Yes", "No"]`
+
+**`multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → `multi_select`
+
+
+### Options — How to Generate Them
+
+Draw from example values in call data, custom spec submissions, and search
+option values. When data values are sparse, inconsistent, or absent, generate
+the full option set from Indian B2B market knowledge for this category and spec.
+
+**Understanding option values from data sources:**
+
+Option values surfaced by the data source skills vary significantly in quality.
+Here is what each quality level looks like and what it tells you:
+
+| Data Quality | What it looks like |
+|---|---|
+| Clean and consistent | Values are specific, formatted, and repeated across sources — reliable signal for what the real market options are |
+| Mixed quality | Some specific values mixed with vague or inconsistently formatted ones — the specific values are the signal; the rest is noise |
+| 1–2 values only | Too sparse to define the full option set — useful for confirming what the spec means, but market knowledge is needed to complete the list |
+| Completely messy | No usable signal — generate entirely from Indian B2B market knowledge |
+| Empty | No data at all — generate entirely from Indian B2B market knowledge |
+| Contains NA / Other / Custom | These are non-values — ignore them and treat the remaining data at its actual quality level |
+
+**Quality rules for new option to be created:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only
+2. **No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose**
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz.
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+5. Ideally the option count should be limited to 10 most common options 
+
+**Formatting rules:**
+1. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+2. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+3. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm
+4. Categorical options by frequency — most common in Indian market first
+5. Use ISI/BIS standards where applicable
+6. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+7. Do not use range options unless they are the market standard for this spec
+
+### Tier Placement
+
+All new specs are added as Tertiary. Sequencing reasoning determines the final
+tier based on actual signal data.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

@@ -1,0 +1,1132 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 12737,
+        "mcat_name": "Dehydrated Garlics",
+        "current_specs": [
+            {
+                "spec_name": "Form",
+                "options": [
+                    "Flakes",
+                    "Powder",
+                    "Chopped",
+                    "Granules",
+                    "Minced",
+                    "Cloves"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Color",
+                "options": [
+                    "Creamish White",
+                    "Brownish",
+                    "White"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Quality Grade",
+                "options": [
+                    "A-Grade",
+                    "Premium Quality",
+                    "Standard Quality",
+                    "B-Grade",
+                    "Commercial Grade",
+                    "Unsorted"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Moisture Content",
+                "options": [
+                    "Less than 5%",
+                    "Less than 6%",
+                    "Less than 7%",
+                    "Less than 4%"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Processing Type",
+                "options": [
+                    "Dehydrated",
+                    "Toasted",
+                    "Fried"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Organic",
+                "options": [
+                    "No",
+                    "Yes"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Certifications",
+                "options": [
+                    "FSSAI",
+                    "ISO",
+                    "HACCP",
+                    "HALAL",
+                    "KOSHER",
+                    "US FDA",
+                    "BRC",
+                    "APEDA"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Packaging Size",
+                "options": [
+                    "25 kg",
+                    "20 kg",
+                    "14 kg",
+                    "1 kg",
+                    "5 kg",
+                    "50 kg",
+                    "500 g"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Shelf Life",
+                "options": [
+                    "12 Months",
+                    "24 Months"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Dehydrated Garlics",
+            "mcat_id": 12737,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Form",
+                            "options": [
+                                "Flakes",
+                                "Powder",
+                                "Chopped",
+                                "Granules",
+                                "Minced",
+                                "Cloves"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Color",
+                            "options": [
+                                "Creamish White",
+                                "Brownish",
+                                "White"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Primary Specifications (Form, Color) were chosen because they are the most fundamental visual and application-based differentiators. 'What form is it?' (flakes, powder, etc.) and 'What is its color?' (white, brownish) are often the first questions asked. Form is designated for a title suffix as it creates the most common product naming convention (e.g., 'Dehydrated Garlic Flakes')."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Quality Grade",
+                            "options": [
+                                "A-Grade",
+                                "Premium Quality",
+                                "Standard Quality",
+                                "B-Grade",
+                                "Commercial Grade",
+                                "Unsorted"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Moisture Content",
+                            "options": [
+                                "Less than 5%",
+                                "Less than 6%",
+                                "Less than 7%",
+                                "Less than 4%"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Processing Type",
+                            "options": [
+                                "Dehydrated",
+                                "Toasted",
+                                "Fried"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Secondary Specifications (Quality Grade, Moisture Content, Processing Type) represent the next tier of decision-making. Quality Grade directly impacts price and usability. Moisture Content is a critical technical parameter for shelf life and quality. Processing Type distinguishes standard dehydrated products from value-added versions like 'Toasted' or 'Fried', which have different applications and price points."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Organic",
+                            "options": [
+                                "No",
+                                "Yes"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Certifications",
+                            "options": [
+                                "FSSAI",
+                                "ISO",
+                                "HACCP",
+                                "HALAL",
+                                "KOSHER",
+                                "US FDA",
+                                "BRC",
+                                "APEDA"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Packaging Size",
+                            "options": [
+                                "25 kg",
+                                "20 kg",
+                                "14 kg",
+                                "1 kg",
+                                "5 kg",
+                                "50 kg",
+                                "500 g"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Shelf Life",
+                            "options": [
+                                "12 Months",
+                                "24 Months"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Tertiary Specifications (Organic, Certifications, Packaging Size, Shelf Life) cover essential logistical and trust-building information. The question of being Organic is a key qualifier for a niche market. Certifications like FSSAI, ISO, and HALAL are crucial for B2B trust. Packaging Size is a vital logistical detail for bulk buyers, and Shelf Life is a standard data point for product viability."
+                }
+            },
+            "scratchpad": "The specification structure was designed by prioritizing attributes that B2B buyers consistently inquire about and that sellers use to differentiate their products. Primary specs (Form, Color) are fundamental differentiators. Secondary specs (Quality Grade, Moisture Content, Processing Type) are for the next tier of decision-making related to quality and price. Tertiary specs (Organic, Certifications, Packaging Size, Shelf Life) cover essential logistical and trust-building information."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Application",
+            "option_value": "Chinese Gravies",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Dehydration",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Gravy preparation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Manchow Soup",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Masala Grinding",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Multi-Purpose",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "FDA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "Halal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "ISO",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "Kosher",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "SKU",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Black and Brown",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Black-Yellow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Brown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Creamy White",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Dark",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Light",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Light Brownish",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Minor Brown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Not Black",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Yellowish White",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Mix of Garlic skin and buttons",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Pure flakes with 5-10% mixture to prevent lumps",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Container Appearance",
+            "option_value": "Transparent",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Container Material",
+            "option_value": "PP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Container Material",
+            "option_value": "Plastic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cultivation Type",
+            "option_value": "Organic",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Drying Duration",
+            "option_value": "4 hours",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Drying Method",
+            "option_value": "Machine Dried",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Drying Method",
+            "option_value": "Sun Dried",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Drying Temperature",
+            "option_value": "100 Â°C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "A+",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "A-Grade",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "B-Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Best Quality",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Bold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Commercial",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Export Quality",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Food Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Good",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Industrial / Grinding",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Lower Quality (Down)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Mixing Material",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Premium Grade",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Restaurant Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Moisture Content",
+            "option_value": "6 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Moisture Content",
+            "option_value": "below 6 %",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Organic",
+            "option_value": "No",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Gujarat",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Madhya Pradesh (MP)",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Rajasthan",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "1 kg",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "25 kg",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "50 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Jar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Loose",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Packet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Paper Bag",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Plastic Bag",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Chopped",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Cloves",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Flakes",
+            "prod_count": 17
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Flakes/Chopped",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Granules",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Irregular",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Mince",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Powder",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Processing Type",
+            "option_value": "Dehydrated",
+            "prod_count": 39
+        },
+        {
+            "spec_name": "Processing Type",
+            "option_value": "Fresh",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Processing Type",
+            "option_value": "Fried",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Processing Type",
+            "option_value": "Natural",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Processing Type",
+            "option_value": "Roasted",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Rehydration Ratio",
+            "option_value": "1:3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shelf Life",
+            "option_value": "12 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shelf Life",
+            "option_value": "6-9 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shelf Life",
+            "option_value": "Long term",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "1-3 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "10-15 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "100",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "10x10 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "2 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "2-3 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "3 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "3-5 mm",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "3.5 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "5 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "80-100 mesh",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Between Suji and Atta",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Big size",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Bigger than 5 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Good",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Medium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Moong dal size",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Moong size",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sorting and Purity",
+            "option_value": "95 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sorting and Purity",
+            "option_value": "Non-Sortex",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Sorting and Purity",
+            "option_value": "Sorted",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Sorting and Purity",
+            "option_value": "Unsorted",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sorting and Purity",
+            "option_value": "With Husk",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Source Material",
+            "option_value": "Dehydrated Cloves",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Texture",
+            "option_value": "Coarse",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Texture",
+            "option_value": "Fine",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "China model",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Indian",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Red",
+            "prod_count": 5
+        }
+    ],
+    "DS-2 (Custom Specs)": [],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Dehydrated Garlics",
+            "spec_name": "variety available",
+            "spec_option": "garlic",
+            "impression": "978"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Form",
+            "spec_fill_rate": "73.1",
+            "product_count": "19"
+        },
+        {
+            "spec_name": "Color",
+            "spec_fill_rate": "57.7",
+            "product_count": "15"
+        },
+        {
+            "spec_name": "Processing Type",
+            "spec_fill_rate": "42.3",
+            "product_count": "11"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_fill_rate": "42.3",
+            "product_count": "11"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "38.5",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Organic",
+            "spec_fill_rate": "30.8",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "30.8",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_fill_rate": "26.9",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Moisture Content",
+            "spec_fill_rate": "23.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_fill_rate": "19.2",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Size.",
+            "spec_fill_rate": "7.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Aroma",
+            "spec_fill_rate": "7.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Qualities",
+            "spec_fill_rate": "7.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Packing",
+            "spec_fill_rate": "3.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Packaging.",
+            "spec_fill_rate": "3.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Cut Size",
+            "spec_fill_rate": "3.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Garlic Variety",
+            "spec_fill_rate": "3.8",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Pungency Level",
+            "spec_option_name": "Medium",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Granule Size",
+            "spec_option_name": "2 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "FSSAI",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Processing Type",
+            "spec_option_name": "Dehydrated",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "HDPE Bag",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cut Size",
+            "spec_option_name": "Flakes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Qualities",
+            "spec_option_name": "Pre-Grade, A-Grade & Commercial Grade",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Garlic Type",
+            "spec_option_name": "White Garlic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Aroma",
+            "spec_option_name": "Strong Aroma Represents Indian Origin Product",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging.",
+            "spec_option_name": "20 Kg. Strong Poly Bag Inside Paper Bag",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Garlic Variety",
+            "spec_option_name": "Organic Garlic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packing",
+            "spec_option_name": "20 Kg. Strong Poly Bag Inside Paper Bag",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "Loose",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "PP Bag",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Organic",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "70.6"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_option_name": "A-Grade",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Moisture Content",
+            "spec_option_name": "Less than 5%",
+            "option_fill_rate": "57.7"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "12 Months",
+            "option_fill_rate": "56.5"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Creamish White",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Size.",
+            "spec_option_name": "3 To 5 M.M",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Size.",
+            "spec_option_name": "1 To 3 M.M.",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 kg",
+            "option_fill_rate": "43.5"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 Months",
+            "option_fill_rate": "43.5"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Brownish",
+            "option_fill_rate": "41.7"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "ISO",
+            "option_fill_rate": "35.3"
+        },
+        {
+            "spec_name": "Moisture Content",
+            "spec_option_name": "Less than 6%",
+            "option_fill_rate": "34.6"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Flakes",
+            "option_fill_rate": "31.7"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_option_name": "Premium Quality",
+            "option_fill_rate": "30"
+        },
+        {
+            "spec_name": "Organic",
+            "spec_option_name": "No",
+            "option_fill_rate": "29.4"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "APEDA",
+            "option_fill_rate": "29.4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Chopped",
+            "option_fill_rate": "24.4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Minced",
+            "option_fill_rate": "24.4"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "5 kg",
+            "option_fill_rate": "21.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "20 kg",
+            "option_fill_rate": "17.4"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "25 kg",
+            "option_fill_rate": "13"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "BRC",
+            "option_fill_rate": "11.8"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "HACCP",
+            "option_fill_rate": "11.8"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "US FDA",
+            "option_fill_rate": "11.8"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "HALAL",
+            "option_fill_rate": "11.8"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Cloves",
+            "option_fill_rate": "9.8"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "KOSHER",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "14 kg",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Moisture Content",
+            "spec_option_name": "Less than 8%",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Moisture Content",
+            "spec_option_name": "Less than 7%",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Quality Grade",
+            "spec_option_name": "Unsorted",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Black and Brown",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Granules",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Whole",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "powder,flakes,granules,raw garlic",
+            "option_fill_rate": "2.4"
+        }
+    ]
+}

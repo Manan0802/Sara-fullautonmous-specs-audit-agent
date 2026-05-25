@@ -1,0 +1,2515 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 9113
+category_name: Heavy Duty Lathe Machines
+seller_specs (current spec sheet): {
+  "category_name": "Heavy Duty Lathe Machines",
+  "mcat_id": 9113,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Swing Over Bed",
+          "options": [
+            "300 mm",
+            "400 mm",
+            "500 mm",
+            "600 mm",
+            "800 mm",
+            "1000 mm",
+            "1200 mm",
+            "1500 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Distance Between Centers",
+          "options": [
+            "750 mm",
+            "1000 mm",
+            "1500 mm",
+            "2000 mm",
+            "2500 mm",
+            "3000 mm",
+            "4000 mm",
+            "5000 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Bed Length",
+          "options": [
+            "1500 mm",
+            "2000 mm",
+            "2500 mm",
+            "3000 mm",
+            "3500 mm",
+            "4000 mm",
+            "4500 mm",
+            "5000 mm"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Spindle Bore",
+          "options": [
+            "52 mm",
+            "80 mm",
+            "100 mm",
+            "150 mm",
+            "200 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Spindle Speed Range",
+          "options": [
+            "25\u2013800 rpm",
+            "40\u2013800 rpm",
+            "40\u20131000 rpm",
+            "40\u20131200 rpm",
+            "25\u20131600 rpm",
+            "40\u20132000 rpm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Motor Power",
+          "options": [
+            "5 hp",
+            "7.5 hp",
+            "10 hp",
+            "12.5 hp",
+            "15 hp",
+            "20 hp"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Bed Type",
+          "options": [
+            "Single Wall",
+            "Double Wall",
+            "Heavy Ribbed",
+            "Flat Bed",
+            "V Bed"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Machine Type",
+          "options": [
+            "All Geared",
+            "V Belt Drive",
+            "Oil Country",
+            "Roll Turning",
+            "Gap Bed"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Chuck Size",
+          "options": [
+            "200 mm",
+            "250 mm",
+            "300 mm",
+            "400 mm",
+            "500 mm",
+            "600 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Phase",
+          "options": [
+            "Three Phase",
+            "Single Phase"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 20 specs) ---
+[
+  {
+    "spec_name": "Bed Length",
+    "total_product_count": 136,
+    "example_values": [
+      "12 ft",
+      "6 ft",
+      "9 ft",
+      "10 ft",
+      "8 ft"
+    ]
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "total_product_count": 94,
+    "example_values": [
+      "4 inch",
+      "80 mm",
+      "100 mm",
+      "5 inch",
+      "150 mm"
+    ]
+  },
+  {
+    "spec_name": "Center Height",
+    "total_product_count": 92,
+    "example_values": [
+      "15 inch",
+      "12 inch",
+      "18 inch",
+      "10 inch",
+      "24 inch"
+    ]
+  },
+  {
+    "spec_name": "Bed Width",
+    "total_product_count": 29,
+    "example_values": [
+      "16 inch",
+      "15 inch",
+      "20 inch",
+      "13 inch",
+      "18 inch"
+    ]
+  },
+  {
+    "spec_name": "Drive Type",
+    "total_product_count": 25,
+    "example_values": [
+      "Norton Gearbox",
+      "All Geared",
+      "4 type gear",
+      "All Gear",
+      "Bearing"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 22,
+    "example_values": [
+      "Batala",
+      "HMT",
+      "HP",
+      "DH",
+      "Everest"
+    ]
+  },
+  {
+    "spec_name": "Machine Build",
+    "total_product_count": 20,
+    "example_values": [
+      "Heavy Duty",
+      "Medium Duty"
+    ]
+  },
+  {
+    "spec_name": "Machine Condition",
+    "total_product_count": 17,
+    "example_values": [
+      "New",
+      "Used"
+    ]
+  },
+  {
+    "spec_name": "Chuck Size",
+    "total_product_count": 15,
+    "example_values": [
+      "16 inch",
+      "18 inch",
+      "1 m",
+      "12 inch",
+      "14 inch"
+    ]
+  },
+  {
+    "spec_name": "Condition",
+    "total_product_count": 11,
+    "example_values": [
+      "Used",
+      "New",
+      "Running",
+      "Second Hand"
+    ]
+  },
+  {
+    "spec_name": "Origin",
+    "total_product_count": 7,
+    "example_values": [
+      "Rajkot",
+      "Imported",
+      "India (Rajkot)",
+      "German/European",
+      "Ludhiana"
+    ]
+  },
+  {
+    "spec_name": "Bed Type",
+    "total_product_count": 7,
+    "example_values": [
+      "Hard Bed",
+      "Double V",
+      "Planer Bed"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "total_product_count": 7,
+    "example_values": [
+      "NH 22",
+      "NL26",
+      "Purshing",
+      "SV-610",
+      "TML 1000"
+    ]
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "total_product_count": 6,
+    "example_values": [
+      "200 mm",
+      "220 mm",
+      "250 mm",
+      "36 inch",
+      "600 mm"
+    ]
+  },
+  {
+    "spec_name": "Motor Power",
+    "total_product_count": 5,
+    "example_values": [
+      "3 HP",
+      "2 HP",
+      "3 hp",
+      "5 kW"
+    ]
+  },
+  {
+    "spec_name": "Operation Mode",
+    "total_product_count": 4,
+    "example_values": [
+      "Manual",
+      "Automatic",
+      "Semi-automatic"
+    ]
+  },
+  {
+    "spec_name": "Machine Duty",
+    "total_product_count": 4,
+    "example_values": [
+      "Heavy Duty",
+      "Extra Heavy Duty",
+      "Heavy"
+    ]
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "total_product_count": 4,
+    "example_values": [
+      "2.5 m",
+      "2015 mm",
+      "3 m",
+      "3000 mm"
+    ]
+  },
+  {
+    "spec_name": "Chuck Type",
+    "total_product_count": 3,
+    "example_values": [
+      "4-Jaw",
+      "Dog Chuck",
+      "Four Jaw"
+    ]
+  },
+  {
+    "spec_name": "Included Components",
+    "total_product_count": 3,
+    "example_values": [
+      "Bearing and Pulley",
+      "Chuck, Motor, Full Nut, Gearbox",
+      "Electricals"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 10 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "count": 11,
+    "options": [
+      "Lion",
+      "Angada",
+      "Accumax"
+    ]
+  },
+  {
+    "spec_name": "Swing In Gap",
+    "count": 8,
+    "options": [
+      "825mm",
+      "1700 mm",
+      "1650 mm",
+      "2000 mm"
+    ]
+  },
+  {
+    "spec_name": "Swing Over Cross Slide",
+    "count": 5,
+    "options": [
+      "355mm"
+    ]
+  },
+  {
+    "spec_name": "Tailstock Ram Diameter",
+    "count": 5,
+    "options": [
+      "50mm"
+    ]
+  },
+  {
+    "spec_name": "Induction Hardened Bed Ways",
+    "count": 5,
+    "options": [
+      "Yes"
+    ]
+  },
+  {
+    "spec_name": "Approximate Weight",
+    "count": 5,
+    "options": [
+      "1350 Kg",
+      "1250 Kg",
+      "1480 Kg",
+      "1660 Kg",
+      "1850 Kg"
+    ]
+  },
+  {
+    "spec_name": "Admit Between Centers",
+    "count": 5,
+    "options": [
+      "965mm",
+      "508mm",
+      "1575mm",
+      "1880mm",
+      "2490mm"
+    ]
+  },
+  {
+    "spec_name": "Leadscrew Diameter",
+    "count": 5,
+    "options": [
+      "32mm"
+    ]
+  },
+  {
+    "spec_name": "Tailstock Travel",
+    "count": 5,
+    "options": [
+      "175mm"
+    ]
+  },
+  {
+    "spec_name": "Center Height",
+    "count": 5,
+    "options": [
+      "15\"",
+      "12\"",
+      "710 mm",
+      "405 mm",
+      "420 mm"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "machine type",
+    "total_impressions": 487,
+    "options": [
+      "lathe"
+    ]
+  },
+  {
+    "spec_name": "bed length",
+    "total_impressions": 58,
+    "options": [
+      "6 foot"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (38 specs) ---
+[
+  {
+    "spec_name": "",
+    "spec_fill_rate": "60.8",
+    "product_count": "31"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_fill_rate": "43.1",
+    "product_count": "22"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_fill_rate": "41.2",
+    "product_count": "21"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_fill_rate": "41.2",
+    "product_count": "21"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_fill_rate": "41.2",
+    "product_count": "21"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_fill_rate": "33.3",
+    "product_count": "17"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_fill_rate": "31.4",
+    "product_count": "16"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_fill_rate": "17.6",
+    "product_count": "9"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_fill_rate": "17.6",
+    "product_count": "9"
+  },
+  {
+    "spec_name": "Bed Type",
+    "spec_fill_rate": "15.7",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Chuck Size",
+    "spec_fill_rate": "13.7",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Swing In Gap",
+    "spec_fill_rate": "11.8",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "9.8",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Leadscrew Diameter",
+    "spec_fill_rate": "5.9",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Induction Hardened Bed Ways",
+    "spec_fill_rate": "5.9",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Approximate Weight",
+    "spec_fill_rate": "5.9",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Admit Between Centers",
+    "spec_fill_rate": "5.9",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Tailstock Ram Diameter",
+    "spec_fill_rate": "5.9",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Tailstock Travel",
+    "spec_fill_rate": "5.9",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Swing Over Carriage",
+    "spec_fill_rate": "5.9",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Swing Over Cross Slide",
+    "spec_fill_rate": "5.9",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Width Of Bed",
+    "spec_fill_rate": "3.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Model",
+    "spec_fill_rate": "3.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Make",
+    "spec_fill_rate": "3.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Max. Length of Job",
+    "spec_fill_rate": "3.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Bed Width",
+    "spec_fill_rate": "3.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Lathe Type",
+    "spec_fill_rate": "3.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Center Height",
+    "spec_fill_rate": "3.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Spindle Speed",
+    "spec_fill_rate": "2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Max. Job Diameter over Cross-Slide",
+    "spec_fill_rate": "2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Chuck Dia.",
+    "spec_fill_rate": "2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Between Centers",
+    "spec_fill_rate": "2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Manufacture Year",
+    "spec_fill_rate": "2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Chuck Diameter",
+    "spec_fill_rate": "2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Width of Bed",
+    "spec_fill_rate": "2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Warranty Available",
+    "spec_fill_rate": "2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_fill_rate": "2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Max. Job Diameter over Bed",
+    "spec_fill_rate": "2",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (196 rows) ---
+[
+  {
+    "spec_name": "ARJUN",
+    "spec_option_name": "1350kg",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Chuck Diameter",
+    "spec_option_name": "910mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Tailstock Ram Diameter",
+    "spec_option_name": "50mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Applicable Industry",
+    "spec_option_name": "Paper Mills",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Applicable Industry",
+    "spec_option_name": "Power Plant",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Chuck Dia.",
+    "spec_option_name": "1530 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Warranty Available",
+    "spec_option_name": "No Warranty",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Height of Centre",
+    "spec_option_name": "265 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Leadscrew Diameter",
+    "spec_option_name": "32mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Width",
+    "spec_option_name": "323 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Machine Condition",
+    "spec_option_name": "Used",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Swing Over Cross Slide",
+    "spec_option_name": "355mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Applicable Industry",
+    "spec_option_name": "Steel Rolling Mills",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Induction Hardened Bed Ways",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Tailstock Travel",
+    "spec_option_name": "175mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Job Work",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Workshop",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Number of Spindle Speeds",
+    "spec_option_name": "18",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Applicable Industry",
+    "spec_option_name": "Tool Room",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Between Centers",
+    "spec_option_name": "3500 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Weight",
+    "spec_option_name": "55 Kg",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "machine Size",
+    "spec_option_name": "35.5x25.5x11.4",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Coolant System",
+    "spec_option_name": "With Coolant",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Tool Room",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Distance Between Centre",
+    "spec_option_name": "1000mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Angada",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Width Of Bed",
+    "spec_option_name": "324mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Motor",
+    "spec_option_name": "3 Ph or 1 Ph",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Training",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Width of Bed",
+    "spec_option_name": "324mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Manufacture Year",
+    "spec_option_name": "Before 2000",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Die Size",
+    "spec_option_name": "2.5To 3mm / Flat one",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "Made in India",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Applicable Industry",
+    "spec_option_name": "Shipbuilding",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "Three Phase",
+    "option_fill_rate": "95.5"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "Conventional",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Max. Job Diameter over Cross-Slide",
+    "spec_option_name": "590 mm",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Max. Length of Job",
+    "spec_option_name": "4000 mm",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Lathe Type",
+    "spec_option_name": "Conventional",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Spindle Speed",
+    "spec_option_name": "5-620 rpm",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "All Geared",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Spindle Speed",
+    "spec_option_name": "40-900 rpm",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Swing In Gap",
+    "spec_option_name": "825mm",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Bed Type",
+    "spec_option_name": "V Bed",
+    "option_fill_rate": "41.5"
+  },
+  {
+    "spec_name": "Make",
+    "spec_option_name": "Skoda (Czech Republic)",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "5 hp",
+    "option_fill_rate": "38.2"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "25\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c800 rpm",
+    "option_fill_rate": "36.4"
+  },
+  {
+    "spec_name": "Max. Job Diameter over Bed",
+    "spec_option_name": "1400 mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Machine Voltage",
+    "spec_option_name": "400 V",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Approximate Weight",
+    "spec_option_name": "1660 Kg",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Machine Voltage",
+    "spec_option_name": "220 V",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Approximate Weight",
+    "spec_option_name": "1850 Kg",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Approximate Weight",
+    "spec_option_name": "1480 Kg",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Max. Job Diameter over Bed",
+    "spec_option_name": "1350 mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Swing Over Carriage",
+    "spec_option_name": "1130 mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Bed Width",
+    "spec_option_name": "510 mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Admit Between Centers",
+    "spec_option_name": "1575mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Swing Over Carriage",
+    "spec_option_name": "900 mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Bed Width",
+    "spec_option_name": "615 mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Max. Job Diameter over Cross-Slide",
+    "spec_option_name": "495 mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "V Belt Drive",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Bed Width",
+    "spec_option_name": "325 mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Max. Job Diameter over Bed",
+    "spec_option_name": "820 mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Swing Over Carriage",
+    "spec_option_name": "750 mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Admit Between Centers",
+    "spec_option_name": "2490mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Admit Between Centers",
+    "spec_option_name": "1880mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Machine Voltage",
+    "spec_option_name": "440 V",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "1500 mm",
+    "option_fill_rate": "32.8"
+  },
+  {
+    "spec_name": "Chuck Size",
+    "spec_option_name": "500 mm",
+    "option_fill_rate": "29.7"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "52 mm",
+    "option_fill_rate": "29.7"
+  },
+  {
+    "spec_name": "Chuck Size",
+    "spec_option_name": "200 mm",
+    "option_fill_rate": "29.7"
+  },
+  {
+    "spec_name": "Bed Type",
+    "spec_option_name": "Single Wall",
+    "option_fill_rate": "26.8"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "DM5S",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "SR-1250",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "SU-80A",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Control Type",
+    "spec_option_name": "Auto feed",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "SUR-400",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "750 mm",
+    "option_fill_rate": "24.6"
+  },
+  {
+    "spec_name": "Make",
+    "spec_option_name": "Oerlikon (Switzerland)",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Max. Length of Job",
+    "spec_option_name": "2750 mm",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Lathe Type",
+    "spec_option_name": "Extra Heavy Duty",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Make",
+    "spec_option_name": "TOS (Czech Republic)",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Make",
+    "spec_option_name": "Heid (Austria)",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Lathe Type",
+    "spec_option_name": "All Geared",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Max. Length of Job",
+    "spec_option_name": "6000 mm",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "7.5 hp",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "80 mm",
+    "option_fill_rate": "17.2"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "1000 mm",
+    "option_fill_rate": "16.9"
+  },
+  {
+    "spec_name": "Center Height",
+    "spec_option_name": "710 mm",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Center Height",
+    "spec_option_name": "405 mm",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Center Height",
+    "spec_option_name": "675 mm",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Center Height",
+    "spec_option_name": "12\"",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Center Height",
+    "spec_option_name": "420 mm",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Center Height",
+    "spec_option_name": "410 mm",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Swing In Gap",
+    "spec_option_name": "1650 mm",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Swing In Gap",
+    "spec_option_name": "1700 mm",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Swing In Gap",
+    "spec_option_name": "2000 mm",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Chuck Size",
+    "spec_option_name": "300 mm",
+    "option_fill_rate": "16.2"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "400 mm",
+    "option_fill_rate": "15.7"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "300 mm",
+    "option_fill_rate": "15.7"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "100 mm",
+    "option_fill_rate": "15.6"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "150 mm",
+    "option_fill_rate": "15.6"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "3000 mm",
+    "option_fill_rate": "14.9"
+  },
+  {
+    "spec_name": "Bed Type",
+    "spec_option_name": "Double Wall",
+    "option_fill_rate": "14.6"
+  },
+  {
+    "spec_name": "Chuck Size",
+    "spec_option_name": "250 mm",
+    "option_fill_rate": "13.5"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "600 mm",
+    "option_fill_rate": "12.9"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "40\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c800 rpm",
+    "option_fill_rate": "12.7"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "2500 mm",
+    "option_fill_rate": "12.3"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "1200 mm",
+    "option_fill_rate": "11.4"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "40\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c1000 rpm",
+    "option_fill_rate": "10.9"
+  },
+  {
+    "spec_name": "Bed Type",
+    "spec_option_name": "Flat And V Bed",
+    "option_fill_rate": "9.8"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "20 hp",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "2000 mm",
+    "option_fill_rate": "9"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "3500 mm",
+    "option_fill_rate": "9"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "800 mm",
+    "option_fill_rate": "8.6"
+  },
+  {
+    "spec_name": "Chuck Size",
+    "spec_option_name": "600 mm",
+    "option_fill_rate": "8.1"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "200 mm",
+    "option_fill_rate": "7.8"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "1500 mm",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "2000 mm",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "40\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c2000 rpm",
+    "option_fill_rate": "7.3"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "3 hp",
+    "option_fill_rate": "7.3"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "3 HP",
+    "option_fill_rate": "7.3"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "40\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c1200 rpm",
+    "option_fill_rate": "7.3"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "1500 mm",
+    "option_fill_rate": "7.1"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "500 mm",
+    "option_fill_rate": "7.1"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "4000 mm",
+    "option_fill_rate": "6.2"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "10 hp",
+    "option_fill_rate": "5.5"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "25\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c1600 rpm",
+    "option_fill_rate": "5.5"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "2,3 hp",
+    "option_fill_rate": "5.5"
+  },
+  {
+    "spec_name": "Bed Type",
+    "spec_option_name": "Flat Bed",
+    "option_fill_rate": "4.9"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Gap Bed",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Roll Turning",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "All Geared Heavy Duty Lathe Machine",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "304mm",
+    "option_fill_rate": "4.6"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "3000 mm",
+    "option_fill_rate": "4.6"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "5000 mm",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "Single Phase",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "555mm",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "458mm",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "495 RPM",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "3-400 rpm",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "53mm",
+    "option_fill_rate": "3.1"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "155 mm",
+    "option_fill_rate": "3.1"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "1600 mm",
+    "option_fill_rate": "3.1"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "5000 mm",
+    "option_fill_rate": "3.1"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "1000 mm",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "4000 mm",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "3660 mm",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "2500 mm",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Chuck Size",
+    "spec_option_name": "400 mm",
+    "option_fill_rate": "2.7"
+  },
+  {
+    "spec_name": "Machine Type",
+    "spec_option_name": "Oil Country",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Bed Type",
+    "spec_option_name": "Heavy Ribbed",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "9-1030 rpm",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "500 RPM",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "40-900 rpm",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "25-400 rpm",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "495mm",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "3hp",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "5 HP",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "15 hp",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "10 HP",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "20-900 rpm",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Spindle Speed Range",
+    "spec_option_name": "800 RPM",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "1.5 HP",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "54 mm",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "38 mm",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "53 mm",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "86",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Spindle Bore",
+    "spec_option_name": "180mm",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "2745mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "1825mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "1200 mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "9 Feet",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "900-1000mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "2100 mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "3048 mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "15000 mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "990 MM",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "1370mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "7000mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "1200",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "750-1000 mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "2490 mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Distance Between Centers",
+    "spec_option_name": "200 mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "9 ft",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "7900mm",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Bed Length",
+    "spec_option_name": "5.5 Feet",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "250 mm",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "700 mm",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "1000 mm",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "860 mm",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "1250",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "1900mm",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "500",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "555 mm",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Swing Over Bed",
+    "spec_option_name": "850mm",
+    "option_fill_rate": "1.4"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 2 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(heavy duty lathe machine swing over bed vs center height) ---
+{
+  "query": "heavy duty lathe machine swing over bed vs center height",
+  "results": [
+    {
+      "title": "Lathe Swing: Essential Guide to Swing over Bed, Carriage & Gap",
+      "url": "https://cncwmt.com/qa/lathe-swing-essential-guide-to-swing-over-bed-carriage-gap/",
+      "excerpt": "WebSearchResult(url='https://cncwmt.com/qa/lathe-swing-essential-guide-to-swing-over-bed-carriage-gap/', excerpts=['+ [CNC MILLING](https://cncwmt.com/vertical-machining-centres/)\\n        \\n        - [Vertical Machining Centres](https://cncwmt.com/product-category/cnc-milling/cnc-vertical-machining-centres/)\\n        - [CNC Milling Machine](https://cncwmt.com/product-category/cnc-milling/cnc-milling-machine/)\\n        - [Horizontal Machining Center](https://cncwmt.com/product-category/cnc-milling/horizontal-machining-center/)\\n        - [Gantry CNC Milling Machine](https://cncwmt.com/product-category/cnc-milling/gantry-cnc-milling-machine/)\\n    + [5 AXIS MACHINING CENTER](https://cncwmt.com/product-category/5-axis-machining-center/)\\n    + [CNC DRILLING TAPPING CENTER](https://cncwmt.com/product-category/cnc-drilling-tapping-center/)\\n    + [MILLING BORING MACHINE](https://cncwmt.com/milling-boring-machine/)\\n    + [LATHE](https://cncwmt.com/lathe/)\\n        \\n        - [Heavy Duty Big Lathe](https://cncwmt.com/product-category/lathe/heavy-duty-big-lathe/)\\n        - [Engine Lathe](https://cncwmt.\\n ... \\nStandards like ISO require clear swing labeling to ensure safety and compatibility.\\n\\n## Swing and Accessory Compatibility\\n\\n## [](https://cncwmt.com/product-center/)\\n\\n### Selecting Chucks, Tool Posts, and Faceplates\\n\\nYour lathe swing determines which accessories can be mounted without interference:\\n\\n* ****Chucks:**** Must fit within carriage-restricted swing if side-mounted.\\n* ****Tool Posts:**** Quick-change posts with larger toolholders may encroach on swing limits.\\n* ****Faceplates:**** Ensure clamps don\u2019t extend beyond allowable diameter.\\n\\n## Impact on Tool Life and Surface Finish\\n\\nWhat is lathe swing\u2019s practical impact? In order to reduce vibrations, extend the tool\u2019s life, and improve the surface finish, accessories that are compatible with swing capacity are utilised. The utilisation of oversized or incompatible attachments has been demonstrated to engender deleterious consequences, including chatter, diminished surface quality, and enhanced wear.\\n\\n## Conclusion\\n[](https://cncwmt.com/product-center/)\\n\\nUnderstanding what does swing over bed mean on a lathe helps in selecting the right machine. Always check swing diameter of lathe against your workpiece dimensions and consult standards for precise applications. A pivotal factor in selecting the optimal machine and accessories for turning requirements is the lathe swing, encompassing the over bed, carriage, and gap. In order to avoid expensive errors, guarantee safe operation, and maximise machining precision, it is essential to precisely measure and comprehend each swing type. The purpose of this guide is to assist users in evaluating lathe specifications with confidence, selecting compatible accessories, and optimising workshop productivity.\\n\\n## FAQ\\n\\nQ1: Can I increase my lathe swing?  \\nA1: Only by using specialized gap-bed extensions or alternative fixtures, not by modifying the lathe physically.\\n\\nQ2: Why is swing over carriage smaller than swing over bed?\\nA2: The carriage occupies space above the bed, reducing the maximum workpiece diameter.\\n\\nQ3: How does swing affect machining accuracy?  \\nA3: Larger swing may introduce more vibration and deflection; always balance capacity with rigidity.\\n\\n# Related Readings\\n\\n## How To Specify a Lathe\\n\\nSelecting and operating a lathe involves considering key specifications like swing, bed length, and spindle capacity. Proper machine sizing, setup, and maintenance are essential for efficient, precise machining operations and long-term performance. [>> Read more](https://cncwmt.com/qa/how-do-you-specify-a-lathe-specifications-sizing-and-operational-best-practices-to-consider/)\\n\\n## How to Use a Lathe\\n\\nThe article discusses various machining methods for shapes like spheres, crankshafts, tapers, and threads, along with material-specific strategies for hard steel, stainless steel, titanium, and rubber, focusing on tools, techniques, and best practices for optimal results. [>> Read more](https://cncwmt.\\n ... \\ncom/product-tag/cw6280b-lathe/) [Desktop CNC Lathe (1)](https://cncwmt.com/product-tag/desktop-cnc-lathe/) [Desktop Lathe CNC (2)](https://cncwmt.com/product-tag/desktop-lathe-cnc/) [Desktop Mini CNC Lathe (2)](https://cncwmt.com/product-tag/desktop-mini-cnc-lathe/) [Drilling and Tapping Center (2)](https://cncwmt.com/product-tag/drilling-and-tapping-center/) [Electronic Lathe (1)](https://cncwmt.com/product-tag/electronic-lathe/) [Flat Bed CNC Lathe (1)](https://cncwmt.com/product-tag/flat-bed-cnc-lathe/) [Flat Bed CNC Lathe Machine (1)](https://cncwmt.com/product-tag/flat-bed-cnc-lathe-machine/) [Heavy Duty CNC Lathe (1)](https://cncwmt.com/product-tag/heavy-duty-cnc-lathe/) [Heavy Duty CNC Lathe Machine (1)](https://cncwmt.com/product-tag/heavy-duty-cnc-lathe-machine/) [Horizontal CNC Lathe (1)](https://cncwmt.com/product-tag/horizontal-cnc-lathe/) [Radial drilling machine (6)](https://cncwmt.com/product-tag/radial-drilling-machine/) [Slant Bed CNC Lathe (7)](https://cncwmt.'], publish_date='2025-09-26', title='Lathe Swing: Essential Guide to Swing over Bed, Carriage & Gap')"
+    },
+    {
+      "title": "How to define Swing over Bed, Swing over Cross Slide and ...",
+      "url": "https://www.annnyang.com/faq/How-to-define-Swing-over-Bed-Swing-over-Cross-Slide-and-Swing-over-Gap.html",
+      "excerpt": "WebSearchResult(url='https://www.annnyang.com/faq/How-to-define-Swing-over-Bed-Swing-over-Cross-Slide-and-Swing-over-Gap.html', excerpts=['Please wait while your request is being verified...'], publish_date=None, title='How to define Swing over Bed, Swing over Cross Slide and ...')"
+    },
+    {
+      "title": "Lathe Swing Measurement & Accessory Guide | Travers Tool Co.",
+      "url": "https://solutions.travers.com/how-to-measure-lathe-swing-and-choose-the-right-accessories",
+      "excerpt": "WebSearchResult(url='https://solutions.travers.com/how-to-measure-lathe-swing-and-choose-the-right-accessories', excerpts=[\"* Welcome to Travers\\n* \\nP: 1.800.221.0270\\n\\nP: 1.800.221.0270* [About](https://www.travers.com/about-us/a/a2/)\\n* [Contact](https://www.travers.com/contact-us-800-numbers-2/a/contact-us-800-numbers-2/)\\n\\nToggle Nav\\n\\n[](https://www.travers.com/)\\n\\nSearch\\n\\n# Solutions ### YOUR SOURCE FOR MEANINGFUL SOLUTIONS Sign up below for articles, videos, tutorials delivered as we publish.\\n\\n### Sort By\\n\\n* Most Recent\\n+ Articles\\n    + Downloadables\\n    + Videos\\n\\n# How To Measure Lathe Swing And Choose The Right Accessories\\n\\nPosted by Kurt Repsher on May 16, 2025 10:29:00 AM\\n\\n* [Tweet](https://twitter.com/share)\\n*\\n\\nWhen outfitting your lathe machine with the right accessories, one of the most critical factors to consider is the lathe swing measurement. Often misunderstood, a lathe's swing capacity directly impacts the size of workpieces your lathe can handle and determines which accessories will be compatible.\\nWhether you are working with metal, wood, plastics, composites, or any other materials, understanding lathe swing ensures that you select the best tools, chucks, and attachments for your machine and operation. ## **What is lathe swing?  \\n** **  \\n** Lathe swing, commonly referred to asswing over bed, is the maximum diameter of a workpiece that can be mounted on a lathe without obstruction. However, when considering workpiece fitment, it's important to account for the space occupied by chuck jaws or faceplate clamps, which may extend beyond the workpiece itself. ### KEY CONSIDERATIONS: * Lathe swing is determined by [measuring](https://www.travers.com/category/manual-tapes) the distance from the center of the lathe spindle (this can be easily done using a [live center](https://www.travers.com/category/live-60-degree-angle) ) to the nearest point on the bed, then doubling that measurement.\\n* However, the practical working capacity may be slightly less due to protrusions \u2014so always round down, never up.\\n Example:  \\nIf the spindle-to-bed distance is 6-9/16 inches, round down to 6-1/2 inches and double that number to get a 13-inch lathe swing, meaning it can accommodate lathe workpieces up to 13 inches in diameter. This measurement is crucial when selecting [lathe accessories](https://www.travers.com/category/lathe-chuck-accessories) such as: * [Chucks](https://www.travers.com/category/lathe-chucks)\\n* Tool posts\\n* Faceplates\\n  \\n## **Key Lathe Swing Measurements For Accessory Compatibility** * ### **Swing Over Bed** \u2013\\n  \\n  The maximum workpiece diameter that can rotate over the lathe bed.\\n* ### **Swing Over Carriage** \u2013\\n  \\n  The maximum lathe workpiece diameter that can rotate over the cross slide, usually less than swing over bed due to the cross-slide\u2019s height.\\n* ### **Swing Over Gap** \u2013\\nSome metal lathes and wood lathes feature a removable gap in the bed, allowing for larger workpieces in that specific section. ## [](https://www.travers.com/product/otmt-go200-safety-glasses-96-085-308) Quick- Change tool Posts * A quick-change tool post enhances efficiency and minimizes vibration, improving machining precision.\\n* Selecting the correct tool post depends on your lathe swing.  \\n  For a full breakdown on how to choose the best size, check out our blog on Quick Change Tool Posts .\\n ### FIND THE RIGHT TOOL POST SET: * To help you select the best Quick Change Tool Post Set for your lathe and applications, visit our [Quick Change Tool Post Sets](https://www.travers.com/category/tool-post-equipment) page.\\n* Use the various filter options along the left side of the page\u2014including:\\n  \\n    + Brand\\n    + Lathe Swing\\n    + And more \u2014 to narrow your search.\\n  \\n[5-Piece Quick Change Tool Post Set:](https://www.travers.com/category/quick-change-tool-post-sets) [](https://www.\\ntravers.com/category/quick-change-tool-post-sets) ## Why Lathe Swing Matters When Choosing Accessories Understanding how to correctly measure your lathe swing helps ensure that every accessory you purchase is compatible with your machine. A mismatch can lead to: * Improper tool post or accessory fitting\\n* Reduced performance\\n* Even damage to your lathe or tools\\n By selecting accessories that align with your lathe\u2019s swing capacity, you enhance: * Precision\\n* Efficiency\\n* Overall machining success\\n  \\n## **Additional Help & Recommendations** * For more information on choosing the right lathe accessories, visit our full selection at [Travers.com](https://www.travers.com/) .\\n* If you need lathe accessory recommendations or have questions about lathe swing calculations, you can always contact us at tech@travers.com .\\n\\nTopics: [Video](https://solutions.travers.com/tag/video) , [Article](https://solutions.travers.com/tag/article) , [Turning](https://solutions.travers.com/tag/turning)\"], publish_date='2021-07-23', title='Lathe Swing Measurement & Accessory Guide | Travers Tool Co.')"
+    },
+    {
+      "title": "Lathe Swing-over",
+      "url": "https://www.homemodelenginemachinist.com/threads/lathe-swing-over.11471/",
+      "excerpt": "WebSearchResult(url='https://www.homemodelenginemachinist.com/threads/lathe-swing-over.11471/', excerpts=['Jan 6, 2011 \u2014 The Atlas 618 you show in your two pictures will swing a maximum diameter of 6 inches. The maximum length between centers is 18 inches. That'], publish_date=None, title='Lathe Swing-over')"
+    },
+    {
+      "title": "Getting the Swing of the Lathe Right Every Time | Swing Of ...",
+      "url": "https://swing-of-the-lathe.pages.dev/",
+      "excerpt": "WebSearchResult(url='https://swing-of-the-lathe.pages.dev/', excerpts=[\"Feb 12, 2026 \u2014 If the distance from the center of the spindle to the bed is 6 inches, we call it a 12-inch swing . However, if you're looking at machines from\"], publish_date=None, title='Getting the Swing of the Lathe Right Every Time | Swing Of ...')"
+    },
+    {
+      "title": "lathe bed size vs. swing on pecision bench lathes",
+      "url": "https://www.practicalmachinist.com/forum/threads/lathe-bed-size-vs-swing-on-pecision-bench-lathes.247531/",
+      "excerpt": "WebSearchResult(url='https://www.practicalmachinist.com/forum/threads/lathe-bed-size-vs-swing-on-pecision-bench-lathes.247531/', excerpts=['Jun 5, 2012 \u2014 A good lathe should have a bed width equal to its swing . Most older machines meet this requirement. Most new ones far fall short, especially'], publish_date=None, title='lathe bed size vs. swing on pecision bench lathes')"
+    },
+    {
+      "title": "Centre Height",
+      "url": "https://www.hobby-machinist.com/threads/centre-height.34130/",
+      "excerpt": "WebSearchResult(url='https://www.hobby-machinist.com/threads/centre-height.34130/', excerpts=['Mar 30, 2015 \u2014 The swing of your lathe is typically measured from the center of the chuck to the top of the vee on the lathe bed times 2. In other words a 12\"'], publish_date=None, title='Centre Height')"
+    },
+    {
+      "title": "When to Choose a Big Swing Lathe vs a Standard Lathe",
+      "url": "https://summitmt.com/when-to-choose-a-big-swing-lathe-vs-a-standard-lathe/",
+      "excerpt": "WebSearchResult(url='https://summitmt.com/when-to-choose-a-big-swing-lathe-vs-a-standard-lathe/', excerpts=['Medium to large lathes have a swing of 20 to 36 inches and a distance between centers of 60 to 120 inches. Medium and large lathes are used for heavier or'], publish_date=None, title='When to Choose a Big Swing Lathe vs a Standard Lathe')"
+    },
+    {
+      "title": "A Length between centers \u2022 B Swing diameter over the bed ...",
+      "url": "https://www.facebook.com/groups/1037949394218636/posts/1045965753417000/",
+      "excerpt": "WebSearchResult(url='https://www.facebook.com/groups/1037949394218636/posts/1045965753417000/', excerpts=['Oct 15, 2023 \u2014 Skoda Heavy Duty Lathe : Swing over bed: 1700 mm . Swing over saddle: 1400 mm. Between centres: 8000 mm. Width across bed: 1700 mm Quill diameter'], publish_date=None, title='A Length between centers \u2022 B Swing diameter over the bed ...')"
+    },
+    {
+      "title": "How To Measure Lathe Swing And Choose The Right Accessories - YouTube",
+      "url": "https://www.youtube.com/watch?v=JXin9aotiuo",
+      "excerpt": "WebSearchResult(url='https://www.youtube.com/watch?v=JXin9aotiuo', excerpts=['Back \\n\\nSearch\\n\\n How To Measure Lathe Swing And Choose The Right Accessories\\n\\nTap to unmute\\n\\n2x\\n\\n## How To Measure Lathe Swing And Choose The Right Accessories\\n\\nTravers Tool Co 2,757 views 7 months ago\\n\\nSearch Copy link Info Shopping\\n\\nIf playback doesn\\'t begin shortly, try restarting your device.\\n\\n\u2022\\n\\nYou\\'re signed out\\n\\nCancel Confirm\\n\\nShare\\n\\nInclude playlist\\n\\nAn error occurred while retrieving sharing information. Please try again later.\\n\\n0:00\\n\\n[](https://www.youtube.com/watch?v=FoMohUWxZdg \"Next (SHIFT+n)\")\\n\\n0:00 / 0:00\\n\\nLive\\n\\n\u2022 Watch full video\\n\\n\u2022\\n\\n\u2022\\n\\n# How To Measure Lathe Swing And Choose The Right Accessories\\n\\nTravers Tool Co\\n\\nTravers Tool Co 7\\\\.43K subscribers\\n\\nSubscribe Subscribed\\n\\n37 Share\\n\\nSave Download Download\\n\\n2\\\\.7K views 7 months ago \\\\ \\\\ \\\\\\n\\n2,757 views \u2022 May 16, 2025 \u2022 #CNCMachining #Lathe #Metalworking\\n\\nNot sure what lathe swing means or why it matters?\\nIn this video, we break down the concept of lathe swing, show you how to measure it accurately, and explain why it\u2019s essential when selecting accessories like chucks, quick-change tool posts, and faceplates. Avoid costly fitment issues and improve performance by ensuring your accessories match your lathe\u2019s swing capacity\u2014whether you\u2019re machining metal, wood, or composite materials. \ud83d\udd27 In this video, we cover: * What lathe swing is (including swing over bed, carriage, and gap)\\n * How to properly measure lathe swing\\n * Why swing dimensions matter when selecting accessories\\n * Key considerations for tool post compatibility and fit\\n \ud83d\udee0\ufe0f Explore Related Tools & Accessories: \ud83d\udd39 Quick Change Tool Post Sets: [https://www.travers.com/category/quic...](https://www.youtube.com/redirect?\\n ... \\nevent=video_description&redir_token=QUFFLUhqa0xuS2tZdDBubGJIdVRaazF0Ym1LMVVQYnE1UXxBQ3Jtc0tudlI4dUJlQkdmSlJ0SGNiSE9CSC16UHV2SUd5eFBaejZuRHYtMXFnSmJBV2xZWkZ2c0JqRlROR2JyU1FDV0s0cFh3cEFIUWpuQ3dNVVh1cDZTNHZJUE9YaWhUQ09uQjRRUzFVRzJJaVpMMmNkU0Mwbw&q=https%3A%2F%2Fsolutions.travers.com%2Fhow-to-measure-lathe-swing-and-choose-the-right-accessories&v=JXin9aotiuo) \ud83d\udce7 Need help selecting the right accessories for your lathe? Contact our expert tech team at tech@travers.com \ud83d\udcfd\ufe0f Like this video? Give it a thumbs up, leave a comment, and subscribe to our channel for more machining tips, product guides, and how-to videos. \\\\ \\\\ \\\\ \\\\ \\\\ \\\\ \\\\ Show less\\n\\nNot sure what lathe swing means or why it matters? In this video, we break down the concept of lathe swing, show you how to measure it accura \u2026 ...more\\n\\n...more\\n\\nTranscript\\n\\nFollow along using the transcript.\\n\\nShow transcript\\n\\nShow less\\n\\n \\\\ \\\\ \\\\\\n\\n# How To Measure Lathe Swing And Choose The Right Accessories\\n\\n2,757 views 2\\\\.7K views\\n\\nMay 16, 2025\\n\\n37 Share\\nSave Download Download\\n\\nNaN / NaN\\n\\n## Comments 2\\n\\nTop\\n\\nShow featured comments Newest\\n\\nShow recent comments, including potential spam ## In this video\\n\\nTranscript ## Description\\n\\nHow To Measure Lathe Swing And Choose The Right Accessories\\n\\n37 Likes 2,757 Views May 16 2025 Not sure what lathe swing means or why it matters? In this video, we break down the concept of lathe swing, show you how to measure it accurately, and explain why it\u2019s essential when selecting accessories like chucks, quick-change tool posts, and faceplates. Avoid costly fitment issues and improve performance by ensuring your accessories match your lathe\u2019s swing capacity\u2014whether you\u2019re machining metal, wood, or composite materials. \ud83d\udd27 In this video, we cover: * What lathe swing is (including swing over bed, carriage, and gap)\\n * How to properly measure lathe swing\\n * Why swing dimensions matter when selecting accessories\\n * Key considerations for tool post compatibility and fit\\n ... \\ncom/redirect?event=video_description&redir_token=QUFFLUhqbEx5eEFVZ3NwcVlkeXFkSXVlV2ZDQXhhcUFCQXxBQ3Jtc0trNkd3ZUhDdXJlVC1nWTVaMFpEZUhBUDdGMzN2Ylo3ZVRGOW1DWGdvc3pBYVpfTk9sal9ET1JacHUwZE5nNGo1VDlUZW1JTERneWUzb09uNlRjd00zQ0x1aURKX0RXSmtlTDBCUVhKanFXUmkwckRZdw&q=https%3A%2F%2Fsolutions.travers.com%2Fhow-to-measure-lathe-swing-and-choose-the-right-accessories&v=JXin9aotiuo) \ud83d\udce7 Need help selecting the right accessories for your lathe? Contact our expert tech team at tech@travers.com \ud83d\udcfd\ufe0f Like this video? Give it a thumbs up, leave a comment, and subscribe to our channel for more machining tips, product guides, and how-to videos. \\\\ \\\\ \\\\ \\\\ \\\\ \\\\ \\\\ \u2026 ...more\\n\\n...more Show less Transcript\\n\\nFollow along using the transcript.\\n\\nShow transcript ## Transcript\\n\\n7:12\\n\\n### Quick-Change Tool Post: How to Choose the Best Size for Your Lathe\\n\\nTravers Tool Co\\n\\n6\\\\.4K views \u2022 8 months ago'], publish_date=None, title='How To Measure Lathe Swing And Choose The Right Accessories - YouTube')"
+    }
+  ],
+  "count": 10
+}
+
+--- Result 2: WEB_SEARCH(heavy duty lathe machine swing over bed vs center height) ---
+{
+  "query": "heavy duty lathe machine swing over bed vs center height",
+  "results": [
+    {
+      "title": "Lathe Swing: Essential Guide to Swing over Bed, Carriage & Gap",
+      "url": "https://cncwmt.com/qa/lathe-swing-essential-guide-to-swing-over-bed-carriage-gap/",
+      "excerpt": "WebSearchResult(url='https://cncwmt.com/qa/lathe-swing-essential-guide-to-swing-over-bed-carriage-gap/', excerpts=['+ [CNC MILLING](https://cncwmt.com/vertical-machining-centres/)\\n        \\n        - [Vertical Machining Centres](https://cncwmt.com/product-category/cnc-milling/cnc-vertical-machining-centres/)\\n        - [CNC Milling Machine](https://cncwmt.com/product-category/cnc-milling/cnc-milling-machine/)\\n        - [Horizontal Machining Center](https://cncwmt.com/product-category/cnc-milling/horizontal-machining-center/)\\n        - [Gantry CNC Milling Machine](https://cncwmt.com/product-category/cnc-milling/gantry-cnc-milling-machine/)\\n    + [5 AXIS MACHINING CENTER](https://cncwmt.com/product-category/5-axis-machining-center/)\\n    + [CNC DRILLING TAPPING CENTER](https://cncwmt.com/product-category/cnc-drilling-tapping-center/)\\n    + [MILLING BORING MACHINE](https://cncwmt.com/milling-boring-machine/)\\n    + [LATHE](https://cncwmt.com/lathe/)\\n        \\n        - [Heavy Duty Big Lathe](https://cncwmt.com/product-category/lathe/heavy-duty-big-lathe/)\\n        - [Engine Lathe](https://cncwmt.\\n ... \\nStandards like ISO require clear swing labeling to ensure safety and compatibility.\\n\\n## Swing and Accessory Compatibility\\n\\n## [](https://cncwmt.com/product-center/)\\n\\n### Selecting Chucks, Tool Posts, and Faceplates\\n\\nYour lathe swing determines which accessories can be mounted without interference:\\n\\n* ****Chucks:**** Must fit within carriage-restricted swing if side-mounted.\\n* ****Tool Posts:**** Quick-change posts with larger toolholders may encroach on swing limits.\\n* ****Faceplates:**** Ensure clamps don\u2019t extend beyond allowable diameter.\\n\\n## Impact on Tool Life and Surface Finish\\n\\nWhat is lathe swing\u2019s practical impact? In order to reduce vibrations, extend the tool\u2019s life, and improve the surface finish, accessories that are compatible with swing capacity are utilised. The utilisation of oversized or incompatible attachments has been demonstrated to engender deleterious consequences, including chatter, diminished surface quality, and enhanced wear.\\n\\n## Conclusion\\n[](https://cncwmt.com/product-center/)\\n\\nUnderstanding what does swing over bed mean on a lathe helps in selecting the right machine. Always check swing diameter of lathe against your workpiece dimensions and consult standards for precise applications. A pivotal factor in selecting the optimal machine and accessories for turning requirements is the lathe swing, encompassing the over bed, carriage, and gap. In order to avoid expensive errors, guarantee safe operation, and maximise machining precision, it is essential to precisely measure and comprehend each swing type. The purpose of this guide is to assist users in evaluating lathe specifications with confidence, selecting compatible accessories, and optimising workshop productivity.\\n\\n## FAQ\\n\\nQ1: Can I increase my lathe swing?  \\nA1: Only by using specialized gap-bed extensions or alternative fixtures, not by modifying the lathe physically.\\n\\nQ2: Why is swing over carriage smaller than swing over bed?\\nA2: The carriage occupies space above the bed, reducing the maximum workpiece diameter.\\n\\nQ3: How does swing affect machining accuracy?  \\nA3: Larger swing may introduce more vibration and deflection; always balance capacity with rigidity.\\n\\n# Related Readings\\n\\n## How To Specify a Lathe\\n\\nSelecting and operating a lathe involves considering key specifications like swing, bed length, and spindle capacity. Proper machine sizing, setup, and maintenance are essential for efficient, precise machining operations and long-term performance. [>> Read more](https://cncwmt.com/qa/how-do-you-specify-a-lathe-specifications-sizing-and-operational-best-practices-to-consider/)\\n\\n## How to Use a Lathe\\n\\nThe article discusses various machining methods for shapes like spheres, crankshafts, tapers, and threads, along with material-specific strategies for hard steel, stainless steel, titanium, and rubber, focusing on tools, techniques, and best practices for optimal results. [>> Read more](https://cncwmt.\\n ... \\ncom/product-tag/cw6280b-lathe/) [Desktop CNC Lathe (1)](https://cncwmt.com/product-tag/desktop-cnc-lathe/) [Desktop Lathe CNC (2)](https://cncwmt.com/product-tag/desktop-lathe-cnc/) [Desktop Mini CNC Lathe (2)](https://cncwmt.com/product-tag/desktop-mini-cnc-lathe/) [Drilling and Tapping Center (2)](https://cncwmt.com/product-tag/drilling-and-tapping-center/) [Electronic Lathe (1)](https://cncwmt.com/product-tag/electronic-lathe/) [Flat Bed CNC Lathe (1)](https://cncwmt.com/product-tag/flat-bed-cnc-lathe/) [Flat Bed CNC Lathe Machine (1)](https://cncwmt.com/product-tag/flat-bed-cnc-lathe-machine/) [Heavy Duty CNC Lathe (1)](https://cncwmt.com/product-tag/heavy-duty-cnc-lathe/) [Heavy Duty CNC Lathe Machine (1)](https://cncwmt.com/product-tag/heavy-duty-cnc-lathe-machine/) [Horizontal CNC Lathe (1)](https://cncwmt.com/product-tag/horizontal-cnc-lathe/) [Radial drilling machine (6)](https://cncwmt.com/product-tag/radial-drilling-machine/) [Slant Bed CNC Lathe (7)](https://cncwmt.'], publish_date='2025-09-26', title='Lathe Swing: Essential Guide to Swing over Bed, Carriage & Gap')"
+    },
+    {
+      "title": "How to define Swing over Bed, Swing over Cross Slide and ...",
+      "url": "https://www.annnyang.com/faq/How-to-define-Swing-over-Bed-Swing-over-Cross-Slide-and-Swing-over-Gap.html",
+      "excerpt": "WebSearchResult(url='https://www.annnyang.com/faq/How-to-define-Swing-over-Bed-Swing-over-Cross-Slide-and-Swing-over-Gap.html', excerpts=['*  0\\n* \\n* English Espa\u00f1ol Deutsch Ti\u1ebfng Vi\u1ec7t Bahasa Indonesia J\u0119zyk Polski \u010de\u0161tina Italiano\\n  \\n  EN ES DE VI ID PL CS IT\\n\\n* Products\\n  \\n    + CNC Lathes\\n    + Manual Lathes\\n    + Variable Speed Lathes\\n    + Clutch Lathe\\n    + CNC Slant Bed Lathes\\n    + Vertical Milling / Turning\\n    + Options and Accessories\\n* Application\\n  \\n    + Aerospace\\n    + Energy\\n    + Steelwork\\n    + Railway\\n    + Oil & Gas\\n    + Roller\\n    + Vessel / Ship\\n    + Industrial machinery\\n    + Flange\\n* Customized Solution\\n* Company\\n  \\n    + Videos\\n* News\\n* FAQ\\n* Contact Us\\n\\n* Home\\n* FAQ\\n* About Machine Models\\n* How to define Swing over Bed, Swing over Cross Slide and Swing over Gap?\\n\\n# How to define Swing over Bed, Swing over Cross Slide and Swing over Gap?\\n\\nFAQ\\n\\n* About Machine Models\\n* About Payment Term\\n* About Accessories\\n\\nHow to define Swing over Bed, Swing over Cross Slide and Swing over Gap?\\n\\nAbout Machine Models\\n\\nLathe turning is one of the most frequently used machining technology.\\nTo order a proper size of lathe machine with correct specifications, swing is first considered since it represents the diameter allowance for workpiece.  \\nHeight of center line is center height. Center height is the key to form different swing sizes.\\n\\n  \\nThere will be several possible swings: Swing over bed, swing over cross slide and swing over gap:\\n\\n**SWING OVER BED**  \\n  \\nSwing over bed is also swing over Z axis guide way (longitudinal guide way). Annn Yang Lathe creates the machine model names by Swing over bed for easy identification. The X axis travel (cross travel) is also designed for possibility of turning max. diameter of workpiece upon swing over bed.\\n\\n**SWING OVER CROSSSLIDE**  \\n  \\nSwing over cross slide is diameter allowance upon the cross slide (or worktable). When workpiece is long and cross slide has to go through the workpiece for outside turning, such as still roller, pipe etc., it is necessary to consider swing over cross slide.\\nThe swing over cross slide will be smaller than swing bed.\\n\\n**SWING OVER GAP**  \\n  \\nSome lathe machines have the design of gap on bed to allow workpiece bigger than swing over cross slide. But this gap is created by removing gap block and take some distance of Z axis guide way. Therefore, only for some special flange type workpiece the customer will ask for gap on bed. Normally lathe with gap is for facing machining.\\n\\n  \\nSwing over gap is available and optional for all Annn Yang lathe models.\\n\\nContact Annn Yang\\n\\n* \\\\+886-4-2527-0198\\n* \\\\+886-4-2527-0199\\n* [[email protected]](/cdn-cgi/l/email-protection)\\n* No.62, Feng Gong S Rd. , Shen Kang Dist. , Taichung City 42942 , Taiwan\\n\\n[](https://www.youtube.com/@annnyang4198/videos)\\n\\nProducts\\n\\n* CNC Lathes\\n* Manual Lathes\\n* Variable Speed Lathes\\n* Clutch Lathe\\n* CNC Slant Bed Lathes\\n* Vertical Milling / Turning\\n* Options and Accessories\\n\\nInformation\\n\\n* Application\\n* Customized Solution\\n* Company\\n* News\\n* FAQ\\n* Contact Us\\n* Sitemap'], publish_date=None, title='How to define Swing over Bed, Swing over Cross Slide and ...')"
+    },
+    {
+      "title": "Lathe Swing Measurement & Accessory Guide | Travers Tool Co.",
+      "url": "https://solutions.travers.com/how-to-measure-lathe-swing-and-choose-the-right-accessories",
+      "excerpt": "WebSearchResult(url='https://solutions.travers.com/how-to-measure-lathe-swing-and-choose-the-right-accessories', excerpts=[\"* Welcome to Travers\\n* \\nP: 1.800.221.0270\\n\\nP: 1.800.221.0270* [About](https://www.travers.com/about-us/a/a2/)\\n* [Contact](https://www.travers.com/contact-us-800-numbers-2/a/contact-us-800-numbers-2/)\\n\\nToggle Nav\\n\\n[](https://www.travers.com/)\\n\\nSearch\\n\\n# Solutions ### YOUR SOURCE FOR MEANINGFUL SOLUTIONS Sign up below for articles, videos, tutorials delivered as we publish.\\n\\n### Filter By\\n\\n* Categories\\n+ Facilities Solutions & MRO\\n    + Finishing\\n    + Holemaking\\n    + Machining & Metalworking\\n    + Metrology\\n    + Milling\\n    + Running Your Shop\\n    + Threading\\n    + Turning\\n\\n### Sort By\\n\\n* Most Recent\\n+ Articles\\n    + Downloadables\\n    + Videos\\n\\n# How To Measure Lathe Swing And Choose The Right Accessories\\n\\nPosted by Kurt Repsher on May 16, 2025 10:29:00 AM\\n\\n* [Tweet](https://twitter.com/share)\\n*\\n\\nWhen outfitting your lathe machine with the right accessories, one of the most critical factors to consider is the lathe swing measurement.\\nOften misunderstood, a lathe's swing capacity directly impacts the size of workpieces your lathe can handle and determines which accessories will be compatible. Whether you are working with metal, wood, plastics, composites, or any other materials, understanding lathe swing ensures that you select the best tools, chucks, and attachments for your machine and operation. ## **What is lathe swing?  \\n** **  \\n** Lathe swing, commonly referred to asswing over bed, is the maximum diameter of a workpiece that can be mounted on a lathe without obstruction. However, when considering workpiece fitment, it's important to account for the space occupied by chuck jaws or faceplate clamps, which may extend beyond the workpiece itself. ### KEY CONSIDERATIONS: * Lathe swing is determined by [measuring](https://www.travers.com/category/manual-tapes) the distance from the center of the lathe spindle (this can be easily done using a [live center](https://www.travers.\\ncom/category/live-60-degree-angle) ) to the nearest point on the bed, then doubling that measurement.\\n* However, the practical working capacity may be slightly less due to protrusions \u2014so always round down, never up.\\n Example:  \\nIf the spindle-to-bed distance is 6-9/16 inches, round down to 6-1/2 inches and double that number to get a 13-inch lathe swing, meaning it can accommodate lathe workpieces up to 13 inches in diameter. This measurement is crucial when selecting [lathe accessories](https://www.travers.com/category/lathe-chuck-accessories) such as: * [Chucks](https://www.travers.com/category/lathe-chucks)\\n* Tool posts\\n* Faceplates\\n  \\n## **Key Lathe Swing Measurements For Accessory Compatibility** * ### **Swing Over Bed** \u2013\\n  \\n  The maximum workpiece diameter that can rotate over the lathe bed.\\n* ### **Swing Over Carriage** \u2013\\n  \\n  The maximum lathe workpiece diameter that can rotate over the cross slide, usually less than swing over bed due to the cross-slide\u2019s height.\\n* ### **Swing Over Gap** \u2013\\n  \\n  Some metal lathes and wood lathes feature a removable gap in the bed, allowing for larger workpieces in that specific section. ## [](https://www.travers.com/product/otmt-go200-safety-glasses-96-085-308) Quick- Change tool Posts * A quick-change tool post enhances efficiency and minimizes vibration, improving machining precision.\\n* Selecting the correct tool post depends on your lathe swing.  \\n  For a full breakdown on how to choose the best size, check out our blog on Quick Change Tool Posts .\\n ### FIND THE RIGHT TOOL POST SET: * To help you select the best Quick Change Tool Post Set for your lathe and applications, visit our [Quick Change Tool Post Sets](https://www.travers.com/category/tool-post-equipment) page.\\n* Use the various filter options along the left side of the page\u2014including:\\n  \\n    + Brand\\n    + Lathe Swing\\n    + And more \u2014 to narrow your search.\\n  \\n[5-Piece Quick Change Tool Post Set:](https://www.travers.\\ncom/category/quick-change-tool-post-sets) [](https://www.travers.com/category/quick-change-tool-post-sets) ## Why Lathe Swing Matters When Choosing Accessories Understanding how to correctly measure your lathe swing helps ensure that every accessory you purchase is compatible with your machine. A mismatch can lead to: * Improper tool post or accessory fitting\\n* Reduced performance\\n* Even damage to your lathe or tools\\n By selecting accessories that align with your lathe\u2019s swing capacity, you enhance: * Precision\\n* Efficiency\\n* Overall machining success\\n  \\n## **Additional Help & Recommendations** * For more information on choosing the right lathe accessories, visit our full selection at [Travers.com](https://www.travers.com/) .\\n* If you need lathe accessory recommendations or have questions about lathe swing calculations, you can always contact us at tech@travers.com .\\n\\nTopics: [Video](https://solutions.travers.com/tag/video) , [Article](https://solutions.travers.\"], publish_date='2021-07-23', title='Lathe Swing Measurement & Accessory Guide | Travers Tool Co.')"
+    },
+    {
+      "title": "Lathe Swing-over",
+      "url": "https://www.homemodelenginemachinist.com/threads/lathe-swing-over.11471/",
+      "excerpt": "WebSearchResult(url='https://www.homemodelenginemachinist.com/threads/lathe-swing-over.11471/', excerpts=['Jan 6, 2011 \u2014 The Atlas 618 you show in your two pictures will swing a maximum diameter of 6 inches. The maximum length between centers is 18 inches. That'], publish_date=None, title='Lathe Swing-over')"
+    },
+    {
+      "title": "Getting the Swing of the Lathe Right Every Time | Swing Of The Lathe",
+      "url": "https://swing-of-the-lathe.pages.dev/",
+      "excerpt": "WebSearchResult(url='https://swing-of-the-lathe.pages.dev/', excerpts=['[Swing Of The Lathe](https://swing-of-the-lathe.pages.dev/ \"Swing Of The Lathe (Alt + H)\")\\n\\n* [crepe myrtle pruning near me](https://crepe-myrtle-pruning-near-me.pages.dev \"crepe myrtle pruning near me\")\\n\\n[Home](https://swing-of-the-lathe.pages.dev/) \u00bb [Posts](https://swing-of-the-lathe.pages.dev/posts/)\\n\\n# Getting the Swing of the Lathe Right Every Time\\n\\nFebruary 12, 2026 \u00b7 7 min \u00b7 Olivares Stacy\\n\\nTable of Contents\\n\\n* What Are We Actually Measuring?\\n* The \"Swing Over Carriage\" Trap\\n* Why Does the Swing Matter So Much?\\n* Dealing with Gap Bed Lathes\\n* How to Choose the Right Size for You\\n* Don\\'t Forget the \"Distance Between Centers\"\\n* Final Thoughts on Lathe Sizing\\n\\nIf you\\'re looking at a new machine, the swing of the lathe is probably the first spec that\\'ll grab your attention, and for good reason. It basically tells you the \"size\" of the work you can actually handle without hitting the bed of the machine.\\nIf you\\'ve ever tried to mount a piece of wood or a chunk of steel only to realize it\\'s hitting the metal rails before you even turn the motor on, you already know why this measurement is the king of the spec sheet.\\n\\nBut here\\'s the thing: it\\'s not always as straightforward as the sticker on the side of the machine makes it out to be. There\\'s a bit of a dance between what the machine says it can do and what it can _actually_ do once you start adding tools, carriages, and real-world physics into the mix.\\n\\n## What Are We Actually Measuring?\\n\\nIn the simplest terms, the swing of the lathe refers to the maximum diameter of a workpiece that can rotate freely without bumping into anything. If you have a lathe with a 10-inch swing, you can technically fit a 10-inch round object in there. Think of it like the \"clearance\" of a bridge; if your truck is too tall, you\\'re going to have a very bad day.\\n\\nNow, depending on where you live, this might be described differently.\\nIn the US, we almost always talk about the full diameter. If the distance from the center of the spindle to the bed is 6 inches, we call it a 12-inch swing. However, if you\\'re looking at machines from the UK or parts of Europe, they often talk about \"center height.\" In that case, that same machine would be called a 6-inch lathe. It\\'s the same size machine, just a different way of looking at the math. It\\'s worth double-checking that if you\\'re buying something used or from overseas so you don\\'t end up with a machine half the size you expected.\\n\\n## The \"Swing Over Carriage\" Trap\\n\\nThis is where things get a little tricky for beginners. You might see a machine advertised with a 14-inch swing, and you think, \"Great, I can turn a 14-inch cylinder.\" Well, yes and no. You can probably turn a 14-inch disc that\\'s very thin and sits right up against the headstock. But as soon as you need to move the tool post or the carriage underneath that workpiece, you\\'re in trouble.\\nThis is what we call \"swing over carriage\" or \"swing over cross-slide.\" Because the carriage sits on top of the bed, it eats up several inches of your clearance. If you\\'re working on a long shaft or a large cylinder that needs to be machined across its entire length, your actual working capacity is much smaller than the advertised swing of the lathe. Usually, you\\'ll lose a good 3 to 5 inches of capacity once the carriage is involved. If you\\'re planning on doing a lot of engine work or turning large drums, this is the number you actually need to care about.\\n\\n## Why Does the Swing Matter So Much?\\n\\nYou might think, \"I\\'ll just buy the biggest one I can afford and I\\'ll be covered.\" While that\\'s one way to go, the swing of the lathe dictates a lot more than just the size of the part. It influences the entire build of the machine.\\n\\nA lathe with a larger swing usually needs a beefier motor to turn those heavy loads.\\n ... \\nIt\\'s big enough to handle automotive parts like brake rotors (barely) but small enough to run on standard garage power and fit on a sturdy workbench.\\n\\n**Here are a few quick tips for deciding:** \\\\* **Measure your biggest dream project:** If you want to turn 12-inch platters, get a 14-inch swing. You always want a little breathing room. \\\\* **Check the footprint:** Bigger swing almost always means a wider and heavier machine. Make sure your floor can handle it. \\\\* **Think about the motor:** More swing means more leverage. Make sure the motor has enough torque to move a larger diameter piece without stalling.\\n\\n## Don\\'t Forget the \"Distance Between Centers\"\\n\\nWhile the swing of the lathe tells you how wide you can go, don\\'t forget the other half of the equation: distance between centers. This tells you how _long_ your workpiece can be. A lathe might have a massive 20-inch swing, but if it only has 15 inches between centers, you aren\\'t making any baseball bats on it.'], publish_date='2026-02-12', title='Getting the Swing of the Lathe Right Every Time | Swing Of The Lathe')"
+    },
+    {
+      "title": "General | lathe bed size vs. swing on pecision bench lathes | Practical Machinist - Largest Manufacturing Technology Forum",
+      "url": "https://www.practicalmachinist.com/forum/threads/lathe-bed-size-vs-swing-on-pecision-bench-lathes.247531/",
+      "excerpt": "WebSearchResult(url='https://www.practicalmachinist.com/forum/threads/lathe-bed-size-vs-swing-on-pecision-bench-lathes.247531/', excerpts=['I have been picking up a few old precision bench lathes including a couple of P&W models from 1920\\'s or 30\\'s and it seems that somewhere I once read that the bed size for the lesser swing lathes was also lower, and a bit shorter.  \\nOne of the Pratt and Whitney lathes last to come in has a bed that is rather larger than what looks right. The headstock and tailstock fit well, but they seem tiny sitting on the bed - compared to the larger swing stocks on beds of the same size.  \\nAnyone know the particulars on this?  \\n  \\n  \\nJR\\n\\nL\\n\\n#### L Vanice\\n\\n##### Diamond\\n\\nJoined\\n    Feb 8, 2006\\n\\nLocation\\n    Fort Wayne, IN\\n\\n* Jun 5, 2012\\n\\n* \\n* \\n* \\\\\\n\\nI don\\'t know from P&W stuff. But Hardinge Brothers Cataract lathes had only one bed width. There were 32 and 38 inch lengths available. On those beds would fit headstocks that took 3C, 4C, 5C, 6C and 7C collets. The 3C heads came in 7 inch swing. The others came in either 7 or 9 inch swing. The slide rests and tailstocks came in 7 or 9 inch swing.\\nIf you set a 38 inch bed with 3C headstock next to a 32 inch bed with 9 inch 5C headstock, the difference in proportion would be striking.  \\n  \\nLarry\\n\\nM\\n\\n#### metalmagpie\\n\\n##### Titanium\\n\\nJoined\\n    May 22, 2006\\n\\nLocation\\n    Seattle\\n\\n* Jun 5, 2012\\n\\n* \\n* \\n* \\\\\\n\\nI have a friend with a Leblond Regal. He is proud of the fact that the lathe ways are wider on his lathe than on other 15\" lathes he\\'s seen. He figures it gives more strength and rigidity, while obviously costing more to manufacture.\\n\\nM\\n\\n#### Mike C.\\n\\n##### Diamond\\n\\nJoined\\n    Nov 25, 2004\\n\\nLocation\\n    Birmingham, AL\\n\\n* Jun 5, 2012\\n\\n* \\n* \\n* \\\\\\n\\nA good lathe should have a bed width equal to its swing. Most older machines meet this requirement. Most new ones far fall short, especially those of large (over-rated) swing. We have a Meuser lathe at work with a 48\" swing and a 17\" wide bed. It\\'s a joke. Similarly, the supposed 18\" Nardini has a bed suitable for a 12\" machine.\\n\\nL\\n\\n#### L Vanice\\n\\n##### Diamond\\n\\nJoined\\n    Feb 8, 2006\\nLocation\\n    Fort Wayne, IN\\n\\n* Jun 5, 2012\\n\\n* \\n* \\n* \\\\\\n\\n> Mike C. said:\\n> \\n> A good lathe should have a bed width equal to its swing. Most older machines meet this requirement. Most new ones far fall short, especially those of large (over-rated) swing. We have a Meuser lathe at work with a 48\" swing and a 17\" wide bed. It\\'s a joke. Similarly, the supposed 18\" Nardini has a bed suitable for a 12\" machine.\\n> \\n> Click to expand...\\n> \\n> \\n  \\nThat is no doubt true of engine lathes.  \\n  \\nBut the question was about \"precision bench lathes.\" Those lathes typically have a swing of 6 to 9 inches and have a slide rest that clamps tightly to the bed. There is no saddle that slides down the bed, so the bed design is totally different from engine lathes.  \\n  \\nLarry\\n\\nM\\n\\n#### Mike C.\\n\\n##### Diamond\\n\\nJoined\\n    Nov 25, 2004\\n\\nLocation\\n    Birmingham, AL\\n\\n* Jun 5, 2012\\n\\n* \\n* \\n* \\\\\\n\\nEven then, it\\'s the WIDTH of the bed that gives rigidity and resists twisting.\\nGet the widest bed you can find for a given swing in any lathe.\\n\\n#### gwilson\\n\\n##### Diamond\\n\\nJoined\\n    Oct 1, 2006\\n\\nLocation\\n    williamsburg va\\n\\n* Jun 5, 2012\\n\\n* \\n* \\n* \\\\\\n\\nWell,the depth counts,too.\\n\\n#### RC99\\n\\n##### Diamond\\n\\nJoined\\n    Mar 26, 2005\\n\\nLocation\\n    near Rockhampton, Queensland, Australia\\n\\n* Jun 6, 2012\\n\\n* \\n* \\n* \\\\\\n\\n> Mike C. said:\\n> \\n> A good lathe should have a bed width equal to its swing. Most older machines meet this requirement. Most new ones far fall short, especially those of large (over-rated) swing. We have a Meuser lathe at work with a 48\" swing and a 17\" wide bed. It\\'s a joke. Similarly, the supposed 18\" Nardini has a bed suitable for a 12\" machine.\\n> \\n> Click to expand...\\n> \\n> \\n  \\nI doubt there were ever too many lathes where the width equaled the swing.. Maybe some very heavy duty ones, but pretty rare to see it on the more common ones.....\\n\\nS\\n\\n#### smdubovsky\\n\\n##### Hot Rolled\\n\\nJoined\\n    Apr 10, 2008\\n\\nLocation\\n    MD\\n\\n* Jun 6, 2012\\n\\n* \\n* \\n* \\\\\\n\\n> Mike C.\\n ... \\nNow put a light, narrow apron on it, make the cross slide extra long to get enough reach and very thin, so you can claim maximum swing over the slide. Put the compound and toolpost way up high on a block on the cross slide so you can get to center and make the compound slide narrow and thin to save room again. Don\\'t bother to put a heavy tailstock and quill on it, 2-3\" diameter will be plenty and put only two clamping bolts or a quick clamp and single lock bolt. Recipe for a crappy lathe. Now go look around and see how many lathes made after about 1980 are built this way.  \\n  \\nThat big Meuser at work was a huge disappointment. I was really looking forward to running a nice European machine, but it\\'s about an 18\" machine with a raised swing to get 48\" out of it. Yes, it has a huge 48\" four jaw chuck on it, but the bed is 17\" wide and the tailstock quill is about 2 1/2\" diameter. The tailstock has two 1\" bolts.'], publish_date='2012-06-05', title='General | lathe bed size vs. swing on pecision bench lathes | Practical Machinist - Largest Manufacturing Technology Forum')"
+    },
+    {
+      "title": "Centre Height",
+      "url": "https://www.hobby-machinist.com/threads/centre-height.34130/",
+      "excerpt": "WebSearchResult(url='https://www.hobby-machinist.com/threads/centre-height.34130/', excerpts=['Mar 30, 2015 \u2014 The swing of your lathe is typically measured from the center of the chuck to the top of the vee on the lathe bed times 2. In other words a 12\"'], publish_date=None, title='Centre Height')"
+    },
+    {
+      "title": "When to Choose a Big Swing Lathe vs a Standard Lathe",
+      "url": "https://summitmt.com/when-to-choose-a-big-swing-lathe-vs-a-standard-lathe/",
+      "excerpt": "WebSearchResult(url='https://summitmt.com/when-to-choose-a-big-swing-lathe-vs-a-standard-lathe/', excerpts=['Medium to large lathes have a swing of 20 to 36 inches and a distance between centers of 60 to 120 inches. Medium and large lathes are used for heavier or'], publish_date=None, title='When to Choose a Big Swing Lathe vs a Standard Lathe')"
+    },
+    {
+      "title": "A Length between centers \u2022 B Swing diameter over the bed ...",
+      "url": "https://www.facebook.com/groups/1037949394218636/posts/1045965753417000/",
+      "excerpt": "WebSearchResult(url='https://www.facebook.com/groups/1037949394218636/posts/1045965753417000/', excerpts=['Oct 15, 2023 \u2014 Skoda Heavy Duty Lathe : Swing over bed: 1700 mm . Swing over saddle: 1400 mm. Between centres: 8000 mm. Width across bed: 1700 mm Quill diameter'], publish_date=None, title='A Length between centers \u2022 B Swing diameter over the bed ...')"
+    },
+    {
+      "title": "How To Measure Lathe Swing And Choose The Right Accessories - YouTube",
+      "url": "https://www.youtube.com/watch?v=JXin9aotiuo",
+      "excerpt": "WebSearchResult(url='https://www.youtube.com/watch?v=JXin9aotiuo', excerpts=['Back \\n\\nSearch\\n\\n How To Measure Lathe Swing And Choose The Right Accessories\\n\\nTap to unmute\\n\\n2x\\n\\n## How To Measure Lathe Swing And Choose The Right Accessories\\n\\nTravers Tool Co 2,757 views 7 months ago\\n\\nSearch Copy link Info Shopping\\n\\nIf playback doesn\\'t begin shortly, try restarting your device.\\n\\n\u2022\\n\\nYou\\'re signed out\\n\\nCancel Confirm\\n\\nShare\\n\\nInclude playlist\\n\\nAn error occurred while retrieving sharing information. Please try again later.\\n\\n0:00\\n\\n[](https://www.youtube.com/watch?v=FoMohUWxZdg \"Next (SHIFT+n)\")\\n\\n0:00 / 0:00\\n\\nLive\\n\\n\u2022 Watch full video\\n\\n\u2022\\n\\n\u2022\\n\\n# How To Measure Lathe Swing And Choose The Right Accessories\\n\\nTravers Tool Co\\n\\nTravers Tool Co 7\\\\.43K subscribers\\n\\nSubscribe Subscribed\\n\\n37 Share\\n\\nSave Download Download\\n\\n2\\\\.7K views 7 months ago \\\\ \\\\ \\\\\\n\\n2,757 views \u2022 May 16, 2025 \u2022 #CNCMachining #Lathe #Metalworking\\n\\nNot sure what lathe swing means or why it matters?\\nIn this video, we break down the concept of lathe swing, show you how to measure it accurately, and explain why it\u2019s essential when selecting accessories like chucks, quick-change tool posts, and faceplates. Avoid costly fitment issues and improve performance by ensuring your accessories match your lathe\u2019s swing capacity\u2014whether you\u2019re machining metal, wood, or composite materials. \ud83d\udd27 In this video, we cover: * What lathe swing is (including swing over bed, carriage, and gap)\\n * How to properly measure lathe swing\\n * Why swing dimensions matter when selecting accessories\\n * Key considerations for tool post compatibility and fit\\n \ud83d\udee0\ufe0f Explore Related Tools & Accessories: \ud83d\udd39 Quick Change Tool Post Sets: [https://www.travers.com/category/quic...](https://www.youtube.com/redirect?\\n ... \\nevent=video_description&redir_token=QUFFLUhqa0xuS2tZdDBubGJIdVRaazF0Ym1LMVVQYnE1UXxBQ3Jtc0tudlI4dUJlQkdmSlJ0SGNiSE9CSC16UHV2SUd5eFBaejZuRHYtMXFnSmJBV2xZWkZ2c0JqRlROR2JyU1FDV0s0cFh3cEFIUWpuQ3dNVVh1cDZTNHZJUE9YaWhUQ09uQjRRUzFVRzJJaVpMMmNkU0Mwbw&q=https%3A%2F%2Fsolutions.travers.com%2Fhow-to-measure-lathe-swing-and-choose-the-right-accessories&v=JXin9aotiuo) \ud83d\udce7 Need help selecting the right accessories for your lathe? Contact our expert tech team at tech@travers.com \ud83d\udcfd\ufe0f Like this video? Give it a thumbs up, leave a comment, and subscribe to our channel for more machining tips, product guides, and how-to videos. \\\\ \\\\ \\\\ \\\\ \\\\ \\\\ \\\\ Show less\\n\\nNot sure what lathe swing means or why it matters? In this video, we break down the concept of lathe swing, show you how to measure it accura \u2026 ...more\\n\\n...more\\n\\nTranscript\\n\\nFollow along using the transcript.\\n\\nShow transcript\\n\\nShow less\\n\\n \\\\ \\\\ \\\\\\n\\n# How To Measure Lathe Swing And Choose The Right Accessories\\n\\n2,757 views 2\\\\.7K views\\n\\nMay 16, 2025\\n\\n37 Share\\nSave Download Download\\n\\nNaN / NaN\\n\\n## Comments 2\\n\\nTop\\n\\nShow featured comments Newest\\n\\nShow recent comments, including potential spam ## In this video\\n\\nTranscript ## Description\\n\\nHow To Measure Lathe Swing And Choose The Right Accessories\\n\\n37 Likes 2,757 Views May 16 2025 Not sure what lathe swing means or why it matters? In this video, we break down the concept of lathe swing, show you how to measure it accurately, and explain why it\u2019s essential when selecting accessories like chucks, quick-change tool posts, and faceplates. Avoid costly fitment issues and improve performance by ensuring your accessories match your lathe\u2019s swing capacity\u2014whether you\u2019re machining metal, wood, or composite materials. \ud83d\udd27 In this video, we cover: * What lathe swing is (including swing over bed, carriage, and gap)\\n * How to properly measure lathe swing\\n * Why swing dimensions matter when selecting accessories\\n * Key considerations for tool post compatibility and fit\\n ... \\ncom/redirect?event=video_description&redir_token=QUFFLUhqbEx5eEFVZ3NwcVlkeXFkSXVlV2ZDQXhhcUFCQXxBQ3Jtc0trNkd3ZUhDdXJlVC1nWTVaMFpEZUhBUDdGMzN2Ylo3ZVRGOW1DWGdvc3pBYVpfTk9sal9ET1JacHUwZE5nNGo1VDlUZW1JTERneWUzb09uNlRjd00zQ0x1aURKX0RXSmtlTDBCUVhKanFXUmkwckRZdw&q=https%3A%2F%2Fsolutions.travers.com%2Fhow-to-measure-lathe-swing-and-choose-the-right-accessories&v=JXin9aotiuo) \ud83d\udce7 Need help selecting the right accessories for your lathe? Contact our expert tech team at tech@travers.com \ud83d\udcfd\ufe0f Like this video? Give it a thumbs up, leave a comment, and subscribe to our channel for more machining tips, product guides, and how-to videos. \\\\ \\\\ \\\\ \\\\ \\\\ \\\\ \\\\ \u2026 ...more\\n\\n...more Show less Transcript\\n\\nFollow along using the transcript.\\n\\nShow transcript ## Transcript\\n\\n7:12\\n\\n### Quick-Change Tool Post: How to Choose the Best Size for Your Lathe\\n\\nTravers Tool Co\\n\\n6\\\\.4K views \u2022 8 months ago'], publish_date=None, title='How To Measure Lathe Swing And Choose The Right Accessories - YouTube')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

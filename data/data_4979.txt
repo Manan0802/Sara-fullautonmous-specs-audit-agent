@@ -1,0 +1,3426 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 4979,
+        "mcat_name": "Automatic Pouch Packing Machines",
+        "current_specs": [
+            {
+                "spec_name": "Packaging Range",
+                "options": [
+                    "Upto 1kg",
+                    "Upto 500g",
+                    "Upto 250g",
+                    "Upto 100g",
+                    "Upto 5kg",
+                    "Upto 10kg"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Machine Type",
+                "options": [
+                    "Pneumatic FFS",
+                    "Mechanical FFS",
+                    "Servo Driven FFS"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Filling System",
+                "options": [
+                    "Cup Filler",
+                    "Auger Filler",
+                    "Weigh Filler",
+                    "Multi-head Weigher",
+                    "Piston Filler"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Sealing Type",
+                "options": [
+                    "Center Seal",
+                    "3-Side Seal",
+                    "4-Side Seal"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Packaging Speed",
+                "options": [
+                    "Upto 45 PPM",
+                    "Upto 60 PPM",
+                    "Upto 30 PPM",
+                    "Upto 80 PPM",
+                    "Upto 100 PPM"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Power Consumption",
+                "options": [
+                    "Upto 2 kW",
+                    "Upto 3 kW",
+                    "Upto 5 kW",
+                    "Upto 7.5 kW",
+                    "Above 7.5 kW"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Contact Parts Material",
+                "options": [
+                    "SS 304",
+                    "SS 316"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Pouch Format",
+                "options": [
+                    "Pillow Pouch",
+                    "Gusseted Pouch",
+                    "Stand-up Pouch",
+                    "Sachet",
+                    "Stick Pack"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Features",
+                "options": [
+                    "Batch Coding",
+                    "Nitrogen Flushing",
+                    "Outfeed Conveyor",
+                    "Pouch Counter",
+                    "Z-Type Elevator"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Automatic Pouch Packing Machines",
+            "mcat_id": 4979,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Packaging Range",
+                            "options": [
+                                "Upto 1kg",
+                                "Upto 500g",
+                                "Upto 250g",
+                                "Upto 100g",
+                                "Upto 5kg",
+                                "Upto 10kg"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "1"
+                        },
+                        {
+                            "spec_name": "Machine Type",
+                            "options": [
+                                "Pneumatic FFS",
+                                "Mechanical FFS",
+                                "Servo Driven FFS"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": null
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Filling System",
+                            "options": [
+                                "Cup Filler",
+                                "Auger Filler",
+                                "Weigh Filler",
+                                "Multi-head Weigher",
+                                "Piston Filler"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Sealing Type",
+                            "options": [
+                                "Center Seal",
+                                "3-Side Seal",
+                                "4-Side Seal"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Packaging Speed",
+                            "options": [
+                                "Upto 45 PPM",
+                                "Upto 60 PPM",
+                                "Upto 30 PPM",
+                                "Upto 80 PPM",
+                                "Upto 100 PPM"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": null
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Power Consumption",
+                            "options": [
+                                "Upto 2 kW",
+                                "Upto 3 kW",
+                                "Upto 5 kW",
+                                "Upto 7.5 kW",
+                                "Above 7.5 kW"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Contact Parts Material",
+                            "options": [
+                                "SS 304",
+                                "SS 316"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Pouch Format",
+                            "options": [
+                                "Pillow Pouch",
+                                "Gusseted Pouch",
+                                "Stand-up Pouch",
+                                "Sachet",
+                                "Stick Pack"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Features",
+                            "options": [
+                                "Batch Coding",
+                                "Nitrogen Flushing",
+                                "Outfeed Conveyor",
+                                "Pouch Counter",
+                                "Z-Type Elevator"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": null
+                }
+            },
+            "scratchpad": "The selection and prioritization of these specifications are based on their commercial significance, frequency of mention in both sales calls and technical catalogs, and their impact on a buyer's purchasing decision. 1. Primary Specifications (Packaging Range, Machine Type) were chosen because they are the first and most critical filters for a buyer. Packaging Range defines what weight the machine can handle, and Machine Type (Pneumatic, Mechanical, Servo) is a core determinant of price, speed, and sophistication. 2. Secondary Specifications (Filling System, Sealing Type, Packaging Speed) define the machine's core capabilities and performance. The Filling System is crucial as it determines the type of product the machine can pack. Sealing Type and Packaging Speed are key performance indicators. 3. Tertiary Specifications (Power Consumption, Contact Parts Material, Pouch Format, Features) provide essential supplementary details. Power Consumption is a practical consideration. Contact Parts Material is vital for quality and compliance. Pouch Format offers specific detail on pouch style. Features are configured as multi_select for common, valuable add-ons."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Accessories",
+            "option_value": "Bucket Conveyor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Compressor",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Screw Conveyor",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "TIG Printer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "0.5 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "1 Year",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "1 Year Warranty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "16 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "3 HP Compressor Required",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "4 Heads",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "450-500 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "8.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Air Filling",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Automatic Feeder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Batch Coding",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Batch Coding Included",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Compressor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Compressor Not Included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Compressor: Included unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Conveyor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Conveyor Feed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Cups per Set: 4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Digital Control Interface",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Grammage Feeding",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Height Requirement: 15-16 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Hopper Capacity: 20-25 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Hopper Capacity: 25 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Laminated Pouch Compatible",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Machine Height: 7 feet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Machine Weight: 250-300 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Nitrogen / Air Filling",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Nitrogen Flushing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Number of Heads: 2 unknown",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Number of Heads: 4",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Origin: China unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Origin: Imported",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Origin: India",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Packaging Material: Laminated Pouch unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Paper Roll Size: 420 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Pouch Cutting: Single or Continuous",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Roll Fed Supply",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Roll Width: 22 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Screw Conveyor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Servo Control",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "String of Pouches",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Supported Pouch Sizes: 3",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Supports multiple pouch sizes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Transparent Film Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Type: Heavy unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories & Features",
+            "option_value": "Warranty: 1 Year",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Adjustment Size",
+            "option_value": "20-40 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "5 and 10 Rupee Packs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Animal Feed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Bakery Items",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "FMCG Products",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Grains / Pulses / Seeds",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Granules",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Hardware Items",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Industrial Powders",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Liquid",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Masala / Supari",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Mouth Freshener",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Namkeen / Mixture",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Packaging / Prasad",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Pouch Making",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Powder",
+            "prod_count": 26
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Powder and Whole",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Small Value Pouches (â¹2)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Snacks",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Soya Chunks",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Spices / Masala Powder",
+            "prod_count": 46
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Tobacco / Jarda",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Tobacco / Pan Masala / Gutka",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Automation Grade",
+            "option_value": "Automatic",
+            "prod_count": 56
+        },
+        {
+            "spec_name": "Body Material",
+            "option_value": "Mild Steel (MS)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Body Material",
+            "option_value": "Nylon",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Body Material",
+            "option_value": "Stainless Steel",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Body Material",
+            "option_value": "Stainless Steel (SS 304)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Body Type",
+            "option_value": "Heavy Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ushai",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Control System",
+            "option_value": "PLC Based",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Control System",
+            "option_value": "Servo Based",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "China",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "India",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Indian Bagger, Chinese Filler, Indian Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "Taiwan",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Display/HMI",
+            "option_value": "HMI Screen for weight setting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Hopper Size",
+            "option_value": "Large",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Configuration",
+            "option_value": "Single",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Dimensions",
+            "option_value": "7 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Function",
+            "option_value": "Weighing and Packaging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Auger Filler",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Auger Filler with Weigher",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Chute Type",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Collar Type",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Collar Type Servo Auger",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Cup Filler",
+            "prod_count": 14
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "FFS Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "FMS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Half Pneumatic",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Heavier",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Low Speed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Mechanical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Multi-head",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "New Metric",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Non-Pneumatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Pneumatic",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Pneumatic Cup Filler",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "SFS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Vertical Organ Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Vibration Based",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Machine Type",
+            "option_value": "Weight Based",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Motor",
+            "option_value": "Servo motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Power",
+            "option_value": "0.5 hp",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Nitrogen Flushing",
+            "option_value": "No",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Nitrogen Flushing",
+            "option_value": "Yes",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Number of Heads",
+            "option_value": "1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Heads",
+            "option_value": "10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Heads",
+            "option_value": "2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Heads",
+            "option_value": "6",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Hoppers",
+            "option_value": "6",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Ingredients",
+            "option_value": "5",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Packing Options",
+            "option_value": "4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operator Requirement",
+            "option_value": "1 Person",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Chain",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Pouch",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Pouch / Lari",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Printed Laminate",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Zipper Pouch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "1 kg",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "1-100 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "1-1000 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "1-2 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "10 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "10 g - 1 kg unknown",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "10-100 g",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "10-1000 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "10-20 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "10-250 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "10-50 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "10-50 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "10-500 g",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "10-60 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "100 g",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "100, 200, 400 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "100, 200, 500 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "100, 500 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "100-1000 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "100-200 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "100-750 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "15, 20, 40, 50 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "150 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "17 - 1 g - kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "2 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "2-10 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "2-100 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "2-5 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "2.5 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "20-50 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "20-60 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "200 g",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "200 g, 500 g, 1 kg, 5 kg unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "25-100 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "25-50 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "250 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "250, 500 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "3-10 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "3-4 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "300-400 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "40-50 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "5 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "5-10 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "5-100 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "5-20 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "5-200 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "5-250 g",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "5-50 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "50 g",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "50 - 1 g - kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "50, 100 g",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "50-100 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "50-1000 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "50-200 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "50-250 g",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "50-500 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "500 g",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "500 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "<=100 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "Small to 1 kg unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packing Capacity",
+            "option_value": "starting from 25 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Phase",
+            "option_value": "Single Phase",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pouch Format",
+            "option_value": "Batch Counting and Cutting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pouch Format",
+            "option_value": "Continuous Strip (Ladi) or Single Pouch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pouch Value",
+            "option_value": "1 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pouch Value",
+            "option_value": "5 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pouch Value",
+            "option_value": "5, 10 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Printing Feature",
+            "option_value": "4-line printing for manufacturing date",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Printing Feature",
+            "option_value": "Date and MRP printing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "10-12 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "1000-2000 ppd",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "1200 pph",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "150-200 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "1800-2000 pph",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "20 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "20-22 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "20-25 ppm",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "200-300 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "2000 pph",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "2000-2500 pph",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "22 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "2400 pph",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "25-30 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "2500 pph",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "30 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "30-35 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "30-40 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "300-350 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "40-45 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "50-60 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "50-70 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "500 pph",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "6-7 ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "80+ ppm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Capacity",
+            "option_value": "High Speed",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 year",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "6 month",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tTotal Req.power",
+            "option_value": "3.5HP"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tBox size",
+            "option_value": "L X W X H 50~80 X 12 ~ 25 X 50 ~ 125 MM."
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tCompressor",
+            "option_value": "1.5 HP (Client scope)"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tPacking Roll width",
+            "option_value": "300 ~ 400mm (Depends on customerÃ¢â¬â¢s requirement)"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tRequired Power for machine",
+            "option_value": "2HP single phase"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Brand",
+            "option_value": "Key-Pack"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Brand",
+            "option_value": "Key-Pack"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Voltage",
+            "option_value": "240 V"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Machine Power",
+            "option_value": "4 Hp"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Power Load",
+            "option_value": "3kW"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "150 kg~",
+            "option_value": "2Ãâ1.5Ãâ4 foot"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Automation Grade",
+            "option_value": "Automatic"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Pouch Type",
+            "option_value": "Pillow Pouch"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Filling Material",
+            "option_value": "BOPP, Laminated Film, PET Poly"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Product Type",
+            "option_value": "Snacks"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Weight",
+            "option_value": "350 kg"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Power Load",
+            "option_value": "6.5 kW"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Automation Grade",
+            "option_value": "Automatic"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Machine Size: L50cm, W38cm, H163cm",
+            "option_value": "Max Flim Width: 24Cm, Max Sealing Legth: 17Cm"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "MACHINE POWER",
+            "option_value": "1-2 HP"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Capacity",
+            "option_value": ">2500 pouch per hour"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Brand",
+            "option_value": "Taiwan"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Pouch Capacity",
+            "option_value": "50-200 grams"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Brand",
+            "option_value": "Key-Pack"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Brand",
+            "option_value": "Key-Pack"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tMachine Speed: 10 to 20 zipper pouch/min. (depends on product, operator) Ã¢â¬Â¢\tElectric control",
+            "option_value": "10 to 20 zipper pouch/min. (depends on product, operator)"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tSuitable for pouch width",
+            "option_value": "75 ~200 mm."
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tPouch length",
+            "option_value": "100 ~ 250mm."
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tZipper pouch with",
+            "option_value": "Top open or Bottom open (Any one)"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tZipper open attachment",
+            "option_value": "optional (@ 50000)"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tSuitable for pouch width",
+            "option_value": "75 ~200 mm."
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tZipper pouch with",
+            "option_value": "Top open or Bottom open (Any one)"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tMachine Speed",
+            "option_value": "10 to 20 zipper pouch/min. (depends on product, operator)"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tReq. Power",
+            "option_value": "2.5 HP"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tMachine weight",
+            "option_value": "500~700 kgs (Depends on optional attachment)"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tServo motor with gear box",
+            "option_value": "0.4 KW"
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tPouch length",
+            "option_value": "100 ~ 250mm."
+        },
+        {
+            "mcat_id": "4979",
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "Ã¢â¬Â¢\tCompressor",
+            "option_value": "3 HP or (2 hp and vacuum pump 1 hp) (ClientÃ¢â¬â¢s Scope)"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "brand",
+            "spec_option": "sampack",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "condition",
+            "spec_option": "new",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "packaging type",
+            "spec_option": "box",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "packaging type",
+            "spec_option": "pouch",
+            "impression": "91"
+        },
+        {
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "product",
+            "spec_option": "pouch sealing machine",
+            "impression": "48"
+        },
+        {
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "usage",
+            "spec_option": "fish packing",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "usage",
+            "spec_option": "ghee packing",
+            "impression": "79"
+        },
+        {
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "usage",
+            "spec_option": "grease",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "usage",
+            "spec_option": "lassi",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Automatic Pouch Packing Machines",
+            "spec_name": "usage",
+            "spec_option": "tamarind packing",
+            "impression": "4"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Machine Type",
+            "spec_fill_rate": "54.8",
+            "product_count": "40"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_fill_rate": "49.3",
+            "product_count": "36"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_fill_rate": "45.2",
+            "product_count": "33"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "43.8",
+            "product_count": "32"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_fill_rate": "41.1",
+            "product_count": "30"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_fill_rate": "39.7",
+            "product_count": "29"
+        },
+        {
+            "spec_name": "Power Consumption",
+            "spec_fill_rate": "28.8",
+            "product_count": "21"
+        },
+        {
+            "spec_name": "Contact Parts Material",
+            "spec_fill_rate": "27.4",
+            "product_count": "20"
+        },
+        {
+            "spec_name": "Features",
+            "spec_fill_rate": "23.3",
+            "product_count": "17"
+        },
+        {
+            "spec_name": "Pouch Format",
+            "spec_fill_rate": "21.9",
+            "product_count": "16"
+        },
+        {
+            "spec_name": "Automation Grade",
+            "spec_fill_rate": "16.4",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Pouch Type",
+            "spec_fill_rate": "12.3",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_fill_rate": "12.3",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Product Form",
+            "spec_fill_rate": "9.6",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Filling Range",
+            "spec_fill_rate": "8.2",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_fill_rate": "8.2",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_fill_rate": "6.8",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Packing Material",
+            "spec_fill_rate": "6.8",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_fill_rate": "2.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "2.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Pouch Capacity",
+            "spec_fill_rate": "2.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Power Load",
+            "spec_fill_rate": "2.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "No Of Lanes",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Power",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Power Requirement",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Milk System",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Drink Options",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Pouch Material",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Capacity (Pouch Weight)",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Machine Size: L50cm, W38cm, H163cm",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Optional items",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Material of Construction",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Bean Hopper",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Machine Speed (PPM)",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Control System",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Filling Capacity",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Filler Type",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "MACHINE POWER",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Film Type",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Serving Capacity",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Packed Product Application",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Gels",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Oil",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "150 kg~",
+            "spec_option_name": "2Ãâ1.5Ãâ4 foot",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Machine Size: L50cm, W38cm, H163cm",
+            "spec_option_name": "Max Flim Width: 24Cm, Max Sealing Legth: 17Cm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "LENTH",
+            "spec_option_name": "2 INCH TO 8INCH",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Drink Type",
+            "spec_option_name": "Soft Drink",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Bean Hopper",
+            "spec_option_name": "Single Hopper",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Operation Mode",
+            "spec_option_name": "Fully Automatic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Juice",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Water",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ã¢â¬Â¢\tServo motor with gear box",
+            "spec_option_name": "0.4 KW",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ã¢â¬Â¢\tZipper open attachment",
+            "spec_option_name": "optional (@ 50000)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ã¢â¬Â¢\tMachine Speed",
+            "spec_option_name": "10 to 20 zipper pouch/min. (depends on product, operator)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Filling Mechanism",
+            "spec_option_name": "Piston",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Serving Capacity",
+            "spec_option_name": "1600-1700 CPH",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Bottle Size",
+            "spec_option_name": "5-150ml pouch",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Optional items",
+            "spec_option_name": "Nitrogen Flushing ,Batch Coding",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Nozzle Type",
+            "spec_option_name": "Single",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Drink Type",
+            "spec_option_name": "Energy Drink",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packing Range",
+            "spec_option_name": "20-50 g",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "350 kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pulse Type",
+            "spec_option_name": "Masoor dal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Optional Features",
+            "spec_option_name": "Batch Coding Device",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ã¢â¬Â¢\tMachine weight",
+            "spec_option_name": "500~700 kgs (Depends on optional attachment)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Milk System",
+            "spec_option_name": "no",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Cosmetic Cream/Lotion",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Package Format",
+            "spec_option_name": "Pouch",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pulse Type",
+            "spec_option_name": "Moong dal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Grease/Lubricant",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Filling range",
+            "spec_option_name": "10-100 g",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Chemical Paste",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "Floor Standing",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ã¢â¬Â¢\tReq. Power",
+            "spec_option_name": "2.5 HP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Pharmaceutical Ointment",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Number of Print Lines",
+            "spec_option_name": "1-4 Lines",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ã¢â¬Â¢\tReq. Power:",
+            "spec_option_name": "2.5 HP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Jams & Jellies",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ã¢â¬Â¢\tMachine Speed: 10 to 20 zipper pouch/min. (depends on product, operator) Ã¢â¬Â¢\tElectric control",
+            "spec_option_name": "10 to 20 zipper pouch/min. (depends on product, operator)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ã¢â¬Â¢\tZipper pouch with",
+            "spec_option_name": "Top open or Bottom open (Any one)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ã¢â¬Â¢\tSuitable for pouch width",
+            "spec_option_name": "75 ~200 mm.",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pouch Width",
+            "spec_option_name": "140 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Optional Features",
+            "spec_option_name": "Nitrogen Flushing",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Adhesive/Sealant",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable Product",
+            "spec_option_name": "Spices, Detergent",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Printing Speed",
+            "spec_option_name": "Up to 40 m/min",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging Speed (PPM)",
+            "spec_option_name": "20-40 PPM",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Max. Print Height",
+            "spec_option_name": "50.8 mm (2 Inch)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Drink Type",
+            "spec_option_name": "Juice Based Drink",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Film Type",
+            "spec_option_name": "Laminated Roll",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Condition",
+            "spec_option_name": "Used/Second",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pulse Type",
+            "spec_option_name": "Chana dal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Mehendi (Henna)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cooling Type",
+            "spec_option_name": "No Chiller",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Drink Options",
+            "spec_option_name": "2 Options",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": ">2500 pouch per hour",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "company",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pulse Type",
+            "spec_option_name": "Whole pulses",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packed Product Application",
+            "spec_option_name": "Kurkure",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "No Of Lanes",
+            "spec_option_name": "Single Lane",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Container Type",
+            "spec_option_name": "Pouch",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "2000 W",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pulse Type",
+            "spec_option_name": "Toor dal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fill Range",
+            "spec_option_name": "200-1000 g",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pulse Type",
+            "spec_option_name": "Urad dal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Sauces & Ketchup",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Production Capacity",
+            "spec_option_name": "40 to 60 bpm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Food Paste",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ã¢â¬Â¢\tPouch length",
+            "spec_option_name": "100 ~ 250mm.",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "MACHINE POWER",
+            "spec_option_name": "1-2 HP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Control System",
+            "spec_option_name": "PLC Based",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pouch Material",
+            "spec_option_name": "LDPE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Milk",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ã¢â¬Â¢\tCompressor",
+            "spec_option_name": "3 HP or (2 hp and vacuum pump 1 hp) (ClientÃ¢â¬â¢s Scope)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Drive Type",
+            "spec_option_name": "Pneumatic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Contact Parts Material",
+            "spec_option_name": "SS 304",
+            "option_fill_rate": "91.4"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "Center Seal",
+            "option_fill_rate": "71.7"
+        },
+        {
+            "spec_name": "Automation Grade",
+            "spec_option_name": "Automatic",
+            "option_fill_rate": "70"
+        },
+        {
+            "spec_name": "Packed Product Application",
+            "spec_option_name": "Namkeen",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Filler Type",
+            "spec_option_name": "Multi-head Weigher",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Packing Material",
+            "spec_option_name": "Laminated Film",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Packed Product Application",
+            "spec_option_name": "Chips",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Packed Product Application",
+            "spec_option_name": "Puffs",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Packed Product Application",
+            "spec_option_name": "Dry Fruits",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Packed Product Application",
+            "spec_option_name": "Granules",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Packed Product Application",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Pouch Format",
+            "spec_option_name": "Pillow Pouch",
+            "option_fill_rate": "65.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Batch Coding",
+            "option_fill_rate": "64.8"
+        },
+        {
+            "spec_name": "Material of Construction",
+            "spec_option_name": "SS 304 (Contact)",
+            "option_fill_rate": "62.5"
+        },
+        {
+            "spec_name": "Packaging Range (Capacity)",
+            "spec_option_name": "100-500 gm",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Pouch Type",
+            "spec_option_name": "Center Seal",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Single Phase",
+            "option_fill_rate": "53.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Taiwan",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Solid Pieces",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power Load",
+            "spec_option_name": "1 kW",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Structure Material",
+            "spec_option_name": "MS powder coated",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Number of Heads",
+            "spec_option_name": "Single Head",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Electric",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power Requirement",
+            "spec_option_name": "Single Phase",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Key-Pack",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Structure Material",
+            "spec_option_name": "MS Powder Coated",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power Requirement",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Chips",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power Load",
+            "spec_option_name": "6.5 kW",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power Consumption",
+            "spec_option_name": "Upto 2 kW",
+            "option_fill_rate": "49.2"
+        },
+        {
+            "spec_name": "Product Form",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Filling Range",
+            "spec_option_name": "50-100 ml",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Material of Construction",
+            "spec_option_name": "SS 304",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Nitrogen Flushing",
+            "option_fill_rate": "37"
+        },
+        {
+            "spec_name": "Machine Speed (PPM)",
+            "spec_option_name": "60-90 PPM",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Machine Speed (PPM)",
+            "spec_option_name": "30-60 PPM",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "20-40 ppm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Number of Heads",
+            "spec_option_name": "2 Head",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Pouch Capacity",
+            "spec_option_name": "250-500 g",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "2000 pouches/hr",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Pouch Capacity",
+            "spec_option_name": "10-50 g",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Capacity (Pouch Weight)",
+            "spec_option_name": "10-100 g",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Pouch Capacity",
+            "spec_option_name": "50-200 grams",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Capacity (Pouch Weight)",
+            "spec_option_name": "5-50 g",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "500 pouches/hr",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Machine Speed (PPM)",
+            "spec_option_name": "Above 90 PPM",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Capacity (Pouch Weight)",
+            "spec_option_name": "500 g - 1 kg",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Filler Type",
+            "spec_option_name": "Cup Filler",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "30.8"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "Stainless Steel",
+            "option_fill_rate": "30"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Cup Filler",
+            "option_fill_rate": "28.7"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "Upto 45 PPM",
+            "option_fill_rate": "27.8"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "Upto 1kg",
+            "option_fill_rate": "25.3"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Single phase",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Electric with air",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Pneumatic FFS",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_option_name": "20-40 pouches/min",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Pouch Counter",
+            "option_fill_rate": "24.1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Mechanical FFS",
+            "option_fill_rate": "24"
+        },
+        {
+            "spec_name": "Automation Grade",
+            "spec_option_name": "Fully Automatic",
+            "option_fill_rate": "23.3"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Auger Filler",
+            "option_fill_rate": "23"
+        },
+        {
+            "spec_name": "Packing Material",
+            "spec_option_name": "PET Poly",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Packing Material",
+            "spec_option_name": "Laminated pouch",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Packing Material",
+            "spec_option_name": "LDPE Roll",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Power Consumption",
+            "spec_option_name": "Upto 3 kW",
+            "option_fill_rate": "22"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Outfeed Conveyor",
+            "option_fill_rate": "20.4"
+        },
+        {
+            "spec_name": "Pouch Format",
+            "spec_option_name": "Stand-up Pouch",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Packaging Range (Capacity)",
+            "spec_option_name": "10-100 gm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Filling Capacity",
+            "spec_option_name": "50 ml to 1 Ltr",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Filling Capacity",
+            "spec_option_name": "100-250 g",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Filling Capacity",
+            "spec_option_name": "50 ml",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Packaging Range (Capacity)",
+            "spec_option_name": "Up to 250g / 250ml",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "SS304",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "SS 304",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Filling Capacity",
+            "spec_option_name": "200-500 g",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Filling Capacity",
+            "spec_option_name": "500-1000 g",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Weigh Filler",
+            "option_fill_rate": "17.2"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "Upto 60 PPM",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Number of Heads",
+            "spec_option_name": "1",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "Upto 100g",
+            "option_fill_rate": "15.8"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Single phase",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "3-Side Seal",
+            "option_fill_rate": "14.1"
+        },
+        {
+            "spec_name": "Power Consumption",
+            "spec_option_name": "Upto 5 kW",
+            "option_fill_rate": "13.6"
+        },
+        {
+            "spec_name": "Pouch Type",
+            "spec_option_name": "Three Side Seal",
+            "option_fill_rate": "13.3"
+        },
+        {
+            "spec_name": "Filling Range",
+            "spec_option_name": "500-1000ML",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "Upto 30 PPM",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_option_name": "40-60 pouches/min",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_option_name": "10-20 pouches/min",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Filling Range",
+            "spec_option_name": "0Ã¢â¬â50 g",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Filling Range",
+            "spec_option_name": "100-250 ml",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Filling Range",
+            "spec_option_name": "5g to 100g",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Filling Range",
+            "spec_option_name": "0 to 1 kg",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Servo Driven FFS",
+            "option_fill_rate": "11.5"
+        },
+        {
+            "spec_name": "Packing Material",
+            "spec_option_name": "Alu Foil Laminate",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Packing Material",
+            "spec_option_name": "LDPE",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Packing Material",
+            "spec_option_name": "PE Pouch",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Packing Material",
+            "spec_option_name": "BOPP",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "Mild Steel",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Form",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "SS 316",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Form",
+            "spec_option_name": "Paste",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Form",
+            "spec_option_name": "Granules",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Form",
+            "spec_option_name": "liquid ,granuals, paste, powder",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Form",
+            "spec_option_name": "Solid Pieces",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Product Form",
+            "spec_option_name": "powders and granules",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Body Material",
+            "spec_option_name": "SS with MS Frame",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "Upto 80 PPM",
+            "option_fill_rate": "9.7"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "Upto 250g",
+            "option_fill_rate": "9.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Z-Type Elevator",
+            "option_fill_rate": "9.3"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Multi-head Weigher",
+            "option_fill_rate": "9.2"
+        },
+        {
+            "spec_name": "Pouch Format",
+            "spec_option_name": "Sachet",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Contact Parts Material",
+            "spec_option_name": "SS 316",
+            "option_fill_rate": "8.6"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "Upto 500g",
+            "option_fill_rate": "8.4"
+        },
+        {
+            "spec_name": "Power Consumption",
+            "spec_option_name": "Upto 7.5 kW",
+            "option_fill_rate": "6.8"
+        },
+        {
+            "spec_name": "Pouch Type",
+            "spec_option_name": "Center seal",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Pouch Type",
+            "spec_option_name": "Pillow Pouch",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Pouch Type",
+            "spec_option_name": "Four side seal",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Pouch Type",
+            "spec_option_name": "Two side seal",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Automation Grade",
+            "spec_option_name": "Semi-Automatic",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "Heat Seal",
+            "option_fill_rate": "6.5"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_option_name": "10-20 pouch/min",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_option_name": "40-60 pouch/min",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_option_name": "50 Pouch/min",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_option_name": "8-12pkts/min",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_option_name": "50-70 pouch/min",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_option_name": "20-40 pouch/min",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_option_name": "100-150 pouches/min",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "Upto 5kg",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Packing Speed",
+            "spec_option_name": "5-10 bag/min",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Touch Screen",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Vertical Form Fill Seal",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "Upto 10kg",
+            "option_fill_rate": "4.2"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "Upto 100 PPM",
+            "option_fill_rate": "4.2"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Pouch Conveyor",
+            "option_fill_rate": "3.7"
+        },
+        {
+            "spec_name": "Pouch Format",
+            "spec_option_name": "Stick Pack",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Piston Filler",
+            "option_fill_rate": "3.4"
+        },
+        {
+            "spec_name": "Power Consumption",
+            "spec_option_name": "Above 7.5 kW",
+            "option_fill_rate": "3.4"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "AUTO CANTROL",
+            "option_fill_rate": "3.4"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "4-Side Seal",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "5-150ML",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "FFS Roll Fed",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "FULLY AUTOMATIC",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Collar Type FFS",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "20 PPM",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "20 ppm",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "60 PPM",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Gravity",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "Heat seal",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "PIECES AS PER REQUIREMENT",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "3000/Hour",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "10 to 20 zipper pouch/min. (depends on product, operator)",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "Solid Items",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Barcode/QR Printing",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Z-Type Elevator, Outfeed Conveyor, Batch Coding",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Vertical FFS",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Z-Type Elevator, Batch Coding, Outfeed Conveyor",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Vertical form fill seal",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Nitrogen Flushing, Outfeed Conveyor",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Fully Automatic",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Pouch Format",
+            "spec_option_name": "Gusseted Pouch",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Power Consumption",
+            "spec_option_name": "2-3 kW",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Power Consumption",
+            "spec_option_name": "3-5 kW",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Power Consumption",
+            "spec_option_name": "1 kW",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "2500-3500 POUCH PER HOUR",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "15 PPM",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "13 CPM",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "55-60 MICRON",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "Upto 3000 PPH",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "500 Ã¢â¬â 1,000 pouches per hour",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "250+",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "15-20ppm",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "80 PPM",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "upto 15ppm",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "Upto 350 PPM",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "30 packs/min",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "45 PPM",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "Upto 15 PPM",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Packaging Speed",
+            "spec_option_name": "Upto15ppm",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Gear Pump",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "100ML",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "150ml",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "10 gm to 100 gm or 25 gm to 200 gm",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "solid items",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "Customer demand",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Horizontal Pillow Wrapping",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "50gram to 5kg",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "5-100ML",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "Band seal",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "200 ml",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "FULLY AUTO CONTROLLER",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Auger filler",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "1 Kg",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "PUMP FILLING",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "10gm",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "250 g",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "100 g",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "5-150 ML",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "10ml to 100ml",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Pneumatic Paste/Liquid Filling Pump",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "ABOVE 100GRM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "milk",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "SOLENOID CUT OUT",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "0.5-5gm",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "SOLID ITEMS",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Sealing Type",
+            "spec_option_name": "Pillow type Packing",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Through Pusher",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "BELT WEIGHER",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Filling System",
+            "spec_option_name": "Auto control",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Packaging Range",
+            "spec_option_name": "Customised",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "FLOW WRAP MACHINE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Pouch Packing Machine",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "AUTO CUT",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "3 servo High Speed pneumatic",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Solenoid value operate",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "MOTERGEARBOX",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "pneumatic",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "PICK FILL SEAL MACHINE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Form Fill Seal",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "FILLING MACHINE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "flow wrap machine",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Multihead Weigher",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Pouch PACKING Machine",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Pneumatic and servo based",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Horizontal Pillow Wrap Machine",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Linear Weigher",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Full Automatic",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Liquid pouchpacking",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Multi Track",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "FFS pouch",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Machine Type",
+            "spec_option_name": "Online/Conveyor Inkjet",
+            "option_fill_rate": "1"
+        }
+    ]
+}

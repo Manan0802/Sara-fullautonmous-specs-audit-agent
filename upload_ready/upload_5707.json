@@ -1,0 +1,124 @@
+{
+  "upload_payload": {
+    "pmcat_id": 6625,
+    "pmcat_name": "Fruit Pulp",
+    "generated_by": "Spec_Audit_Orchestrator_Agent",
+    "mcats": [
+      {
+        "category_name": "Papaya Pulp",
+        "mcat_id": 5707,
+        "generated_by": "Spec_Audit_Orchestrator_Agent",
+        "finalized_specs": {
+          "finalized_primary_specs": {
+            "specs": [
+              {
+                "spec_name": "Papaya Variety",
+                "options": [
+                  "Red Papaya",
+                  "Yellow Papaya"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Brix",
+                "options": [],
+                "input_type": "text_type"
+              },
+              {
+                "spec_name": "Packaging Type",
+                "options": [
+                  "Aseptic Bag in Drum",
+                  "Drum",
+                  "Canned",
+                  "Aseptic Pouch",
+                  "Loose"
+                ],
+                "input_type": "radio_button"
+              }
+            ]
+          },
+          "finalized_secondary_specs": {
+            "specs": [
+              {
+                "spec_name": "Form",
+                "options": [
+                  "Puree",
+                  "Concentrate"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Packaging Size",
+                "options": [],
+                "input_type": "text_type"
+              },
+              {
+                "spec_name": "Storage Type",
+                "options": [
+                  "Frozen",
+                  "Refrigerated",
+                  "Chilled",
+                  "Room Temperature"
+                ],
+                "input_type": "radio_button"
+              }
+            ]
+          },
+          "finalized_tertiary_specs": {
+            "specs": [
+              {
+                "spec_name": "Shelf Life",
+                "options": [],
+                "input_type": "text_type"
+              },
+              {
+                "spec_name": "pH Value",
+                "options": [],
+                "input_type": "text_type"
+              },
+              {
+                "spec_name": "Additives",
+                "options": [
+                  "Unsweetened",
+                  "Sweetened"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Brand",
+                "options": [],
+                "input_type": "text_type"
+              },
+              {
+                "spec_name": "Acidity",
+                "options": [],
+                "input_type": "text_type"
+              },
+              {
+                "spec_name": "Protein",
+                "options": [],
+                "input_type": "text_type"
+              },
+              {
+                "spec_name": "Vitamin C",
+                "options": [],
+                "input_type": "text_type"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "upload_result": {
+    "status": "success",
+    "status_code": 200,
+    "api_response": {
+      "status": "success",
+      "message": "Payload successfully queued.",
+      "topic_used": "seller-isq-pmcat-ingestion",
+      "message_id": "18277830028015908"
+    },
+    "uploaded_at": "2026-04-02T13:09:20.779498"
+  }
+}

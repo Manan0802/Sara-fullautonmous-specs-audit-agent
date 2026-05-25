@@ -1,0 +1,1654 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 40405,
+        "mcat_name": "Turmeric Curcumin",
+        "current_specs": [
+            {
+                "spec_name": "Curcumin Content (%)",
+                "options": [
+                    "95%",
+                    "7%",
+                    "5%",
+                    "3%"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Form",
+                "options": [
+                    "Powder",
+                    "Finger",
+                    "Extract",
+                    "Bulb",
+                    "Sliced",
+                    "Spent"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Variety / Grade",
+                "options": [
+                    "Lakadong",
+                    "Kandhamal",
+                    "Salem",
+                    "Erode",
+                    "Waigaon",
+                    "Rajapuri",
+                    "Alleppey"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Processing Type",
+                "options": [
+                    "Water Soluble",
+                    "Organic",
+                    "Steam Sterilized",
+                    "Double Polished",
+                    "Single Polished",
+                    "Sun-Dried"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Application",
+                "options": [
+                    "Pharmaceutical",
+                    "Nutraceutical",
+                    "Food & Beverage",
+                    "Cosmetics",
+                    "Ayurvedic",
+                    "Animal Feed"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Packaging Type",
+                "options": [
+                    "PP Bag",
+                    "Jute Bag",
+                    "HDPE Drum",
+                    "Carton Box"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Certification",
+                "options": [
+                    "FSSAI",
+                    "USDA Organic",
+                    "ISO",
+                    "GMP",
+                    "GI Certified",
+                    "HALAL",
+                    "KOSHER"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Botanical Name",
+                "options": [
+                    "Curcuma longa"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Purity Standard",
+                "options": [
+                    "By HPLC",
+                    "By UV",
+                    "By Gravimetric"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Turmeric Curcumin",
+            "mcat_id": 40405,
+            "price_units": [
+                "Kg"
+            ],
+            "quantity_units": [
+                "Kg",
+                "Tonne"
+            ],
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Curcumin Content (%)",
+                            "options": [
+                                "95%",
+                                "7%",
+                                "5%",
+                                "3%"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Form",
+                            "options": [
+                                "Powder",
+                                "Finger",
+                                "Extract",
+                                "Bulb",
+                                "Sliced",
+                                "Spent"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "`Curcumin Content (%)` and `Form` were chosen as Primary Specs because they are the most critical factors driving purchasing decisions and price. Buyers consistently inquire about either a specific percentage of curcumin (e.g., 95% for extracts, 5-7% for high-grade powder) or a specific form (Powder, Finger, Extract). These two specs effectively segment the entire category into distinct, commercially relevant sub-groups."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Variety / Grade",
+                            "options": [
+                                "Lakadong",
+                                "Kandhamal",
+                                "Salem",
+                                "Erode",
+                                "Waigaon",
+                                "Rajapuri",
+                                "Alleppey"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Processing Type",
+                            "options": [
+                                "Water Soluble",
+                                "Organic",
+                                "Steam Sterilized",
+                                "Double Polished",
+                                "Single Polished",
+                                "Sun-Dried"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Application",
+                            "options": [
+                                "Pharmaceutical",
+                                "Nutraceutical",
+                                "Food & Beverage",
+                                "Cosmetics",
+                                "Ayurvedic",
+                                "Animal Feed"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "`Variety / Grade`, `Processing Type`, and `Application` were selected as they are the next layer of essential details. `Variety / Grade` often acts as a proxy for curcumin content and quality. `Processing Type` is a key functional and value-add differentiator. `Application` directly addresses the needs of different B2B industries, guiding buyers to the correct product grade."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Packaging Type",
+                            "options": [
+                                "PP Bag",
+                                "Jute Bag",
+                                "HDPE Drum",
+                                "Carton Box"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Certification",
+                            "options": [
+                                "FSSAI",
+                                "USDA Organic",
+                                "ISO",
+                                "GMP",
+                                "GI Certified",
+                                "HALAL",
+                                "KOSHER"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Botanical Name",
+                            "options": [
+                                "Curcuma longa"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Purity Standard",
+                            "options": [
+                                "By HPLC",
+                                "By UV",
+                                "By Gravimetric"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "`Packaging Type`, `Certification`, `Botanical Name`, and `Purity Standard` are supplementary but important for B2B transactions. They provide necessary logistical information, build trust through quality assurance, and ensure technical correctness."
+                }
+            },
+            "scratchpad": "The specifications were identified and prioritized based on their commercial significance, frequency of mention, and impact on pricing and product differentiation. Primary specs (Curcumin Content, Form) define the product. Secondary specs (Variety, Processing, Application) are key differentiators. Tertiary specs provide supplementary B2B details. Pricing is consistently per Kg, with quantities in Kg and Tonne."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Added Color",
+            "option_value": "No",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Domestic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Food, Pharma, Cosmetics",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Formulation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Makeup Industry",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Oral intake",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Tablets",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Botanical Name",
+            "option_value": "Curcuma Longa",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Hind Bio Sciences",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Medcumin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Broken Percentage",
+            "option_value": "1-2 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chemical Free",
+            "option_value": "Yes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Orange and Yellow Mix",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Yellow Golden",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "0.15-3 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "0.5 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "1 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "1.5 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "10 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "2 %",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "2-2.5 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "2.3 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "2.5 %",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "2.5-3 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "2.5-4 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "2.6 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "20 %",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "3 %",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "3+ %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "3-3.5 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "3-4 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "3.08 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "3.5 %",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "3.5-4 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "3.5-4.5",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "3.5-6.5 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "3.7-3.8 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "4 %",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "5 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "5-6 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "5-7 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "6 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "6-7 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "7 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "7-12 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "7-8 %",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "8 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "8.5-9.1 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "8.8 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "80 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "85 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "9-10 %",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "95 %",
+            "prod_count": 29
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "95-96 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "97 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "99 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "<=0.5 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "<=5 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": ">3 %",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": ">5 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": ">7 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "C3 Content",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "Curcumin level",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "High",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "Low",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "Up to 5 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "option_value": "Variable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Documentation",
+            "option_value": "COA (Certificate of Analysis)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Documentation",
+            "option_value": "TC (Transaction Certificate)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Extraction Solvent",
+            "option_value": "Aqueous",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Extraction Solvent",
+            "option_value": "Ethanol",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Extraction Solvent",
+            "option_value": "Ethyl Acetate",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Extraction Solvent",
+            "option_value": "Methanol/Ethyl Acetate",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "High Purity",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Heavy Metal Content",
+            "option_value": "< 0.5",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Shilajit and Curcumin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Oil Content",
+            "option_value": "Low",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Organic Status",
+            "option_value": "Conventional",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Organic Status",
+            "option_value": "Natural",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Organic Status",
+            "option_value": "Organic",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Packaging Color",
+            "option_value": "White",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "20 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "25 kg",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "50 kg",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "500 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bag",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bottle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Drum",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Loose",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Paper Bag",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Vacuum Sealed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Polish Type",
+            "option_value": "Double Polish",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Polish Type",
+            "option_value": "Farmer Polish",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Polish Type",
+            "option_value": "Single Polish",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Polish Type",
+            "option_value": "Unpolished",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Processing Method",
+            "option_value": "Cleaning, Segregation, and Grinding",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Processing Method",
+            "option_value": "Dry",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Processing Method",
+            "option_value": "Refined",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Processing Method",
+            "option_value": "Washed and Boiled",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Extract",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Finger",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Granules",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Gummies",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Liquid",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Medium size",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Powder",
+            "prod_count": 35
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Pure form",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Round",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Slices",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Tablet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Tukri mix",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Whole",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "100% Guaranteed",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "100% Natural",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "3 pick",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "A-grade",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Broken",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Export Quality",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "First Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Good Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Grade B",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "HPLC",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Indian Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Medium",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Organic",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Pharmaceutical Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Premium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Premium Export Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Pure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Second Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shelf Life",
+            "option_value": "6-12 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Small",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Solubility",
+            "option_value": "Water Soluble",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Sorting/Grading",
+            "option_value": "Mixed sizes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Market",
+            "option_value": "Export / Domestic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Market",
+            "option_value": "Exporting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Testing Method",
+            "option_value": "HPLC",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Erode",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Erode Salem / Nizamabad",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Extract",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Indian",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Kandhamal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Lakadong",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Longa",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Maharashtra",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Meghalaya",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Natural",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Organic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Rajapuri",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Rajapuri Salem",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Salem",
+            "prod_count": 17
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Sela",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Shillong",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variety",
+            "option_value": "Synthetic",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "40405",
+            "mcat_name": "Turmeric Curcumin Powder",
+            "spec_name": "Packaging Size",
+            "option_value": "25 Kg"
+        },
+        {
+            "mcat_id": "40405",
+            "mcat_name": "Turmeric Curcumin Powder",
+            "spec_name": "Packaging Size",
+            "option_value": "25 Kg"
+        },
+        {
+            "mcat_id": "40405",
+            "mcat_name": "Turmeric Curcumin Powder",
+            "spec_name": "Pack Type",
+            "option_value": "Loose"
+        },
+        {
+            "mcat_id": "40405",
+            "mcat_name": "Turmeric Curcumin Powder",
+            "spec_name": "CAS",
+            "option_value": "458-37-7"
+        },
+        {
+            "mcat_id": "40405",
+            "mcat_name": "Turmeric Curcumin Powder",
+            "spec_name": "Molecular Formula",
+            "option_value": "C21H20O6"
+        },
+        {
+            "mcat_id": "40405",
+            "mcat_name": "Turmeric Curcumin Powder",
+            "spec_name": "Brand",
+            "option_value": "Shalaka Biosciences"
+        },
+        {
+            "mcat_id": "40405",
+            "mcat_name": "Turmeric Curcumin Powder",
+            "spec_name": "Shelf Life",
+            "option_value": "24 Months"
+        },
+        {
+            "mcat_id": "40405",
+            "mcat_name": "Turmeric Curcumin Powder",
+            "spec_name": "Package Size",
+            "option_value": "100gm"
+        },
+        {
+            "mcat_id": "40405",
+            "mcat_name": "Turmeric Curcumin Powder",
+            "spec_name": "Package Size",
+            "option_value": "25 kg"
+        },
+        {
+            "mcat_id": "40405",
+            "mcat_name": "Turmeric Curcumin Powder",
+            "spec_name": "Botanical Names",
+            "option_value": "Curcuma Longa"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "",
+            "spec_fill_rate": "56.5",
+            "product_count": "13"
+        },
+        {
+            "spec_name": "Form",
+            "spec_fill_rate": "47.8",
+            "product_count": "11"
+        },
+        {
+            "spec_name": "Curcumin Content (%)",
+            "spec_fill_rate": "39.1",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_fill_rate": "39.1",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "39.1",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Processing Type",
+            "spec_fill_rate": "30.4",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Variety / Grade",
+            "spec_fill_rate": "26.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Botanical Name",
+            "spec_fill_rate": "17.4",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_fill_rate": "13",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_fill_rate": "13",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_fill_rate": "8.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "8.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Package Size",
+            "spec_fill_rate": "8.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "CAS",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Extract Form",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Purity",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Purity Standard",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Assay",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Specialty Type",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Solvent",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Polish Type",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Botanical Names",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Extraction Type",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Molecular Formula",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Plant Source",
+            "spec_fill_rate": "4.3",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Nutraceutical",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_option_name": "Religious Use",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_option_name": "Medicinal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Food Color",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Assay",
+            "spec_option_name": "Curcumin 95 %",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_option_name": "Cosmetic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Specialty Type",
+            "spec_option_name": "Regular (Haldi)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Curcumin Content",
+            "spec_option_name": "Min 4%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Plant Source",
+            "spec_option_name": "Turmeric",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "CAS",
+            "spec_option_name": "458-37-7",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Polish Type",
+            "spec_option_name": "Double Polished",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "FSSAI",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Extract Form",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Yellowish Brown",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "FSSAI",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Botanical Names",
+            "spec_option_name": "Turmeric",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Extraction Type",
+            "spec_option_name": "Solvent Extracted",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Solvent",
+            "spec_option_name": "Ethyl Acetate",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Purity",
+            "spec_option_name": "95Ã¢â¬â99%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Botanical Name",
+            "spec_option_name": "Curcuma longa",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Shalaka Biosciences",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_option_name": "Cooking",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Molecular Formula",
+            "spec_option_name": "C21H20O6",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Variety",
+            "spec_option_name": "Salem",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Ayurvedic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "25 kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Purity Standard",
+            "spec_option_name": "By HPLC",
+            "option_fill_rate": "85.7"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "80"
+        },
+        {
+            "spec_name": "Curcumin Content (%)",
+            "spec_option_name": "95%",
+            "option_fill_rate": "78.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Pharmaceutical",
+            "option_fill_rate": "68.4"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "GMP",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Nutraceutical",
+            "option_fill_rate": "57.9"
+        },
+        {
+            "spec_name": "Variety / Grade",
+            "spec_option_name": "Lakadong",
+            "option_fill_rate": "57.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Food & Beverage",
+            "option_fill_rate": "52.6"
+        },
+        {
+            "spec_name": "Processing Type",
+            "spec_option_name": "Water Soluble",
+            "option_fill_rate": "52.6"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "HALAL",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "PP Bag",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "USDA Organic",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "ISO",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 Months",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "25 Kg",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Package Size",
+            "spec_option_name": "100gm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Package Size",
+            "spec_option_name": "1 kg",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "36 months",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "HDPE Drum",
+            "option_fill_rate": "45"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "KOSHER",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "GI Certified",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Processing Type",
+            "spec_option_name": "Organic",
+            "option_fill_rate": "36.8"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Food Grade",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Cosmetic Grade",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Premium Grade",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Cosmetics",
+            "option_fill_rate": "31.6"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Ayurvedic",
+            "option_fill_rate": "26.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "25 kg",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "20 kg",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Processing Type",
+            "spec_option_name": "Steam Sterilized",
+            "option_fill_rate": "21.1"
+        },
+        {
+            "spec_name": "Processing Type",
+            "spec_option_name": "Sun-Dried",
+            "option_fill_rate": "15.8"
+        },
+        {
+            "spec_name": "Purity Standard",
+            "spec_option_name": "By Gravimetric",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Curcumin Content (%)",
+            "spec_option_name": "7%",
+            "option_fill_rate": "8.7"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Extract",
+            "option_fill_rate": "8"
+        },
+        {
+            "spec_name": "Variety / Grade",
+            "spec_option_name": "Salem",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Variety / Grade",
+            "spec_option_name": "Rajapuri",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Variety / Grade",
+            "spec_option_name": "Raw",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Variety / Grade",
+            "spec_option_name": "Synthetic Grade (Non-botanical)",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Variety / Grade",
+            "spec_option_name": "Premium / Nutraceutical Grade, Pharma & Food Grade",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Variety / Grade",
+            "spec_option_name": "Food grade",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Seasonings",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Processing Type",
+            "spec_option_name": "Oil Soluble",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Processing Type",
+            "spec_option_name": "Solvent Extracted",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Phytochemicals",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Food Flavouring",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Jute Bag",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Curcumin Content (%)",
+            "spec_option_name": "11%",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Curcumin Content (%)",
+            "spec_option_name": "5%",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Curcumin Content (%)",
+            "spec_option_name": "8-35%",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Granules",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Viscous Liquid",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "4"
+        }
+    ]
+}

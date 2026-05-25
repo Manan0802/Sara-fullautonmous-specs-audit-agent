@@ -1,0 +1,157 @@
+{
+  "pmcat_id": 2322,
+  "pmcat_name": "PLC",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "PLC",
+      "mcat_id": 2322,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Brand Name",
+              "options": [
+                "Siemens",
+                "Mitsubishi",
+                "Allen-Bradley",
+                "Omron",
+                "Delta",
+                "Schneider Electric",
+                "Fatek",
+                "LS Electric",
+                "GIC",
+                "Wago"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "PLC Type",
+              "options": [
+                "Compact (Brick)",
+                "Modular",
+                "Smart Relay (Logo)"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Series",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Model Number",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Output Type",
+              "options": [
+                "Relay",
+                "Transistor (Sink)",
+                "Transistor (Source)"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Communication Protocol",
+              "options": [
+                "Modbus RTU",
+                "Ethernet/IP",
+                "Modbus TCP/IP",
+                "Profinet",
+                "Profibus-DP",
+                "CANopen",
+                "DeviceNet"
+              ],
+              "input_type": "multi_select"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Number of Digital Inputs",
+              "options": [
+                "4",
+                "6",
+                "8",
+                "10",
+                "12",
+                "14",
+                "16",
+                "24"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Number of Digital Outputs",
+              "options": [
+                "2",
+                "4",
+                "6",
+                "8",
+                "10",
+                "12",
+                "16"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Number of Analog Inputs",
+              "options": [
+                "None",
+                "2",
+                "4",
+                "6",
+                "8"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Number of Analog Outputs",
+              "options": [
+                "None",
+                "1",
+                "2",
+                "4"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Power Supply",
+              "options": [
+                "24 VDC",
+                "100-240 VAC"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Mounting Type",
+              "options": [
+                "DIN Rail",
+                "Panel Mount"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Programming Interface",
+              "options": [
+                "USB",
+                "Ethernet",
+                "RS-232",
+                "RS-485"
+              ],
+              "input_type": "multi_select"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

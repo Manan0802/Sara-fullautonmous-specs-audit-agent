@@ -1,0 +1,3792 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 4151
+category_name: Ayurvedic Medicine
+seller_specs (current spec sheet): {
+  "category_name": "Ayurvedic Medicine",
+  "mcat_id": 4151,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Dosage Form",
+          "options": [
+            "Capsule",
+            "Tablet",
+            "Syrup",
+            "Churna (Powder)",
+            "Juice (Ras)",
+            "Oil (Taila)",
+            "Drops",
+            "Lehya / Avleh",
+            "Bhasma",
+            "Ointment (Malam)"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "1"
+        },
+        {
+          "spec_name": "Primary Ingredient",
+          "options": [
+            "Ashwagandha",
+            "Triphala",
+            "Amla",
+            "Tulsi",
+            "Giloy",
+            "Shilajit",
+            "Brahmi",
+            "Neem",
+            "Turmeric (Haldi)",
+            "Aloe Vera"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Prefix",
+          "affix_presence_flag": "1"
+        },
+        {
+          "spec_name": "Benefit / Indication",
+          "options": [
+            "Immunity Booster",
+            "Digestive Care",
+            "Liver Care",
+            "Diabetes Care",
+            "Joint & Pain Relief",
+            "Hair Care",
+            "Skin Care",
+            "Stress Relief",
+            "Weight Management",
+            "Sexual Wellness"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Dosage Form is the most fundamental classification (e.g., Churna vs. Tablet). Primary Ingredient defines classical and single-herb products and is a primary search term. Benefit/Indication is the main selling point for proprietary medicines, reflecting how buyers search by ailment (e.g., 'medicine for diabetes')."
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Medicine Type",
+          "options": [
+            "Proprietary",
+            "Classical"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Packaging Size",
+          "options": [
+            "60 Capsules",
+            "60 Tablets",
+            "200 ml",
+            "100 ml",
+            "100 gm",
+            "500 ml",
+            "30 Capsules",
+            "120 Capsules",
+            "30 ml",
+            "450 ml"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Ideal For",
+          "options": [
+            "Adults",
+            "All",
+            "Women",
+            "Men",
+            "Children"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Medicine Type distinguishes between standardized classical formulations and a company's unique proprietary formula, a critical distinction for practitioners. Packaging Size is a vital B2B parameter influencing unit price and order volume. Ideal For clarifies the target demographic, a common and necessary filter."
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Brand",
+          "options": [
+            "Dabur",
+            "Baidyanath",
+            "Patanjali",
+            "Himalaya",
+            "Zandu",
+            "Amulya Herbs",
+            "Fidalgo",
+            "Unisage",
+            "Bhrigu",
+            "Sovam"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Certification",
+          "options": [
+            "GMP Certified",
+            "ISO Certified",
+            "AYUSH Certified",
+            "Organic",
+            "FSSAI",
+            "HACCP Certified"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Packaging Type",
+          "options": [
+            "Bottle",
+            "Blister Pack",
+            "Jar",
+            "Sachet",
+            "Box",
+            "Pouch"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Brand acts as a crucial filter for quality and trust but often after the initial product type has been identified. Certifications are quality validators but are secondary to the product's function and form. Packaging Type provides supplementary logistical information but is not a primary decision-making factor."
+    }
+  },
+  "scratchpad": "The specifications are structured to mirror common B2B search patterns for Ayurvedic Medicine in India. Analysis of catalogs and call logs shows that buyers and sellers first differentiate products by their form (Dosage Form), composition (Primary Ingredient), and purpose (Benefit/Indication). Secondary factors like formulation type, packaging size, and target user are next in importance, followed by tertiary details like brand and certifications which build trust but are not primary filters."
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 23 specs) ---
+[
+  {
+    "spec_name": "Form",
+    "total_product_count": 80,
+    "example_values": [
+      "Capsule",
+      "Powder",
+      "Tablet",
+      "Drops",
+      "Drop"
+    ]
+  },
+  {
+    "spec_name": "Pack Size",
+    "total_product_count": 35,
+    "example_values": [
+      "60 capsules",
+      "30 capsules",
+      "60 tablets",
+      "40 tablets",
+      "10 tablets"
+    ]
+  },
+  {
+    "spec_name": "Indication",
+    "total_product_count": 31,
+    "example_values": [
+      "Alcohol and Nicotine De-Addiction",
+      "Joint and Muscle Pain",
+      "Diabetes",
+      "Kidney Stone Treatment",
+      "Arthritis Treatment"
+    ]
+  },
+  {
+    "spec_name": "Volume or Weight",
+    "total_product_count": 31,
+    "example_values": [
+      "30 ml",
+      "200 ml",
+      "100 g",
+      "10 g",
+      "10 kg"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 28,
+    "example_values": [
+      "V Recovery",
+      "Yogiraj",
+      "Madopar",
+      "Ayu-Health",
+      "Dadaji"
+    ]
+  },
+  {
+    "spec_name": "Packaging Type",
+    "total_product_count": 27,
+    "example_values": [
+      "Bottle",
+      "Box",
+      "Jar",
+      "Packet",
+      "Sachet"
+    ]
+  },
+  {
+    "spec_name": "Treatment Duration",
+    "total_product_count": 15,
+    "example_values": [
+      "3 months",
+      "15 days",
+      "2-3 months",
+      "20 days",
+      "3-4 months"
+    ]
+  },
+  {
+    "spec_name": "Medicine Type",
+    "total_product_count": 13,
+    "example_values": [
+      "Ayurvedic",
+      "Herbal",
+      "Herbal / Organic",
+      "Extract-based",
+      "Plus Formula"
+    ]
+  },
+  {
+    "spec_name": "Dosage Instructions",
+    "total_product_count": 10,
+    "example_values": [
+      "1 capsule twice a day",
+      "2 drops morning and 2 drops evening",
+      "1 Sachet per day",
+      "15-20 drops",
+      "15-20 ml morning and evening after breakfast"
+    ]
+  },
+  {
+    "spec_name": "Strength",
+    "total_product_count": 7,
+    "example_values": [
+      "100 mg",
+      "500 mg",
+      "1 mg",
+      "200 mg",
+      "25 mg"
+    ]
+  },
+  {
+    "spec_name": "Result Observation Time",
+    "total_product_count": 6,
+    "example_values": [
+      "15-20 days",
+      "1 week",
+      "10-12 days",
+      "10-15 days",
+      "15 days"
+    ]
+  },
+  {
+    "spec_name": "Color",
+    "total_product_count": 6,
+    "example_values": [
+      "Black",
+      "Brown",
+      "Red",
+      "White (tablets) and Blue (capsules)",
+      "Yellow"
+    ]
+  },
+  {
+    "spec_name": "Smell",
+    "total_product_count": 4,
+    "example_values": [
+      "No Smell",
+      "Yes"
+    ]
+  },
+  {
+    "spec_name": "Taste",
+    "total_product_count": 4,
+    "example_values": [
+      "No Taste",
+      "Slightly changes (Not tasteless)",
+      "Yes"
+    ]
+  },
+  {
+    "spec_name": "Usage Instructions",
+    "total_product_count": 4,
+    "example_values": [
+      "1 capsule twice a day",
+      "10 minutes",
+      "Empty stomach morning and evening",
+      "Skin Pigmentation Treatment"
+    ]
+  },
+  {
+    "spec_name": "Quality Grade",
+    "total_product_count": 3,
+    "example_values": [
+      "A1",
+      "High",
+      "Premium"
+    ]
+  },
+  {
+    "spec_name": "Product Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Ayurvedic/Herbal"
+    ]
+  },
+  {
+    "spec_name": "Capsule Count",
+    "total_product_count": 3,
+    "example_values": [
+      "10 pieces",
+      "10 per pack"
+    ]
+  },
+  {
+    "spec_name": "Long Tablet Count",
+    "total_product_count": 3,
+    "example_values": [
+      "10 pieces",
+      "10 per pack"
+    ]
+  },
+  {
+    "spec_name": "Round Tablet Count",
+    "total_product_count": 3,
+    "example_values": [
+      "10 pieces",
+      "10 per pack"
+    ]
+  },
+  {
+    "spec_name": "Service Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Third Party Manufacturing",
+      "PCD Franchise"
+    ]
+  },
+  {
+    "spec_name": "Side Effects",
+    "total_product_count": 3,
+    "example_values": [
+      "No Side Effects",
+      "Nausea and Vomiting"
+    ]
+  },
+  {
+    "spec_name": "Packaging Configuration",
+    "total_product_count": 3,
+    "example_values": [
+      "3 bottles",
+      "30 strips",
+      "5 packets"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "Manufacture",
+    "count": 12,
+    "options": [
+      "Dabur",
+      "Ayurveda",
+      "PATANJALI",
+      "BAIDYANATH"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "count": 7,
+    "options": [
+      "Ayucare",
+      "Nagarjun",
+      "Nagarjuna",
+      "Virgo",
+      "Soma Sutra"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 10 specs) ---
+[
+  {
+    "spec_name": "grade standard",
+    "total_impressions": 49426,
+    "options": [
+      "bp",
+      "medicine"
+    ]
+  },
+  {
+    "spec_name": "form",
+    "total_impressions": 43668,
+    "options": [
+      "avaleha",
+      "bhasma",
+      "capsule",
+      "churna",
+      "cream"
+    ]
+  },
+  {
+    "spec_name": "treatment",
+    "total_impressions": 21517,
+    "options": [
+      "acidity",
+      "allergy",
+      "cancer",
+      "cholesterol",
+      "dengue"
+    ]
+  },
+  {
+    "spec_name": "brand",
+    "total_impressions": 14435,
+    "options": [
+      "abha",
+      "agasthya",
+      "alex",
+      "amar",
+      "amrit dhara"
+    ]
+  },
+  {
+    "spec_name": "medicine type",
+    "total_impressions": 8854,
+    "options": [
+      "ayurveda",
+      "ayurvedic",
+      "herbal"
+    ]
+  },
+  {
+    "spec_name": "language",
+    "total_impressions": 2421,
+    "options": [
+      "english",
+      "hindi",
+      "malayalam",
+      "tamil"
+    ]
+  },
+  {
+    "spec_name": "brand name [low]",
+    "total_impressions": 2321,
+    "options": [
+      "likoria"
+    ]
+  },
+  {
+    "spec_name": "color",
+    "total_impressions": 975,
+    "options": [
+      "gold",
+      "green",
+      "white"
+    ]
+  },
+  {
+    "spec_name": "composition",
+    "total_impressions": 748,
+    "options": [
+      "maanasamithra",
+      "manasamitra",
+      "testosterone"
+    ]
+  },
+  {
+    "spec_name": "type of sweets",
+    "total_impressions": 696,
+    "options": [
+      "dawai",
+      "halwa",
+      "mohra"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (65 specs) ---
+[
+  {
+    "spec_name": "Form",
+    "spec_fill_rate": "54.2",
+    "product_count": "26"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_fill_rate": "39.6",
+    "product_count": "19"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_fill_rate": "39.6",
+    "product_count": "19"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_fill_rate": "35.4",
+    "product_count": "17"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_fill_rate": "33.3",
+    "product_count": "16"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "33.3",
+    "product_count": "16"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_fill_rate": "27.1",
+    "product_count": "13"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_fill_rate": "22.9",
+    "product_count": "11"
+  },
+  {
+    "spec_name": "Benefit / Indication",
+    "spec_fill_rate": "20.8",
+    "product_count": "10"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_fill_rate": "20.8",
+    "product_count": "10"
+  },
+  {
+    "spec_name": "Ideal For",
+    "spec_fill_rate": "20.8",
+    "product_count": "10"
+  },
+  {
+    "spec_name": "Medicine Type",
+    "spec_fill_rate": "20.8",
+    "product_count": "10"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "20.8",
+    "product_count": "10"
+  },
+  {
+    "spec_name": "Certification",
+    "spec_fill_rate": "18.8",
+    "product_count": "9"
+  },
+  {
+    "spec_name": "Prescription",
+    "spec_fill_rate": "16.7",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Manufacture",
+    "spec_fill_rate": "14.6",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Medicine System",
+    "spec_fill_rate": "10.4",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Use For",
+    "spec_fill_rate": "8.3",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Use",
+    "spec_fill_rate": "8.3",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Brand name",
+    "spec_fill_rate": "6.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_fill_rate": "6.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Main Ingredient",
+    "spec_fill_rate": "6.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Key Ingredient",
+    "spec_fill_rate": "6.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_fill_rate": "6.3",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_fill_rate": "4.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Treatment Type",
+    "spec_fill_rate": "4.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_fill_rate": "4.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_fill_rate": "4.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_fill_rate": "4.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Application Type",
+    "spec_fill_rate": "4.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Country of origin",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Part Used",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Access Mode",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Key Herbs",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Client Size",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Brand Type",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "pH Value",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Usage Age Group",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Jewellery Type",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "User Type",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Number of Items",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Herbal Type",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Variant",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Indication",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Route",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Intended Use",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Blend Type",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Packing Type",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Solution Type",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Therapeutic Segment",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Sugar Free",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Composition Type",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Effect Type",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Age Group",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Origin Region",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Diet Preference",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Sugar Type",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Target User",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Dose Formulation",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Application Area",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Country Of Origin",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "I Deal In",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Deployment",
+    "spec_fill_rate": "2.1",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (343 rows) ---
+[
+  {
+    "spec_name": "Target User",
+    "spec_option_name": "Adult Women",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "I Deal In",
+    "spec_option_name": "New Only",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Intended Use",
+    "spec_option_name": "Hormone Support",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Sugar Free",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Trolley Type",
+    "spec_option_name": "Medicine Trolley",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Key Herbs",
+    "spec_option_name": "Shatavari",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Material",
+    "spec_option_name": "All Mediciens for Uttarbasti",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Dose Formulation",
+    "spec_option_name": "Herbal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Dose Strength",
+    "spec_option_name": "500 mg",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Prescription Required",
+    "spec_option_name": "No",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Client Size",
+    "spec_option_name": "NA",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application Type",
+    "spec_option_name": "Oral",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Table Width",
+    "spec_option_name": "600 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Key Herbs",
+    "spec_option_name": "Bhringaraj",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Equipment Type",
+    "spec_option_name": "Uttarbasti",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Intended Use",
+    "spec_option_name": "Sperm Count",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Variant",
+    "spec_option_name": "CHANDRAKALA RAS",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Route",
+    "spec_option_name": "Oral",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Target Use",
+    "spec_option_name": "Daily Head & Eye Wellness Support",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Area",
+    "spec_option_name": "Panchakarma",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Jewellery Type",
+    "spec_option_name": "CUTTINGS",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Cure type",
+    "spec_option_name": "Tube block",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Instruction",
+    "spec_option_name": "With Warm Water",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Certifications",
+    "spec_option_name": "GMP",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Access Mode",
+    "spec_option_name": "iOS App",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Dose",
+    "spec_option_name": "2 Tablets TDS",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Composition Type",
+    "spec_option_name": "Ayurvedic",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Access Mode",
+    "spec_option_name": "Desktop",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "User Type",
+    "spec_option_name": "Women",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Intended Use",
+    "spec_option_name": "Libido Support",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Shade",
+    "spec_option_name": "Standard pink",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Area",
+    "spec_option_name": "Hospital",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Base Ghee Type",
+    "spec_option_name": "Cow Ghee",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Contains Metal Bhasma",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "Classical",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Ingredient Base",
+    "spec_option_name": "All Material required for uttarbasti",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "pH Value",
+    "spec_option_name": "10-Aug",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Area",
+    "spec_option_name": "Clinic",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Part Used",
+    "spec_option_name": "Whole Plant",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Herbal Type",
+    "spec_option_name": "Single Herb",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Deployment",
+    "spec_option_name": "NA",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Key Herbs",
+    "spec_option_name": "Gokshura",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Indication",
+    "spec_option_name": "Sexual Wellness",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Table Length",
+    "spec_option_name": "1800 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Age Group",
+    "spec_option_name": "Adult",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Herbal Formulation",
+    "spec_option_name": "Classical",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Surface Finish",
+    "spec_option_name": "Complete Kit",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Physical Form",
+    "spec_option_name": "Goli",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application Area",
+    "spec_option_name": "Human",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Tablet Count",
+    "spec_option_name": "100 Tablets",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Origin Region",
+    "spec_option_name": "India",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Country Of Origin",
+    "spec_option_name": "Made In India",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Access Mode",
+    "spec_option_name": "Android App",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Country of origin",
+    "spec_option_name": "Made in india",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Access Mode",
+    "spec_option_name": "Web",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Diet Preference",
+    "spec_option_name": "Vegetarian",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Course Duration",
+    "spec_option_name": "90 days",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Flavor",
+    "spec_option_name": "Unflavoured",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Blend Type",
+    "spec_option_name": "Classical",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Intended Use",
+    "spec_option_name": "Stamina Support",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Medicine System",
+    "spec_option_name": "Ayurvedic",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Intended Use",
+    "spec_option_name": "Sperm Motility",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Solution Type",
+    "spec_option_name": "NA",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Indications",
+    "spec_option_name": "Immunity Booster",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Thyroid Type",
+    "spec_option_name": "Thyroid Support",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Number of Items",
+    "spec_option_name": "1 items",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Market",
+    "spec_option_name": "Retail",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "Made in India",
+    "option_fill_rate": "87"
+  },
+  {
+    "spec_name": "Age Group",
+    "spec_option_name": "Adult",
+    "option_fill_rate": "71.4"
+  },
+  {
+    "spec_name": "Sugar Content",
+    "spec_option_name": "With Sugar",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Treatment Type",
+    "spec_option_name": "Ayurvedic",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Brand name",
+    "spec_option_name": "Ambic Re-Resp Avleh 300 Gm",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Flavour",
+    "spec_option_name": "Unflavoured",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Sugar Type",
+    "spec_option_name": "No Added Sugar",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Indian Origin",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Key Herb",
+    "spec_option_name": "Triphala",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Certification",
+    "spec_option_name": "GMP Certified",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Medicine Type",
+    "spec_option_name": "Classical",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Use Case",
+    "spec_option_name": "Acidity Relief",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Use Case",
+    "spec_option_name": "Indigestion",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Use Case",
+    "spec_option_name": "Gas Relief",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Bottle",
+    "option_fill_rate": "59"
+  },
+  {
+    "spec_name": "Manufacture",
+    "spec_option_name": "Dabur",
+    "option_fill_rate": "57.1"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_option_name": "Cholesterol Support",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Women",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_option_name": "Weakness",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_option_name": "Heart Tonic",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "General Health",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Therapeutic Segment",
+    "spec_option_name": "Digestive",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_option_name": "Blood Pressure",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Adult",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Packing Type",
+    "spec_option_name": "Bottle",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_option_name": "Cardiac Support",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_option_name": "Tube urinary blockage",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Therapeutic Segment",
+    "spec_option_name": "Pain Relief",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Adults",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_option_name": "General Health",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Packing Type",
+    "spec_option_name": "Jar",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Ideal For",
+    "spec_option_name": "Adults",
+    "option_fill_rate": "47.6"
+  },
+  {
+    "spec_name": "Prescription",
+    "spec_option_name": "Prescription",
+    "option_fill_rate": "45.5"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Tablet",
+    "option_fill_rate": "44.4"
+  },
+  {
+    "spec_name": "Manufacture",
+    "spec_option_name": "Ayurveda",
+    "option_fill_rate": "42.9"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "Ashwagandha",
+    "option_fill_rate": "40.9"
+  },
+  {
+    "spec_name": "Use Case",
+    "spec_option_name": "Constipation",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Use Case",
+    "spec_option_name": "Memory",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Use Case",
+    "spec_option_name": "Brain Health",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Use Case",
+    "spec_option_name": "Immunity",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Brand Type",
+    "spec_option_name": "Classical Brand",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Use",
+    "spec_option_name": "Cholesterol Control",
+    "option_fill_rate": "37.5"
+  },
+  {
+    "spec_name": "Prescription",
+    "spec_option_name": "Non Prescription",
+    "option_fill_rate": "36.4"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "Tablet",
+    "option_fill_rate": "36.4"
+  },
+  {
+    "spec_name": "Medicine Type",
+    "spec_option_name": "Proprietary",
+    "option_fill_rate": "35"
+  },
+  {
+    "spec_name": "Benefit / Indication",
+    "spec_option_name": "Immunity Booster",
+    "option_fill_rate": "34.8"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "Extract",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Classical",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "Classical",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Sugar Type",
+    "spec_option_name": "Sugar Free",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Capsule",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Complete Kit for Uttar basti",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Key Ingredient",
+    "spec_option_name": "Majun",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Ideal For",
+    "spec_option_name": "All",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Flavour",
+    "spec_option_name": "Herbal",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "Syrup",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Sugar Content",
+    "spec_option_name": "Low Sugar",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Brand name",
+    "spec_option_name": "Ap Swasari Avaleha 250 Gm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Key Ingredient",
+    "spec_option_name": "Suvarna Bhasma, Rajat Bhasma, Shilajit, Safed Musli, Ashwagandha, Kaunch Beej, Makar Dhwaj, Ras Sindoor, Kesar, Jaiphal",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Tablet",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Key Ingredient",
+    "spec_option_name": "Ayurvedic Herbs",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Human",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Main Ingredient",
+    "spec_option_name": "Boerhavia diffusa Cinnamomum zeylanicum Elettaria cardamomum",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "24 months",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Main Ingredient",
+    "spec_option_name": "Bal ras",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Digestive Health",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Use",
+    "spec_option_name": "Heart Health",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Effect Type",
+    "spec_option_name": "Long Term Care",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Immunity Support",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Main Ingredient",
+    "spec_option_name": "Omega 3",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Immunity",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Digestion Support",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Bone Health",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Effect Type",
+    "spec_option_name": "Uterine Tone",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Joint Health",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Effect Type",
+    "spec_option_name": "Metabolism Support",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Main Ingredient",
+    "spec_option_name": "Purifed  Orpiment",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Effect Type",
+    "spec_option_name": "Symptom Relief",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "SWELLING",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Cardiac Support",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Liver Support",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Main Ingredient",
+    "spec_option_name": "Arjuna",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Effect Type",
+    "spec_option_name": "Hormone Support",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Panchakarma - Uttarbasti",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Use",
+    "spec_option_name": "Blood Pressure",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "24 month",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Skin Health",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Repair",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Ashwagandha",
+    "option_fill_rate": "23.1"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Nirgundi",
+    "option_fill_rate": "23.1"
+  },
+  {
+    "spec_name": "Key Herb",
+    "spec_option_name": "Isabgol",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "60 Tablets",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Certification",
+    "spec_option_name": "FSSAI",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Brand Type",
+    "spec_option_name": "Neven",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Brand Type",
+    "spec_option_name": "Classical",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Key Herb",
+    "spec_option_name": "Arjuna",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Certification",
+    "spec_option_name": "ISO Certified",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Sovam",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Brand Type",
+    "spec_option_name": "Proprietary",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "36 month",
+    "option_fill_rate": "19.4"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "Capsule",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Jar",
+    "option_fill_rate": "17.9"
+  },
+  {
+    "spec_name": "Benefit / Indication",
+    "spec_option_name": "Digestive Care",
+    "option_fill_rate": "17.4"
+  },
+  {
+    "spec_name": "Treatment Type",
+    "spec_option_name": "ayurvedic",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Treatment Type",
+    "spec_option_name": "Allopathic",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Tulsi",
+    "option_fill_rate": "15.4"
+  },
+  {
+    "spec_name": "Certification",
+    "spec_option_name": "AYUSH Certified",
+    "option_fill_rate": "15"
+  },
+  {
+    "spec_name": "Use For",
+    "spec_option_name": "Menstrual Support",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Use For",
+    "spec_option_name": "lumbar spondylitis, sciatica, and disc herniation",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Use For",
+    "spec_option_name": "Nervine Tonic",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Use For",
+    "spec_option_name": "men wellness",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Age Group",
+    "spec_option_name": "All Age Group",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Use For",
+    "spec_option_name": "Amlapitta",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Use For",
+    "spec_option_name": "Asthma",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Use For",
+    "spec_option_name": "Uterine Tonic",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Use For",
+    "spec_option_name": "Immunity",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Use For",
+    "spec_option_name": "liver",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Age Group",
+    "spec_option_name": "Adults",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Use For",
+    "spec_option_name": "Memory",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Powder",
+    "option_fill_rate": "13.3"
+  },
+  {
+    "spec_name": "Benefit / Indication",
+    "spec_option_name": "Women Wellness",
+    "option_fill_rate": "13"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Box",
+    "option_fill_rate": "12.8"
+  },
+  {
+    "spec_name": "Use",
+    "spec_option_name": "Knee pain joint pain relief",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Use",
+    "spec_option_name": "metabolic balance, vitality",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Use",
+    "spec_option_name": "Respiratory Support",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Use",
+    "spec_option_name": "Pein relief",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Use",
+    "spec_option_name": "respiratory health",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "12 Months",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "60 tablets",
+    "option_fill_rate": "10.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "200 ml",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "60 Capsules",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Certification",
+    "spec_option_name": "GMP",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Ayurvedic Proprietary",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Certification",
+    "spec_option_name": "Organic",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Ideal For",
+    "spec_option_name": "Men",
+    "option_fill_rate": "9.5"
+  },
+  {
+    "spec_name": "Ideal For",
+    "spec_option_name": "Women",
+    "option_fill_rate": "9.5"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "Ayurvedic",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Prescription",
+    "spec_option_name": "Prescription Only",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Prescription",
+    "spec_option_name": "OTC",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Capsule",
+    "option_fill_rate": "8.9"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "India",
+    "option_fill_rate": "8.7"
+  },
+  {
+    "spec_name": "Benefit / Indication",
+    "spec_option_name": "Sexual Wellness",
+    "option_fill_rate": "8.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Giloy",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Brahmi",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Hadjod",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Jatipatra",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Haldi",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Shilajit",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Dashamoola (group of 10 roots)",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Shatavari tail / Falghrut / Sahachar tail",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Vasaka",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Guggul",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Sarpagandha",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "60 tablet",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Guduchi satva, shudhdha parad, shudhdha gandhak, rakta bol",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Methi",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "GUDUCHI",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Black Pepper",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Punarnava",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Sunthi",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Shallaki",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "200 ml",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Blister Pack",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Key Ingredients",
+    "spec_option_name": "Godanti",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Hridayarnava Ras",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Uma",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Local Brand",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "40 tablets",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "3 x 60 Capsules",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Giloy Ki Ghanvati",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "1 kg",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "Syrup",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100 g",
+    "option_fill_rate": "5.1"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "300 gm",
+    "option_fill_rate": "5.1"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100 tablets",
+    "option_fill_rate": "5.1"
+  },
+  {
+    "spec_name": "Certification",
+    "spec_option_name": "Ayush License",
+    "option_fill_rate": "5"
+  },
+  {
+    "spec_name": "Medicine Type",
+    "spec_option_name": "Ayurvedic",
+    "option_fill_rate": "5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "Triphala",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "NA",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "Feminine Flow, UroEase, Golden Aura",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "Shatavari, Lodhra, Ashoka, Guduchi , Daruharidra , Plus Cinnamon, Manjistha, Chia, Sesame",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "Amlaki",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "Gokshura, Shatavari, Punarnava, Yashtimadhu",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "Suvarna Bhasma, Rajat Bhasma, Shilajit, Safed Musli, Ashwagandha, Kaunch Beej, Makar Dhwaj, Ras Sindoor, Kesar, Jaiphal",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "Madhu",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "NIGUNDI BEEJ",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "Vacha",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "SHOTHARI",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "Aura Focus+, Aura Neuro+, Aura Vision",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Primary Ingredient",
+    "spec_option_name": "Turmeric (Haldi)",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Vati",
+    "option_fill_rate": "4.4"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Semi Solid",
+    "option_fill_rate": "4.4"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Syrup",
+    "option_fill_rate": "4.4"
+  },
+  {
+    "spec_name": "Benefit / Indication",
+    "spec_option_name": "Cough & Cold",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Benefit / Indication",
+    "spec_option_name": "SWELLING",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Benefit / Indication",
+    "spec_option_name": "strength and vitality",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Benefit / Indication",
+    "spec_option_name": "psychological and neurological well-being",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "Made In India",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Benefit / Indication",
+    "spec_option_name": "NA",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Benefit / Indication",
+    "spec_option_name": "Complete Wellness",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "100 gm",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Himalaya",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "VEDONYX PHARMA",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "10 Tablet",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "200ml oil",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "250gm,500gm",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "30 capsules",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Track fem",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "60 tablet",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Shree Dhootapapeshwar",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Unisage",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "30 Tablet",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "LION",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "KERALA AYURVEDIC",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "250G",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Sk pharma",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Maharishi Ayurveda",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "100 TAB",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "30g*23",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Geo herb herb health care",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "30 Tablets",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "300 gm",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Devagya",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Baidyanath",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "DHANVANTARI",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "Pills",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "With Water",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "With Milk",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "Rasayana",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "ghee",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "Oral Use",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "Ayurvedic Proprietary",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "tea",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "Vaginal",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "Churna | Powder | Ointment | Capsule | Tablet | Syrup | Juice | Oil|Herbal Beauty & Personal Care Pr",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Dosage Form",
+    "spec_option_name": "Lehya / Avleh",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "36 Months",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "18 months",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "12 months",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "24 Months",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "60 months",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "36 months",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "60 month",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100 gm",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "300 G.m",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "500ml",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "10 Gm",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "30 ML",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "60 Capsules",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "500 g",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "10gm",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "120",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Pouch",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "250gm",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100Gm",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "50 g",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "10 g",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "60 Tablets",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "1 Kg",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100gm",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "20gm",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "20 gram",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "60 capsule",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100 capsule",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "28",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "150ml",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "20 capsules",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Tea",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Crude",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Ras",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "OIL",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Majun",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Oial",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Liquid",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Rasa",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "majoon",
+    "option_fill_rate": "2.2"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_search_analysis) ---
+# Buyer Search Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer Search Data output — use this document to understand
+what impression counts mean, how to classify each search signal, and how to use
+search findings in your audit decisions. You apply this interpretation yourself —
+no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer search data contains spec-option combinations that buyers selected as filters
+when searching the marketplace, along with impression counts showing how many times
+each filter was used. When a buyer clicks "Thickness: 3mm" as a search filter, that
+generates one impression for that spec-option combination.
+
+
+This data tells you what buyers actively want to narrow their search by. High
+impressions mean many buyers are expressing demand for this attribute as a filter.
+It is your most direct measure of buyer intent on the platform.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The name of the spec buyers used as a filter. May not match the platform spec name
+exactly — use semantic matching, not exact string matching. "Wattage" and "Power"
+refer to the same buyer intent.
+
+
+**spec_option / option value**
+The specific value buyers filtered by. Values appearing here but absent from your
+current option list are strong candidates for addition.
+
+
+**impression / total_impressions**
+How many times buyers used this spec-option combination as a filter. Your primary
+signal from this data source. Higher = more buyer demand.
+
+
+---
+
+
+## How to read impression counts — orientation thresholds
+
+
+These are not hard rules — calibrate relative to the distribution in your category.
+
+
+| Total impressions for a spec | Signal strength |
+|-----------------------------|-----------------|
+| Below 50 | Noise — do not act on this alone |
+| 50 to 500 | Weak — needs corroboration from another source |
+| 500 to 2000 | Moderate — worth investigating, check for artifacts |
+| Above 2000 | Strong — genuine buyer demand |
+
+
+A spec with 200 impressions that also appears in call data is stronger evidence than
+a spec with 1000 impressions that has zero product count and looks like a UI default.
+Always cross-reference.
+
+
+---
+
+
+## The two types of specs in search data
+
+
+**Present specs** — Buyers are using a spec the platform already has. High impressions
+for a present spec validate that it belongs where it is. Very high impressions for a
+present Tertiary spec is a signal it may be misplaced.
+
+
+**Missing specs** — Buyers are filtering on an attribute the platform does not offer
+as a standardised spec. These are discovery gaps — buyers are either finding no
+results or settling for imprecise results. High-value candidates for addition.
+
+
+Use semantic matching when classifying — "Wattage" is present if the platform has
+"Power". The buyer intent is the same regardless of the label difference.
+
+
+---
+
+
+## Signal classification — apply to every search spec before acting
+
+
+Not every high-impression term should become a spec. Classify first:
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute, impressions ≥ 50, not already covered | Addition candidate |
+| `CONTEXT_TERM` | A word describing context or setting, not a filterable attribute | Do not add |
+| `IMPLIED` | Category name already defines this value for every product | Do not add — artifact |
+| `DUPLICATE` | Semantically same as an existing platform spec under a different name | Do not add — already covered |
+| `NOT_A_PRODUCT_SPEC` | Delivery, payment, warranty, MOQ | Do not add |
+| `DATA_ARTIFACT` | One option has over 90% of impressions, or known default UI filter | Do not promote based on this alone |
+
+
+**Category-implied check — apply every time:**
+If the category name itself tells you the value of this spec for every product,
+buyer impressions are an artifact. Example: buyers searching "Material: Aluminium"
+in an Aluminium Profiles category are not expressing a new spec need. Every product
+is already aluminium. The impressions come from the filter existing, not from genuine
+buyer differentiation need.
+
+
+**Data artifact check — apply when impressions look disproportionate:**
+- Does one option account for over 90% of total impressions for this spec?
+- Is this likely a default filter the platform pre-selects for buyers?
+- Does product count in call data = 0 despite very high impressions?
+
+
+If yes to any of these, tag as `DATA_ARTIFACT` and do not promote based on this signal.
+
+
+---
+
+
+## How to use search data in your audit
+
+
+**Finding discovery gaps**
+Search for specs classified as missing with impressions above 50. These are attributes
+buyers want to filter on but the platform does not offer. High-priority addition
+candidates. Cross-reference with call data and custom specs before adding.
+
+
+**Validating tier placement**
+A spec currently in Tertiary with thousands of impressions is almost certainly
+misplaced. Bring this signal into your sequencing reasoning alongside fill rate
+and product count.
+
+
+**Finding option gaps**
+When buyers filter by a specific value that does not exist in the current option list,
+that is a direct signal to add that option. Example: "48V" appearing in search but
+absent from the Voltage spec options. Bring to your option validation reasoning with
+this as evidence.
+
+
+**Cross-source confirmation**
+A spec appearing as missing in search AND in call data is confirmed from both the
+demand side (buyers want to filter) and the transactional side (buyers and sellers
+discuss it). This combination reaches high confidence for addition.
+
+
+---
+
+
+## What search data cannot tell you alone
+
+
+**Whether a spec is genuinely missing** — High impressions may reflect an artifact,
+a context term, or a spec that already exists under a different name. Always classify
+before acting.
+
+
+**Final tier placement** — Impressions are one of three signals. You need fill rate
+ and product count  to make a well-supported tier decision.
+
+
+**Option quality** — Search data shows which values buyers look for, not whether your
+current option list is structurally correct. Use these values as evidence in your
+option validation reasoning.
+
+
+**Why impressions are high** — Search data shows that buyers filtered on something,
+not why. A spec with 5000 impressions could be a genuinely important attribute or
+a default UI filter every buyer sees. Investigate before acting.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Spec Validation and Definition 
+
+
+## What this skill is for
+
+When candidate missing specs have been surfaced by the Buyer-Seller Call, Custom Spec,
+or Buyer Search skills — read this document. It gives you the framework to
+validate whether each candidate is a genuine new spec or a false positive, and
+if genuine, define it completely and  correctly for the Indian B2B marketplace.
+
+---
+
+## Step 1 — Validate: Is this a genuine new spec?
+
+A candidate missing spec is genuine only if all three of the following are true:
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same
+real-world attribute, even approximately, the candidate is not a gap.
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+---
+
+## Common false positives — check these before acting
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common
+synonym.
+
+Common equivalences in Indian B2B:
+
+| These terms often mean the same thing |
+|---------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Size / Dimensions / Measurement / Specification |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade ||
+
+**Composite attributes**
+Some candidates are natural-language composites. "10mm HDPE pipe" → "10mm" is
+not a new Diameter spec if Dimensions already exists.
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+**Multiple candidates meaning the same thing**
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning. "Usage" from custom specs + "Application" from call data + "End Use"
+from search → one spec, not three. Pick the most standard name and add once.
+
+One underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+---
+
+## Step 2 — Define: Build the spec completely
+
+Once a candidate passes validation, define it fully across four elements.
+
+### Spec Name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+### Input Type
+
+**`text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+**`radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+- Boolean attributes where the only meaningful values are Yes and No
+  (e.g. ISI Certified, Waterproof, Fire Resistant). Options: `["Yes", "No"]`
+
+**`multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → `multi_select`
+
+
+### Options — How to Generate Them
+
+Draw from example values in call data, custom spec submissions, and search
+option values. When data values are sparse, inconsistent, or absent, generate
+the full option set from Indian B2B market knowledge for this category and spec.
+
+**Understanding option values from data sources:**
+
+Option values surfaced by the data source skills vary significantly in quality.
+Here is what each quality level looks like and what it tells you:
+
+| Data Quality | What it looks like |
+|---|---|
+| Clean and consistent | Values are specific, formatted, and repeated across sources — reliable signal for what the real market options are |
+| Mixed quality | Some specific values mixed with vague or inconsistently formatted ones — the specific values are the signal; the rest is noise |
+| 1–2 values only | Too sparse to define the full option set — useful for confirming what the spec means, but market knowledge is needed to complete the list |
+| Completely messy | No usable signal — generate entirely from Indian B2B market knowledge |
+| Empty | No data at all — generate entirely from Indian B2B market knowledge |
+| Contains NA / Other / Custom | These are non-values — ignore them and treat the remaining data at its actual quality level |
+
+**Quality rules for new option to be created:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only
+2. **No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose**
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz.
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+5. Ideally the option count should be limited to 10 most common options 
+
+**Formatting rules:**
+1. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+2. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+3. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm
+4. Categorical options by frequency — most common in Indian market first
+5. Use ISI/BIS standards where applicable
+6. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+7. Do not use range options unless they are the market standard for this spec
+
+### Tier Placement
+
+All new specs are added as Tertiary. Sequencing reasoning determines the final
+tier based on actual signal data.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 2 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(ayush certification for products) ---
+{
+  "query": "ayush certification for products",
+  "results": [
+    {
+      "title": "What Are Ayush Premium Certified Products? Find Out Now",
+      "url": "https://www.humanpharmaciainc.com/ayush-premium-certified-products-a-complete-guide-to-elements-in-ayush-certified-products/",
+      "excerpt": "WebSearchResult(url='https://www.humanpharmaciainc.com/ayush-premium-certified-products-a-complete-guide-to-elements-in-ayush-certified-products/', excerpts=['### Verifying that you are not a robot...'], publish_date=None, title='What Are Ayush Premium Certified Products? Find Out Now')"
+    },
+    {
+      "title": "Aayush - CDSCO",
+      "url": "https://cdsco.gov.in/opencms/opencms/en/Aayush/",
+      "excerpt": "WebSearchResult(url='https://cdsco.gov.in/opencms/opencms/en/Aayush/', excerpts=['* Home\\n* Aayush\\n\\n## Ayush\\n\\n|S.No. |Title |Date of Release |Download Pdf |File Size |\\n| --- | --- | --- | --- | --- |\\n|1 |Details of Ayurvedic Products whose Certificate of Pharmaceutical (COPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 01.05.2025 |2025-May-08 | |774 KB |\\n|2 |List of Private Drugs testing laboratories for Homoeopathic drugs |2025-Mar-27 | |174 KB |\\n|3 |Details of Ayurvedic Products whose Certificate of Pharmaceutical (COPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 19.04.2024 |2024-Apr-19 | |703 KB |\\n|4 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (COPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 27.07.2023 |2023-Jul-27 | |584 KB |\\n|5 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 08.05.2023 |2023-May-09 | |1063 KB |\\n|6 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 10.02.2023 |2023-Feb-22 | |902 KB |\\n|7 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product(CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 01.12.2022 |2022-Dec-01 | |1397 KB |\\n|8 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 26.08.2022 |2022-Aug-26 | |987 KB |\\n|9 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 10.12.2021 |2021-Dec-10 | |726 KB |\\n|10 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 07.10.2021 |2021-Oct-07 | |714 KB |\\n|11 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 14.09.2021 |2021-Sep-14 | |701 KB |\\n|12 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 29.07.2021 |2021-Jul-29 | |697 KB |\\n|13 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 07.05.2021 |2021-May-07 | |690 KB |\\n|14 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 18.02.2021 |2021-Feb-18 | |687 KB |\\n|15 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 20.01.2021 |2021-Jan-20 | |682 KB |\\n|16 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 09.12.2020 |2020-Dec-09 | |682 KB |\\n ... \\n|25 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 27.09.2019 |2019-Oct-03 | |625 KB |\\n|26 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (CoPP) granted as per WHO-GMP Certification Scheme by Central Drugs Standard Control Organization as on 02.09.2019 |2019-Sep-05 | |613 KB |\\n|27 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (COPP) granted as per WHO GMP Certification Scheme by Central Drugs Standard Control Organization as on July,2019 |2019-Jul-25 | |611 KB |\\n|28 |Details of Ayurvedic Products whose Certificate of Pharmaceutical Product (COPP) granted as per WHO GMP Certification Scheme by Central Drugs Standard Control Organization as on April,2019 |2019-Apr-15 | |600 KB |'], publish_date=None, title='Aayush - CDSCO')"
+    },
+    {
+      "title": "AYUSH License for Herbal and Ayurvedic Products - LinkedIn",
+      "url": "https://www.linkedin.com/pulse/ayush-license-herbal-ayurvedic-products-genzcfo-pt1pc",
+      "excerpt": "WebSearchResult(url='https://www.linkedin.com/pulse/ayush-license-herbal-ayurvedic-products-genzcfo-pt1pc', excerpts=['May 15, 2025 \u00b7 Any individual or business entity involved in manufacturing Ayurvedic, herbal, Siddha, or Unani products needs to apply for an AYUSH license.'], publish_date=None, title='AYUSH License for Herbal and Ayurvedic Products - LinkedIn')"
+    },
+    {
+      "title": "ayush certification in canada|call 9760885708. - Jcs Certifications",
+      "url": "https://jcscertifications.com/ayush-certification-in-canada",
+      "excerpt": "WebSearchResult(url='https://jcscertifications.com/ayush-certification-in-canada', excerpts=['ayush certification in canada is a product certification regulated under the drugs and cosmetics act, 1940 which enhances the customer confidence.'], publish_date=None, title='ayush certification in canada|call 9760885708. - Jcs Certifications')"
+    },
+    {
+      "title": "How to Apply for Ayush License?[Online Registration]",
+      "url": "https://cosmeticsregulatory.com/blog/how-to-apply-for-ayush-license/",
+      "excerpt": "WebSearchResult(url='https://cosmeticsregulatory.com/blog/how-to-apply-for-ayush-license/', excerpts=['In this article, we\u2019ll demonstrate the **Ayush registration process and make sure that you\u2019re on the right track** for a smooth application.\\n\\n## What Is Ayush License?\\n\\nAn AYUSH License is a legal document that allows businesses in India to legally manufacture, distribute, and sell Ayurveda, Unani, Siddha, and Homeopathy products.  \\nIt is issued by the Ministry of AYUSH or the respective State Licensing Authorities under the Drugs and Cosmetics Act, 1940.  \\nThe license ensures that AYUSH products meet required quality, safety, and efficacy standards before reaching consumers.\\n\\n## Step-By-Step Process To Apply For Ayush Certificate\\n\\nHere we have simplified the typical steps to apply for Ayush license online in the following key steps:\\n\\n### Step 1: Documentation\\n\\nSubmitting all the documents required for an Ayush license is necessary. Your application can be rejected if you miss or provide false documents.\\n\\n### Step 2: Apply For GMP Certificate:\\nYou must apply for GMP certificate for Ayurveda if you are concerned with the manufacturing business of Ayurvedic and herbal products. Before you apply for Ayush license you should apply for **Good manufacturing practices (GMP)** certificate. As it certifies that you have maintained the necessary hygiene, safety, and protocol while manufacturing medicines and cosmetics.\\n\\n### Step 3: Apply for COPP Certificate:\\n\\nTheCOPP certificate is concerned with exporting Ayush products. If you want to export your products you must get this certificate, as it gives global acceptance to products. Which means you can trade your products in other countries without facing any legal interference.\\n\\n### Step 4: Download the form to apply for Ayush License Certificate:\\n\\nThe first step after gathering all the required documents is downloading the respective form. The following  forms are used for applying for the Grant /Renewal of [Ayush Certification](https://cosmeticsregulatory.\\ncom/services/ayush-license/) :  \\n1) **Form 24D** : Application for the Grant/Renewal  of a Licence to manufacture for the sale of Ayurvedic/ Unani/ Siddha drugs  under the Drug Act 1940  \\n2) **Form No. 24E** : Application for  Grant or Renewal of a Loan Licence to Manufacture for sale of Ayurvedic/Unani/Siddha  drugs under the Drug Act 1940  \\n3) **Form 47:** Application for grant or renewal of approval for carrying out tests on Ayurvedic and Unani drugs or raw materials used in the manufacture thereof on behalf of licensees for the manufacture or sale of Ayurvedic and Unani drugs.  \\n4) **Form 25E:** Loan license to manufacture for sale Ayurvedic (including Siddha) or Unani Drugs\\n\\n### Step 5: Fill out and Submit the Application:\\n\\nThe next step to apply for Ayush license is to complete the form. This step is crucial and risky, as it includes all the necessary information about your business.\\nYou have to fill out the information carefully, as any information provided that is invalid or found to be false can result in the rejection of your application. After rechecking the data, you can now submit it on the Ayush portal.\\n\\n### Step 6: Verification by Ayush Department\u2019s Commissioner:\\n\\nThe next step to apply for Ayush license is to complete the form. This step is crucial and risky, as it includes all the necessary information about your business. You have to fill out the information carefully, as any information provided that is invalid or found to be false can result in the rejection of your application. After rechecking the information, you can now submit it on the Ayush portal.\\n\\n### Step 7: Ayush license granted:\\n\\nAfter getting Ayush license approval and verification, the Ministry of Ayush grants you the Ayush license certification. Usually, it takes 60 days for the Department to process Ayush license registration.\\n ... \\n* List of the components used to manufacture Ayurvedic products.\\n* List of the equipment your business owns, and also mention the no. of equipment for each category.\\n* As per schedule T of Drugs rule submit the layout of your organization, also mention the no. of rooms it has and its purpose of use.\\n* Provide your staff details, such as their names, qualifications, and experience.\\n\\n## Ayush License Registration Fees\\n\\nAYUSH drugs License fees can vary from 2000 to 10000, for any number of Ayurvedic, Unani & Siddha drugs/cosmetics. Additionally, the fees for up to 10 proprietary ASU drugs will vary from 3000 to 15000.\\n\\n## Who can apply for Ayush license Certificate?\\n\\nAny business related to Ayurveda, Unani, Siddha, & Homeopathy products can apply for an Ayush license. However, you must consider some basic requirements before applying for an Ayush certification. Such as,\\n\\n1. Your products should meet the quality, safety, and efficacy.\\n2.'], publish_date='2025-04-28', title='How to Apply for Ayush License?[Online Registration]')"
+    },
+    {
+      "title": "AYUSH License: Required Documents and Process to Apply Online in India",
+      "url": "https://www.bajajfinserv.in/ayush-license",
+      "excerpt": "WebSearchResult(url='https://www.bajajfinserv.in/ayush-license', excerpts=[\"### **Step 3 - Apply for COPP certificate, if applicable**\\n\\nIf you plan to export AYUSH products, you will need to apply for a Certificate of Pharmaceutical Product (COPP). The COPP certificate is required for international trade and ensures that the products meet the quality standards of both the country of manufacture and the importing country. This step involves submitting the necessary documents and undergoing additional inspections to comply with international regulations.\\n\\n* Necessary for exporting AYUSH products.\\n* Ensures compliance with international quality standards.\\n\\n### **Step 4 - Download the form for the AYUSH license certificate**\\n\\nThe next step is to download the application form for the AYUSH License Certificate from the official website of the Ministry of AYUSH. This form is crucial as it captures all necessary details about the applicant, the manufacturing facility, and the products to be manufactured.\\n ... \\nBajaj Finance Limited (\u201cBFL\u201d) is a Non-Banking Finance Company (NBFC) and Prepaid Payment Instrument Issuer offering financial services viz., loans, deposits, Bajaj Pay Wallet, Bajaj Pay UPI, bill payments and third-party wealth management products. The details mentioned in the respective product/ service document shall prevail in case of any inconsistency with respect to the information referring to BFL products and services on this page.\\n\\n2\\\\. All other information, such as, the images, facts, statistics etc. (\u201cinformation\u201d) that are in addition to the details mentioned in the BFL\u2019s product/ service document and which are being displayed on this page only depicts the summary of the information sourced from the public domain. The said information is neither owned by BFL nor it is to the exclusive knowledge of BFL. There may be inadvertent inaccuracies or typographical errors or delays in updating the said information.\\nHence, users are advised to independently exercise diligence by verifying complete information, including by consulting experts, if any. Users shall be the sole owner of the decision taken, if any, about suitability of the same.  \\nFor customer support, call Personal Loan IVR: 7757 000 000\\n\\n## Frequently asked questions\\n\\nWhat is AYUSH license certification?\\n\\nAYUSH license certification is an official approval issued by the Ministry of AYUSH, allowing the production, marketing, and distribution of Ayurvedic, Yoga, Naturopathy, Unani, Siddha, and Homoeopathy products. This certification ensures that products meet specific safety, quality, and efficacy standards set by regulatory authorities.\\n\\nWhat are AYUSH certified products?\\n\\nAYUSH certified products are those that have been approved by the Ministry of AYUSH after meeting stringent safety, quality, and efficacy standards.\\nThese products include medicines, supplements, and other health-related items derived from Ayurvedic, Yoga, Naturopathy, Unani, Siddha, and Homoeopathy traditions, ensuring they are safe and effective for consumers.\\n\\nHow to become an AYUSH doctor?\\n\\nTo become an AYUSH doctor, one must complete a degree in any of the AYUSH disciplines from a recognised university or institution. This includes degrees like BAMS (Bachelor of Ayurvedic Medicine and Surgery), BHMS (Bachelor of Homeopathic Medicine and Surgery), BUMS (Bachelor of Unani Medicine and Surgery), or BSMS (Bachelor of Siddha Medicine and Surgery). After obtaining the degree, registration with the respective AYUSH council is required to practise legally.\\n\\nWhat are the benefits of an AYUSH certificate?\\n\\nThe benefits of an AYUSH certificate include the legal authority to manufacture and sell AYUSH products, assurance of product quality and safety, and enhanced credibility in the market.\\n ... \\nGMP (Good Manufacturing Practice) certification in the AYUSH license is a requirement for ensuring that AYUSH products are manufactured consistently to high standards of quality. The certification is awarded to manufacturers who adhere to strict guidelines, ensuring the production of safe, effective, and high-quality products. This certification is internationally recognised, with standards often based on the World Health Organization's (WHO) guidelines. Obtaining GMP certification is crucial for AYUSH practitioners and manufacturers as it builds trust with consumers and ensures compliance with regulatory requirements. It also plays a key role in the export of AYUSH products.\\n\\nWhat is a Certificate of Pharmaceutical Product in AYUSH License?\\n\\nA Certificate of Pharmaceutical Product (COPP) is a document issued under the AYUSH license, verifying that the manufacturing facility produces pharmaceutical products in compliance with Indian and international standards.\"], publish_date='2026-03-18', title='AYUSH License: Required Documents and Process to Apply Online in India')"
+    },
+    {
+      "title": "Requirements for issuing a new license/ renewal of license: | Directorate of AYUSH",
+      "url": "https://ayush.delhi.gov.in/ayush/requirements-issuing-new-license-renewal-license",
+      "excerpt": "WebSearchResult(url='https://ayush.delhi.gov.in/ayush/requirements-issuing-new-license-renewal-license', excerpts=[\"* \\n* \\n* \\n  \\n  A <sup>\\\\+</sup> A A <sup>\\\\-</sup> A A\\n* \\n* \\n* Select your language English\\n\\n# [Directorate of AYUSH Government of NCT of Delhi](https://ayush.delhi.gov.in/)\\n\\n* \\n* \\n*\\n\\n## Ayush Main Menu\\n\\n* Home\\n* About us\\n  \\n    + About us\\n    + Organizational Chart\\n* AYUSH Systems of Medicine\\n  \\n    + Ayurveda\\n        \\n        - Ayurveda\\n        - Fundamental Principles\\n        - Panchakarma Therapy\\n        - Prakriti\\n    + Unani\\n        \\n        - Modes of Treatment\\n        - Unani\\n    + Yoga & Naturopathy\\n    + Homoeopathy\\n    + Siddha & Sowa Rigpa\\n* Services\\n* FAQ\\n  \\n    + About AYUSH\\n    + About Ayurveda\\n    + About Panchkarma\\n    + About Education In Ayurveda\\n    + About Unani\\n    + About Practice\\n* Drug Control Cell\\n  \\n    + Drug Control Cell\\n    + Requirements for issuing a new license/ renewal of license:\\n* Education\\n  \\n    + Education\\n    + Nehru Homoeopathic Medical College & Hospital\\n    + Ayurvedic and Unani Tibbia College & Hospital\\n+ Chaudhary Brahm Prakash Ayurved Charak Sansthan\\n    + Dr. B. R. Sur Homoeopathic Medical College, Hospital and Research Centre\\n    + RE-orientation Training Programmes\\n* Notice Board\\n  \\n    + Gazette Notification\\n    + Important links\\n    + Latest News\\n    + What's New\\n* RTI\\n  \\n    + RTI\\n    + [RTI-act](http://delhigovt.nic.in/rti/default.asp)\\n* Practitioners Registration\\n  \\n    + Board of Homoeopathic System of Medicine\\n    + Delhi Bharatiya Chikitsa Parishad\\n* Other\\n  \\n    + Delhi Homoeopathic Anusandhan Parishad\\n    + Employee Corner\\n    + Examining Body For Para Medical Training For Bharatiya Chikitsa\\n    + Healthcare Facilities\\n* Contact Us\\n* [Centralized Circular/Order/Scheme/Gazette](https://delhi.gov.in/centralized-cos)\\n\\nSearch\\n\\n*\\n\\n## Requirements for issuing a new license/ renewal of license:\\n\\nHome/ Drug Control Cell / Requirements for issuing a new license/ renewal of license:\\n\\nThe following  forms are used for applying Grant /Renewal of Licences:\\n\\n* Form No. 24 D\\n( Format \\\\- Size \\\\- 75\\\\.47KB )\\n  \\n  \\\\- Application for the Grant/Renewal  of a Licence to manufacture for the sale of Ayurvedic/ Unani/ Siddha drugs  under Drug Act 1940\\n* Form No. 24 E\\n  \\n  ( Format \\\\- Size \\\\- 82\\\\.71KB )\\n  \\n  \\\\- Application for  Grant or Renewal of a Loan Licence to manufacture for sale of Ayurvedic/Unani/Siddha  drugs under Drug Act 1940\\n* Form 47\\n  \\n  ( Format \\\\- Size \\\\- 85\\\\.97KB )\\n  \\n  \\\\- Application for grant or  renewal of approval for carrying out tests on Ayurvedic and Unani drugs or raw  materials used in the manufacture thereof on behalf of licensees for  manufacture for sale of Ayurvedic and Unani drugs\\n\\nCheck List for Licence on 25-D\\n\\n( Format \\\\- Size \\\\- 45\\\\.75KB )\\n\\n  \\n  \\nCheck List for Licence on 25-E\\n\\n( Format \\\\- Size \\\\- 45\\\\.32KB )\\n\\n  \\n  \\nProforma of Annexure I for non Conviction Certificate\\n\\n( Format \\\\- Size \\\\- 34\\\\.95KB )\\n\\n  \\n  \\nSteps for Licencing of Ayurvedic and Unani Firms\\n\\n( Format \\\\- Size \\\\- 4\\\\.34KB )\\n\\n  \\n  \\nDrugs and Cosmetics Act, 1940\\n( Format \\\\- Size \\\\- 1\\\\.66MB )\\n\\n## Quick Links\\n\\n## Address\\n\\n* Ayurvedic & Unani Tibbia College Campus,  \\n  Karol Bagh, New Delhi 110005\\n* 011- 23554256, 011-23516314\\n* 011-23682964\\n\\n## Map of AYUSH\\n\\nDesigned, Developed and Maintained by [Amity Software Limited.](https://www.amitysoftware.com/)\\n\\n* Last Updated: 18/03/2026\\n* Total Visitors: 311785\\n\\nTop\"], publish_date=None, title='Requirements for issuing a new license/ renewal of license: | Directorate of AYUSH')"
+    },
+    {
+      "title": "Who Needs an Ayush Manufacturing License? - First Auditor",
+      "url": "https://www.firstauditor.com/blog/who-needs-an-ayush-manufacturing-license",
+      "excerpt": "WebSearchResult(url='https://www.firstauditor.com/blog/who-needs-an-ayush-manufacturing-license', excerpts=['It allows groups and people to legally manufacture Ayush products at the same time as ensuring they meet fine, protection, and efficacy standards. This license'], publish_date=None, title='Who Needs an Ayush Manufacturing License? - First Auditor')"
+    },
+    {
+      "title": "AYUSH License - Adviso compliance",
+      "url": "https://advisocompliance.com/ayush-license/",
+      "excerpt": "WebSearchResult(url='https://advisocompliance.com/ayush-license/', excerpts=['An AYUSH License is a government-issued authorization that allows businesses to legally manufacture, sell, or distribute products related to Ayurveda, Unani,'], publish_date=None, title='AYUSH License - Adviso compliance')"
+    }
+  ],
+  "count": 9
+}
+
+--- Result 2: WEB_SEARCH(official AYUSH mark for ayurvedic products India) ---
+{
+  "query": "official AYUSH mark for ayurvedic products India",
+  "results": [
+    {
+      "title": "AYUSH Certification | Standard & Premium Mark Approval",
+      "url": "https://www.irqs.co.in/standards-certification/ayush",
+      "excerpt": "WebSearchResult(url='https://www.irqs.co.in/standards-certification/ayush', excerpts=['Loading...\\n\\nSearching...\\n\\nNo results found\\n\\n# AYUSH Certification for Trusted Brands\\n\\nBuild trust with AYUSH certification. Ensure quality, authenticity, and compliance to access global markets and drive sustainable growth.\\n\\nRequest a Quote Today\\n\\nOVERVIEW\\n\\n## AYUSH Certification  \\nBuilding Quality and Global  \\nTrust\\n\\nAYUSH products in India are regulated under the Drugs and Cosmetics Act, 1940, by the Drugs Controller General and state authorities. To enhance product safety and consumer confidence, the Department of AYUSH, in collaboration with the Quality Council of India (QCI), introduced a voluntary certification scheme that allows manufacturers to demonstrate authenticity and quality.\\n\\n**The scheme offers two certification levels:**\\n\\n1. Ayush Standard Mark: Confirms compliance with Indian regulatory requirements under the Drugs and Cosmetics Act, ensuring product quality and safety.\\n2. Ayush Premium Mark: Aligns with WHO-GMP guidelines and international best practices.\\nCertification is issued through NABCB-accredited bodies, and certified facilities are subject to regular surveillance audits.\\n\\nBy obtaining AYUSH certification, businesses increase credibility, improve transparency, and gain global recognition, strengthening the competitiveness of Indian AYUSH products in health and wellness markets.\\n\\nCERTIFICATION ROADMAP FOR AYUSH PRODUCTS\\n\\n## Obtaining and Maintaining  \\nAYUSH Product Certification\\n\\nStep1\\n\\nStep2\\n\\nStep3\\n\\nStep4\\n\\nStep5\\n\\nStep6\\n\\nStep7\\n\\nStep8\\n\\nStep9\\n\\nStep10\\n\\n## Planning for Product Certification\\n\\nEffective preparation ensures successful AYUSH certification with minimal delays. Key steps include:\\n\\n* Select certification type: Choose either the Ayush Standard Mark or Ayush Premium Mark based on your target market.\\n* Review eligibility criteria: Understand requirements outlined by the Department of AYUSH and the Quality Council of India (QCI).\\n ... \\nand Cosmetic Rules, 1945, ensuring it meets safety, quality, and regulatory\\nrequirements. For businesses trading in Ayurvedic, Unani, Siddha, or other\\ntraditional medicine products, an AYUSH certificate is mandatory to build\\nconsumer trust and access wider markets.\\n\\n## How do I get an AYUSH certification?\\n\\nGetting AYUSH certification involves a clear ten-step process. It starts with\\nplanning your application, understanding the certification requirements, and\\nreviewing the eligibility criteria. Next, you prepare by gathering regulatory\\ndocuments, ensuring compliance with GMP standards, and aligning your processes.\\nA self-assessment helps you identify gaps before selecting an accredited\\ncertification body recognized by QCI or NABCB. Once the application is\\nsubmitted, your facility undergoes inspections and product evaluations. After\\nmeeting all requirements, the certification body issues the official AYUSH\\ncertificate.\\n\\n## How many products have AYUSH certification?\\nCurrently, 146 products have been awarded the AYUSH Premium Mark, and another\\n197 products hold the AYUSH Standard Mark. These certifications demonstrate\\ncompliance with rigorous domestic and international quality standards, building\\ntrust with consumers and global markets.\\n\\n## Are Ayurvedic medicines certified under AYUSH?\\n\\nYes, Ayurvedic medicines can be certified under the AYUSH scheme, provided they\\nmeet regulatory requirements. Certification applies not only to Ayurvedic drugs\\nbut also to herbal and traditional formulations that comply with the Drugs and\\nCosmetics Act, 1940. Oversight is provided by the Drugs Controller General of\\nIndia (DCGI), supported by advisory boards such as ASUDTAB and ASUDCC. Certified\\nAyurvedic medicines also require a Certificate of Pharmaceutical Product (CoPP)\\nfrom the DCGI, ensuring credibility in both domestic and international markets.\\n\\n## Let\\'s get you certified-Start your journey today!\\nConnect with our experts for a seamless and hassle-free certification process.\\n\\nGet Certified\\n\\n\u2716 CLOSE\\n\\nGet in Touch With Us\\n\\n## Tell us what you need? we\\'ll take it from here.\\n\\nCountry\\n\\nState\\n\\nCity\\n\\nI agree to receive marketing information via email from\\nIRCLASS and its affiliates relating to their products\\nand services. I may withdraw my consent at any time with\\nfuture effect. For further details, refer to the Privacy\\nNotice.\\n\\nSubmit\\n\\n[](https://www.irqs.co.in)\\n\\n\\\\+91 22 7119 9800\\n\\nirqs.marketing@irclass.org\\n\\nIRQS@ 2025. All rights reserved.\\n\\n* [Terms](https://www.irqs.co.in/terms)\\n* [Privacy](https://www.irqs.co.in/privacy)\\n* [Sitemap](https://www.irqs.co.in/1)\\n\\n#### \ud83c\udf6a We use cookies\\n\\nBy clicking \"Accept All\", you consent to our use of cookies. You can manage your preferences or learn more in our [Privacy Policy](https://www.irqs.co.in/privacy) .\\n\\nAccept Necessary Only Accept All Cookies Customize Preferences\\n\\n### Cookie Preferences\\n\\n\u00d7\\n\\n#### Necessary Cookies'], publish_date=None, title='AYUSH Certification | Standard & Premium Mark Approval')"
+    },
+    {
+      "title": "What Is Ayush Mark? The Newly Launched Global Standards For Traditional Medicine Explained",
+      "url": "https://www.ndtv.com/health/what-is-ayush-mark-the-newly-launched-global-standards-for-traditional-medicine-explained-9854391",
+      "excerpt": "WebSearchResult(url='https://www.ndtv.com/health/what-is-ayush-mark-the-newly-launched-global-standards-for-traditional-medicine-explained-9854391', excerpts=['The Newly Launched Global Standards For Traditional Medicine Explained\")\\n\\n# What Is Ayush Mark? The Newly Launched Global Standards For Traditional Medicine Explained\\n\\n## PM Modi addressed the closing ceremony of the Second WHO Global Summit on Traditional Medicine and highlighted India\\'s growing leadership in advancing traditional medicine.\\n\\n* Written by: [Debosmita Ghosh](https://www.ndtv.com/authors/debosmita-ghosh-8858)\\n* [Health](https://www.ndtv.com/health)\\n* Dec 20, 2025 17:01 pm IST\\n  \\n    + Published On Dec 20, 2025 17:01 pm IST\\n    + Last Updated On Dec 20, 2025 17:01 pm IST\\n\\nRead Time: 3 mins\\n\\nShare\\n\\n* Twitter\\n* WhatsApp\\n* Facebook\\n* Reddit\\n* Email\\n\\nANI\\n\\nPrime Minister Narendra Modi launched the Ayush Mark at the Second [WHO Global Summit on Traditional Medicine](https://www.ndtv.com/health/ayush-expo-to-anchor-second-who-global-traditional-medicine-summit-9826152) on Friday. Ayush Mark is envisioned as a global benchmark for quality Ayush products and services.\\n ... \\n\" The Prime Minister also presented the Prime Minister\\'s Awards for Outstanding Contribution to the Promotion and Development of [Yoga](https://www.ndtv.com/health/7-yoga-asanas-that-can-provide-instant-gas-relief-9774505) which honors national and international individuals and organisations for their exemplary service.\\n\\nSpeaking at the event, he said, \"Over the past three days, experts from around the world in the field of traditional medicine have held meaningful discussions here. I am happy that India is providing a strong platform for this, and the WHO has also played an active role in this...It is our good fortune and a matter of pride for India that the WHO Global Centre for [Traditional Medicine](https://www.ndtv.com/health/who-chief-tedros-calls-for-integrated-approach-to-traditional-medicine-in-modern-healthcare-systems-9851552) has been established in Jamnagar, India.\\nThe world entrusted us with this responsibility with great confidence at the first Traditional Medicine Summit.\"\\n\\n## **What Is The Ayush Mark?**\\n\\nThe [Ayush Mark](https://www.ndtv.com/health/pm-modi-to-launch-ayush-mark-global-benchmark-for-quality-of-traditional-medicine-system-on-friday-9841133) is a label issued by the Ministry of Ayush and is awarded to Ayurveda, Yoga and Naturopathy, Siddha, Unani and Homoeopathy products and services. The Ayush Mark Certification Scheme has been operated by Quality Council of India (QCI) since 2009.\\n\\nProducts and services having the Ayush Mark implies that it follows quality manufacturing practices, uses standard raw materials, and is tested for safety. Ayush Mark and its two levels of certification have existed for the past few years, the new label builds on them and aims to set a global benchmark for traditional medical products and services. The previous Ayush certification included two levels; Ayush Standard Mark and Ayush Premium Mark.\\nThe Ayush Standard Mark is based on Good Manufacturing Practices (GMP) for Ayurvedic, Siddha and Unani medicines (ScheduleT) as per Drugs and Cosmetic Rules, 1945. AYUSH Premium Mark is based on [WHO](https://www.ndtv.com/health/india-who-tie-up-reflects-shared-commitment-to-bring-traditional-medicine-into-mainstream-9834160) \\'s GMP guidelines covering herbal medicines.\\n\\n[Dr Tedros Adhanom Ghebreyesus](https://www.ndtv.com/health/who-chief-tedros-calls-for-integrated-approach-to-traditional-medicine-in-modern-healthcare-systems-9851552) , WHO Director-General, was also present at the WHO Global Summit on Traditional Medicine. He praised PM Modi for championing traditional medicine at the highest global level. Dr Tedros lauded India for translating vision into action, describing the country as a global leader in moving traditional medicine from heritage to evidence-informed practice.\\nHe highlighted landmark initiatives such as the establishment of the Ministry of AYUSH and the WHO Global Centre for Traditional Medicine in Jamnagar, noting that these efforts have helped integrate traditional medicine into health systems, research and policy, contributing to universal health coverage and sustainable development worldwide.\\n\\n_Disclaimer: This content including advice provides generic information only. It is in no way a substitute for a qualified medical opinion. Always consult a specialist or your own doctor for more information. NDTV does not claim responsibility for this information._\\n\\nShow full article\\n\\nTrack [Latest News](https://www.ndtv.com/latest) Live on NDTV.com and get [news](https://www.ndtv.com) updates from [India](https://www.ndtv.com/india) and around the [world](https://www.ndtv.com/world-news)\\n\\nFollow us:\\n\\n[](https://twitter.com/ndtv) [](https://www.youtube.com/user/ndtv) [](https://www.whatsapp.com/channel/0029Va4lixw7z4kcvZI9JM12) [](https://www.'], publish_date='2025-12-20', title='What Is Ayush Mark? The Newly Launched Global Standards For Traditional Medicine Explained')"
+    },
+    {
+      "title": "AYUSH INDIA MARK A Quality Assurance Initiative",
+      "url": "https://ayushexcil.in/img/AYUSH%20INDIA%20MARK%202025_revised%2025%20aug%2025.pdf",
+      "excerpt": "WebSearchResult(url='https://ayushexcil.in/img/AYUSH%20INDIA%20MARK%202025_revised%2025%20aug%2025.pdf', excerpts=['Certified for Ayush Premium Mark under the Voluntary Certification Scheme for Ayush Products managed by the Quality Council of India. Ayush Products. Page 7. 1'], publish_date=None, title='AYUSH INDIA MARK A Quality Assurance Initiative')"
+    },
+    {
+      "title": "AYUSH Mark Certification",
+      "url": "https://www.indiacertify.com/ayush-mark-certification",
+      "excerpt": "WebSearchResult(url='https://www.indiacertify.com/ayush-mark-certification', excerpts=['The AYUSH Mark is a quality certification for Ayurveda, Yoga, Unani, Siddha, and Homoeopathy products, managed by the Quality Council of India (QCI). It has two'], publish_date=None, title='AYUSH Mark Certification')"
+    },
+    {
+      "title": "GOVERNMENT OF INDIA MINISTRY OF AYUSH RAJYA ...",
+      "url": "https://sansad.in/getFile/annex/260/AU2088.pdf?source=pqars",
+      "excerpt": "WebSearchResult(url='https://sansad.in/getFile/annex/260/AU2088.pdf?source=pqars', excerpts=['**GOVERNMENT OF INDIA**\\n\\n**MINISTRY OF AYUSH**\\n\\n**RAJYA SABHA**\\n\\n**UNSTARRED QUESTION NO.2088**\\n\\n**TO BE ANSWERED ON08** <sup>**TH**</sup> **AUGUST, 2023**\\n\\n**\u201cAYUSH MARKS AND LABELLINGS\u201d**\\n\\n2088 **SHRI AYODHYARAMI REDDY ALLA:**\\n\\nWill the Minister of **AYUSH** be pleased to state:\\n\\n(a) the details about various certification marks and labellings used to indicate the qualityand\\n\\nauthenticity of AYUSH products, such as Ayurvedic Pharmacopoeia of India (API),AYUSH\\n\\npremium mark, and AYUSH certification mark\u037e\\n\\n(b) whether Government is promoting research and validation of AYUSH products toestablish\\n\\ntheir efficacy and safety and if so, the details thereof\u037e and\\n\\n(c) the plans and strategies of Government to further enhance the quality and authenticityof\\n\\nAYUSH products in the country?\\n\\n**ANSWER**\\n\\n**THE MINISTER OF AYUSH**\\n\\n**(SHRI SARBANANDA SONOWAL)**\\n\\n(a) In October 2009, Quality Control of India (QCI), at the behest of the then Department of\\nAYUSH (Now Ministry of Ayush), launched a Voluntary Certification Scheme for Ayurvedic\\n\\nProducts, which provides for testing for contaminants and compliance to standards prescribed in\\n\\nthe regulation in order to enhance the consumer confidence and also facilitate exports.The\\n\\nScheme has two levels - Standard Mark based on the compliance to the domestic regulatory\\n\\nrequirements and the other being AYUSH Premium Mark based on the World Health\\n\\nOrganisation-Good\\n\\nManufacturing\\n\\nPractices\\n\\n(WHO-GMP)\\n\\nrequirements\\n\\nand\\n\\nproduct\\n\\nrequirements to certify against overseas regulations.\\n\\nThe scheme contains Governing Structure, Certification criteria documents like GMP,\\n\\nPermissible Levels of Contaminants for AYUSH Premium Mark, Permissible Levels of\\n\\nContaminants for AYUSH Standard Mark, Internal Quality Assurance Protocol, Certification\\n\\nProcess and requirements for certification bodies. Till date 02 certification bodies are approved\\n\\nby QCI. A total of 83 companies are certified with approx.\\n6000 products under the AYUSH\\n\\nMark Scheme.Details of the scheme are available at https://qcin.org/voluntary-certification-\\n\\nscheme- for-ayush-products/ .\\n\\nCentral\\n\\nDrugs\\n\\nStandard\\n\\nControl\\n\\nOrganization\\n\\n(CDSCO)issues\\n\\nthe\\n\\nCertificate\\n\\nof\\n\\nPharmaceutical Product (COPP) of Ayurvedic products for export purpose based on joint\\n\\ninspection by representatives from CDSCO, Ministry of Ayush and respective State Licensing\\n\\nAuthority. Details are available at https://cdsco.gov.in/opencms/opencms/en/Aayush/ .\\n\\nFurther, labelling provisions for Ayurvedic, Siddha and Unani drugs are prescribed under Rule\\n\\n161 of Drugs & Cosmetics Rules, 1945 and labelling provisions for of Homoeopathic medicines\\n\\nare prescribed under Rule 106A of Drugs & Cosmetics Rules, 1945.\\n\\nPharmacopoeia Commission for Indian Medicine and Homoeopathy (PCIM&H) under\\n\\nMinistry of Ayush, lays down the Formulary specifications and Pharmacopoeial Standards for\\nAyurveda, Siddha, Unani and Homoepathy (ASU&H) drugs and publishd under respective\\n\\npharmacopoeia viz. Ayurvedic Pharmacopoeia of India (API), Siddha Pharmacopoeia of India\\n\\n(SPI), Unani Pharmacopoeia of India (UPI) and Homoeopathy Pharmacopoeia of India (HPI),\\n\\nwhich serve as official compendia for ascertaining the Quality Control (identity, purity and\\n\\nstrength) of the ASU&H drugs, included herein, as per Drugs & Cosmetics Act, 1940 and Rules\\n\\n1945, thereunder and compliance to these quality standards are mandatory for the ASU&H drug\\n\\nbeing manufactured in India.\\n\\n(b) Yes Sir. 05 Research Councils under Ministry of Ayush are actively engaged in research\\n\\nactivities like Medicinal Plant Research (Medico-Ethno Botanical Survey, Pharmacognosy and\\n\\nTissue Culture), Drug Standardization, Pharmacological Research, Clinical Research, Literary\\n\\nResearch & Documentation and Tribal Health Care Research Programme. Further, 12 National\\n ... \\n(ii) Pharmacopoeia Commission for Indian Medicine and Homoeopathy (PCIM&H) under\\n\\nMinistry of Ayush, lays down the Formulary specifications and Pharmacopoeial Standards for\\n\\nAyurveda, Siddha, Unani and Homoepathy (ASU&H) drugs, which serve as official compendia\\n\\nfor ascertaining the Quality Control (identity, purity and strength) of the ASU&H drugs, included\\n\\nherein, as per Drugs & Cosmetics Act, 1940 and Rules 1945, thereunder.These standards and\\n\\nquality parameters included in the monographs of these Pharmacopoeias have been identified as\\n\\nsuch to align with the recommendations of World Health Organization (WHO) or other major\\n\\npharmacopoeias prevalent worldwide.\\n\\n(iii) Pharmacovigilance Centres for Ayurveda, Siddha, Unani and Homoeopathy (ASU&H)\\n\\nDrugs set up in different parts of the country under the Central Scheme of Ministry of Ayush are\\n\\nmandated to monitor and report the misleading advertisements to the respective State Regulatory\\n\\nAuthorities.'], publish_date=None, title='GOVERNMENT OF INDIA MINISTRY OF AYUSH RAJYA ...')"
+    },
+    {
+      "title": "PM Modi launches Ayush Mark, setting global quality ...",
+      "url": "https://www.biospectrumindia.com/news/22/27097/pm-modi-launches-ayush-mark-setting-global-quality-benchmarks-for-indias-traditional-medicine.html",
+      "excerpt": "WebSearchResult(url='https://www.biospectrumindia.com/news/22/27097/pm-modi-launches-ayush-mark-setting-global-quality-benchmarks-for-indias-traditional-medicine.html', excerpts=['Dec 19, 2025 \u2014 With two levels of certification, the Ayush Standard Mark for domestic assurance and the Ayush Premium Mark for international markets, the'], publish_date=None, title='PM Modi launches Ayush Mark, setting global quality ...')"
+    },
+    {
+      "title": "Ayurveda Manufacturing License | Indian AYUSH Regulations",
+      "url": "https://nkgabc.com/ayush/",
+      "excerpt": "WebSearchResult(url='https://nkgabc.com/ayush/', excerpts=['There are 25 schedules(A to Y) described under this [D&C Rules 1945](https://cdsco.gov.in/opencms/export/sites/CDSCO_WEB/Pdf-documents/Ethics-Committee/Guideline-Document/Drugs_CosmeticsAct1940_Rules1945.pdf) .\\n\\nUnder these schedules,\\n\\n**Schedule A** describes various Forms  i.e. Form 1-A, 2-A, 24-D, 24-E, 25 D, 25-E, 26-D, 26-E, 26-E-I,47,48,49 are related to ASU drugs.\\n\\n**Schedule B** \\\\-1 for fees,\\n\\n**Schedule E(1)** enlist poisonous substances under ASU system of medicines and schedule T Good manufacturing practices for ASU medicines.\\n\\nProvision relating to the manufacture and control of Ayurvedic. Siddha and Unani drugs has been prescribed in the Drugs and Cosmetics Act. The individual section being described here is based on the regulation as prescribed in the Drugs and Cosmetics Act 1940, for the Ayurvedic, Siddha and Unani drugs.\\n\\n## Ayurvedic Manufacturing in India\\n\\n##### **Licensing authorities**\\n\\n[The state Govt.\\nshall appoint licensing authorities by notification in official gazette. [Rule 52]](https://www.indiacode.nic.in/bitstream/123456789/15621/1/A2020-15.pdf)\\n\\n##### FOR MANUFACTURER\\n\\n**Application for licence to manufacture ASU drugs**\\n\\nAn application for the grant or renewal of a licence to manufacture for sale any ASU drugs shall be made in Form 24-D to the Licensing Authority [State] \u2013 Fees INR1000.00 [Rule 153]\\n\\n**Form of licence to manufacture ASU drugs**\\n\\nSubject to the conditions of rule 157 being fulfilled, a licence to manufacture for sale any ASU drugs shall be issued in Form 25-D. [Rule 154]\\n\\n**Certificate of renewal of licence**\\n\\nThe certificate of renewal of a licence in Form 25-D shall be issued in Form 26 D [Rule 155]\\n\\n**Duration of Licence**\\n\\nAn original licence in Form 25-D or renewed licence in Form 26 \u2013D, unless sooner suspended or cancelled, shall be valid for five years form the date of issue or renewed. [Rule 156]\\n**Condition for the grant or renewal of a licence in Form 25-D**\\n\\nConditions as specified in Schedule T [Rule 157]\\n\\n**Condition of licence**\\n\\nLicensee shall keep proper record, shall allow the inspector, appointed under the Act, to enter the premises, shall maintain the inspection book Form 35 [Rule 158]\\n\\n## FOR LOAN LICENSE\\n\\n**Application for Loan License**\\n\\nAn application for the grant or renewal of a loan license to manufacture for sale of any ASU drugs shall be made in Form 25-E to the Licensing Authority \u2013 Fees INR 600.00 [Rule 153-A]\\n\\n**Form of Loan license**\\n\\nSubject to the conditions of rule 157 being fulfilled, a license to manufacture for sale any ASU drugs shall be issued in Form 25-E. [Rule 154-A]\\n\\n**Certificate of renewal of Loan license**\\n\\nThe certificate of renewal of a loan license in Form 25-E shall be issued in Form 26 E [Rule 155-A]\\n\\n**Duration of Loan License**\\nAn original loan license in Form 25-E or renewed license in Form 26 \u2013E, unless sooner suspended or cancelled, shall be valid for five years form the date of issue or renewed. [Rule 156A]\\n\\n**Condition of license**\\n\\nLicensee shall keep proper record, shall allow the inspector, appointed under the Act, to enter the premises, shall maintain the inspection book Form 35 [Rule 158A]\\n\\n**Cancellation and suspension of license**\\n\\nAfter 15 days show cause to licensee, in writing, Licensee may appeal within three months\\n\\n## ASU Drugs License Process\\n\\n* GMP Certificate [Rule 155B]\\n* Free Sale Certificate\\n* License validity certificate\\n* Performance certificate\\n* Non-Conviction certificate\\n* Market standing certificate\\n* AYUSH MARK Certificate\\n\\nQuality Council of India has been engaged for voluntary certification of quality of Ayurveda Siddha Unani (ASU) products.\\nThrough this scheme drug manufacturers are awarded quality seal to the products on the basis of third-party evaluation of the quality, subject to fulfilment of the regulatory requirements. AYUSH Standard and AYUSH Premium Marks are awarded for products moving in domestic and international market, respectively.\\n\\n|**Ayush Standard Mark** |**Ayush Premium Mark** |\\n| --- | --- |\\n|Based on compliance to the domestic regulatory requirements |Based on GMP requirements based on WHO Guidelines and product requirements with flexibility to certify against any overseas regulation provided these are stricter than the former criteria. |\\n\\nUnder this scheme, each manufacturing unit would obtain a certification for its products from a approved certification body (CB) which is accredited to appropriate international standards by the National Accreditation Board For Certification Bodies (NABCB) and will be under regular surveillance of the certification body.\\n\\n## WHO-GMP & CoPP [Ayurveda]'], publish_date='2024-06-01', title='Ayurveda Manufacturing License | Indian AYUSH Regulations')"
+    },
+    {
+      "title": "How do you check if an Ayurvedic company is Ayush-certified?",
+      "url": "https://www.firstauditor.com/blog/how-do-you-check-if-an-ayurvedic-company-is-ayush-certified",
+      "excerpt": "WebSearchResult(url='https://www.firstauditor.com/blog/how-do-you-check-if-an-ayurvedic-company-is-ayush-certified', excerpts=[\"* Light\\n* Dark\\n\\n[WhatsApp](https://wa.me/919345487100) Mail Us Call Us\\n\\n# How do you check if an Ayurvedic company is Ayush-certified?\\n\\nIn the quickly growing Ayurvedic market, ensuring the authenticity and safety of merchandise is important. [Ayush certification](https://www.firstauditor.com/ayush-license) serves as a key indicator of an organisation's adherence to nice and regulatory standards. This manual will assist you in verifying whether or not an Ayurvedic business enterprise is certainly Ayush-certified.\\n\\n#### Understanding Ayush Certification\\n\\nThe Ministry of Ayush (Ayurveda, Yoga & Naturopathy, Unani, Siddha, and Homoeopathy) is the regulatory authority for conventional medication structures in India. Ayush certification confirms that an organization and its merchandise comply with the ministry\u2019s excellent, protection, and manufacturing hints.\\n\\n#### Why Ayush Certification Matters\\n\\n##### Ensures Product Quality\\n\\n* Guarantees adherence to protection and efficacy requirements.\\n* Prevents the sale of dangerous or substandard products.\\n* Builds patron belief and self belief.\\n\\n##### Verifies Authenticity\\n\\n* Confirm that the organization follows genuine Ayurvedic practices.\\n* Helps prevent counterfeit merchandise from coming into the market.\\n* Protect consumers from deceptive claims.\\n\\n##### Ensures Regulatory Compliance\\n\\n* Confirm adherence to Indian felony and safety requirements.\\n* Helps agencies keep away from felony troubles and consequences.\\n* Facilitates clean and valid market operations.\\n\\n#### Methods to Verify Ayush Certification\\n\\n##### 1\\\\.  Check for the Ayush Mark\\n\\n* Look for the legit Ayush mark on product packaging.\\n* The mark indicates compliance with Ayush requirements.\\n* Be cautious of counterfeit or deceptive marks.\\n\\n##### 2\\\\. Visit the Ministry of Ayush Website\\n\\n* The professional [Ministry of Ayush](https://www.firstauditor.com) website presents a list of licensed groups.\\n* Search for the business enterprise's call of their database to verify its certification.\\n* This is one of the most reliable verification techniques.\\n\\n##### 3\\\\. Verify the Product License Number\\n\\n* Check product labels for a completely unique Ayush license number.\\n* These numbers may be move-checked with nearby Ayush authorities.\\n* A legitimate license confirms reputable regulatory approval.\\n\\n##### 4\\\\. Inspect Company Documentation\\n\\n* Request to look at the agency\u2019s Ayush certification files.\\n* Ensure the files are legitimate, up to date, and issued by using the authorities.\\n* Legitimate organizations do not have any trouble sharing these facts.\\n\\n##### 5\\\\. Contact Regional Ayush Offices\\n\\n* Reach out to the State or Regional Ayush Licensing Authority for verification.\\n* These workplaces can affirm whether a business enterprise holds a valid Ayush certification.\\n* This approach presents professional confirmation directly from regulatory bodies.\\n#### Key Indicators of Legitimate Ayush Certification\\n\\n* The official Ayush Mark is clearly displayed on the packaging.\\n* Valid License Number \u2013 Easily verifiable with the government.\\n* Transparent Documentation \u2013 Available upon request.\\n* Listed on the Ayush Website \u2013 Found inside the professional Ayush database.\\n\\n#### Consequences of False Certification Claims\\n\\n* **Legal Penalties** \u2013 Companies making false claims can face fines and criminal motion.\\n* **Product Seizure** \u2013 Authorities can confiscate uncertified or misleading merchandise.\\n* **Reputation Damage** \u2013 Consumers lose acceptance as true with, main to commercial enterprise losses.\\n\\n#### Conclusion\\n\\nVerifying Ayush certification is vital for ensuring the authenticity, safety, and pleasantness of [Ayurvedic products](https://www.firstauditor.com/ayush-manufacturing-license) .\\nBy checking the Ayush mark, verifying license numbers, examining documentation, and consulting reliable sources, purchasers can make informed picks and support real, licensed corporations.\\n\\n#### Frequently Asked Questions\\n\\n## 1\\\\.What is Ayush certification for Ayurvedic companies?\\n\\nAyush certification ensures a company meets quality standards set by the Ministry of Ayush in India.\\n\\n## 2\\\\.Where can I find Ayush certification details?\\n\\nCheck the official Ministry of Ayush website or the company\u2019s official documentation for certification details.\\n\\n## 3\\\\.Are all Ayurvedic products Ayush-certified?\\n\\nNo, only products from companies meeting Ayush standards hold this certification. Always verify before purchase.\\n\\n#### Related Blogs\\n\\n  \\n*  What is an Ayush license and why is it required? Read More\\n*  Are BIS and ISO certifications the same? Read More\\n*  Is EPR Only Applicable for Plastic Waste? Read More\\n\\n[](https://www.firstauditor.com)\\n\\n[](https://www.firstauditor.com)\"], publish_date=None, title='How do you check if an Ayurvedic company is Ayush-certified?')"
+    },
+    {
+      "title": "Schemes for healthcare first - NABCB",
+      "url": "https://nabcb.qci.org.in/schemes-for-healthcare-first/",
+      "excerpt": "WebSearchResult(url='https://nabcb.qci.org.in/schemes-for-healthcare-first/', excerpts=['CGHS recognised AYUSH premium and AYUSH standard Mark in e-Tender for procurement of Ayurvedic ... recognised AYUSH Premium Mark in its AYUSH Medicine Procurement'], publish_date=None, title='Schemes for healthcare first - NABCB')"
+    },
+    {
+      "title": "\n\tPress Release:Press Information Bureau\n",
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1843836",
+      "excerpt": "WebSearchResult(url='https://www.pib.gov.in/PressReleasePage.aspx?PRID=1843836', excerpts=['AYUSH\\n\\n## Ayush Mark Certification Scheme\\n\\nPosted On:\\n22 JUL 2022 3:11PM by PIB Delhi\\n\\nAyush Mark Certification Scheme is operated by Quality Council of India (QCI) since 2009. The salient features of the scheme are as follows:\\n\\n* It is a voluntary certification scheme for ASU&H products having two levels: Ayush Standard Mark and Ayush Premium Mark.\\n\\n* The Ayush Standard Mark is based on Good Manufacturing Practices (GMP) for Ayurvedic, Siddha and Unani medicines (ScheduleT) as per Drugs and Cosmetic Rules, 1945. AYUSH Premium Mark is based on WHO\u2019s GMP guidelines covering herbal medicines.\\n\\n* For any manufacturer to qualify for AYUSH Mark Certification, compliance to the domestic regulations is a pre-requisite. The products are certified post regulatory approval given by State Licensing Authority of the state government concerned.\\n\\n* The rest of the details of the scheme can been accessed at the following link:\\n\\n<https://qcin.org/voluntary-certification-scheme-for-ayush-products> .\\nThis information was given by Minister of Ayush Shri Sarbananda Sonowal in a written reply in Lok Sabha today.\\n\\n\\\\*\\\\*\\\\*\\n\\n**SK**\\n\\n  \\n(Release ID: 1843836) Visitor Counter : 7024\\n\\nRead this release in: [Urdu](https://pib.gov.in/PressReleasePage.aspx?PRID=1844392) , [Gujarati](https://pib.gov.in/PressReleasePage.aspx?PRID=1843843)\\n\\n|AYUSH\\n\\nAyush Mark Certification Scheme\\n\\nPosted On:\\n22 JUL 2022 3:11PM by PIB Delhi\\n\\nAyush Mark Certification Scheme is operated by Quality Council of India (QCI) since 2009. The salient features of the scheme are as follows:\\n\\n* It is a voluntary certification scheme for ASU&H products having two levels: Ayush Standard Mark and Ayush Premium Mark.\\n\\n* The Ayush Standard Mark is based on Good Manufacturing Practices (GMP) for Ayurvedic, Siddha and Unani medicines (ScheduleT) as per Drugs and Cosmetic Rules, 1945. AYUSH Premium Mark is based on WHO\u2019s GMP guidelines covering herbal medicines.\\n* For any manufacturer to qualify for AYUSH Mark Certification, compliance to the domestic regulations is a pre-requisite. The products are certified post regulatory approval given by State Licensing Authority of the state government concerned.\\n\\n* The rest of the details of the scheme can been accessed at the following link:\\n\\n<https://qcin.org/voluntary-certification-scheme-for-ayush-products> .\\n\\nThis information was given by Minister of Ayush Shri Sarbananda Sonowal in a written reply in Lok Sabha today.\\n\\n\\\\*\\\\*\\\\*\\n\\n**SK**\\n\\n(Release ID: 1843836) |\\n| --- |\\n| |\\n\\n[*](http://www.facebook.com/share.php?u=https://pib.gov.in/PressReleasePage.aspx?PRID=1843836) [*](https://twitter.com/intent/tweet?url=https://pib.gov.in/PressReleasePage.aspx?PRID=1843836&text=Ayush Mark Certification Scheme) [*](https://api.whatsapp.com/send?text=https://pib.gov.in/PressReleasePage.aspx?PRID=1843836) [*](https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Ayush Mark Certification Scheme&body=https://pib.gov.\\nin/PressReleasePage.aspx?PRID=1843836&ui=2&tf=1&pli=1 \"Share by Email\") [*](https://www.linkedin.com/shareArticle?mini=true&url=https://pib.gov.in/PressReleasePage.aspx?PRID=1843836&title=Ayush Mark Certification Scheme&summary=My%20favorite%20developer%20program&source=LinkedIn)\\n\\n[*](http://www.facebook.com/share.php?u=https://pib.gov.in/PressReleasePage.aspx?PRID=1843836) [*](https://twitter.com/intent/tweet?url=https://pib.gov.in/PressReleasePage.aspx?PRID=1843836&text=Ayush Mark Certification Scheme) [*](https://api.whatsapp.com/send?text=https://pib.gov.in/PressReleasePage.aspx?PRID=1843836) [*](https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Ayush Mark Certification Scheme&body=https://pib.gov.in/PressReleasePage.aspx?PRID=1843836&ui=2&tf=1&pli=1 \"Share by Email\") [*](https://www.linkedin.com/shareArticle?mini=true&url=https://pib.gov.in/PressReleasePage.aspx?PRID=1843836&title=Ayush Mark Certification Scheme&summary=My%20favorite%20developer%20program&source=LinkedIn)'], publish_date=None, title='\\n\\tPress Release:Press Information Bureau\\n')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

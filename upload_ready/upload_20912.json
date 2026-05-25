@@ -1,0 +1,190 @@
+{
+  "pmcat_id": 20912,
+  "pmcat_name": "Servo Drives",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Servo Drives",
+      "mcat_id": 20912,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Brand",
+              "options": [
+                "Siemens",
+                "Mitsubishi Electric",
+                "Yaskawa",
+                "Delta",
+                "Schneider Electric",
+                "ABB",
+                "Bosch Rexroth",
+                "Panasonic",
+                "Fuji Electric",
+                "Rockwell Automation (Allen-Bradley)",
+                "Control Techniques",
+                "Lenze",
+                "Xinje"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Output Power",
+              "options": [
+                "50 W",
+                "100 W",
+                "200 W",
+                "400 W",
+                "0.5 HP",
+                "750 W (1 HP)",
+                "1 kW",
+                "1.5 kW (2 HP)",
+                "2 kW",
+                "3 kW (4 HP)",
+                "5 kW",
+                "7.5 kW (10 HP)",
+                "10 kW",
+                "15 kW (20 HP)"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Input Voltage",
+              "options": [
+                "24 VDC",
+                "48 VDC",
+                "220 VAC",
+                "230 VAC",
+                "400 VAC",
+                "415 VAC",
+                "440 VAC",
+                "480 VAC"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Phase",
+              "options": [
+                "Single Phase",
+                "Three Phase"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Drive Type",
+              "options": [
+                "AC Servo Drive",
+                "DC Servo Drive"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Control Mode",
+              "options": [
+                "Position",
+                "Speed",
+                "Torque",
+                "Position + Speed",
+                "Speed + Torque",
+                "Vector Control"
+              ],
+              "input_type": "multi_select"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Compatible Motor Type",
+              "options": [
+                "AC Servo",
+                "DC Servo",
+                "Brushless DC (BLDC)",
+                "Linear Servo",
+                "Induction"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Communication Interface",
+              "options": [
+                "EtherCAT",
+                "CANopen",
+                "Modbus RTU",
+                "RS-485",
+                "PROFINET",
+                "PROFIBUS",
+                "EtherNet/IP",
+                "DeviceNet",
+                "MECHATROLINK",
+                "Modbus TCP"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Feedback Type",
+              "options": [
+                "Incremental Encoder",
+                "Absolute Encoder",
+                "Resolver",
+                "Hall Sensor"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Mounting Type",
+              "options": [
+                "Panel Mount",
+                "Wall Mount",
+                "DIN Rail",
+                "Rack Mount",
+                "Cabinet Mount"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Protection Rating",
+              "options": [
+                "IP20",
+                "IP21",
+                "IP40",
+                "IP54",
+                "IP65"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Model Name/Number",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Series",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Usage/Application",
+              "options": [
+                "CNC Machining",
+                "Robotics",
+                "Packaging Machinery",
+                "Textile Machinery",
+                "Material Handling",
+                "Conveyors",
+                "Printing Machinery",
+                "Industrial Automation"
+              ],
+              "input_type": "multi_select"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

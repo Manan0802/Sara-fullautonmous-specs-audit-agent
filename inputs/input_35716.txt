@@ -1,0 +1,3630 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 35716
+category_name: Pressure Transmitters
+seller_specs (current spec sheet): {
+  "category_name": "Pressure Transmitters",
+  "mcat_id": 35716,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Pressure Type",
+          "options": [
+            "Gauge",
+            "Absolute",
+            "Differential",
+            "Vacuum",
+            "Sealed Gauge",
+            "Compound"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Pressure Range",
+          "options": [
+            "0\u20131 bar",
+            "0\u201310 bar",
+            "0\u201325 bar",
+            "0\u201340 bar",
+            "0\u2013100 bar",
+            "0\u2013250 bar",
+            "\u22121\u20131 bar",
+            "\u22121\u201310 bar"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Output Signal",
+          "options": [
+            "4\u201320 mA",
+            "4\u201320 mA HART",
+            "0\u201310 V",
+            "0\u20135 V",
+            "RS485",
+            "Modbus RTU",
+            "Relay"
+          ],
+          "input_type": "multi_select"
+        }
+      ]
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Process Connection",
+          "options": [
+            "\u00bc in NPT",
+            "\u00bd in NPT",
+            "\u00bc in BSP",
+            "\u00bd in BSP",
+            "G\u00bc",
+            "G\u00bd",
+            "Flanged"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Diaphragm Material",
+          "options": [
+            "SS316L",
+            "Hastelloy C",
+            "Monel",
+            "Tantalum",
+            "Ceramic"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Accuracy",
+          "options": [
+            "\u00b10.1%",
+            "\u00b10.25%",
+            "\u00b10.5%",
+            "\u00b11.0%"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Ingress Protection",
+          "options": [
+            "IP65",
+            "IP66",
+            "IP67",
+            "IP68"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Mounting Type",
+          "options": [
+            "Direct Mount",
+            "2 in Pipe",
+            "Panel Mount",
+            "Wall Mount"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Supply Voltage",
+          "options": [
+            "10\u201330 V DC",
+            "12\u201336 V DC",
+            "18\u201332 V DC"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 24 specs) ---
+[
+  {
+    "spec_name": "Pressure Range",
+    "total_product_count": 80,
+    "example_values": [
+      "0-10 bar",
+      "0-16 bar",
+      "0-6 bar",
+      "10 bar",
+      "400 bar"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 73,
+    "example_values": [
+      "Danfoss",
+      "Baumer",
+      "Wika",
+      "Rosemount",
+      "HK Instruments"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "total_product_count": 37,
+    "example_values": [
+      "MBS 3000",
+      "3051",
+      "DPT 2500-R8",
+      "MBS 3050",
+      "GT100"
+    ]
+  },
+  {
+    "spec_name": "Output Signal",
+    "total_product_count": 33,
+    "example_values": [
+      "4-20 mA",
+      "0-10 V",
+      "1-10 V",
+      "4 to 20 mA"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 19,
+    "example_values": [
+      "Water",
+      "Hydraulic",
+      "Liquid (Effluent)",
+      "Air",
+      "Compressor"
+    ]
+  },
+  {
+    "spec_name": "Connection Size",
+    "total_product_count": 16,
+    "example_values": [
+      "1/2 inch",
+      "1/4 inch",
+      "1 inch",
+      "1/4 unknown",
+      "18 mm"
+    ]
+  },
+  {
+    "spec_name": "Connection Type",
+    "total_product_count": 8,
+    "example_values": [
+      "BSP",
+      "NPT M",
+      "Female BSPP",
+      "NPT"
+    ]
+  },
+  {
+    "spec_name": "Input Voltage",
+    "total_product_count": 8,
+    "example_values": [
+      "24 V DC",
+      "0 to 24 volt",
+      "24 V",
+      "8-32 V"
+    ]
+  },
+  {
+    "spec_name": "Country of Origin",
+    "total_product_count": 6,
+    "example_values": [
+      "Switzerland",
+      "Denmark",
+      "Europe",
+      "Germany"
+    ]
+  },
+  {
+    "spec_name": "Technology",
+    "total_product_count": 5,
+    "example_values": [
+      "Smart type",
+      "Analog",
+      "Digital",
+      "Non-smart"
+    ]
+  },
+  {
+    "spec_name": "Accuracy",
+    "total_product_count": 4,
+    "example_values": [
+      "0.25 %"
+    ]
+  },
+  {
+    "spec_name": "Construction Type",
+    "total_product_count": 4,
+    "example_values": [
+      "Diaphragm",
+      "Miniature pencil type"
+    ]
+  },
+  {
+    "spec_name": "Body Material",
+    "total_product_count": 4,
+    "example_values": [
+      "SS"
+    ]
+  },
+  {
+    "spec_name": "Sensing Element",
+    "total_product_count": 4,
+    "example_values": [
+      "Ceramic"
+    ]
+  },
+  {
+    "spec_name": "Display Type",
+    "total_product_count": 4,
+    "example_values": [
+      "Without Display",
+      "Digital",
+      "With Display"
+    ]
+  },
+  {
+    "spec_name": "Output Voltage",
+    "total_product_count": 4,
+    "example_values": [
+      "0 to 10 V",
+      "0-10 V",
+      "1-10 V"
+    ]
+  },
+  {
+    "spec_name": "Product Design",
+    "total_product_count": 4,
+    "example_values": [
+      "Pencil type",
+      "Diaphragm",
+      "Non-Standard"
+    ]
+  },
+  {
+    "spec_name": "Display",
+    "total_product_count": 4,
+    "example_values": [
+      "Display with Power Card",
+      "LCD",
+      "With Display",
+      "Without Display"
+    ]
+  },
+  {
+    "spec_name": "Mounting Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Flush Type",
+      "Head Mounted"
+    ]
+  },
+  {
+    "spec_name": "Pressure Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Absolute"
+    ]
+  },
+  {
+    "spec_name": "Diaphragm Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Flush",
+      "Diaphragm Seal"
+    ]
+  },
+  {
+    "spec_name": "Media Compatibility",
+    "total_product_count": 3,
+    "example_values": [
+      "Hydraulic Oil",
+      "Steam"
+    ]
+  },
+  {
+    "spec_name": "Operating Temperature Range",
+    "total_product_count": 3,
+    "example_values": [
+      "125 \u00c2\u00b0C",
+      "70-80 \u00c2\u00b0C",
+      "Above 200 degree C"
+    ]
+  },
+  {
+    "spec_name": "Product Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Customized Item",
+      "Pressure Switch",
+      "Transmitter"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 8 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "count": 21,
+    "options": [
+      "Danfoss",
+      "Trumen",
+      "Baumer",
+      "Yokogawa",
+      "PES"
+    ]
+  },
+  {
+    "spec_name": "Operating Range",
+    "count": 9,
+    "options": [
+      "0-400 BAR",
+      "0 to 10000 mmH20",
+      "0 to 200 bar",
+      "0 to 760 mmHG",
+      "0~100 Bar"
+    ]
+  },
+  {
+    "spec_name": "Usage/Application",
+    "count": 8,
+    "options": [
+      "Process Control System, Food and Beverages, Pharmaceutical, Dairy, Paper & Pulp Industries",
+      "INDUSTRIAL",
+      "Pressure monitoring in hydraulic, industrial, and process systems",
+      "Measures and transmits pressure in industrial process systems",
+      "Measures and transmits gauge pressure in industrial process systems"
+    ]
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "count": 7,
+    "options": [
+      "Flush Diaphragm Pressure Transmitter TFP-310",
+      "DANFOSS MBS-3200-060G5939",
+      "ISDPT-200",
+      "ISPT-200"
+    ]
+  },
+  {
+    "spec_name": "Manufacturer",
+    "count": 7,
+    "options": [
+      "Danfoss",
+      "ABB",
+      "Emerson \u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c Rosemount",
+      "Siemens",
+      "Yokogawa Electric Corporation"
+    ]
+  },
+  {
+    "spec_name": "Process Connection Options",
+    "count": 6,
+    "options": [
+      "DIN",
+      "1/2/1/4/3/4/3/8 NPT/BSP",
+      "1/2 NPT (Male)",
+      "Remote Seal with Capillary",
+      "1/2 NPT M"
+    ]
+  },
+  {
+    "spec_name": "Output Type",
+    "count": 6,
+    "options": [
+      "4-20 mA ( HART)",
+      "v4-20mA HART",
+      "4 - 20 mA",
+      "4-20mA"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "count": 5,
+    "options": [
+      "DS2-420",
+      "CTX-3.2.3.B22.00-10",
+      "CTX-3.2.3",
+      "MBS 3000",
+      "7MF4033-1BA10-2AC7-Z"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "usage",
+    "total_impressions": 10729,
+    "options": [
+      "flow transmitter",
+      "pressure"
+    ]
+  },
+  {
+    "spec_name": "brand",
+    "total_impressions": 1328,
+    "options": [
+      "barksdale",
+      "baumer",
+      "falcon",
+      "foxboro",
+      "gefran"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (64 specs) ---
+[
+  {
+    "spec_name": "Pressure Range",
+    "spec_fill_rate": "66.3",
+    "product_count": "65"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_fill_rate": "65.3",
+    "product_count": "64"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_fill_rate": "58.2",
+    "product_count": "57"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_fill_rate": "55.1",
+    "product_count": "54"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_fill_rate": "52",
+    "product_count": "51"
+  },
+  {
+    "spec_name": "Ingress Protection",
+    "spec_fill_rate": "45.9",
+    "product_count": "45"
+  },
+  {
+    "spec_name": "Diaphragm Material",
+    "spec_fill_rate": "43.9",
+    "product_count": "43"
+  },
+  {
+    "spec_name": "Supply Voltage",
+    "spec_fill_rate": "41.8",
+    "product_count": "41"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_fill_rate": "39.8",
+    "product_count": "39"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "27.6",
+    "product_count": "27"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "16.3",
+    "product_count": "16"
+  },
+  {
+    "spec_name": "Operating Range",
+    "spec_fill_rate": "9.2",
+    "product_count": "9"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_fill_rate": "6.1",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Output Type",
+    "spec_fill_rate": "6.1",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Process Connection Options",
+    "spec_fill_rate": "6.1",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Made in",
+    "spec_fill_rate": "6.1",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Sensor Type",
+    "spec_fill_rate": "5.1",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Manufacturer",
+    "spec_fill_rate": "5.1",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_fill_rate": "5.1",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_fill_rate": "4.1",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Enclosure rating IP",
+    "spec_fill_rate": "4.1",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Typical Applications",
+    "spec_fill_rate": "4.1",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Measurement Type",
+    "spec_fill_rate": "4.1",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Accuracy Class",
+    "spec_fill_rate": "3.1",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Housing Material",
+    "spec_fill_rate": "3.1",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Display Type",
+    "spec_fill_rate": "3.1",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Protection Type",
+    "spec_fill_rate": "3.1",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Product Weight",
+    "spec_fill_rate": "3.1",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Medium Type",
+    "spec_fill_rate": "3.1",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Media",
+    "spec_fill_rate": "2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Part No.",
+    "spec_fill_rate": "2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Model Name/Number Key ISQ",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Process connection",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Temp range",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Category",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Module Name",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Model Number",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Condition",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Electr.:",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Output signal",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Measuring range",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Voltage",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Made In",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Part No. :",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Enclosure rating",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Electrical Rating",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Module Number",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Contact Type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Mech.:",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Process Connections",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Enclosure Rating",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Switch Type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Output Options",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Setpoint Type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Reset Type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Model :",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Display",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Measuring tech",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Application",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Supply voltage",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (372 rows) ---
+[
+  {
+    "spec_name": "Power-up time",
+    "spec_option_name": "10 s",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Made In",
+    "spec_option_name": "india",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Type:",
+    "spec_option_name": "Pressure Transmitter",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Max. measuring span",
+    "spec_option_name": "69 bar",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Availability",
+    "spec_option_name": "In Stock",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Measuring tech",
+    "spec_option_name": "Liquid, gas, steam",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Electr.:",
+    "spec_option_name": "ITT Canon",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Temp range",
+    "spec_option_name": "-20 to 80 C",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Long Term Drift",
+    "spec_option_name": "0.25%",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Model Number",
+    "spec_option_name": "ISPT-200",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Electrical Connection",
+    "spec_option_name": "M12 Connector",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "power",
+    "spec_option_name": "24V DC",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "SITRANS P DS III",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Accuracies",
+    "spec_option_name": "+-0.075% of Span",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Sub Category",
+    "spec_option_name": "Pressure Sensors & Transducers",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Module Number",
+    "spec_option_name": "CD3A22A1AB4DFK5Q4",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Output Options",
+    "spec_option_name": "4\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c20 mA",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "country of origin",
+    "spec_option_name": "india",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Part No. :",
+    "spec_option_name": "060G5939",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Wetted Part",
+    "spec_option_name": "SS",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Input Pressure (Pascal)",
+    "spec_option_name": "0.1 / 1.6 / 2.5 to 200 Bar",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Model Name/Number Key ISQ",
+    "spec_option_name": "ISP",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Hygenic Fittings Slotted Nut",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Output Voltage",
+    "spec_option_name": "4 to 20 mA / 0 to 10 VDC / 0 to 5 VDC / 1 to 5 VDC",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "Danfoss",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Part Number",
+    "spec_option_name": "060G3805",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Protection Class",
+    "spec_option_name": "IP 67",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Output signal",
+    "spec_option_name": "4-20mA, 0-5V, 0-10V, RS485",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Mech.:",
+    "spec_option_name": "G1/4 Female",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Reset Type",
+    "spec_option_name": "Auto Reset",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Setpoint Type",
+    "spec_option_name": "Adjustable Screw",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Hazardous Approval",
+    "spec_option_name": "Explosion Proof",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Enclosure rating IP.",
+    "spec_option_name": "68",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Types",
+    "spec_option_name": "Absolute Pressure Transmitters",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Supply voltage",
+    "spec_option_name": "9 to 36 V DC",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "Made in India",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Process connection",
+    "spec_option_name": "50.5mm,64mm,(Support customization)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "32 V",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Enclosure rating",
+    "spec_option_name": "IP65",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Enclosure Rating",
+    "spec_option_name": "IP65",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Measurment range",
+    "spec_option_name": "0-100 psi",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Working Temperature",
+    "spec_option_name": "-20 to 85 Degree Celcius",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Model No.",
+    "spec_option_name": "STA700",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "LOAD",
+    "spec_option_name": "500 OHM",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Model Number/Name",
+    "spec_option_name": "CTX",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Electrical Connections",
+    "spec_option_name": "4 - Pin Din Connector",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "MADE IN",
+    "spec_option_name": "DENMARK",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "MAKE",
+    "spec_option_name": "PREETEMP",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Switch Type",
+    "spec_option_name": "Diaphragm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Response Time",
+    "spec_option_name": "100 ms",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "NUMBER",
+    "spec_option_name": "PT PPT-100",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Noise level referred to input",
+    "spec_option_name": "0",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Use",
+    "spec_option_name": "Level pressure",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Model :",
+    "spec_option_name": "MBS 3200",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Turn Down Ratio",
+    "spec_option_name": "10:01",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "SERIAL NO.",
+    "spec_option_name": "12798071",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Protection Type",
+    "spec_option_name": "IP 68",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Min. measuring span",
+    "spec_option_name": "0.05 bar",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Contact Type",
+    "spec_option_name": "PNP",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Electrical Rating",
+    "spec_option_name": "5 A 24 V DC",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pressure types",
+    "spec_option_name": "Absolute Relative (gauged)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "encloser rating ip",
+    "spec_option_name": "66",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "Direct Mount",
+    "option_fill_rate": "88.9"
+  },
+  {
+    "spec_name": "Temperature Range",
+    "spec_option_name": "-40DegC to +120DegC",
+    "option_fill_rate": "87.5"
+  },
+  {
+    "spec_name": "Made in",
+    "spec_option_name": "India",
+    "option_fill_rate": "83.3"
+  },
+  {
+    "spec_name": "Housing Material",
+    "spec_option_name": "Stainless Steel",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Measurement Type",
+    "spec_option_name": "Gauge / Absolute Pressure",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Diaphragm Material",
+    "spec_option_name": "SS316L",
+    "option_fill_rate": "74.5"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "4\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c20 mA",
+    "option_fill_rate": "67.1"
+  },
+  {
+    "spec_name": "Product Weight",
+    "spec_option_name": "2 kg",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Category",
+    "spec_option_name": "Transmitters",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Medium Type",
+    "spec_option_name": "Air, Gas",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Output Signals",
+    "spec_option_name": "12-36V",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Display",
+    "spec_option_name": "Alphanumeric or Advanced Graphics LCD",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Supply Voltage",
+    "spec_option_name": "10\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c30 V DC",
+    "option_fill_rate": "59.5"
+  },
+  {
+    "spec_name": "Sensor Type",
+    "spec_option_name": "Pressure Transmitter",
+    "option_fill_rate": "57.1"
+  },
+  {
+    "spec_name": "Process Connection Type",
+    "spec_option_name": "1/2 inch NPT",
+    "option_fill_rate": "57.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "ISPT-200",
+    "option_fill_rate": "55.6"
+  },
+  {
+    "spec_name": "Process Connections",
+    "spec_option_name": "1/2/1/4/3/4/3/8 NPT/BSP",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Output Type",
+    "spec_option_name": "4-20mA",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Part No.",
+    "spec_option_name": "060G1125",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Weight",
+    "spec_option_name": "3.8 kg",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Measuring range",
+    "spec_option_name": "-1bar~0~35bar",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Enclosure rating IP",
+    "spec_option_name": "IP65/IP67",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Condition",
+    "spec_option_name": "New",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Media",
+    "spec_option_name": "Air & Gas",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Condition",
+    "spec_option_name": "Brand New",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Process Connections",
+    "spec_option_name": "1/4\" BSP (M)",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Module Name",
+    "spec_option_name": "CD3A22A1AB4DFK5Q4 Pressure Transmitter",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Media",
+    "spec_option_name": "Water",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Module Name",
+    "spec_option_name": "Pressure Transmitter",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "BRAND",
+    "spec_option_name": "HONEYWELL",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Level Pressure",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Part No.",
+    "spec_option_name": "060G1130",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Measuring range",
+    "spec_option_name": "68 bar",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Pressure Measurement",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Weight",
+    "spec_option_name": "3.8 Kg",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Ingress Protection",
+    "spec_option_name": "IP65",
+    "option_fill_rate": "41.9"
+  },
+  {
+    "spec_name": "MODEL",
+    "spec_option_name": "STG77S",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Enclosure Rating IP",
+    "spec_option_name": "IP65",
+    "option_fill_rate": "37.5"
+  },
+  {
+    "spec_name": "Enclosure Rating IP",
+    "spec_option_name": "Explosion Proof",
+    "option_fill_rate": "37.5"
+  },
+  {
+    "spec_name": "Operating Range",
+    "spec_option_name": "0~100 Bar",
+    "option_fill_rate": "36.4"
+  },
+  {
+    "spec_name": "Supply Voltage",
+    "spec_option_name": "12\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c36 V DC",
+    "option_fill_rate": "35.7"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "Gauge",
+    "option_fill_rate": "35"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Water",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Display Type",
+    "spec_option_name": "LCD",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Diesel",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Process Connection Options",
+    "spec_option_name": "1/2 NPT (Male)",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Oil",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Display Type",
+    "spec_option_name": "Backlit LCD",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Accuracy Class",
+    "spec_option_name": "0.5 percent",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Category",
+    "spec_option_name": "Transmitter",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Output Signals",
+    "spec_option_name": "20 mA",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Accuracy Class",
+    "spec_option_name": "1.0 percent",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Industrial",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Medium Type",
+    "spec_option_name": "Air, Gas, Liquid",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Industrial process pressure measurment",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Display Type",
+    "spec_option_name": "LED",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Process Connection Options",
+    "spec_option_name": "1/2/1/4/3/4/3/8 NPT/BSP",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Accuracy Class",
+    "spec_option_name": "0.25 percent",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Ingress Protection",
+    "spec_option_name": "IP67",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Display",
+    "spec_option_name": "Optional LCD indicator",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Product Weight",
+    "spec_option_name": "2.1 Kg",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b10.5%",
+    "option_fill_rate": "29.5"
+  },
+  {
+    "spec_name": "Sensor Type",
+    "spec_option_name": "Piezoresistive",
+    "option_fill_rate": "28.6"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "PES",
+    "option_fill_rate": "27.3"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "0-1000 psi",
+    "option_fill_rate": "26.1"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_option_name": "Process Pressure Measurement",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Enclosure rating IP",
+    "spec_option_name": "IP68",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Typical Applications",
+    "spec_option_name": "Process pressure, utilities, OEM, gas & liquid services",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Typical Applications",
+    "spec_option_name": "Process pressure, pump discharge, gas & liquid services",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Media",
+    "spec_option_name": "Oil",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_option_name": "General Process & Utility Pressure Measurement",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Voltage",
+    "spec_option_name": "24 V dc",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Media",
+    "spec_option_name": "Gas",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_option_name": "General & Utility Pressure Measurement",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Voltage",
+    "spec_option_name": "24VDC",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Media",
+    "spec_option_name": "Air",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Housing Material",
+    "spec_option_name": "Aluminum",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Typical Applications",
+    "spec_option_name": "Process pressure, pump discharge, gas & liquid pressure",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Primary Use",
+    "spec_option_name": "Process & Critical Pressure Measurement",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "BRAND",
+    "spec_option_name": "DANFOSS",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Voltage",
+    "spec_option_name": "24V dc",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Media",
+    "spec_option_name": "Steam",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Enclosure rating IP",
+    "spec_option_name": "68",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Voltage",
+    "spec_option_name": "240V",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Media",
+    "spec_option_name": "Hydraulic Oil",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "BRAND",
+    "spec_option_name": "WIKA",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Typical Applications",
+    "spec_option_name": "Utility pressure, pump discharge, gas & liquid pressure",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Measurement Type",
+    "spec_option_name": "Gauge Pressure",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "Absolute",
+    "option_fill_rate": "22.4"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b10.1%",
+    "option_fill_rate": "21.7"
+  },
+  {
+    "spec_name": "Process Connection Type",
+    "spec_option_name": "G1/4",
+    "option_fill_rate": "21.4"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00bd in NPT",
+    "option_fill_rate": "21.1"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "G\u00c3\u0082\u00c2\u00bc",
+    "option_fill_rate": "20.2"
+  },
+  {
+    "spec_name": "MODEL",
+    "spec_option_name": "MBS 5153 ; 060N1201",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c10 bar",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "MODEL",
+    "spec_option_name": "KH25-273",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "7MF4033-1BA10-2AC7-Z",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "STG73S",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "FBM217",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "MODEL",
+    "spec_option_name": "PGT 23.100",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "3700",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "STG74S",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "4\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c20 mA HART",
+    "option_fill_rate": "19.2"
+  },
+  {
+    "spec_name": "Ingress Protection",
+    "spec_option_name": "IP66",
+    "option_fill_rate": "18.3"
+  },
+  {
+    "spec_name": "Operating Range",
+    "spec_option_name": "0-400 BAR",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "0-150 psi",
+    "option_fill_rate": "17.4"
+  },
+  {
+    "spec_name": "Process Connection Options",
+    "spec_option_name": "Remote Seal with Capillary",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Manufacturer",
+    "spec_option_name": "Siemens",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Output Type",
+    "spec_option_name": "v4-20mA HART",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Made in",
+    "spec_option_name": "INDIA",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Manufacturer",
+    "spec_option_name": "ABB",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Manufacturer",
+    "spec_option_name": "Rosemount",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Process Connection Options",
+    "spec_option_name": "1/2 NPT M",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Output Type",
+    "spec_option_name": "4-20 mA ( HART)",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Manufacturer",
+    "spec_option_name": "Emerson \u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c Rosemount",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Output Type",
+    "spec_option_name": "4 - 20 mA",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Manufacturer",
+    "spec_option_name": "Danfoss",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Manufacturer",
+    "spec_option_name": "Yokogawa Electric Corporation",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Baumer",
+    "option_fill_rate": "15.2"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Honeywell",
+    "option_fill_rate": "15.2"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00bc in NPT",
+    "option_fill_rate": "14.9"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b10.25%",
+    "option_fill_rate": "14.7"
+  },
+  {
+    "spec_name": "Sensor Type",
+    "spec_option_name": "Capacitive",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Process Connection Type",
+    "spec_option_name": "1/4 inch NPT",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00bc in BSP",
+    "option_fill_rate": "13.2"
+  },
+  {
+    "spec_name": "Temperature Range",
+    "spec_option_name": "-20DegC to +70DegC",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Enclosure Rating IP",
+    "spec_option_name": "IP67",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Enclosure Rating IP",
+    "spec_option_name": "IP66",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "4-20 mA",
+    "option_fill_rate": "12.3"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "Differential",
+    "option_fill_rate": "11.2"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "Rosemount G4S22 pressure transmitter",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "ISDPT-200",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "DANFOSS MBS-3200-060G5939",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "Rosemount 2051 Pressure Transmitter",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Diaphragm Material",
+    "spec_option_name": "Hastelloy C",
+    "option_fill_rate": "10.2"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "PRESSURE MEASURING INSTRUMENT",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "PRESSURE MEASURING TRANSMITTER",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "Pressure monitoring in hydraulic, industrial, and process systems",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "AIR PRESSURE",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "Pressure Meusurement",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "rosemount",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "INDUSTRIAL",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "Pressure Measurement",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "WATER OR STEAM",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "Measures and transmits pressure in industrial process systems",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "2 in Pipe",
+    "option_fill_rate": "9.9"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Danfoss",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Operating Range",
+    "spec_option_name": "0 to 10000 mmH20",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Operating Range",
+    "spec_option_name": "13.8/276 BAR",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Operating Range",
+    "spec_option_name": "0 to 760 mmHG",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Operating Range",
+    "spec_option_name": "0 to 100 bar",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Operating Range",
+    "spec_option_name": "0 to 200 bar",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "0-5000 psi",
+    "option_fill_rate": "8.7"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "0-3000 psi",
+    "option_fill_rate": "8.7"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "0-2000 psi",
+    "option_fill_rate": "8.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c250 bar",
+    "option_fill_rate": "8.6"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "Sealed Gauge",
+    "option_fill_rate": "8.4"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c100 bar",
+    "option_fill_rate": "7.9"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "+-0.25% FS",
+    "option_fill_rate": "7.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b11.0%",
+    "option_fill_rate": "7.8"
+  },
+  {
+    "spec_name": "Process Connection Type",
+    "spec_option_name": "Tri-Clamp",
+    "option_fill_rate": "7.1"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c40 bar",
+    "option_fill_rate": "7.1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Emerson",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Yokogawa",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Rosemount",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c1 bar",
+    "option_fill_rate": "5.7"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "0\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c10 V",
+    "option_fill_rate": "5.5"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "0\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c5 V",
+    "option_fill_rate": "5.5"
+  },
+  {
+    "spec_name": "Ingress Protection",
+    "spec_option_name": "IP68",
+    "option_fill_rate": "5.4"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "Variable",
+    "option_fill_rate": "5"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "Gauge Pressure",
+    "option_fill_rate": "4.9"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "RS485",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "G\u00c3\u0082\u00c2\u00bd",
+    "option_fill_rate": "4.4"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00bd in BSP",
+    "option_fill_rate": "4.4"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "0-10000 PSI",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "0-100 psi",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "-14.5038 TO 3045.79 PSI",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "-1 to 210 BAR",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c25 bar",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "-14.5038 TO 507.632 PSI",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "-14.5038 TO 50.7632 PSI",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Measurement Range",
+    "spec_option_name": "0-1200mmH2O",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Diaphragm Material",
+    "spec_option_name": "Tantalum",
+    "option_fill_rate": "4.1"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "Compound",
+    "option_fill_rate": "3.5"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "Modbus RTU",
+    "option_fill_rate": "3.4"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "Relay",
+    "option_fill_rate": "3.4"
+  },
+  {
+    "spec_name": "Diaphragm Material",
+    "spec_option_name": "Stainless Steel",
+    "option_fill_rate": "3.1"
+  },
+  {
+    "spec_name": "Diaphragm Material",
+    "spec_option_name": "Ceramic",
+    "option_fill_rate": "3.1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Siemens",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Simens",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "HONEYWELL",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "CTX",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Foxboro",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "Vacuum",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "Absolute Pressure",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "10 V",
+    "option_fill_rate": "2.7"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "G1/4",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "Flanged",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Supply Voltage",
+    "spec_option_name": "18\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c32 V DC",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Supply Voltage",
+    "spec_option_name": "42.4 V DC",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "+-0.5% FS",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "+-0.075% of Span",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "0.08%",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "10 bar",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "INDUSTRIAL",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-16 bar",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Diaphragm Material",
+    "spec_option_name": "SS304",
+    "option_fill_rate": "2"
+  },
+  {
+    "spec_name": "Diaphragm Material",
+    "spec_option_name": "316L Stainless Steel",
+    "option_fill_rate": "2"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "1/4 inch BSP",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "G1/4 Inch",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b10.075%",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "600 Bar",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "0-10 V",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-6 bar",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "100 bar (1450 psi)",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "-1 TO 210 BAR",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "\u00c3\u00a2\u00cb\u0086\u00e2\u0080\u00991\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c10 bar",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "Panel Mount",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Ingress Protection",
+    "spec_option_name": "IP54",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Diaphragm Material",
+    "spec_option_name": "Monel",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "1.5\" TC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "M20 x 1.5",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00bc\", \u00c3\u0082\u00c2\u00bd\", \u00c3\u0082\u00c2\u00be\", 1\", 1\u00c3\u0082\u00c2\u00bd\" BSP, \u00c3\u0082\u00c2\u00bc\", \u00c3\u0082\u00c2\u00bd\", 1\" NPT, M20x1.5, TriClamp, flanges or sanitary",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "MBS 3050",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "NPT Optional",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "1/2\" BSP",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "G\u00c3\u0082\u00c2\u00bd, G\u00c3\u0082\u00c2\u00bc, NPT \u00c3\u0082\u00c2\u00bc\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00b3, \u00c3\u0082\u00c2\u00bd",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00bd inch NPT female or ANSI flange",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "Threaded",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "1/4\" NPT AND 1/4\" BSP",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "DIN",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "KF16",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "G1/2",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "Tri-clover clamp",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Process Connection",
+    "spec_option_name": "G 1/4 B EN 837-1 (G30).",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b10.04%",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "0.25 % FS",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b10.05\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00af%, \u00c3\u0082\u00c2\u00b10.10\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00af%, or \u00c3\u0082\u00c2\u00b10.20\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00af%",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b10.2% of span",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "0.75",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "+-0.5% FSL",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "0.2\\%\\",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "+- 0.075% of calibrated span",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u00a2\u00e2\u0080\u00b0\u00c2\u00a4 \u00c3\u0082\u00c2\u00b1 0.2% FS",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b10.5\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00af% FS",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b10.075\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00af%",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b10.2%",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Accuracy",
+    "spec_option_name": "\u00c3\u0082\u00c2\u00b10.1% FS",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "4 20 mA",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c100\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afpsi",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "-1-600 bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "All ranges",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "-1 TO 3.5 BAR",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "NONE",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "Absolute, Gauge and Negative",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "2 PNP/NPN",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "Gauge / Relative",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0 to 60 ba",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "4\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c20\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afmA DC",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "gauge, absolute and hydrostatic level measurement",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "10 Bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-0.005...0...0.2bar absolute",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "200 mbar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "623 to +623\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afmbar (millibar)",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0---100---400bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "any range",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-150 PSI",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "20 mA",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "4\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c20\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afmA DC HART",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "TEMPERATURE INDICATOR",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "Differential Pressure (DP)",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-2.5bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "15 Bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "Optional 0-10 VDC, 0-5 VDC",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-1000 PSI",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-400 BAR",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "10 bar (145 psi)",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-370 bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-6-2000bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "-1...0...350bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0...1...1000bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "LIQUIDS AND GASES",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "-1 TO 35 BAR",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "any",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "PRESSURE",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-15 bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "variable",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "0 5 V",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "32 V",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "-12.5-250bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-1000 psi",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "PRESSURE TRANSMITTER",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "-1 to 200 bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0.4 bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "25\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afmbar to 100\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afbar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0 to 25 bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0 To 400 Bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-200 BAR",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-4 bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0...4 bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "PNP/NPN",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-100mbar-1000bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "Customized Range",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Type",
+    "spec_option_name": "NONE",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "-1 to 600 Bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-10-600bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Output Signal",
+    "spec_option_name": "0 10 V",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0-400 bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "0 To 16 Bar",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Pressure Range",
+    "spec_option_name": "(Nominal pressure gauge) \u00c3\u00a2\u00cb\u0086\u00e2\u0080\u00991\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00a62200 bar",
+    "option_fill_rate": "0.7"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Spec Validation and Definition 
+
+
+## What this skill is for
+
+When candidate missing specs have been surfaced by the Buyer-Seller Call, Custom Spec,
+or Buyer Search skills — read this document. It gives you the framework to
+validate whether each candidate is a genuine new spec or a false positive, and
+if genuine, define it completely and  correctly for the Indian B2B marketplace.
+
+---
+
+## Step 1 — Validate: Is this a genuine new spec?
+
+A candidate missing spec is genuine only if all three of the following are true:
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same
+real-world attribute, even approximately, the candidate is not a gap.
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+---
+
+## Common false positives — check these before acting
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common
+synonym.
+
+Common equivalences in Indian B2B:
+
+| These terms often mean the same thing |
+|---------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Size / Dimensions / Measurement / Specification |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade ||
+
+**Composite attributes**
+Some candidates are natural-language composites. "10mm HDPE pipe" → "10mm" is
+not a new Diameter spec if Dimensions already exists.
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+**Multiple candidates meaning the same thing**
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning. "Usage" from custom specs + "Application" from call data + "End Use"
+from search → one spec, not three. Pick the most standard name and add once.
+
+One underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+---
+
+## Step 2 — Define: Build the spec completely
+
+Once a candidate passes validation, define it fully across four elements.
+
+### Spec Name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+### Input Type
+
+**`text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+**`radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+- Boolean attributes where the only meaningful values are Yes and No
+  (e.g. ISI Certified, Waterproof, Fire Resistant). Options: `["Yes", "No"]`
+
+**`multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → `multi_select`
+
+
+### Options — How to Generate Them
+
+Draw from example values in call data, custom spec submissions, and search
+option values. When data values are sparse, inconsistent, or absent, generate
+the full option set from Indian B2B market knowledge for this category and spec.
+
+**Understanding option values from data sources:**
+
+Option values surfaced by the data source skills vary significantly in quality.
+Here is what each quality level looks like and what it tells you:
+
+| Data Quality | What it looks like |
+|---|---|
+| Clean and consistent | Values are specific, formatted, and repeated across sources — reliable signal for what the real market options are |
+| Mixed quality | Some specific values mixed with vague or inconsistently formatted ones — the specific values are the signal; the rest is noise |
+| 1–2 values only | Too sparse to define the full option set — useful for confirming what the spec means, but market knowledge is needed to complete the list |
+| Completely messy | No usable signal — generate entirely from Indian B2B market knowledge |
+| Empty | No data at all — generate entirely from Indian B2B market knowledge |
+| Contains NA / Other / Custom | These are non-values — ignore them and treat the remaining data at its actual quality level |
+
+**Quality rules for new option to be created:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only
+2. **No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose**
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz.
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+5. Ideally the option count should be limited to 10 most common options 
+
+**Formatting rules:**
+1. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+2. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+3. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm
+4. Categorical options by frequency — most common in Indian market first
+5. Use ISI/BIS standards where applicable
+6. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+7. Do not use range options unless they are the market standard for this spec
+
+### Tier Placement
+
+All new specs are added as Tertiary. Sequencing reasoning determines the final
+tier based on actual signal data.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(top pressure transmitter brands in India) ---
+{
+  "query": "top pressure transmitter brands in India",
+  "results": [
+    {
+      "title": "TOP 10 Pressure Transmitter Brands Globally - Holykell",
+      "url": "https://www.holykell.com/news/TOP_10_Pressure_Transmitter_Brands_Globally.html",
+      "excerpt": "WebSearchResult(url='https://www.holykell.com/news/TOP_10_Pressure_Transmitter_Brands_Globally.html', excerpts=['# News\\n\\n[](https://www.holykell.com/) Your current location: [Home](https://www.holykell.com/ \"Home\") > News > Blogs\\n\\n# TOP 10 Pressure Transmitter Brands Globally\\n\\nJuly 07, 2023\\n\\n**Introduction**\\n\\n**Pressure sensors** play a crucial role in various industries, providing accurate and real-time measurements of pressure levels. From industrial automation to healthcare and automotive applications, pressure sensors ensure the efficiency and safety of critical processes. In this article, we present the top 10 pressure sensor brands globally, highlighting their importance, background, and core advantages.\\n\\n**Brand Rankings**\\n\\nHoneywell (United States)\\n\\nTE Connectivity (Switzerland)\\n\\nWika (Germany)\\n\\nEndress+Hauser(Switzerland)\\n\\nHolykell (China)\\n\\nMicrosensor (China)\\n\\nSICK (Germany)\\n\\nYokogawa (Japan)\\n\\nRosemount (United States)\\n\\nIfm (Germany)\\n\\n**1\\\\. Honeywell (United States)**\\n\\n**Company Introduction**\\n ... \\nThey offer a wide range of **pressure sensors** that cater to various industrial applications.\\n\\nHolykell provides an extensive pressure sensors, including piezoresistive, capacitive, and diaphragm sensors. Their sensors are suitable for almost all the industrial applications, such as oil and gas, chemical, food, HVAC, transportation, water treatment and so on.\\n\\nThe brand has expanded its market presence rapidly, both domestically and internationally, establishing itself as a key player in the pressure sensor industry and has gained recognition for producing high-quality, cost-effective pressure sensors.\\n\\nAccording to the customer feedback, Holykell is praised for its attentive customer service and providing sensors that meet the specific requirements of diverse applications.\\n\\nFor more about Holykell, visit their official website at **[www.holykell.com](https://www.holykell.\\n ... \\nRosemount has a strong market presence and is considered a trusted name in pressure sensing technology. Their sensors are extensively adopted in critical applications where precise pressure measurements are vital. And the products are known for their durability, performance, and advanced features.\\n\\nThe official website is **[www.emerson.com](https://www.emerson.com \"Holykell-Measuring Instrument\")** .\\n\\n**10\\\\. Ifm (Germany)**\\n\\n**Company Introduction**\\n\\nIfm is a German-based multinational company specializing in industrial automation and sensing solutions.\\n\\nThey offer a diverse range of pressure sensors, including electronic pressure switches and transmitters.\\n\\nIfm has a significant global presence and is recognized for its reliable and high-performance pressure sensors and has built a strong reputation as a provider of quality pressure sensors known for their robustness, accuracy, and long service life.\\nIfm is committed to customer satisfaction, offering pressure sensors that meet industry requirements and providing excellent technical support to ensure optimal performance. For more information about Ifm, visit their official website at **[www.ifm.com](https://www.ifm.com \"Holykell-Measuring Instrument\")** .\\n\\nThe top 10 pressure sensor brands, including Honeywell, TE Connectivity, Holykell, Micro sensor, Wika, E+H, SICK, Yokogawa, Rosemount, and Ifm, are recognized for their market influence, brand reputation, and customer satisfaction. They offer a diverse range of high-quality pressure sensors that cater to various industries, ensuring precise and reliable pressure measurements.\\n\\nFor more detailed information about each brand and their specific pressure sensor offerings, visit their respective official websites and explore their comprehensive product catalogs and solutions.\\n\\n**FAQs**\\n\\n**1\\\\.How to choose a right pressure sensor?**\\nChoosing the right pressure sensor involves considering several factors to ensure it meets your specific application requirements, which include the pressure range, pressure type, accuracy, working temperature, media compatibility, electrical output, power supply, certifications...\\n\\nBy carefully evaluating these factors and considering your specific application requirements.\\n\\n**2\\\\.Best place to buy a Fuel Pressure Sensor?**\\n\\nYou can visit the website listed above to buy a fuel pressure sensors. Just kind remind that since different products work fine in different cases, so if you are not good at product selection, remember to tell the sales engineers your specific applications so they can recommend you the suitable products.\\n\\n**Pre:** Best 10 Submersible Level Sensor Manufacturers: A Comprehensive Overview\\n\\n**Next:** 9 FAQs of Wireless Sensors\\n\\n## Subscribe to our news!\\n\\nSubscribe Now\\n\\n### Ask an Expert\\n\\n* \\n* _\\\\*_\\n* _\\\\*_\\n* _\\\\*_\\n\\nSend Messages\\n\\n#### Main Menu\\n\\n    [Home](https://www.'], publish_date=None, title='TOP 10 Pressure Transmitter Brands Globally - Holykell')"
+    },
+    {
+      "title": "Ultra High Purity (UHP) Pressure Transducers | Setra Systems",
+      "url": "https://www.setra.com/product/pressure/uhp-india",
+      "excerpt": "WebSearchResult(url='https://www.setra.com/product/pressure/uhp-india', excerpts=[\"Products > Pressure > UHP Pressure Transducers\\n\\n# Ultra High Purity (UHP) Pressure Transducers\\n\\nFor more details Call Us Or Whatsapp on \\\\+91-7506067515 Email on info.india@setra.com In the critical realm of specialty gas monitoring and control, Setra stands out as a true pioneer, revolutionizing the industry with its cutting-edge ultra high purity pressure transducer. These state-of-the-art instruments are meticulously engineered to excel in the most demanding applications, guaranteeing precision and reliability. With Setra's over 50 years of expertise in pressure expertise, you can confidently monitor and control specialty gases with utmost confidence and accuracy, ensuring optimal performance and safety. Experience the future of gas monitoring and control with Setra's ultra-high purity pressure transducers.\\n\\n# Model 223 Flow-Through Pressure Transducer\\n\\n[](https://www.setra.com/products/pressure/model-223-ultra-high-purity-flow-through-pressure-transducer)\\nThe Model 223 ultra-high purity pressure transducer is designed for the most demanding specialty gas monitoring and control applications.\\n\\n[**View Product**](https://www.setra.com/products/pressure/model-223-ultra-high-purity-flow-through-pressure-transducer)\\n\\n# Model 224 Flow-Through Pressure Transducer\\n\\nSetra's Model 224 ultra-high purity pressure transducer is designed for the most demanding specialty gas monitoring and control applications.\\n\\n**View Product**\\n\\n# Model 225 UHP Pressure Transducer\\n\\n[](https://www.setra.com/products/pressure/model-225-ultra-high-purity-pressure-transducer)\\n\\nSetra's Model 225 is ideally suited for high-purity gas delivery systems semiconductor processes.\\n\\n[**View Product**](https://www.setra.com/products/pressure/model-225-ultra-high-purity-pressure-transducer)\\n\\n# Model 227 UHP Pressure Transducer\\n\\n[](https://www.setra.com/products/pressure/model-227-ultra-high-purity-pressure-transducer)\\nSetra's Model 227 transducer is designed for high density, modular block gas sticks and panels required for today\u2019s 300 mm tools.\\n\\n[**View Product**](https://www.setra.com/products/pressure/model-227-ultra-high-purity-pressure-transducer)\\n\\n**What makes Setra's pressure sensors stand out?** Setra\u2019s pressure sensors are considered best-in-class for a handful of reasons, including their accuracy, ranges, and stability. Setra produces sensors with accuracy as high as +/- 0.02% Full Scale. **Choose a category below to see our pressure sensing products:** [**Differential Pressure Sensors |**](https://www.setra.com/product/pressure/differential) [**Absolute Pressure Sensors |**](https://www.setra.com/product/pressure/absolute) [**Compound Pressure Sensors |**](https://www.setra.com/product/pressure/compound) [**Gauge Pressure Sensors |**](https://www.setra.com/product/pressure/gauge) [**Vacuum Pressure Sensors |**](https://www.setra.\\ncom/product/pressure/vacuum) [**UHP Pressure Sensors |**](https://www.setra.com/product/pressure/uhp) **[Barometric Pressure Sensors |](https://www.setra.com/product/pressure/barometric)** [**Submersible Pressure Transducers**](https://www.setra.com/product/pressure/submersible)\\n\\n# Fill Form To Get Technical & Commercial Assistance\\n\\nIndia Office  \\n  \\nSetra Systems (A division of Fortive Corporation)  \\n  \\nPhone: +91-7506067515  \\nEmail: info.india@setra.com South East Asia  \\n  \\nEmail: info-sea@setra.com\\n\\n[](https://www.setra.com/)\\n\\n**CLOSE X** **Email Setra** **Product Support** Contact Us\\n\\n**CLOSE X** **Call Setra** **Send a Message** Contact Us\"], publish_date=None, title='Ultra High Purity (UHP) Pressure Transducers | Setra Systems')"
+    },
+    {
+      "title": "Pressure transmitter - WIKA India",
+      "url": "https://www.wika.com/en-in/lp_pressure_transmitter.WIKA",
+      "excerpt": "WebSearchResult(url='https://www.wika.com/en-in/lp_pressure_transmitter.WIKA', excerpts=['1. Products\\n2. Pressure measurement\\n\\n# Pressure transmitter\\n\\nAs a rule, the term process transmitter is used to describe a pressure measuring instrument with the features mentioned above. Electronic pressure measuring instruments without turndown, digital pressure indication or bar graph and without control keys, on the other hand, are in general considered as pressure sensors or pressure transmitters. If you are interested in pressure sensors/pressure transmitters, extensive information can be found on the info page pressure sensor .\\n\\n ### Universal process transmitter\\n\\n ### Industrial process transmitters\\n\\n ### Differential pressure transmitters\\n\\nVideos Pressure sensor accuracy | 3 common errors | WIKA\\n\\n## Note\\n\\nYour current cookie settings prevent the desired content from being displayed, as it is integrated by Google Ireland Ltd. (YouTube). By consenting, you trust this vendor and add Google Ireland Ltd. (YouTube) to your vendor settings for this website.\\nYou can view and manage the Google Privacy Policy and your settings [here.](https://policies.google.com/privacy?hl=en)\\n\\nI agree\\n\\nProcess transmitters from WIKA are flexible in operation and are suitable for measurement tasks in the widest variety of application areas. They detect the level in vessels, determine the flow rate in pipes and monitor pumps, to name but a few examples.\\n\\n## Universal process transmitter\\n\\nThe model UPT-20 (with pressure port) / model UPT-21 (with flush diaphragm) process transmitter is suitable for many industries. Apart from machine building and plant construction, it is used in the process industry with its intrinsically safe Ex ia version. Also, the demands of the hygienic, pharmaceutical and food industries are fulfilled using flush process connections. The process transmitter can be delivered with an analogue output signal and HART <sup>\u00ae</sup> protocol (version 7).\\nThe measured value is easy to read from the process transmitter due to its rotatable case (rotatable even after mounting in the process) and the high-contrast and especially large display, with its 45\u00b0 incline. The electrical installation at the instrument is achieved without the need for any additional tools. The plastic surface is fully conductive and thus it is particularly suited for Ex applications. With IP66 the instrument is protected against dust and liquids, and with IP67 against short-term immersion.\\n\\n## Industrial process transmitter\\n\\nThe model IPT-20 (with pressure port) / model IPT-21 (with flush diaphragm) process transmitter is available in seven case variants. For materials, plastic, aluminium, and stainless steel are used.\\n\\nThe process transmitter is available with all of the output signals prevalent in the process industries: Analogue signal, HART <sup>\u00ae</sup> signal, FOUNDATION\u2122 Fieldbus, PROFIBUS <sup>\u00ae</sup> PA.\\nIn addition, the process transmitter can be delivered with a choice of piezo, thin-film or ceramic sensor. The large number of process connections and the extensive possibilities offered by the metallic measuring cell enable use in all industries.\\n\\n## Differential pressure transmitter\\n\\nThe model DPT-20 is used in the measurement of differential pressures. Typical applications are level and flow measurements and also filter and pump monitoring.\\n\\nFor level measurement, the DPT-20 is used for monitoring a closed vessel and registers the hydrostatic filling pressure. If the vessel shape is stored as a pressure-volume curve, it can calculate the volume of any tank form and represent this directly on the display. Transmission to a connected process control system is also possible.\\n\\nIf the DPT-20 is combined with a primary flow element, such as restriction orifice or a Venturi tube , it can measure the flow within pipelines.\\n ... \\n[](https://blog.wika.com/en/knowhow/difference-between-gauge-pressure-and-absolute-pressure-measurement/) Blog articles [Difference between gauge pressure and absolute pressure measurement](https://blog.wika.com/en/knowhow/difference-between-gauge-pressure-and-absolute-pressure-measurement/)\\n\\n ### Need instruments calibrated? We calibrate and repair your measuring instruments in the WIKA-owned accredited DKD/DAkkS calibration laboratory or on-site at your premises.\\n\\n ### Whitepapers Discover our selection of free white papers and gain in-depth insights into current technologies, trends and solutions!\\n\\n FAQ\\n\\nWhy does one have filled pressure gauges?\\n\\nThe filling fluid serves as damping for the moving parts within the case. As a result, damage caused by vibration and increased wear on the moving parts can be prevented.\\n\\nYou can find further information in the following video  \\n  \\n[](https://www.youtube.com/embed/ILTgNUow3i4 \"Video\")'], publish_date=None, title='Pressure transmitter - WIKA India')"
+    },
+    {
+      "title": "Pressure Transmitters | Yokogawa India",
+      "url": "https://www.yokogawa.com/in/solutions/products-and-services/measurement/field-instruments-products/pressure-transmitters/",
+      "excerpt": "WebSearchResult(url='https://www.yokogawa.com/in/solutions/products-and-services/measurement/field-instruments-products/pressure-transmitters/', excerpts=['* \\n* [Home](https://www.yokogawa.com/in/)\\n* [Products & Services](https://www.yokogawa.com/in/solutions/products-and-services/)\\n* [Measurement](https://www.yokogawa.com/in/solutions/products-and-services/measurement/)\\n* [Field Instruments](https://www.yokogawa.com/in/solutions/products-and-services/measurement/field-instruments-products/)\\n* Pressure Transmitters\\n\\n# Pressure Transmitters\\n\\n* Overview\\n* Details\\n* Resources\\n* Downloads\\n* Videos\\n* News\\n\\n \\n\\n[Request a Quote](https://www.yokogawa.com/in/contact/sales-and-quote?category=category-107&product=Pressure%20Transmitters)\\n\\n## Overview\\n\\n### About Yokogawa\u2019s Pressure Transmitters\\n\\nPressure transmitters are used to measure the pressure or level of industrial liquids and gases. The output is transmitted to a control system. Accurate and stable process measurements ensure the safe, reliable, and profitable operation of your plant.\\nCompact, lightweight, intuitive and intelligent, Yokogawa pressure instruments simplify all aspects of handling, commissioning, installation, operation, and maintenance while delivering outstanding performance. Whether installed in the harsh environment of an offshore platform or a refinery in the burning desert heat, our DPharp series delivers accurate, repeatable, and high integrity process measurements.\\n\\n### OpreX Pressure Transmitter\\n\\nOur pressure transmitters are organized into three categories below, based on performance level and application requirements. Explore the category that best matches your operational needs.\\n\\n|Proven Choice |High Performance |Flagship |\\n| --- | --- | --- |\\n| | | |\\n|EJA E Series is our longest-selling product with a history of proven performance.\\n\\n> [EJA E Series](https://www.yokogawa.\\ncom/solutions/products-and-services/measurement/field-instruments-products/pressure-transmitters/differential-pressure/eja-e/) |EJX A Series delivers advanced performance and reliability for demanding applications.\\n\\n> [EJX A Series](https://www.yokogawa.com/solutions/products-and-services/measurement/field-instruments-products/pressure-transmitters/differential-pressure/ejx-a/) |**NEW**  \\nEJX S Series builds on the EJX A Series, pushing performance and innovation to the next level.\\n\\n> [EJX S Series](https://www.yokogawa.com/solutions/products-and-services/measurement/field-instruments-products/pressure-transmitters/differential-pressure/ejx-s/) |\\n\\n#### Comparison Table for EJX / EJA Series\\n\\n| |EJA E Series |EJX A Series |EJX S Series |\\n| --- | --- | --- | --- |\\n|Accuracy |Up to \u00b1 0.040% |Up to \u00b1 0.025% |Up to \u00b1 0.025% |\\n|Long-term Stability |Up to 10 years |Up to 15 years |Up to 20 years |\\n|Maximum Working Pressure |Up to 250 bar |Up to 250 bar |Up to 250 bar |\\n ... \\ncom/in/solutions/products-and-services/measurement/field-instruments-products/pressure-transmitters/partner-products-for-pressure-transmitters/veris-accelabar/)\\n    + [Armstrong Veris - Verabar Averaging Pitot Tubes](https://www.yokogawa.com/in/solutions/products-and-services/measurement/field-instruments-products/pressure-transmitters/partner-products-for-pressure-transmitters/verabar-averaging-pitot-tubes/)\\n    + [Badotherm - Remote Seals](https://www.yokogawa.com/in/solutions/products-and-services/measurement/field-instruments-products/pressure-transmitters/partner-products-for-pressure-transmitters/pressure-transmitters-remote-seals-for-differential-pressure-and-gauge-pressure-transmitter/)\\n    + [WIKA - Remote Seals](https://www.yokogawa.com/in/solutions/products-and-services/measurement/field-instruments-products/pressure-transmitters/partner-products-for-pressure-transmitters/remote-seals-for-differential-pressure-and-gauge-pressure-transmitter/)\\n* [](https://tool.yokogawa.\\n ... \\n* Press Release | Corporate Mar 24, 2016\\n  \\n  ### [Yokogawa to Commence Production of Differential Pressure/Pressure Transmitters in India](https://www.yokogawa.com/in/news/press-releases/2016/2016-03-24/)\\n  \\n  \\\\- Capitalizing on high growth in India to expand its control business -\\n* Press Release | Solutions & Products Oct 23, 2014\\n  \\n  ### [Yokogawa Targets Upstream Oil and Gas Applications with Release of New Low-power DPharp Series Differential Pressure/Pressure Transmitters](https://www.yokogawa.com/in/news/press-releases/2014/2014-10-23/)\\n  \\n  \\\\- Aiming for the top position in the global sensor market -\\n\\nLooking for more information on our people, technology and solutions?\\n\\n[Contact Us](https://www.yokogawa.com/in/contact/)\\n\\n* * *\\n\\nTop\\n\\n\u00d7\\n\\n\u00d7'], publish_date=None, title='Pressure Transmitters | Yokogawa India')"
+    },
+    {
+      "title": "Industrial Pressure Transmitters | Sensor Manufacturer India - Yashtec",
+      "url": "https://yashtec.in/pressure-transmitters",
+      "excerpt": "WebSearchResult(url='https://yashtec.in/pressure-transmitters', excerpts=['High Accuracy Pressure Transmitters ... Since 2010, YASHTEC Instrumentation & Engineering Source has been a trusted partner in the Indian industry, delivering\\xa0...'], publish_date=None, title='Industrial Pressure Transmitters | Sensor Manufacturer India - Yashtec')"
+    },
+    {
+      "title": "Industrial pressure transmitters and sensors  | Danfoss",
+      "url": "https://www.danfoss.com/en-in/products/sen/sensors-and-transmitters/industrial-pressure-transmitters/",
+      "excerpt": "WebSearchResult(url='https://www.danfoss.com/en-in/products/sen/sensors-and-transmitters/industrial-pressure-transmitters/', excerpts=['* India (English)\\n* Apps\\n* \\n\\n* Products\\n* Industries\\n* Service and support\\n* About Danfoss\\n* Careers\\n* Contact us\\n\\n* India (English)\\n* \\n* \\n*\\n\\n* Home page / ... / /\\n* Products\\n* / Sensing Solutions\\n* / Sensors and transmitters\\n* / Industrial pressure transmitters\\n\\n# Industrial pressure transmitters\\n\\n[Product store](https://store.danfoss.com/in/en_GB/Sensing-Solutions/Pressure-Transmitters/c/5001)\\n\\n;\\n\\n* Overview\\n* Documents\\n* Highlighted products\\n* Learning\\n* Support\\n\\n;\\n\\n## Pressure transmitters made from expert know-how\\n\\nThe extent of automation in both mobile and stationary applications is increasing dramatically. As the efficient management of machines and systems becomes more and more dependent on integral electronic controls, there will be an increasing demand for sensors and transmitters.\\n\\nDanfoss has decades of experience in this development and has managed to follow the market needs both in relation to technologies and functions.\\nToday the Danfoss product program covers a broad selection of transmitter types which all combine the state of the art technologies with intelligent choice of material. This secures that we are able to tailor our range to almost any measuring task \u2013 at any budget.\\n\\n## Features and benefits\\n\\n* High EMC performance without impact on accuracy\\n* High level of vibration and chock stability\\n* Long term stability\\n* High level of over-pressure stability\\n* High IP degree\\n* Wide choice of pressure connections, electrical connections, pressure ranges, output signal\\n* Available with marine approvals\\n\\nDST P140 Pressure Transmitter\\n\\nThe DST P140 pressure transmitter is providing digital possibilities in the water-pump and air compressor markets. The DST P140 offers premium MEMS technology along with excellent vibration stability and a high degree of EMC/EMI protection.\\n\\n[Check out the new pressure transmitter with digital possibilities](https://www.danfoss.\\n ... \\n| --- | --- | --- | --- | --- | --- | --- |\\n|Brochure |CAN DST P92C and DST T92C |English |Multiple |09 Feb, 2021 |1\\\\.8 MB |.pdf |\\n|Brochure |Enhancing safety to improve performance (SIL2) |English |Multiple |26 Jun, 2016 |336\\\\.3 KB |.pdf |\\n\\n## Highlighted products\\n\\nMBS 3000 series, compact pressure transmitters\\n\\nThe compact pressure transmitter MBS 3000 is designed for use in almost all industrial applications, and offers a reliable pressure measurement, even under harsh environmental conditions.  \\nThe flexible pressure transmitter programme covers all standard output signals.\\n\\nMBS 1600, pressure transmitters for plastic processing\\n\\nMBS 1600/1650 pressure transmitter is tailored to the specific requirements of the plastics industry. MBS 1600 is a high-quality and EMC-immune pressure transmitter.\\n\\nDST P92S, pressure transmitter for SIL-2 applications\\n\\nEnsure functional safety in mobile hydraulic machinery with DST P92S SIL2 pressure sensors.\\nWhen performance level d is required for safe work environments.\\n\\nMBS 1200 series, OEM pressure transmitters for industrial applications\\n\\nThe compact OEM pressure transmitter MBS 1200 is designed for use in almost all industrial applications, and offers a reliable pressure measurement, even under harsh environmental conditions.\\n\\n## Learning\\n\\n## Learn more about our pressure transmitters\\n\\nLearn more about pressure transmitter technology and get familiar with our pressure transmitter program in the Danfoss Learning e-Lessons.\\n\\n[Pressure transmitter elesson program](https://danfoss.sabacloud.com/Saba/Web_spf/EU2PRD0064/guest/learningeventdetail/curra000000000003680)\\n\\n## Support\\n\\nHow to install a pressure transmitter\\n\\nA pressure transmitter measures an incoming pressure and converts it to an analog signal for system control. The output signal is directly proportional to the applied pressure.\\nIn our example on how to install a pressure transmitter, we have chosen an MBS 1700 pressure transmitter from Danfoss.\\n\\n[Check out the new how-to-video on how to install a pressure transmitter](https://youtu.be/I4XfGE8xnw4)\\n\\nLooking for support?\\n\\nAre you a wholesaler or installer? Visit the dedicated support portal to get easy access to all relevant tools, learning, animations, how-to-videos, and a lot of other information from Industrial Automation.\\n\\n[Check out our Support Made Easy Hub](https://www.danfoss.com/en/service-and-support/fix-and-troubleshooting/industrial-automation-support-made-easy/)\\n\\nQuick Links\\n\\nNeed technical information? Get easy access to datasheets for our products as well as direct links to our product catalog here.\\n\\nUse our quick links to find the exact product documentation you need.\\n\\n[Find quick links to all our product pages](https://www.danfoss.\\ncom/en/service-and-support/fix-and-troubleshooting/industrial-automation-support-made-easy/quick-links-pressure-transmitters/)'], publish_date=None, title='Industrial pressure transmitters and sensors  | Danfoss')"
+    },
+    {
+      "title": "Pressure Transmitters and Transducers | Emerson IN",
+      "url": "https://www.emerson.com/en-in/automation/measurement-instrumentation/pressure-measurement/pressure-transmitters-and-transducers",
+      "excerpt": "WebSearchResult(url='https://www.emerson.com/en-in/automation/measurement-instrumentation/pressure-measurement/pressure-transmitters-and-transducers', excerpts=['* Click to view our Accessibility Policy and contact us with accessibility-related issues\\n* Skip to Navigation\\n* Skip to Content\\n* Skip to Search\\n\\n1. Emerson\\n2. Measurement Instrumentation\\n3. Pressure Measurement\\n4. Pressure Transmitters and Transducers\\n\\n# Pressure Transmitters and Transducers\\n\\nPressure transmitters and transducers with industry-leading performance help improve operations in a wide range of industries\\n\\nView Products Talk to an Expert\\n\\n## Gain the Process Insight to Optimize Every Point\\n\\nWith over 50 years of experience, Rosemount\u2122, Paine\u2122 and Roxar\u2122 pressure instrumentation provide solutions to critical measurement challenges even in the harshest environments. Make the most informed decisions for improved productivity, quality, energy management and safety.\\n\\nView Spare Parts\\n\\n[New Features Make Maintenance Tasks More Efficient Rosemount\u2122 3051](https://go.emersonautomation.com/rmt-en-p-3051-control-library?\\nutm_source=ctrl_gbl&utm_medium=eml3&utm_content=lib_page-ehm&utm_campaign=23grmtp-305165)\\n\\n[Solve 6 Leading Pressure & Temperature Measurement Issues GET WHITE PAPER](https://go.emersonautomation.com/rmt-en-p-hidden-dangers-pressure-white-paper?utm_source=rmt_us-h&utm_medium=mixe&utm_content=wp_p005&utm_campaign=20grmtp-hidden_dangers44)\\n\\nView Spare Parts\\n\\nRead More...\\n\\nClick to continue reading Gain the Process Insight to Optimize Every Point\\n\\n## Introducing the New Rosemount 4051S Pressure Transmitter\\n\\nLearn about the latest innovations in pressure measurement and explore the newest Rosemount 4051S Pressure Transmitter.\\n\\nLearn More View Product\\n\\nRead More...\\n\\nClick to continue reading Introducing the New Rosemount 4051S Pressure Transmitter\\n\\n## Products\\n\\nSingle Variable Transmitters\\n\\nGet accurate and reliable information for a wide range pressure, level and flow measurement applications\\n\\nLearn More View Products\\n\\n* * *\\n\\nMultivariable Transmitters\\nMeasure differential pressure, static pressure and temperature in a single device with Multivariable Transmitters\\n\\nLearn More View Products\\n\\n* * *\\n\\nSensors\\n\\nHigh pressure and temperature sensors for use in the harshest environments with high performance, accuracy and reliability\\n\\nLearn More View Products\\n\\n* * *\\n\\nTransducers\\n\\nAchieve remarkable results with high pressure and temperature transducers designed for the toughest measurement challenges\\n\\nLearn More View Products\\n\\n* * *\\n\\n## Transmitter and Transducer Tools\\n\\n[### DP Flow Sizing & Selection Tool The easiest way to size, configure, and order Rosemount DP flow meters and primary elements.](https://www.emerson.com/catalog/CommonProductAdvisorDisplayView?locale=en-us&storeId=20151&divCode=RMT&sizeCTA=MSOLDPFlowPA&fromPage=PDP&insType=&action=launchPA&langId=-1)\\n\\n## Services & Consulting\\n\\n### Lifecycle Services Maximize process performance utilizing Emerson Service Technicians certified on our many products.\\n### Project Services Partner with our project management experts on product details and reduce project complexity.\\n\\n### Educational Services CEU-certified standard and customized training for specifications, commissioning, and operations.\\n\\n## Media & Case Studies\\n\\nAchieve unprecedented visibility into your pressure, flow, or level measurements and improve productivity, quality, energy efficiency, and safety with the Rosemount 3051S Series of Instrumentation.\\n\\n[Improve Safety and Product Quality with Saturn\u2122 Sensing Technology](https://www.emerson.com/documents/automation/case-study-refinery-improved-safety-product-quality-high-accuracy-saturn-sensing-technology-en-us-18450.pdf)\\n\\nGo Boldly.\u2122\\n\\nEmerson is the global technology, software and engineering powerhouse driving innovation that makes the world healthier, safer, smarter and more sustainable.\\n\\n* Our Company\\n* Leadership\\n* Environmental, Social & Governance\\n* Careers\\n* Inclusion at Emerson\\n* Contact Us\\n* Newsroom\\n* [Investors](https://www.emerson.com/en-us/investors)\\n\\n* Our Passions\\n* Sustainability\\n* Perspectives\\n* Innovations\\n* We <3 STEM\\n\\n* Our Communities\\n* [Top Quartile](http://www.emersontopquartile.com)\\n* [Exchange365](https://www.emersonexchange365.com)\\n* [Automation Experts](http://www.emersonautomationexperts.com)\\n* \\n* \\n* CONNECT WITH US\\n  \\n  [](https://www.facebook.com/EmersonCorporate/) [](https://www.linkedin.com/company/emerson) [](https://twitter.com/Emerson_News) [](https://www.youtube.com/user/emerson)\\n\\n* Privacy Notice\\n* Cookies\\n* Terms of Use\\n* Imprint\\n* Accessibility\\n* [Communication Preferences](https://go.emersonautomation.com/Subscription-Preference-Center?utm_source=eas_apacen-suppg&utm_medium=emr-webmixads&utm_content=&utm_campaign=25-gbl-eas-2upind-eng-preference_ctr49)\\n* [Report a Vulnerability](https://go.emersonautomation.com/reportvulnerability_en)\\n\\nYou have an active session in another locale:\\nBy selecting a new country/region, product(s) may be unavailable and items in your shopping cart will be removed. Please contact us for assistance.\\n\\nPlease enable JavaScript to use this website.'], publish_date=None, title='Pressure Transmitters and Transducers | Emerson IN')"
+    },
+    {
+      "title": "Rocksensor: Process Instrumentation Manufacturer in India",
+      "url": "https://rocksensor.in/",
+      "excerpt": "WebSearchResult(url='https://rocksensor.in/', excerpts=['* \\n* \\n* \\n* \\n* \\n* \\n* \\n\\n \\n\\n## Who We Are\\n\\n## Rocksensor \\\\- At a Glance\\n\\nRocksensor (RKS) is a pioneer specialising in Process Instrumentation, Research and Development, and Manufacturing of Industrial Automation Equipment. We provide highly precise pressure sensors and transmitters, flow meters, level transmitters, and temperature transmitters with a prime focus to help our clients efficiently and safely run the complex industrial processes\\n\\n[Discover More](https://rocksensor.in/about-us/)\\n\\n[](https://rocksensor.in/industries/)\\n\\n### [Industries & Solutions](https://rocksensor.in/industries/)\\n\\n[](https://rocksensor.in/knowledge-centre/)\\n\\n### [Knowledge Centre](https://rocksensor.in/knowledge-centre/)\\n\\n## Latest News\\n\\nLoading latest news...\\n\\n## 14+ years Global Experience\\n\\nRocksensor is one of the global leaders specializing in Process Instrumentation, Research and Development, and Designing of Industrial Automation Equipment.\\nWe provide highly precise Pressure Sensors and Transmitters, Flowmeters, Level Transmitters and Temperature Transmitters with a prime focus to help our clients efficiently, safely, and economically run complex industrial processes. We also provide customised products and solutions to various OEMs/ ODMs across the Globe.\\n\\n## Reliable Company\\n\\n## Why Choose Rocksensor ?\\n\\nRocksensor has been providing Process Instrumentation, Research and solutions, by Manufacturing and delivering Industrial Automation Equipment and Instrumentation to various geographical regions across the globe. With International certifications Rocksensor ensure international quality and safety standards.  \\n  \\nRocksensor is a global company that provides unique and cutting-edge technology solutions for all power, process, oil and gas industries. We specialize in a flow, level, pressure and temperature measurement, while providing exemplary customer service to form a dependable and trustworthy partnership.\\nThis has helped us in attaining maximum client satisfaction and garner a rich clientele in the global market.\\n\\n[Know More](https://rocksensor.in/about-us/)\\n\\nPremium Products\\n\\n0 \\\\+\\n\\nIndian Distributers\\n\\n0 \\\\+\\n\\nYears Of Experience\\n\\n0 \\\\+\\n\\n## Categories\\n\\n## Product Categories\\n\\nCustomers have high trust & confidence in the quality and technology of Rocksensor products.\\n\\n### Pressure Measurement\\n\\nGauge, Absolute, Differential & Sealed Pressure and Vacuum measurement of liquids, gases and steam using Silicon Sensors.\\n\\n[](https://rocksensor.in/products-processinstrumentation/)\\n\\n### Flow Measurement\\n\\nMeasure the liquid & gas flow & density using a variety  \\nof measurement methods  \\nand technologies.\\n\\n[](https://rocksensor.in/products-processinstrumentation/)\\n\\n### Level Measurement\\n\\nLevel, Distance or Volume measurement of process medium such as solids & liquids using various innovative technologies.\\n\\n[](https://rocksensor.in/products-processinstrumentation/)\\n\\n### Temperature Measurement\\nSense & Monitor temperature of solids, liquids and gases including steam using sensors & transmitters.\\n\\n[](https://rocksensor.in/products-processinstrumentation/)\\n\\n## Featured Products\\n\\n## Choose the best products that fit your needs\\n\\nExplore our comprehensive range of products encompassing flow measurement, temperature sensing, level monitoring, and pressure gauging, designed to meet the diverse requirements of industrial and commercial applications.\\n\\n## Pressure Transmitters for Nuclear Application\\n\\nPressure Transmitter\\n\\n## RF3400 Vortex Flowmeter\\n\\nFlow Measurement\\n\\n## RP3200 Coriolis Mass Flowmeter\\n\\nFlow Measurement\\n\\n## RLT6400R Non-Contact Radar Level Transmitter (80GHz) with Rod Antenna\\n\\nLevel Measurement\\n\\n## 80GHz Compact Radar\\n\\nLevel Measurement\\n\\n## Field Mount Temperature Transmitter\\n\\nTemperature Measurement\\n\\n[View More products](https://rocksensor.in/products/)\\n\\n## Testimonials\\n\\n## Our Clients Reviews\\n ... \\nOffice & Plant Address: B-36, Block B, Sector 67, Noida, Uttar Pradesh - 201301, India  \\n  CIN: U29309DL2020PTC360958\\n* info@rocksensor.in\\n* \\\\+91-928 948 8117\\n\\n[Facebook-square](https://www.facebook.com/Rocksensor) [X-twitter](http://twitter.com/rocksensor_ind) [Youtube](http://youtube.com/channel/UCvpUeKhQciMghVj07sAJDAg?sub_comfirmation=1) [Instagram](https://www.instagram.com/rocksensor/) [Linkedin-in](https://www.linkedin.com/company/rocksensor-india)\\n\\n[](https://rocksensor.in/)\\n\\n## Quick Links\\n\\n* [Home](https://rocksensor.in/)\\n* [About Us](https://rocksensor.in/about-us/)\\n* [Our team](https://rocksensor.in/team/)\\n* [Products](https://rocksensor.in/products/)\\n* [Careers](https://rocksensor.in/careers/)\\n* [Contact Us](https://rocksensor.in/contact-us/)\\n\\n## Company Address\\n\\n* Rocksensor India Private Limited  \\n  Office & Plant Address: B-36, Block B, Sector 67, Noida, Uttar Pradesh - 201301, India  \\n  CIN: U29309DL2020PTC360958\\n* info@rocksensor.in\\n* \\\\+91-928 948 8117'], publish_date='2026-01-21', title='Rocksensor: Process Instrumentation Manufacturer in India')"
+    },
+    {
+      "title": "Pressure Transmitter Suppliers in India - Sensorix Automation",
+      "url": "https://www.sensorixautomation.com/pressure-transmitter-suppliers-in-india.php",
+      "excerpt": "WebSearchResult(url='https://www.sensorixautomation.com/pressure-transmitter-suppliers-in-india.php', excerpts=['As authorized Channel Partners of global brands like SICK and Adel System, we bring world-class technology to the Indian market. Our technical expertise and\\xa0...'], publish_date=None, title='Pressure Transmitter Suppliers in India - Sensorix Automation')"
+    },
+    {
+      "title": "ACT Sensors Private Limited Mumbai - AS70 Pressure Sensor Manufacturer Supplier",
+      "url": "https://www.actsensorspvtltd.in/",
+      "excerpt": "WebSearchResult(url='https://www.actsensorspvtltd.in/', excerpts=['in/medical-pressure-sensor.htm)\\n  \\n  [Medical Pressure Sensor](https://www.actsensorspvtltd.in/medical-pressure-sensor.htm \"Medical Pressure Sensor\")\\n  \\n  AS21 is a prefect silicon pressure sensor module offering a...\\n* [Enquiry Now](https://www.actsensorspvtltd.in/enquiry-form-10019.htm?product_slno=3882269 \"Enquiry Now\") [View More](https://www.actsensorspvtltd.in/single-use-usb-data-logger.htm)\\n  \\n  [Single Use USB Data Logger](https://www.actsensorspvtltd.in/single-use-usb-data-logger.htm \"Single Use USB Data Logger\")\\n  \\n  ACT has now launched Apresys new PDF temperature data logger which...\\n* [Enquiry Now](https://www.actsensorspvtltd.in/enquiry-form-10019.htm?product_slno=3882276 \"Enquiry Now\") [View More](https://www.actsensorspvtltd.in/winters-pressure-gauge.htm)\\n  \\n  [Winters Pressure Gauge](https://www.actsensorspvtltd.in/winters-pressure-gauge.htm \"Winters Pressure Gauge\")\\n* [Enquiry Now](https://www.actsensorspvtltd.in/enquiry-form-10019.htm?\\nproduct_slno=3882307 \"Enquiry Now\") [View More](https://www.actsensorspvtltd.in/portable-dew-point-meter.htm)\\n  \\n  [Portable Dew Point Meter](https://www.actsensorspvtltd.in/portable-dew-point-meter.htm \"Portable Dew Point Meter\")\\n  \\n  The S520 portable dew point meter offers users a single hand held...\\n* [Enquiry Now](https://www.actsensorspvtltd.in/enquiry-form-10019.htm?product_slno=3882308 \"Enquiry Now\") [View More](https://www.actsensorspvtltd.in/dew-point-sensor.htm)\\n  \\n  [Dew Point Sensor](https://www.actsensorspvtltd.in/dew-point-sensor.htm \"Dew Point Sensor\")\\n  \\n  The S217 Dewpoint Sensor provides reliable and long-term stable...\\n* [Enquiry Now](https://www.actsensorspvtltd.in/enquiry-form-10019.htm?product_slno=3882309 \"Enquiry Now\") [View More](https://www.actsensorspvtltd.in/dew-point-temperature-transmitter.htm)\\n  \\n  [Dew Point Temperature Transmitter](https://www.actsensorspvtltd.in/dew-point-temperature-transmitter.htm \"Dew Point Temperature Transmitter\")\\nThe SUTO dew point meter / sensor S220 provides reliable and long...\\n* [Enquiry Now](https://www.actsensorspvtltd.in/enquiry-form-10019.htm?product_slno=3882311 \"Enquiry Now\") [View More](https://www.actsensorspvtltd.in/industrial-iot-gateway.htm)\\n  \\n  [Industrial IOT Gateway](https://www.actsensorspvtltd.in/industrial-iot-gateway.htm \"Industrial IOT Gateway\")\\n* [Enquiry Now](https://www.actsensorspvtltd.in/enquiry-form-10019.htm?product_slno=3882312 \"Enquiry Now\") [View More](https://www.actsensorspvtltd.in/cold-chain-temperature-monitoring-system.htm)\\n  \\n  [Cold Chain Temperature Monitoring System](https://www.actsensorspvtltd.in/cold-chain-temperature-monitoring-system.htm \"Cold Chain Temperature Monitoring System\")\\n\\n## Welcome to our Website\\nEstablished as a Proprietorship firm in the year 2017, we ACT Sensors Private Limited are a leading Manufacturer, Supplier of Pressure Transmitters, Pressure Transducers, Pressure Sensors, Data Loggers, Pressure Gauges, Mass Air Flow Sensors, Flow Meters, Portable Dew Point M Read more...\\n\\n* ## Glimpse of Our Company\\n\\n* Name of Founder\\n  \\n  Mr. Atish Mhatre\\n* Year of Establishment\\n  \\n  2017\\n* Nature of Business\\n  \\n  Manufacturer & Supplier\\n* Number of Employees\\n  \\n  Upto 10 People\\n\\n* Our Team\\n  \\n  ACT is one of the leading manufacturers in the field of industrail sensor and automation technology. Our innovative product range includes the entire ...\\n* Our Quality\\n  \\n  Our policy and constant efforts to exceed client\\'s expectations such that it offers all types of Industry. We provide our services to various clients ...\\n* Why Us?\\n  \\n  Experience and know-how, technology and innovation, expert personnel, and enormous passion. For over cumulative experience of more than 50 years, ACT ...\\n* ## Testimonials\\n\\n* Flawless performance, truly reliable and efficient [Read More](https://www.actsensorspvtltd.in/testimonials.htm)\\n  \\n  Sahithi Rayapudi\\n* The organization is one of the best supplier in the city [Read More](https://www.actsensorspvtltd.in/testimonials.htm)\\n  \\n  Shiuli Roychowdhury\\n* Immaculate craftsmanship, a true testament to quality [Read More](https://www.actsensorspvtltd.in/testimonials.htm)\\n  \\n  Hep\\n* Functionality and elegance seamlessly combined [Read More](https://www.actsensorspvtltd.in/testimonials.htm)\\n  \\n  Aditya Tradingcompany\\n* Impeccable quality! The product exceeded my expectations, demonstrating a commitment to excellence [Read More](https://www.actsensorspvtltd.in/testimonials.htm)\\n  \\n  Rohit Patel\\n* Exceptional quality and impeccable attention to detail make this product a must-have. Every feature is thoughtfully designed, enhancing both functionality and aesthetic appeal [Read More](https://www.actsensorspvtltd.in/testimonials.htm)'], publish_date=None, title='ACT Sensors Private Limited Mumbai - AS70 Pressure Sensor Manufacturer Supplier')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

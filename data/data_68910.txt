@@ -1,0 +1,4205 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 68910,
+        "mcat_name": "Protein Powder",
+        "current_specs": [
+            {
+                "spec_name": "Protein Type",
+                "options": [
+                    "Whey Protein",
+                    "Plant-Based Protein"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Weight",
+                "options": [
+                    "1 kg",
+                    "2 kg",
+                    "500 g",
+                    "400 g",
+                    "200 g",
+                    "4 kg",
+                    "5 kg"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Flavor",
+                "options": [
+                    "Chocolate",
+                    "Vanilla",
+                    "Strawberry",
+                    "Unflavored",
+                    "Coffee",
+                    "Mango",
+                    "Kulfi",
+                    "Banana"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Protein Source",
+                "options": [
+                    "Whey Blend",
+                    "Whey Concentrate",
+                    "Whey Isolate",
+                    "Soy Protein",
+                    "Pea Protein",
+                    "Casein",
+                    "Plant Blend",
+                    "Whey Hydrolysate"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Goal / Application",
+                "options": [
+                    "Muscle Building",
+                    "Weight Gain",
+                    "Meal Replacement",
+                    "Post-Workout",
+                    "General Wellness",
+                    "Medical Nutrition"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Dietary Features",
+                "options": [
+                    "Vegetarian",
+                    "Gluten-Free",
+                    "Sugar-Free",
+                    "Vegan",
+                    "Lactose-Free",
+                    "Keto-Friendly"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Form",
+                "options": [
+                    "Powder",
+                    "Sachets"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Protein Per Serving",
+                "options": [
+                    "24 g",
+                    "25 g",
+                    "30 g",
+                    "20 g",
+                    "27 g",
+                    "15 g"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Protein Powder",
+            "mcat_id": 68910,
+            "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Protein Type",
+                            "options": [
+                                "Whey Protein",
+                                "Plant-Based Protein"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Weight",
+                            "options": [
+                                "1 kg",
+                                "2 kg",
+                                "500 g",
+                                "400 g",
+                                "200 g",
+                                "4 kg",
+                                "5 kg"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Protein Type is the most fundamental differentiator, distinguishing between fitness, medical, and wellness products. Weight is a primary determinant of price and purchase volume, making it a critical filter for B2B buyers and is often included in titles for easy comparison."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Flavor",
+                            "options": [
+                                "Chocolate",
+                                "Vanilla",
+                                "Strawberry",
+                                "Unflavored",
+                                "Coffee",
+                                "Mango",
+                                "Kulfi",
+                                "Banana"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Protein Source",
+                            "options": [
+                                "Whey Blend",
+                                "Whey Concentrate",
+                                "Whey Isolate",
+                                "Soy Protein",
+                                "Pea Protein",
+                                "Casein",
+                                "Plant Blend",
+                                "Whey Hydrolysate"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Goal / Application",
+                            "options": [
+                                "Muscle Building",
+                                "Weight Gain",
+                                "Meal Replacement",
+                                "Post-Workout",
+                                "General Wellness",
+                                "Medical Nutrition"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Flavor is a crucial choice made after type and size. Protein Source provides technical detail for sophisticated buyers, clarifying the composition of the Protein Type. Goal / Application directly addresses the buyer's intent, such as muscle building, weight gain, or specific medical needs."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Dietary Features",
+                            "options": [
+                                "Vegetarian",
+                                "Gluten-Free",
+                                "Sugar-Free",
+                                "Vegan",
+                                "Lactose-Free",
+                                "Keto-Friendly"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Form",
+                            "options": [
+                                "Powder",
+                                "Sachets"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Protein Per Serving",
+                            "options": [
+                                "24 g",
+                                "25 g",
+                                "30 g",
+                                "20 g",
+                                "27 g",
+                                "15 g"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Dietary Features like 'Vegan' or 'Gluten-Free' are important filters for health-conscious buyers. Form distinguishes between bulk powder and single-serving sachets. Protein Per Serving is a key performance metric for informed consumers and fitness enthusiasts."
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Additives",
+            "option_value": "DHA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Additives",
+            "option_value": "Non-Sugar Free",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Additives",
+            "option_value": "Sugar Free",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Amino Acid Profile",
+            "option_value": "Complete",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Beverage",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Control and Release Formulation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Daily Health Supplement",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Film forming",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "General weakness/Health supplement",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Protein Bar Manufacturing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Authenticity",
+            "option_value": "Original/Genuine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Benefit",
+            "option_value": "Brain Development",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Benefit",
+            "option_value": "High Value Nutrition",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Blend Composition",
+            "option_value": "35% and 80%",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "AS-IT-IS",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Adipogo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "AlbuJest",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Albuzyl",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Amul",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Angel Yeast",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "AngioPro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Azroa Essentials",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Cargill",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Diva Prot",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Divine Care Plus",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dr. Morepen",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Fitmac",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Gispro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Glanbia",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Hilmar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Imsipanerg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Jam-e-Talbina",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Lipuro",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "MD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Marc-Fit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Maxi Pro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Maxvida",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Me Prot",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mega Expro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mega Nutra",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Milkpro",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Multivit Pro",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "MuscleBlaze",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Myogenetix",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Neurovit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Nitro",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Nusowin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Nutri Z",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Paroti Friends",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "PediaSure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Power O Gold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Prime Macand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Prin Pro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Pro-In",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Profit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Prohens",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Prosoap",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Prosof",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Prosure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Protein Form",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "ProteinX",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Protezon",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "ProtiAll",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Protiron (Warner)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Protisol",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Protivorth",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Royal",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Seller's Brand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Seller's Own Brand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sepro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Serypro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Shifa",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sunnah Enterprises",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Torpure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "UV-Prot",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ultimate Nutrition",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Unimark",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Vibhu Pharma",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Vishwa",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Zein Protein Powder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Zuvipro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Zuvipro-D",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Business Opportunity",
+            "option_value": "City Franchise",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Business Opportunity",
+            "option_value": "District Distributorship",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification/Property",
+            "option_value": "Food contact safety",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Black",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Good",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Mustard",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Multi-vitamin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country/Location of Origin",
+            "option_value": "China",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Country/Location of Origin",
+            "option_value": "Germany",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country/Location of Origin",
+            "option_value": "Gujarat, India",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country/Location of Origin",
+            "option_value": "Imported",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dietary Preference",
+            "option_value": "Vegetarian",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Duration for Results",
+            "option_value": "1 month",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "American Flavor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Banana",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Cafe Mocha",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Chocolate",
+            "prod_count": 33
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Dry Fruit",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Elaichi",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Kesar Pista",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Malai Kulfi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Malt",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Mango",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Mawa",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Milk Mawa",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Multiple flavors available",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Unflavored",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Vanilla",
+            "prod_count": 24
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Watermelon",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Foaming Property",
+            "option_value": "High foaming",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Foaming Property",
+            "option_value": "Substantially reduced foaming",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Formula",
+            "option_value": "P3 Formula (Price, Packing, Performance)",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Gold Scheme Purchase Requirement",
+            "option_value": "3 cases",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "8010",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Ethical",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Food Grade",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Human use",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "IP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Research Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Second Grade",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Artificial Sweeteners and Flavors",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Biotin, Collagen",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Dates and Cashews",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Dry fruit mix",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Natural",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Without dry fruit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "MRP",
+            "option_value": "1490 INR",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "MRP",
+            "option_value": "565 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "MRP",
+            "option_value": "720-760 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturing Location",
+            "option_value": "Bhojpur",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturing Location",
+            "option_value": "IIMT Faridabad",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturing Location",
+            "option_value": "Tirupati",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturing Type",
+            "option_value": "Third Party",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturing Type",
+            "option_value": "Third Party Manufacturing",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Manufacturing Type",
+            "option_value": "Third-party",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "5 Cartons",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Minimum Order Size",
+            "option_value": "100 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "G24",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "Iso-Genetix",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "Netrobolic Bulk Gain",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "S84",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Name",
+            "option_value": "Zuvipro 60 / Zuvipro D",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Moisture Content",
+            "option_value": "6-8 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Organic Status",
+            "option_value": "Non-organic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Organic Status",
+            "option_value": "Normal (Non-Organic)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Organic Status",
+            "option_value": "Organic",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "PDCAAS Score",
+            "option_value": "1",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "0.5 kg",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "1 kg",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "18 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "2 kg",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "2.5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "20 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "200 g",
+            "prod_count": 33
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "25 kg",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "250 g",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "250-300 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "3 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "350 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "4 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "400 g",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "500 g",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bag",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bottle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Box",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Carton",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Good Get-up",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "HDP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "HDPE",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Jar",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Jar/Tin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Loose (Tol)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Multi-layer Paper Bags",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Paper Bag",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Plastic",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Plastic Tin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Pouch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Similar to Real mixed fruit juice packing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Single Bag",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Single serve pouch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Tin",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Particle Size",
+            "option_value": "100 mesh",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Particle Size",
+            "option_value": "50-60 Mesh",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pricing Basis",
+            "option_value": "MRP based",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Processing Method",
+            "option_value": "Hydrolyzed",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Classification",
+            "option_value": "Branded",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Classification",
+            "option_value": "PCD (Ready Product)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Features",
+            "option_value": "P3 Formula (Price, Packing, Performance)",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Coarser and grainier",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Fine Powder",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Flour",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Liquid",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Malt",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Powder",
+            "prod_count": 51
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Powder (Churna)",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Smoother",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Form",
+            "option_value": "Solid",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Line",
+            "option_value": "Signatura",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Range Type",
+            "option_value": "Ethical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Requirement",
+            "option_value": "Protein Powder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Segment",
+            "option_value": "Food",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Property",
+            "option_value": "Biodegradable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "10 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "30-40 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "35 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "55 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "60 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "60-70 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "70 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "75 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "75-80 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "80 %",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "80-85 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "82-83 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "83-84 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "84 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "85 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "90 %",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "95 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": ">60 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (%)",
+            "option_value": "Pure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (As is basis)",
+            "option_value": "85 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content (Dry basis)",
+            "option_value": "90 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content Description",
+            "option_value": "High Protein",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Content per 100g",
+            "option_value": "47 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content per Serving",
+            "option_value": "12 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Content per Serving",
+            "option_value": "25 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Content per Serving",
+            "option_value": "8 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Advance",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Albumin",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "All Grain",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Ayurvedic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Biozyme Performance Whey",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Branded",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Concentrate",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "DHA",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Defatted (Oil Extracted)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Desi medicine (Desi Dawai)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Extract",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Fermented Yeast",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "HP (High Protein)",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Isolate",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Milk",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Milk Powder",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Natural",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Non-Sugar Free",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Normal (Non-sugar-free)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Nutraceutical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "One Whey",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Peas",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Plant Based",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Processed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Protein Powder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Raw",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Renal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "SF Plus",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Soy",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Soybean Protein Concentrate",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Talbina Powder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Toned milk or whey protein isolate",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Whey",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Whey Protein Isolate",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Whey Skimmed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "With IQ",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Yellow Pea",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Type",
+            "option_value": "Zein",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Protein Yield",
+            "option_value": "350 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Standard",
+            "option_value": "Herbalife Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity",
+            "option_value": "10 Cartons",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity",
+            "option_value": "300 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity",
+            "option_value": "600 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Box",
+            "option_value": "10 sachets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Carton",
+            "option_value": "30 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Carton",
+            "option_value": "45 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Carton",
+            "option_value": "48 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Carton",
+            "option_value": "50 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Carton",
+            "option_value": "60 pieces",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Scheme Reward",
+            "option_value": "2 g gold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Service Offering",
+            "option_value": "Private Labeling / Own Brand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Service Offering",
+            "option_value": "Third Party Manufacturing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Serving Size",
+            "option_value": "1 scoop",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Serving Size",
+            "option_value": "100 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Serving Size",
+            "option_value": "25 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Serving Size",
+            "option_value": "30 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shelf Life",
+            "option_value": "18 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shelf Life",
+            "option_value": "2 Years",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Shelf Life",
+            "option_value": "3-6 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Solubility",
+            "option_value": "10-12 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Solubility",
+            "option_value": "Clear in water (no cloudiness)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Solubility",
+            "option_value": "High",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Solubility",
+            "option_value": "Water Insoluble",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Solubility",
+            "option_value": "Water and Milk",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sugar Content",
+            "option_value": "0 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sugar Content",
+            "option_value": "Sugar Free",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Sweetener",
+            "option_value": "Sucralose",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Age Group",
+            "option_value": "2-3 years",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Age Group",
+            "option_value": "3 years",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Audience",
+            "option_value": "Gym",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Audience",
+            "option_value": "Kids",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Target Audience",
+            "option_value": "Mother",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Target Audience",
+            "option_value": "Pregnant women",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Audience",
+            "option_value": "Pro HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Audience",
+            "option_value": "Reno",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Audience",
+            "option_value": "TB Patients",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Unit Form",
+            "option_value": "Sachet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variant",
+            "option_value": "Premium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variety Count",
+            "option_value": "5",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Visual Properties",
+            "option_value": "Transparent",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Brand",
+            "option_value": "Instanerg"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Manufacturer",
+            "option_value": "Omcobiotech"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Manufactered By",
+            "option_value": "Omicron Pharma Pvt Ltd"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "MOQ",
+            "option_value": "300"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Brand",
+            "option_value": "Hariprot"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Brand",
+            "option_value": "Proalbumin"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Pack Type",
+            "option_value": "Jar"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Manufactered By",
+            "option_value": "Omicron Pharma Pvt Ltd"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Brand",
+            "option_value": "Pro Health"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Diet Type",
+            "option_value": "Vegetarian"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Shelf Life",
+            "option_value": "24 Months"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "manufactered By",
+            "option_value": "Omicron Pharma Pvt Ltd"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Packaging Type",
+            "option_value": "tin"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "usage",
+            "option_value": "Food Supplement for Gastro Intestinal"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Pack Type",
+            "option_value": "Jar"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Brand",
+            "option_value": "Alprovit"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Pack Type",
+            "option_value": "Jar"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Brand",
+            "option_value": "Proalbumin"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Manufactered By",
+            "option_value": "Omicron Pharma pvt ltd"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "manufacture",
+            "option_value": "Nexicon"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "option_value": "Nariprox Protein Powder"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Brand",
+            "option_value": "Celnutra"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Usage/ Application",
+            "option_value": "For Increase Energy And Endurance"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Manufacturer",
+            "option_value": "Nucgnex"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Manufacturer",
+            "option_value": "ABBOTT"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Brand",
+            "option_value": "Active Pro"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Brand",
+            "option_value": "Ellanjey"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Brand Name",
+            "option_value": "Sun Star"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Brand",
+            "option_value": "Vedalex"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Pack Type",
+            "option_value": "Bottle"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Manufacturer",
+            "option_value": "Healing Pharma"
+        },
+        {
+            "mcat_id": "68910",
+            "mcat_name": "Protein Powder",
+            "spec_name": "Self life",
+            "option_value": "24 months"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "a to z",
+            "impression": "39"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "albuzest",
+            "impression": "4628"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "alpro",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "amul",
+            "impression": "455"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "aristo",
+            "impression": "911"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "assure",
+            "impression": "41"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "atom",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "avpro",
+            "impression": "267"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "briton",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "dr morepen",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "enrich",
+            "impression": "82"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "ensure",
+            "impression": "232"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "esn",
+            "impression": "389"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "forever",
+            "impression": "18"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "g pro",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "geofit",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "gmp",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "grd",
+            "impression": "683"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "gro",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "hulk",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "hypro",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "indiamart",
+            "impression": "162"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "invigo",
+            "impression": "126"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "jan aushadhi",
+            "impression": "26"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "la pro",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "livelong",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "macpro",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "magnessa",
+            "impression": "681"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "mama",
+            "impression": "457"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "mankind",
+            "impression": "3285"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "manna",
+            "impression": "46"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "medi 70",
+            "impression": "52"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "medpro",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "mero",
+            "impression": "161"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "modicare",
+            "impression": "30"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "mrl",
+            "impression": "62"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "naked",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "naturamore",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "nespro",
+            "impression": "221"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "nipro",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "nourish",
+            "impression": "791"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "nutriboon",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "nutrigain",
+            "impression": "799"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "nutrimax",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "nutripro",
+            "impression": "42"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "oncocare",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "onn",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "patanjali",
+            "impression": "43"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "pro ye",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "prohealth",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "prolex",
+            "impression": "137"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "prolife",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "promax",
+            "impression": "531"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "protex",
+            "impression": "219"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "protinex",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "proto",
+            "impression": "38"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "protone",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "protowell",
+            "impression": "22"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "provin",
+            "impression": "70"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "provital",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "sai",
+            "impression": "35"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "sipro",
+            "impression": "40"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "skypro",
+            "impression": "59"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "unicorn",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "v pro",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "brand",
+            "spec_option": "vedic",
+            "impression": "95"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "color",
+            "spec_option": "black",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "color",
+            "spec_option": "gold",
+            "impression": "138"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "color",
+            "spec_option": "green",
+            "impression": "273"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "color",
+            "spec_option": "purple",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "composition",
+            "spec_option": "albumin",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "form",
+            "spec_option": "capsule",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "form",
+            "spec_option": "drop",
+            "impression": "148"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "form",
+            "spec_option": "granule powder",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "form",
+            "spec_option": "oil",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "form",
+            "spec_option": "powder",
+            "impression": "92997"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "form",
+            "spec_option": "syrup",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "form",
+            "spec_option": "tablet",
+            "impression": "226"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "ingredient",
+            "spec_option": "reno",
+            "impression": "208"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "item name",
+            "spec_option": "prodoc",
+            "impression": "36"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "language",
+            "spec_option": "hindi",
+            "impression": "668"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "manufacturer",
+            "spec_option": "abbott",
+            "impression": "351"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "manufacturer",
+            "spec_option": "cipla",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "manufacturer",
+            "spec_option": "imc",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "material",
+            "spec_option": "gi",
+            "impression": "58"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "material",
+            "spec_option": "pp",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "material",
+            "spec_option": "tin",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "model name/number",
+            "spec_option": "pro",
+            "impression": "73"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "model number",
+            "spec_option": "plu",
+            "impression": "324"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging size",
+            "spec_option": "1 kg",
+            "impression": "160"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging size",
+            "spec_option": "10 kg",
+            "impression": "56"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging size",
+            "spec_option": "100 gm",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging size",
+            "spec_option": "20 kg",
+            "impression": "26"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging size",
+            "spec_option": "200 gm",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging size",
+            "spec_option": "250 gm",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging size",
+            "spec_option": "400 gm",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging size",
+            "spec_option": "5 kg",
+            "impression": "115"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging size",
+            "spec_option": "500 gm",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging size",
+            "spec_option": "bulk",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging type",
+            "spec_option": "sachet",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "packaging type",
+            "spec_option": "tab",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "treatment",
+            "spec_option": "cancer",
+            "impression": "45"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "treatment",
+            "spec_option": "pregnancy",
+            "impression": "351"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "treatment",
+            "spec_option": "protein",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "treatment",
+            "spec_option": "renal",
+            "impression": "52"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "types of protein powder",
+            "spec_option": "all protein",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "types of protein powder",
+            "spec_option": "bariatric",
+            "impression": "62"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "types of protein powder",
+            "spec_option": "beef",
+            "impression": "452"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "types of protein powder",
+            "spec_option": "chicken",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "types of protein powder",
+            "spec_option": "corn",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "types of protein powder",
+            "spec_option": "fish",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "types of protein powder",
+            "spec_option": "plant protein",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "types of protein powder",
+            "spec_option": "veg",
+            "impression": "418"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "usage",
+            "spec_option": "animal feed",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "usage",
+            "spec_option": "cattle",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "usage",
+            "spec_option": "gym",
+            "impression": "114"
+        },
+        {
+            "mcat_name": "Protein Powder",
+            "spec_name": "usage",
+            "spec_option": "pharma",
+            "impression": "5"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Weight",
+            "spec_fill_rate": "49.5",
+            "product_count": "49"
+        },
+        {
+            "spec_name": "Form",
+            "spec_fill_rate": "49.5",
+            "product_count": "49"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "47.5",
+            "product_count": "47"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_fill_rate": "46.5",
+            "product_count": "46"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_fill_rate": "46.5",
+            "product_count": "46"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_fill_rate": "40.4",
+            "product_count": "40"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_fill_rate": "35.4",
+            "product_count": "35"
+        },
+        {
+            "spec_name": "Dietary Features",
+            "spec_fill_rate": "34.3",
+            "product_count": "34"
+        },
+        {
+            "spec_name": "Protein Per Serving",
+            "spec_fill_rate": "29.3",
+            "product_count": "29"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_fill_rate": "9.1",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_fill_rate": "6.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_fill_rate": "6.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Flavour",
+            "spec_fill_rate": "5.1",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Diet Type",
+            "spec_fill_rate": "4",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Per Serving Protein",
+            "spec_fill_rate": "3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Diet Preference",
+            "spec_fill_rate": "3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Added Sugar",
+            "spec_fill_rate": "3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Manufactered By",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Protein Per Serve",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Vitamin Spectrum",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Powder Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Chia Plant Protein",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Grain Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Source",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Usage/ Application",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "brand",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Solubility",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Target Use",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Speciality Feature",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "manufacture",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Milk Protein Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Source Animal",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Vegetarian",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Processing",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "usage",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Storage Instruction",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "manufactered By",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Age Group",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Protein Content",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Moringa Powder",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Fat Type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Fat Content",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Guest Capacity",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Toned Milk",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target Use",
+            "spec_option_name": "Health Mix",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fat Type",
+            "spec_option_name": "Whole",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target Use",
+            "spec_option_name": "Protein Drink",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Processing",
+            "spec_option_name": "Homogenised",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage/ Application",
+            "spec_option_name": "For Increase Energy And Endurance",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Key Nutrient",
+            "spec_option_name": "Multivitamin",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Speciality Feature",
+            "spec_option_name": "Fortified",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Grain Type",
+            "spec_option_name": "all",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "brand",
+            "spec_option_name": "Nariprox Protein Powder",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Women",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sweetener Type",
+            "spec_option_name": "No Sweetener",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Source",
+            "spec_option_name": "Cow Milk",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Guest Capacity",
+            "spec_option_name": "Up to 100",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "GMP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Storage Instruction",
+            "spec_option_name": "Ambient Storage",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Branding Support",
+            "spec_option_name": "Label Design",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "HALAL",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "ISO 9001",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Branding Support",
+            "spec_option_name": "Box Design",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_option_name": "Everyday Pouch",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "General Nutrition",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "HACCP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Chia Plant Protein",
+            "spec_option_name": "100% chia seed protein powder (or chia seeds ground to highÃ¢â¬âprotein powder)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Powder Type",
+            "spec_option_name": "Nutritional Protein Powder",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Health Segment",
+            "spec_option_name": "Sports Nutrition",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ownership Type",
+            "spec_option_name": "Pvt Ltd",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Moringa Powder",
+            "spec_option_name": "100% pure Moringa oleifera leaf powder (no additives, fillers)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "ISO 22000",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Glossy",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Powder Flavour",
+            "spec_option_name": "Vanilla Flavour",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Branding Support",
+            "spec_option_name": "Logo Design",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Sports Nutrition",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Manufacturing Service",
+            "spec_option_name": "Private Label",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "WHO GMP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Stage",
+            "spec_option_name": "Pregnancy and Lactation",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Branding Support",
+            "spec_option_name": "Marketing Support",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target Use",
+            "spec_option_name": "Diabetic Diet",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "FSSAI",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Net Quantity",
+            "spec_option_name": "200 g",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "usage",
+            "spec_option_name": "Food Supplement for Gastro Intestinal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Neck Size",
+            "spec_option_name": "46 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Key Nutrient",
+            "spec_option_name": "Iron",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "2kg HDPE  Box Hight",
+            "spec_option_name": "2kg pack",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Milk Protein Type",
+            "spec_option_name": "Milk Protein Blend",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "MOQ",
+            "spec_option_name": "300",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Solid",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "FSSAI",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "PACKET",
+            "spec_option_name": "5KG",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Source Animal",
+            "spec_option_name": "Not Specified",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Age Group",
+            "spec_option_name": "Adult",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "100 ml",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Jar Shape",
+            "spec_option_name": "Square",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "manufacture",
+            "spec_option_name": "Nexicon",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made in India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Branding Support",
+            "spec_option_name": "Regulatory Support",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Vegetarian",
+            "spec_option_name": "Vegetarian",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target Market",
+            "spec_option_name": "Domestic & Export",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "manufactered By",
+            "spec_option_name": "Omicron Pharma Pvt Ltd",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Diet Preference",
+            "spec_option_name": "Vegetarian",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Manufacturing Service",
+            "spec_option_name": "Third Party",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Base Resin",
+            "spec_option_name": "Polyester",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Key Nutrient",
+            "spec_option_name": "Calcium",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Min Batch Size",
+            "spec_option_name": "100 Units",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fat Content",
+            "spec_option_name": "0.50%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "96.2"
+        },
+        {
+            "spec_name": "Dietary Features",
+            "spec_option_name": "Vegetarian",
+            "option_fill_rate": "86.5"
+        },
+        {
+            "spec_name": "Diet Type",
+            "spec_option_name": "Vegetarian",
+            "option_fill_rate": "85.7"
+        },
+        {
+            "spec_name": "Per Serving Protein",
+            "spec_option_name": "20 g",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_option_name": "General Wellness",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Sports Nutrition",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Vitamin Spectrum",
+            "spec_option_name": "With Minerals",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Manufactered By",
+            "spec_option_name": "Omicron Pharma Pvt Ltd",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Added Sugar",
+            "spec_option_name": "No Added Sugar",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Chocolate",
+            "option_fill_rate": "51.7"
+        },
+        {
+            "spec_name": "Protein Per Serve",
+            "spec_option_name": "10Ã¢â¬â14 g",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Solubility",
+            "spec_option_name": "Cold Water",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Protein Content",
+            "spec_option_name": "Under 35 %",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Solubility",
+            "spec_option_name": "Regular",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Weight Gain",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Muscle Gain",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Protein Content",
+            "spec_option_name": "95Ã¢â¬â99 %",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "200 g",
+            "option_fill_rate": "46.3"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Whey Blend",
+            "option_fill_rate": "44.1"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Whey Protein",
+            "option_fill_rate": "40.2"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_option_name": "Muscle Building",
+            "option_fill_rate": "37"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Jar",
+            "option_fill_rate": "36.4"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Weight gainer",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_option_name": "Bone Health",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Beverages",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Protein Powder",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Healing Pharma",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Nucgnex",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "ABBOTT",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Retail Pack",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Per Serving Protein",
+            "spec_option_name": "10 g",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Manufactered By",
+            "spec_option_name": "Omicron Pharma pvt ltd",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Protein Blend",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Vitamin Spectrum",
+            "spec_option_name": "Immunity Blend",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Flavour",
+            "spec_option_name": "Chocolate",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "200 g",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Bakery",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 Months",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Fortification",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Protein Per Serving",
+            "spec_option_name": "25 g",
+            "option_fill_rate": "31.9"
+        },
+        {
+            "spec_name": "Dietary Features",
+            "spec_option_name": "Sugar-Free",
+            "option_fill_rate": "29.2"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_option_name": "General Wellness",
+            "option_fill_rate": "26"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "400gm",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Protein Per Serve",
+            "spec_option_name": "20Ã¢â¬â24 g",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Protein Per Serve",
+            "spec_option_name": "5Ã¢â¬â9 g",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "400 g",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "200 g",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "200 GM",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Protein Per Serving",
+            "spec_option_name": "24 g",
+            "option_fill_rate": "24.6"
+        },
+        {
+            "spec_name": "Flavour",
+            "spec_option_name": "Vanilla",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Flavour",
+            "spec_option_name": "Mixed Fruit",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "General Nutrition",
+            "option_fill_rate": "22"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Vanilla",
+            "option_fill_rate": "21.2"
+        },
+        {
+            "spec_name": "Added Sugar",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Added Sugar",
+            "spec_option_name": "Sugar Free",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Box",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Whey Concentrate",
+            "option_fill_rate": "17.2"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "180 Days",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "M2sure",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 months",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Alprovit",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "12 months",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Celnutra",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "250 g",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "18 months",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "PROTOSET PLUS",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Nixpro",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Vedalex",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Protein Per Serving",
+            "spec_option_name": "20 g",
+            "option_fill_rate": "15.9"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "400 g",
+            "option_fill_rate": "14.9"
+        },
+        {
+            "spec_name": "Diet Type",
+            "spec_option_name": "High Protein",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Diet Type",
+            "spec_option_name": "Halal",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Dietary Features",
+            "spec_option_name": "Gluten-Free",
+            "option_fill_rate": "13.5"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_option_name": "Weight Gain",
+            "option_fill_rate": "13"
+        },
+        {
+            "spec_name": "Protein Per Serving",
+            "spec_option_name": "30 g",
+            "option_fill_rate": "13"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "1 kg",
+            "option_fill_rate": "12.7"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_option_name": "Medical Nutrition",
+            "option_fill_rate": "12"
+        },
+        {
+            "spec_name": "Flavour",
+            "spec_option_name": "Unflavoured",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Flavour",
+            "spec_option_name": "cranberry & Orange",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Soy Protein",
+            "option_fill_rate": "10.8"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "500 g",
+            "option_fill_rate": "10.4"
+        },
+        {
+            "spec_name": "Protein Per Serving",
+            "spec_option_name": "15 g",
+            "option_fill_rate": "10.1"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Plant-Based Protein",
+            "option_fill_rate": "9.4"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "tin",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "PET Bottle",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Drum",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Sachet",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "IBC Tank",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Dietary Features",
+            "spec_option_name": "Lactose-Free",
+            "option_fill_rate": "9"
+        },
+        {
+            "spec_name": "Dietary Features",
+            "spec_option_name": "Keto-Friendly",
+            "option_fill_rate": "9"
+        },
+        {
+            "spec_name": "Dietary Features",
+            "spec_option_name": "Vegan",
+            "option_fill_rate": "9"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "300gm",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "25 kg",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "5gm",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "500 g",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "200GM",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "200 gm",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Plant Blend",
+            "option_fill_rate": "6.5"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Women's Protein",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Protein Per Serving",
+            "spec_option_name": "27 g",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "All available",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Kulfi",
+            "option_fill_rate": "4.2"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_option_name": "All available",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Mass Gainer",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Milk Blend",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Kesar Pista",
+            "option_fill_rate": "2.5"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Elaichi",
+            "option_fill_rate": "2.5"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "All types",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Meal Replacement",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Diabetic Protein",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Whey Isolate",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "All available",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Mixed Sources",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_option_name": "Boosting Stamina And Immunity",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_option_name": "Meal Replacement",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "All flavor",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Kesar",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Unflavored",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "All available",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Milk Protein",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "High Protien",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "25 KG",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "2 kg",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "5 kg",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "250gm",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "4 kg",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Multi",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Albumin",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Vitamin minerals",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Vitamin and Minerals",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "MILK AND SOY PROTIEN",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Soy isolate",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Milk",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Milk protein",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Protein Source",
+            "spec_option_name": "Protein",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_option_name": "Multi",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_option_name": "supports liver detoxification by aiding in fat metabolism",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Regular",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_option_name": "Post-Workout",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Spray Dried",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Goal / Application",
+            "spec_option_name": "Enhances energy levels and combats fatigue",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Sachets",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Cup",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Almond",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Pregnancy Nutrition",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Strength and stamina performance about balance Boost energy and reduce fatigue or improve immunity and antioxidants level",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "multimedia speaker",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Spice & Herb",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Blueberry",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "ELAICHI",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "GREENISH BROWN",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Probiotic",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "SOYA PROTEIN AND MINERALS DHA",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Characteristic",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Dry Fruit",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Kesar Badam",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Butter Scotch Flavour",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "AYURVEDIC FOOD SUPPLEMENT",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Mango",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "DHA GLA Lycopene",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Multi",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Kesar pista",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Renal Protein",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "Protein",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Kesar Elaichi",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Protein Type",
+            "spec_option_name": "All available",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "250 g",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "200g",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "250GM",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "250 G",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "10SachetX 20gm",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "200gm",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "24",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "All weight",
+            "option_fill_rate": "0.7"
+        }
+    ]
+}

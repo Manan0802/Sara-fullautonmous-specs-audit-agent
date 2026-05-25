@@ -1,0 +1,4681 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 4151,
+        "mcat_name": "Ayurvedic Medicine",
+        "current_specs": [
+            {
+                "spec_name": "Dosage Form",
+                "options": [
+                    "Capsule",
+                    "Tablet",
+                    "Syrup",
+                    "Churna (Powder)",
+                    "Juice (Ras)",
+                    "Oil (Taila)",
+                    "Drops",
+                    "Lehya / Avleh",
+                    "Bhasma",
+                    "Ointment (Malam)"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Primary Ingredient",
+                "options": [
+                    "Ashwagandha",
+                    "Triphala",
+                    "Amla",
+                    "Tulsi",
+                    "Giloy",
+                    "Shilajit",
+                    "Brahmi",
+                    "Neem",
+                    "Turmeric (Haldi)",
+                    "Aloe Vera"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Benefit / Indication",
+                "options": [
+                    "Immunity Booster",
+                    "Digestive Care",
+                    "Liver Care",
+                    "Diabetes Care",
+                    "Joint & Pain Relief",
+                    "Hair Care",
+                    "Skin Care",
+                    "Stress Relief",
+                    "Weight Management",
+                    "Sexual Wellness"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Medicine Type",
+                "options": [
+                    "Proprietary",
+                    "Classical"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Packaging Size",
+                "options": [
+                    "60 Capsules",
+                    "60 Tablets",
+                    "200 ml",
+                    "100 ml",
+                    "100 gm",
+                    "500 ml",
+                    "30 Capsules",
+                    "120 Capsules",
+                    "30 ml",
+                    "450 ml"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Ideal For",
+                "options": [
+                    "Adults",
+                    "All",
+                    "Women",
+                    "Men",
+                    "Children"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "Dabur",
+                    "Baidyanath",
+                    "Patanjali",
+                    "Himalaya",
+                    "Zandu",
+                    "Amulya Herbs",
+                    "Fidalgo",
+                    "Unisage",
+                    "Bhrigu",
+                    "Sovam"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Certification",
+                "options": [
+                    "GMP Certified",
+                    "ISO Certified",
+                    "AYUSH Certified",
+                    "Organic",
+                    "FSSAI",
+                    "HACCP Certified"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Packaging Type",
+                "options": [
+                    "Bottle",
+                    "Blister Pack",
+                    "Jar",
+                    "Sachet",
+                    "Box",
+                    "Pouch"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Ayurvedic Medicine",
+            "mcat_id": 4151,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Dosage Form",
+                            "options": [
+                                "Capsule",
+                                "Tablet",
+                                "Syrup",
+                                "Churna (Powder)",
+                                "Juice (Ras)",
+                                "Oil (Taila)",
+                                "Drops",
+                                "Lehya / Avleh",
+                                "Bhasma",
+                                "Ointment (Malam)"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "1"
+                        },
+                        {
+                            "spec_name": "Primary Ingredient",
+                            "options": [
+                                "Ashwagandha",
+                                "Triphala",
+                                "Amla",
+                                "Tulsi",
+                                "Giloy",
+                                "Shilajit",
+                                "Brahmi",
+                                "Neem",
+                                "Turmeric (Haldi)",
+                                "Aloe Vera"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Prefix",
+                            "affix_presence_flag": "1"
+                        },
+                        {
+                            "spec_name": "Benefit / Indication",
+                            "options": [
+                                "Immunity Booster",
+                                "Digestive Care",
+                                "Liver Care",
+                                "Diabetes Care",
+                                "Joint & Pain Relief",
+                                "Hair Care",
+                                "Skin Care",
+                                "Stress Relief",
+                                "Weight Management",
+                                "Sexual Wellness"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Dosage Form is the most fundamental classification (e.g., Churna vs. Tablet). Primary Ingredient defines classical and single-herb products and is a primary search term. Benefit/Indication is the main selling point for proprietary medicines, reflecting how buyers search by ailment (e.g., 'medicine for diabetes')."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Medicine Type",
+                            "options": [
+                                "Proprietary",
+                                "Classical"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Packaging Size",
+                            "options": [
+                                "60 Capsules",
+                                "60 Tablets",
+                                "200 ml",
+                                "100 ml",
+                                "100 gm",
+                                "500 ml",
+                                "30 Capsules",
+                                "120 Capsules",
+                                "30 ml",
+                                "450 ml"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Ideal For",
+                            "options": [
+                                "Adults",
+                                "All",
+                                "Women",
+                                "Men",
+                                "Children"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Medicine Type distinguishes between standardized classical formulations and a company's unique proprietary formula, a critical distinction for practitioners. Packaging Size is a vital B2B parameter influencing unit price and order volume. Ideal For clarifies the target demographic, a common and necessary filter."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "Dabur",
+                                "Baidyanath",
+                                "Patanjali",
+                                "Himalaya",
+                                "Zandu",
+                                "Amulya Herbs",
+                                "Fidalgo",
+                                "Unisage",
+                                "Bhrigu",
+                                "Sovam"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Certification",
+                            "options": [
+                                "GMP Certified",
+                                "ISO Certified",
+                                "AYUSH Certified",
+                                "Organic",
+                                "FSSAI",
+                                "HACCP Certified"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Packaging Type",
+                            "options": [
+                                "Bottle",
+                                "Blister Pack",
+                                "Jar",
+                                "Sachet",
+                                "Box",
+                                "Pouch"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Brand acts as a crucial filter for quality and trust but often after the initial product type has been identified. Certifications are quality validators but are secondary to the product's function and form. Packaging Type provides supplementary logistical information but is not a primary decision-making factor."
+                }
+            },
+            "scratchpad": "The specifications are structured to mirror common B2B search patterns for Ayurvedic Medicine in India. Analysis of catalogs and call logs shows that buyers and sellers first differentiate products by their form (Dosage Form), composition (Primary Ingredient), and purpose (Benefit/Indication). Secondary factors like formulation type, packaging size, and target user are next in importance, followed by tertiary details like brand and certifications which build trust but are not primary filters."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Form",
+            "option_value": "Capsule",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Powder",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Tablet",
+            "prod_count": 17
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Drops",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Drop",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Syrup",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Liquid",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Ointment",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Tablets and Capsules",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Dispersible",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Gold Premium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Medicine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Modified Release",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Oil",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Paste",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Raw Material",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form",
+            "option_value": "Syrup and Capsule",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "60 capsules",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "30 capsules",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "60 tablets",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "40 tablets",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "10 tablets",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "1000 tablets",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "30 pieces",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "10-12 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "120 tablets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "15-17 tablets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "20 capsules",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "20 sachets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "2000 tablets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "250-350 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "30 packets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "30 per packet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "30 pouches",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "42 pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "5-6 unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pack Size",
+            "option_value": "90 tablets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Alcohol and Nicotine De-Addiction",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Joint and Muscle Pain",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Diabetes",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Kidney Stone Treatment",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Arthritis Treatment",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Chronic Addiction Treatment",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "De-addiction (Alcohol, Cigarette, Gutka)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Bone and Joint Pain",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Cyst",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Diabetes Treatment",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Kidney Health",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Piles",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Respiratory Health",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Skin Disease",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Skin Pigmentation Treatment",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Indication",
+            "option_value": "Vata Relief",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "30 ml",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "200 ml",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "100 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "10 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "10 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "100 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "15 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "150 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "2.5 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "250 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "250 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "300 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "300 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "450 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "50 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "50 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Volume or Weight",
+            "option_value": "50 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bottle",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Box",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Jar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Packet",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Sachet",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bottle (Dibbi)",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Loose",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Blister Packing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Carton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Container (Dabba)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Pouch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "V Recovery",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Yogiraj",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Madopar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ayu-Health",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dadaji",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Nagarjuna",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Private Label Available",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "20-20",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Amil Neeri",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ayurveda Yogashram",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Baba Stone",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Cipla",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dhootapapeshwar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dyba Care",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Neelkanthi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Neeri",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ora Nutrition",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ortho Cell",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Private Label / Own Brand Available",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Rajasthan Pharmaceuticals",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Shiva Ayurvedic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Udahas Company",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Vedamrit Calcutil",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Treatment Duration",
+            "option_value": "3 months",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Treatment Duration",
+            "option_value": "15 days",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Treatment Duration",
+            "option_value": "2-3 months",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Treatment Duration",
+            "option_value": "20 days",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Treatment Duration",
+            "option_value": "3-4 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Treatment Duration",
+            "option_value": "4 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Treatment Duration",
+            "option_value": "6 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Medicine Type",
+            "option_value": "Ayurvedic",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Medicine Type",
+            "option_value": "Herbal",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Medicine Type",
+            "option_value": "Herbal / Organic",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Medicine Type",
+            "option_value": "Extract-based",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Medicine Type",
+            "option_value": "Plus Formula",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Result Observation Time",
+            "option_value": "15-20 days",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Result Observation Time",
+            "option_value": "1 week",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Result Observation Time",
+            "option_value": "10-12 days",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Result Observation Time",
+            "option_value": "10-15 days",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Result Observation Time",
+            "option_value": "15 days",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "A1",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "High",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Premium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Active Ingredient Strength",
+            "option_value": "100 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Active Ingredient Strength",
+            "option_value": "25 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Expiry Date/Year",
+            "option_value": "2027",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Instructions",
+            "option_value": "1 capsule twice a day",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dosage Instructions",
+            "option_value": "2 drops morning and 2 drops evening",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dosage Instructions",
+            "option_value": "1 Sachet per day",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Instructions",
+            "option_value": "15-20 drops",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Instructions",
+            "option_value": "15-20 ml morning and evening after breakfast",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Instructions",
+            "option_value": "2 Capsules morning and evening; 20 ml Syrup",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Instructions",
+            "option_value": "Rubbing on hands 4-6 times daily",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Instructions",
+            "option_value": "Tea Bag style measurement",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "100 mg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "500 mg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "1 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "200 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "25 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Black",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Brown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Red",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White (tablets) and Blue (capsules)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Yellow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Smell",
+            "option_value": "No Smell",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Taste",
+            "option_value": "No Taste",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Smell",
+            "option_value": "Yes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Taste",
+            "option_value": "Slightly changes (Not tasteless)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Taste",
+            "option_value": "Yes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage Instructions",
+            "option_value": "1 capsule twice a day",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage Instructions",
+            "option_value": "10 minutes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage Instructions",
+            "option_value": "Empty stomach morning and evening",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage Instructions",
+            "option_value": "Skin Pigmentation Treatment",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Ayurvedic/Herbal",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Capsule Count",
+            "option_value": "10 pieces",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Long Tablet Count",
+            "option_value": "10 pieces",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Round Tablet Count",
+            "option_value": "10 pieces",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Service Type",
+            "option_value": "Third Party Manufacturing",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Side Effects",
+            "option_value": "No Side Effects",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Capsule Count",
+            "option_value": "10 per pack",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Long Tablet Count",
+            "option_value": "10 per pack",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Configuration",
+            "option_value": "3 bottles",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Configuration",
+            "option_value": "30 strips",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Configuration",
+            "option_value": "5 packets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Round Tablet Count",
+            "option_value": "10 per pack",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Service Type",
+            "option_value": "PCD Franchise",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Side Effects",
+            "option_value": "Nausea and Vomiting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "100 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Administration Method",
+            "option_value": "Mix in any food or drink except milk and water",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Administration Method",
+            "option_value": "Mix in water, curry, or dal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "10-12 drops",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage",
+            "option_value": "8-10 drops",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Isavuconazole",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ingredients",
+            "option_value": "Punarnava, Varun, and Gokhru",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Medication Status",
+            "option_value": "Continue regular allopathic medicines",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Medication Status",
+            "option_value": "Insulin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality",
+            "option_value": "A++ (Heavy)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality",
+            "option_value": "Normal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Audience",
+            "option_value": "Child (Pediatric)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Audience",
+            "option_value": "Human",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage Description",
+            "option_value": "Working Beta Cells",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage Description",
+            "option_value": "Works on body cells",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variant",
+            "option_value": "Biometic / Binotonite",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Variant",
+            "option_value": "Sugar-Free",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Success Rate",
+            "option_value": "30-40 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Action",
+            "option_value": "Anti-inflammatory",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Active Ingredient",
+            "option_value": "Prucalopride",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Appearance",
+            "option_value": "No Color when mixed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Method",
+            "option_value": "External Rub",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Base Ingredient",
+            "option_value": "Shilajit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "Certified organic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Expiry Year",
+            "option_value": "2027",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Generic Name",
+            "option_value": "Isavuconazole",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturer Location",
+            "option_value": "Sangrur, Dhuri, Punjab",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Kanyakumari or Kerala",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Patient Detail",
+            "option_value": "250-300 Sugar Level",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Release Type",
+            "option_value": "Prolonged Release CR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Result Start Time",
+            "option_value": "1 week",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sachet Price",
+            "option_value": "2 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sales Reach",
+            "option_value": "Pan India",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sub Packaging",
+            "option_value": "Sachet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Units per Strip",
+            "option_value": "4 tablets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage Timing",
+            "option_value": "Morning and Night",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Product Type",
+            "option_value": "Punarnavadi"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Pack Type",
+            "option_value": "Bottle"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Product Type",
+            "option_value": "Gokshur"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Brand",
+            "option_value": "Ayucare"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Pack Type",
+            "option_value": "Bottle"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "Dabur"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Brand name",
+            "option_value": "Shwaasamrit 400 Gm ( pack of 2)"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Shelf Life",
+            "option_value": "36 Months"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Brand",
+            "option_value": "Nagarjun"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Certification",
+            "option_value": "GMP"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Pack Type",
+            "option_value": "Jar"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Product Brand",
+            "option_value": "Nagarjun"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Pack Type",
+            "option_value": "Bottle"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Product Type",
+            "option_value": "Sarivadi Vati"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Product Type",
+            "option_value": "Vyaghri Haritaki Avaleh"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Form",
+            "option_value": "Kashay"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Use",
+            "option_value": "urinary disorders, anemia, asthma, acidity, and eye disorders."
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Form",
+            "option_value": "Kashay"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Brand",
+            "option_value": "Nagarjuna"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Brand name",
+            "option_value": "Ap Swasari Avaleha 250 Gm"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "Ayurveda"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Country of origin",
+            "option_value": "Made in india"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "Ayurveda"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Brand name",
+            "option_value": "Ambic Re-Resp Avleh 300 Gm"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Brand name",
+            "option_value": "Ambic Re-Resp Avleh 300 Gm"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "Ayurveda"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "Dabur"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "Dabur"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "Dabur"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "Dabur"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "Dabur"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Brand",
+            "option_value": "Virgo"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "MOQ",
+            "option_value": "5000"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "moq",
+            "option_value": "5000"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "moq",
+            "option_value": "5000"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Ayurvedic typhoid tablet",
+            "option_value": "500mg"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Brand",
+            "option_value": "Soma Sutra"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Set Contains",
+            "option_value": "Swarna Bhasma , Shilajit Gold"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufracturer by",
+            "option_value": "Indian Pharmaceutical Company"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufracturer by",
+            "option_value": "Indian Pharmaceutical Company"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Brand",
+            "option_value": "Heerak Bhasma"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "PATANJALI"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "BAIDYANATH"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Country of origin",
+            "option_value": "Made in india"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Manufacture",
+            "option_value": "BAIDYANATH"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Country of origin",
+            "option_value": "Made in india"
+        },
+        {
+            "mcat_id": "4151",
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "Brand",
+            "option_value": "Maharishi Ayurveda"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "book name",
+            "spec_option": "nari jeevan jyoti",
+            "impression": "140"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "abha",
+            "impression": "39"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "agasthya",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "alex",
+            "impression": "66"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "amar",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "amrit dhara",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "amrut",
+            "impression": "75"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "amruta",
+            "impression": "83"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "amrutha",
+            "impression": "115"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "arya",
+            "impression": "27"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "aushadhi",
+            "impression": "23"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "awpl",
+            "impression": "27"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "ayu",
+            "impression": "195"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "ayushakti",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "baidyanath",
+            "impression": "125"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "baijnath",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "balaji tambe",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "bharat",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "brahma",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "chaitanya",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "chanda",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "chandra",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "dabur",
+            "impression": "83"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "dhatri",
+            "impression": "38"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "divya",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "gayatri",
+            "impression": "39"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "gh",
+            "impression": "227"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "goswami",
+            "impression": "1422"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "guru",
+            "impression": "185"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "gurukul",
+            "impression": "28"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "hakim",
+            "impression": "56"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "hamdard",
+            "impression": "153"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "hem",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "herbo",
+            "impression": "249"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "himalaya",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "jeevan",
+            "impression": "74"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "jeevan dhara",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "jeevan jyoti",
+            "impression": "138"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "kailash",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "kaya",
+            "impression": "79"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "kottakkal",
+            "impression": "64"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "kushal",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "lavanya",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "life care",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "madhu",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "mahalaxmi",
+            "impression": "27"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "medihope",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "monk",
+            "impression": "82"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "nagarjuna",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand name [low]",
+            "spec_option": "likoria",
+            "impression": "2321"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "navjivan",
+            "impression": "90"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "neer",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "nisha",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "panchamrut",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "pankajakasthuri",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "patanjali",
+            "impression": "7799"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "pathmeda",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "paushtik",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "pranacharya",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "prasad",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "raj",
+            "impression": "209"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "ratan",
+            "impression": "47"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "relax",
+            "impression": "40"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "rm",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "rudra",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "saba",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "saheli",
+            "impression": "68"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "samridhi",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "sanjeevani",
+            "impression": "3"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "sanjivani",
+            "impression": "239"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "shama",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "sharangdhar",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "sukh",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "suvarna",
+            "impression": "28"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "swadeshi",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "swasa",
+            "impression": "61"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "swash",
+            "impression": "40"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "tejasvi",
+            "impression": "105"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "tribhuvan",
+            "impression": "78"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "urja",
+            "impression": "79"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "varun",
+            "impression": "873"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "vasant",
+            "impression": "31"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "viagra",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "virgo",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "vishwa",
+            "impression": "57"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "yogi",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "yogiraj",
+            "impression": "141"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "ytm",
+            "impression": "78"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "brand",
+            "spec_option": "zigma",
+            "impression": "139"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "color",
+            "spec_option": "gold",
+            "impression": "41"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "color",
+            "spec_option": "green",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "color",
+            "spec_option": "white",
+            "impression": "918"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "composition",
+            "spec_option": "maanasamithra",
+            "impression": "20"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "composition",
+            "spec_option": "manasamitra",
+            "impression": "719"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "composition",
+            "spec_option": "testosterone",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "avaleha",
+            "impression": "266"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "bhasma",
+            "impression": "627"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "capsule",
+            "impression": "1714"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "churna",
+            "impression": "197"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "cream",
+            "impression": "16360"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "goli",
+            "impression": "2671"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "granule",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "injection",
+            "impression": "6458"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "lehyam",
+            "impression": "101"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "liquid",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "malt",
+            "impression": "315"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "oil",
+            "impression": "773"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "patch",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "powder",
+            "impression": "2621"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "prash",
+            "impression": "621"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "solution",
+            "impression": "36"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "syrup",
+            "impression": "5381"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "form",
+            "spec_option": "tablet",
+            "impression": "5500"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "gender",
+            "spec_option": "female",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "grade",
+            "spec_option": "mr",
+            "impression": "129"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "grade standard",
+            "spec_option": "bp",
+            "impression": "77"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "grade standard",
+            "spec_option": "medicine",
+            "impression": "49349"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "item name",
+            "spec_option": "vital",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "key ingredients",
+            "spec_option": "harsingar",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "language",
+            "spec_option": "english",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "language",
+            "spec_option": "hindi",
+            "impression": "2263"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "language",
+            "spec_option": "malayalam",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "language",
+            "spec_option": "tamil",
+            "impression": "150"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "manufacturer",
+            "spec_option": "divine",
+            "impression": "272"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "material",
+            "spec_option": "book",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "material",
+            "spec_option": "ghee",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "material",
+            "spec_option": "pet",
+            "impression": "137"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "material",
+            "spec_option": "polymer",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "material",
+            "spec_option": "stone",
+            "impression": "39"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "medicine type",
+            "spec_option": "ayurveda",
+            "impression": "33"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "medicine type",
+            "spec_option": "ayurvedic",
+            "impression": "8739"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "medicine type",
+            "spec_option": "herbal",
+            "impression": "82"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "model name/number",
+            "spec_option": "x8",
+            "impression": "235"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "product",
+            "spec_option": "dawa",
+            "impression": "253"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "product",
+            "spec_option": "har vati",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "product",
+            "spec_option": "kottai legiyam",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "product",
+            "spec_option": "legiyam",
+            "impression": "57"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "product",
+            "spec_option": "nashak vati",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "product",
+            "spec_option": "vati",
+            "impression": "223"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "product",
+            "spec_option": "vithai",
+            "impression": "27"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "strength",
+            "spec_option": "200",
+            "impression": "246"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "acidity",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "allergy",
+            "impression": "238"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "cancer",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "cholesterol",
+            "impression": "76"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "dengue",
+            "impression": "13334"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "fever",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "fungal infection",
+            "impression": "58"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "heart",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "hernia",
+            "impression": "18"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "jaundice",
+            "impression": "204"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "liver",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "lung",
+            "impression": "54"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "migraine",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "nerve",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "pain",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "pain relief",
+            "impression": "36"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "period",
+            "impression": "1509"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "sciatica",
+            "impression": "27"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "sex",
+            "impression": "4805"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "sinus",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "stomach",
+            "impression": "96"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "stomach ache",
+            "impression": "850"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "treatment",
+            "spec_option": "typhoid",
+            "impression": "139"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "type of sweets",
+            "spec_option": "dawai",
+            "impression": "569"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "type of sweets",
+            "spec_option": "halwa",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "type of sweets",
+            "spec_option": "mohra",
+            "impression": "116"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "usage",
+            "spec_option": "bath",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "usage",
+            "spec_option": "hair",
+            "impression": "38"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "usage",
+            "spec_option": "hospital",
+            "impression": "69"
+        },
+        {
+            "mcat_name": "Ayurvedic Medicine",
+            "spec_name": "usage",
+            "spec_option": "laboratory",
+            "impression": "3"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Form",
+            "spec_fill_rate": "54.2",
+            "product_count": "26"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_fill_rate": "39.6",
+            "product_count": "19"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_fill_rate": "39.6",
+            "product_count": "19"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_fill_rate": "35.4",
+            "product_count": "17"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "33.3",
+            "product_count": "16"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "33.3",
+            "product_count": "16"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_fill_rate": "27.1",
+            "product_count": "13"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_fill_rate": "22.9",
+            "product_count": "11"
+        },
+        {
+            "spec_name": "Benefit / Indication",
+            "spec_fill_rate": "20.8",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_fill_rate": "20.8",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_fill_rate": "20.8",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Medicine Type",
+            "spec_fill_rate": "20.8",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "20.8",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_fill_rate": "18.8",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Prescription",
+            "spec_fill_rate": "16.7",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Manufacture",
+            "spec_fill_rate": "14.6",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Medicine System",
+            "spec_fill_rate": "10.4",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Use For",
+            "spec_fill_rate": "8.3",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Use",
+            "spec_fill_rate": "8.3",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Brand name",
+            "spec_fill_rate": "6.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_fill_rate": "6.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Main Ingredient",
+            "spec_fill_rate": "6.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Key Ingredient",
+            "spec_fill_rate": "6.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_fill_rate": "6.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "4.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Treatment Type",
+            "spec_fill_rate": "4.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "4.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_fill_rate": "4.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_fill_rate": "4.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Application Type",
+            "spec_fill_rate": "4.2",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Country of origin",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Part Used",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Access Mode",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Key Herbs",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Client Size",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Brand Type",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "pH Value",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Usage Age Group",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Jewellery Type",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "User Type",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Number of Items",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Herbal Type",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Indication",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Route",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Blend Type",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Solution Type",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Therapeutic Segment",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Sugar Free",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Composition Type",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Effect Type",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Age Group",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Origin Region",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Diet Preference",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Sugar Type",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Dose Formulation",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Application Area",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Deployment",
+            "spec_fill_rate": "2.1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Adult Women",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_option_name": "New Only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_option_name": "Hormone Support",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sugar Free",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Trolley Type",
+            "spec_option_name": "Medicine Trolley",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Key Herbs",
+            "spec_option_name": "Shatavari",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "All Mediciens for Uttarbasti",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Dose Formulation",
+            "spec_option_name": "Herbal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Dose Strength",
+            "spec_option_name": "500 mg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Prescription Required",
+            "spec_option_name": "No",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Client Size",
+            "spec_option_name": "NA",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application Type",
+            "spec_option_name": "Oral",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Table Width",
+            "spec_option_name": "600 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Key Herbs",
+            "spec_option_name": "Bhringaraj",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Equipment Type",
+            "spec_option_name": "Uttarbasti",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_option_name": "Sperm Count",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_option_name": "CHANDRAKALA RAS",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Route",
+            "spec_option_name": "Oral",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target Use",
+            "spec_option_name": "Daily Head & Eye Wellness Support",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Panchakarma",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Jewellery Type",
+            "spec_option_name": "CUTTINGS",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cure type",
+            "spec_option_name": "Tube block",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Instruction",
+            "spec_option_name": "With Warm Water",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Certifications",
+            "spec_option_name": "GMP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Access Mode",
+            "spec_option_name": "iOS App",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Dose",
+            "spec_option_name": "2 Tablets TDS",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Composition Type",
+            "spec_option_name": "Ayurvedic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Access Mode",
+            "spec_option_name": "Desktop",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "User Type",
+            "spec_option_name": "Women",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_option_name": "Libido Support",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Shade",
+            "spec_option_name": "Standard pink",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Hospital",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Base Ghee Type",
+            "spec_option_name": "Cow Ghee",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Contains Metal Bhasma",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Formulation Type",
+            "spec_option_name": "Classical",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ingredient Base",
+            "spec_option_name": "All Material required for uttarbasti",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "pH Value",
+            "spec_option_name": "10-Aug",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Clinic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Part Used",
+            "spec_option_name": "Whole Plant",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Herbal Type",
+            "spec_option_name": "Single Herb",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Deployment",
+            "spec_option_name": "NA",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Key Herbs",
+            "spec_option_name": "Gokshura",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Indication",
+            "spec_option_name": "Sexual Wellness",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Table Length",
+            "spec_option_name": "1800 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Age Group",
+            "spec_option_name": "Adult",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Herbal Formulation",
+            "spec_option_name": "Classical",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_option_name": "Complete Kit",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_option_name": "Goli",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application Area",
+            "spec_option_name": "Human",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Tablet Count",
+            "spec_option_name": "100 Tablets",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Origin Region",
+            "spec_option_name": "India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_option_name": "Made In India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Access Mode",
+            "spec_option_name": "Android App",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of origin",
+            "spec_option_name": "Made in india",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Access Mode",
+            "spec_option_name": "Web",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Diet Preference",
+            "spec_option_name": "Vegetarian",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Course Duration",
+            "spec_option_name": "90 days",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Flavor",
+            "spec_option_name": "Unflavoured",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Blend Type",
+            "spec_option_name": "Classical",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_option_name": "Stamina Support",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Medicine System",
+            "spec_option_name": "Ayurvedic",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Intended Use",
+            "spec_option_name": "Sperm Motility",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Solution Type",
+            "spec_option_name": "NA",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Indications",
+            "spec_option_name": "Immunity Booster",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Thyroid Type",
+            "spec_option_name": "Thyroid Support",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Number of Items",
+            "spec_option_name": "1 items",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Market",
+            "spec_option_name": "Retail",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made in India",
+            "option_fill_rate": "87"
+        },
+        {
+            "spec_name": "Age Group",
+            "spec_option_name": "Adult",
+            "option_fill_rate": "71.4"
+        },
+        {
+            "spec_name": "Sugar Content",
+            "spec_option_name": "With Sugar",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Treatment Type",
+            "spec_option_name": "Ayurvedic",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Brand name",
+            "spec_option_name": "Ambic Re-Resp Avleh 300 Gm",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Flavour",
+            "spec_option_name": "Unflavoured",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Sugar Type",
+            "spec_option_name": "No Added Sugar",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Indian Origin",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Key Herb",
+            "spec_option_name": "Triphala",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "GMP Certified",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Medicine Type",
+            "spec_option_name": "Classical",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Use Case",
+            "spec_option_name": "Acidity Relief",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Use Case",
+            "spec_option_name": "Indigestion",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Use Case",
+            "spec_option_name": "Gas Relief",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "59"
+        },
+        {
+            "spec_name": "Manufacture",
+            "spec_option_name": "Dabur",
+            "option_fill_rate": "57.1"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_option_name": "Cholesterol Support",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Women",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_option_name": "Weakness",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_option_name": "Heart Tonic",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "General Health",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Therapeutic Segment",
+            "spec_option_name": "Digestive",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_option_name": "Blood Pressure",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Adult",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_option_name": "Cardiac Support",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_option_name": "Tube urinary blockage",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Therapeutic Segment",
+            "spec_option_name": "Pain Relief",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Adults",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Primary Use",
+            "spec_option_name": "General Health",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_option_name": "Jar",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "Adults",
+            "option_fill_rate": "47.6"
+        },
+        {
+            "spec_name": "Prescription",
+            "spec_option_name": "Prescription",
+            "option_fill_rate": "45.5"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Tablet",
+            "option_fill_rate": "44.4"
+        },
+        {
+            "spec_name": "Manufacture",
+            "spec_option_name": "Ayurveda",
+            "option_fill_rate": "42.9"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "Ashwagandha",
+            "option_fill_rate": "40.9"
+        },
+        {
+            "spec_name": "Use Case",
+            "spec_option_name": "Constipation",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Use Case",
+            "spec_option_name": "Memory",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Use Case",
+            "spec_option_name": "Brain Health",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Use Case",
+            "spec_option_name": "Immunity",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Brand Type",
+            "spec_option_name": "Classical Brand",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Use",
+            "spec_option_name": "Cholesterol Control",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Prescription",
+            "spec_option_name": "Non Prescription",
+            "option_fill_rate": "36.4"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Tablet",
+            "option_fill_rate": "36.4"
+        },
+        {
+            "spec_name": "Medicine Type",
+            "spec_option_name": "Proprietary",
+            "option_fill_rate": "35"
+        },
+        {
+            "spec_name": "Benefit / Indication",
+            "spec_option_name": "Immunity Booster",
+            "option_fill_rate": "34.8"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Extract",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Classical",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Classical",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Sugar Type",
+            "spec_option_name": "Sugar Free",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Capsule",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Complete Kit for Uttar basti",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Key Ingredient",
+            "spec_option_name": "Majun",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "All",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Flavour",
+            "spec_option_name": "Herbal",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Syrup",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Sugar Content",
+            "spec_option_name": "Low Sugar",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Brand name",
+            "spec_option_name": "Ap Swasari Avaleha 250 Gm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Key Ingredient",
+            "spec_option_name": "Suvarna Bhasma, Rajat Bhasma, Shilajit, Safed Musli, Ashwagandha, Kaunch Beej, Makar Dhwaj, Ras Sindoor, Kesar, Jaiphal",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Tablet",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Key Ingredient",
+            "spec_option_name": "Ayurvedic Herbs",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Human",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Main Ingredient",
+            "spec_option_name": "Boerhavia diffusa Cinnamomum zeylanicum Elettaria cardamomum",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 months",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Main Ingredient",
+            "spec_option_name": "Bal ras",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Digestive Health",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Use",
+            "spec_option_name": "Heart Health",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Effect Type",
+            "spec_option_name": "Long Term Care",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Immunity Support",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Main Ingredient",
+            "spec_option_name": "Omega 3",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Immunity",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Digestion Support",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Bone Health",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Effect Type",
+            "spec_option_name": "Uterine Tone",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Joint Health",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Effect Type",
+            "spec_option_name": "Metabolism Support",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Main Ingredient",
+            "spec_option_name": "Purifed  Orpiment",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Effect Type",
+            "spec_option_name": "Symptom Relief",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "SWELLING",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Cardiac Support",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Liver Support",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Main Ingredient",
+            "spec_option_name": "Arjuna",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Effect Type",
+            "spec_option_name": "Hormone Support",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Panchakarma - Uttarbasti",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Use",
+            "spec_option_name": "Blood Pressure",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 month",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Skin Health",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Repair",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Ashwagandha",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Nirgundi",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Key Herb",
+            "spec_option_name": "Isabgol",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "60 Tablets",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "FSSAI",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand Type",
+            "spec_option_name": "Neven",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand Type",
+            "spec_option_name": "Classical",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Key Herb",
+            "spec_option_name": "Arjuna",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "ISO Certified",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Sovam",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Brand Type",
+            "spec_option_name": "Proprietary",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "36 month",
+            "option_fill_rate": "19.4"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Capsule",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Jar",
+            "option_fill_rate": "17.9"
+        },
+        {
+            "spec_name": "Benefit / Indication",
+            "spec_option_name": "Digestive Care",
+            "option_fill_rate": "17.4"
+        },
+        {
+            "spec_name": "Treatment Type",
+            "spec_option_name": "ayurvedic",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Treatment Type",
+            "spec_option_name": "Allopathic",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Tulsi",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "AYUSH Certified",
+            "option_fill_rate": "15"
+        },
+        {
+            "spec_name": "Use For",
+            "spec_option_name": "Menstrual Support",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Use For",
+            "spec_option_name": "lumbar spondylitis, sciatica, and disc herniation",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Use For",
+            "spec_option_name": "Nervine Tonic",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Use For",
+            "spec_option_name": "men wellness",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Age Group",
+            "spec_option_name": "All Age Group",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Use For",
+            "spec_option_name": "Amlapitta",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Use For",
+            "spec_option_name": "Asthma",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Use For",
+            "spec_option_name": "Uterine Tonic",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Use For",
+            "spec_option_name": "Immunity",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Use For",
+            "spec_option_name": "liver",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Age Group",
+            "spec_option_name": "Adults",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Use For",
+            "spec_option_name": "Memory",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Powder",
+            "option_fill_rate": "13.3"
+        },
+        {
+            "spec_name": "Benefit / Indication",
+            "spec_option_name": "Women Wellness",
+            "option_fill_rate": "13"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Box",
+            "option_fill_rate": "12.8"
+        },
+        {
+            "spec_name": "Use",
+            "spec_option_name": "Knee pain joint pain relief",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Use",
+            "spec_option_name": "metabolic balance, vitality",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Use",
+            "spec_option_name": "Respiratory Support",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Use",
+            "spec_option_name": "Pein relief",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Use",
+            "spec_option_name": "respiratory health",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "12 Months",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "60 tablets",
+            "option_fill_rate": "10.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "200 ml",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "60 Capsules",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "GMP",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Ayurvedic Proprietary",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "Organic",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "Men",
+            "option_fill_rate": "9.5"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "Women",
+            "option_fill_rate": "9.5"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Ayurvedic",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Prescription",
+            "spec_option_name": "Prescription Only",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Prescription",
+            "spec_option_name": "OTC",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Capsule",
+            "option_fill_rate": "8.9"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "8.7"
+        },
+        {
+            "spec_name": "Benefit / Indication",
+            "spec_option_name": "Sexual Wellness",
+            "option_fill_rate": "8.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Giloy",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Brahmi",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Hadjod",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Jatipatra",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Haldi",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Shilajit",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Dashamoola (group of 10 roots)",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Shatavari tail / Falghrut / Sahachar tail",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Vasaka",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Guggul",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Sarpagandha",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "60 tablet",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Guduchi satva, shudhdha parad, shudhdha gandhak, rakta bol",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Methi",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "GUDUCHI",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Black Pepper",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Punarnava",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Sunthi",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Shallaki",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "200 ml",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Blister Pack",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Key Ingredients",
+            "spec_option_name": "Godanti",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Hridayarnava Ras",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Uma",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Local Brand",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "40 tablets",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "3 x 60 Capsules",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Giloy Ki Ghanvati",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 kg",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Syrup",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100 g",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "300 gm",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100 tablets",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Certification",
+            "spec_option_name": "Ayush License",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Medicine Type",
+            "spec_option_name": "Ayurvedic",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "Triphala",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "NA",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "Feminine Flow, UroEase, Golden Aura",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "Shatavari, Lodhra, Ashoka, Guduchi , Daruharidra , Plus Cinnamon, Manjistha, Chia, Sesame",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "Amlaki",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "Gokshura, Shatavari, Punarnava, Yashtimadhu",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "Suvarna Bhasma, Rajat Bhasma, Shilajit, Safed Musli, Ashwagandha, Kaunch Beej, Makar Dhwaj, Ras Sindoor, Kesar, Jaiphal",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "Madhu",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "NIGUNDI BEEJ",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "Vacha",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "SHOTHARI",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "Aura Focus+, Aura Neuro+, Aura Vision",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Primary Ingredient",
+            "spec_option_name": "Turmeric (Haldi)",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Vati",
+            "option_fill_rate": "4.4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Semi Solid",
+            "option_fill_rate": "4.4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Syrup",
+            "option_fill_rate": "4.4"
+        },
+        {
+            "spec_name": "Benefit / Indication",
+            "spec_option_name": "Cough & Cold",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Benefit / Indication",
+            "spec_option_name": "SWELLING",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Benefit / Indication",
+            "spec_option_name": "strength and vitality",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Benefit / Indication",
+            "spec_option_name": "psychological and neurological well-being",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made In India",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Benefit / Indication",
+            "spec_option_name": "NA",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Benefit / Indication",
+            "spec_option_name": "Complete Wellness",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "100 gm",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Himalaya",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "VEDONYX PHARMA",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "10 Tablet",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "200ml oil",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "250gm,500gm",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "30 capsules",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Track fem",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "60 tablet",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Shree Dhootapapeshwar",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Unisage",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "30 Tablet",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "LION",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "KERALA AYURVEDIC",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "250G",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Sk pharma",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Maharishi Ayurveda",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "100 TAB",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "30g*23",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Geo herb herb health care",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "30 Tablets",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "300 gm",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Devagya",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Baidyanath",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "DHANVANTARI",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Pills",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "With Water",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "With Milk",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Rasayana",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "ghee",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Oral Use",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Ayurvedic Proprietary",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "tea",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Vaginal",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Churna | Powder | Ointment | Capsule | Tablet | Syrup | Juice | Oil|Herbal Beauty & Personal Care Pr",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Lehya / Avleh",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "36 Months",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "18 months",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "12 months",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 Months",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "60 months",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "36 months",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "60 month",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100 gm",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "300 G.m",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "500ml",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "10 Gm",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "30 ML",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "60 Capsules",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "500 g",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "10gm",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "120",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Pouch",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "250gm",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100Gm",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "50 g",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "10 g",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "60 Tablets",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1 Kg",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100gm",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "20gm",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "20 gram",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "60 capsule",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "100 capsule",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "28",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "150ml",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "20 capsules",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Tea",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Crude",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Ras",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "OIL",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Majun",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Oial",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Rasa",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "majoon",
+            "option_fill_rate": "2.2"
+        }
+    ]
+}

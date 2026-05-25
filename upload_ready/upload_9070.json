@@ -1,0 +1,156 @@
+[
+  {
+    "pmcat_id": 1709,
+    "pmcat_name": "Tarpaulins",
+    "generated_by": "Spec_Audit_Orchestrator_Agent",
+    "mcats": [
+      {
+        "category_name": "HDPE Tarpaulin",
+        "mcat_id": 9070,
+        "generated_by": "Spec_Audit_Orchestrator_Agent",
+        "finalized_specs": {
+          "finalized_primary_specs": {
+            "specs": [
+              {
+                "spec_name": "GSM",
+                "options": [
+                  "80 GSM",
+                  "90 GSM",
+                  "100 GSM",
+                  "120 GSM",
+                  "150 GSM",
+                  "170 GSM",
+                  "180 GSM",
+                  "200 GSM",
+                  "250 GSM",
+                  "300 GSM",
+                  "350 GSM",
+                  "400 GSM",
+                  "500 GSM"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Width",
+                "options": [],
+                "input_type": "text_type"
+              },
+              {
+                "spec_name": "Length",
+                "options": [],
+                "input_type": "text_type"
+              }
+            ]
+          },
+          "finalized_secondary_specs": {
+            "specs": [
+              {
+                "spec_name": "Material Grade",
+                "options": [
+                  "Virgin",
+                  "Semi-Virgin",
+                  "Reprocessed"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Color",
+                "options": [
+                  "Blue",
+                  "Black",
+                  "Yellow",
+                  "White",
+                  "Green",
+                  "Orange",
+                  "Silver",
+                  "Dual Color",
+                  "Transparent"
+                ],
+                "input_type": "multi_select"
+              }
+            ]
+          },
+          "finalized_tertiary_specs": {
+            "specs": [
+              {
+                "spec_name": "Thickness",
+                "options": [
+                  "50 Micron",
+                  "100 Micron",
+                  "120 Micron",
+                  "150 Micron",
+                  "200 Micron",
+                  "250 Micron",
+                  "300 Micron",
+                  "400 Micron",
+                  "500 Micron",
+                  "1000 Micron",
+                  "1500 Micron"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Brand",
+                "options": [
+                  "Supreme",
+                  "Silpaulin",
+                  "Shalimar",
+                  "Panchsheel",
+                  "Rainshield",
+                  "Nakoda",
+                  "Paragon"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Features",
+                "options": [
+                  "Waterproof",
+                  "UV Stabilized",
+                  "Reinforced Edges",
+                  "Tear Resistant",
+                  "Aluminum Eyelets",
+                  "Puncture Resistant",
+                  "Stitchless"
+                ],
+                "input_type": "multi_select"
+              },
+              {
+                "spec_name": "Application",
+                "options": [
+                  "Agriculture",
+                  "Construction",
+                  "Truck Cover",
+                  "Pond Lining",
+                  "Monsoon Shed",
+                  "Warehouse Cover",
+                  "Machine Cover",
+                  "Tent"
+                ],
+                "input_type": "multi_select"
+              },
+              {
+                "spec_name": "Tarpaulin Type",
+                "options": [
+                  "Ready-made",
+                  "Cut Piece",
+                  "Roll Form"
+                ],
+                "input_type": "radio_button"
+              },
+              {
+                "spec_name": "Country of Origin",
+                "options": [
+                  "India",
+                  "China",
+                  "Imported"
+                ],
+                "input_type": "radio_button"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+]

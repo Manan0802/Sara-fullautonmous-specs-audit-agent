@@ -1,0 +1,3405 @@
+=== SYSTEM PROMPT ===
+# Spec Audit Orchestrator Agent
+
+
+
+
+You are an expert spec auditor for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+
+
+---
+
+
+
+
+## YOUR OBJECTIVE
+
+
+
+
+Every product category on this marketplace has a spec sheet — a structured set of attributes (specs) that sellers fill out and buyers use to filter. Your job is to audit the existing spec sheet and produce a corrected version.
+
+
+
+
+The existing specs are largely correct. Do not rebuild from scratch. Find and fix what is genuinely wrong: missing specs, wrong tiers, bad options wrong input types (radio vs multiselect), duplicates, or irrelevant entries. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** What a buyer asks first. What a seller must fill to have a findable listing.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one variant from another. Essential but not the first question.
+- **Tertiary:** Useful detail. Not critical for discovery.
+
+
+Each spec has `spec_name`, `options` (values sellers choose), and `input_type` (`radio_button` / `multi_select` / `text_type`).
+
+
+Your job is to audit all these aspects of the specs of a given category.
+
+
+---
+
+
+
+
+## YOUR DATA
+
+
+
+
+Five data sources are pre-fetched and in your context. Use them all.
+
+
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+
+
+
+You have three tools available. Use them whenever they help you.
+
+
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+Wait until your next turn to actually do the analysis. **Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+
+
+## RULES
+
+
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+
+
+**Every spec must be reviewed.** Even specs you don't change. For untouched specs, one line: "Reviewed — no signals requiring change."
+
+
+
+
+**Be your own critic.** Before finalising any action, ask: what is the strongest argument against this? Is there an alternative explanation for this signal? Address it.
+
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+
+
+---
+
+
+
+
+## BEGIN
+
+
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+
+Start by reading the skills you need, analyze the data, and produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 182091
+category_name: Delta VFD
+seller_specs (current spec sheet): {
+  "category_name": "Delta VFD",
+  "mcat_id": 182091,
+  "generated_by": "Standard_Product_Specs",
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Series",
+          "options": [
+            "VFD-E",
+            "VFD-M",
+            "VFD-L",
+            "VFD-EL",
+            "VFD-B",
+            "C2000",
+            "MS300",
+            "CP2000",
+            "VFD-S",
+            "VFD-VL",
+            "CT2000 Series",
+            "CP2000 Series",
+            "C2000 Plus",
+            "C2000-HS Series",
+            "CFP2000",
+            "CH2000",
+            "VFD-VJ-A / VFD-VJ-B Series",
+            "ED Series",
+            "VFD-C2000+",
+            "ME300",
+            "VFD-EL-W Series",
+            "MVF23",
+            "MVD22",
+            "MVF20",
+            "VFD-VE"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Power Rating",
+          "options": [
+            "0.37 kW",
+            "0.75 kW",
+            "1.5 kW",
+            "2.2 kW",
+            "3.7 kW",
+            "5.5 kW",
+            "7.5 kW",
+            "11 kW",
+            "15 kW",
+            "18.5 kW",
+            "0.4 kW",
+            "0.2 kW",
+            "30 kW",
+            "37 kW",
+            "75 kW",
+            "110 kW",
+            "160 kW",
+            "220 kW",
+            "355 kW"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Input Voltage",
+          "options": [
+            "200\u2013240 V",
+            "380\u2013480 V",
+            "220 V",
+            "415 V",
+            "440 V",
+            "500 V",
+            "525 V",
+            "575 V",
+            "690 V",
+            "320\u2013460 V",
+            "115 V",
+            "460 V",
+            "100-120 V",
+            "230 V",
+            "3.3 kV",
+            "6.0 kV"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Input Phase",
+          "options": [
+            "1 Phase",
+            "3 Phase"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Control Mode",
+          "options": [
+            "V/F Control",
+            "Sensorless Vector",
+            "Closed Loop Vector",
+            "Torque Control",
+            "PID Control",
+            "Multi-step Speed",
+            "Simple PLC",
+            "Energy Saving",
+            "Soft Start",
+            "Regenerative",
+            "V/F Control with PG",
+            "FOC with PG",
+            "TQC with PG",
+            "Sensorless Vector Control (SVC)",
+            "Permanent Magnet Motor Control",
+            "SPWM",
+            "Open Loop Control",
+            "Vector Control",
+            "Scaler Control",
+            "FOC Sensorless"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Motor Power",
+          "options": [
+            "0.5 HP",
+            "1 HP",
+            "2 HP",
+            "3 HP",
+            "5 HP",
+            "7.5 HP",
+            "10 HP",
+            "15 HP",
+            "20 HP",
+            "25 HP",
+            "0.25 HP",
+            "40 HP",
+            "50 HP",
+            "100 HP",
+            "150 HP",
+            "215 HP",
+            "300 HP",
+            "475 HP"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Enclosure",
+          "options": [
+            "IP20",
+            "IP21",
+            "IP54",
+            "IP55",
+            "IP65",
+            "Open Type",
+            "Panel Mount",
+            "Wall Mount",
+            "NEMA 1",
+            "NEMA 12",
+            "IP00",
+            "UL Type 1",
+            "IP40",
+            "IP31",
+            "IP42",
+            "IP41"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Application",
+          "options": [
+            "Pump",
+            "Fan",
+            "Compressor",
+            "Conveyor",
+            "Crane",
+            "Hoist",
+            "HVAC",
+            "Mixer",
+            "Blower",
+            "Centrifuge",
+            "Textile",
+            "Elevator",
+            "Production",
+            "Processing",
+            "Food Industry",
+            "Chemical Industry",
+            "Metal Processing",
+            "Rubber and Plastics"
+          ],
+          "input_type": "multi_select"
+        },
+        {
+          "spec_name": "Braking Type",
+          "options": [
+            "DC Braking",
+            "Dynamic Braking",
+            "Regen Braking",
+            "No Braking"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Communication",
+          "options": [
+            "Modbus",
+            "Profibus",
+            "Profinet",
+            "CANopen",
+            "EtherNet/IP",
+            "EtherCAT",
+            "DeviceNet",
+            "RS485",
+            "BACnet",
+            "USB",
+            "Modbus TCP",
+            "BACnet IP",
+            "PROFIBUS DP",
+            "Modbus RTU",
+            "ProfiNet IO",
+            "PowerLink",
+            "ControNet"
+          ],
+          "input_type": "multi_select"
+        },
+        {
+          "spec_name": "Brand",
+          "options": [
+            "Delta"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Frame Size",
+          "options": [
+            "B",
+            "A",
+            "C1",
+            "D0",
+            "F",
+            "G",
+            "H",
+            "D",
+            "E",
+            "A1",
+            "C",
+            "A2"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Cooling Method",
+          "options": [
+            "Natural Cooling",
+            "Fan Cooling"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "EMC Filter",
+          "options": [
+            "Optional",
+            "Built-in",
+            "No"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Supported Motor Type",
+          "options": [
+            "Asynchronous Motor",
+            "Synchronous Motor",
+            "Induction Motor (IM)",
+            "Interior Permanent Magnet (IPM) Motor",
+            "Surface Permanent Magnet (SPM) Motor",
+            "Permanent Magnet (PM) Motor",
+            "Squirrel Cage Motor",
+            "Slip-ring Motor",
+            "Brush Type Synchronous Motor"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "PLC Function",
+          "options": [
+            "Built-in (10k steps)",
+            "Built-in"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Certifications",
+          "options": [
+            "GB/T12668-2",
+            "CE",
+            "UL",
+            "UL508C",
+            "CUL",
+            "RCM",
+            "EAC",
+            "SEMI F47-0706",
+            "GB12668.3",
+            "WEEE 2012/19/EU",
+            "RoHS",
+            "ISO 9001",
+            "ISO 14001",
+            "KC7",
+            "TUV",
+            "REACH",
+            "EN81-1+A3",
+            "EN81-20",
+            "CULUS",
+            "GB 12668.3"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "DC Reactor",
+          "options": [
+            "Optional",
+            "Built-in",
+            "N/A"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Braking Chopper",
+          "options": [
+            "Built-in",
+            "Optional",
+            "N/A"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Width",
+          "options": [
+            "200.0 mm",
+            "130.0 mm",
+            "130.05 mm",
+            "280.0 mm",
+            "370.0 mm",
+            "420.0 mm",
+            "500.0 mm",
+            "700.0 mm",
+            "87.0 mm",
+            "68.0 mm",
+            "161.0 mm",
+            "72.0 mm",
+            "235.0 mm",
+            "255.0 mm",
+            "92.0 mm",
+            "100.0 mm",
+            "1210.0 mm",
+            "1610.0 mm",
+            "1910.0 mm",
+            "2210.0 mm",
+            "4110.0 mm",
+            "2310.0 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Height",
+          "options": [
+            "361.8 mm",
+            "250.0 mm",
+            "249.94 mm",
+            "500.0 mm",
+            "550.0 mm",
+            "589.0 mm",
+            "800.0 mm",
+            "1000.0 mm",
+            "1435.0 mm",
+            "157.0 mm",
+            "128.0 mm",
+            "366.52 mm",
+            "356.36 mm",
+            "336.4 mm",
+            "142.0 mm",
+            "350.0 mm",
+            "260.0 mm",
+            "162.0 mm",
+            "180.5 mm",
+            "174.0 mm",
+            "2796.0 mm",
+            "2888.0 mm",
+            "2668.0 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Depth",
+          "options": [
+            "189.4 mm",
+            "170.0 mm",
+            "169.93 mm",
+            "255.0 mm",
+            "275.0 mm",
+            "300.0 mm",
+            "397.0 mm",
+            "398.0 mm",
+            "152.0 mm",
+            "96.0 mm",
+            "110.0 mm",
+            "244.0 mm",
+            "146.0 mm",
+            "178.0 mm",
+            "133.5 mm",
+            "136.0 mm",
+            "92.0 mm",
+            "107.0 mm",
+            "128.7 mm",
+            "1250.0 mm",
+            "1500.0 mm",
+            "1400.0 mm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Weight",
+          "options": [
+            "2.6 kg",
+            "2.9 kg",
+            "38.0 kg",
+            "40.0 kg",
+            "66.0 kg",
+            "88.0 kg",
+            "138.0 kg",
+            "228.0 kg",
+            "0.5 kg",
+            "1.0 kg",
+            "6.8 kg",
+            "1.2 kg",
+            "6.0 kg",
+            "8.0 kg",
+            "10.0 kg",
+            "13.0 kg",
+            "1.1 kg",
+            "1.4 kg",
+            "1.7 kg",
+            "2200.0 kg",
+            "2250.0 kg",
+            "2300.0 kg",
+            "3100.0 kg",
+            "3200.0 kg",
+            "4600.0 kg",
+            "4700.0 kg",
+            "3500.0 kg",
+            "5300.0 kg",
+            "2.7 kg",
+            "3.2 kg",
+            "4.5 kg",
+            "36.0 kg"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Safety Standards",
+          "options": [
+            "Safe Torque Off (STO)",
+            "EN/IEC61800-5-2",
+            "TUV Rheinland Certified",
+            "IEC62061/IEC61508",
+            "SIL CL2",
+            "EN ISO13849-1",
+            "Cat.3/PL d"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Rated Output Current (Heavy Duty)",
+          "options": [
+            "17 A",
+            "23 A",
+            "30 A",
+            "3 A",
+            "1.7 A",
+            "5.0 A",
+            "1.6 A",
+            "2.5 A",
+            "4.8 A",
+            "4.2 A"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Rated Output Current (Normal Duty)",
+          "options": [
+            "24 A",
+            "32 A",
+            "38 A",
+            "3 A",
+            "1.8 A",
+            "2.7 A",
+            "5.5 A"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Output Frequency",
+          "options": [
+            "0.01 - 599.00 Hz",
+            "0.00 - 300.00 Hz",
+            "599.00 Hz",
+            "0-599 Hz",
+            "1500 Hz",
+            "1200 Hz",
+            "1000 Hz",
+            "900 Hz",
+            "0-599 Hz",
+            "0.1-599 Hz",
+            "0.00-400 Hz",
+            "0.1-400 Hz",
+            "0.1-600 Hz",
+            "0.5-75 Hz",
+            "0.00-600.00 Hz"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Carrier Frequency",
+          "options": [
+            "2-6 kHz",
+            "2-15 kHz",
+            "2-15 (default setting 8) kHz",
+            "2-15 (default 10) kHz",
+            "2-15 (default 8) kHz",
+            "2-12 (default 8) kHz",
+            "2-10 (default 6) kHz",
+            "2-9 (default 6) kHz",
+            "2-15 (default 4) kHz",
+            "2-12 kHz",
+            "2-15 kHz",
+            "1-15 kHz",
+            "5-15 kHz",
+            "15 kHz",
+            "9 kHz",
+            "6 kHz"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Overload Tolerance",
+          "options": [
+            "Light duty: 120% of rated current for 1 minute per every 5 minutes; Heavy duty: 150% of rated current for 1 minute per every 5 minutes",
+            "120% of rated current for 1 minute during every 5 minutes",
+            "120% of rated current for 1 minute during every 5 minutes; 160% of rated current for 3 seconds during every 25 seconds",
+            "Heavy Duty (HD): At 150% of the rated output current, continuous operation lasts up to 1 min. in every 5 mins. At 180% of the rated output current, continuous operation lasts up to 3 secs. in every 30 secs.",
+            "Super Heavy Duty (SHD): At 150% of the rated output current, continuous operation lasts up to 1 min. in every 5 mins. At 200% of the rated output current, continuous operation lasts up to 3 secs. in every 30 secs.",
+            "120% of rated current: 1 minute for every 5 minutes; 160% of rated current: 3 seconds for every 30 seconds",
+            "Normal Duty: 120% of rated output current for 60 seconds; 150% of rated output current for 3 seconds",
+            "Heavy Duty: 150% of rated output current for 60 seconds; 200% of rated output current for 3 seconds",
+            "120% for 60 seconds in every 5 minutes",
+            "120% for 60 seconds in every 5 minutes, 160% for 3 seconds in every 25 seconds",
+            "Constant torque: 150% for 60 seconds, variable torque: 180% for 10 seconds",
+            "150% of rated current for 1 minute",
+            "110% 1 min / 10 min",
+            "Constant torque: 150% for 60 seconds, variable torque: 200% for 2 seconds"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Efficiency",
+          "options": [
+            "97.8%",
+            "97.8 %",
+            "96.5 %",
+            "96.8 %",
+            "97.5 %",
+            "97.7 %",
+            "97.1 %",
+            "98.4 %",
+            "> 98.5%"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Power Factor",
+          "options": [
+            ">0.98",
+            "> 0.98",
+            "> 0.96"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Operating Temperature",
+          "options": [
+            "-10~40 \u00b0C",
+            "-10~50 \u00b0C",
+            "-10\u00b0C~50\u00b0C",
+            "-10\u00b0C to +50\u00b0C (40\u00b0C for side-by-side mounting) Non-Condensing and not frozen",
+            "-10\u00b0C~40\u00b0C, Up to 50\u00b0C under derating operation",
+            "0~+40\u00b0C, normal operation; +40~+50\u00b0C, de-rating operation",
+            "-10\u00b0C to 40\u00b0C for 15hp and above & -10\u00b0C to 50\u00b0C for 10hp and below",
+            "-10\u00b0C to 50\u00b0C"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Starting Torque",
+          "options": [
+            "Reach up to 150% or above at 0.5Hz. Under FOC+PG mode, starting torque can reach 150% at OHz.",
+            "Reach up to 150% or above at 0.5Hz",
+            "IMVF, IMVF+PG, IMSVC: 150%/3 Hz",
+            "IMFOC Sensorless: 200%/0.5 Hz",
+            "IMFOC + PG: 200%/0 Hz",
+            "PMSVC: 100%/(motor rated frequency/20)",
+            "PM Sensorless: 100%/(motor rated frequency/50)",
+            "IPM Sensorless: 100%/0 Hz",
+            "PMFOC+PG: 200%/0 Hz",
+            "IM: Reach up to 150% at 1/50 rated rotor speed; PM: Reach up to 150% at 1/100 rated rotor speed",
+            "Including the auto-torque/auto-slip compensation; starting torque can be 150% at 3.0 Hz",
+            "Reach up to 150% or above at 0.5 Hz. Under FOC+PG or FOC+PM mode, starting torque can reach 150% at 0 Hz.",
+            "200% high starting torque with a low speed control of 3Hz",
+            "Including the auto-torque, auto-slip compensation; starting torque can be 150% at 5 Hz",
+            "Including the auto-torque/auto-slip compensation; starting torque can be 150% at 5.0Hz",
+            "Reach up to 200% or above at 0.5 Hz. Under FOC+PG mode, starting torque can reach 200% at 0 Hz.",
+            "Starting torque is 150% at 0.5Hz and 0Hz with FOC + PG control mode"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "V/F Curve",
+          "options": [
+            "4 point adjustable V/F curve and square curve",
+            "Adjustable V/F pattern",
+            "Adjustable V/f pattern",
+            "Adjustable V/f curve using 4 independent points and square curve"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Rated Output Current (Light Duty)",
+          "options": [
+            "5 A",
+            "3 A"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Rated Output Current",
+          "options": [
+            "60 A",
+            "73 A",
+            "150 A",
+            "220 A",
+            "310 A",
+            "460 A",
+            "683 A",
+            "5.0 A",
+            "1.6 A",
+            "2.5 A",
+            "4.8 A",
+            "1.7 A",
+            "7.5 A",
+            "11.0 A",
+            "36 A",
+            "50 A",
+            "70 A",
+            "100 A",
+            "140 A",
+            "180 A",
+            "215 A",
+            "45 A",
+            "250 A"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Rated Output Current (Super Heavy Duty)",
+          "options": [
+            "1.7 A"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Rated Input Current",
+          "options": [
+            "4.3 A",
+            "3.5 A",
+            "63 A",
+            "74 A",
+            "157 A",
+            "207 A",
+            "300 A",
+            "400 A",
+            "625 A",
+            "1.6 A",
+            "2.5 A",
+            "4.8 A",
+            "3.0 A",
+            "1.7 A",
+            "6.4 A",
+            "6.1 A",
+            "6 A",
+            "4.9 A",
+            "1.9 A",
+            "24 A",
+            "34 A",
+            "20 A",
+            "23 A",
+            "18 A",
+            "9 A",
+            "15.7 A",
+            "1.8 A",
+            "3.2 A",
+            "7.1 A",
+            "9.0 A",
+            "10.0 A",
+            "6.5 A",
+            "9.5 A",
+            "20.6 A",
+            "9.9 A",
+            "15 A",
+            "21 A",
+            "52 A",
+            "68 A",
+            "79 A",
+            "106 A",
+            "126 A"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Rated Output Capacity (kVA)",
+          "options": [
+            "2.4 kVA",
+            "1.4 kVA",
+            "0.6 kVA",
+            "1.0 kVA",
+            "2.9 kVA",
+            "4.2 kVA",
+            "2.0 kVA",
+            "1.2 kVA",
+            "1.9 kVA",
+            "4.8 KVA",
+            "6.8 KVA",
+            "7.9 KVA",
+            "9.5 KVA",
+            "1.6 kVA",
+            "48 kVA",
+            "58 kVA",
+            "120 kVA",
+            "175 kVA",
+            "247 kVA",
+            "367 kVA",
+            "544 kVA",
+            "2.7 kVA",
+            "6.5 kVA",
+            "13 kVA",
+            "19 kVA",
+            "25 kVA",
+            "29 kVA",
+            "34 kVA",
+            "46 kVA",
+            "55 kVA",
+            "3.3 kVA",
+            "4.4 kVA",
+            "7.4 kVA",
+            "0.5 kVA",
+            "210 KVA",
+            "290 KVA",
+            "400 KVA",
+            "580 KVA",
+            "800 KVA",
+            "1050 KVA",
+            "1250 KVA",
+            "375 KVA",
+            "260 KVA",
+            "1450 KVA"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Safe Torque Off (STO)",
+          "options": [
+            "Yes",
+            "Built-in",
+            "No"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Rated Output Current (Constant Torque)",
+          "options": [
+            "5.0 A",
+            "7.5 A",
+            "11 A",
+            "17 A",
+            "25 A",
+            "33 A",
+            "49 A",
+            "65 A",
+            "75 A",
+            "90 A",
+            "120 A",
+            "146 A"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Rated Output Current (Variable Torque)",
+          "options": [
+            "6.25 A",
+            "9.4 A",
+            "13 A",
+            "21 A",
+            "31 A",
+            "41 A",
+            "61 A",
+            "81 A",
+            "93 A",
+            "112 A",
+            "150 A",
+            "182 A"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Input Current (Heavy Duty)",
+          "options": [
+            "19 A",
+            "25 A",
+            "33 A"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Input Current (Normal Duty)",
+          "options": [
+            "25 A",
+            "33 A",
+            "40 A"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 18 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "total_product_count": 148,
+    "example_values": [
+      "Delta"
+    ]
+  },
+  {
+    "spec_name": "Power",
+    "total_product_count": 147,
+    "example_values": [
+      "3 HP",
+      "5 HP",
+      "1 HP",
+      "2 HP",
+      "10 HP"
+    ]
+  },
+  {
+    "spec_name": "Input Phase",
+    "total_product_count": 76,
+    "example_values": [
+      "Three Phase",
+      "Single Phase",
+      "2 Phase / 3 Phase"
+    ]
+  },
+  {
+    "spec_name": "Series",
+    "total_product_count": 62,
+    "example_values": [
+      "MS300",
+      "EL",
+      "MS",
+      "M",
+      "ME300"
+    ]
+  },
+  {
+    "spec_name": "Output Phase",
+    "total_product_count": 43,
+    "example_values": [
+      "Three Phase",
+      "Single Phase"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 38,
+    "example_values": [
+      "Motor Speed Control",
+      "CNC Machine",
+      "Loom",
+      "Solar",
+      "Mixer Machine"
+    ]
+  },
+  {
+    "spec_name": "Product Type",
+    "total_product_count": 20,
+    "example_values": [
+      "AC Drive",
+      "VFD",
+      "HMI",
+      "PLC",
+      "Power supply card for control card"
+    ]
+  },
+  {
+    "spec_name": "Model Number",
+    "total_product_count": 17,
+    "example_values": [
+      "VFD370C43S",
+      "DOP 107BV",
+      "VFB4A8ME21AAA",
+      "VFD...9A...",
+      "VFD007E23C"
+    ]
+  },
+  {
+    "spec_name": "Input Voltage",
+    "total_product_count": 14,
+    "example_values": [
+      "440 V",
+      "415 V",
+      "220 V",
+      "230 V",
+      "200-240 V"
+    ]
+  },
+  {
+    "spec_name": "Condition",
+    "total_product_count": 7,
+    "example_values": [
+      "Used",
+      "Dead",
+      "New",
+      "Semi-fresh"
+    ]
+  },
+  {
+    "spec_name": "Motor Phase Compatibility",
+    "total_product_count": 5,
+    "example_values": [
+      "Three Phase"
+    ]
+  },
+  {
+    "spec_name": "Duty Cycle",
+    "total_product_count": 4,
+    "example_values": [
+      "Heavy Duty",
+      "Normal"
+    ]
+  },
+  {
+    "spec_name": "Current",
+    "total_product_count": 4,
+    "example_values": [
+      "103-105 A",
+      "17 A",
+      "25 A",
+      "5.5 A"
+    ]
+  },
+  {
+    "spec_name": "Model / Part Number",
+    "total_product_count": 4,
+    "example_values": [
+      "MS300",
+      "100G",
+      "VFD13AMS43AMSAA"
+    ]
+  },
+  {
+    "spec_name": "Output Voltage",
+    "total_product_count": 3,
+    "example_values": [
+      "220 V",
+      "230 V",
+      "460 V"
+    ]
+  },
+  {
+    "spec_name": "Function",
+    "total_product_count": 3,
+    "example_values": [
+      "Speed Control",
+      "Speed Display"
+    ]
+  },
+  {
+    "spec_name": "Motor Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Screw motor",
+      "Induction Motor"
+    ]
+  },
+  {
+    "spec_name": "Communication Protocol",
+    "total_product_count": 3,
+    "example_values": [
+      "485"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 4 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "count": 22,
+    "options": [
+      "Delta"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "count": 7,
+    "options": [
+      "VFD9A0MS43ANSAA",
+      "VFD4A2MS43ANSAA",
+      "VFD2A7MS43ANSAA",
+      "VFD17AMS43ANSAA",
+      "VFD004EL21W-1"
+    ]
+  },
+  {
+    "spec_name": "Current",
+    "count": 7,
+    "options": [
+      "9A",
+      "4.2 A"
+    ]
+  },
+  {
+    "spec_name": "Model Number",
+    "count": 5,
+    "options": [
+      "VFD2A8MS21ANSAA",
+      "VFD 7A5ME21",
+      "VFD015EL43A",
+      "VFD002EL21W-1",
+      "VFD1A5ME43ANNAA"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 4 specs) ---
+[
+  {
+    "spec_name": "brand",
+    "total_impressions": 1087,
+    "options": [
+      "asian",
+      "delta",
+      "vl"
+    ]
+  },
+  {
+    "spec_name": "motor power",
+    "total_impressions": 528,
+    "options": [
+      "1 hp",
+      "10 hp",
+      "15 hp",
+      "2 hp",
+      "20 hp"
+    ]
+  },
+  {
+    "spec_name": "input phase",
+    "total_impressions": 231,
+    "options": [
+      "3 phase"
+    ]
+  },
+  {
+    "spec_name": "model name/number",
+    "total_impressions": 58,
+    "options": [
+      "ms300",
+      "vfd015"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (23 specs) ---
+[
+  {
+    "spec_name": "",
+    "spec_fill_rate": "53.8",
+    "product_count": "64"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_fill_rate": "47.1",
+    "product_count": "56"
+  },
+  {
+    "spec_name": "Series",
+    "spec_fill_rate": "44.5",
+    "product_count": "53"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_fill_rate": "42",
+    "product_count": "50"
+  },
+  {
+    "spec_name": "Input Phase",
+    "spec_fill_rate": "38.7",
+    "product_count": "46"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_fill_rate": "36.1",
+    "product_count": "43"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_fill_rate": "34.5",
+    "product_count": "41"
+  },
+  {
+    "spec_name": "Enclosure",
+    "spec_fill_rate": "26.9",
+    "product_count": "32"
+  },
+  {
+    "spec_name": "Application",
+    "spec_fill_rate": "23.5",
+    "product_count": "28"
+  },
+  {
+    "spec_name": "Communication",
+    "spec_fill_rate": "20.2",
+    "product_count": "24"
+  },
+  {
+    "spec_name": "Braking Type",
+    "spec_fill_rate": "12.6",
+    "product_count": "15"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "10.1",
+    "product_count": "12"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_fill_rate": "1.7",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Supply Voltage",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Deals",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Control Interface",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Model",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "MODLE",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Output Frequency",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "MAKE",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Current",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "IP Rating",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (0 rows) ---
+[]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data  output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+
+
+## How to read product count — what counts as signal
+
+
+Product count is relative. Do not use absolute thresholds. Instead, compare each
+spec's count against the full distribution of counts in this category:
+
+
+- A spec in the top 25% of counts is a strong signal regardless of the absolute number
+- A spec with count between 5 and the median is a moderate signal
+- A spec with count below 5 is a weak signal — treat as directional only
+- A spec with count of 1 or 2 is noise — do not act on it alone
+
+
+**The 90% coverage rule:** Example values shown represent 90% of real usage.
+Values with count ≤ 2 are dropped before you see them. What you see is the bulk
+of real market usage — not exhaustive, but representative.
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs , that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+   and search impressions  to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_search_analysis) ---
+# Buyer Search Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer Search Data output — use this document to understand
+what impression counts mean, how to classify each search signal, and how to use
+search findings in your audit decisions. You apply this interpretation yourself —
+no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer search data contains spec-option combinations that buyers selected as filters
+when searching the marketplace, along with impression counts showing how many times
+each filter was used. When a buyer clicks "Thickness: 3mm" as a search filter, that
+generates one impression for that spec-option combination.
+
+
+This data tells you what buyers actively want to narrow their search by. High
+impressions mean many buyers are expressing demand for this attribute as a filter.
+It is your most direct measure of buyer intent on the platform.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The name of the spec buyers used as a filter. May not match the platform spec name
+exactly — use semantic matching, not exact string matching. "Wattage" and "Power"
+refer to the same buyer intent.
+
+
+**spec_option / option value**
+The specific value buyers filtered by. Values appearing here but absent from your
+current option list are strong candidates for addition.
+
+
+**impression / total_impressions**
+How many times buyers used this spec-option combination as a filter. Your primary
+signal from this data source. Higher = more buyer demand.
+
+
+---
+
+
+## How to read impression counts — orientation thresholds
+
+
+These are not hard rules — calibrate relative to the distribution in your category.
+
+
+| Total impressions for a spec | Signal strength |
+|-----------------------------|-----------------|
+| Below 50 | Noise — do not act on this alone |
+| 50 to 500 | Weak — needs corroboration from another source |
+| 500 to 2000 | Moderate — worth investigating, check for artifacts |
+| Above 2000 | Strong — genuine buyer demand |
+
+
+A spec with 200 impressions that also appears in call data is stronger evidence than
+a spec with 1000 impressions that has zero product count and looks like a UI default.
+Always cross-reference.
+
+
+---
+
+
+## The two types of specs in search data
+
+
+**Present specs** — Buyers are using a spec the platform already has. High impressions
+for a present spec validate that it belongs where it is. Very high impressions for a
+present Tertiary spec is a signal it may be misplaced.
+
+
+**Missing specs** — Buyers are filtering on an attribute the platform does not offer
+as a standardised spec. These are discovery gaps — buyers are either finding no
+results or settling for imprecise results. High-value candidates for addition.
+
+
+Use semantic matching when classifying — "Wattage" is present if the platform has
+"Power". The buyer intent is the same regardless of the label difference.
+
+
+---
+
+
+## Signal classification — apply to every search spec before acting
+
+
+Not every high-impression term should become a spec. Classify first:
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute, impressions ≥ 50, not already covered | Addition candidate |
+| `CONTEXT_TERM` | A word describing context or setting, not a filterable attribute | Do not add |
+| `IMPLIED` | Category name already defines this value for every product | Do not add — artifact |
+| `DUPLICATE` | Semantically same as an existing platform spec under a different name | Do not add — already covered |
+| `NOT_A_PRODUCT_SPEC` | Delivery, payment, warranty, MOQ | Do not add |
+| `DATA_ARTIFACT` | One option has over 90% of impressions, or known default UI filter | Do not promote based on this alone |
+
+
+**Category-implied check — apply every time:**
+If the category name itself tells you the value of this spec for every product,
+buyer impressions are an artifact. Example: buyers searching "Material: Aluminium"
+in an Aluminium Profiles category are not expressing a new spec need. Every product
+is already aluminium. The impressions come from the filter existing, not from genuine
+buyer differentiation need.
+
+
+**Data artifact check — apply when impressions look disproportionate:**
+- Does one option account for over 90% of total impressions for this spec?
+- Is this likely a default filter the platform pre-selects for buyers?
+- Does product count in call data = 0 despite very high impressions?
+
+
+If yes to any of these, tag as `DATA_ARTIFACT` and do not promote based on this signal.
+
+
+---
+
+
+## How to use search data in your audit
+
+
+**Finding discovery gaps**
+Search for specs classified as missing with impressions above 50. These are attributes
+buyers want to filter on but the platform does not offer. High-priority addition
+candidates. Cross-reference with call data and custom specs before adding.
+
+
+**Validating tier placement**
+A spec currently in Tertiary with thousands of impressions is almost certainly
+misplaced. Bring this signal into your sequencing reasoning alongside fill rate
+and product count.
+
+
+**Finding option gaps**
+When buyers filter by a specific value that does not exist in the current option list,
+that is a direct signal to add that option. Example: "48V" appearing in search but
+absent from the Voltage spec options. Bring to your option validation reasoning with
+this as evidence.
+
+
+**Cross-source confirmation**
+A spec appearing as missing in search AND in call data is confirmed from both the
+demand side (buyers want to filter) and the transactional side (buyers and sellers
+discuss it). This combination reaches high confidence for addition.
+
+
+---
+
+
+## What search data cannot tell you alone
+
+
+**Whether a spec is genuinely missing** — High impressions may reflect an artifact,
+a context term, or a spec that already exists under a different name. Always classify
+before acting.
+
+
+**Final tier placement** — Impressions are one of three signals. You need fill rate
+ and product count  to make a well-supported tier decision.
+
+
+**Option quality** — Search data shows which values buyers look for, not whether your
+current option list is structurally correct. Use these values as evidence in your
+option validation reasoning.
+
+
+**Why impressions are high** — Search data shows that buyers filtered on something,
+not why. A spec with 5000 impressions could be a genuinely important attribute or
+a default UI filter every buyer sees. Investigate before acting.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Missing Spec Identification — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to evaluate whether specs are missing from the current platform spec
+sheet — read this document. It gives you the framework to identify genuine gaps,
+avoid false positives, define new specs completely, and generate correct option
+values. You apply all of this reasoning yourself using the data in your context.
+
+
+---
+
+
+## The core problem
+
+
+Data sources will surface many candidate specs. The hard part is not finding
+candidates — it is knowing which are genuine gaps versus duplicates under a
+different name, composite attributes already captured, or noise that looks like
+a spec but is not.
+
+
+A false positive — adding a spec that duplicates an existing one — is harder to
+fix than missing a genuine gap. When genuinely uncertain, do not add.
+
+
+---
+
+
+## How to recognise a genuine gap
+
+
+A candidate spec is a genuine gap only if all three of the following are true:
+
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same real-world
+attribute, even approximately, the candidate is not a gap.
+
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+
+---
+
+
+## Common false positives — check these before acting
+
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common synonym.
+
+
+Common equivalences in Indian B2B:
+
+
+| These terms often mean the same thing |
+|--------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Type / Variant / Form / Format / Category |
+| Size / Dimensions / Measurement / Specification |
+| Capacity / Volume / Output / Throughput |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Purity / Concentration / Assay / Composition |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade |
+| Brand / Make / Manufacturer / OEM / Make & Model |
+| Certifications / Standards / Compliance / Approvals |
+
+
+**Composite attributes**
+Some specs appearing in call or search data are natural-language composites.
+"10mm HDPE pipe" → "10mm" is not a new Diameter spec if Dimensions already exists.
+
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+
+**Call data noise**
+"Good quality", "ISI certified", "fast delivery" appearing as candidates from call
+data are purchase context, not product attributes.
+
+
+**Low-signal custom specs**
+A custom spec added by only one or two sellers is seller-idiosyncratic, not a
+category-wide gap.
+
+
+---
+
+
+## How to read each data source for gap evidence
+
+
+**Buyer-Seller Call Data (Buyer-Seller Call Data)**
+Look for attributes buyers ask about early in calls — these matter most to purchase
+decisions. Product count = signal strength. Higher count across more calls = stronger
+evidence.
+
+
+Discount: implied specs, generic values (As per requirement, Standard, Normal),
+re-statements of the category name.
+
+
+**Custom Specs Data (Custom Seller Specs)**
+Most reliable gap signal. A seller adding a custom spec is telling you buyers need
+this information and the platform has no field for it. Multiple sellers independently
+adding the same custom spec is strong confirmation.
+
+
+Discount: one-off specs from a single seller, vague or placeholder values,
+internal seller codes.
+
+
+**Buyer Search Data (Buyer Search Data)**
+Shows what attributes buyers filter by when browsing. High impressions on a
+candidate confirm buyer demand.
+
+
+Discount: platform default filters, implied category specs, single-option specs
+where >90% of impressions fall on one value.
+
+
+**Domain knowledge**
+When data signals are weak or absent, use your understanding of how this product
+is specified and sold in Indian B2B trade. What would a seller know by heart?
+What would a buyer mention first? Domain knowledge supplements data — it does not
+override clear data signals.
+
+
+---
+
+
+## Evidence strength — how much do you need
+
+
+| Evidence | Decision |
+|----------|----------|
+| 2+ independent sources agree (e.g. call data + custom specs) | Add with high confidence |
+| 1 strong source (high call count, or multiple custom spec sellers, or strong domain reasoning) | Add — note single source |
+| Weak or indirect signal only (low count, single occurrence, vague intuition) | Do not add — note as unconfirmed |
+
+
+---
+
+
+## Consolidating candidates that mean the same thing
+
+
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning.
+
+
+"Usage" from custom specs + "Application" from call data + "End Use" from search
+→ one spec, not three. Pick the most standard name and add once.
+
+
+Rule: one underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+
+---
+
+
+## How to define a spec you are adding
+
+
+When you have confirmed a genuine gap, define it completely.
+
+
+### Spec name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+
+### Input type — decide this first
+
+
+**Must be `text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Brand names only when the category has no dominant brands
+  (generate options if 3+ brands are known in Indian B2B)
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+
+**Must be `radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Yes / No, Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+
+
+**Must be `multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → multi_select
+
+
+
+
+## Platform rule — "Other" option on primary and secondary specs
+
+
+Primary and secondary specs on this platform have an "Other" button that lets sellers enter a custom value not in the list. This has a direct impact on input type decisions when adding new specs:
+
+
+- **Do not assign `text_type` to a spec just because its option list feels
+  incomplete**, if the spec is clearly important and its core values are known.
+  The "Other" button handles edge cases for primary and secondary specs.
+- If a spec has clear, standard option values AND strong signal that it will be
+  Primary or Secondary, define it as `radio_button` or `multi_select` with the
+  known options. Incompleteness alone is not a reason for `text_type`.
+- Reserve `text_type` for specs where the value is genuinely free-form or unique
+  per SKU (model numbers, catalogue codes, free-form dimensions) — not for specs
+  where you simply haven't enumerated all options yet.
+- 
+
+
+
+
+
+
+### Options — how to generate them
+
+
+Draw from example values in call data, custom spec submissions, and search option
+values. Also apply Indian B2B market knowledge to fill gaps.
+
+
+**Quality rules:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only.
+2. No vague fillers — never use: Other, Custom, NA, Various, As Required, Any, Miscellaneous, General Purpose (unless genuinely traded as a category value)
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+
+
+**Formatting rules:**
+6. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+7. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+8. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm 
+9. Categorical options by frequency — most common in Indian market first
+10. Use ISI/BIS standards where applicable
+11. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+12. Do not use range options unless they are the market standard for this spec
+13. Think like an Indian B2B seller — what values would a seller actually select?
+
+
+**How to handle values from data:**
+
+
+| Value quality | What to do |
+|---------------|------------|
+| Clean, consistent values | Use as format reference; generate full standard market set |
+| Mixed quality | Extract the pattern; discard outliers |
+| 1–2 values only | Use to confirm spec meaning; generate full options from market knowledge |
+| Completely messy | Ignore; generate entirely from category + spec name knowledge |
+| Empty | Generate entirely from category + spec name knowledge |
+| Contains NA / Other / Custom | Ignore these; treat as empty |
+
+
+### Tier placement
+
+
+Add all new specs as Tertiary by default. Tier is determined by sequencing
+reasoning using actual signal data — not at the point of addition.
+
+
+Exception: if call data product count is very high and the spec is clearly a
+primary purchase decision attribute for this category, you may propose Secondary
+or Primary as provisional. Note this explicitly and treat it as provisional until
+sequencing confirms it.
+
+
+---
+
+
+## Validation checklist — before finalising any spec addition
+
+
+- Options are directly about this spec, not adjacent attributes
+- Options make sense for this specific category
+- A real buyer would use these as search filters
+- No duplicates or near-duplicates in the option list
+- No vague or filler options
+- Correct input_type for the spec's nature
+- Logical order (ascending numeric or frequency-based categorical)
+- All options under 30 characters
+- Units are standardised
+
+
+---
+
+
+## Yes/No specs
+
+
+Options: ["Yes", "No"] with input_type: "radio_button"
+
+
+---
+
+
+## What missing spec identification does NOT do
+
+
+- Does not determine final tier placement — that is sequencing reasoning
+- Does not validate or correct options of existing specs — that is option validator
+- Does not make final decisions when evidence is genuinely ambiguous — flag
+  these clearly and explain what additional evidence would resolve the uncertainty
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 6) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 7) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(domain_expert) ---
+# Domain Expert — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When data signals alone are insufficient — when sources conflict, when you need
+category-level context to interpret what a signal means, when you are about to
+make a destructive action and need domain confirmation, or when a spec's importance
+is determined by industry norms rather than observable buyer behaviour — apply
+the reasoning in this document yourself.
+
+
+This is not a fallback. The domain expert perspective runs alongside every
+strategic decision. Data tells you what buyers and sellers do on the platform.
+Domain knowledge tells you why — and whether the platform behaviour makes sense
+given how this product is actually traded in Indian B2B.
+
+
+---
+
+
+## The domain expert's role
+
+
+Reason about the real world. Data skills analyse signals — domain reasoning
+interprets what those signals mean in the context of how this product is
+manufactured, sold, and purchased in India. When signals are ambiguous,
+contradictory, or absent, your judgment fills the gap.
+
+
+This is not a rubber stamp. Apply it specifically when there is a question data
+alone cannot resolve.
+
+
+---
+
+
+## Types of questions domain reasoning handles
+
+
+### 1. Signal conflict resolution
+
+
+Two data sources disagree. Explain why and decide which signal to trust.
+
+
+**Common conflict patterns and what they mean:**
+
+
+| Conflict | Likely explanation | What to do |
+|----------|-------------------|------------|
+| High search + zero fill rate | Spec exists but options are wrong — buyers want to filter but can't find the right value | Fix the options, do not remove the spec |
+| High fill rate + zero search | Seller-oriented spec — they describe it even though buyers don't filter on it | Keep, but consider Secondary or Tertiary depending on call signal |
+| High calls + zero search | Attribute matters in negotiation but isn't surfaced in discovery flow | Strong candidate for addition — buyers discuss it but can't filter on it |
+| High search + zero calls | Could be search noise (buyers typing category name words) or a genuine discovery gap | Check if the term is a CONTEXT_TERM or a real filterable attribute |
+
+
+### 2. Category sanity checks
+
+
+Is a proposed spec appropriate for this specific product and market?
+
+
+Apply this reasoning framework:
+- What is this product physically and functionally?
+- Who buys it in Indian B2B? Manufacturers? Traders? Retailers? Institutions? SMEs?
+- What attributes drive purchase decisions for this product type?
+- Are there IS/BIS standards, FSSAI regulations, or industry certifications that
+  dictate certain specs as mandatory?
+- What do sellers in this category typically differentiate on?
+- Is this a commodity (specs less critical — price and quantity dominate) or a
+  differentiated product (specs are everything — buyers filter heavily)?
+
+
+### 3. Spec relationship reasoning
+
+
+Two specs seem related or duplicative. Determine if they are truly the same
+attribute or genuinely distinct.
+
+
+Ask:
+- Do the two specs answer different buyer questions? If yes → keep separate.
+- Can a single product have different values for each spec simultaneously? If yes → keep separate.
+- Would merging them cause information loss? If yes → keep separate.
+- Do buyers in this market mentally distinguish them when making a purchase? If no → merge.
+
+
+### 4. Tier arbitration
+
+
+Data suggests one tier; domain logic suggests another.
+
+
+Apply the domain perspective and state your reasoning explicitly. Data is the
+primary evidence — domain knowledge is the tiebreaker when signals are moderate
+or conflicting. If your domain judgment contradicts strong data signals, respect
+the data and note the tension rather than overriding it.
+
+
+### 5. Option coherence for Indian B2B
+
+
+An option list looks wrong from a market perspective — too many options, wrong
+options, missing industry-standard values, or values that don't match how the
+Indian B2B market actually works.
+
+
+Apply Indian B2B market context:
+- IS/BIS grades dominate in metals, construction, electrical, and chemicals
+- Local trade terminology differs from international standards ("MS" for Mild Steel
+  is universally understood; "A36" is not)
+- Regional naming conventions exist (pipe sizes often quoted in inches even when
+  metric is the standard)
+- Dominant domestic manufacturers (Tata, JSW, Hindalco, Asian Paints) define the
+  de facto option values in many categories
+- Import categories use different naming conventions than domestically manufactured goods
+
+
+### 6. Format conflict resolution — canonical format establishment
+
+
+When the format of a spec or option in the existing spec sheet differs from how
+it appears in data sources, determine the correct canonical format.
+
+
+**Common format conflicts:**
+
+
+| Conflict type | Example | What to check |
+|--------------|---------|---------------|
+| Unit inconsistency | Existing: "3 mm", Call: "3mm", "3MM" | Which format do manufacturers actually use? |
+| Abbreviation vs full form | Existing: "PVDF", Call: "Polyvinylidene Fluoride" | Which does Indian B2B use in practice? |
+| Numeric vs descriptive | Existing: "S, M, L", Call: "7.5, 8, 9" | Are these different sizing systems or the same? |
+| Mixed unit systems | Existing: "2 mm", Call: "0.08 inches" | Which system dominates in Indian B2B trade? |
+| Grade naming | Existing: "Exterior", Call: "Bond", "Chalu" | Map informal trade terms to formal grades |
+| IS standard notation | Existing: "IS 2062", Call: "E250", "E350" | Which IS grade notation is actually used? |
+
+
+**When you detect a format conflict:**
+1. Identify the conflict precisely — existing format vs data source format
+2. Apply domain knowledge of how this spec is described by manufacturers and traders
+3. If uncertain, flag for a web search: `[WEB_SEARCH] query="<spec name> <category> standard format India" [END]`
+4. Determine the canonical form — the format Indian B2B buyers and sellers actually use
+5. Recommend the specific correction action: `CORRECT_OPTION`, `RENAME_SPEC`, or `ADD_OPTIONS`
+
+
+### 7. New spec validation
+
+
+A candidate spec has been identified from data. Confirm whether it genuinely
+makes sense for this category before adding it.
+
+
+Ask:
+- Is this attribute something a seller in this category would know by heart?
+- Would a buyer mention this in the first sentence of a product enquiry?
+- Does this spec help differentiate products in this category, or do all products
+  have the same value (making it a CONTEXT_TERM or IMPLIED)?
+- Is this covered under a different name that already exists in the spec set?
+
+
+---
+
+
+## Indian B2B market context — always apply
+
+
+This is an Indian B2B marketplace. Every domain judgment must account for:
+
+
+**Market conventions:**
+- IS/BIS standards dominate in metals, construction, electrical, chemicals
+- Trade terminology often differs from international standards
+- Regional naming conventions exist (pipes in inches, textiles in yards, etc.)
+- Buyers often use informal names that map to formal spec names
+
+
+**Buyer types in Indian B2B:**
+- Industrial procurers buying in bulk on specification → primary signal: call data and fill rate
+- SME buyers buying by application or use case → primary signal: search impressions
+- Traders and distributors buying by brand and grade → primary signal: brand and grade specs
+
+
+The category's typical buyer type changes which signals to weight more heavily.
+
+
+**Supply structure:**
+- Many categories have dominant domestic manufacturers whose product ranges define
+  the de facto option values
+- Import categories often have different naming conventions than domestically
+  manufactured goods
+
+
+---
+
+
+## How to frame your domain reasoning
+
+
+The question you are applying domain reasoning to must be specific. Vague questions
+produce vague answers.
+
+
+**Specific enough:**
+"Search data shows 1,350 impressions for 'usage' in this category, but zero sellers
+added it as a custom spec and zero call mentions. For a [category type], is 'usage'
+a real spec or a context term?"
+
+
+**Too vague:**
+"Is this spec relevant?"
+
+
+If the question is not specific enough, reframe it before applying domain reasoning.
+
+
+---
+
+
+## What your domain reasoning must produce
+
+
+For each question you apply domain reasoning to:
+
+
+```
+question_summary: [the specific question being resolved]
+classification: VALID_SPEC / CONTEXT_TERM / NOT_A_PRODUCT_SPEC / MISCLASSIFIED /
+               DUPLICATE / COMPOSITE / INDUSTRY_STANDARD / FORMAT_CONFLICT
+judgment: [your domain reasoning — 2–5 sentences citing category logic, Indian B2B
+          conventions, or industry norms]
+recommendation: [specific action — what to do]
+confidence: high / medium / low
+confidence_reason: [why this confidence level — established domain knowledge or best estimate?]
+web_search_needed: [specific query if external verification would strengthen the judgment,
+                   or "None" if domain reasoning is sufficient]
+caveats: [conditions or exceptions to this judgment]
+```
+
+
+For format conflicts, also produce:
+```
+existing_format: [how it appears in current spec sheet]
+data_source_format: [how it appears in Buyer-Seller Call Data/Custom Spec Data/Buyer Search Data]
+canonical_format: [the correct format for Indian B2B]
+correction_action: CORRECT_OPTION / RENAME_SPEC / ADD_OPTIONS
+```
+
+
+---
+
+
+## Confidence calibration
+
+
+**High confidence:** Well-established domain knowledge for this category type.
+Industry standards exist and are unambiguous. You have clear reasoning grounded
+in how this market actually works.
+
+
+**Medium confidence:** General domain reasoning applied to this category. Plausible
+but you are not a specialist in this specific product. State this explicitly.
+
+
+**Low confidence:** You know little about this specific category. Provide general
+reasoning principles but flag that a subject-matter expert or web search should
+confirm before acting.
+
+
+---
+
+
+## Boundaries
+
+
+- You DO provide domain judgments — this is the core function.
+- You DO recommend canonical formats for format conflicts.
+- You DO flag when web search would strengthen a judgment.
+- You do NOT fabricate data or claim signals exist that do not.
+- You do NOT make structural changes — you advise; the decision follows from your
+  reasoning but remains with the orchestrator.
+- When data strongly contradicts your domain intuition → respect the data. State
+  your expectation, acknowledge the contradiction, suggest investigating further
+  rather than overriding the data.
+- When genuinely uncertain → say so. Mark confidence as medium or low. A wrong
+  domain judgment confidently stated is worse than an honest uncertainty.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 8) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(Delta VFD official product catalogue India) ---
+{
+  "query": "Delta VFD official product catalogue India",
+  "results": [
+    {
+      "title": "Inverters - AC Motor Drives",
+      "url": "https://deltaelectronicsindia.com/en-IN/products/AC-Motor-Drives/ALL/",
+      "excerpt": "WebSearchResult(url='https://deltaelectronicsindia.com/en-IN/products/AC-Motor-Drives/ALL/', excerpts=[\"Explore Delta Electronics India's range of AC Motor Drives and Variable Frequency Drives ( VFDs ) designed for energy-efficient motor control,\"], publish_date=None, title='Inverters - AC Motor Drives')"
+    },
+    {
+      "title": "Products - Inverters - AC Motor Drives",
+      "url": "https://www.deltaww.com/en-US/products/AC-Motor-Drives",
+      "excerpt": "WebSearchResult(url='https://www.deltaww.com/en-US/products/AC-Motor-Drives', excerpts=[\"* Press * Investors * Careers * Contact\\n\\n* Solutions\\n* Products\\n* Company\\n* Sustainability\\n\\n1. Home >\\n2. Products >\\n3. Industrial Automation >\\n4. Drive & Power Quality >\\n5. Inverters - AC Motor Drives >\\n\\nInverters - AC Motor Drives\\n\\n[Downloads](https://downloadcenter.deltaww.com/en-US/DownloadCenter?v=1&CID=06&itemID=060101&sort_expr=cdate&sort_dir=DESC) [Videos](https://youtube.com/playlist?list=PLFAKa104eUKeR7PpS3RMYWmh1030OB81B&si=aXZYM9U0W7skZ4BI) [FAQ](https://www.deltaww.com/en-US/service-support/faq?categoryCode=06&subCategoryCode=060101) [Brief Brochure - Inverters](https://downloadcenter.deltaww.com/downloadCenterCounter.aspx?DID=47588&DocPath=1&hl=en-US)\\n\\nSuccess Cases\\n\\nView All\\n\\nDelta\u2019s Smarter & Greener Injection Molding Solution for the Rubber and Plastics Industry Delta Smart Farming Solution Helps Manage & Enhance Livestock Welfare Delta Blown Film Extruder Solution Offers One-Stop Control for Plastic Packaging Production and Enhances Commissioning Efficiency by 80%\\nSuccess Cases\\n\\nDelta\u2019s Smarter & Greener Injection Molding Solution for the Rubber and Plastics Industry\\n\\nDelta Smart Farming Solution Helps Manage & Enhance Livestock Welfare\\n\\nView All\\n\\nNews\\n\\nView Archive\\n\\n01/10/2024 Delta IABG Safety Lab Obtains UL Solutions Authorization on Testing AC Motor Drives & Servo Drives 10/06/2023 Delta Debuts Compact Multi-Drive MX300 Series with Winning Combination: Parallel Mounting & Compact Size 06/19/2023 Delta Smart Manufacturing Webinars 2023: Future Factory and the Prospects of Smart Manufacturing\\n\\nView Archive\\n\\nResources & Tools\\n\\n[Download Center](https://downloadcenter.deltaww.com/en-US/DownloadCenter?v=1&CID=06&itemID=060101&sort_expr=cdate&sort_dir=DESC)\\n\\nQuick Downloads\\n\\nContact Us\\n\\nHave a question? We'd love to hear from you.\\n\\nInquiry\\n\\nProducts - Inverters - AC Motor Drives - Delta\"], publish_date=None, title='Products - Inverters - AC Motor Drives')"
+    },
+    {
+      "title": "Delta - VFD-E - catalog",
+      "url": "http://intech.net.in/intechchennai/pdf/VFD-E-Catalog.pdf",
+      "excerpt": "WebSearchResult(url='http://intech.net.in/intechchennai/pdf/VFD-E-Catalog.pdf', excerpts=['by C Design \u00b7 Cited by 1 \u2014 Page 1. Page 2. Page 3. AFM MCM MO1. RA. RB. RC. 8. 1. DCM. MI1. MI4. MI3. ACI. MI2. MI5. 10V. DCM. MI6. 24V ACM AVI. Page 4. Page 5. Page 6.'], publish_date=None, title='Delta - VFD-E - catalog')"
+    },
+    {
+      "title": "Delta-VFD-E-Catalog.pdf",
+      "url": "https://www.deltaacdrives.com/Delta-VFD-E-Catalog.pdf",
+      "excerpt": "WebSearchResult(url='https://www.deltaacdrives.com/Delta-VFD-E-Catalog.pdf', excerpts=['Call 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com\\n\\nCall 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com\\n\\nCall 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com\\n\\nCall 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com\\n\\n**AFM MCM MO1**\\n\\n**RA**\\n\\n**RB**\\n\\n**RC**\\n\\n**8**\\n\\n**1**\\n\\n**DCM**\\n\\n**MI1**\\n\\n**MI4**\\n\\n**MI3**\\n\\n**ACI**\\n\\n**MI2**\\n\\n**MI5**\\n\\n**10V**\\n\\n**DCM**\\n\\n**MI6**\\n\\n**24V ACM AVI**\\n\\nCall 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com\\n\\nCall 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com\\n\\nCall 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com\\n\\nCall 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com\\n\\nCall 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com\\n\\nCall 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com\\n\\nCall 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com\\nCall 1(800)985-6929 for Sales\\n\\ndeltaacdrives.com\\n\\nsales@deltaacdrives.com'], publish_date=None, title='Delta-VFD-E-Catalog.pdf')"
+    },
+    {
+      "title": "Delta - VFD-VE - catalog",
+      "url": "https://intech.net.in/intechchennai/pdf/VFD-VE-Catalog.pdf",
+      "excerpt": "WebSearchResult(url='https://intech.net.in/intechchennai/pdf/VFD-VE-Catalog.pdf', excerpts=['*We reserve the right to change the information in this catalogue without prior notice. DELTA . DELTA ELECTRONICS, INC. VFD -VE. FOC+PG Control AC Motor Drivers. Read more 4 pages'], publish_date=None, title='Delta - VFD-VE - catalog')"
+    },
+    {
+      "title": "Delta - VFD-EL - catalog",
+      "url": "https://docs.galco.com/techdoc/dlpc/driv_ac_vfd-el_cat.pdf",
+      "excerpt": "WebSearchResult(url='https://docs.galco.com/techdoc/dlpc/driv_ac_vfd-el_cat.pdf', excerpts=['With auto acceleration/deceleration function, it can have a rapid start/stop to increase productivity and speed. \u2022 Easy DC BUS Sharing. Multiple VFD -EL can be\\xa0... Read more 6 pages'], publish_date=None, title='Delta - VFD-EL - catalog')"
+    },
+    {
+      "title": "DELTA VFD - Authorized Dealer of DELTA ELECTRONICS INDIA",
+      "url": "https://vedantengineering.in/our-products/industrial-process-automation/vfd/delta-vfd/",
+      "excerpt": "WebSearchResult(url='https://vedantengineering.in/our-products/industrial-process-automation/vfd/delta-vfd/', excerpts=['+ [STAUFF Hydraulics](https://vedantengineering.in/stauff-hydraulics/)\\n    + [Gefran India](https://vedantengineering.in/gefran-india/)\\n* [Know Us](https://vedantengineering.in/about-us/)\\n  \\n    + [About VES](https://vedantengineering.in/about-us/)\\n    + [Mission & Vision](https://vedantengineering.in/about-us/our-mission/)\\n    + [Certificates](https://vedantengineering.in/certificates/)\\n    + [Events](https://vedantengineering.in/about-us/events/)\\n* [Contact Us](https://vedantengineering.in/contact-us/)\\n* Search for:\\n\\n* [Home](https://vedantengineering.in/home/)\\n* [We Manufacture](https://vedantengineering.in/our-products/)\\n  \\n    + [Turnkey Manufacturing Solutions](https://vedantengineering.in/our-products/turnkey-manufacturing-solutions/)\\n    + [Special Purpose Machines](https://vedantengineering.in/our-products/special-purpose-machines/)\\n        \\n        - [Customized Industrial SPM](https://vedantengineering.in/our-products/special-purpose-machines/)\\n ... \\n- [Machine Control Systems](https://vedantengineering.in/services/control-systems-development/machine-control-systems/)\\n* [Our Associates](https://vedantengineering.in/authorized-channel-partner/)\\n  \\n    + [Delta Electronics](https://delta.vedantengineering.in/)\\n    + [Kinco Automation](https://kinco.vedantengineering.in/)\\n    + [Pneumax Pneumatics](https://pneumax.vedantengineering.in/)\\n    + [STAUFF Hydraulics](https://vedantengineering.in/stauff-hydraulics/)\\n    + [Gefran India](https://vedantengineering.in/gefran-india/)\\n* [Know Us](https://vedantengineering.in/about-us/)\\n  \\n    + [About VES](https://vedantengineering.in/about-us/)\\n    + [Mission & Vision](https://vedantengineering.in/about-us/our-mission/)\\n    + [Certificates](https://vedantengineering.in/certificates/)\\n    + [Events](https://vedantengineering.in/about-us/events/)\\n* [Contact Us](https://vedantengineering.in/contact-us/)\\n* Search for:\\n\\n# DELTA VFD\\n**With modern power electronics and advanced microprocessor technology, Delta\u2019s AC Motor Drives are able to efficiently control motor speed, improve machine automation and save energy. Taking advantage of our strong position in power electronics technology, Delta\u2019s VFD Series of AC motor Drives has evolved rapidly. Each Drive series is designed to meet specific application needs. Our AC Drives accurately control speed and torque, smoothly handle an increased load, and provide numerous custom control and configuration operating modes. Our AC Motor Drive product line provides a full range of motor control technologies and is used throughout a wide range of industries, to enhance and improve machine automation.**\\n\\n### Products List\\n\\n##### General Applications  \\nCompact Drives\\n\\n* ##### ME300 Series\\n* ##### MS300 Series\\n* ##### VFD-E Series\\n* ##### VFD-EL Series\\n* ##### VFD-L1 Series\\n* ##### VFD-EL-W Sries\\n\\n##### Standard Drives\\n\\n* ##### C2000 Plus/C2000 Series\\n* ##### C200 Series\\n* ##### CH2000 Series\\n* ##### VFD-VE Series\\n* ##### VFD-B Series\\n* ##### REG2000 Series\\n\\n##### Industry-specific Applications  \\nRubber and Plastics\\n\\n* ##### HES Series\\n* ##### VFD-VJ Series\\n* ##### MST Series\\n\\n##### Fans and Pumps\\n\\n* ##### CFP2000 Series\\n* ##### CP2000 Series\\n\\n##### Elevator and Door Control\\n\\n* ##### MH300-L\\n* ##### VFD-ED Series\\n* ##### IED-S \u7cfb\u5217\\n* ##### VFD-DD Series\\n* ##### REG2000 Series\\n* ##### AFE2000 Series\\n\\n##### Textile\\n\\n* ##### CT2000 Series\\n\\n##### Discontinued Products\\n\\n* ##### IED Series\\n* ##### VFD-VL Series\\n* ##### VFD-M Series\\n* ##### VFD-S Series\\n* ##### VFD-L2 Series\\n\\n|**CH2000 Series**  \\n  \\nUsing new drive technology, Delta presents you with its next generation CH2000 Series AC Motor Drive. Providing high performance with robust design the CH2000 is equipped with a larger starting torque and high overload capability to fulfill the needs of heavy load and impact loading applications.\\n\\n**Specifications**  \\n**Super Heavy Load (SHD)**\\n ... \\n\u2014 Output frequency range is 0~600Hz  \\n\u2014 Adjustable V/f curve  \\n\u2014 Automatic torque boost and slip compensation  \\n\u2014 16-step preset speed control and 15-step PLC operation  \\n\u2014 Built-in PID feedback control with Sleep/Wake function  \\n\u2014 Optional PG encoder card for speed feedback and positioning  \\n\u2014 4 sets of accel/decel time selections and independent accel/decal S-curve settings  \\n\u2014 Specific process control and energy saving operation for fan and pump application  \\n\u2014 Built-in communication interface RS-485 Modbus (RJ11)  \\n\u2014 Auto-tuning and FOC (field oriented vector control)\\n\\n**Applications:**  \\nWoodcarving machine; crane hoisting; drilling machine; CNC lathe; tooling machine; middle/low-speed passenger elevator; PCB routing machine, etc. |\\n\\nDELTA VFD SUPPLIERS, DEALERS IN NASHIK, DELTA AC DRIVES DEALERS IN NASHIK MAHARASHTRA INDIA, VFD DEALER, VFD SUPPLIERS, AC DRIVE DEALERS, AC DRIVES SUPPLIERS\\n\\nRead more at \u2013 <https://www.deltaww.'], publish_date='2021-04-25', title='DELTA VFD - Authorized Dealer of DELTA ELECTRONICS INDIA')"
+    },
+    {
+      "title": "\n\tWelcome to Delta Electronics India\n",
+      "url": "https://www.deltaelectronicsindia.com/en-IN/index",
+      "excerpt": "WebSearchResult(url='https://www.deltaelectronicsindia.com/en-IN/index', excerpts=['Its mission statement, As an energy-saving solutions provider with core competencies in power electronics and automation, Delta\\'s business categories include power electronics, mobility, automation, and infrastructure.\\n\\nSanjeev Srivastava, Head of Automation, Delta Electronics India, tells us more. Excerpts from an interview: \\n\\nDQ: How is Delta Electronics\\' full spectrum automation products a](news/scada-systems-do-real-time-monitoring-and-control-in-smart-manufacturing-delta)\\n\\n[![Image](https://filecenter.deltaww.com/news/images/album/news_default.jpg?w=305)\\n\\n04\\\\-12-2024\\n\\n##### Delta to Provide Made-in-India High-efficiency Rectifiers to ThunderPlus for its Fast Chargers for Low Voltage 2W and 3W EVs\\n\\nBENGALURU, December 4th, 2024 \u2014 Delta Electronics India announced today the signing of an MOU with ThunderPlus, a leading two-wheeler (2W) and three-wheeler (3W) electric vehicle (EV) charging solutions provider.\\n ... \\nGURUGRAM, October 18, 2024 \u2014 Delta, global leader in power management and a provider of IoT-based smart green, hosts Automation Solution Day, a unique event that offers esteemed customers and partners an exclusive, hands-on experience on its latest innovations in industrial automation and smart manufacturing solutions, which are designed to enhance the operational efficiency and productivity of India\u2019s manufacturing sector. The event also provided an interactive platform where Delta&](news/delta-electronics-india-hosts-automation-solution-day-to-showcase-its-broad-range-of-cutting-edge-iiot-industrial-automation-solutions)\\n\\n[![Image](https://filecenter.deltaww.com/news/images/album/news_default.jpg?w=305)\\n\\n24\\\\-09-2024\\n\\n##### Delta Electronics India Signs MOU with Savex Technologies to Broaden Market Reach Across India\\n ... \\nBENGALURU, June 6th, 2024 \u2014 Delta, a global leader in power management and a provider of IoT-based smart green solutions, is all set to participate in INTEC 2024, to present a wide range of industrial automation products and solutions to support India\u2019s industrial revolution with higher energy efficiency and productivity. These include the VP3000 variable-torque drive with power ranges from 0.75kW to 630kW, which helps improve the energy and operating efficiency of industrial mo](news/delta-electronics-india-to-showcase-cutting-edge-industrial-automation-solutions-at-intec-2024)\\n\\n## ESG\\n\\nDelta has upheld the business philosophy of \"To provide innovative, clean and energy-efficient solutions for a better tomorrow\" since its foundation and has actively aligned with international initiatives.\\n ... \\ncom/zh-TW/index)\\n* [Americas - English](https://www.delta-americas.com/en-US/index)\\n* [Australia - English](https://www.deltaelectronics.com.au/en-AU/index)\\n* [China - \u7b80\u4f53\u4e2d\u6587](https://www.delta-china.com.cn/zh-CN/index)\\n* [EMEA - English](https://www.delta-emea.com/en-GB/index)\\n* [EMEA - Deutsch](https://www.delta-emea.com/de-DE/index)\\n* [EMEA - Fran\u00e7ais](https://www.delta-emea.com/fr-FR/index)\\n* [EMEA - Italiano](https://www.delta-emea.com/it-IT/index)\\n* [India - English](https://deltaelectronicsindia.com/)\\n* [Japan - \u65e5\u672c\u8a9e](https://www.delta-japan.jp/ja-JP/index)\\n* [Korea - \ud55c\uad6d\uc5b4](https://www.delta-korea.com/ko-KR/index)\\n* [Singapore - English](https://www.delta-singapore.com/en-SG/index)\\n* [Thailand - English](https://www.deltathailand.com/en/)\\n* [Thailand - \u0e44\u0e17\u0e22](https://www.deltathailand.com/th/)\\n\\nInformation\\n\\n* Privacy Policy\\n* Terms of use\\n* Data Collection\\n* [Product Cybersecurity Advisory](https://www.deltaww.com/en-US/Cybersecurity_Advisory)\\n\\nFollow Us\\n* [](https://www.facebook.com/DeltaElectronicsIndia)\\n* [](https://www.linkedin.com/company/delta-electronics-india/)\\n* [](https://twitter.com/DeltaElectIndia)\\n* [](https://www.youtube.com/c/DeltaElectronicsIndiaCorporate)\\n\\n All Rights Reserved.\\n\\nSolutions\\n\\n* Industrial Automation Solutions\\n* Building Automation Solutions\\n* DataCenter Solutions\\n* Telecom Energy Solutions\\n* Smart Energy Solutions\\n* Display and Monitoring Solutions\\n* EV Charging Solutions\\n\\nProducts\\n\\n* Components\\n* Power and System\\n* Fans and Thermal Management\\n* Automotive Electronics\\n* [Innergie](https://www.myinnergie.com/us)\\n* Industrial Automation\\n* Building Automation\\n\\n* ICT Infrastracture\\n* Power and Energy Solutions\\n* [Vivitek](http://www.vivitekcorp.com/)\\n\\nService Support\\n\\n* [Download Center](https://downloadcenter.deltaww.com/en-US/DownloadCenter)\\n* [Application Center](https://www.deltaww.com/en-US/applicationCenter)\\n* Contact Us\\n\\nCompany\\n\\n* News Center\\n* About Delta\\n* Careers\\n\\n![Image](javascript:;)\\nTo provide innovative, clean and energy-efficient solutions for a better tomorrow.\\n\\nOK'], publish_date=None, title='\\n\\tWelcome to Delta Electronics India\\n')"
+    },
+    {
+      "title": "Delta Sensorless Vector Control Compact Drive VFD-E ...",
+      "url": "https://www.iramko.com/phocadownload/Vezerlestechnika/katalogusok/frekvenciavaltok/delta/delta_vfd_e_catalogue_2016.pdf",
+      "excerpt": "WebSearchResult(url='https://www.iramko.com/phocadownload/Vezerlestechnika/katalogusok/frekvenciavaltok/delta/delta_vfd_e_catalogue_2016.pdf', excerpts=[\"4: SG-\\n\\n**For VFD\\\\*E\\\\*C models,**\\n\\n**please refer to figure 8.**\\n\\nIt is recommended to install a circuit breaker at the control terminal to protect the circuit from an operation\\n\\nabnormality or sudden power outage.\\n\\nThe protection circuit uses the multi-function output terminal of the AC motor drive for connection. When an\\n\\nabnormal condition (closed contact) occurs, the external power supply is disconnected to protect the power\\n\\nsystem of the AC motor drive.\\n\\n_4_\\n\\n**External Parts**\\n\\n**Control Terminals**\\n\\n**Model Explanation**\\n\\n**VFD 007 E 23 A**\\n\\n**Version Type**\\n\\nA: Standard drive\\n\\nC: CANopen\\n\\n**Mains Input Voltage**\\n\\n11: 115 V 1-phase\\n\\n21: 230 V 1-phase\\n\\n**E Series**\\n\\n**Applicable Motor Capacity**\\n\\n002: 0.25 HP(0.2 kW)\\n\\n004: 0.5 HP(0.4 kW)\\n\\n007: 1 HP(0.75 kW)\\n\\n015: 2 HP(1.5 kW)\\n\\nP: Cold plate drive (frame A only)\\n\\nT: Frame A, built-in brake chopper\\n\\n**RS-485**\\n\\n23: 230 V 3-phase\\n\\n43: 460 V 3-phase\\n\\n022: 3 HP(2.2 kW)\\n\\n037: 5 HP(3.7 kW)\\n\\n055: 7.5 HP(5.5 kW)\\n\\n075: 10 HP(7.5 kW)\\n110: 15 HP(11 kW)\\n\\n150: 20 HP(15 kW)\\n\\n185: 25 HP(18.5 kW)\\n\\n220: 30 HP(22 kW)\\n\\n**Product**\\n\\n**(Variable Frequency Drive)**\\n\\n_5_\\n\\n**Application Fields**\\n\\n**Conveyor and Transportation Machinery**\\n\\n\u25cf Conveyor belt\\n\\n\u25cf Automatic door\\n\\n\u25cf Roller door\\n\\n\u25cf Small elevator\\n\\n\u25cf X-Y axis of traveling crane\\n\\n\u25cf Escalator\\n\\n\u25cf Parking device\\n\\n**Fan/Pump Equipment**\\n\\n\u25cf Building air conditioner\\n\\n\u25cf Wastewater processing system\\n\\n\u25cf Constant pressure water treatment system\\n\\n\u25cf Water treatment pump\\n\\n\u25cf Agricultural pump\\n\\n\u25cf Temperature control of middle/large oven\\n\\n\u25cf Air compressor\\n\\n\u25cf Heat exchange fan\\n\\n\u25cf Building water dispenser system\\n\\n\u25cf Dryer's windmill\\n\\n**Paper/Textile Machinery**\\n\\n\u25cf Round weaver\\n\\n\u25cf Cross weaver\\n\\n\u25cf Ribbon weaver\\n\\n\u25cf Printing press\\n\\n\u25cf Industrial sewing machine\\n\\n\u25cf Knitting machine\\n\\n_6_\\n\\n**Machine Tool/Metal Processing Machinery**\\n\\n\u25cf Grinder\\n\\n\u25cf Drill\\n\\n\u25cf Small lathe\\n\\n\u25cf Milling machine\\n\\n\u25cf Injection molding (clamp)\\n\\n**Wood Working Machinery**\\n ... \\n230 V: 5.5 kW ~ 11 kW\\n\\n460 V: 5.5 kW ~ 11 kW\\n\\nVFD055E23A/23C\\n\\nVFD055E43A/43C\\n\\nVDF075E23A/23C\\n\\nVDF075E43A/43C\\n\\nVFD110E23A/23C\\n\\nVFD110E43A/43C\\n\\n**Frame D**\\n\\n230 V: 15 kW\\n\\n460 V: 15 kW ~ 22 kW\\n\\nVFD150E23A/23C\\n\\nVFD150E43A/43C\\n\\nVFD185E43A/43C\\n\\nVFD220E43A/43C\\n\\nDELTA\\\\_IA-MDS\\\\_VFD-E\\\\_C\\\\_EN\\\\_20160120\\n\\n**Industrial Automation Headquarters**\\n\\n**Delta Electronics, Inc.**\\n\\nTaoyuan Technology Center\\n\\n18 Xinglong Road, Taoyuan District,\\n\\nTaoyuan City 33068, Taiwan (R.O.C.)\\n\\nTEL: 886-3-362-6301 / FAX: 886-3-371-6301\\n\\n**Asia**\\n\\n**Delta Electronics (Jiangsu) Ltd.**\\n\\nWujiang Plant 3\\n\\n1688 Jiangxing East Road,\\n\\nWujiang Economic Development Zone\\n\\nWujiang City, Jiang Su Province, P.R.C. 215200\\n\\nTEL: 86-512-6340-3008 / FAX: 86-769-6340-7290\\n\\n**Delta Greentech (China) Co., Ltd.**\\n\\n238 Min-Xia Road, Pudong District,\\n\\nShangHai, P.R.C. 201209\\n\\nTEL: 86-21-58635678 / FAX: 86-21-58630003\\n\\n**Delta Electronics (Japan), Inc.**\\n\\nTokyo Office\\n\\n2-1-14 Minato-ku Shibadaimon,\\n\\nTokyo 105-0012, Japan\\nTEL: 81-3-5733-1111 / FAX: 81-3-5733-1211\\n\\n**Delta Electronics (Korea), Inc.**\\n\\n1511, Byucksan Digital Valley 6-cha, Gasan-dong,\\n\\nGeumcheon-gu, Seoul, Korea, 153-704\\n\\nTEL: 82-2-515-5303 / FAX: 82-2-515-5302\\n\\n**Delta Electronics Int\u2019l (S) Pte Ltd.**\\n\\n4 Kaki Bukit Ave 1, #05-05, Singapore 417939\\n\\nTEL: 65-6747-5155 / FAX: 65-6744-9228\\n\\n**Delta Electronics (India) Pvt. Ltd.**\\n\\nPlot No 43 Sector 35, HSIIDC\\n\\nGurgaon, PIN 122001, Haryana, India\\n\\nTEL : 91-124-4874900 / FAX : 91-124-4874945\\n\\n**Americas**\\n\\n**Delta Products Corporation (USA)**\\n\\nRaleigh Office\\n\\nP.O. Box 12173,5101 Davis Drive,\\n\\nResearch Triangle Park, NC 27709, U.S.A.\\n\\nTEL: 1-919-767-3800 / FAX: 1-919-767-8080\\n\\n**Delta Greentech (Brasil) S.A.**\\n\\nSao Paulo Office\\n\\nRua Itapeva, 26 - 3\u00b0 andar Edificio Itapeva One-Bela Vista\\n\\n01332-000-S\u00e3o Paulo-SP-Brazil\\n\\nTEL: 55 11 3568-3855 / FAX: 55 11 3568-3865\\n\\n**Europe**\\n\\n**Delta Electronics (Netherlands) B.V.**\\n\\nEindhoven Office\\n\\nDe Witbogt 20, 5652 AG Eindhoven, The Netherlands\\nTEL: +31 (0)40-8003800 / FAX: +31 (0)40-8003898\\n\\n\\\\*We reserve the right to change the information in this catalogue without prior notice.\"], publish_date=None, title='Delta Sensorless Vector Control Compact Drive VFD-E ...')"
+    },
+    {
+      "title": "Delta Vfd - Delta VFD004EL21A, EL-SERIES Trader - Retailer from Noida",
+      "url": "https://www.psinnovation.co.in/delta-vfd.html",
+      "excerpt": "WebSearchResult(url='https://www.psinnovation.co.in/delta-vfd.html', excerpts=[\"5 HP, 1 HP, 2 HP, 5 HP, ME300 Series, MS300 Series, VFD-E Series, VFD-EL Series, VFD-M Series, VFD-S Series, VFD-L Series, VFD-V Series, C2000 Series, C200 Series, CH 2000 Series, VFD-VE Series, VFD-B Series, REG 2000 Series, HES Series, VFD-VJ Series, REG 2000 Series, CFP2000 Series, CP2000 Series, MH300-L, IED Series, VFD-VL Series, VFD-ED Series, VFD-DD Series, REG 2000 Series, AFE 2000 Series. We Stock & supply Delta Drive in Delhi Narela, Kanonda, Bahadurgarh, Badli, Badsa, Dwarka, Gurugram, Hauz Khas, Shahdar Gaziabada, Noida, Faridabad.  \\nDelta AC Drive L SeriesDelta AC Drive E SeriesDelta AC Drive EL SeriesDelta AC Drive M SeriesDelta AC Drive MS300 Series Delta HMI 7Delta HMI 10.1Delta HMI 10.4Delta HMI 12.1Delta HMI 15Delta HMI 4.3Delta HMI 5.6Delta PLCDelta Power SupplyDelta Servo MotorDelta Temperature ControllerDelta Encoder\\n\\n## Delta VFD004EL21A, EL-SERIES\\n\\n* \\n* \\n* \\n* \\n*\\n\\nGet Best Quote\\n\\nRs 7,000 / Piece Price on Request\\n\\nMinimum Order Quantity: 1 Piece\\n\\nProduct Brochure\\n|Power Rating |0\\\\.5 HP |\\n| --- | --- |\\n|Brand |Delta |\\n|Input Phase |1 - Phase |\\n|Model Name/Number |VFD004EL21A |\\n|Motor Power |0\\\\.4KW |\\n|Input Voltage |230V |\\n|Warranty |1 YEARS |\\n|Part Number |VFD004EL21A |\\n|Cooling Method |Self |\\n\\n230V, 0.4KW / 0.5HP, Inbuilt EMC filter, Non detachable display unit.  \\n  \\nThe VFD represent Delta Electronics low horsepower, constant torque, IP20 rated Drive. Modular in design with flexible extension cards and a built-in PLC function, the E drive offers the ability to write and to execute simple Ladder Logic programs. This state-of-the-art series meets a full range of application requirements.  \\n  \\n**Additional Information:**\\n\\n* **Delivery Time:** Ready stock\\n* **Packaging Details:** Box\\n\\nView Complete details\\n\\nYes! I am Interested Request a call back\\n\\n## Delta VFD037EL43A, EL-Series Vfd Dealer Noida\\n\\n* \\n* \\n* \\n* \\n*\\n\\nGet Best Quote\\n\\nRs 16,000 / Piece Price on Request\\n\\nMinimum Order Quantity: 1 Piece\\n\\nProduct Brochure\\n\\n|Power Rating |5 HP |\\n| --- | --- |\\n|Brand |Delta |\\n|Input Phase |3 - Phase |\\n|Model Name/Number |VFD037EL43A |\\n|Motor Power |3\\\\.7KW |\\n|Input Voltage |415V |\\n|Motor RPM |0 - 20000 RPM |\\n|Output Frequency |0\\\\.1~600 Hz |\\n\\n460v, 3. 7kw / 5hp, inbuilt emc filter, non detachable display unit. The vfd-el series ac drive is multiple operate new generation small sort ac drive. It''s inbuilt emi filter, rfi switch, straightforward dc bus sharing for side-by-side installation, high exactitude current detection, overload protection, and a inbuilt input device.\\n\\n**features:**\\n\\n3 points adjustable v/f curve\\n\\nuse rs-485 communication interface (rj-45) with modbus protocol\\n\\n  \\n  \\n**Additional Information:**\\n\\n* **Delivery Time:** Ready stock\\n* **Packaging Details:** Box\\n\\nView Complete details\\n\\nYes! I am Interested Request a call back\\n\\n## Delta VFD17AME43ANNAA, ME-Series\\n\\n* \\n* \\n* \\n* \\n*\\n\\nGet Best Quote\\n\\nRs 19,000 / Piece Price on Request\\n\\nMinimum Order Quantity: 1 Piece\\n\\nProduct Brochure\\n\\n|Power Rating |10 HP |\\n ... \\nWe are a leading name under this produnct anf din tis industryu we =not only provide the products to the client but also  assure the quality of the products  and we  make it sure that we  make the clients recurring to this company  \\n  \\nwe  are  a one stop solution  for all kind of these  products  \\n415v,0. 37kw  \\n  \\n**Additional Information:**\\n\\n* **Delivery Time:** Ready stock\\n* **Packaging Details:** Box\\n\\nView Complete details\\n\\nYes! I am Interested Request a call back\\n\\n## Delta VFD11AME21 ANNAA\\n\\n* \\n* \\n* \\n* \\n*\\n\\nGet Best Quote\\n\\nRs 10,000 / Piece Price on Request\\n\\nMinimum Order Quantity: 1 Piece\\n\\nProduct Brochure\\n\\n|Power Rating |3HP |\\n| --- | --- |\\n|Brand |Delta |\\n|Input Phase |1 - Phase |\\n|Model Name/Number |VFD11AME21ANNAA |\\n|Motor Power |2\\\\.2KW 3HP |\\n|Input Frequency |50HZ |\\n|Output Current |11\\\\.0 AMPS |\\n|Country of Origin |Made in India |\\n\\n230V, 2.2KW / 3HP, Non detachable display unit.Product Description\\n\\n* Output frequency:  \\n  Standard models: 0 to 599 Hz\\n ... \\nDelta Electronics VFD-EL-W Series AC Inverter for 0.75kW (1.0HP) 400V 3 Ph motor in VxF control or Sensorless Vector Control to 2.5A. Converts fixed frequency 3 phase 400V input to variable frequency three phase 400V, to control the speed of a standard AC induction motor.  \\n  \\n**Additional Information:**\\n\\n* **Delivery Time:** Ready stock\\n* **Packaging Details:** Box\\n\\nView Complete details\\n\\nYes! I am Interested Request a call back\\n\\n## Delta VFD075E43A E-SERIES\\n\\n* \\n* \\n* \\n* \\n*\\n\\nGet Best Quote\\n\\nRs 13,000 / Piece Price on Request\\n\\nMinimum Order Quantity: 1 Piece\\n\\nProduct Brochure\\n\\n|Power Rating |10 HP |\\n| --- | --- |\\n|Brand |Delta |\\n|Input Phase |3 - Phase |\\n|Model Name/Number |VFD075E43A |\\n|Warranty |1 YEARS |\\n|Series |E-Series |\\n|Model Number |Delta AC Drive VFD075E43A |\\n\\n460V, 7.5KW / 10HP, Inbuilt PLC & EMC filter, Braking chopper, **We are supplier, dealer of Delta VFD, AC Drive** **VFD075E43A** **in India.**\"], publish_date=None, title='Delta Vfd - Delta VFD004EL21A, EL-SERIES Trader - Retailer from Noida')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

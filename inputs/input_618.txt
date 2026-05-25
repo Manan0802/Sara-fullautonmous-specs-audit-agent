@@ -1,0 +1,3290 @@
+=== SYSTEM PROMPT ===
+# Spec Audit Orchestrator Agent
+
+
+
+
+You are an expert spec auditor for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+
+
+---
+
+
+
+
+## YOUR OBJECTIVE
+
+
+
+
+Every product category on this marketplace has a spec sheet — a structured set of attributes (specs) that sellers fill out and buyers use to filter. Your job is to audit the existing spec sheet and produce a corrected version.
+
+
+
+
+The existing specs are largely correct. Do not rebuild from scratch. Find and fix what is genuinely wrong: missing specs, wrong tiers, bad options wrong input types (radio vs multiselect), duplicates, or irrelevant entries. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** What a buyer asks first. What a seller must fill to have a findable listing.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one variant from another. Essential but not the first question.
+- **Tertiary:** Useful detail. Not critical for discovery.
+
+
+Each spec has `spec_name`, `options` (values sellers choose), and `input_type` (`radio_button` / `multi_select` / `text_type`).
+
+
+Your job is to audit all these aspects of the specs of a given category.
+
+
+---
+
+
+
+
+## YOUR DATA
+
+
+
+
+Five data sources are pre-fetched and in your context. Use them all.
+
+
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+
+
+
+You have three tools available. Use them whenever they help you.
+
+
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+Wait until your next turn to actually do the analysis. **Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+
+
+## RULES
+
+
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+
+
+**Every spec must be reviewed.** Even specs you don't change. For untouched specs, one line: "Reviewed — no signals requiring change."
+
+
+
+
+**Be your own critic.** Before finalising any action, ask: what is the strongest argument against this? Is there an alternative explanation for this signal? Address it.
+
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+
+
+---
+
+
+
+
+## BEGIN
+
+
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+
+Start by reading the skills you need, analyze the data, and produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 618
+category_name: Gold Chains
+seller_specs (current spec sheet): {
+  "category_name": "Gold Chains",
+  "mcat_id": 618,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Purity (Karat)",
+          "options": [
+            "22K (916)",
+            "18K (750)",
+            "14K (585)"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Design/Link Style",
+          "options": [
+            "Cuban",
+            "Figaro",
+            "Rope",
+            "Box",
+            "Curb",
+            "Franco",
+            "Anchor",
+            "Coimbatore"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Prefix",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Primary Specs (Purity, Design/Link Style) are the first-level filters buyers use. A buyer typically searches for a specific style of chain (e.g., 'Cuban Chain') in a specific purity (e.g., '22K'). These attributes are fundamental to product identity and initial price range."
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Weight (g)",
+          "options": [
+            "10 g",
+            "20 g",
+            "15 g",
+            "30 g",
+            "50 g",
+            "5 g",
+            "100 g"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Length",
+          "options": [
+            "18 in",
+            "20 in",
+            "22 in",
+            "24 in",
+            "16 in",
+            "26 in"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Construction Type",
+          "options": [
+            "Solid",
+            "Hollow"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Secondary Specs (Weight, Length, Construction Type): After identifying the style, buyers narrow down their needs based on these core functional and cost attributes. Weight is the single biggest determinant of final price. Length defines the fit and target customer. Construction Type (Solid vs. Hollow) is a critical cost-saving vs. durability trade-off in B2B."
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Gold Color",
+          "options": [
+            "Yellow Gold",
+            "Rose Gold",
+            "White Gold",
+            "Two-Tone"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Making Process",
+          "options": [
+            "Machine-made",
+            "Handmade"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Clasp Type",
+          "options": [
+            "S-Hook",
+            "Lobster Claw",
+            "Spring Ring"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Hallmarking",
+          "options": [
+            "HUID Hallmarked"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Tertiary Specs (Gold Color, Making Process, etc.): These are supplementary details that help finalize a decision. While important, they are typically considered after the primary and secondary characteristics are met. Hallmarking is included as a crucial, legally mandated trust and quality indicator in the Indian market."
+    }
+  },
+  "scratchpad": "The specifications and their classifications are derived from a comprehensive analysis of the provided buyer-seller call recordings and seller catalogs. The hierarchy of specifications reflects the typical B2B purchasing journey. Primary specs are for initial filtering, Secondary specs narrow down choices based on function and cost, and Tertiary specs provide supplementary details to finalize a decision. Hallmarking is included as a crucial, legally mandated trust and quality indicator in the Indian market."
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 13 specs) ---
+[
+  {
+    "spec_name": "Purity",
+    "total_product_count": 96,
+    "example_values": [
+      "10 K",
+      "10 %",
+      "14 K",
+      "18 K",
+      "2 Tanch"
+    ]
+  },
+  {
+    "spec_name": "Design",
+    "total_product_count": 85,
+    "example_values": [
+      "Adjustable Bolo",
+      "Anchor Diamond Cut (DC)",
+      "Antique",
+      "Ball",
+      "Batani"
+    ]
+  },
+  {
+    "spec_name": "Weight",
+    "total_product_count": 78,
+    "example_values": [
+      "1 g",
+      "1-10 g",
+      "1-2 g",
+      "1-4 g",
+      "10 g"
+    ]
+  },
+  {
+    "spec_name": "Chain Type",
+    "total_product_count": 49,
+    "example_values": [
+      "2 Tanch",
+      "Adjustable Bolo",
+      "Chain",
+      "Gold Forming",
+      "Handmade"
+    ]
+  },
+  {
+    "spec_name": "Material",
+    "total_product_count": 18,
+    "example_values": [
+      "Brass",
+      "Gold",
+      "Imitation",
+      "Silver"
+    ]
+  },
+  {
+    "spec_name": "Length",
+    "total_product_count": 14,
+    "example_values": [
+      "16 in",
+      "18 in",
+      "20 in",
+      "20-24 in",
+      "22-24 in"
+    ]
+  },
+  {
+    "spec_name": "Wastage",
+    "total_product_count": 10,
+    "example_values": [
+      "1.5 %",
+      "1.8",
+      "12 %",
+      "15-20 %",
+      "2.5 %"
+    ]
+  },
+  {
+    "spec_name": "Target Gender",
+    "total_product_count": 9,
+    "example_values": [
+      "Ladies",
+      "Men"
+    ]
+  },
+  {
+    "spec_name": "Certification",
+    "total_product_count": 6,
+    "example_values": [
+      "BIS Hallmark",
+      "HUID Pass"
+    ]
+  },
+  {
+    "spec_name": "Finish",
+    "total_product_count": 6,
+    "example_values": [
+      "3 to 4 types (300, 450, 550)",
+      "DC",
+      "Gold plated",
+      "Polished",
+      "Rose Gold"
+    ]
+  },
+  {
+    "spec_name": "Origin",
+    "total_product_count": 4,
+    "example_values": [
+      "Coimbatore",
+      "Imported"
+    ]
+  },
+  {
+    "spec_name": "Additional Features",
+    "total_product_count": 3,
+    "example_values": [
+      "5-10 Designs",
+      "Anti-tarnish",
+      "Stone: Green diamond"
+    ]
+  },
+  {
+    "spec_name": "Color",
+    "total_product_count": 3,
+    "example_values": [
+      "Rose Gold"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "Brand Name",
+    "count": 13,
+    "options": [
+      "200gms",
+      "MSJ"
+    ]
+  },
+  {
+    "spec_name": "Material",
+    "count": 9,
+    "options": [
+      "Gold and Alloy",
+      "Gold"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 10 specs) ---
+[
+  {
+    "spec_name": "material",
+    "total_impressions": 1212249,
+    "options": [
+      "gold"
+    ]
+  },
+  {
+    "spec_name": "type",
+    "total_impressions": 1174931,
+    "options": [
+      "chain",
+      "price chain"
+    ]
+  },
+  {
+    "spec_name": "weight",
+    "total_impressions": 189707,
+    "options": [
+      "1 gm",
+      "1 gram",
+      "1 kg",
+      "10 gm",
+      "10 gram"
+    ]
+  },
+  {
+    "spec_name": "color",
+    "total_impressions": 24457,
+    "options": [
+      "black",
+      "golden"
+    ]
+  },
+  {
+    "spec_name": "gender",
+    "total_impressions": 21279,
+    "options": [
+      "boy",
+      "female",
+      "unisex"
+    ]
+  },
+  {
+    "spec_name": "purity",
+    "total_impressions": 21177,
+    "options": [
+      "10000",
+      "15000",
+      "18 carat",
+      "18 karat",
+      "22 carat"
+    ]
+  },
+  {
+    "spec_name": "size",
+    "total_impressions": 3832,
+    "options": [
+      "1 tola",
+      "10 tola",
+      "24 inch",
+      "3",
+      "5"
+    ]
+  },
+  {
+    "spec_name": "design",
+    "total_impressions": 3465,
+    "options": [
+      "bahubali",
+      "fancy",
+      "lady",
+      "simple",
+      "sundari"
+    ]
+  },
+  {
+    "spec_name": "jewellery type",
+    "total_impressions": 1888,
+    "options": [
+      "ear chain"
+    ]
+  },
+  {
+    "spec_name": "set contains",
+    "total_impressions": 748,
+    "options": [
+      "chain with pendant"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (17 specs) ---
+[
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_fill_rate": "71.7",
+    "product_count": "38"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_fill_rate": "67.9",
+    "product_count": "36"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_fill_rate": "66",
+    "product_count": "35"
+  },
+  {
+    "spec_name": "Length",
+    "spec_fill_rate": "64.2",
+    "product_count": "34"
+  },
+  {
+    "spec_name": "Construction Type",
+    "spec_fill_rate": "62.3",
+    "product_count": "33"
+  },
+  {
+    "spec_name": "Gold Color",
+    "spec_fill_rate": "56.6",
+    "product_count": "30"
+  },
+  {
+    "spec_name": "Making Process",
+    "spec_fill_rate": "39.6",
+    "product_count": "21"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "37.7",
+    "product_count": "20"
+  },
+  {
+    "spec_name": "Clasp Type",
+    "spec_fill_rate": "18.9",
+    "product_count": "10"
+  },
+  {
+    "spec_name": "Hallmarking",
+    "spec_fill_rate": "15.1",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Metal Color",
+    "spec_fill_rate": "3.8",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Stone Color",
+    "spec_fill_rate": "1.9",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Weight starts from 12gms",
+    "spec_fill_rate": "1.9",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_fill_rate": "1.9",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Occasion",
+    "spec_fill_rate": "1.9",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_fill_rate": "1.9",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Stone Size",
+    "spec_fill_rate": "1.9",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (175 rows) ---
+[
+  {
+    "spec_name": "Pitch",
+    "spec_option_name": "12 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Diameter",
+    "spec_option_name": "3 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Weight starts from 12gms",
+    "spec_option_name": "18inches",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Weight",
+    "spec_option_name": "15g",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Link Shape",
+    "spec_option_name": "Oval",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "24 inch",
+    "spec_option_name": "50.00 gram",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Plating Color",
+    "spec_option_name": "Gold",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "50 inch",
+    "spec_option_name": "50.00 gm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Width",
+    "spec_option_name": "6 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Embellishment",
+    "spec_option_name": "With Pendant",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Warranty",
+    "spec_option_name": "1 Year",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Box",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Stone Size",
+    "spec_option_name": "SS14",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Finishing Type",
+    "spec_option_name": "Polished",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "70 gram",
+    "spec_option_name": "All size avilable",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Type",
+    "spec_option_name": "Chain",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "90 gram",
+    "spec_option_name": "All size avilable",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "14 gram to 21 gram",
+    "spec_option_name": "All size avilable",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "14 to 22 gram",
+    "spec_option_name": "22 inch to 24 inch",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Occasion",
+    "spec_option_name": "Part Wear",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Golden",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Tata",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Stone Color",
+    "spec_option_name": "AB Crystal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Hallmarking",
+    "spec_option_name": "HUID Hallmarked",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Base Material",
+    "spec_option_name": "gold",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "I Deal In",
+    "spec_option_name": "New Only",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "90.00 gram",
+    "spec_option_name": "26 inch and all size avilable",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Plating Type",
+    "spec_option_name": "1 Gram Gold",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Gold Color",
+    "spec_option_name": "Yellow Gold",
+    "option_fill_rate": "94.3"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "MSJ",
+    "option_fill_rate": "92.3"
+  },
+  {
+    "spec_name": "Clasp Type",
+    "spec_option_name": "S-Hook",
+    "option_fill_rate": "73.1"
+  },
+  {
+    "spec_name": "Construction Type",
+    "spec_option_name": "Solid",
+    "option_fill_rate": "63.5"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "22K (916)",
+    "option_fill_rate": "63.4"
+  },
+  {
+    "spec_name": "Material",
+    "spec_option_name": "Gold",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Making Process",
+    "spec_option_name": "Machine-made",
+    "option_fill_rate": "53.2"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "Made In India",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Gender",
+    "spec_option_name": "Unisex",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Thickness",
+    "spec_option_name": "2 mm",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Chain Style",
+    "spec_option_name": "Curb",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Gender",
+    "spec_option_name": "Women",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Thickness",
+    "spec_option_name": "6 mm",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Metal Color",
+    "spec_option_name": "Yellow Gold",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Chain Style",
+    "spec_option_name": "Figaro",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "India",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Metal Color",
+    "spec_option_name": "Gold",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Making Process",
+    "spec_option_name": "Handmade",
+    "option_fill_rate": "46.8"
+  },
+  {
+    "spec_name": "Construction Type",
+    "spec_option_name": "Hollow",
+    "option_fill_rate": "33.7"
+  },
+  {
+    "spec_name": "60.00 gram",
+    "spec_option_name": "24 inch",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "60.00 gram",
+    "spec_option_name": "26 inch and all size avilable",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "60.00 gram",
+    "spec_option_name": "24 inch and all size are avilable",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "18 in",
+    "option_fill_rate": "32.7"
+  },
+  {
+    "spec_name": "PART NO",
+    "spec_option_name": "RB-5710",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "PART NO",
+    "spec_option_name": "RB-5712",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "PART NO",
+    "spec_option_name": "RB-5711",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "PART NO",
+    "spec_option_name": "RB-2717",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "24 in",
+    "option_fill_rate": "22.1"
+  },
+  {
+    "spec_name": "Clasp Type",
+    "spec_option_name": "Spring Ring",
+    "option_fill_rate": "21.2"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "10 g",
+    "option_fill_rate": "20.5"
+  },
+  {
+    "spec_name": "Material",
+    "spec_option_name": "Gold patta chain",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Material",
+    "spec_option_name": "Stainless Steel",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Rope",
+    "option_fill_rate": "19.4"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "18K (750)",
+    "option_fill_rate": "17.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "20 in",
+    "option_fill_rate": "16.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Cuban",
+    "option_fill_rate": "14.5"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "20 g",
+    "option_fill_rate": "12"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "100 g",
+    "option_fill_rate": "10.3"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Box",
+    "option_fill_rate": "9.7"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "22 in",
+    "option_fill_rate": "8.8"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "30 g",
+    "option_fill_rate": "8.5"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Franco",
+    "option_fill_rate": "8.1"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Figaro",
+    "option_fill_rate": "8.1"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "200gms",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "15 g",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Clasp Type",
+    "spec_option_name": "Lobster Claw",
+    "option_fill_rate": "5.8"
+  },
+  {
+    "spec_name": "Gold Color",
+    "spec_option_name": "Rose Gold",
+    "option_fill_rate": "5.7"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "16 in",
+    "option_fill_rate": "5.3"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "40 gms",
+    "option_fill_rate": "5.1"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "50 g",
+    "option_fill_rate": "5.1"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "18K to 22K",
+    "option_fill_rate": "4.9"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Coimbatore",
+    "option_fill_rate": "4"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Curb",
+    "option_fill_rate": "3.2"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Anchor",
+    "option_fill_rate": "3.2"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "14K",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "20K",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "60.00 gram",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "Brass",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Construction Type",
+    "spec_option_name": "As per product specification",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "26 in",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "18 in - 24 in",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "6 g to 9 g",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "24 gms",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "12",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Fancy Mugappu Gold Chain",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Peacock Mugappu Gold Chain",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "18K To 22K",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Construction Type",
+    "spec_option_name": "stone",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "32 gsm",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "From 8gms",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "7 - 10 g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "90.00 gram",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "168 gms",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "5 g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "8",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "55 gram",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "20-24 in",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "14 gram to 20 gram",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "20 in or 22 in",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "18 in/  24 in",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "8g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "Above 8g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "3.210 g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "18 inch (46 cm)",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "56 gsm",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "20 inch to 24 inch",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "200gms",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "7p gram",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "all lengths",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "19 in",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "5 g/ 10 g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "4.880g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "40g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "7.060 g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "90 gram",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "10 Inch",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "2.5g onwards",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "16gms",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "60g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "6 - 12 g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "all type",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "2.664 g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "24 inch (61 cm)",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "24gms",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Weight (g)",
+    "spec_option_name": "6g-10g",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "16.5 in",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "20 - 22 in",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "CC Cutting Gold Chian",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Spiral Mugappu Gold Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Super Hollow Gold Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Fancy Designer Chain / Machine Cut Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Fancy chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "HR Gold Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Pushpa Gold Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Lakshmi Mugappu Gold Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Local+Bombay",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Signity Mugappu Gold Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Choco model",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Electro",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Kerala model",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Bahubali",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Gejri",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Box, Rope, Anchor, Curb",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Modern Fancy Link",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Paperclip Link Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Cylon Kodi Gold Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Dollar Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Italian",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Kerala",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Nawabi",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Paper Clip Link / Elongated Link Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Fancy",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Chain Set",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "HR Mugappu Gold Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Paper Clip Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "all type",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Bar chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Antique Mugappu Gold Chain",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "Fancy Chai",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Design/Link Style",
+    "spec_option_name": "fancy designer machine-cut chains",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "All Purity Available",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "9k",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "18K 22K",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "18k to 22k",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "24K",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "24k",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Purity (Karat)",
+    "spec_option_name": "14K (585)",
+    "option_fill_rate": "0.7"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data  output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+
+
+## How to read product count — what counts as signal
+
+
+Product count is relative. Do not use absolute thresholds. Instead, compare each
+spec's count against the full distribution of counts in this category:
+
+
+- A spec in the top 25% of counts is a strong signal regardless of the absolute number
+- A spec with count between 5 and the median is a moderate signal
+- A spec with count below 5 is a weak signal — treat as directional only
+- A spec with count of 1 or 2 is noise — do not act on it alone
+
+
+**The 90% coverage rule:** Example values shown represent 90% of real usage.
+Values with count ≤ 2 are dropped before you see them. What you see is the bulk
+of real market usage — not exhaustive, but representative.
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs , that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+   and search impressions  to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_search_analysis) ---
+# Buyer Search Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer Search Data output — use this document to understand
+what impression counts mean, how to classify each search signal, and how to use
+search findings in your audit decisions. You apply this interpretation yourself —
+no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer search data contains spec-option combinations that buyers selected as filters
+when searching the marketplace, along with impression counts showing how many times
+each filter was used. When a buyer clicks "Thickness: 3mm" as a search filter, that
+generates one impression for that spec-option combination.
+
+
+This data tells you what buyers actively want to narrow their search by. High
+impressions mean many buyers are expressing demand for this attribute as a filter.
+It is your most direct measure of buyer intent on the platform.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The name of the spec buyers used as a filter. May not match the platform spec name
+exactly — use semantic matching, not exact string matching. "Wattage" and "Power"
+refer to the same buyer intent.
+
+
+**spec_option / option value**
+The specific value buyers filtered by. Values appearing here but absent from your
+current option list are strong candidates for addition.
+
+
+**impression / total_impressions**
+How many times buyers used this spec-option combination as a filter. Your primary
+signal from this data source. Higher = more buyer demand.
+
+
+---
+
+
+## How to read impression counts — orientation thresholds
+
+
+These are not hard rules — calibrate relative to the distribution in your category.
+
+
+| Total impressions for a spec | Signal strength |
+|-----------------------------|-----------------|
+| Below 50 | Noise — do not act on this alone |
+| 50 to 500 | Weak — needs corroboration from another source |
+| 500 to 2000 | Moderate — worth investigating, check for artifacts |
+| Above 2000 | Strong — genuine buyer demand |
+
+
+A spec with 200 impressions that also appears in call data is stronger evidence than
+a spec with 1000 impressions that has zero product count and looks like a UI default.
+Always cross-reference.
+
+
+---
+
+
+## The two types of specs in search data
+
+
+**Present specs** — Buyers are using a spec the platform already has. High impressions
+for a present spec validate that it belongs where it is. Very high impressions for a
+present Tertiary spec is a signal it may be misplaced.
+
+
+**Missing specs** — Buyers are filtering on an attribute the platform does not offer
+as a standardised spec. These are discovery gaps — buyers are either finding no
+results or settling for imprecise results. High-value candidates for addition.
+
+
+Use semantic matching when classifying — "Wattage" is present if the platform has
+"Power". The buyer intent is the same regardless of the label difference.
+
+
+---
+
+
+## Signal classification — apply to every search spec before acting
+
+
+Not every high-impression term should become a spec. Classify first:
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute, impressions ≥ 50, not already covered | Addition candidate |
+| `CONTEXT_TERM` | A word describing context or setting, not a filterable attribute | Do not add |
+| `IMPLIED` | Category name already defines this value for every product | Do not add — artifact |
+| `DUPLICATE` | Semantically same as an existing platform spec under a different name | Do not add — already covered |
+| `NOT_A_PRODUCT_SPEC` | Delivery, payment, warranty, MOQ | Do not add |
+| `DATA_ARTIFACT` | One option has over 90% of impressions, or known default UI filter | Do not promote based on this alone |
+
+
+**Category-implied check — apply every time:**
+If the category name itself tells you the value of this spec for every product,
+buyer impressions are an artifact. Example: buyers searching "Material: Aluminium"
+in an Aluminium Profiles category are not expressing a new spec need. Every product
+is already aluminium. The impressions come from the filter existing, not from genuine
+buyer differentiation need.
+
+
+**Data artifact check — apply when impressions look disproportionate:**
+- Does one option account for over 90% of total impressions for this spec?
+- Is this likely a default filter the platform pre-selects for buyers?
+- Does product count in call data = 0 despite very high impressions?
+
+
+If yes to any of these, tag as `DATA_ARTIFACT` and do not promote based on this signal.
+
+
+---
+
+
+## How to use search data in your audit
+
+
+**Finding discovery gaps**
+Search for specs classified as missing with impressions above 50. These are attributes
+buyers want to filter on but the platform does not offer. High-priority addition
+candidates. Cross-reference with call data and custom specs before adding.
+
+
+**Validating tier placement**
+A spec currently in Tertiary with thousands of impressions is almost certainly
+misplaced. Bring this signal into your sequencing reasoning alongside fill rate
+and product count.
+
+
+**Finding option gaps**
+When buyers filter by a specific value that does not exist in the current option list,
+that is a direct signal to add that option. Example: "48V" appearing in search but
+absent from the Voltage spec options. Bring to your option validation reasoning with
+this as evidence.
+
+
+**Cross-source confirmation**
+A spec appearing as missing in search AND in call data is confirmed from both the
+demand side (buyers want to filter) and the transactional side (buyers and sellers
+discuss it). This combination reaches high confidence for addition.
+
+
+---
+
+
+## What search data cannot tell you alone
+
+
+**Whether a spec is genuinely missing** — High impressions may reflect an artifact,
+a context term, or a spec that already exists under a different name. Always classify
+before acting.
+
+
+**Final tier placement** — Impressions are one of three signals. You need fill rate
+ and product count  to make a well-supported tier decision.
+
+
+**Option quality** — Search data shows which values buyers look for, not whether your
+current option list is structurally correct. Use these values as evidence in your
+option validation reasoning.
+
+
+**Why impressions are high** — Search data shows that buyers filtered on something,
+not why. A spec with 5000 impressions could be a genuinely important attribute or
+a default UI filter every buyer sees. Investigate before acting.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Missing Spec Identification — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to evaluate whether specs are missing from the current platform spec
+sheet — read this document. It gives you the framework to identify genuine gaps,
+avoid false positives, define new specs completely, and generate correct option
+values. You apply all of this reasoning yourself using the data in your context.
+
+
+---
+
+
+## The core problem
+
+
+Data sources will surface many candidate specs. The hard part is not finding
+candidates — it is knowing which are genuine gaps versus duplicates under a
+different name, composite attributes already captured, or noise that looks like
+a spec but is not.
+
+
+A false positive — adding a spec that duplicates an existing one — is harder to
+fix than missing a genuine gap. When genuinely uncertain, do not add.
+
+
+---
+
+
+## How to recognise a genuine gap
+
+
+A candidate spec is a genuine gap only if all three of the following are true:
+
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same real-world
+attribute, even approximately, the candidate is not a gap.
+
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+
+---
+
+
+## Common false positives — check these before acting
+
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common synonym.
+
+
+Common equivalences in Indian B2B:
+
+
+| These terms often mean the same thing |
+|--------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Type / Variant / Form / Format / Category |
+| Size / Dimensions / Measurement / Specification |
+| Capacity / Volume / Output / Throughput |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Purity / Concentration / Assay / Composition |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade |
+| Brand / Make / Manufacturer / OEM / Make & Model |
+| Certifications / Standards / Compliance / Approvals |
+
+
+**Composite attributes**
+Some specs appearing in call or search data are natural-language composites.
+"10mm HDPE pipe" → "10mm" is not a new Diameter spec if Dimensions already exists.
+
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+
+**Call data noise**
+"Good quality", "ISI certified", "fast delivery" appearing as candidates from call
+data are purchase context, not product attributes.
+
+
+**Low-signal custom specs**
+A custom spec added by only one or two sellers is seller-idiosyncratic, not a
+category-wide gap.
+
+
+---
+
+
+## How to read each data source for gap evidence
+
+
+**Buyer-Seller Call Data (Buyer-Seller Call Data)**
+Look for attributes buyers ask about early in calls — these matter most to purchase
+decisions. Product count = signal strength. Higher count across more calls = stronger
+evidence.
+
+
+Discount: implied specs, generic values (As per requirement, Standard, Normal),
+re-statements of the category name.
+
+
+**Custom Specs Data (Custom Seller Specs)**
+Most reliable gap signal. A seller adding a custom spec is telling you buyers need
+this information and the platform has no field for it. Multiple sellers independently
+adding the same custom spec is strong confirmation.
+
+
+Discount: one-off specs from a single seller, vague or placeholder values,
+internal seller codes.
+
+
+**Buyer Search Data (Buyer Search Data)**
+Shows what attributes buyers filter by when browsing. High impressions on a
+candidate confirm buyer demand.
+
+
+Discount: platform default filters, implied category specs, single-option specs
+where >90% of impressions fall on one value.
+
+
+**Domain knowledge**
+When data signals are weak or absent, use your understanding of how this product
+is specified and sold in Indian B2B trade. What would a seller know by heart?
+What would a buyer mention first? Domain knowledge supplements data — it does not
+override clear data signals.
+
+
+---
+
+
+## Evidence strength — how much do you need
+
+
+| Evidence | Decision |
+|----------|----------|
+| 2+ independent sources agree (e.g. call data + custom specs) | Add with high confidence |
+| 1 strong source (high call count, or multiple custom spec sellers, or strong domain reasoning) | Add — note single source |
+| Weak or indirect signal only (low count, single occurrence, vague intuition) | Do not add — note as unconfirmed |
+
+
+---
+
+
+## Consolidating candidates that mean the same thing
+
+
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning.
+
+
+"Usage" from custom specs + "Application" from call data + "End Use" from search
+→ one spec, not three. Pick the most standard name and add once.
+
+
+Rule: one underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+
+---
+
+
+## How to define a spec you are adding
+
+
+When you have confirmed a genuine gap, define it completely.
+
+
+### Spec name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+
+### Input type — decide this first
+
+
+**Must be `text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Brand names only when the category has no dominant brands
+  (generate options if 3+ brands are known in Indian B2B)
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+
+**Must be `radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Yes / No, Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+
+
+**Must be `multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → multi_select
+
+
+
+
+## Platform rule — "Other" option on primary and secondary specs
+
+
+Primary and secondary specs on this platform have an "Other" button that lets sellers enter a custom value not in the list. This has a direct impact on input type decisions when adding new specs:
+
+
+- **Do not assign `text_type` to a spec just because its option list feels
+  incomplete**, if the spec is clearly important and its core values are known.
+  The "Other" button handles edge cases for primary and secondary specs.
+- If a spec has clear, standard option values AND strong signal that it will be
+  Primary or Secondary, define it as `radio_button` or `multi_select` with the
+  known options. Incompleteness alone is not a reason for `text_type`.
+- Reserve `text_type` for specs where the value is genuinely free-form or unique
+  per SKU (model numbers, catalogue codes, free-form dimensions) — not for specs
+  where you simply haven't enumerated all options yet.
+- 
+
+
+
+
+
+
+### Options — how to generate them
+
+
+Draw from example values in call data, custom spec submissions, and search option
+values. Also apply Indian B2B market knowledge to fill gaps.
+
+
+**Quality rules:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only.
+2. No vague fillers — never use: Other, Custom, NA, Various, As Required, Any, Miscellaneous, General Purpose (unless genuinely traded as a category value)
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+
+
+**Formatting rules:**
+6. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+7. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+8. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm 
+9. Categorical options by frequency — most common in Indian market first
+10. Use ISI/BIS standards where applicable
+11. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+12. Do not use range options unless they are the market standard for this spec
+13. Think like an Indian B2B seller — what values would a seller actually select?
+
+
+**How to handle values from data:**
+
+
+| Value quality | What to do |
+|---------------|------------|
+| Clean, consistent values | Use as format reference; generate full standard market set |
+| Mixed quality | Extract the pattern; discard outliers |
+| 1–2 values only | Use to confirm spec meaning; generate full options from market knowledge |
+| Completely messy | Ignore; generate entirely from category + spec name knowledge |
+| Empty | Generate entirely from category + spec name knowledge |
+| Contains NA / Other / Custom | Ignore these; treat as empty |
+
+
+### Tier placement
+
+
+Add all new specs as Tertiary by default. Tier is determined by sequencing
+reasoning using actual signal data — not at the point of addition.
+
+
+Exception: if call data product count is very high and the spec is clearly a
+primary purchase decision attribute for this category, you may propose Secondary
+or Primary as provisional. Note this explicitly and treat it as provisional until
+sequencing confirms it.
+
+
+---
+
+
+## Validation checklist — before finalising any spec addition
+
+
+- Options are directly about this spec, not adjacent attributes
+- Options make sense for this specific category
+- A real buyer would use these as search filters
+- No duplicates or near-duplicates in the option list
+- No vague or filler options
+- Correct input_type for the spec's nature
+- Logical order (ascending numeric or frequency-based categorical)
+- All options under 30 characters
+- Units are standardised
+
+
+---
+
+
+## Yes/No specs
+
+
+Options: ["Yes", "No"] with input_type: "radio_button"
+
+
+---
+
+
+## What missing spec identification does NOT do
+
+
+- Does not determine final tier placement — that is sequencing reasoning
+- Does not validate or correct options of existing specs — that is option validator
+- Does not make final decisions when evidence is genuinely ambiguous — flag
+  these clearly and explain what additional evidence would resolve the uncertainty
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 6) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 7) ===
+Here are the results from 2 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(BIS hallmarking for gold jewellery India HUID) ---
+{
+  "query": "BIS hallmarking for gold jewellery India HUID",
+  "results": [
+    {
+      "title": " Hallmarking overview | Bureau of Indian Standards ",
+      "url": "https://www.bis.gov.in/hallmarking-overview/?lang=en",
+      "excerpt": "WebSearchResult(url='https://www.bis.gov.in/hallmarking-overview/?lang=en', excerpts=['Open toolbar\\n\\nAccessibility Tools\\n\\n* [Screen Reader](https://www.bis.gov.in/index.php/nvda-for-windows/)\\n* High Contrast\\n* Negative Contrast\\n* Light Background\\n* Links Underline\\n* Readable Font\\n* Reset\\n\\n1. [Home](https://www.bis.gov.in)\\n2. \u00bb\\n3. [Hallmarking overview](https://www.bis.gov.in/hallmarking-overview/ \"Hallmarking overview\")\\n\\n# Hallmarking overview\\n\\nHallmarking is the accurate determination and official recording of the proportionate content of precious metal in precious metal articles. Hallmarks are thus official marks used in many countries as a guarantee of purity or fineness of precious metal articles. The principle objectives of the Hallmarking Scheme are to protect the public against adulteration and to obligate manufacturers to maintain legal standards of fineness. In India, at present two precious metals namely gold and silver have been brought under the purview of Hallmarking.\\n\\n[Read More \u00bb](https://www.bis.gov.in/index.\\nphp/hallmarking-overview/overview-of-hallmarking/)\\n\\n### Procedure For Obtaining Registration by Jeweller for Sale of Hallmarked Jeweller / Artefacrs\\n\\nAny jeweller willing to obtain certificate of registration for selling Hallmarked Gold and Silver Jewellery/artefacts shall apply online in the BIS portal; [www.manakonline.in](https://www.manakonline.in/MANAK/login) . The certificate of registration is granted instantly to the jeweller without the need to upload any document or pay any fees for the same. The certificate of registration stands valid for lifetime..\\n\\n* [Guidelines for Registration of Jewellers (size \u2013 644 KB)](https://www.bis.gov.in/wp-content/uploads/2020/01/Revised_Guidelines_02012020.pdf)\\n* [List of Licensed Jewellers](https://www.bis.gov.in/index.php/hallmarking-overview/jewellers-registration-scheme/list-of-licensed-jewellers/)\\n* [Procedure to apply for Jeweller Registration (size \u2013 2.5 MB)](https://www.bis.gov.in/wp-content/uploads/2022/02/step_by_step_procedure.\\npdf)\\n\\n[Read More \u00bb](https://www.bis.gov.in/index.php/hallmarking-overview/jewellers-registration-scheme/)\\n\\n### Procedure for Recognition of Assaying and Hallmarking Center\\n\\nIndian Standard \u201cIS 15820:2009 General Requirements for Establishment and Operation of Assaying and Hallmarking Centres\u201d is the basis for recognition of Assaying and Hallmarking Centres. A centre desirous of obtaining recognition, after setting up of the Centre shall apply on the prescribed application form to BIS along with their Quality Manual, developed on the basis of Generic Quality Manual.\\n\\n* Application form\\n* Generic Quality Manual\\n* Applicable fees\\n* Guidelines for Recognition of Assaying & Hallmarking Centres\\n\\n[Read More \u00bb](https://www.bis.gov.in/index.php/hallmarking-overview/hallmarking-centre/)\\n\\n### Gold Refinery\\n ... \\n* Consumer can get its jewellery/sample tested from any of the BIS Recognized Assaying & Hallmarking Centre. The Assaying and Hallmarking Centres undertake the testing of Jewellery/Samples of common consumers on priority on chargeable basis. The Assaying and Hallmarking centre is required to issue Assay Report giving proper identifications as marked on article.\\n\\n[Read More \u00bb](https://www.bis.gov.in/index.php/hallmarking-overview/consumer-protection/)\\n\\n### Frequently Asked Questions\\n\\n**1\\\\. What is Hallmarking?**\\n\\nHallmarking is the accurate determination and official recording of the proportionate content of precious metal in precious metal articles.\\n\\n**2\\\\. What are the objectives behind instituting Hallmarking Scheme?**\\n\\nTo protect consumer against victimization due to irregular gold or silver quality, and to develop India as a leading gold market centre in the World and to develop export competitiveness.\\n\\n[Read More \u00bb](https://www.bis.gov.in/index.\\n ... \\ngov.in/) [](https://www.iso.org/home.html) [](https://pmnrf.gov.in/en/) [](https://www.india.gov.in/) [](https://amritmahotsav.nic.in/) [](https://consumerhelpline.gov.in/public/) [](https://pgportal.gov.in/) [](https://www.bis.gov.in/wp-content/uploads/2021/06/IDY_ebook.pdf) [](https://ghtc-india.gov.in/) [](https://www.makeinindia.com/) [](https://swachhbharatmission.ddws.gov.in/) [](https://www.digitalindia.gov.in/) [](https://www.niti.gov.in/) [](https://www.iec.ch/homepage) [](https://nsc.org.in/) [](https://www.isro.gov.in/) [](https://www.iso.org/home.html) [](https://pmnrf.gov.in/en/)\\n\\nNext\\n\\n* 1\\n* 2\\n* 3\\n* 4\\n* 5\\n* 6\\n* 7\\n* 8\\n* 9\\n* 10\\n* 11\\n* 12\\n* 13\\n* 14\\n* 15\\n* 16'], publish_date=None, title=' Hallmarking overview | Bureau of Indian Standards ')"
+    },
+    {
+      "title": "BIS hallmark - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/BIS_hallmark",
+      "excerpt": "WebSearchResult(url='https://en.wikipedia.org/wiki/BIS_hallmark', excerpts=['org/wiki/Special:EntityPage/Q375557 \"Edit interlanguage links\")\\n\\n* Article\\n* Talk\\n\\nEnglish\\n\\n* Read\\n* Edit\\n* View history\\n\\nTools\\n\\nTools\\n\\nmove to sidebar hide\\n\\nActions\\n\\n* Read\\n* Edit\\n* View history\\n\\nGeneral\\n\\n* What links here\\n* Related changes\\n* Upload file\\n* Permanent link\\n* Page information\\n* Cite this page\\n* Get shortened URL\\n* Download QR code\\n\\nPrint/export\\n\\n* Download as PDF\\n* Printable version\\n\\nIn other projects\\n\\n* [Wikidata item](https://www.wikidata.org/wiki/Special:EntityPage/Q375557 \"Structured data on this page hosted by Wikidata [g]\")\\n\\nAppearance\\n\\nmove to sidebar hide\\n\\nFrom Wikipedia, the free encyclopedia\\n\\nHallmarking system in India\\n\\n|BIS hallmark |\\n| --- | --- |\\n|\\n\\nThe BIS corporate logo which is a component of the hallmark format |\\n|Standards organization |Bureau of Indian Standards |\\n|Certifying agency |Accredited \\'Assaying & Hallmarking Centres\\' |\\n|Effective region |India |\\n|Effective since |2000 for Gold jewelry, 2005 for Silver jewelry |\\n|Product category |Gold jewelry, Silver jewelry |\\n|Website |[bis.org.in](http://www.bis.org.in/cert/hallbiscert.htm) |\\n\\nThe **BIS Hallmark** is a hallmarking system for gold as well as silver jewellery sold in India, certifying the purity of the metal. <sup>[[ 1 ]]()</sup> <sup>[[ 2 ]]()</sup> It certifies that the piece of jewellery conforms to a set of standards laid by the Bureau of Indian Standards , the national standards organization of India . India is the second biggest market for gold and its jewellery.\\n\\nIndia imports in excess of 1000 tons annually (including unofficially smuggled gold) with negligible local production. <sup>[[ 3 ]]()</sup> The annual gold imports are around 50 billion US$ next only to crude oil imports widening the trade deficit . <sup>[[ 4 ]]()</sup>\\n\\n## Gold\\n\\n [edit ]\\n\\nThe BIS system of hallmarking of gold jewellery began in April 2000.\\nThe standard specifications governing this system are IS 1417 (grades of gold and gold alloys, jewellery/artefacts), IS 1418 ( assaying of gold in gold bullion , gold alloys and gold jewellery/artefacts), IS 2790 (guidelines for manufacture of 14, 18 and 22 carat gold alloys only ), IS 3095 (gold solders for use in manufacture of jewellery). <sup>[[ 5 ]]()</sup>\\n\\n### The BIS hallmark\\n\\n [edit ]\\n\\nBIS hallmark for gold jewelry consists of several components:\\n\\n* The BIS hallmark logo\\n* Purity of Gold either one of this 22K916 Corresponding to 22 Carat, 18K750 Corresponding to 18 Carat and 14K585 Corresponding to 14 Carat.\\n* 6 digit alphanumeric HUID- **H** ALLMARK **U** NIQUE **ID** ENTIFICATION\\n\\n## Silver\\n\\n [edit ]\\n\\nBIS introduced hallmarking for silver jewelry in December 2005 under IS 2112, the standard specification for \\'Hallmarking of Silver Jewellery/Artefacts\\'. <sup>[[ 6 ]]()</sup>\\n\\n## Assaying & Hallmarking Centre\\n\\n [edit ]\\nThe testing of the jewelry as well as the hallmarking is done by approved Assaying & Hallmarking Centres present across all over nation. These are private undertakings approved as well as monitored by the BIS.\\n\\n## See also\\n\\n [edit ]\\n\\n* Gold import policy of India\\n* Certification marks in India\\n* ISI mark\\n\\n## References\\n\\n [edit ]\\n\\n1. **^** [\"Bureau of Indian Standards. Official website. \\'BIS Certification Scheme For Hallmarking Of Gold Jewellery\\' \"](https://web.archive.org/web/20181023090958/http://www.bis.org.in/cert/hallbiscert.htm) . Archived from [the original](http://www.bis.org.in/cert/hallbiscert.htm) on 2018-10-23 . Retrieved 2012-01-04 .\\n2. **^** [National Institute of Open Schooling. \\'Wise Buying.\\'](http://www.nios.ac.in/Secbuscour/26.pdf) [Archived](https://web.archive.org/web/20101011190438/http://nios.ac.in/Secbuscour/26.pdf) 2010-10-11 at the Wayback Machine\\n3. **^** [\"Gold demand by country\"](http://www.usdebtclock.org/gold-demand-by-country.html) . Retrieved 17 August 2014 .\\n4.\\n**^** [\"Gold imports - Social evil\"](https://www.scribd.com/doc/58788144/Gold-Imports-A-Social-Evil) . 2007 . Retrieved 17 August 2014 .\\n5. **^** [\"Bureau of Indian Standards. \\'HALLMARKING OF GOLD JEWELLERY IN INDIA\\' \"](https://web.archive.org/web/20120511115218/http://bis.org.in/cert/hallmark.htm) . Archived from [the original](http://www.bis.org.in/cert/hallmark.htm) on 2012-05-11 . Retrieved 2012-05-08 .\\n6. **^** [\"ZARKAN BIS HALLMARK\"](https://www.zarkan.co/pages/zarkan-bis-hallmark) . _Zarkan_ . Retrieved 2024-08-08 .\\n\\nRetrieved from \" [https://en.wikipedia.org/w/index.php?title=BIS\\\\_hallmark&oldid=1291122585](https://en.wikipedia.org/w/index.php?title=BIS_hallmark&oldid=1291122585) \"\\n\\n* This page was last edited on 19 May 2025, at 06:36 (UTC) .\\n* Text is available under the Creative Commons Attribution-ShareAlike 4.0 License ;\\n  additional terms may apply. By using this site, you agree to the [Terms of Use](https://foundation.wikimedia.'], publish_date='2025-05-19', title='BIS hallmark - Wikipedia')"
+    },
+    {
+      "title": "Learn How To Use HUID With an Example | Rudradhan",
+      "url": "https://rudradhan.com/pages/huid-hallmark-unique-idenification?srsltid=AfmBOoplKjLTcp0Ve8bgmmegjTq18sN2LsbmKEVuLKKkIC-Xu1ZzcuFa",
+      "excerpt": "WebSearchResult(url='https://rudradhan.com/pages/huid-hallmark-unique-idenification?srsltid=AfmBOoplKjLTcp0Ve8bgmmegjTq18sN2LsbmKEVuLKKkIC-Xu1ZzcuFa', excerpts=['Previous [Visit Us @ Amritsar. By Appointment Only](https://rudradhan.com/pages/flagship-store-in-amritsar \"Rudradhan in Amritsar\")\\n\\n[International Customers](https://www.rudradhan.us \"link to rudradhan.us our american website\")\\n\\n[Gifting Options Under Rs 10,000](https://rudradhan.com/collections/gifting \"https://rudradhan.com/collections/gifting\")\\n\\n[Customer Reviews @ Trustpilot.com](https://www.trustpilot.com/review/rudradhan.com \"https://www.trustpilot.com/review/rudradhan.com\") Next\\n\\nRudradhan\\n\\nOpen navigation menu\\n\\n* \\n* \\n* \\n* \\n* \\n* \\n* New Arrivals\\n\\nEnglish Language\\n\\nEnglish \u0939\u093f\u0928\u094d\u0926\u0940 \u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\\n\\nOpen search Search Open cart Cart ( 0 )\\n\\nClose * All Products\\n* 22k Gold\\n* Gold Plated Silver\\n* Gifting\\n* Ready To Ship\\n* White Silver\\n* New Arrivals\\n\\nEnglish Language\\n\\nEnglish \u0939\u093f\u0928\u094d\u0926\u0940 \u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\\n\\nYour Shopping Cart\\n\\nYour cart is empty\\nFor the benefit of gold jewelry customers, Government Of India in 2021, updated the jewelry hallmarking scheme to fight off the menace of fake laser hallmarks.\\n\\nBIS Hallmark now consists of **3 symbols** which give you some information. In this, the first symbol is **BIS logo** , second symbol indicates **purity** and fineness and the third symbol is the **HUID** . Before buying any piece of gold jewellery one should look for all these 3 symbols.\\n\\nHallmark Unique Identification (HUID) number is a six digit code consisting of numbers and letters. A unique HUID will be assigned and laser inscribed to every piece of jewellery at the time of hallmarking. This HUID, along with more details, are stored in BIS database for traceability.\\n\\n**How to verify if a hallmark is true or fake?**\\n\\nA prospecting customer can download the govt sponsored [**BIS CARE** app](https://www.bis.gov.in/index.\\nphp/bis-apps/) on his/her android phone and enter the 6 digit HUID to _verify its authenticity before completing a purchase_ . Likewise, at a physical retail store, a customer should ask for a product\\'s HUID and verify its ingenuity before proceeding towards purchase.\\n\\n_**This new concept of hallmarking with a government maintained public HUID database almost eliminates the scope of fake hallmarking for an informed customer.**_\\n\\nHere is an example:\\n\\nHere is a zoomed in photo of the BIS Hallmark on one of our 22k Gold rings ( [GLR 072](https://rudradhan.com/products/edwardian-pearl-jadau-ring-in-22ct-gold-glr-072) ). The HUID can be read as \"2JP8FC\". The best way to read the laser inscription is to take a zoomed in photo on your camera phone. This 6 digit code can then we fed into the BIS CARE App to get the following result (3rd image)\\n\\n1\\\\. Open the BIS CARE app and click on \"verify HUID\"\\n\\n2\\\\. Enter the HUID as read on the piece or as shared by the jeweller.\\n\\n3\\\\.\\n ... \\n* **\\\\+ What is the process of complaint registration in BIS?**\\n  \\n    + BIS follows a well-established complaint redressal procedure. Complaints are recorded centrally at Complaints Management and Enforcement Department. Complaints can be made both offline and online. Online complaint can be made through BIS mobile app BIS CARE or by use of online complaint registration portal on www.bis.gov.in or by sending a mail to complaints[at]bis[dot]gov[dot]in . Personally contacting/writing to Public Grievance officer of the nearest Regional/ Branch office of BIS or directly to the Head (Complaints Management and Enforcement Department). On receipt of the complaint it is investigated and further actions taken for its redressal.\\n* **\\\\+ Who is responsible for penal action in case of failure of hallmarked sample?**\\n  \\n    + Among Manufacturer, Wholeseller, Distributor and Retailer the one who has got the article hallmarked is responsible for penal action in case of failure of hallmarked sample.\\nAlso the Assaying and hallmarking centre who has hallmarked the article is equally responsible for penal action in case of failure of hallmarked sample\\n* **\\\\+ What would be the process of investigation and who will decide the verdict?**\\n  \\n    + The customer can directly approach jeweler for compensation in case the hallmarked jewellery retested by him in any BIS recognized AHC is found of less than the declared purity. Further if complaint is made to BIS, BIS follows a well-defined complaint redressal procedure involving investigation at both complainant end and complainee end. Any action will be taken only after thorough enquiry.\\n\\nAbove were select FAQs, quoted as is, from the [BIS webpage](https://www.bis.gov.in/hallmarking-overview/hallmarking-faqs/mandatory/)\\n\\nFeatured collection\\n\\nCollection Gold Jewelry To Gift Your Loved Ones Collection\\n\\n   \\n\\nView all\\n\\n Add to cart\\n\\nSale price INR 102,350  Add to cart\\n\\nSale price INR 42,550  Add to cart\\n\\nSale price INR 111,320  Add to cart'], publish_date=None, title='Learn How To Use HUID With an Example | Rudradhan')"
+    },
+    {
+      "title": "Hallmark | Gold HUID | Indian Standards | BIS Talks",
+      "url": "https://www.youtube.com/watch?v=5a9l66fCKRQ",
+      "excerpt": "WebSearchResult(url='https://www.youtube.com/watch?v=5a9l66fCKRQ', excerpts=['Hallmarking scheme was started by BIS in the year 2000 to protect the consumer against adulteration and to obligate manufacturers to'], publish_date=None, title='Hallmark | Gold HUID | Indian Standards | BIS Talks')"
+    },
+    {
+      "title": "How to Verify Gold HUID | BIS Hallmark Guide India - Gold-Cash",
+      "url": "https://gold-cash.in/huid-hallmark-verification-india/",
+      "excerpt": "WebSearchResult(url='https://gold-cash.in/huid-hallmark-verification-india/', excerpts=['# Modern Hallmarking & Gold Verification in India (With HUID Guide)\\n\\nGold jewellery is not just an ornament \u2014 it is a financial asset. If you plan to **sell, exchange, or retrieve pledged gold** , knowing its authenticity and purity is essential.\\n\\nIn India, hallmarking rules have evolved significantly, especially after the introduction of the **6-digit HUID system** . This guide explains modern hallmarking in simple terms and shows you how to verify your gold safely.\\n\\n* * *\\n\\n## What is BIS Hallmarking?\\n\\nHallmarking is the official certification of gold purity issued by the  \\n**Bureau of Indian Standards (BIS)** .\\n\\nIt confirms that the gold jewellery meets government-approved purity standards.\\n\\n#### A Modern BIS Hallmark Contains:\\n\\n\u25cf BIS logo  \\n\u25cf Purity mark (like 22K916, 18K750, etc.)  \\n\u25cf Assaying & Hallmarking Centre mark  \\n\u25cf **6-digit HUID (Hallmark Unique Identification) code**\\n\\n\ud83d\udc49 Today, the **HUID code is mandatory** for hallmarked gold jewellery sold in India.  \\n\\\\_\\n\\n* * *\\n## What is HUID? (6-Digit Unique Code)\\n\\nHUID stands for **Hallmark Unique Identification** .\\n\\nEach hallmarked jewellery piece now receives a **unique 6-digit alphanumeric code** .  \\nThis prevents duplication and improves transparency.\\n\\n#### Why HUID Was Introduced\\n\\n\u25cf Stops fake hallmark stamping  \\n\u25cf Prevents duplicate certifications  \\n\u25cf Makes verification easy for customers  \\n\u25cf Protects resale value\\n\\n* * *\\n\\n## How to Verify Your Gold Using the BIS Care App\\n\\nYou can verify any hallmarked gold item using the official BIS mobile app.\\n\\n#### Step-by-Step Guide\\n\\n[1.] Download **BIS Care App** from Google Play Store.  \\n[2.] Open the app.  \\n[3.] Click on **\u201cVerify HUID\u201d** .  \\n[4.] Enter the 6-digit HUID code stamped on your jewellery.  \\n[5.] View verification details such as:  \\n\u25cf Purity level  \\n\u25cf Jeweller registration  \\n\u25cf Hallmarking centre\\n\\n\u26a0\ufe0f If the code does not match the jewellery details, consult the jeweller immediately.\\n\\nAlways verify before buying, selling, or pledging gold.\\n\u2013\\n\\nBIS Care APP\\n\\n* * *\\n\\n## Different Hallmark Purity Levels in India\\n\\nGold jewellery is rarely 100% pure because pure gold (24K) is too soft for regular wear.\\n\\nBelow are the standard BIS-approved hallmark purity levels:\\n\\n|Karat |Purity Mark |Gold Percentage |Common Use |\\n| --- | --- | --- | --- |\\n|24K |999 |99\\\\.9% |Coins, bars (not jewellery) |\\n|23K |958 |95\\\\.8% |Special ornaments |\\n|22K |916 |91\\\\.6% |Traditional jewellery |\\n|18K |750 |75% |Stone-studded jewellery |\\n|14K |585 |58\\\\.5% |Lightweight / designer pieces |\\n\\n* * *\\n\\n## Why Gold is Mixed (Hardening Purpose Explained)\\n\\n\u25cf Pure gold (24K) is very soft and bends easily.  \\n\u25cf For practical jewellery making:  \\n\u25cf Other metals like copper, silver, or zinc are added  \\n\u25cf This process is called **alloying** . It increases:  \\n\u2022 Strength  \\n\u2022 Durability  \\n\u2022 Stone-holding capacity\\n\\n##### Example:\\n\\n\u25cf **22K (916)** \u2013 Suitable for plain jewellery  \\n\u25cf **18K (750)** \u2013 Better for diamond and stone settings\\n\u25cf Lower karat gold is harder and holds precious stones more securely\\n\\n\ud83d\udc49 This is why diamond jewellery is usually 18K, not 22K.\\n\\n<sub><sup>\u2013</sup></sub>\\n\\nGold Carat Purity Explained: Visual comparison of 24K, 22K (916), and 18K gold showing gold content and impurity levels\\n\\n* * *\\n\\n## Important Consumer Safety Points\\n\\n\u25cf Gold buying and selling involves financial decisions. Always:  \\n\u25cf Buy only BIS-hallmarked jewellery  \\n\u25cf Verify the 6-digit HUID before payment  \\n\u25cf Ask for a proper invoice  \\n\u25cf Check today\u2019s gold rate before selling  \\n\u25cf Avoid cash-only transactions without documentation\\n\\nIf you are planning to:\\n\\n\u25cf Sell your gold  \\n\u25cf Exchange old jewellery  \\n\u25cf Retrieve pledged gold\\n\\nMake sure the purity is verified first to avoid financial loss.\\n\\n* * *\\n\\n## Is Old Hallmarked Jewellery Valid?\\n\\nYes.\\n\\nOlder jewellery with a 4-mark hallmark (without HUID) is still legally valid if it was hallmarked before HUID implementation.\\nHowever, new jewellery sold today must contain the 6-digit HUID.\\n\\n* * *\\n\\n## Why Hallmark Verification Matters When Selling Gold\\n\\n**When selling gold:**\\n\\n\u25cf Buyers test purity  \\n\u25cf Lower purity means lower payout  \\n\u25cf Fake hallmarking can reduce value drastically\\n\\n**Verifying beforehand gives you:**\\n\\n\u25cf Better negotiation power  \\n\u25cf Transparency  \\n\u25cf Fair market value\\n\\n* * *\\n\\n## Final Advice\\n\\nModern hallmarking with HUID has made gold transactions safer for Indian consumers.\\n\\nBefore you:\\n\\n\u25cf Buy  \\n\u25cf Pledge  \\n\u25cf Sell  \\n\u25cf Exchange\\n\\n\ud83d\udc49 Always check the BIS hallmark and verify the HUID.\\n\\nGold is wealth. Protect it with proper verification.\\n\\n#### See Also : [KDM Gold to Hallmark Gold \u2013 What You Must Know](https://gold-cash.in/kdm-gold-to-hallmark-gold-what-you-must-know/)\\n\\nSave this page for future use:\\n\\n[](https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Fgold-cash.'], publish_date='2026-02-25', title='How to Verify Gold HUID | BIS Hallmark Guide India - Gold-Cash')"
+    },
+    {
+      "title": "Articles Received for Hallmarking during the Month",
+      "url": "https://huid.manakonline.in/MANAK/HallmarkingHomePage",
+      "excerpt": "WebSearchResult(url='https://huid.manakonline.in/MANAK/HallmarkingHomePage', excerpts=['eBIS\\n\\n* \\n* \\n* \\n*\\n\\n* Previous\\n* Next\\n\\n### [Gold Registration Granted](https://www.manakonline.in/MANAK/BisReportList/VzZTbVdWNmR0c09tcWkwRzFXL1J3QT09/RVM3NnVjWHlZVFdEejBuSzdQTHZmUT09/T2ZSVit4bEpla0RUY044aFZoaFc0Zz09/NWJIb1lqUkVneFNUSFArUTFSVlk2dz09/c24zazVUMlZXaExBdm45aW9NMzZLc1Izd3M3TGJaUkc)\\n\\n197867\\n\\n### [Silver Registration Granted](https://www.manakonline.in/MANAK/BisReportList/a0x1cEdZeUU2WDRQZkN6SGFKeTdOZz09/OUdxMkR1NVBoZ25sT09mQk5MM1NIZz09/TjZkL3lNcnplNzJJTElWb1dsRlMyZz09/M2E4RzgwNHdmamR5Y25vTktVbU4yUT09/RDFpZG5PNXh4TzZOdWhhN3ZOYm1OVW1CcCs4WUVvN2c)\\n\\n22281\\n\\n### Articles Received for Hallmarking during the Month\\n\\n2163411\\n\\n### Articles Hallmarked during the Month\\n\\n2013321\\n\\n### Articles Hallmarked during Previous Month\\n\\n10074690\\n\\n### [AHC Recognised](https://www.manakonline.in/MANAK/AHCListForWebsite/)\\n\\n1606\\n\\n### Number Of Samples Drawn during the Month\\n\\n### Application Pending for AHC\\n\\n182\\n\\n### Districts Under Mandatory Hallmarking\\n\\n361\\n### [Mandatory Hallmarking Order & Regulation](https://bis.gov.in/wp-content/uploads/2020/01/Mandatory-Hallmarking-Order-15.01.2020.pdf)\\n\\n### [For jeweller registration Click here](http://www.nsws.gov.in/)\\n\\n### BIS Hallmarking Representatives\\n\\n### BIS Hallmarking Representatives\\n\\n[](https://youtube.com/playlist?list=PLJv3DypDPPx99JkIpKfjuEpOEZTke0Ba3)\\n\\n##### Jan Sunvai\\n\\n* **Schedule:** Every Wednesday\\n* **Time:** 14:00 - 15:00 hours\\n\\nThis initiative is aimed at providing an opportunity to directly interact with BIS officials to get your queries/grievance resolved and for inviting suggestions and feedback.\\n\\nJoin our live support session and kindly avail this facility if you have any queries/ grievance or suggestions related to activities of BIS.\\n\\n[Click Here to Connect](https://bismanak.webex.com/wbxmjs/joinservice/sites/bismanak/meeting/download/c1438a4c51cf412c86c00a2f6d9e25eb?siteurl=bismanak&MTID=m8919235ebd3a41463a50a1d2162cfa92)\\n\\n## News and Events\\nTemporary measures for relaxation of provision of BIS Conformity Assessment Regulations 2018 for renewal of licence with late fee and renewal of deferred licence\\n\\n  \\nExtension of date of implementation of amendments to Indian Standards and revised Indian Standards\\n\\n  \\nRelaxation in fee for MSME units for licence under Bureau of Indian Standards (Conformity Assessment) Regulations 2018 and its amendments- reg.\\n\\n  \\nIf you wish to apply for Jeweller Registration Scheme please apply through the National Single Window System NSWS portal Please visit -> <http://www.nsws.gov.in/>  \\n(Jeweller Manual)\\n\\nDesigned, Developed and Maintained by:\\n\\n\u00c3\\x97'], publish_date=None, title='Articles Received for Hallmarking during the Month')"
+    },
+    {
+      "title": "What is BIS Hallmark? Types, How to Read ...",
+      "url": "https://www.gemlay.com/blog/guide/what-is-bis-hallmark/?srsltid=AfmBOoqlmBGLYpoPSAAuVdCo3Wf7Q3BOR_vgjVggpeXNVu7o4OLKJMkX",
+      "excerpt": "WebSearchResult(url='https://www.gemlay.com/blog/guide/what-is-bis-hallmark/?srsltid=AfmBOoqlmBGLYpoPSAAuVdCo3Wf7Q3BOR_vgjVggpeXNVu7o4OLKJMkX', excerpts=['BIS Hallmarking is a system introduced by the Government of India to ensure that gold and silver ornaments meet the declared purity standards. Think of a BIS'], publish_date=None, title='What is BIS Hallmark? Types, How to Read ...')"
+    },
+    {
+      "title": "What Is Hallmarking \u2013 Complete Guide",
+      "url": "https://www.diligencecertification.com/what-is-hallmarking/?srsltid=AfmBOopJI1E_ku7vJmKEbKFegZv61Ako-JkAFPomHyqpVVCXeWXTT2TU",
+      "excerpt": "WebSearchResult(url='https://www.diligencecertification.com/what-is-hallmarking/?srsltid=AfmBOopJI1E_ku7vJmKEbKFegZv61Ako-JkAFPomHyqpVVCXeWXTT2TU', excerpts=['Feb 26, 2026 \u2014 The Government of India has made hallmarking by BIS compulsory so that consumers get gold jewellery of proven purity and standard quality.'], publish_date=None, title='What Is Hallmarking \u2013 Complete Guide')"
+    },
+    {
+      "title": " Consumer Protection | Bureau of Indian Standards ",
+      "url": "https://www.bis.gov.in/hallmarking-overview/consumer-protection/?lang=en",
+      "excerpt": "WebSearchResult(url='https://www.bis.gov.in/hallmarking-overview/consumer-protection/?lang=en', excerpts=['1. [Home](https://www.bis.gov.in)\\n2. \u00bb\\n3. [Hallmarking overview](https://www.bis.gov.in/hallmarking-overview/?lang=en \"Hallmarking overview\")\\n4. \u00bb\\n5. [Consumer Protection](https://www.bis.gov.in/hallmarking-overview/consumer-protection/ \"Consumer Protection\")\\n\\n# Consumer Protection\\n\\n**1) Check testing of Hallmarked/Unhallmarked articles by Consumer:**\\n\\nConsumer can get its jewellery/sample tested from any of the BIS Recognized Assaying & Hallmarking Centre. The Assaying and Hallmarking Centres undertake the testing of Jewellery/Samples of common consumers on priority on chargeable basis. The Assaying and Hallmarking centre is required to issue Assay Report giving proper identifications as marked on article.\\n\\nThe guidelines on testing of old gold jewellery and artefacts of the consumer by the Assaying and Hallmarking Centres is placed in the below link:\\n\\n* [Guidelines on testing of unhallmarked gold jewellery (size \u2013 508 KB)](https://www.bis.gov.\\nin/wp-content/uploads/2022/03/Guidelines-on-Testing-of-old-gold-lying-with-the-consumers-from-BIS-recognized-AHC-revised.pdf)\\n\\n**  \\n2)Compensation to consumer in case of shortage of purity:**\\n\\nIn case Hallmarked Jewellery brought by the consumer is found to be of lesser purity than that marked on jewellery, then the buyer/customer shall be entitled for compensation which shall be two times the amount of difference calculated on the basis of shortage of purity for the weight of such article sold and the testing charges.\\n\\n**  \\n3) Verification of HUID by BIS Care App:**\\n\\nBIS CARE- The Official mobile application of BIS now has the provision for the common consumers to verify the authenticity of Hallmarked gold jewellery items bearing a HUID number. The \u201cVerify HUID\u201d feature can be utilised to verify the purity of the jewellery articles before purchase.\\n\\nLast Updated on November 26, 2025\\n\\n[](https://www.india.gov.in/) [](https://amritmahotsav.nic.in/) [](https://consumerhelpline.gov.\\nin/public/) [](https://pgportal.gov.in/) [](https://www.bis.gov.in/wp-content/uploads/2021/06/IDY_ebook.pdf) [](https://ghtc-india.gov.in/) [](https://www.makeinindia.com/) [](https://swachhbharatmission.ddws.gov.in/) [](https://www.digitalindia.gov.in/) [](https://www.niti.gov.in/) [](https://www.iec.ch/homepage) [](https://nsc.org.in/) [](https://www.isro.gov.in/) [](https://www.iso.org/home.html) [](https://pmnrf.gov.in/en/)\\n\\nOpen toolbar\\n\\nAccessibility Tools\\n\\n* [Screen Reader](https://www.bis.gov.in/index.php/nvda-for-windows/)\\n* High Contrast\\n* Negative Contrast\\n* Light Background\\n* Links Underline\\n* Readable Font\\n* Reset'], publish_date=None, title=' Consumer Protection | Bureau of Indian Standards ')"
+    },
+    {
+      "title": "\n      Easy Ways to Identify Gold Hallmarks: HUID & BIS Hallmarks\n \u2013 SHAYN",
+      "url": "https://shayn.in/blogs/post/how-to-identify-hallmark-gold-jewellery?srsltid=AfmBOopp5PL4E3dpYxLnxK4AgxboCTenH3bfhnjscENO4y3-VnanUqsL",
+      "excerpt": "WebSearchResult(url='https://shayn.in/blogs/post/how-to-identify-hallmark-gold-jewellery?srsltid=AfmBOopp5PL4E3dpYxLnxK4AgxboCTenH3bfhnjscENO4y3-VnanUqsL', excerpts=[\"Gold isn\u2019t just a metal, but an emotion for us; it\u2019s wrapped in love and nostalgia, blessing us in yellow shimmer. Whether it\u2019s a bangle passed as an heirloom through generations, or a mangalsutra given by your significant other, gold jewellery always carries unsaid emotion that can\u2019t be expressed in words.\\n\\nSo when you invest in gold, whether it is for yourself or someone you want to treasure, you deserve to know whether it\u2019s real, pure, and worthy of your love. Let us guide you through and tell you how to spot original hallmark gold jewellery.\\n\\n## **Hallmark Gold**\\n\\nA hallmark isn\u2019t just a stamp but a promise of trust. In India, gold jewellery that\u2019s **halmarked by the Bureau of Indian Standards (BIS)** carries the promise of trust and belief; it\u2019s a certification of purity, which gives a sense of relief to customers.\\n\\nWhen you buy hallmarked gold, it\u2019s not just jewellery that you are buying, but investing in authenticity and peace of mind.\\n ... \\nJeweller\u2019s Mark**\\n\\nThis stamp identifies the **BIS-certified jeweller or manufacturer** . It\u2019s their silent signature of pride and accountability.\\n\\n## **Real or Fake? Here's How to Know**\\n\\nYou don\u2019t need a magnifying glass or a lab, just awareness and a little emotion-led logic.\\n\\n* **Magnet Test** : Real gold isn\u2019t magnetic. If it sticks, it\u2019s suspicious.\\n* **Weight Test** : Pure gold feels heavy and comforting in the palm, just like a good memory.\\n* **Professional Check** : When in doubt, visit a BIS-certified jeweller. It\u2019s worth the trip for peace of mind.\\n\\n## **How to Verify the HUID Number**\\n\\nThink of the HUID as your gold\u2019s identity card. You can easily verify it through the [BIS](https://www.bis.gov.in/) [Care App](https://www.bis.gov.in/) or visit their official website. If the number matches their database, it\u2019s the real deal.\\n\\n## **Why Hallmark Gold is the Best Choice, Always**\\n\\nSure, you might find gold jewellery at cheaper prices elsewhere.\\nBut when it comes to gold, the **cheapest isn't always the best option** . Hallmarked gold might cost a bit more upfront, but it saves you from emotional (and financial) loss in the long run. It's the **best choice** when you're buying with meaning, not just money.\\n\\nSo the next time you're tempted by a glittery deal that seems too good to be true, pause. Ask yourself: _Is this piece worthy of my story?_\\n\\n## **Extra TLC: Tips to Care for Your Hallmarked Gold**\\n\\nGold is gentle. So handle it like a memory:\\n\\n* Store it in soft pouches, away from moisture and dust\\n* Don\u2019t wear it while swimming or applying perfume\\n* Clean it gently with a soft cloth once in a while\\n* And most importantly, **wear it with love**\\n\\n## **Bonus: How to Identify Fake Gold Jewellery (From the Heart)**\\n\\nSometimes, what glitters truly isn\u2019t gold.\\n\\nHere's how to spot red flags:\\n\\n* No BIS stamp or mismatched markings\\n* Absence of a HUID number\\n* Suspiciously lightweight or flaky feel\\n* Unusual discolouration after a few wears\\n* Jewellers refusing to explain gold purity or provide certification\\n\\nYour instincts matter. If something feels off, trust that inner voice. You\u2019re not just buying jewellery, you\u2019re protecting your emotional expression.\\n\\n## **Final Thoughts**\\n\\nGold isn\u2019t bought. It\u2019s **felt** . It\u2019s that soft warmth you wear on your skin, a memory wrapped in metal. And in a world where fakes exist, choosing hallmarked gold is your way of saying, _\u201cI value what matters.\u201d_\\n\\nWhether you're passing it down, gifting it, or celebrating your own milestones, **let your jewellery be as real as your feelings.**\\n\\n## **FAQs**\\n\\n1. **How to verify hallmark gold?  \\n   ** Check for the BIS (Bureau of Indian Standards) logo, a three-digit purity number (like 916 for 22K), the jeweller\u2019s identification mark, and a unique HUID number on the jewellery.\\n2. **How to tell if gold is real without a hallmark?\\n** You can try simple home tests like the magnet test, float test (real gold sinks in water), and acid scratch test. However, hallmarking is the most reliable indicator.\\n3. **What are 3 ways to test if gold is real at home?  \\n   ** **Magnet test:** Real gold is not magnetic  \\n   **Float test:** Drop it in water; real gold sinks.  \\n   **Vinegar or acid test:** Real gold won't change colour or react.\\n4. **How to identify 916 gold?  \\n   ** \u201c916\u201d means the gold is 91.6% pure, equivalent to 22 karats. Look for the 916 stamp and BIS hallmark on the jewellery.\\n5. **What is the hallmark symbol?  \\n   ** It\u2019s the BIS logo, usually a triangle with a tick mark inside, followed by purity and identification codes.\\n6. **Does real gold react to a magnet?  \\n   ** No, genuine gold is not magnetic. If your jewellery sticks to a magnet, it likely contains other metals or is fake.\\n\\nBack to blog\\n\\n## **\\\\ the first to know**\\n\\nSign up to receive insider information on exclusive offers and new arrivals.\"], publish_date='2025-05-26', title='\\n      Easy Ways to Identify Gold Hallmarks: HUID & BIS Hallmarks\\n \u2013 SHAYN')"
+    }
+  ],
+  "count": 10
+}
+
+--- Result 2: WEB_SEARCH(BIS hallmarking for gold jewellery India HUID) ---
+{
+  "query": "BIS hallmarking for gold jewellery India HUID",
+  "results": [
+    {
+      "title": " Hallmarking overview | Bureau of Indian Standards ",
+      "url": "https://www.bis.gov.in/hallmarking-overview/?lang=en",
+      "excerpt": "WebSearchResult(url='https://www.bis.gov.in/hallmarking-overview/?lang=en', excerpts=['Open toolbar\\n\\nAccessibility Tools\\n\\n* [Screen Reader](https://www.bis.gov.in/index.php/nvda-for-windows/)\\n* High Contrast\\n* Negative Contrast\\n* Light Background\\n* Links Underline\\n* Readable Font\\n* Reset\\n\\n1. [Home](https://www.bis.gov.in)\\n2. \u00bb\\n3. [Hallmarking overview](https://www.bis.gov.in/hallmarking-overview/ \"Hallmarking overview\")\\n\\n# Hallmarking overview\\n\\nHallmarking is the accurate determination and official recording of the proportionate content of precious metal in precious metal articles. Hallmarks are thus official marks used in many countries as a guarantee of purity or fineness of precious metal articles. The principle objectives of the Hallmarking Scheme are to protect the public against adulteration and to obligate manufacturers to maintain legal standards of fineness. In India, at present two precious metals namely gold and silver have been brought under the purview of Hallmarking.\\n\\n[Read More \u00bb](https://www.bis.gov.in/index.\\nphp/hallmarking-overview/overview-of-hallmarking/)\\n\\n### Procedure For Obtaining Registration by Jeweller for Sale of Hallmarked Jeweller / Artefacrs\\n\\nAny jeweller willing to obtain certificate of registration for selling Hallmarked Gold and Silver Jewellery/artefacts shall apply online in the BIS portal; [www.manakonline.in](https://www.manakonline.in/MANAK/login) . The certificate of registration is granted instantly to the jeweller without the need to upload any document or pay any fees for the same. The certificate of registration stands valid for lifetime..\\n\\n* [Guidelines for Registration of Jewellers (size \u2013 644 KB)](https://www.bis.gov.in/wp-content/uploads/2020/01/Revised_Guidelines_02012020.pdf)\\n* [List of Licensed Jewellers](https://www.bis.gov.in/index.php/hallmarking-overview/jewellers-registration-scheme/list-of-licensed-jewellers/)\\n* [Procedure to apply for Jeweller Registration (size \u2013 2.5 MB)](https://www.bis.gov.in/wp-content/uploads/2022/02/step_by_step_procedure.\\npdf)\\n\\n[Read More \u00bb](https://www.bis.gov.in/index.php/hallmarking-overview/jewellers-registration-scheme/)\\n\\n### Procedure for Recognition of Assaying and Hallmarking Center\\n\\nIndian Standard \u201cIS 15820:2009 General Requirements for Establishment and Operation of Assaying and Hallmarking Centres\u201d is the basis for recognition of Assaying and Hallmarking Centres. A centre desirous of obtaining recognition, after setting up of the Centre shall apply on the prescribed application form to BIS along with their Quality Manual, developed on the basis of Generic Quality Manual.\\n\\n* Application form\\n* Generic Quality Manual\\n* Applicable fees\\n* Guidelines for Recognition of Assaying & Hallmarking Centres\\n\\n[Read More \u00bb](https://www.bis.gov.in/index.php/hallmarking-overview/hallmarking-centre/)\\n\\n### Gold Refinery\\n ... \\n* Consumer can get its jewellery/sample tested from any of the BIS Recognized Assaying & Hallmarking Centre. The Assaying and Hallmarking Centres undertake the testing of Jewellery/Samples of common consumers on priority on chargeable basis. The Assaying and Hallmarking centre is required to issue Assay Report giving proper identifications as marked on article.\\n\\n[Read More \u00bb](https://www.bis.gov.in/index.php/hallmarking-overview/consumer-protection/)\\n\\n### Frequently Asked Questions\\n\\n**1\\\\. What is Hallmarking?**\\n\\nHallmarking is the accurate determination and official recording of the proportionate content of precious metal in precious metal articles.\\n\\n**2\\\\. What are the objectives behind instituting Hallmarking Scheme?**\\n\\nTo protect consumer against victimization due to irregular gold or silver quality, and to develop India as a leading gold market centre in the World and to develop export competitiveness.\\n\\n[Read More \u00bb](https://www.bis.gov.in/index.\\n ... \\ngov.in/) [](https://www.iso.org/home.html) [](https://pmnrf.gov.in/en/) [](https://www.india.gov.in/) [](https://amritmahotsav.nic.in/) [](https://consumerhelpline.gov.in/public/) [](https://pgportal.gov.in/) [](https://www.bis.gov.in/wp-content/uploads/2021/06/IDY_ebook.pdf) [](https://ghtc-india.gov.in/) [](https://www.makeinindia.com/) [](https://swachhbharatmission.ddws.gov.in/) [](https://www.digitalindia.gov.in/) [](https://www.niti.gov.in/) [](https://www.iec.ch/homepage) [](https://nsc.org.in/) [](https://www.isro.gov.in/) [](https://www.iso.org/home.html) [](https://pmnrf.gov.in/en/)\\n\\nNext\\n\\n* 1\\n* 2\\n* 3\\n* 4\\n* 5\\n* 6\\n* 7\\n* 8\\n* 9\\n* 10\\n* 11\\n* 12\\n* 13\\n* 14\\n* 15\\n* 16'], publish_date=None, title=' Hallmarking overview | Bureau of Indian Standards ')"
+    },
+    {
+      "title": "BIS hallmark - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/BIS_hallmark",
+      "excerpt": "WebSearchResult(url='https://en.wikipedia.org/wiki/BIS_hallmark', excerpts=['wikidata.org/wiki/Special:EntityPage/Q375557 \"Edit interlanguage links\")\\n\\n* Article\\n* Talk\\n\\nEnglish\\n\\n* Read\\n* Edit\\n* View history\\n\\nTools\\n\\nTools\\n\\nmove to sidebar hide\\n\\nActions\\n\\n* Read\\n* Edit\\n* View history\\n\\nGeneral\\n\\n* What links here\\n* Related changes\\n* Upload file\\n* Permanent link\\n* Page information\\n* Cite this page\\n* Get shortened URL\\n* Download QR code\\n\\nPrint/export\\n\\n* Download as PDF\\n* Printable version\\n\\nIn other projects\\n\\n* [Wikidata item](https://www.wikidata.org/wiki/Special:EntityPage/Q375557 \"Structured data on this page hosted by Wikidata [g]\")\\n\\nAppearance\\n\\nmove to sidebar hide\\n\\nFrom Wikipedia, the free encyclopedia\\n\\nHallmarking system in India\\n\\n|BIS hallmark |\\n| --- | --- |\\n|\\n\\nThe BIS corporate logo which is a component of the hallmark format |\\n|Standards organization |Bureau of Indian Standards |\\n|Certifying agency |Accredited \\'Assaying & Hallmarking Centres\\' |\\n|Effective region |India |\\n|Effective since |2000 for Gold jewelry, 2005 for Silver jewelry |\\n|Product category |Gold jewelry, Silver jewelry |\\n|Website |[bis.org.in](http://www.bis.org.in/cert/hallbiscert.htm) |\\n\\nThe **BIS Hallmark** is a hallmarking system for gold as well as silver jewellery sold in India, certifying the purity of the metal. <sup>[[ 1 ]]()</sup> <sup>[[ 2 ]]()</sup> It certifies that the piece of jewellery conforms to a set of standards laid by the Bureau of Indian Standards , the national standards organization of India . India is the second biggest market for gold and its jewellery.\\n\\nIndia imports in excess of 1000 tons annually (including unofficially smuggled gold) with negligible local production. <sup>[[ 3 ]]()</sup> The annual gold imports are around 50 billion US$ next only to crude oil imports widening the trade deficit . <sup>[[ 4 ]]()</sup>\\n\\n## Gold\\n\\n [edit ]\\n\\nThe BIS system of hallmarking of gold jewellery began in April 2000.\\nThe standard specifications governing this system are IS 1417 (grades of gold and gold alloys, jewellery/artefacts), IS 1418 ( assaying of gold in gold bullion , gold alloys and gold jewellery/artefacts), IS 2790 (guidelines for manufacture of 14, 18 and 22 carat gold alloys only ), IS 3095 (gold solders for use in manufacture of jewellery). <sup>[[ 5 ]]()</sup>\\n\\n### The BIS hallmark\\n\\n [edit ]\\n\\nBIS hallmark for gold jewelry consists of several components:\\n\\n* The BIS hallmark logo\\n* Purity of Gold either one of this 22K916 Corresponding to 22 Carat, 18K750 Corresponding to 18 Carat and 14K585 Corresponding to 14 Carat.\\n* 6 digit alphanumeric HUID- **H** ALLMARK **U** NIQUE **ID** ENTIFICATION\\n\\n## Silver\\n\\n [edit ]\\n\\nBIS introduced hallmarking for silver jewelry in December 2005 under IS 2112, the standard specification for \\'Hallmarking of Silver Jewellery/Artefacts\\'. <sup>[[ 6 ]]()</sup>\\n\\n## Assaying & Hallmarking Centre\\n\\n [edit ]\\nThe testing of the jewelry as well as the hallmarking is done by approved Assaying & Hallmarking Centres present across all over nation. These are private undertakings approved as well as monitored by the BIS.\\n\\n## See also\\n\\n [edit ]\\n\\n* Gold import policy of India\\n* Certification marks in India\\n* ISI mark\\n\\n## References\\n\\n [edit ]\\n\\n1. **^** [\"Bureau of Indian Standards. Official website. \\'BIS Certification Scheme For Hallmarking Of Gold Jewellery\\' \"](https://web.archive.org/web/20181023090958/http://www.bis.org.in/cert/hallbiscert.htm) . Archived from [the original](http://www.bis.org.in/cert/hallbiscert.htm) on 2018-10-23 . Retrieved 2012-01-04 .\\n2. **^** [National Institute of Open Schooling. \\'Wise Buying.\\'](http://www.nios.ac.in/Secbuscour/26.pdf) [Archived](https://web.archive.org/web/20101011190438/http://nios.ac.in/Secbuscour/26.pdf) 2010-10-11 at the Wayback Machine\\n3. **^** [\"Gold demand by country\"](http://www.usdebtclock.org/gold-demand-by-country.html) . Retrieved 17 August 2014 .\\n4.\\n**^** [\"Gold imports - Social evil\"](https://www.scribd.com/doc/58788144/Gold-Imports-A-Social-Evil) . 2007 . Retrieved 17 August 2014 .\\n5. **^** [\"Bureau of Indian Standards. \\'HALLMARKING OF GOLD JEWELLERY IN INDIA\\' \"](https://web.archive.org/web/20120511115218/http://bis.org.in/cert/hallmark.htm) . Archived from [the original](http://www.bis.org.in/cert/hallmark.htm) on 2012-05-11 . Retrieved 2012-05-08 .\\n6. **^** [\"ZARKAN BIS HALLMARK\"](https://www.zarkan.co/pages/zarkan-bis-hallmark) . _Zarkan_ . Retrieved 2024-08-08 .\\n\\n|* v\\n* t\\n* e\\n\\nCertification marks in India |\\n| --- | --- |\\n|Certification marks |* Agmark\\n* BIS hallmark\\n* Ecomark\\n* FPO mark\\n* Geographical Indications marks\\n* India Organic\\n* ISI mark\\n* Silk Mark\\n* Non Polluting Vehicle mark |\\n|Other marks |* Vegetarian mark\\n* Toxicity label |\\n\\nRetrieved from \" [https://en.wikipedia.org/w/index.php?title=BIS\\\\_hallmark&oldid=1291122585](https://en.wikipedia.org/w/index.php?title=BIS_hallmark&oldid=1291122585) \"\\n\\nCategories :\\n\\n* Certification marks'], publish_date='2025-05-19', title='BIS hallmark - Wikipedia')"
+    },
+    {
+      "title": "Learn How To Use HUID With an Example | Rudradhan",
+      "url": "https://rudradhan.com/pages/huid-hallmark-unique-idenification?srsltid=AfmBOoplKjLTcp0Ve8bgmmegjTq18sN2LsbmKEVuLKKkIC-Xu1ZzcuFa",
+      "excerpt": "WebSearchResult(url='https://rudradhan.com/pages/huid-hallmark-unique-idenification?srsltid=AfmBOoplKjLTcp0Ve8bgmmegjTq18sN2LsbmKEVuLKKkIC-Xu1ZzcuFa', excerpts=['Previous [Visit Us @ Amritsar. By Appointment Only](https://rudradhan.com/pages/flagship-store-in-amritsar \"Rudradhan in Amritsar\")\\n\\n[International Customers](https://www.rudradhan.us \"link to rudradhan.us our american website\")\\n\\n[Gifting Options Under Rs 10,000](https://rudradhan.com/collections/gifting \"https://rudradhan.com/collections/gifting\")\\n\\n[Customer Reviews @ Trustpilot.com](https://www.trustpilot.com/review/rudradhan.com \"https://www.trustpilot.com/review/rudradhan.com\") Next\\n\\nRudradhan\\n\\nOpen navigation menu\\n\\n* \\n* \\n* \\n* \\n* \\n* \\n* New Arrivals\\n\\nEnglish Language\\n\\nEnglish \u0939\u093f\u0928\u094d\u0926\u0940 \u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\\n\\nOpen search Search Open cart Cart ( 0 )\\n\\nClose * All Products\\n* 22k Gold\\n* Gold Plated Silver\\n* Gifting\\n* Ready To Ship\\n* White Silver\\n* New Arrivals\\n\\nEnglish Language\\n\\nEnglish \u0939\u093f\u0928\u094d\u0926\u0940 \u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\\n\\nYour Shopping Cart\\n\\nYour cart is empty\\nFor the benefit of gold jewelry customers, Government Of India in 2021, updated the jewelry hallmarking scheme to fight off the menace of fake laser hallmarks.\\n\\nBIS Hallmark now consists of **3 symbols** which give you some information. In this, the first symbol is **BIS logo** , second symbol indicates **purity** and fineness and the third symbol is the **HUID** . Before buying any piece of gold jewellery one should look for all these 3 symbols.\\n\\nHallmark Unique Identification (HUID) number is a six digit code consisting of numbers and letters. A unique HUID will be assigned and laser inscribed to every piece of jewellery at the time of hallmarking. This HUID, along with more details, are stored in BIS database for traceability.\\n\\n**How to verify if a hallmark is true or fake?**\\n\\nA prospecting customer can download the govt sponsored [**BIS CARE** app](https://www.bis.gov.in/index.\\nphp/bis-apps/) on his/her android phone and enter the 6 digit HUID to _verify its authenticity before completing a purchase_ . Likewise, at a physical retail store, a customer should ask for a product\\'s HUID and verify its ingenuity before proceeding towards purchase.\\n\\n_**This new concept of hallmarking with a government maintained public HUID database almost eliminates the scope of fake hallmarking for an informed customer.**_\\n\\nHere is an example:\\n\\nHere is a zoomed in photo of the BIS Hallmark on one of our 22k Gold rings ( [GLR 072](https://rudradhan.com/products/edwardian-pearl-jadau-ring-in-22ct-gold-glr-072) ). The HUID can be read as \"2JP8FC\". The best way to read the laser inscription is to take a zoomed in photo on your camera phone. This 6 digit code can then we fed into the BIS CARE App to get the following result (3rd image)\\n\\n1\\\\. Open the BIS CARE app and click on \"verify HUID\"\\n\\n2\\\\. Enter the HUID as read on the piece or as shared by the jeweller.\\n\\n3\\\\.\\n ... \\n* **\\\\+ What is the process of complaint registration in BIS?**\\n  \\n    + BIS follows a well-established complaint redressal procedure. Complaints are recorded centrally at Complaints Management and Enforcement Department. Complaints can be made both offline and online. Online complaint can be made through BIS mobile app BIS CARE or by use of online complaint registration portal on www.bis.gov.in or by sending a mail to complaints[at]bis[dot]gov[dot]in . Personally contacting/writing to Public Grievance officer of the nearest Regional/ Branch office of BIS or directly to the Head (Complaints Management and Enforcement Department). On receipt of the complaint it is investigated and further actions taken for its redressal.\\n* **\\\\+ Who is responsible for penal action in case of failure of hallmarked sample?**\\n  \\n    + Among Manufacturer, Wholeseller, Distributor and Retailer the one who has got the article hallmarked is responsible for penal action in case of failure of hallmarked sample.\\nAlso the Assaying and hallmarking centre who has hallmarked the article is equally responsible for penal action in case of failure of hallmarked sample\\n* **\\\\+ What would be the process of investigation and who will decide the verdict?**\\n  \\n    + The customer can directly approach jeweler for compensation in case the hallmarked jewellery retested by him in any BIS recognized AHC is found of less than the declared purity. Further if complaint is made to BIS, BIS follows a well-defined complaint redressal procedure involving investigation at both complainant end and complainee end. Any action will be taken only after thorough enquiry.\\n\\nAbove were select FAQs, quoted as is, from the [BIS webpage](https://www.bis.gov.in/hallmarking-overview/hallmarking-faqs/mandatory/)\\n\\nFeatured collection\\n\\nCollection Gold Jewelry To Gift Your Loved Ones Collection\\n\\n   \\n\\nView all\\n\\n Add to cart\\n\\nSale price INR 102,350  Add to cart\\n\\nSale price INR 42,550  Add to cart\\n\\nSale price INR 111,320  Add to cart'], publish_date=None, title='Learn How To Use HUID With an Example | Rudradhan')"
+    },
+    {
+      "title": "Hallmark | Gold HUID | Indian Standards | BIS Talks",
+      "url": "https://www.youtube.com/watch?v=5a9l66fCKRQ",
+      "excerpt": "WebSearchResult(url='https://www.youtube.com/watch?v=5a9l66fCKRQ', excerpts=['Hallmarking scheme was started by BIS in the year 2000 to protect the consumer against adulteration and to obligate manufacturers to'], publish_date=None, title='Hallmark | Gold HUID | Indian Standards | BIS Talks')"
+    },
+    {
+      "title": "How to Verify Gold HUID | BIS Hallmark Guide India - Gold-Cash",
+      "url": "https://gold-cash.in/huid-hallmark-verification-india/",
+      "excerpt": "WebSearchResult(url='https://gold-cash.in/huid-hallmark-verification-india/', excerpts=['# Modern Hallmarking & Gold Verification in India (With HUID Guide)\\n\\nGold jewellery is not just an ornament \u2014 it is a financial asset. If you plan to **sell, exchange, or retrieve pledged gold** , knowing its authenticity and purity is essential.\\n\\nIn India, hallmarking rules have evolved significantly, especially after the introduction of the **6-digit HUID system** . This guide explains modern hallmarking in simple terms and shows you how to verify your gold safely.\\n\\n* * *\\n\\n## What is BIS Hallmarking?\\n\\nHallmarking is the official certification of gold purity issued by the  \\n**Bureau of Indian Standards (BIS)** .\\n\\nIt confirms that the gold jewellery meets government-approved purity standards.\\n\\n#### A Modern BIS Hallmark Contains:\\n\\n\u25cf BIS logo  \\n\u25cf Purity mark (like 22K916, 18K750, etc.)  \\n\u25cf Assaying & Hallmarking Centre mark  \\n\u25cf **6-digit HUID (Hallmark Unique Identification) code**\\n\\n\ud83d\udc49 Today, the **HUID code is mandatory** for hallmarked gold jewellery sold in India.  \\n\\\\_\\n\\n* * *\\n## What is HUID? (6-Digit Unique Code)\\n\\nHUID stands for **Hallmark Unique Identification** .\\n\\nEach hallmarked jewellery piece now receives a **unique 6-digit alphanumeric code** .  \\nThis prevents duplication and improves transparency.\\n\\n#### Why HUID Was Introduced\\n\\n\u25cf Stops fake hallmark stamping  \\n\u25cf Prevents duplicate certifications  \\n\u25cf Makes verification easy for customers  \\n\u25cf Protects resale value\\n\\n* * *\\n\\n## How to Verify Your Gold Using the BIS Care App\\n\\nYou can verify any hallmarked gold item using the official BIS mobile app.\\n\\n#### Step-by-Step Guide\\n\\n[1.] Download **BIS Care App** from Google Play Store.  \\n[2.] Open the app.  \\n[3.] Click on **\u201cVerify HUID\u201d** .  \\n[4.] Enter the 6-digit HUID code stamped on your jewellery.  \\n[5.] View verification details such as:  \\n\u25cf Purity level  \\n\u25cf Jeweller registration  \\n\u25cf Hallmarking centre\\n\\n\u26a0\ufe0f If the code does not match the jewellery details, consult the jeweller immediately.\\n\\nAlways verify before buying, selling, or pledging gold.\\n\u2013\\n\\nBIS Care APP\\n\\n* * *\\n\\n## Different Hallmark Purity Levels in India\\n\\nGold jewellery is rarely 100% pure because pure gold (24K) is too soft for regular wear.\\n\\nBelow are the standard BIS-approved hallmark purity levels:\\n\\n|Karat |Purity Mark |Gold Percentage |Common Use |\\n| --- | --- | --- | --- |\\n|24K |999 |99\\\\.9% |Coins, bars (not jewellery) |\\n|23K |958 |95\\\\.8% |Special ornaments |\\n|22K |916 |91\\\\.6% |Traditional jewellery |\\n|18K |750 |75% |Stone-studded jewellery |\\n|14K |585 |58\\\\.5% |Lightweight / designer pieces |\\n\\n* * *\\n\\n## Why Gold is Mixed (Hardening Purpose Explained)\\n\\n\u25cf Pure gold (24K) is very soft and bends easily.  \\n\u25cf For practical jewellery making:  \\n\u25cf Other metals like copper, silver, or zinc are added  \\n\u25cf This process is called **alloying** . It increases:  \\n\u2022 Strength  \\n\u2022 Durability  \\n\u2022 Stone-holding capacity\\n\\n##### Example:\\n\\n\u25cf **22K (916)** \u2013 Suitable for plain jewellery  \\n\u25cf **18K (750)** \u2013 Better for diamond and stone settings\\n\u25cf Lower karat gold is harder and holds precious stones more securely\\n\\n\ud83d\udc49 This is why diamond jewellery is usually 18K, not 22K.\\n\\n<sub><sup>\u2013</sup></sub>\\n\\nGold Carat Purity Explained: Visual comparison of 24K, 22K (916), and 18K gold showing gold content and impurity levels\\n\\n* * *\\n\\n## Important Consumer Safety Points\\n\\n\u25cf Gold buying and selling involves financial decisions. Always:  \\n\u25cf Buy only BIS-hallmarked jewellery  \\n\u25cf Verify the 6-digit HUID before payment  \\n\u25cf Ask for a proper invoice  \\n\u25cf Check today\u2019s gold rate before selling  \\n\u25cf Avoid cash-only transactions without documentation\\n\\nIf you are planning to:\\n\\n\u25cf Sell your gold  \\n\u25cf Exchange old jewellery  \\n\u25cf Retrieve pledged gold\\n\\nMake sure the purity is verified first to avoid financial loss.\\n\\n* * *\\n\\n## Is Old Hallmarked Jewellery Valid?\\n\\nYes.\\n\\nOlder jewellery with a 4-mark hallmark (without HUID) is still legally valid if it was hallmarked before HUID implementation.\\nHowever, new jewellery sold today must contain the 6-digit HUID.\\n\\n* * *\\n\\n## Why Hallmark Verification Matters When Selling Gold\\n\\n**When selling gold:**\\n\\n\u25cf Buyers test purity  \\n\u25cf Lower purity means lower payout  \\n\u25cf Fake hallmarking can reduce value drastically\\n\\n**Verifying beforehand gives you:**\\n\\n\u25cf Better negotiation power  \\n\u25cf Transparency  \\n\u25cf Fair market value\\n\\n* * *\\n\\n## Final Advice\\n\\nModern hallmarking with HUID has made gold transactions safer for Indian consumers.\\n\\nBefore you:\\n\\n\u25cf Buy  \\n\u25cf Pledge  \\n\u25cf Sell  \\n\u25cf Exchange\\n\\n\ud83d\udc49 Always check the BIS hallmark and verify the HUID.\\n\\nGold is wealth. Protect it with proper verification.\\n\\n#### See Also : [KDM Gold to Hallmark Gold \u2013 What You Must Know](https://gold-cash.in/kdm-gold-to-hallmark-gold-what-you-must-know/)\\n\\nSave this page for future use:\\n\\n[](https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Fgold-cash.'], publish_date='2026-02-25', title='How to Verify Gold HUID | BIS Hallmark Guide India - Gold-Cash')"
+    },
+    {
+      "title": "Articles Received for Hallmarking during the Month",
+      "url": "https://huid.manakonline.in/MANAK/HallmarkingHomePage",
+      "excerpt": "WebSearchResult(url='https://huid.manakonline.in/MANAK/HallmarkingHomePage', excerpts=['eBIS\\n    *     *     *     * \\n\\n    * Previous\\n    * Next\\n\\nGold Registration Granted\\n185059\\nSilver Registration Granted\\n18187\\nArticles Received for Hallmarking during the Month\\n2165146\\nArticles Hallmarked during the Month\\n2023029\\nAHC Recognised\\n1615\\nNumber Of Samples Drawn during the Month\\nApplication Pending for AHC\\n160\\nDistricts Under Mandatory Hallmarking\\n361\\nMandatory Hallmarking Order & Regulation\\nFor jeweller registration Click here\\nBIS Hallmarking Representatives\\nBIS Hallmarking Representatives\\nOpen House Video Conferencing for Industry\\n    * Schedule: Every Monday, Wednesday, and Friday\\n    * Time: 14:00 - 15:00 hours\\n\\nThis initiative is aimed at providing an opportunity to directly interact with BIS officials to get your queries/grievance resolved and for inviting suggestions and feedback.\\nJoin our live support session and kindly avail this facility if you have any queries/ grievance or suggestions related to activities of BIS.\\nClick Here to Connect\\nNews and Events\\nTemporary measures for relaxation of provision of BIS Conformity Assessment Regulations 2018 for renewal of licence with late fee and renewal of deferred licence\\n\\xa0\\xa0 Extension of date of implementation of amendments to Indian Standards and revised Indian Standards\\n\\xa0\\xa0 Relaxation in fee for MSME units for licence under Bureau of Indian Standards (Conformity Assessment) Regulations 2018 and its amendments- reg.\\nIf you wish to apply for Jeweller Registration Scheme please apply through the National Single Window System NSWS portal Please visit -> http://www.nsws.gov.in/\\n(Jeweller Manual)\\nDesigned, Developed and Maintained by:\\n\u00c3\\x97'], publish_date=None, title='Articles Received for Hallmarking during the Month')"
+    },
+    {
+      "title": "What is BIS Hallmark? Types, How to Read ...",
+      "url": "https://www.gemlay.com/blog/guide/what-is-bis-hallmark/?srsltid=AfmBOoqlmBGLYpoPSAAuVdCo3Wf7Q3BOR_vgjVggpeXNVu7o4OLKJMkX",
+      "excerpt": "WebSearchResult(url='https://www.gemlay.com/blog/guide/what-is-bis-hallmark/?srsltid=AfmBOoqlmBGLYpoPSAAuVdCo3Wf7Q3BOR_vgjVggpeXNVu7o4OLKJMkX', excerpts=['BIS Hallmarking is a system introduced by the Government of India to ensure that gold and silver ornaments meet the declared purity standards. Think of a BIS'], publish_date=None, title='What is BIS Hallmark? Types, How to Read ...')"
+    },
+    {
+      "title": "What Is Hallmarking \u2013 Complete Guide",
+      "url": "https://www.diligencecertification.com/what-is-hallmarking/?srsltid=AfmBOopJI1E_ku7vJmKEbKFegZv61Ako-JkAFPomHyqpVVCXeWXTT2TU",
+      "excerpt": "WebSearchResult(url='https://www.diligencecertification.com/what-is-hallmarking/?srsltid=AfmBOopJI1E_ku7vJmKEbKFegZv61Ako-JkAFPomHyqpVVCXeWXTT2TU', excerpts=['Feb 26, 2026 \u2014 The Government of India has made hallmarking by BIS compulsory so that consumers get gold jewellery of proven purity and standard quality.'], publish_date=None, title='What Is Hallmarking \u2013 Complete Guide')"
+    },
+    {
+      "title": " Consumer Protection | Bureau of Indian Standards ",
+      "url": "https://www.bis.gov.in/hallmarking-overview/consumer-protection/?lang=en",
+      "excerpt": "WebSearchResult(url='https://www.bis.gov.in/hallmarking-overview/consumer-protection/?lang=en', excerpts=['1. [Home](https://www.bis.gov.in)\\n2. \u00bb\\n3. [Hallmarking overview](https://www.bis.gov.in/hallmarking-overview/?lang=en \"Hallmarking overview\")\\n4. \u00bb\\n5. [Consumer Protection](https://www.bis.gov.in/hallmarking-overview/consumer-protection/ \"Consumer Protection\")\\n\\n# Consumer Protection\\n\\n**1) Check testing of Hallmarked/Unhallmarked articles by Consumer:**\\n\\nConsumer can get its jewellery/sample tested from any of the BIS Recognized Assaying & Hallmarking Centre. The Assaying and Hallmarking Centres undertake the testing of Jewellery/Samples of common consumers on priority on chargeable basis. The Assaying and Hallmarking centre is required to issue Assay Report giving proper identifications as marked on article.\\n\\nThe guidelines on testing of old gold jewellery and artefacts of the consumer by the Assaying and Hallmarking Centres is placed in the below link:\\n\\n* [Guidelines on testing of unhallmarked gold jewellery (size \u2013 508 KB)](https://www.bis.gov.\\nin/wp-content/uploads/2022/03/Guidelines-on-Testing-of-old-gold-lying-with-the-consumers-from-BIS-recognized-AHC-revised.pdf)\\n\\n**  \\n2)Compensation to consumer in case of shortage of purity:**\\n\\nIn case Hallmarked Jewellery brought by the consumer is found to be of lesser purity than that marked on jewellery, then the buyer/customer shall be entitled for compensation which shall be two times the amount of difference calculated on the basis of shortage of purity for the weight of such article sold and the testing charges.\\n\\n**  \\n3) Verification of HUID by BIS Care App:**\\n\\nBIS CARE- The Official mobile application of BIS now has the provision for the common consumers to verify the authenticity of Hallmarked gold jewellery items bearing a HUID number. The \u201cVerify HUID\u201d feature can be utilised to verify the purity of the jewellery articles before purchase.\\n\\nLast Updated on November 26, 2025\\n\\n[](https://www.india.gov.in/) [](https://amritmahotsav.nic.in/) [](https://consumerhelpline.gov.\\nin/public/) [](https://pgportal.gov.in/) [](https://www.bis.gov.in/wp-content/uploads/2021/06/IDY_ebook.pdf) [](https://ghtc-india.gov.in/) [](https://www.makeinindia.com/) [](https://swachhbharatmission.ddws.gov.in/) [](https://www.digitalindia.gov.in/) [](https://www.niti.gov.in/) [](https://www.iec.ch/homepage) [](https://nsc.org.in/) [](https://www.isro.gov.in/) [](https://www.iso.org/home.html) [](https://pmnrf.gov.in/en/)\\n\\nOpen toolbar\\n\\nAccessibility Tools\\n\\n* [Screen Reader](https://www.bis.gov.in/index.php/nvda-for-windows/)\\n* High Contrast\\n* Negative Contrast\\n* Light Background\\n* Links Underline\\n* Readable Font\\n* Reset'], publish_date=None, title=' Consumer Protection | Bureau of Indian Standards ')"
+    },
+    {
+      "title": "\n      Easy Ways to Identify Gold Hallmarks: HUID & BIS Hallmarks\n \u2013 SHAYN",
+      "url": "https://shayn.in/blogs/post/how-to-identify-hallmark-gold-jewellery?srsltid=AfmBOopp5PL4E3dpYxLnxK4AgxboCTenH3bfhnjscENO4y3-VnanUqsL",
+      "excerpt": "WebSearchResult(url='https://shayn.in/blogs/post/how-to-identify-hallmark-gold-jewellery?srsltid=AfmBOopp5PL4E3dpYxLnxK4AgxboCTenH3bfhnjscENO4y3-VnanUqsL', excerpts=[\"Gold isn\u2019t just a metal, but an emotion for us; it\u2019s wrapped in love and nostalgia, blessing us in yellow shimmer. Whether it\u2019s a bangle passed as an heirloom through generations, or a mangalsutra given by your significant other, gold jewellery always carries unsaid emotion that can\u2019t be expressed in words.\\n\\nSo when you invest in gold, whether it is for yourself or someone you want to treasure, you deserve to know whether it\u2019s real, pure, and worthy of your love. Let us guide you through and tell you how to spot original hallmark gold jewellery.\\n\\n## **Hallmark Gold**\\n\\nA hallmark isn\u2019t just a stamp but a promise of trust. In India, gold jewellery that\u2019s **halmarked by the Bureau of Indian Standards (BIS)** carries the promise of trust and belief; it\u2019s a certification of purity, which gives a sense of relief to customers.\\n\\nWhen you buy hallmarked gold, it\u2019s not just jewellery that you are buying, but investing in authenticity and peace of mind.\\n ... \\nJeweller\u2019s Mark**\\n\\nThis stamp identifies the **BIS-certified jeweller or manufacturer** . It\u2019s their silent signature of pride and accountability.\\n\\n## **Real or Fake? Here's How to Know**\\n\\nYou don\u2019t need a magnifying glass or a lab, just awareness and a little emotion-led logic.\\n\\n* **Magnet Test** : Real gold isn\u2019t magnetic. If it sticks, it\u2019s suspicious.\\n* **Weight Test** : Pure gold feels heavy and comforting in the palm, just like a good memory.\\n* **Professional Check** : When in doubt, visit a BIS-certified jeweller. It\u2019s worth the trip for peace of mind.\\n\\n## **How to Verify the HUID Number**\\n\\nThink of the HUID as your gold\u2019s identity card. You can easily verify it through the [BIS](https://www.bis.gov.in/) [Care App](https://www.bis.gov.in/) or visit their official website. If the number matches their database, it\u2019s the real deal.\\n\\n## **Why Hallmark Gold is the Best Choice, Always**\\n\\nSure, you might find gold jewellery at cheaper prices elsewhere.\\nBut when it comes to gold, the **cheapest isn't always the best option** . Hallmarked gold might cost a bit more upfront, but it saves you from emotional (and financial) loss in the long run. It's the **best choice** when you're buying with meaning, not just money.\\n\\nSo the next time you're tempted by a glittery deal that seems too good to be true, pause. Ask yourself: _Is this piece worthy of my story?_\\n\\n## **Extra TLC: Tips to Care for Your Hallmarked Gold**\\n\\nGold is gentle. So handle it like a memory:\\n\\n* Store it in soft pouches, away from moisture and dust\\n* Don\u2019t wear it while swimming or applying perfume\\n* Clean it gently with a soft cloth once in a while\\n* And most importantly, **wear it with love**\\n\\n## **Bonus: How to Identify Fake Gold Jewellery (From the Heart)**\\n\\nSometimes, what glitters truly isn\u2019t gold.\\n\\nHere's how to spot red flags:\\n\\n* No BIS stamp or mismatched markings\\n* Absence of a HUID number\\n* Suspiciously lightweight or flaky feel\\n* Unusual discolouration after a few wears\\n* Jewellers refusing to explain gold purity or provide certification\\n\\nYour instincts matter. If something feels off, trust that inner voice. You\u2019re not just buying jewellery, you\u2019re protecting your emotional expression.\\n\\n## **Final Thoughts**\\n\\nGold isn\u2019t bought. It\u2019s **felt** . It\u2019s that soft warmth you wear on your skin, a memory wrapped in metal. And in a world where fakes exist, choosing hallmarked gold is your way of saying, _\u201cI value what matters.\u201d_\\n\\nWhether you're passing it down, gifting it, or celebrating your own milestones, **let your jewellery be as real as your feelings.**\\n\\n## **FAQs**\\n\\n1. **How to verify hallmark gold?  \\n   ** Check for the BIS (Bureau of Indian Standards) logo, a three-digit purity number (like 916 for 22K), the jeweller\u2019s identification mark, and a unique HUID number on the jewellery.\\n2. **How to tell if gold is real without a hallmark?\\n** You can try simple home tests like the magnet test, float test (real gold sinks in water), and acid scratch test. However, hallmarking is the most reliable indicator.\\n3. **What are 3 ways to test if gold is real at home?  \\n   ** **Magnet test:** Real gold is not magnetic  \\n   **Float test:** Drop it in water; real gold sinks.  \\n   **Vinegar or acid test:** Real gold won't change colour or react.\\n4. **How to identify 916 gold?  \\n   ** \u201c916\u201d means the gold is 91.6% pure, equivalent to 22 karats. Look for the 916 stamp and BIS hallmark on the jewellery.\\n5. **What is the hallmark symbol?  \\n   ** It\u2019s the BIS logo, usually a triangle with a tick mark inside, followed by purity and identification codes.\\n6. **Does real gold react to a magnet?  \\n   ** No, genuine gold is not magnetic. If your jewellery sticks to a magnet, it likely contains other metals or is fake.\\n\\nBack to blog\\n\\n## **\\\\ the first to know**\\n\\nSign up to receive insider information on exclusive offers and new arrivals.\"], publish_date='2025-05-26', title='\\n      Easy Ways to Identify Gold Hallmarks: HUID & BIS Hallmarks\\n \u2013 SHAYN')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

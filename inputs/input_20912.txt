@@ -1,0 +1,3390 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 20912
+category_name: Servo Drives
+seller_specs (current spec sheet): {
+  "category_name": "Servo Drives",
+  "mcat_id": 20912,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Drive Type",
+          "options": [
+            "AC Servo Drive",
+            "DC Servo Drive",
+            "Servo Amplifier",
+            "Brushless Servo",
+            "Modular Drive"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Power Rating",
+          "options": [
+            "50 W",
+            "100 W",
+            "200 W",
+            "400 W",
+            "750 W",
+            "1 kW",
+            "2 kW",
+            "3 kW",
+            "5 kW",
+            "10 kW"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Input Voltage",
+          "options": [
+            "24 VDC",
+            "48 VDC",
+            "100 VAC",
+            "200 VAC",
+            "220 VAC",
+            "230 VAC",
+            "400 VAC",
+            "415 VAC",
+            "440 VAC",
+            "480 VAC"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Phase",
+          "options": [
+            "Single Phase",
+            "Three Phase"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Motor Type",
+          "options": [
+            "AC Servo",
+            "DC Servo",
+            "BLDC Servo",
+            "Linear Servo",
+            "Induction"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Control Mode",
+          "options": [
+            "Position",
+            "Speed",
+            "Torque",
+            "Position + Speed",
+            "Speed + Torque",
+            "Vector Control"
+          ],
+          "input_type": "multi_select"
+        }
+      ]
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Feedback Type",
+          "options": [
+            "Incremental Encoder",
+            "Absolute Encoder",
+            "Resolver",
+            "Hall Sensor",
+            "Tachogenerator"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Communication Interface",
+          "options": [
+            "RS-485",
+            "CANopen",
+            "EtherCAT",
+            "PROFIBUS",
+            "PROFINET",
+            "DeviceNet",
+            "EtherNet/IP",
+            "Modbus RTU",
+            "Modbus TCP"
+          ],
+          "input_type": "multi_select"
+        },
+        {
+          "spec_name": "Mounting Type",
+          "options": [
+            "Panel Mount",
+            "Wall Mount",
+            "DIN Rail",
+            "Cabinet Mount",
+            "Rack Mount"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Protection Rating",
+          "options": [
+            "IP20",
+            "IP21",
+            "IP40",
+            "IP54",
+            "IP65"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 12 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "total_product_count": 156,
+    "example_values": [
+      "Aero Motion",
+      "Arkochi",
+      "B&R",
+      "Bonfiglioli",
+      "Control Techniques"
+    ]
+  },
+  {
+    "spec_name": "Power Capacity",
+    "total_product_count": 87,
+    "example_values": [
+      "0.5 HP",
+      "1 kW",
+      "1 HP",
+      "1.2 kW",
+      "1.5 kW"
+    ]
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "total_product_count": 77,
+    "example_values": [
+      "1045",
+      "45",
+      "7305028467",
+      "743",
+      "8V1320.00-2-1"
+    ]
+  },
+  {
+    "spec_name": "Series",
+    "total_product_count": 47,
+    "example_values": [
+      "A2 Series",
+      "A3 Series",
+      "AKD PDMM",
+      "ASD-A3",
+      "Active Series"
+    ]
+  },
+  {
+    "spec_name": "Input Phase",
+    "total_product_count": 30,
+    "example_values": [
+      "Single Phase",
+      "Three Phase"
+    ]
+  },
+  {
+    "spec_name": "Product Type",
+    "total_product_count": 23,
+    "example_values": [
+      "AC Drive",
+      "Data Cable",
+      "Multi Drive",
+      "Program Cable",
+      "Replacement for Chinese drive"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 15,
+    "example_values": [
+      "Ball Screw Axis",
+      "Carton Box Plant Sheet Cutting",
+      "Conveyor machine",
+      "Cutting Machine",
+      "General Purpose"
+    ]
+  },
+  {
+    "spec_name": "Input Voltage",
+    "total_product_count": 15,
+    "example_values": [
+      "200 V",
+      "220 V",
+      "240 V",
+      "400 V",
+      "480 V"
+    ]
+  },
+  {
+    "spec_name": "Condition",
+    "total_product_count": 12,
+    "example_values": [
+      "Discontinued models available as used; current models available as new",
+      "New",
+      "New or Refurbished (Old)",
+      "New or Used",
+      "Used"
+    ]
+  },
+  {
+    "spec_name": "Included Components",
+    "total_product_count": 10,
+    "example_values": [
+      "CT Module",
+      "Control Cable",
+      "Drive Only",
+      "Drive, Motor and Cable",
+      "Encoder Cable"
+    ]
+  },
+  {
+    "spec_name": "Motor Phase",
+    "total_product_count": 4,
+    "example_values": [
+      "Three Phase"
+    ]
+  },
+  {
+    "spec_name": "Rated Speed",
+    "total_product_count": 4,
+    "example_values": [
+      "3000 RPM",
+      "450 RPM"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 7 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "count": 11,
+    "options": [
+      "Xinje",
+      "Yaskawa",
+      "Rexroth"
+    ]
+  },
+  {
+    "spec_name": "Usage/Application",
+    "count": 9,
+    "options": [
+      "Industrial motor control, conveyors, CNC/servo axes, pumps, fans, and automation systems.",
+      "Industrial Automation",
+      "Servo Motor Control",
+      "Provides stable power to Rexroth IndraDrive servo systems for industrial automation and motion contr",
+      "INDUSTRIAL"
+    ]
+  },
+  {
+    "spec_name": "Series",
+    "count": 7,
+    "options": [
+      "DS5C2 Ethercat",
+      "DS5K2 Full Function",
+      "DS5L2 Pulse",
+      "DS5C1 Ethercat",
+      "DS5K1 Standard"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "count": 6,
+    "options": [
+      "S70601",
+      "Cs HCS01",
+      "HCS01",
+      "HMS01",
+      "HMS02"
+    ]
+  },
+  {
+    "spec_name": "Category",
+    "count": 6,
+    "options": [
+      "Servo Drives",
+      "Drives"
+    ]
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "count": 6,
+    "options": [
+      "REXROTH RD51.2-4B-015-L-NN-FW",
+      "LENZE EVS9324-ES",
+      "LENZE EVF9324-CVV003",
+      "LENZE EVS9322-ETV907",
+      "LENZE EVF8244-E"
+    ]
+  },
+  {
+    "spec_name": "Sub Category",
+    "count": 5,
+    "options": [
+      "Motor Drives",
+      "Servo Drives & Controls"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "product",
+    "total_impressions": 15218,
+    "options": [
+      "drive"
+    ]
+  },
+  {
+    "spec_name": "brand",
+    "total_impressions": 266,
+    "options": [
+      "baumuller",
+      "dorna",
+      "ecomate",
+      "estun",
+      "hcfa"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (29 specs) ---
+[
+  {
+    "spec_name": "",
+    "spec_fill_rate": "64.7",
+    "product_count": "66"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_fill_rate": "35.3",
+    "product_count": "36"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_fill_rate": "34.3",
+    "product_count": "35"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_fill_rate": "32.4",
+    "product_count": "33"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_fill_rate": "31.4",
+    "product_count": "32"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_fill_rate": "28.4",
+    "product_count": "29"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_fill_rate": "25.5",
+    "product_count": "26"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_fill_rate": "22.5",
+    "product_count": "23"
+  },
+  {
+    "spec_name": "Feedback Type",
+    "spec_fill_rate": "12.7",
+    "product_count": "13"
+  },
+  {
+    "spec_name": "Protection Rating",
+    "spec_fill_rate": "11.8",
+    "product_count": "12"
+  },
+  {
+    "spec_name": "Communication Interface",
+    "spec_fill_rate": "11.8",
+    "product_count": "12"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "9.8",
+    "product_count": "10"
+  },
+  {
+    "spec_name": "Series",
+    "spec_fill_rate": "8.8",
+    "product_count": "9"
+  },
+  {
+    "spec_name": "Category",
+    "spec_fill_rate": "7.8",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_fill_rate": "7.8",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Sub Category",
+    "spec_fill_rate": "6.9",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_fill_rate": "6.9",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Input Phase",
+    "spec_fill_rate": "3.9",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "04967135 SEW Eurodrive - BE11A 400V 80NM",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Manufacturer",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Braking Option",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Module Number",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Module Name",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Power",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Condition",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Communication Protocol",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Power Type",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Voltage",
+    "spec_fill_rate": "1",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (279 rows) ---
+[
+  {
+    "spec_name": "Dimensions",
+    "spec_option_name": "36mm x 104mm x 167mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "04967135 SEW Eurodrive - BE11A 400V 80NM",
+    "spec_option_name": "MOTOR BRAKE, 400 VOLTS, 80NM, BE11 AMPS",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product type",
+    "spec_option_name": "ACOPOS MULTI SERVO INVERTER MODULE",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Servo Type",
+    "spec_option_name": "Servo Inverter",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Max Current Per Axis",
+    "spec_option_name": "5:00 AM",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Communication Protocol",
+    "spec_option_name": "Ethernet",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Motor Construction",
+    "spec_option_name": "Synchronous",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Brand.",
+    "spec_option_name": "B&R",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Current Rating",
+    "spec_option_name": "8A",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Enclosure",
+    "spec_option_name": "Open",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Jacket Type",
+    "spec_option_name": "FANUC servo drive A06B-6087",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Output Current",
+    "spec_option_name": "1.5A to 60A RMS",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Servo Amplifier",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Applications",
+    "spec_option_name": "Servo motion control, multi\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u0098axis systems",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Model No",
+    "spec_option_name": "8BVI0028HWD0.000-1 , ACOPOS MULTI I0028D",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Core Count",
+    "spec_option_name": "FANUC servo drive A06B-6087",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "input voltage:",
+    "spec_option_name": "115-230VAC",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "weight",
+    "spec_option_name": "Around 1 kg",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Protection Features",
+    "spec_option_name": "Over Current",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Control Interface",
+    "spec_option_name": "Pulse Dir",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Axis Count",
+    "spec_option_name": "2 Axis",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Shield Type",
+    "spec_option_name": "FANUC servo drive A06B-6087",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Conductor Size",
+    "spec_option_name": "FANUC servo drive A06B-6087",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Power Type",
+    "spec_option_name": "AC",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Outer Sheath Material",
+    "spec_option_name": "FANUC servo drive A06B-6087",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Protection Features",
+    "spec_option_name": "Over Voltage",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Category",
+    "spec_option_name": "Drives",
+    "option_fill_rate": "88.9"
+  },
+  {
+    "spec_name": "Braking Option",
+    "spec_option_name": "External Brake",
+    "option_fill_rate": "85.7"
+  },
+  {
+    "spec_name": "Input Phase",
+    "spec_option_name": "Three Phase",
+    "option_fill_rate": "83.3"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "Panel Mount",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Protection Rating",
+    "spec_option_name": "IP20",
+    "option_fill_rate": "70"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "AC Servo Drive",
+    "option_fill_rate": "69.1"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "Three Phase",
+    "option_fill_rate": "68.7"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "AC Servo",
+    "option_fill_rate": "64.1"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "INDUSTRIAL",
+    "option_fill_rate": "61.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Xinje",
+    "option_fill_rate": "58.3"
+  },
+  {
+    "spec_name": "Condition",
+    "spec_option_name": "New Open Box",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Power",
+    "spec_option_name": "1 kw",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Condition",
+    "spec_option_name": "Brand New",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Sub Category",
+    "spec_option_name": "Motor Drives",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Manufacturer",
+    "spec_option_name": "Rexroth",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Power",
+    "spec_option_name": "15KW",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Voltage",
+    "spec_option_name": "400VAC",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Voltage",
+    "spec_option_name": "110 vac",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Sub Category",
+    "spec_option_name": "Servo Drives & Controls",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Manufacturer",
+    "spec_option_name": "GE",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Feedback Type",
+    "spec_option_name": "Absolute Encoder",
+    "option_fill_rate": "45.5"
+  },
+  {
+    "spec_name": "Communication Interface",
+    "spec_option_name": "RS-485",
+    "option_fill_rate": "38.9"
+  },
+  {
+    "spec_name": "Feedback Type",
+    "spec_option_name": "Incremental Encoder",
+    "option_fill_rate": "36.4"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Position + Speed",
+    "option_fill_rate": "33.8"
+  },
+  {
+    "spec_name": "Supply Voltage",
+    "spec_option_name": "400 V AC",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Supply Voltage",
+    "spec_option_name": "24\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c64VDC \u00c3\u0082\u00c2\u00b125%",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Supply Voltage",
+    "spec_option_name": "48 V DC",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Protection Rating",
+    "spec_option_name": "IP65",
+    "option_fill_rate": "30"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Speed",
+    "option_fill_rate": "26.5"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Textile",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Communication Interface",
+    "spec_option_name": "CANopen",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "FANUC servo drive A06B-6087",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Industrial",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Industrial Automation",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "Wall Mount",
+    "option_fill_rate": "21.2"
+  },
+  {
+    "spec_name": "Module Name",
+    "spec_option_name": "Servo Drive",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Module Number",
+    "spec_option_name": "JNC350R41-TZ",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Module Name",
+    "spec_option_name": "Unidrive UNI2401 Drive",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Module Number",
+    "spec_option_name": "R911297460",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Module Number",
+    "spec_option_name": "UNI2401",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Module Number",
+    "spec_option_name": "S21260-SRS",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Module Number",
+    "spec_option_name": "M\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u0098ESB\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u0098YSB2020AB302",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Module Name",
+    "spec_option_name": "AC Servo Drive",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Module Name",
+    "spec_option_name": "Servo Drive Power Supply",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Module Name",
+    "spec_option_name": "Industrial Servo Drive Module",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Communication Interface",
+    "spec_option_name": "EtherCAT",
+    "option_fill_rate": "19.4"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "220 VAC",
+    "option_fill_rate": "19.4"
+  },
+  {
+    "spec_name": "Communication Interface",
+    "spec_option_name": "PROFINET",
+    "option_fill_rate": "19.4"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Position",
+    "option_fill_rate": "19.1"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "Sigma-7",
+    "option_fill_rate": "18.8"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "Single Phase",
+    "option_fill_rate": "16.9"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "LENZE",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Input Phase",
+    "spec_option_name": "Universal Input",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Communication Interface",
+    "spec_option_name": "PROFIBUS",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Speed + Torque",
+    "option_fill_rate": "16.2"
+  },
+  {
+    "spec_name": "Feedback Type",
+    "spec_option_name": "Resolver",
+    "option_fill_rate": "15.2"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Torque",
+    "option_fill_rate": "14.7"
+  },
+  {
+    "spec_name": "Braking Option",
+    "spec_option_name": "No Brake",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "24 VDC",
+    "option_fill_rate": "13.6"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "50 W",
+    "option_fill_rate": "12.4"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "SEW-EURODRIVE MXA81A-048-503-00/XGS11A",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "LENZE EVF8244-E",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "80VD100PD.C000-14",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "REXROTH RD51.2-4B-015-L-NN-FW",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "LENZE EVF9324-CVV003",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "LENZE EVS9322-ETV907",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "SEW-EURODRIVE MXP80A-025-503-00",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Category",
+    "spec_option_name": "Servo Drives",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "LENZE EVS9324-ES",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_option_name": "MATTKE MDR2305",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "3 kW",
+    "option_fill_rate": "9.3"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "750 W",
+    "option_fill_rate": "9.3"
+  },
+  {
+    "spec_name": "Communication Interface",
+    "spec_option_name": "MECHATROLINK",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Lenze",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "B&R",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "SEW-EURODRIVE",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Communication Interface",
+    "spec_option_name": "EtherNet/IP",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Communication Interface",
+    "spec_option_name": "DeviceNet",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "400 W",
+    "option_fill_rate": "8.2"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "100 W",
+    "option_fill_rate": "8.2"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "2 kW",
+    "option_fill_rate": "8.2"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "415 VAC",
+    "option_fill_rate": "7.8"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "Industrial motor control, conveyors, CNC/servo axes, pumps, fans, and automation systems.",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "Industrial Automation",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "Provides stable power to Rexroth IndraDrive servo systems for industrial automation and motion contr",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "Industrial motion control, CNC machines, robotics, packaging, automated manufacturing systems",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "Servo Motor Control",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Vector Control",
+    "option_fill_rate": "7.4"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "480 VAC",
+    "option_fill_rate": "6.8"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "DS5L1 Pulse",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "ESB\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u0098YSB2020",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "DS5K1 Standard",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "MR-HPHD-01",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "DS5L2 Pulse",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "Sigma-7W",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "DS5C2 Ethercat",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "MINAS LIQI",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "RK-750",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "DS5P Profinet",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "Sigma-5",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "DS5C1 Ethercat",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Series",
+    "spec_option_name": "DS5K2 Full Function",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "400 VAC",
+    "option_fill_rate": "5.8"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "230 VAC",
+    "option_fill_rate": "4.9"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "200 VAC",
+    "option_fill_rate": "4.9"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "1 kW",
+    "option_fill_rate": "4.1"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "Cabinet Mount",
+    "option_fill_rate": "3.8"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "DC Servo",
+    "option_fill_rate": "3.8"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "BOTH",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Feedback Type",
+    "spec_option_name": "Encoder",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Protection",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "FANUC",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "8EI017HWS10.A600",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Communication Interface",
+    "spec_option_name": "Modbus RTU",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Communication Interface",
+    "spec_option_name": "Modbus TCP",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "Servo Motor",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "SMITEC COSMOS 2000",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "Synchronous",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "8EI017HWS10.A600",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "8EI017HWS10.A600",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "Protection",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SERVO INVERTER",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "DC Servo Drive",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "8EI017HWS10.A600",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "8EI017HWS10.A600",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "VARIES",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "1.5kw",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "VARIES",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "8EI017HWS10.A600",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "200\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c230V AC",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "48 VDC",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Digital",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "SV-M010AS KEYENCE DRIVE",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "SV-500L2 KEYENCE DRIVE",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "SV-M005CS KEYENCE DRIVE",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Servo Position",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Closed-Loop Servo Control",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "SV-M005AS KEYENCE DRIVE",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "SV-M010AK KEYENCE DRIVE",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "SV-M005AK KEYENCE DRIVE",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "SMITEC COSMOS 2000 SERVO DRIVE KZ1057",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "SMITEC COSMOS 2000",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Servo / Vector Control",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "SV-M010CS KEYENCE DRIVE",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Servo",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "SV-M010CK KEYENCE DRIVE",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Control Mode",
+    "spec_option_name": "Servo / Closed-Loop",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "AC Servo Motor",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "Multi servo inverter module",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "Brushless AC Servo",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "SV-M005CS KEYENCE DRIVE",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "SV-500L2 KEYENCE DRIVE",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "SV-M005AS KEYENCE DRIVE",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "Induction",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "SV-M010CK KEYENCE DRIVE",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "Servo",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "SV-M010CS KEYENCE DRIVE",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "SV-M010AS KEYENCE DRIVE",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "SV-M010AK KEYENCE DRIVE",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "Synchronous servo motor",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "SV-M005AK KEYENCE DRIVE",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "SV-M010CS KEYENCE DRIVE",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "SV-M010AS KEYENCE DRIVE",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "SV-M010AK KEYENCE DRIVE",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "SMITEC COSMOS 2000",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SV-M005CS KEYENCE DRIVE",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "Modular Drive",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "Servo Drive Power Supply",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SMITEC COSMOS 2000 SRVO DRIVE",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "AC SERVO DRIVE AND MOTOR",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "Servo drive",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "FANUC servo drive A06B-6087",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SV-M005AK KEYENCE DRIVE",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "Servo Drive",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "Brushless Servo",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SV-M010AK KEYENCE DRIVE",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SV-M010CS KEYENCE DRIVE",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SV-M010CK KEYENCE DRIVE",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SV-M005AS KEYENCE DRIVE",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SV-500L2 KEYENCE DRIVE",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "IndraDrive",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SMITEC COSMOS 2000",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Drive Type",
+    "spec_option_name": "SV-M010AS KEYENCE DRIVE",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "3-Phase 380\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c480 V AC",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "26 kW to 29.8 kW.",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "500W",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "SV-M005AS KEYENCE DRIVE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "SV-500L2 KEYENCE DRIVE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "AVAILABLE IN SINGLE PHASE AND THREE PHASE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "2.8KW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "FANUC servo drive A06B-6087",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "283\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c325 V DC",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "SV-M010CS KEYENCE DRIVE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "SV-500L2 KEYENCE DRIVE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "200\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c240 V AC",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "230/440V",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "120\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c240\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afV AC",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "440 VAC",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "560 V",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "SV-M005CS KEYENCE DRIVE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "240V",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "3.5kw",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "1.5\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afkW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "SV-M010AS KEYENCE DRIVE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "100 VAC",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "LENZE S0ERVO DRIVE E82EV551-2C20",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "SV-M020CK KEYENCE DRIVE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "230-480 VAC",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "15 kw",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "18.9 kW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "200 W",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "1.5 kW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "200\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c230\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afV AC",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "SV-M005AK KEYENCE DRIVE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "DC\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00af830+",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "18 kW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "ALL",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "FANUC servo drive A06B-6087",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "25 KW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "4\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afkW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "~110\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afkW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "17.5 kW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "300W",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "11 kW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "3.0 KW (4 HP)",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "29.8 kW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "7.5 kW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "495\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u0098720V",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "18A",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "DC830+",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "3-Phase AC",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "400W-7.5KW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.75 kW (1 HP)",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "400/480 VAC",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "3.08 kW.",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "15KW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "SV-M010AK KEYENCE DRIVE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "SV-M010CK KEYENCE DRIVE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "0.2\u00c3\u00a2\u00e2\u0082\u00ac\u00c2\u00afkW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_option_name": "380-500 V",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "5 kW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "11.0KW",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "SMITEC COSMOS 2000",
+    "option_fill_rate": "1"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Spec Validation and Definition 
+
+
+## What this skill is for
+
+When candidate missing specs have been surfaced by the Buyer-Seller Call, Custom Spec,
+or Buyer Search skills — read this document. It gives you the framework to
+validate whether each candidate is a genuine new spec or a false positive, and
+if genuine, define it completely and  correctly for the Indian B2B marketplace.
+
+---
+
+## Step 1 — Validate: Is this a genuine new spec?
+
+A candidate missing spec is genuine only if all three of the following are true:
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same
+real-world attribute, even approximately, the candidate is not a gap.
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+---
+
+## Common false positives — check these before acting
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common
+synonym.
+
+Common equivalences in Indian B2B:
+
+| These terms often mean the same thing |
+|---------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Size / Dimensions / Measurement / Specification |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade ||
+
+**Composite attributes**
+Some candidates are natural-language composites. "10mm HDPE pipe" → "10mm" is
+not a new Diameter spec if Dimensions already exists.
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+**Multiple candidates meaning the same thing**
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning. "Usage" from custom specs + "Application" from call data + "End Use"
+from search → one spec, not three. Pick the most standard name and add once.
+
+One underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+---
+
+## Step 2 — Define: Build the spec completely
+
+Once a candidate passes validation, define it fully across four elements.
+
+### Spec Name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+### Input Type
+
+**`text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+**`radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+- Boolean attributes where the only meaningful values are Yes and No
+  (e.g. ISI Certified, Waterproof, Fire Resistant). Options: `["Yes", "No"]`
+
+**`multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → `multi_select`
+
+
+### Options — How to Generate Them
+
+Draw from example values in call data, custom spec submissions, and search
+option values. When data values are sparse, inconsistent, or absent, generate
+the full option set from Indian B2B market knowledge for this category and spec.
+
+**Understanding option values from data sources:**
+
+Option values surfaced by the data source skills vary significantly in quality.
+Here is what each quality level looks like and what it tells you:
+
+| Data Quality | What it looks like |
+|---|---|
+| Clean and consistent | Values are specific, formatted, and repeated across sources — reliable signal for what the real market options are |
+| Mixed quality | Some specific values mixed with vague or inconsistently formatted ones — the specific values are the signal; the rest is noise |
+| 1–2 values only | Too sparse to define the full option set — useful for confirming what the spec means, but market knowledge is needed to complete the list |
+| Completely messy | No usable signal — generate entirely from Indian B2B market knowledge |
+| Empty | No data at all — generate entirely from Indian B2B market knowledge |
+| Contains NA / Other / Custom | These are non-values — ignore them and treat the remaining data at its actual quality level |
+
+**Quality rules for new option to be created:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only
+2. **No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose**
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz.
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+5. Ideally the option count should be limited to 10 most common options 
+
+**Formatting rules:**
+1. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+2. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+3. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm
+4. Categorical options by frequency — most common in Indian market first
+5. Use ISI/BIS standards where applicable
+6. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+7. Do not use range options unless they are the market standard for this spec
+
+### Tier Placement
+
+All new specs are added as Tertiary. Sequencing reasoning determines the final
+tier based on actual signal data.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(top servo drive brands in India) ---
+{
+  "query": "top servo drive brands in India",
+  "results": [
+    {
+      "title": "Top 30 Integrated Servo Motor Manufacturers in India - Jkongmotor",
+      "url": "https://www.jkongmotor.com/top-30-integrated-servo-motor-manufacturers-in-india.html",
+      "excerpt": "WebSearchResult(url='https://www.jkongmotor.com/top-30-integrated-servo-motor-manufacturers-in-india.html', excerpts=['Home / Blog / Top 30 Integrated Servo Motor Manufacturers in India\\n\\n# Top 30 Integrated Servo Motor Manufacturers in India\\n\\nViews: 0 Author: Site Editor     Publish Time: 2025-07-15      Origin: Site\\n\\nInquire\\n\\n## What is an Integrated Servo Motor?\\n\\nAn [**integrated servo motor**](https://www.jkongmotor.com/integrated-stepper-motor.html \"Integrated Servo Motor Manufacturer | Jkongmotor\") is a type of servo motor that combines both the motor and controller into a single, compact unit. Unlike traditional servo systems, where the motor and controller are separate components, an integrated servo motor offers a more streamlined and efficient solution by integrating both elements into a single device. This integration can significantly save space, reduce wiring complexity, and simplify installation, making it ideal for applications where compactness and efficiency are important.\\n\\n## Key Components of an Integrated Servo Motor\\n\\n### Motor:\\n\\nThe primary component of the [](https://www.\\njkongmotor.com/product_category/Integrated-Servo-Motor.html \"Integrated Servo Motor Manufacturer | Jkongmotor\") [**integrated servo motor**](https://www.jkongmotor.com/integrated-stepper-motor.html \"Integrated Servo Motor Manufacturer | Jkongmotor\") , typically a permanent magnet synchronous motor (PMSM) or AC motor, responsible for converting electrical energy into mechanical motion.\\n\\n### Controller:\\n\\nThe control unit that regulates the motor\u2019s operation by processing the input signal and adjusting the output to achieve the desired performance. It controls aspects like speed, torque, and position.\\n\\n### Feedback Device:\\n\\nA sensor (often an encoder or resolver) that provides real-time data on the motor\\'s position, speed, and torque. This feedback is crucial for maintaining precise control of the motor\u2019s movements.\\n\\n### Power Supply:\\n\\n[](https://www.jkongmotor.com/product_category/Integrated-Servo-Motor.\\nhtml \"Integrated Servo Motor Manufacturer | Jkongmotor\") [**Integrated servo motor**](https://www.jkongmotor.com/integrated-stepper-motor.html \"Integrated Servo Motor Manufacturer | Jkongmotor\") typically include an internal power supply to handle the electrical needs of both the motor and controller.\\n\\n### Communication Interface:\\n\\nThis allows the motor to communicate with other devices or control systems, such as a PLC (Programmable Logic Controller) or HMI (Human Machine Interface), via protocols like Modbus, Ethernet/IP, or CANopen.\\n\\n## How an Integrated Servo Motor Works?\\n\\nThe operation of an [](https://www.jkongmotor.com/product_category/Integrated-Servo-Motor.html \"Integrated Servo Motor Manufacturer | Jkongmotor\") [**integrated servo motor**](https://www.jkongmotor.com/integrated-stepper-motor.html \"Integrated Servo Motor Manufacturer | Jkongmotor\") can be broken down into the following basic steps:\\n\\n### Input Command:\\n ... \\n* MELSEC L Series Servo Drive\\n* MR-J4 Servo Amplifier\\n\\n* \\n\\n### 3\\\\. ABB India Limited\\n\\n#### Company Profile\\n\\nABB is a pioneer in the electrical engineering and automation industry. They offer high-quality integrated servo motors that are widely used in industrial robots and automated machinery. Their products are known for being energy-efficient and highly reliable.\\n\\n#### Company Advantages\\n\\n* Cutting-edge automation solutions\\n* Industry-leading safety features\\n* Strong global footprint\\n\\n* \\n\\n#### Main Products\\n\\n* ABB IRB 6700 Servo Motor\\n* AC500 Servo Drive\\n* Servo Motor and Drive Systems\\n\\n* \\n\\n### 4\\\\. Yaskawa India Pvt. Ltd.\\n\\n#### Company Profile\\n\\nYaskawa Electric Corporation is a [](https://www.jkongmotor.com/product_category/Integrated-Servo-Motor.html \"Integrated Servo Motor Manufacturer | Jkongmotor\") [**integrated servo motor manufacturer**](https://www.jkongmotor.com/integrated-stepper-motor.\\n ... \\n* R-30iB Plus Controller\\n\\n* \\n\\n### 9\\\\. Rockwell Automation India\\n\\n#### Company Profile\\n\\nRockwell Automation is one of the most well-known [](https://www.jkongmotor.com/product_category/Integrated-Servo-Motor.html \"Integrated Servo Motor Manufacturer | Jkongmotor\") [**integrated servo motors manufacturers**](https://www.jkongmotor.com/integrated-stepper-motor.html \"Integrated Servo Motor Manufacturer | Jkongmotor\") in industrial automation. They offer integrated solutions, including servo motors and drives, to help businesses improve productivity and efficiency.\\n\\n#### Company Advantages\\n\\n* Industry-leading automation technology\\n* Comprehensive service and support\\n* High precision and accuracy\\n\\n* \\n\\n#### Main Products\\n\\n* Kinetix 5700 Servo Drive\\n* ArmorPoint I/O Servo Motors\\n* PowerFlex 755T Servo Drive\\n\\n* \\n\\n### 10\\\\. Schneider Electric India\\n\\n#### Company Profile\\n\\nSchneider Electric is a global [](https://www.jkongmotor.com/product_category/Integrated-Servo-Motor.'], publish_date=None, title='Top 30 Integrated Servo Motor Manufacturers in India - Jkongmotor')"
+    },
+    {
+      "title": "Top 12 Companies in India Servo Motor and Drive Market | 2026",
+      "url": "https://www.6wresearch.com/market-takeaways-view/top-12-companies-in-india-servo-motor-and-drive-market",
+      "excerpt": "WebSearchResult(url='https://www.6wresearch.com/market-takeaways-view/top-12-companies-in-india-servo-motor-and-drive-market', excerpts=['\u00d7\\n\\n#### Connect with us\\n\\nCompany\\\\*\\n\\nFirst Name\\\\*\\n\\nLast Name\\\\*\\n\\nEmail\\\\*\\n\\nPhone\\\\*\\n\\nMobile\\\\*\\n\\nCountry\\n\\nMessage: Research Request/Report Interested in\\\\*\\n\\nCaptcha validation failed. If you are not a robot then please try again.\\n\\n\u00d7\\n\\n#### Ask The Analyst For\\n\\nIndustry Choose Industry Business Services CPG Energy/Mining Financial Services Manufacturing Media/Advertising Pharma Retail/Wholesale Technology Telecommunciations Transportation Utilities Other\\n\\nYou Name\\n\\nYou Company\\n\\nContact No.\\n\\nYou Email\\n\\nMessage\\n\\nSubmit Close\\n\\n\u00d7\\n\\n#### Top 12 Companies in India Servo Motor and Drive Market | Manufacturers & Suppliers 2026\\n\\nLicense Type (Single, Department, Site, Global)\\n\\nCompany\\n\\nFirst Name\\n\\nLast Name\\n\\nEmail\\n\\nPhone\\n\\nMobile\\n\\nCountry\\n\\nMessage (brief details of research)\\n\\nCaptcha validation failed. If you are not a robot then please try again.\\n\\n\u00d7\\n\\n#### Connect with us\\n\\nCompany\\\\*\\n\\nFirst Name\\\\*\\n\\nLast Name\\\\*\\n\\nEmail\\\\*\\n\\nPhone\\\\*\\n\\nMobile\\\\*\\n\\nCountry\\n\\nMessage: Research Request/Report Interested in\\\\*\\nCaptcha validation failed. If you are not a robot then please try again.\\n\\n\u00d7\\n\\n#### Ask The Analyst For\\n\\nIndustry Choose Industry Business Services CPG Energy/Mining Financial Services Manufacturing Media/Advertising Pharma Retail/Wholesale Technology Telecommunciations Transportation Utilities Other\\n\\nYou Name\\n\\nYou Company\\n\\nContact No.\\n\\nYou Email\\n\\nMessage\\n\\nSubmit Close\\n\\n\u00d7\\n\\n#### Top 12 Companies in India Servo Motor and Drive Market | Manufacturers & Suppliers 2026\\n\\nLicense Type (Single, Department, Site, Global)\\n\\nCompany\\n\\nFirst Name\\n\\nLast Name\\n\\nEmail\\n\\nPhone\\n\\nMobile\\n\\nCountry\\n\\nMessage (brief details of research)\\n\\nCaptcha validation failed. If you are not a robot then please try again.\\n\\n# [Top 12 Companies in India Servo Motor and Drive Market | Manufacturers & Suppliers 2026](https://www.6wresearch.com/market-takeaways-view/top-12-companies-in-india-servo-motor-and-drive-market)\\n\\n|**Code:** MTA0037 |**Publication Date:** Aug 2024 |\\n| --- | --- |\\n## Top 12 Companies in India Servo Motor and Drive Market\\n\\nThe **_India servo motors and drives market_** has been accomplishing significant growth in recent years. This growth of the industry is attributed to the growing demand for high-precision motion control systems across many industries like automotive, manufacturing, healthcare as well as aerospace. One of the major contributors to the market growth is the presence of key players. The companies in the market are continuously investing in research and development activities in order to enhance their product offerings and cater to the expanding needs of customers. They also focus on strategic partnerships and collaborations to grow their market reach.\\n\\nFor detailed forecasts, data tables, and competitive benchmarking,  \\nExplore the full India servo motors and drives market.\\n\\nView Main Report Schedule Analyst Call\\nThe market players have a strong presence and offer a wide range of servo motors and drives with advanced features and technologies. They also offer efficient after-sales support and services to ensure customer satisfaction. Additionally, the companies are also actively involved in promoting the adoption of servo motor and drive technology via various initiatives such as workshops, seminars, and training programs.\\n\\n## List of Leading Companies in the India Servo Motor and Drive Market\\n\\n### 1\\\\. ABB Ltd.\\n\\n|Company Name |ABB Ltd. |\\n| --- | --- |\\n|Establishment Year |1988 |\\n|Headquarter |Zurich, Switzerland |\\n|Official Website |**_[Click Here](https://global.abb/group/en)_** |\\n\\nABB Ltd. is headquartered in Zurich, Switzerland. The company deals in multiple verticals such as electrification, robotics & discrete automation, process automation and motion control. ABB Ltd. has its presence in more than 100 countries and in India it operates through local dealer and distributor.\\n\\n### 2\\\\.\\nBosch Rexroth AG\\n\\n|Company Name |Bosch Rexroth AG |\\n| --- | --- |\\n|Establishment Year |2001 |\\n|Headquarter |Lohr a. Main, Germany |\\n|Official Website |**_[Click Here](https://www.boschrexroth.com/en/dc/)_** |\\n\\nBosch Rexroth AG is headquartered in Lohr a. Main, Germany. The company deals in multiple verticals such as assembly technology, electric drives and controls, industrial hydraulics, production assistant, Xtreme engineering and others. Bosch Rexroth AG has its presence in more than 55 countries and in India it operates through local dealer and distributor.\\n\\n### 3\\\\. Beckhoff Automation\\n\\n|Company Name |Beckhoff Automation |\\n| --- | --- |\\n|Establishment Year |2007 |\\n|Headquarter |Pune, India |\\n|Official Website |**_[Click Here](https://www.beckhoff.com/)_** |\\n\\nBeckhoff Automation Pvt. Ltd is headquartered in Pune, India. The company deals in multiple verticals such as Automation, MX-System, servo drives, servomotors, IPC, I/O and many others.'], publish_date=None, title='Top 12 Companies in India Servo Motor and Drive Market | 2026')"
+    },
+    {
+      "title": "Top 15 Integrated Servo Motor Manufacturers in India",
+      "url": "https://www.leanmotor.com/top-15-integrated-servo-motor-manufacturers-in-india.html",
+      "excerpt": "WebSearchResult(url='https://www.leanmotor.com/top-15-integrated-servo-motor-manufacturers-in-india.html', excerpts=['Jan 6, 2026 \u2014 ABB India is a global leading integrated servo motor manufacturer in electrification and motion, offering advanced servo technologies for'], publish_date=None, title='Top 15 Integrated Servo Motor Manufacturers in India')"
+    },
+    {
+      "title": "India Servo Motors and Drives Market, Share | Industry Trend & Forecast 2030 ",
+      "url": "https://www.industryarc.com/Report/18870/india-servo-motors-and-drives-market",
+      "excerpt": "WebSearchResult(url='https://www.industryarc.com/Report/18870/india-servo-motors-and-drives-market', excerpts=[\"In addition, increase in adoption of servo motors and drives for application in newer industrial vertical will create new opportunities for India servo motors and drives industry during the forecast period.\\n\\n## **Report Coverage**\\n\\nThe report: **\u201cIndia Servo Motors and Drives Market \u2013 Forecast (2020-2025)\u201d,** by IndustryARC, covers an in-depth analysis of the following segments of the India Servo Motors and Drives Market Market.\\n\\n## **Key Takeaways**\\n\\n* In India, the servo motors and drives market is dominated by the increasing applications in the automotive industry.\\n* The need for increasing productivity in order to fulfil the demand for electric vehicles and passenger vehicles in India is leading to the rising adoption of servo motors and drives for automating manufacturing process of automobile.\\n* Moreover, the rise of IoT and increasing factory automation in the manufacturing process for optimizing productivity has raised the demand for India servo motors and drives market.\\n ... \\nMoreover, the deployment of semiconductor and electronics manufacturing machines has led to the integration of servo motor that help semiconductor tool OEM's and electronic device manufacturers to optimize equipment footprints while maximizing the performance and productivity. The servo motors and drives are used in various wafer processing equipment, including CMP (Chemical Mechanical Planarization) machines, wafer handling robots and others. There by, the deployment of servo motors for semiconductor and electronics manufacturing machines will set to boost the respective market.\\n\\n## **Challenges \u2013 India Servo Motor and Drives Market**\\n\\n* **Lack of skilled workforce**\\n\\nAs servo motor requires a several functional operations such as stabilization of feedback loop, requirement of safety circuits, additional electronic support and others which requires the need for a skilled trained worker.\\nThe companies may find difficulty in finding skilled workers, which is partially due to an aging, retiring workforce and lack of desire among younger workers to enter the manufacturing field. Thus, the condition to hire trained and skilled workforce in order to handle operations of these advance motors such as servo motor and drives may become a challenge for the company. There by, they may go for less advance motors such as industrial motors and others which will hinder the growth of India servo motor and drives market during the given forecast period.\\n\\n## **Market Landscape**\\n\\nTechnology launches, acquisitions and R&D activities are the key strategies adopted by players in the India Servo Motors and Drives market. In 2018, the market of India Servo Motors and Drives has been consolidated by the top five players accounting for xx% of the share. The market for India Servo Motors and Drives top 10 companies are ABB India Ltd., Bosch Rexroth India Pvt. Ltd., Delta Electronics India Pvt.\\nLtd., Fuji Electric India Pvt. Ltd., Mitsubishi Electric India Pvt. Ltd., Panasonic Corporation, Rockwell Automation India Pvt. Ltd., Schneider Electric India Pvt. Ltd., Siemens India Ltd. and Yaskawa India Pvt. Ltd.\\n\\n## _**Acquisitions/Technology Launches**_\\n\\n* In 2019, Mitsubishi Electric announced the launch of the latest series of servo systems the General Purpose AC Servo MELSERVO J5 series (65 models). These new series of servo systems has enhanced the working behavior of the machines and has also fueled the smart factory solutions in India. Therefore, the launch of this new series will further accelerate the growth of the India servo motors and drives market.\\n* In March 2019, Siemens introduced the New Sinamics S210 Servo Drive System that can be used for simplifying the motion control. The new sinamics S210 servo drive system is specifically designed to work with Simotics S-1FK2 motors.\\nThis new system is used in various applications such packaging machines, handling applications such as pick-and-place, wood and plastics processing. Furthermore, the increasing development in the applications of the new servo drive system in India will drive the servo motion and drive market\\n\\n**For more Automation and Instrumentation related reports, please** [**click here**](https://www.industryarc.com/Domain/10/industrial-automation-instrumentation-market-research.html)\\n\\n****1\\\\. India SERVO MOTORS AND DRIVES Market \u2013 Overview****\\n\\n****2\\\\. India SERVO MOTORS AND DRIVES Market \u2013 Executive Summary****\\n\\n****3\\\\. India SERVO MOTORS AND DRIVES \u2013 Market Landscape****\\n\\n3\\\\.1.  Market Share Analysis\\n\\n3\\\\.2.  Comparative Analysis\\n\\n3\\\\.2.1. Product Benchmarking\\n\\n3\\\\.2.2. End User Profiling\\n\\n3\\\\.2.3. Top 5 Financials Analysis\\n\\n3\\\\.2.4. Patent Analysis\\n\\n****4\\\\. India SERVO MOTORS AND DRIVES Market \u2013 Forces****\\n\\n4\\\\.1.  Drivers\\n\\n4\\\\.2.  Constraints & Challenges\\n\\n4\\\\.3.  Porter\u2019s Five Forces Analysis\"], publish_date=None, title='India Servo Motors and Drives Market, Share | Industry Trend & Forecast 2030 ')"
+    },
+    {
+      "title": "Top Servo Drives Manufacturer in India. - Friqs Automation",
+      "url": "https://www.friqscontrolpanel.com/latest-update/top-servo-drives-manufacturer-in-india/49",
+      "excerpt": "WebSearchResult(url='https://www.friqscontrolpanel.com/latest-update/top-servo-drives-manufacturer-in-india/49', excerpts=['Oct 26, 2025 \u2014 Top Servo Drives Manufacturer in Ahmedabad, Gujarat, India. When it comes to precision motion control, Friqs Automation stands as a trusted'], publish_date=None, title='Top Servo Drives Manufacturer in India. - Friqs Automation')"
+    },
+    {
+      "title": "Top 20 Integrated Servo Motor Manufacturers in India - Besfoc",
+      "url": "https://www.besfoc.com/top-20-integrated-servo-motor-manufacturers-in-india.html",
+      "excerpt": "WebSearchResult(url='https://www.besfoc.com/top-20-integrated-servo-motor-manufacturers-in-india.html', excerpts=['Home / Blog / Top 20 Integrated Servo Motor Manufacturers in India\\n\\n# Top 20 Integrated Servo Motor Manufacturers in India\\n\\nViews: 0 Author: Site Editor     Publish Time: 2025-04-17      Origin: Site\\n\\nIn the rapidly evolving world of industrial automation and smart machinery, [**integrated servo motor**](https://www.besfoc.com/integrated-bldc-motor.html \"Integrated Servo Motor Manufacturer - BesFoc\") s are transforming the way motion systems are designed, installed, and operated. Combining multiple components into a single, compact unit, they offer a space-saving, efficient, and reliable solution for modern automation needs.\\n\\n## **What is an Integrated Servo Motor?**\\n\\nAn [**Integrated servo motor**](https://www.besfoc.com/integrated-bldc-motor.html \"Integrated Servo Motor Manufacturer - BesFoc\") is a compact motion control solution that combines the following key components into one single housing:\\n\\n* Servo Motor (brushless or brushed DC motor)\\n* Encoder or Feedback Device\\n* Servo Drive (Amplifier)\\n* Motion Controller\\n* Communication Interface (e.g., EtherCAT, CANopen, Modbus)\\n\\nThis all-in-one design eliminates the need for separate control units and wiring between components, reducing complexity and saving valuable space in control cabinets or machines.\\n\\n## **Key** Components Explained\\n\\n### 1\\\\. Servo Motor\\n\\nThe core mechanical part that converts electrical energy into rotary motion with **precise speed and torque control** .\\n\\n### **2\\\\. Encoder**\\n\\nProvides real-time feedback about the motor\u2019s position, speed, and direction. It ensures **accurate motion control** and synchronization with other systems.\\n\\n### **3\\\\. Servo Drive**\\n\\nActs as the **power amplifier** , supplying current and voltage to the motor according to control signals. It also processes feedback from the encoder.\\n\\n### **4\\\\. Motion Controller**\\nThe intelligent brain of the system that interprets commands (from a PLC or HMI), plans trajectories, and **sends precise movement instructions** to the drive and motor.\\n\\n### **5\\\\. Communication Interface**\\n\\nAllows the integrated system to **connect and interact** with external control systems via industrial communication protocols like **EtherCAT, CANopen, Modbus, or Ethernet/IP** .\\n\\n## **How Does an Integrated Servo Motor Work?**\\n\\nThe operation of an [**Integrated servo motor**](https://www.besfoc.com/integrated-bldc-motor.html \"Integrated Servo Motor Manufacturer - BesFoc\") involves a seamless closed-loop feedback system:\\n\\n### **Command Signal Received**\\n\\nA controller or PLC sends a movement command (e.g., move to a specific position, rotate at a certain speed).\\n\\n### **Motion Controller Processing**\\n\\nThe built-in motion controller calculates the required speed, direction, and torque needed for the task.\\n\\n### **Servo Drive Execution**\\n ... \\nSiemens India is a leading **[Integrated servo motor manufacturer](https://www.besfoc.com/integrated-bldc-motor.html \"Integrated Servo Motor Manufacturer - BesFoc\") and** provides end-to-end automation solutions with German precision and Indian manufacturing capabilities.\\n\\n### Main Products\\n\\n* SIMOTICS S Servomotors\\n* SINAMICS Servo Drives\\n\\n### Advantages\\n\\n* High torque density\\n* Seamless integration with SINUMERIK controllers\\n* Rugged, long-life design\\n\\n### **4\\\\. Schneider Electric India Pvt. Ltd.**\\n\\n### Company Profile\\n\\nA French **[Integrated servo motor manufacturer](https://www.besfoc.com/integrated-bldc-motor.html \"Integrated Servo Motor Manufacturer - BesFoc\")** with a strong presence in India, offering smart automation solutions across industries.\\n\\n### Main Products\\n\\n* Lexium 32i Integrated Servo Drive\\n* PacDrive Systems\\n\\n### Advantages\\n\\n* Compact design with integrated drive\\n* EtherCAT and CANopen support\\n* Real-time communication capabilities\\n\\n### **5\\\\.\\n ... \\n* Plug-and-play installation\\n* Durable and vibration-resistant\\n\\n### **15\\\\. VFD Technologies India**\\n\\n### Company Profile\\n\\nVFD Technologies is a local **[Integrated servo motor manufacturer](https://www.besfoc.com/integrated-bldc-motor.html \"Integrated Servo Motor Manufacturer - BesFoc\")** offering servo solutions for specialized industrial applications.\\n\\n### Main Products\\n\\n* Integrated Servo Motors with Feedback\\n* Custom Drive-Motor Units\\n\\n### Advantages\\n\\n* Cost-effective customization\\n* Easy diagnostics\\n* Local support and fast delivery\\n\\n### **16\\\\. Janatics India Pvt. Ltd.**\\n\\n### Company Profile\\n\\nA trusted brand in pneumatics now expanding into affordable servo systems for Indian SMEs.\\n\\n### Main Products\\n\\n* Entry-Level Servo Motor Systems\\n* Integrated Pneumatic-Servo Solutions\\n\\n### Advantages\\n\\n* Budget-friendly options\\n* Reliable for light-duty automation\\n* Easy integration with PLCs\\n\\n### **17\\\\. Rajdeep Automation Pvt. Ltd.**\\n\\n### Company Profile'], publish_date=None, title='Top 20 Integrated Servo Motor Manufacturers in India - Besfoc')"
+    },
+    {
+      "title": "Top 100 Servo Drive Manufacturers in India (2026)",
+      "url": "https://ensun.io/search/servo-drive/india",
+      "excerpt": "WebSearchResult(url='https://ensun.io/search/servo-drive/india', excerpts=['Discover all relevant Servo Drive Manufacturers in India, including Power Drives Enterprises India Pvt Ltd and IPCS.'], publish_date=None, title='Top 100 Servo Drive Manufacturers in India (2026)')"
+    },
+    {
+      "title": "Ac Servo Drive Manufacturers in India - Yaskawa",
+      "url": "https://yaskawaindia.in/ac-servo-drives.php",
+      "excerpt": "WebSearchResult(url='https://yaskawaindia.in/ac-servo-drives.php', excerpts=[\"[Facebook](https://www.facebook.com/YaskawaIndiaPvtLtd)\\n\\n[Twitter](https://twitter.com/YASKAWAIndia)\\n\\n[LinkedIn+](https://www.linkedin.com/company/yaskawa-electric-india/)\\n\\n[Youtube](https://www.youtube.com/channel/UCWi8GxJoaRnU3lcqQIRbuzg/videos)\\n\\n[Instagram](https://www.instagram.com/yaskawa_india/)\\n\\n## Enquire Now\\n\\nProduct of Interest AC Inverter Drives AC Servo Drives Medium Voltage AC Drives Machine Controllers Industrial Robots Welding Packages System Engineering Spare Parts Sales Repair, overhaul, Renewal\\nUpgrading Maintenance & Inspection Training\\n\\nSUBMIT\\n\\n## Please fill the form to download file.\\n\\nSUBMIT\\n\\n# AC Servo Drives\\n\\n### \u03a3-7 Servo\\n\\n### \u03a3-7C Servo Series\\n\\n### \u03a3-V Servo Series\\n\\n#### Corporate and Registered Office\\n\\nYASKAWA India Pvt Ltd.  \\n\\\\/A, 2nd Main, Electronic City, Phase \u2013 I, Hosur Road,  \\nBengaluru \u2013 560 100, India\\n\\n#### Call Us\\n\\n\\\\+91 80 4244 1900\\n\\n#### Email Us\\n\\nFor General Info: info@yaskawa.in  \\nFor Careers: careers@yaskawa.in\\n* [Apuestas Luckia: Donde los Sue\u00f1os se Hacen Realidad](https://www.yaskawaindia.in/apuestas-luckia-donde-los.html)\\n* [Apuestas Playdoit en M\u00e9xico: \u00a1Donde la Elegancia y la Emoci\u00f3n se Encuentran!](https://www.yaskawaindia.in/apuestas-playdoit-en-mexico.html)\\n* [Apuestas Wplay en Colombia: Donde la Estrategia se Encuentra con la Suerte!](https://www.yaskawaindia.in/apuestas-wplay-en-colombia.html)\\n* [Captain Cooks Casino: The Ultimate Gaming Expedition!](https://www.yaskawaindia.in/captain-cooks-casino-the.html)\\n* [Ghidul Complet pentru Jocurile de Cazino Online din Rom\u00e2nia](https://www.yaskawaindia.in/ghidul-complet-pentru-jocurile.html)\\n* [Harness the Power of the Planets at Zodiac Casino in Canada!](https://www.yaskawaindia.in/harness-the-power-of.html)\\n* [Pin Up Casino India: The Ultimate Destination for Casino Lovers](https://www.yaskawaindia.in/pin-up-casino-india.html)\\n* [Thrills of the Race: India's Top Horse Racing Betting Sites](https://www.yaskawaindia.in/thrills-of-the-race.\\nhtml)\"], publish_date=None, title='Ac Servo Drive Manufacturers in India - Yaskawa')"
+    },
+    {
+      "title": "Top 7 Servo Motor Manufacturers In India - Radin",
+      "url": "https://www.rdncontrols.com/servo-motor-manufacturers-in-india/",
+      "excerpt": "WebSearchResult(url='https://www.rdncontrols.com/servo-motor-manufacturers-in-india/', excerpts=['Aug 10, 2025 \u2014 Top 7 Servo Motor Manufacturers in India \u00b7 1. Siemens Limited \u00b7 2. Mitsubishi Electric India \u00b7 3. ABB India \u00b7 4. Yaskawa India \u00b7 5. Delta'], publish_date=None, title='Top 7 Servo Motor Manufacturers In India - Radin')"
+    },
+    {
+      "title": "Top 10 Servo Drive Manufacturers Brands in The World - Blog - News - Tonghang E-Drive",
+      "url": "https://www.thservodrive.com/news/top-10-servo-drive-manufacturers-brands-in-the-85227288.html",
+      "excerpt": "WebSearchResult(url='https://www.thservodrive.com/news/top-10-servo-drive-manufacturers-brands-in-the-85227288.html', excerpts=['News\\n\\n[Home](https://www.thservodrive.com/ \"Home\") / [News](https://www.thservodrive.com/newslist-1) / Content\\n\\nNews Center\\n\\n* [What Are The Differences in Usage Between Stepper Motors And Servo Motors? Jan 28, 2026](https://www.thservodrive.com/news/what-are-the-differences-in-usage-between-step-85410651.html)\\n* [Top 10 Famous Servo Drive Brands, Which Is The Best? Jan 28, 2026](https://www.thservodrive.com/news/top-10-famous-servo-drive-brands-which-is-the-85410641.html)\\n* [Top 10 Famous Servo Motor Brands, Which Is The Best? Jan 28, 2026](https://www.thservodrive.com/news/top-10-famous-servo-motor-brands-which-is-the-85410627.html)\\n\\nHot Products\\n\\n[](https://www.thservodrive.com/high-speed-door-servo-motor-controller/high-speed-door-servo-system/high-speed-door-inverter-servo-system.html \"High Speed Door Inverter Servo System\") [High Speed Door Inverter Servo System](https://www.thservodrive.\\ncom/high-speed-door-servo-motor-controller/high-speed-door-servo-system/high-speed-door-inverter-servo-system.html)\\n\\n[](https://www.thservodrive.com/high-speed-door-servo-motor-controller/high-speed-door-servo-system/high-speed-door-control-system.html \"High Speed Door Control System\") [High Speed Door Control System](https://www.thservodrive.com/high-speed-door-servo-motor-controller/high-speed-door-servo-system/high-speed-door-control-system.html)\\n\\n[](https://www.thservodrive.com/high-speed-door-servo-motor-controller/high-speed-door-servo-system/automatic-fast-door-servo-drive.html \"Automatic Fast Door Servo Drive\") [Automatic Fast Door Servo Drive](https://www.thservodrive.com/high-speed-door-servo-motor-controller/high-speed-door-servo-system/automatic-fast-door-servo-drive.html)\\n\\nSend Message\\n\\n# Top 10 Servo Drive Manufacturers Brands in The World\\n\\nSep 16, 2025 Leave a message\\n ... \\nProtection module: Monitors abnormal conditions such as overvoltage, undervoltage, overcurrent, overload, overheating, motor failure, etc., and cuts off the output in time to protect the driver and motor.\\n\\nFeedback processing module: Receives the feedback signal (position, speed information) from the motor encoder, converts it into a digital signal and transmits it to the control module for closed-loop regulation.\\n\\n**Closed-loop control process**\\n\\n* * *\\n\\nCommand input: The upper controller sends the target position/speed/torque command (such as the number of pulses corresponding to the position, and the analog voltage corresponding to the speed).\\n\\nFeedback acquisition: The encoder built into the servo motor detects the current position/speed in real time and transmits the signal back to the driver.\\nDeviation calculation: The control module compares the \"target command\" with the \"feedback signal\" and calculates the deviation value (such as position deviation = target position - current position).\\n\\nControl adjustment: The deviation is processed through algorithms such as PID (proportional-integral-differential), and a control signal is generated (such as adjusting the output current) to drive the motor to move in the direction of \"eliminating the deviation\".\\n\\nDynamic correction: Repeat the \"feedback-calculation-adjustment\" process until the deviation is reduced to the allowable range (usually micrometers or even nanometers) to achieve high-precision control.\\n\\n**List of 10 servo drive manufacturers**  \\n\\\\*Ranking in no particular order\\n\\n* ### Zhejiang Tonghang E-Drive Technology Co., Ltd Manufacturer  \\n  [Servo Drives and Electronics](https://www.tonghangedrive.com/products)\\n\\n* + [Website](https://www.tonghangedrive.com/)\\n    + Hangzhou, China\\n    + [Company Profile](https://www.\\ntonghangedrive.com/about-us)\\n\\n* Address: Building 3, No. 398 Hanghai Road, Yuyue Town, Deqing County, Huzhou City, Zhejiang Province, China\\n\\n#### Manufacturer Overview\\n\\nZhejiang (Hangzhou) Tonghang Electric Drive Technology Co., Ltd. is a national high-tech enterprise established in 2017, integrating R&D, production, sales and after-sales services. It mainly produces T3M/T3G, T3C and other series of servo drives. Its products have obtained international certifications such as CE, UL, RoHS, etc., and are used in many industries and exported to Germany, Russia, India and other countries. The company has nearly 5,000 square meters of modern clean workshops, providing OEM/ODM customization services, and can customize technical parameters and functional modules on demand. With sales of nearly 200 million yuan at the end of 2023, it has firmly ranked at the forefront of the electric drive field with its technical team and innovation capabilities.\\n\\n* ### Amk Manufacturer'], publish_date='2025-09-16', title='Top 10 Servo Drive Manufacturers Brands in The World - Blog - News - Tonghang E-Drive')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 6) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

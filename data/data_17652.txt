@@ -1,0 +1,3369 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 17652,
+        "mcat_name": "Network Switch",
+        "current_specs": [
+            {
+                "spec_name": "Switch Type",
+                "options": [
+                    "Unmanaged",
+                    "Smart Managed",
+                    "Managed",
+                    "Cloud Managed",
+                    "Industrial"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Total Ports",
+                "options": [
+                    "5 Ports",
+                    "8 Ports",
+                    "12 Ports",
+                    "16 Ports",
+                    "24 Ports",
+                    "28 Ports",
+                    "32 Ports",
+                    "48 Ports",
+                    "52 Ports",
+                    "More Than 52 Ports"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "PoE Support",
+                "options": [
+                    "Non PoE",
+                    "PoE",
+                    "PoE+",
+                    "PoE++",
+                    "UPoE"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Port Speed",
+                "options": [
+                    "10/100 Mbps",
+                    "10/100/1000 Mbps",
+                    "1 Gbps",
+                    "2.5 Gbps",
+                    "10 Gbps",
+                    "25 Gbps",
+                    "40 Gbps",
+                    "100 Gbps"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Layer",
+                "options": [
+                    "Layer 2",
+                    "Layer 3",
+                    "Layer 2+",
+                    "Layer 3+",
+                    "Layer 4"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "Cisco",
+                    "HP",
+                    "Aruba",
+                    "D-Link",
+                    "TP-Link",
+                    "Netgear",
+                    "Mikrotik",
+                    "Hikvision",
+                    "Tenda",
+                    "CP Plus"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Mounting Type",
+                "options": [
+                    "Desktop",
+                    "Rack Mount",
+                    "Wall Mount",
+                    "DIN Rail"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Uplink Ports",
+                "options": [
+                    "No Uplink Port",
+                    "2 SFP Ports",
+                    "4 SFP Ports",
+                    "2 SFP+ Ports",
+                    "4 SFP+ Ports",
+                    "2 QSFP+ Ports"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Fanless Design",
+                "options": [
+                    "Fanless",
+                    "With Fan"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Warranty",
+                "options": [
+                    "1 Year",
+                    "2 Year",
+                    "3 Year",
+                    "5 Year",
+                    "Lifetime"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Network Switch",
+            "mcat_id": 17652,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Switch Type",
+                            "options": [
+                                "Unmanaged",
+                                "Smart Managed",
+                                "Managed",
+                                "Cloud Managed",
+                                "Industrial"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Total Ports",
+                            "options": [
+                                "5 Ports",
+                                "8 Ports",
+                                "12 Ports",
+                                "16 Ports",
+                                "24 Ports",
+                                "28 Ports",
+                                "32 Ports",
+                                "48 Ports",
+                                "52 Ports",
+                                "More Than 52 Ports"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "PoE Support",
+                            "options": [
+                                "Non PoE",
+                                "PoE",
+                                "PoE+",
+                                "PoE++",
+                                "UPoE"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Port Speed",
+                            "options": [
+                                "10/100 Mbps",
+                                "10/100/1000 Mbps",
+                                "1 Gbps",
+                                "2.5 Gbps",
+                                "10 Gbps",
+                                "25 Gbps",
+                                "40 Gbps",
+                                "100 Gbps"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Layer",
+                            "options": [
+                                "Layer 2",
+                                "Layer 3",
+                                "Layer 2+",
+                                "Layer 3+",
+                                "Layer 4"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "Cisco",
+                                "HP",
+                                "Aruba",
+                                "D-Link",
+                                "TP-Link",
+                                "Netgear",
+                                "Mikrotik",
+                                "Hikvision",
+                                "Tenda",
+                                "CP Plus"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Mounting Type",
+                            "options": [
+                                "Desktop",
+                                "Rack Mount",
+                                "Wall Mount",
+                                "DIN Rail"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Uplink Ports",
+                            "options": [
+                                "No Uplink Port",
+                                "2 SFP Ports",
+                                "4 SFP Ports",
+                                "2 SFP+ Ports",
+                                "4 SFP+ Ports",
+                                "2 QSFP+ Ports"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Fanless Design",
+                            "options": [
+                                "Fanless",
+                                "With Fan"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Warranty",
+                            "options": [
+                                "1 Year",
+                                "2 Year",
+                                "3 Year",
+                                "5 Year",
+                                "Lifetime"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Application",
+            "option_value": "CCTV",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Camera surveillance",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Cameras",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Data Earth",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Data Networking",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Industrial",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Industrial/Commercial",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Internet supply",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Moving vehicle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Project purpose",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Rugged",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Server / CCTV surveillance",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Storage Server",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Band Type",
+            "option_value": "Dual Band",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "A-Top",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Alcatel Lucent",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Allen-Bradley",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Arista",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Aruba",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "CP Plus",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Cisco",
+            "prod_count": 60
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "D-Link",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dahua",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Digisol",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Exchron",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Extreme Networks",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Fortinet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Hirschmann",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Huawei",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Juniper",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Maipu",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mercusys",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Netgear",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Optilink",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Palo Alto",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Phoenix Contact",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Siemens",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Syrotech",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "TP-Link",
+            "prod_count": 38
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Tejas",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ubiquiti",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Vertiv",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Grey",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component Type",
+            "option_value": "Power Supply",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component Type",
+            "option_value": "Supervisor Module",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Concurrent Users",
+            "option_value": "100-150",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "New",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Refurbished",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Used",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Configuration",
+            "option_value": "Fully Loaded",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Connectivity Support",
+            "option_value": "WiFi connection, IP phone",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Current",
+            "option_value": "1 A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Expansion Slots",
+            "option_value": "2 SFP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "MPLS Switch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "With SFP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form Factor",
+            "option_value": "DIN Rail Mount",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form Factor",
+            "option_value": "Desktop",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Form Factor",
+            "option_value": "Desktop/Rackmount",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Form Factor",
+            "option_value": "Rack Mount",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Function",
+            "option_value": "Firewall come router",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "Industrial",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Input Voltage",
+            "option_value": "110-220 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Interface",
+            "option_value": "Ethernet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Interface",
+            "option_value": "Full SFP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Interface",
+            "option_value": "RJ45",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "License Type",
+            "option_value": "L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "License Validity",
+            "option_value": "3-5 Years",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Management Type",
+            "option_value": "Intelligent Ethernet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Management Type",
+            "option_value": "Managed",
+            "prod_count": 28
+        },
+        {
+            "spec_name": "Management Type",
+            "option_value": "Server Switch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Management Type",
+            "option_value": "Unmanaged",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Management Type",
+            "option_value": "Unmanaged Pro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Metal Body",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1005 N",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1008",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "10089",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1016M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1218 MPE",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1300-8PE",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "1400P M3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "200 XT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "2960S-24TS-L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "2960X",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "305 CM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "6860 P24",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "7060",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "7280",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "9310-80C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "Any",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C-9300L-24T-4G-E",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C1000-24-4GL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C1000-24T-4G-L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C1300",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C1300-08P",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C1300-08T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C1300-24P-4G",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C1300-48P-4X",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C1300-48T-4X",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C1300-8P-E-2G",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C1332-24PG",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C39200-24P-E",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C9200",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "C9200L-24P-4G-E",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "CBS 250",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "CBS 350",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "CBS 350 24T 4G",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "CBS 350-24T-4X",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "CE6851-48S60-HI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "Catalyst 2960",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "Catalyst 9200L",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DG-GS4628E2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DH-PFS3009",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "DHI-PFS3010-8GT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "Deco X50",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "ES-10XP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "EX3300-24P",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "EX4200",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "EX4650-32F",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "LS1008G",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "LS108GP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "MDS 9710",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "NPS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "RMC 40",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "RS 900G Ruggedcom",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "RS20",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "RSG2100",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "RX 1400",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "Rugged",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S3330",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S5700-28X-LI-24S",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S5700-AC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S5720",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S5735",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S6400",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S6720",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S6720-26Q-LI-24S-AC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S6730",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S6730-H24",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S6730-H24X6C",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S6730-H48X6C",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "S6735-L8T4X-V2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SG100-16",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SG105S",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SG108PE",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SG300",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SG350",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SG95-24",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SPD POE 1000E",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "SX 3008M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TJ1400P",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TL-SG1016",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TL-SG1024",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TL-SG108E",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TL-SG1210P",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TL-SG2100P",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TL-SG3452",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TL-SG3452X",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TL-SL1218MP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "TL-SX1008",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "WS-C2960X-48FPD-L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model Number",
+            "option_value": "WS-C3850-48T",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model Scale",
+            "option_value": "Big models",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Network Speed",
+            "option_value": "1 Gbps",
+            "prod_count": 31
+        },
+        {
+            "spec_name": "Network Speed",
+            "option_value": "10 Gbps",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Network Speed",
+            "option_value": "10/100 Mbps",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Network Speed",
+            "option_value": "10/100/1000 Mbps",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Network Speed",
+            "option_value": "100 Gbps",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Network Speed",
+            "option_value": "100/1000 Mbps",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Network Speed",
+            "option_value": "1000 Mbps",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Network Speed",
+            "option_value": "2.5 Gbps",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Network Speed",
+            "option_value": "Ethernet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Network Technology",
+            "option_value": "EPON",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Network Technology",
+            "option_value": "Ethernet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Network Technology",
+            "option_value": "FL Switch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Network Technology",
+            "option_value": "Optical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Network Type",
+            "option_value": "LAN & MAN",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "10 Ports",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "12 Ports",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "14 Ports",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "16 Ports",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "18 Ports",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "2 Ports",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "24 Ports",
+            "prod_count": 49
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "28 Ports",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "32 Ports",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "4 Ports",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "48 Ports",
+            "prod_count": 25
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "5 Ports",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "8 Ports",
+            "prod_count": 39
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "8 and above",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "8+2 Ports",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Number of Ports",
+            "option_value": "9 Ports",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of SFP Slots",
+            "option_value": "8 Slots",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operational Status",
+            "option_value": "Working condition",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Origin Preference",
+            "option_value": "Non-Chinese",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging",
+            "option_value": "Open Box",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging",
+            "option_value": "Single Piece",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "PoE Ports",
+            "option_value": "16 Ports",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "PoE Ports",
+            "option_value": "4 Ports",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "PoE Ports",
+            "option_value": "8 Ports",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "PoE Power Budget",
+            "option_value": "195 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "PoE Power Budget",
+            "option_value": "370 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "PoE Power Budget",
+            "option_value": "64 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "PoE Standard",
+            "option_value": "PoE+",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "PoE Support",
+            "option_value": "Non-PoE",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "PoE Support",
+            "option_value": "PoE",
+            "prod_count": 34
+        },
+        {
+            "spec_name": "PoE Support",
+            "option_value": "PoE+",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "PoE Type",
+            "option_value": "PoE++",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Port Configuration",
+            "option_value": "24 x 10G and 6 x 100G",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Port Configuration",
+            "option_value": "4 x 10G",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Port Configuration",
+            "option_value": "48 x 10G and 6 x 100G",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Port Configuration",
+            "option_value": "In and Out",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Port Type",
+            "option_value": "10G SFP+",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Port Type",
+            "option_value": "SFP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Port Type",
+            "option_value": "T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "24 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Output per Port",
+            "option_value": "40-50 W",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Version",
+            "option_value": "Old Model",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purchase Date",
+            "option_value": "10 August 2024",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Role",
+            "option_value": "Replacement Model",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Route Support",
+            "option_value": "16000",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "SFP Support",
+            "option_value": "No",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "SFP Support",
+            "option_value": "With SFP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "1000 Series",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "1300",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "350",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "9000 Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "9200",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "9300",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "C1000",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "C9200L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "CBS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "CBS 350",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Catalyst",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Catalyst 4500-X",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "JetStream",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Liebert",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "M2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Omni Switch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "RuggedCom",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "S6700",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "S6700-EI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "SF300",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "SL Switch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Software License",
+            "option_value": "LAN Base",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Source",
+            "option_value": "Bank",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Switch Type",
+            "option_value": "LAN Hub",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Switch Type",
+            "option_value": "LAN Switch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Switch Type",
+            "option_value": "Network Power Switch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Switch Type",
+            "option_value": "Optical Switch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Switching Layer",
+            "option_value": "Layer 2",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Switching Layer",
+            "option_value": "Layer 2/3",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Switching Layer",
+            "option_value": "Layer 3",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Uplink Configuration",
+            "option_value": "4 SFP+",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Uplink Configuration",
+            "option_value": "4G",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "option_value": "2 Ports",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "option_value": "4 Ports",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "option_value": "6 Ports",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Uplink Specification",
+            "option_value": "1 Gbps",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Uplink Specification",
+            "option_value": "10 Gbps",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Uplink Specification",
+            "option_value": "4 Gbps",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Uplink Specification",
+            "option_value": "40/100 Gbps",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Voltage",
+            "option_value": "24 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Voltage",
+            "option_value": "9 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "2 years",
+            "prod_count": 2
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Availability",
+            "option_value": "In Stock"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Ideal For",
+            "option_value": "Small & Mid-Size Businesses, Branch Offices, Retail Outlets"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Model",
+            "option_value": "FortiSwitch 110G-FPOE"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Indicators",
+            "option_value": "Power, Link/Act"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Reliability",
+            "option_value": "200,000H"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Power Consumption",
+            "option_value": "10 w"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Weight",
+            "option_value": "700gm"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Interface",
+            "option_value": "8 * 10/100/1000M RJ45 Copper ports"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Service Location",
+            "option_value": "Pan India"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Model Number",
+            "option_value": "DG-FS1008D"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Minimum Order Quantity",
+            "option_value": "1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Delivery Time",
+            "option_value": "5 Days"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Area Network Type",
+            "option_value": "LAN Capable"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Model Name/Number",
+            "option_value": "S5735-L8T4X-A1"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Type of Communication",
+            "option_value": "Wireless Networking"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Display Size",
+            "option_value": "4 inch"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Model No",
+            "option_value": "GS108MX"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Brand",
+            "option_value": "Netgear"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Model Name",
+            "option_value": "CE6850 48S6Q"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Brand",
+            "option_value": "Ubiquiti UniFi"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Brand",
+            "option_value": "Ubiquiti UniFi"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Brand",
+            "option_value": "Ubiquiti UniFi"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Brand",
+            "option_value": "Ubiquiti UniFi"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Brand",
+            "option_value": "Ubiquiti UniFi"
+        },
+        {
+            "mcat_id": "17652",
+            "mcat_name": "Network Switch",
+            "spec_name": "Brand",
+            "option_value": "Ubiquiti UniFi"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "brand",
+            "spec_option": "bdcom",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "brand",
+            "spec_option": "huawei",
+            "impression": "238"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "brand",
+            "spec_option": "ridex",
+            "impression": "31"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "brand",
+            "spec_option": "san",
+            "impression": "22"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "condition",
+            "spec_option": "second hand",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "condition",
+            "spec_option": "used",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "device type",
+            "spec_option": "sfp switch",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "device type",
+            "spec_option": "switch",
+            "impression": "1800"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "model name/number",
+            "spec_option": "1008 n",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "model name/number",
+            "spec_option": "l2",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "model name/number",
+            "spec_option": "l3",
+            "impression": "61"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "model name/number",
+            "spec_option": "s16",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "ports",
+            "spec_option": "16",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "ports",
+            "spec_option": "24",
+            "impression": "192"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "ports",
+            "spec_option": "32",
+            "impression": "27"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "ports",
+            "spec_option": "4",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "ports",
+            "spec_option": "48",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "ports",
+            "spec_option": "5",
+            "impression": "131"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "ports",
+            "spec_option": "64",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Network Switch",
+            "spec_name": "ports",
+            "spec_option": "8",
+            "impression": "160"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "",
+            "spec_fill_rate": "65.7",
+            "product_count": "23"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_fill_rate": "37.1",
+            "product_count": "13"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_fill_rate": "34.3",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_fill_rate": "34.3",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_fill_rate": "34.3",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "28.6",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Layer",
+            "spec_fill_rate": "28.6",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_fill_rate": "25.7",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "spec_fill_rate": "17.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Fanless Design",
+            "spec_fill_rate": "17.1",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_fill_rate": "11.4",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_fill_rate": "5.7",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Operating Temperature",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Redundancy Features",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "pH Range",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Placement",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Power input",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Added Nutrients",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Seaweed Type",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Model",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Product line",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Switch Speed",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Number of Ports",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "MAKE",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Fiber Ports",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Protection Rating",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Form",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Seaweed Content",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Organic Certification",
+            "spec_fill_rate": "2.9",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Redundancy Features",
+            "spec_option_name": "Dual Power Input",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "pH Range",
+            "spec_option_name": "5Ã¢â¬â6",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Service Location",
+            "spec_option_name": "Pan India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "PVC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "700gm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Minimum Order Quantity",
+            "spec_option_name": "1",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Seaweed Content",
+            "spec_option_name": "5%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "MS116T",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "Small & Mid-Size Businesses, Branch Offices, Retail Outlets",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Connectivity Technology",
+            "spec_option_name": "AC Power",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Area Network Type",
+            "spec_option_name": "LAN Capable",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Switching Capacity",
+            "spec_option_name": "144 GBPS",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1 L",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "Rack mount",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "MAKE",
+            "spec_option_name": "SAN Telequip",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Operating Temperature",
+            "spec_option_name": "-40Ã¢â¬â85ÃÂ°C",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Primary Port Type",
+            "spec_option_name": "Gigabit",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Management",
+            "spec_option_name": "Cloud",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Frequency",
+            "spec_option_name": "24 100/1000BASE-X Ports",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Switch Capacity",
+            "spec_option_name": "Up To 128 Gbps",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Uplink",
+            "spec_option_name": "6 SFP PORT",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product line",
+            "spec_option_name": "UniFi Switch",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Protection Rating",
+            "spec_option_name": "IP40",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Stacking Support",
+            "spec_option_name": "No Stacking",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Reliability",
+            "spec_option_name": "200,000H",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Organic Certification",
+            "spec_option_name": "NPOP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Type of Communication",
+            "spec_option_name": "Wireless Networking",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Delivery Time",
+            "spec_option_name": "5 Days",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Number of Ports",
+            "spec_option_name": "12 Ports",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Seaweed Type",
+            "spec_option_name": "Mixed species",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "LED Indicator",
+            "spec_option_name": "Required",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fiber Ports",
+            "spec_option_name": "No Fiber Port",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model Number",
+            "spec_option_name": "DG-FS1008D",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "0.5 hp",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Indicators",
+            "spec_option_name": "Power, Link/Act",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "S5735-L8T4X-A1",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power input",
+            "spec_option_name": "100-240 V AC",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Availability",
+            "spec_option_name": "In Stock",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power Consumption",
+            "spec_option_name": "10 w",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Added Nutrients",
+            "spec_option_name": "NPK + micronutrients",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Housing Material",
+            "spec_option_name": "Metal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Display Size",
+            "spec_option_name": "4 inch",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Placement",
+            "spec_option_name": "Rackmount",
+            "option_fill_rate": "85.7"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Rack Mount",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Switch Mounting",
+            "spec_option_name": "1U Rack",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Speed rating",
+            "spec_option_name": "10 Gbps",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Fanless Design",
+            "spec_option_name": "With Fan",
+            "option_fill_rate": "64.3"
+        },
+        {
+            "spec_name": "Interface",
+            "spec_option_name": "4 port 10 GE SFP+ port",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Black",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Grey",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Interface",
+            "spec_option_name": "8 * 10/100/1000M RJ45 Copper ports",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Managed",
+            "option_fill_rate": "48.6"
+        },
+        {
+            "spec_name": "Layer",
+            "spec_option_name": "Layer 3",
+            "option_fill_rate": "36.4"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_option_name": "PoE",
+            "option_fill_rate": "35.8"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "1 Year",
+            "option_fill_rate": "35.3"
+        },
+        {
+            "spec_name": "Speed rating",
+            "spec_option_name": "52Gbps",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_option_name": "Non PoE",
+            "option_fill_rate": "32.8"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_option_name": "10/100/1000 Mbps",
+            "option_fill_rate": "32.5"
+        },
+        {
+            "spec_name": "Switch Speed",
+            "spec_option_name": "10 Gbps",
+            "option_fill_rate": "27.3"
+        },
+        {
+            "spec_name": "Switch Mounting",
+            "spec_option_name": "Table Top",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Layer",
+            "spec_option_name": "Layer 2",
+            "option_fill_rate": "24.2"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "5 Year",
+            "option_fill_rate": "23.5"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_option_name": "10 Gbps",
+            "option_fill_rate": "22.5"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Unmanaged",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "spec_option_name": "4 SFP+ Ports",
+            "option_fill_rate": "21.4"
+        },
+        {
+            "spec_name": "Fanless Design",
+            "spec_option_name": "Fanless",
+            "option_fill_rate": "21.4"
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "spec_option_name": "2 SFP Ports",
+            "option_fill_rate": "21.4"
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "spec_option_name": "4 SFP Ports",
+            "option_fill_rate": "21.4"
+        },
+        {
+            "spec_name": "Layer",
+            "spec_option_name": "Layer 2+",
+            "option_fill_rate": "21.2"
+        },
+        {
+            "spec_name": "Switch Speed",
+            "spec_option_name": "10/100/1000 Mbps",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "2 Year",
+            "option_fill_rate": "17.6"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "Lifetime",
+            "option_fill_rate": "17.6"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Desktop",
+            "option_fill_rate": "15.6"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "24 Ports",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "8 Ports",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "32 Ports",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Smart Managed",
+            "option_fill_rate": "15.3"
+        },
+        {
+            "spec_name": "Placement",
+            "spec_option_name": "DIN Rail",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "5 Ports",
+            "option_fill_rate": "13.8"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "48 Ports",
+            "option_fill_rate": "13.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Huawei",
+            "option_fill_rate": "12.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Cisco",
+            "option_fill_rate": "12.8"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "USW-Pro-48",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "ECS Aggregation",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "USW-Aggregation",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "USW-48",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "USW-Pro-Aggregation",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "48 Port",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "48 port",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "USW Pro XG 24",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "24 Port",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "FortiSwitch 110G-FPOE",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "USW Pro XG 48",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "spec_option_name": "4 SFP+",
+            "option_fill_rate": "10.7"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_option_name": "10/100 Mbps",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Switch Speed",
+            "spec_option_name": "10 Gbps Uplink",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Switch Speed",
+            "spec_option_name": "645 Tbps/1,935 Tbps",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Switch Speed",
+            "spec_option_name": "100Mbps, 1Gbps, or 2.5Gbps",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Switch Speed",
+            "spec_option_name": "10/100 Mbps",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Layer",
+            "spec_option_name": "Layer 3+",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Switch Speed",
+            "spec_option_name": "100 mbps",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Switch Speed",
+            "spec_option_name": "2.5 Gbps",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_option_name": "PoE++",
+            "option_fill_rate": "9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Ubiquiti UniFi",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Grandstream",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_option_name": "2.5 Gbps",
+            "option_fill_rate": "7.5"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_option_name": "25 Gbps",
+            "option_fill_rate": "7.5"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_option_name": "PoE+",
+            "option_fill_rate": "7.5"
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "spec_option_name": "No Uplink Port",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Fanless Design",
+            "spec_option_name": "No",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Fanless Design",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "spec_option_name": "2 QSFP+ Ports",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "DIN Rail",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "4 port",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "8 Port",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "12 Port",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "32 Port",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "4 Port",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "5 or 8 RJ45 ports",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "54 port",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "16 port",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "100EG-400GE Ports",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Ports",
+            "spec_option_name": "8 port",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "More Than 52 Ports",
+            "option_fill_rate": "6.2"
+        },
+        {
+            "spec_name": "Layer",
+            "spec_option_name": "all",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "3 Year",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Cloud Managed",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "TP-Link",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Rikom",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "greandstream",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Netgear",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_option_name": "1 Gbps",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_option_name": "100 Gbps",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "16 Ports",
+            "option_fill_rate": "4.6"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "28 Ports",
+            "option_fill_rate": "4.6"
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "spec_option_name": "4 Uplink Ports",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "spec_option_name": "None",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Uplink Ports",
+            "spec_option_name": "2 SFP+ Ports",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Wall Mount",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "all",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Layer",
+            "spec_option_name": "layer 2,layer 3",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_option_name": "No PoE",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_option_name": "PoE/PoE+",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_option_name": "all",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Xstream",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "D-Link",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "grandstream",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Ruckus",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Digisol",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SIEMENS",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "all",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "ODOT",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Ubiqquiti UniFi",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "HP",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Grand Stream",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Arista",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "taltonica",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "All",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "ARISTA",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_option_name": "all",
+            "option_fill_rate": "2.5"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_option_name": "40 Gbps",
+            "option_fill_rate": "2.5"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_option_name": "10G SFP+25G SFP28",
+            "option_fill_rate": "2.5"
+        },
+        {
+            "spec_name": "Port Speed",
+            "spec_option_name": "1020 Gbps",
+            "option_fill_rate": "2.5"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "10 Ports",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "64 Ports 100G",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_option_name": "PoE/PoE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_option_name": "PoE and Non PoE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_option_name": "All",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "52 Ports",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "5-48 Ports",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "PoE Support",
+            "spec_option_name": "UPoE",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Total Ports",
+            "spec_option_name": "All",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "L2 Managed",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "L3 Managed",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Ethernet switch",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "MAnaged and Un managed both",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "all",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "1.4"
+        }
+    ]
+}

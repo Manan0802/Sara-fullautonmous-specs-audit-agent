@@ -1,0 +1,155 @@
+{
+  "pmcat_id": 1056,
+  "pmcat_name": "Air Compressor",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Reciprocating Air Compressor",
+      "mcat_id": 18504,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Motor Power (HP)",
+              "options": [
+                "0.5 HP",
+                "1 HP",
+                "1.5 HP",
+                "2 HP",
+                "3 HP",
+                "5 HP",
+                "7.5 HP",
+                "10 HP",
+                "15 HP",
+                "20 HP",
+                "25 HP"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Tank Capacity (L)",
+              "options": [
+                "40 L",
+                "50 L",
+                "90 L",
+                "100 L",
+                "110 L",
+                "135 L",
+                "150 L",
+                "155 L",
+                "160 L",
+                "220 L",
+                "250 L",
+                "300 L",
+                "500 L"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Brand",
+              "options": [
+                "ELGI",
+                "Ingersoll Rand",
+                "Atlas Copco",
+                "Kirloskar",
+                "FS-Curtis",
+                "Airotic",
+                "Frank",
+                "Kaeser",
+                "Comptech",
+                "Airmake",
+                "Adarsh",
+                "Airwing",
+                "Best",
+                "Betali"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Maximum Pressure (bar)",
+              "options": [
+                "7 bar (100 psi)",
+                "8 bar (116 psi)",
+                "10 bar (145 psi)",
+                "12 bar (175 psi)",
+                "12.5 bar",
+                "30 bar (435 psi)",
+                "35 bar (500 psi)"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Number of Stages",
+              "options": [
+                "Single Stage",
+                "Two Stage",
+                "Three Stage",
+                "Multi Stage"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Air Delivery (CFM)",
+              "options": [
+                "5 CFM",
+                "8 CFM",
+                "9 CFM",
+                "12 CFM",
+                "15 CFM",
+                "20 CFM",
+                "21 CFM",
+                "30 CFM",
+                "40 CFM",
+                "50 CFM",
+                "60 CFM"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Lubrication Type",
+              "options": [
+                "Oil Lubricated",
+                "Oil-Free"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Motor Phase",
+              "options": [
+                "Single Phase",
+                "Three Phase"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Portability",
+              "options": [
+                "Portable",
+                "Stationary"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Number of Cylinders",
+              "options": [
+                "Single Cylinder",
+                "Two Cylinder",
+                "Three Cylinder"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

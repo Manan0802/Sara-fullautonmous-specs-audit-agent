@@ -1,0 +1,2612 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 18504,
+        "mcat_name": "Reciprocating Air Compressor",
+        "current_specs": [
+            {
+                "spec_name": "Motor Power",
+                "options": [
+                    "2 HP",
+                    "3 HP",
+                    "5 HP",
+                    "1 HP",
+                    "7.5 HP",
+                    "10 HP",
+                    "15 HP",
+                    "0.5 HP",
+                    "20 HP",
+                    "25 HP"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Tank Capacity",
+                "options": [
+                    "160 L",
+                    "220 L",
+                    "100 L",
+                    "300 L",
+                    "500 L",
+                    "50 L",
+                    "90 L",
+                    "150 L",
+                    "40 L",
+                    "250 L"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Maximum Pressure",
+                "options": [
+                    "8 bar (116 psi)",
+                    "12 bar (175 psi)",
+                    "10 bar (145 psi)",
+                    "7 bar (100 psi)",
+                    "30 bar (435 psi)",
+                    "35 bar (500 psi)"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Air Delivery (FAD)",
+                "options": [
+                    "9 CFM",
+                    "15 CFM",
+                    "5 CFM",
+                    "21 CFM",
+                    "30 CFM",
+                    "40 CFM",
+                    "50 CFM",
+                    "60 CFM"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Number of Stages",
+                "options": [
+                    "Single Stage",
+                    "Two Stage",
+                    "Multi Stage"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Lubrication Type",
+                "options": [
+                    "Oil Lubricated",
+                    "Oil-Free"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Motor Phase",
+                "options": [
+                    "Single Phase",
+                    "Three Phase"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "ELGI",
+                    "Ingersoll Rand",
+                    "Atlas Copco",
+                    "Kirloskar",
+                    "Frank",
+                    "FS-Curtis",
+                    "Comptech",
+                    "Adarsh",
+                    "Kaeser",
+                    "Airmake"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Portability",
+                "options": [
+                    "Portable",
+                    "Stationary"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Reciprocating Air Compressor",
+            "mcat_id": 18504,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Motor Power",
+                            "options": [
+                                "2 HP",
+                                "3 HP",
+                                "5 HP",
+                                "1 HP",
+                                "7.5 HP",
+                                "10 HP",
+                                "15 HP",
+                                "0.5 HP",
+                                "20 HP",
+                                "25 HP"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "2"
+                        },
+                        {
+                            "spec_name": "Tank Capacity",
+                            "options": [
+                                "160 L",
+                                "220 L",
+                                "100 L",
+                                "300 L",
+                                "500 L",
+                                "50 L",
+                                "90 L",
+                                "150 L",
+                                "40 L",
+                                "250 L"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "2"
+                        }
+                    ],
+                    "scratchpad": "Motor Power (HP) and Tank Capacity (Liters) are the first two questions buyers ask, determining the compressor's size, price, and suitability for an application. They are set as Suffix with affix presence '2' to create titles like '... 5 HP 220 L'."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Maximum Pressure",
+                            "options": [
+                                "8 bar (116 psi)",
+                                "12 bar (175 psi)",
+                                "10 bar (145 psi)",
+                                "7 bar (100 psi)",
+                                "30 bar (435 psi)",
+                                "35 bar (500 psi)"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Air Delivery (FAD)",
+                            "options": [
+                                "9 CFM",
+                                "15 CFM",
+                                "5 CFM",
+                                "21 CFM",
+                                "30 CFM",
+                                "40 CFM",
+                                "50 CFM",
+                                "60 CFM"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Number of Stages",
+                            "options": [
+                                "Single Stage",
+                                "Two Stage",
+                                "Multi Stage"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "These specs define the core performance. Maximum Pressure is critical for tool compatibility. Air Delivery (CFM) is the true measure of output. Number of Stages is a fundamental design difference that directly impacts pressure capabilities and efficiency."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Lubrication Type",
+                            "options": [
+                                "Oil Lubricated",
+                                "Oil-Free"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Motor Phase",
+                            "options": [
+                                "Single Phase",
+                                "Three Phase"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "ELGI",
+                                "Ingersoll Rand",
+                                "Atlas Copco",
+                                "Kirloskar",
+                                "Frank",
+                                "FS-Curtis",
+                                "Comptech",
+                                "Adarsh",
+                                "Kaeser",
+                                "Airmake"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Portability",
+                            "options": [
+                                "Portable",
+                                "Stationary"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "These specs provide crucial details for final decision-making. Lubrication Type is critical for specific industries like food processing. Motor Phase is a vital installation requirement. Portability distinguishes between workshop and factory models. Brand is a significant factor in B2B purchasing."
+                }
+            },
+            "scratchpad": "The specification tiers are derived from buyer-seller call analysis and seller catalog data. Primary specs (Motor Power, Tank Capacity) are the initial filters for buyers. Secondary specs (Pressure, Air Delivery, Stages) define performance capabilities. Tertiary specs (Lubrication, Phase, Portability, Brand) address specific application needs and user preferences for final selection."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Age",
+            "option_value": "2 year",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Age",
+            "option_value": "3 years",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Age",
+            "option_value": "7 years",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "3 Bores",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Agriculture",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Ball Mill",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Bicycle and Two-wheeler puncture repair",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Borewell",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Cleaning parts",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Cutting Machine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "FFS machines",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Greasing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Painting",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Painting (Duco/PU)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Paper Cup Machines",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Puncture work",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Spray Painting",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Vehicle Servicing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "1000 feet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "1100 feet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "1300 feet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "175 feet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "250 feet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "450 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "520 feet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "600 feet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "600 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "600-600-600 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "600-650 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "700 ft",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "800 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "800-900 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Borewell Depth Capacity",
+            "option_value": "900 feet",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Aerotic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Airwing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Best",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Betali",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Coimbatore Manufacturing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Com-tech",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Delta",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "ELGi",
+            "prod_count": 25
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "FERM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "FS Curtis",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Famous Make",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Gagan",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Gau Cheng",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "HRK Air Compressor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Hans",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Indo Air",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ingersoll Rand",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "JSP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "LG",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "LG (Assembled Parts)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Lakshmi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Lions",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mark",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Maruti",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mepco",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Metro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Neptune",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Orient",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Powerhouse",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Premier",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "R&P Power Tools",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "RIC (Renuka Air Compressors)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Rajdhani",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "SJ",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Simatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Speed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Tecnica",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Tej (Shiva Shakti)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Top Power",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "VLS",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Vitoli",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component Brand",
+            "option_value": "LG",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component Brand",
+            "option_value": "LG Spares",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component Type",
+            "option_value": "Delivery Valve",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compression Stage",
+            "option_value": "Double Stage",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Compression Stage",
+            "option_value": "Single Stage",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compressor Type",
+            "option_value": "Air",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compressor Type",
+            "option_value": "Assembled using LG spares",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compressor Type",
+            "option_value": "Belt Type",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Compressor Type",
+            "option_value": "High Pressure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compressor Type",
+            "option_value": "Oil Type",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Compressor Type",
+            "option_value": "Ordinary",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Compressor Type",
+            "option_value": "Reciprocating",
+            "prod_count": 18
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "New",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Used",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Continuous Operation",
+            "option_value": "4 hours",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Control System",
+            "option_value": "Automatic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Control System",
+            "option_value": "Automatic On/Off",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "American",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Country of Origin",
+            "option_value": "India",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Cylinder Configuration",
+            "option_value": "1 Heads",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cylinder Configuration",
+            "option_value": "3 Cylinders",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Cylinder Configuration",
+            "option_value": "Double Cylinder",
+            "prod_count": 21
+        },
+        {
+            "spec_name": "Cylinder Configuration",
+            "option_value": "One big cylinder and one small cylinder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cylinder Configuration",
+            "option_value": "Single Cylinder",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Drive Type",
+            "option_value": "Belt Driven",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Engine Type",
+            "option_value": "Vikram Engine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "12 CFM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "140 CFM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "20 CFM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "230 LPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "249 LPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "25 CFM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "40 CFM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flow Rate",
+            "option_value": "50 CFM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Form Factor",
+            "option_value": "Portable",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "A CAD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "A-class",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "1 HP",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "1.5 HP",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "10 HP",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "15 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "2 HP",
+            "prod_count": 22
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "2.5 HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "20 HP",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "25 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "3 HP",
+            "prod_count": 26
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "5 HP",
+            "prod_count": 34
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "5 or 3 HP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Horsepower",
+            "option_value": "7.5 HP",
+            "prod_count": 14
+        },
+        {
+            "spec_name": "Hydraulic Pressure",
+            "option_value": "290",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Accessories",
+            "option_value": "Gun",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Accessories",
+            "option_value": "Pressure switch, pipe",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Compressor Unit (Motor not included)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Compressor, Bed, Guard",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Compressor, Bed, Guard, Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Motor and Compressor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Motor and Compressor Machine (Full Set)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Lubrication Type",
+            "option_value": "Oil-based",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "70/50",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "BT 50 MSC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "DT-550",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "KP 140",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "SS 02",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "SS2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TC 500",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TS05 LB",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "TS07LD",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Brand",
+            "option_value": "Crompton",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Motor Brand",
+            "option_value": "Crompton / Bharat Bijlee",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Brand",
+            "option_value": "Crompton/Godrej",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Brand",
+            "option_value": "RK",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Brand",
+            "option_value": "Rajdhani",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Brand",
+            "option_value": "Seller's Brand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Brand",
+            "option_value": "Sudama Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Configuration",
+            "option_value": "Single Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Inclusion",
+            "option_value": "Included",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Motor Inclusion",
+            "option_value": "Without Motor",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Motor Phase",
+            "option_value": "Single Phase",
+            "prod_count": 18
+        },
+        {
+            "spec_name": "Motor Phase",
+            "option_value": "Single Phase or Three Phase",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Phase",
+            "option_value": "Three Phase",
+            "prod_count": 14
+        },
+        {
+            "spec_name": "Motor Winding Material",
+            "option_value": "Copper",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Mounting Location",
+            "option_value": "Above the tank",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Gate Valves",
+            "option_value": "3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Outlets",
+            "option_value": "2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "10 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "10 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "12 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "12.5 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "175 PSI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "20 bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "200 Bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "70 Bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "8 bar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "8.5-9 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operating Pressure",
+            "option_value": "High Pressure",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Operation Type",
+            "option_value": "Automatic",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Piston/Cylinder Size",
+            "option_value": "100-100-100",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Source",
+            "option_value": "Electric",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power Source",
+            "option_value": "Motor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Configuration",
+            "option_value": "Complete Unit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Configuration",
+            "option_value": "Compressor Head Only",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Configuration",
+            "option_value": "Double Head",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "250 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Medium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Size",
+            "option_value": "Small (Chota)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "100 L",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "110 L",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "135 L",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "150 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "155 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "160 L",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "190 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "200 L",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "200 Pound",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "200-250 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "210 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "220 L",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "225 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "25 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "250 L",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "270 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "300 L",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "300 Point",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "400 Pound",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "50 L",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "500 L",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "500 Pound",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "55 L",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "60 L",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "70 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "80 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "option_value": "90 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Wall Thickness",
+            "option_value": "3 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tank Wall Thickness",
+            "option_value": "5 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 year",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "2 years",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "2 Year",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "3 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "6 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "120-150 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "400 kg",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Product Brand",
+            "option_value": "SPS"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "430",
+            "option_value": "6.5 foot height"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Model No/Name",
+            "option_value": "CP 7.5 TS"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Brand Name",
+            "option_value": "Hyco"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Brand Name",
+            "option_value": "Hyco"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Brand Name",
+            "option_value": "Hyco"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Speed",
+            "option_value": "2800 r/min"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Speed",
+            "option_value": "2800 r/min"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Brand",
+            "option_value": "Kaishan"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Series",
+            "option_value": "KA"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Brand",
+            "option_value": "Kaishan"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Series",
+            "option_value": "KB"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Series",
+            "option_value": "KS"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Brand",
+            "option_value": "Kaishan"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Applications",
+            "option_value": "PET Blowing, High Pressure Use"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Product Brand",
+            "option_value": "Airborn Equipment"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Model Number",
+            "option_value": "AB615T"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Speed",
+            "option_value": "900 RPM"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Product Brand",
+            "option_value": "Airborn Equipment"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Model Number",
+            "option_value": "AB101 10 HP"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Applications",
+            "option_value": "PET Blowing, High Pressure Use"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Model Number",
+            "option_value": "AB671T2"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Speed",
+            "option_value": "750 RPM"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Product Brand",
+            "option_value": "Airborn Equipment"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Voltage",
+            "option_value": "415V"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Brand Name",
+            "option_value": "JSK"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Brand Name",
+            "option_value": "JSK"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Usage",
+            "option_value": "Industrial"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "BRAND 2",
+            "option_value": "universal"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "brand 2",
+            "option_value": "universal"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Model",
+            "option_value": "GD 15TE 20"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Product Brand",
+            "option_value": "CompAir"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "wire type",
+            "option_value": "Copper 100%"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Power source",
+            "option_value": "AC Three phase"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Model name/ Number",
+            "option_value": "Ironwind"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "Maximum Flow Rate (CFM)",
+            "option_value": "19 CFM"
+        },
+        {
+            "mcat_id": "18504",
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "COMP. BRAND",
+            "option_value": "GLOBAL"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "brand",
+            "spec_option": "kuldeep",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "compressor brand",
+            "spec_option": "komter",
+            "impression": "17"
+        },
+        {
+            "mcat_name": "Reciprocating Air Compressor",
+            "spec_name": "compressor technology",
+            "spec_option": "reciprocating",
+            "impression": "235"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Motor Power",
+            "spec_fill_rate": "58",
+            "product_count": "40"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_fill_rate": "56.5",
+            "product_count": "39"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_fill_rate": "52.2",
+            "product_count": "36"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_fill_rate": "52.2",
+            "product_count": "36"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_fill_rate": "50.7",
+            "product_count": "35"
+        },
+        {
+            "spec_name": "Lubrication Type",
+            "spec_fill_rate": "49.3",
+            "product_count": "34"
+        },
+        {
+            "spec_name": "Motor Phase",
+            "spec_fill_rate": "40.6",
+            "product_count": "28"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "37.7",
+            "product_count": "26"
+        },
+        {
+            "spec_name": "Portability",
+            "spec_fill_rate": "34.8",
+            "product_count": "24"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "13",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Supplier",
+            "spec_fill_rate": "2.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Horse Power (HP)",
+            "spec_fill_rate": "2.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Location",
+            "spec_fill_rate": "2.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Compressor Type",
+            "spec_fill_rate": "2.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "voltage",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Cooling Type",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Tank Coating",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Material of Construction",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "brand 2",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "BRAND 2",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Shell Thickness",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Orientation",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Horsepower (HP)",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Maximum Flow Rate (CFM)",
+            "spec_option_name": "19 CFM",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Free Air Delivery",
+            "spec_option_name": "200 l/min",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Compressor",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Speed",
+            "spec_option_name": "18000 rpm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Compressor Technology",
+            "spec_option_name": "Reciprocating",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cooling Method",
+            "spec_option_name": "Air Cooled",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "SPS",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model No/Name",
+            "spec_option_name": "CP 7.5 TS",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Max Pressure",
+            "spec_option_name": "8 bar",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "CNC Machine",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "430",
+            "spec_option_name": "6.5 foot height",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Motor Power (HP)",
+            "spec_option_name": "15 HP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Motor Type",
+            "spec_option_name": "2hp",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "brand 2",
+            "spec_option_name": "universal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Grinding",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Orientation",
+            "spec_option_name": "Horizontal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Series",
+            "spec_option_name": "LD",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power Rating",
+            "spec_option_name": "1.5kw",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Electrical Phase",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Laboratory",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cooling Type",
+            "spec_option_name": "Self Ventilated",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Horsepower (HP)",
+            "spec_option_name": "10 HP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "COMP. BRAND",
+            "spec_option_name": "GLOBAL",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Oil Type",
+            "spec_option_name": "Oil Lubricated",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Medical",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Tank Mounted",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Material of Construction",
+            "spec_option_name": "Mild Steel (MS)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power source",
+            "spec_option_name": "AC Three phase",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Configuration",
+            "spec_option_name": "Tank Mounted",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "wire type",
+            "spec_option_name": "Copper 100%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Shell Thickness",
+            "spec_option_name": "5 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Location",
+            "spec_option_name": "Coimbatore",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Air Flow Rate",
+            "spec_option_name": "50 CFM",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "BRAND 2",
+            "spec_option_name": "universal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Maximum Working Pressure",
+            "spec_option_name": "12 bar (175 psi)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Dental",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power Supply",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Mounting",
+            "spec_option_name": "Tank Mounted",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "voltage",
+            "spec_option_name": "220v",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model name/ Number",
+            "spec_option_name": "Ironwind",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Single Phase",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Supplier",
+            "spec_option_name": "Unique Industrial Solutions",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "15 HP",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Tank Coating",
+            "spec_option_name": "Painted",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Compressor Type",
+            "spec_option_name": "Reciprocating",
+            "option_fill_rate": "91.7"
+        },
+        {
+            "spec_name": "Lubrication Type",
+            "spec_option_name": "Oil Lubricated",
+            "option_fill_rate": "89.7"
+        },
+        {
+            "spec_name": "Motor Phase",
+            "spec_option_name": "Three Phase",
+            "option_fill_rate": "69.2"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Electric (3-Phase)",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Portability",
+            "spec_option_name": "Stationary",
+            "option_fill_rate": "57.4"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "12 bar (175 psi)",
+            "option_fill_rate": "55.3"
+        },
+        {
+            "spec_name": "Lubrication",
+            "spec_option_name": "Oil Free",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Lubrication",
+            "spec_option_name": "Oil Lubricated",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_option_name": "Two Stage",
+            "option_fill_rate": "49.5"
+        },
+        {
+            "spec_name": "Portability",
+            "spec_option_name": "Portable",
+            "option_fill_rate": "42.6"
+        },
+        {
+            "spec_name": "Horse Power (HP)",
+            "spec_option_name": "5 HP",
+            "option_fill_rate": "37.5"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_option_name": "Single Stage",
+            "option_fill_rate": "35.1"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Electric (1-Phase)",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Motor Phase",
+            "spec_option_name": "Single Phase",
+            "option_fill_rate": "30.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "ELGI",
+            "option_fill_rate": "30.3"
+        },
+        {
+            "spec_name": "Horse Power (HP)",
+            "spec_option_name": "1 HP",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "500 L",
+            "option_fill_rate": "21.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Ingersoll Rand",
+            "option_fill_rate": "21.2"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "8 bar (116 psi)",
+            "option_fill_rate": "19.4"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "9 CFM",
+            "option_fill_rate": "19.3"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "220 L",
+            "option_fill_rate": "18.4"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "300 L",
+            "option_fill_rate": "17.5"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "15 CFM",
+            "option_fill_rate": "15.9"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "30 CFM",
+            "option_fill_rate": "13.6"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "5 HP",
+            "option_fill_rate": "13.2"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "3 HP",
+            "option_fill_rate": "13.2"
+        },
+        {
+            "spec_name": "Horse Power (HP)",
+            "spec_option_name": "7.5 HP",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Horse Power (HP)",
+            "spec_option_name": "10 HP",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Horse Power (HP)",
+            "spec_option_name": "3 HP",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "10 HP",
+            "option_fill_rate": "11.4"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "2 HP",
+            "option_fill_rate": "11.4"
+        },
+        {
+            "spec_name": "Lubrication Type",
+            "spec_option_name": "Oil-Free",
+            "option_fill_rate": "10.3"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "7.5 HP",
+            "option_fill_rate": "9.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "FS-Curtis",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "21 CFM",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Anest Iwata",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "15 HP",
+            "option_fill_rate": "8.8"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "10 bar (145 psi)",
+            "option_fill_rate": "8.7"
+        },
+        {
+            "spec_name": "Compressor Type",
+            "spec_option_name": "Piston Air Compressor",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "1 HP",
+            "option_fill_rate": "7.9"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_option_name": "Multi Stage",
+            "option_fill_rate": "7.2"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "20 HP",
+            "option_fill_rate": "7"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "160 L",
+            "option_fill_rate": "7"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "250 L",
+            "option_fill_rate": "7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Kirloskar",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Atlas Copco",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Adarsh",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "60 CFM",
+            "option_fill_rate": "5.7"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "40 CFM",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "5 CFM",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "50 CFM",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "25 HP",
+            "option_fill_rate": "3.5"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "100 L",
+            "option_fill_rate": "3.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Airmake",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "KPT",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Manatec",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Kaeser",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "8 bar (115 psi)",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "30 bar (435 psi)",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "0.5 HP",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "45 CFM",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_option_name": "Single Stage / Multi Stage",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "35 bar (500 psi)",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "7 bar (100 psi)",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "8 / 10 / 13 Bar",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "3 hP upto 30 hP",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "110 L",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "Depending on requirement",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "Acc. to Customer",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "200 L",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "35 L",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "9.8",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "All CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "185 CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "9.79",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "3.2",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "8 CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "10 CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "28.5 CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "13 CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "59.8 CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "20 CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "5-50 cfm",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "3 TO 50 CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "7 CFM to 33.5 CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "3 CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "63",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "1 to 50 cfm",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Air Delivery (FAD)",
+            "spec_option_name": "42.78 CFM",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "1000 PSI",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_option_name": "THREE STAGE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_option_name": "ALL TYPE",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_option_name": "3",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "12PSI",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_option_name": "Two Stage & Multi Stage",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "$12 \\text{ Kg/cm}^2",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_option_name": "Three Stage",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "800 PSI",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Maximum Pressure",
+            "spec_option_name": "150 Psi",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Number of Stages",
+            "spec_option_name": "All type",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "30 L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "70",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "100, 200, 250, 300, 500 l",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "150 L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "135 L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "200 l",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "7.5 hp",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "3/5 HP",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "50 L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "1 , 2, 3, 5, 7.5, 10, 15, 20 HP",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "1 to 15 hp",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "200-2000L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "210 L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "150  to 500 LITRE",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "40 L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "620 Ltr",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "100 to 500 ltrs",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "2-20 HP",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "1 HP to 10 HP",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "225 L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "70 L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "400",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "75 Ltr to 300 Ltr",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "7 HP",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "Upto 50L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "90 L",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Tank Capacity",
+            "spec_option_name": "200",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "All",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "45 HP",
+            "option_fill_rate": "0.9"
+        }
+    ]
+}

@@ -1,0 +1,4029 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 1451
+category_name: Fungicides
+seller_specs (current spec sheet): {
+  "category_name": "Fungicides",
+  "mcat_id": 1451,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Technical Name",
+          "options": [
+            "Mancozeb 75%",
+            "Carbendazim 12% + Mancoze",
+            "Sulphur 80%",
+            "Hexaconazole 5%",
+            "Metalaxyl 8% + Mancozeb ",
+            "Copper Oxychloride 50%",
+            "Carbendazim 50%",
+            "Tebuconazole 25.9%",
+            "Propiconazole 25%",
+            "Trichoderma Viride 1%"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Formulation",
+          "options": [
+            "WP (Wettable Powder)",
+            "SC (Suspension Concentra",
+            "WDG (Water Dispersible)",
+            "EC (Emulsifiable Concen",
+            "SL (Soluble Liquid)",
+            "GR (Granules)",
+            "DP (Dustable Powder)"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Technical Name and Formulation were chosen as they form the core identity of a fungicide. This is based on B2B buyer inquiries for specific active ingredients and formulations, which are critical for product differentiation and application methods."
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Mode of Action",
+          "options": [
+            "Contact",
+            "Systemic",
+            "Protective",
+            "Curative",
+            "Translaminar",
+            "Eradicant"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Type",
+          "options": [
+            "Chemical",
+            "Biological"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Target Disease",
+          "options": [
+            "Powdery Mildew",
+            "Downy Mildew",
+            "Blight",
+            "Rust",
+            "Anthracnose",
+            "Leaf Spot",
+            "Wilt",
+            "Root Rot",
+            "Scab",
+            "Dieback"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Mode of Action, Type, and Target Disease define the product's functional use. Buyers need to know if a product is Systemic or Contact, Chemical or Biological, and which specific diseases it targets, which aligns with how products are listed in technical catalogs."
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Target Crop",
+          "options": [
+            "Grapes",
+            "Paddy",
+            "Potato",
+            "Chilli",
+            "Cotton",
+            "Tomato",
+            "Groundnut",
+            "Vegetables",
+            "Mango",
+            "Tea"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Packaging Size",
+          "options": [
+            "1 Kg",
+            "500 g",
+            "250 g",
+            "100 g",
+            "5 Kg",
+            "1 Ltr",
+            "500 ml",
+            "250 ml"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Brand",
+          "options": [
+            "UPL",
+            "Indofil",
+            "Bayer",
+            "Syngenta",
+            "BASF",
+            "Rallis India",
+            "Dhanuka",
+            "Sumitomo",
+            "Crystal",
+            "Coromandel"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Target Crop, Packaging Size, and Brand provide essential supplementary information for purchasing and application. Buyers often search by crop, packaging size is a key logistical detail for B2B orders, and brand is a significant factor for trust."
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 15 specs) ---
+[
+  {
+    "spec_name": "Packaging Size",
+    "total_product_count": 57,
+    "example_values": [
+      "50 kg",
+      "25 kg",
+      "10 kg",
+      "1 kg",
+      "100 g"
+    ]
+  },
+  {
+    "spec_name": "Concentration",
+    "total_product_count": 49,
+    "example_values": [
+      "80 %",
+      "85 %",
+      "99 %",
+      "90 %",
+      "99.9 %"
+    ]
+  },
+  {
+    "spec_name": "Physical Form",
+    "total_product_count": 37,
+    "example_values": [
+      "Powder",
+      "Liquid",
+      "Loose",
+      "Dust",
+      "Elemental"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 30,
+    "example_values": [
+      "355 Five Star",
+      "Amistar",
+      "Bayer",
+      "Novacure",
+      "Holabole"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 25,
+    "example_values": [
+      "Agriculture",
+      "Pesticide Formulation",
+      "Blueberry growing",
+      "Crop top dressing",
+      "Fertilizer Testing"
+    ]
+  },
+  {
+    "spec_name": "Formulation",
+    "total_product_count": 22,
+    "example_values": [
+      "WDG",
+      "DP",
+      "WP",
+      "GR",
+      "SP"
+    ]
+  },
+  {
+    "spec_name": "Color",
+    "total_product_count": 19,
+    "example_values": [
+      "Yellow",
+      "Soil Color",
+      "Brown",
+      "Brownish",
+      "Earth Color"
+    ]
+  },
+  {
+    "spec_name": "Technical Name",
+    "total_product_count": 17,
+    "example_values": [
+      "Tebuconazole + Trifloxystrobin",
+      "Novaluron 5.25% + Indoxacarb",
+      "Sulphur",
+      "Acetamiprid",
+      "Azoxystrobin"
+    ]
+  },
+  {
+    "spec_name": "Packaging Type",
+    "total_product_count": 13,
+    "example_values": [
+      "Bag",
+      "Bag (Loose)",
+      "Bottle (Plain)",
+      "Case",
+      "Drum"
+    ]
+  },
+  {
+    "spec_name": "Grade",
+    "total_product_count": 9,
+    "example_values": [
+      "Agriculture",
+      "Industrial",
+      "Elemental",
+      "Extra Pure",
+      "First Quality"
+    ]
+  },
+  {
+    "spec_name": "Target Crop",
+    "total_product_count": 7,
+    "example_values": [
+      "Paddy",
+      "Cotton",
+      "Papaya",
+      "Pomegranate",
+      "Sugarcane"
+    ]
+  },
+  {
+    "spec_name": "Target Disease/Problem",
+    "total_product_count": 6,
+    "example_values": [
+      "Caterpillar",
+      "Leaf Curl",
+      "Neck Blast",
+      "Plant Growth and Drop Prevention",
+      "Smut Disease"
+    ]
+  },
+  {
+    "spec_name": "Product Type",
+    "total_product_count": 4,
+    "example_values": [
+      "Organic Fungicide",
+      "Bactericide",
+      "Fungicide"
+    ]
+  },
+  {
+    "spec_name": "Certification",
+    "total_product_count": 3,
+    "example_values": [
+      "CIB License"
+    ]
+  },
+  {
+    "spec_name": "Solubility",
+    "total_product_count": 3,
+    "example_values": [
+      "Not Water Soluble",
+      "Insoluble in Water",
+      "Water Soluble"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 5 specs) ---
+[
+  {
+    "spec_name": "Brand Name",
+    "count": 13,
+    "options": [
+      "Azala",
+      "A Top",
+      "Atul",
+      "Barfi",
+      "Vintage"
+    ]
+  },
+  {
+    "spec_name": "Product Brand",
+    "count": 7,
+    "options": [
+      "Tata",
+      "Innova",
+      "Barfi",
+      "Brafi"
+    ]
+  },
+  {
+    "spec_name": "Products Brand",
+    "count": 5,
+    "options": [
+      "Brafi"
+    ]
+  },
+  {
+    "spec_name": "Manufacturer By",
+    "count": 5,
+    "options": [
+      "Nilhari Biochem"
+    ]
+  },
+  {
+    "spec_name": "Doses",
+    "count": 5,
+    "options": [
+      "60ml Per Acre",
+      "200 ml Per Acre",
+      "300ml Per Acre",
+      "100 gm Per Acre",
+      "400ml Per Acre"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 10 specs) ---
+[
+  {
+    "spec_name": "chemical group",
+    "total_impressions": 270321,
+    "options": [
+      "fungicide"
+    ]
+  },
+  {
+    "spec_name": "brand",
+    "total_impressions": 74587,
+    "options": [
+      "adama",
+      "amistar",
+      "atal",
+      "basf",
+      "captan"
+    ]
+  },
+  {
+    "spec_name": "packaging size",
+    "total_impressions": 6783,
+    "options": [
+      "1 kg",
+      "1 liter",
+      "1 litre",
+      "100 g",
+      "100 ml"
+    ]
+  },
+  {
+    "spec_name": "color",
+    "total_impressions": 5234,
+    "options": [
+      "blue",
+      "gold",
+      "tricolor"
+    ]
+  },
+  {
+    "spec_name": "technical name",
+    "total_impressions": 3097,
+    "options": [
+      "biomycin",
+      "copper",
+      "curzate",
+      "famoxadone",
+      "fludioxonil"
+    ]
+  },
+  {
+    "spec_name": "formulation",
+    "total_impressions": 1121,
+    "options": [
+      "ec",
+      "sc",
+      "wp"
+    ]
+  },
+  {
+    "spec_name": "strength",
+    "total_impressions": 861,
+    "options": [
+      "200",
+      "2000"
+    ]
+  },
+  {
+    "spec_name": "form",
+    "total_impressions": 526,
+    "options": [
+      "cream",
+      "liquid",
+      "oil",
+      "tablet"
+    ]
+  },
+  {
+    "spec_name": "language",
+    "total_impressions": 493,
+    "options": [
+      "hindi",
+      "telugu"
+    ]
+  },
+  {
+    "spec_name": "grade",
+    "total_impressions": 372,
+    "options": [
+      "a",
+      "df",
+      "mr"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (46 specs) ---
+[
+  {
+    "spec_name": "Technical Name",
+    "spec_fill_rate": "67.4",
+    "product_count": "58"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_fill_rate": "51.2",
+    "product_count": "44"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_fill_rate": "51.2",
+    "product_count": "44"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_fill_rate": "46.5",
+    "product_count": "40"
+  },
+  {
+    "spec_name": "Mode of Action",
+    "spec_fill_rate": "45.3",
+    "product_count": "39"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_fill_rate": "32.6",
+    "product_count": "28"
+  },
+  {
+    "spec_name": "Type",
+    "spec_fill_rate": "32.6",
+    "product_count": "28"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_fill_rate": "30.2",
+    "product_count": "26"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "25.6",
+    "product_count": "22"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_fill_rate": "23.3",
+    "product_count": "20"
+  },
+  {
+    "spec_name": "Application Method",
+    "spec_fill_rate": "16.3",
+    "product_count": "14"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "14",
+    "product_count": "12"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_fill_rate": "11.6",
+    "product_count": "10"
+  },
+  {
+    "spec_name": "Packing Type",
+    "spec_fill_rate": "8.1",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_fill_rate": "7",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_fill_rate": "5.8",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_fill_rate": "4.7",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Recommended Dose",
+    "spec_fill_rate": "3.5",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Physical Form",
+    "spec_fill_rate": "3.5",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Form",
+    "spec_fill_rate": "2.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_fill_rate": "2.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Product Brand",
+    "spec_fill_rate": "2.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Sulphur Content",
+    "spec_fill_rate": "2.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_fill_rate": "2.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Packing Size",
+    "spec_fill_rate": "2.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Mancozeb Content",
+    "spec_fill_rate": "2.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Dosage",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Iodine Strength",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Application",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Composition",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Recommended Crops",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Solubility",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Metalaxyl Content",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Purity",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "BRAND NAME",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Sulphur Content (%)",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Origin",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Mode of Application",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Dose per Acre",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Pack Type",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Target Pests",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Technical Content",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Hexaconazole Content",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "I Deal In",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Compatibility",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (370 rows) ---
+[
+  {
+    "spec_name": "Origin",
+    "spec_option_name": "India",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Recommended Crops",
+    "spec_option_name": "Tomato",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Type",
+    "spec_option_name": "Foliar Spray",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Purity",
+    "spec_option_name": "99.50%",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pesticide Type",
+    "spec_option_name": "Fungicide",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "India",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "I Deal In",
+    "spec_option_name": "New Only",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Package Type",
+    "spec_option_name": "Bottle",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Type",
+    "spec_option_name": "Soil Application",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Target Pests",
+    "spec_option_name": "leaf spot",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "BRAND NAME",
+    "spec_option_name": "BHIVA BIOTECH",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Dosage per Acre",
+    "spec_option_name": "120 g/acre",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Type",
+    "spec_option_name": "Seed Treatment",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Farming Type",
+    "spec_option_name": "Conventional",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Brand",
+    "spec_option_name": "Innova",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Copper Content",
+    "spec_option_name": "24.50%",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "15cm",
+    "spec_option_name": "25cm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Recommended Crops",
+    "spec_option_name": "Onion,Rice",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Recommended Crops",
+    "spec_option_name": "Chilli",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Active Ingredient",
+    "spec_option_name": "Carbendazim",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Manufacturer By",
+    "spec_option_name": "Nilhari Biochem",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Type",
+    "spec_option_name": "Drip Application",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Iodine Strength",
+    "spec_option_name": "Fungal and itching",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Mode of Application",
+    "spec_option_name": "Foliar Spray",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "15 cm",
+    "spec_option_name": "25 cm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Sulphur Content (%)",
+    "spec_option_name": "80%",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Solubility",
+    "spec_option_name": "100%",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Target Pest",
+    "spec_option_name": "Fungal Disease",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Dose per Acre",
+    "spec_option_name": "200\u00c3\u00a2\u00e2\u0082\u00ac\u00e2\u0080\u009c250 ml",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Hexaconazole Content",
+    "spec_option_name": "5% w/w",
+    "option_fill_rate": "80"
+  },
+  {
+    "spec_name": "Type",
+    "spec_option_name": "Chemical",
+    "option_fill_rate": "76.7"
+  },
+  {
+    "spec_name": "Pack Type",
+    "spec_option_name": "Bottle",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Sulphur Content",
+    "spec_option_name": "80%",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Agriculture Grade",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Physical Form",
+    "spec_option_name": "Liquid",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Organic Compliance",
+    "spec_option_name": "Not for Organic Use",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Mode of Action",
+    "spec_option_name": "Systemic",
+    "option_fill_rate": "64.2"
+  },
+  {
+    "spec_name": "Packing Type",
+    "spec_option_name": "Bottle",
+    "option_fill_rate": "61.5"
+  },
+  {
+    "spec_name": "Recommended Dose",
+    "spec_option_name": "0.5 ml/L",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Mancozeb Content",
+    "spec_option_name": "63%",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Application Method",
+    "spec_option_name": "Foliar Spray",
+    "option_fill_rate": "60"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Grapes",
+    "option_fill_rate": "57.8"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Powdery Mildew",
+    "option_fill_rate": "57"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Paddy",
+    "option_fill_rate": "56.6"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Paddy",
+    "option_fill_rate": "55.6"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Chilli",
+    "option_fill_rate": "50.6"
+  },
+  {
+    "spec_name": "Crop Type",
+    "spec_option_name": "All Crops",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Metalaxyl Content",
+    "spec_option_name": "35% WS",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Dosage",
+    "spec_option_name": "2 ml/lit water",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Dosage",
+    "spec_option_name": "1 ml/L",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Organic Certification",
+    "spec_option_name": "Not organic",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Metalaxyl Content",
+    "spec_option_name": "Metalaxyl 8 Mancozeb 64 Wp",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Crop Type",
+    "spec_option_name": "Vegetables",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Packing Size",
+    "spec_option_name": "1 L",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Packing Size",
+    "spec_option_name": "250 ml",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Agriculture",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Organic Certification",
+    "spec_option_name": "Not Certified",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Fungicide",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "2 years",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Cotton",
+    "option_fill_rate": "44.4"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Pouch",
+    "option_fill_rate": "42.9"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Fungicide",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Mancozeb Content",
+    "spec_option_name": "64%",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Compatibility",
+    "spec_option_name": "Compatible with most fungicides",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Technical Content",
+    "spec_option_name": "Tricyclazole 75% WP",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Compatibility",
+    "spec_option_name": "Compatible with most insecticides",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "WP (Wettable Powder)",
+    "option_fill_rate": "39"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Tomato",
+    "option_fill_rate": "38.6"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Potato",
+    "option_fill_rate": "37.3"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Groundnut",
+    "option_fill_rate": "37.3"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "1 L",
+    "option_fill_rate": "36.4"
+  },
+  {
+    "spec_name": "Mode of Action",
+    "spec_option_name": "Contact",
+    "option_fill_rate": "35.8"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Vegetables",
+    "option_fill_rate": "34.9"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Downy Mildew",
+    "option_fill_rate": "34.4"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "SC",
+    "option_fill_rate": "34.1"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Cotton",
+    "option_fill_rate": "33.7"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Crystal",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Physical Form",
+    "spec_option_name": "Powder",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Agricultural Grade",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Organic Compliance",
+    "spec_option_name": "No",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Composition",
+    "spec_option_name": "Hexaconazole 5% EC",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Composition",
+    "spec_option_name": "Profenophos 50% EC",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Composition",
+    "spec_option_name": "50%",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Powder",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "WDG / WG",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "1 Kg",
+    "option_fill_rate": "32.8"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Mango",
+    "option_fill_rate": "32.5"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Leaf Spot",
+    "option_fill_rate": "32.3"
+  },
+  {
+    "spec_name": "Application Method",
+    "spec_option_name": "Foliar spray",
+    "option_fill_rate": "30"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "1 Ltr",
+    "option_fill_rate": "27.6"
+  },
+  {
+    "spec_name": "Pack Type",
+    "spec_option_name": "Packet",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Doses",
+    "spec_option_name": "300ml Per Acre",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Sulphur Content",
+    "spec_option_name": "55.16% SC",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "WP",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Doses",
+    "spec_option_name": "200 ml Per Acre",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Doses",
+    "spec_option_name": "100 gm Per Acre",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Doses",
+    "spec_option_name": "400ml Per Acre",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Anthracnose",
+    "option_fill_rate": "24.7"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Blight",
+    "option_fill_rate": "24.7"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Wheat",
+    "option_fill_rate": "24.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Rust",
+    "option_fill_rate": "23.7"
+  },
+  {
+    "spec_name": "Packing Type",
+    "spec_option_name": "Pouch",
+    "option_fill_rate": "23.1"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Wheat",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Groundnut",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Apple",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Chilli",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Grapes",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Vegetables mix",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Mango",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Tea",
+    "option_fill_rate": "21.7"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "SC (Suspension Concentra",
+    "option_fill_rate": "20.7"
+  },
+  {
+    "spec_name": "Recommended Dose",
+    "spec_option_name": "2 ml/L",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Hexaconazole Content",
+    "spec_option_name": "Hexaconazole 5% Validamycin 2.5% Sc",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Technical Content",
+    "spec_option_name": "18.2%+11.4% SC",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Technical Content",
+    "spec_option_name": "18.2 +11.4",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Insecticide",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "2 Years",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Single",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Technical Content",
+    "spec_option_name": "18.20%",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Recommended Dose",
+    "spec_option_name": "1 g/kg seed",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Compatibility",
+    "spec_option_name": "Compatible with most pesticides",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Combination",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Bayer",
+    "option_fill_rate": "19"
+  },
+  {
+    "spec_name": "Type",
+    "spec_option_name": "Biological",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "WG",
+    "option_fill_rate": "15.9"
+  },
+  {
+    "spec_name": "Packing Type",
+    "spec_option_name": "Jar",
+    "option_fill_rate": "15.4"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Plastic Pouch",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "HDPE bottle",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Bottle",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Aluminium pouch",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "BASF",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Maize",
+    "option_fill_rate": "13.3"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Apple",
+    "option_fill_rate": "13.3"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Scab",
+    "option_fill_rate": "12.9"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "Aspire",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "Safex",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "Solution",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "Vintage",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "Riseup",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "Propixon",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "Corol",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "Aahna",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Mode of Action",
+    "spec_option_name": "Protective",
+    "option_fill_rate": "12.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "500 g",
+    "option_fill_rate": "12.1"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Soybean",
+    "option_fill_rate": "12"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Tomato",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Soybean",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Cumin",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "Rose",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "General Vegetables",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_option_name": "CITRUS",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "500 g",
+    "option_fill_rate": "10.9"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "1 kg",
+    "option_fill_rate": "10.9"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "1 year",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "35 Months",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Application Method",
+    "spec_option_name": "Seed treatment",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "2 Year",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Crystal",
+    "option_fill_rate": "9.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Gamma",
+    "option_fill_rate": "9.5"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Tikka Disease",
+    "option_fill_rate": "8.6"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Carbendazim 12% + Mancoze",
+    "option_fill_rate": "7.8"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Sheath Blight",
+    "option_fill_rate": "7.5"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Root Rot",
+    "option_fill_rate": "7.5"
+  },
+  {
+    "spec_name": "Mode of Action",
+    "spec_option_name": "Curative",
+    "option_fill_rate": "7.4"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "WG",
+    "option_fill_rate": "7.3"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "500 ml",
+    "option_fill_rate": "7.3"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Sulphur 80%",
+    "option_fill_rate": "7"
+  },
+  {
+    "spec_name": "Application Method",
+    "spec_option_name": "Soil Application",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Application Method",
+    "spec_option_name": "Soil Drench",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Application Method",
+    "spec_option_name": "Seed Treatment",
+    "option_fill_rate": "6.7"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "10 wg",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "11%+18.3% SC",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "50% WG",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "25% EC",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "11",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "18.3 SC",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "25% WG",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "75 WG",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "SC",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "75% WG",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "10%+65% Wg",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "6.7%+26.9 % SC",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "10%+ 65%WG",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "Azoxystrobin 11% + Tebuconazole 18.3% w/w SC",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "18.30%",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Technical Concentration",
+    "spec_option_name": "6.7",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "WDG (Water Dispersible)",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Mancozeb 75%",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "EC (Emulsifiable Concen",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Sheath blight",
+    "option_fill_rate": "5.4"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "250 ml",
+    "option_fill_rate": "5.2"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Mancozeb 63% + Carbendazim 12%",
+    "option_fill_rate": "5.2"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "250 g",
+    "option_fill_rate": "5.2"
+  },
+  {
+    "spec_name": "Type",
+    "spec_option_name": "FUNGICIDE",
+    "option_fill_rate": "5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Other Indian Brand",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Nazole+",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "VAIBHAV",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Sylvan",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "green crop",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Dhanuka",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "ZIVISTA",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Innova",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "CONQUER",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Syngenta",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "EC",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "5% SC",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Wilt",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Karnal Bunt",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Late Blight",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Alternaria Blight",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Mode of Action",
+    "spec_option_name": "Protectant",
+    "option_fill_rate": "3.7"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Paddy (Rice)",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "250 ml",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "1 litre",
+    "option_fill_rate": "3.6"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "1 L",
+    "option_fill_rate": "3.4"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "500 ml",
+    "option_fill_rate": "3.4"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Early Blight",
+    "option_fill_rate": "3.2"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Dieback",
+    "option_fill_rate": "3.2"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Fruit Rot",
+    "option_fill_rate": "3.2"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Blast",
+    "option_fill_rate": "3.2"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Metalaxyl 8% + Mancozeb",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Hexaconazole 5%",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azoxystrobin 18.2% + Difenoconazole 11.4% SC",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azo 4.8% + Chloro 40% SC",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "12%+63% WP",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "WP",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "Liquid",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "Hexaconazole 4% + CARBENDAZIM 16% SC",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "WS",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "Hexaconazole 5% Validamycin 2.5% Sc",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "Water Dispersible Granules",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "70% + 5% WP",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "Wettable Powder (WP)",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_option_name": "70%+5% Wp",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Tikka leaf spot",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Leaf spot",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Die Back",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Powdery mildew",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "300GM",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "1KG, 3KG, 5KG",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100ML, 250ML, 500ML, 1 LTR",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "250gm",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "250 ml - 200 Ltr",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100 ml",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100 gm to 25 kg",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100 g",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "100gm to 25kg",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "10GM, 100GM, 250GM, 500GM",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "600 ML",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "250 and 100 GM",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "500 gm",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "250 g",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "120g",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "100 g",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "15 kg",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Sulphur",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Copper Oxychloride 50%",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tebuconazole 50% + Trifloxystrobin 25% WG",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Carbendazim 12%+Mancozeb 63%",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "1 kg",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Type",
+    "spec_option_name": "Powder",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tebuconazole",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "600ml",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Mancozeb 64% + Metalaxyl 8%",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tebuconazole 25.9%",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Fluopicolide 5.56% + Propamocarb Hydrochloride 55.6%",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Carbendazim 12% + Mancozeb 63%",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "500 gm",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tebuconazole 50% WG",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "50 kg",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Finger Millet",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Cumin",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Mode of Action",
+    "spec_option_name": "Systemic and protectant",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "pulses,vegetable",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "Water Soluble Powder",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "SG",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "Soluble powder",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Mode of Action",
+    "spec_option_name": "Systemic+Contact",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Rice",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Grapes, Groundnut, Paddy, Vegetables",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Mode of Action",
+    "spec_option_name": "Eradicant",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Sugarcane,Onion,Maize",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Mode of Action",
+    "spec_option_name": "Translaminar",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "CS",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Patato,Tamato",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Potatos, Chilli",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "Water Soluble",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Barley",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "50% WP",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "SC",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "SE",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "SL (Soluble Liquid)",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_option_name": "Onion",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "Hexythiazox 1% + Tobuconazole 1% WivSC",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_option_name": "GR (Granules)",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "LATE BLIGHT",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "fungal diseases.",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Root rot",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Early blight, Late Blight  L",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Alternaria blight",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "fungal and bacterial diseases",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Rust, Root Rot, Blight, Wilt, Downy Mildew, Powdery Mildew, Leaf Spot, Anthracnose",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Rice blast disease",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Sheath rot",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Phytophthora and Pythium",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Neck blast",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Dumping water",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Sigatoka",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Node blast",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Oomycetes",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Leaf blast",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Rice blast",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Fungle diseases",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Downy mildew",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Downy mildew, Powdery mildew, fruit rot, Leaf spot, pod blight, Anthracnose, Late blight",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_option_name": "Fruit rot",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "TEBUCONAZOLE + SULPHER",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Fluopicolide 4.44% + Fosetyl-Al 66.67%",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azoxystronin + Tebuconazole",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azoxystrobin plus difenoconazole",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azoxystrobin 11% + Tebuconazole-18.3%",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azo 23% SC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "picoxystrobin 6.78",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Thiophanate Methyl 70%",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Mancozeb 40 + azoxystrobin 7os",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Lambda - Cyhalothrin 4.9 %",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tebuconazole 10% + Sulphur 65%",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Picoxystrobin 22.52% SC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azoxystrobin + Difenoconazole",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Sulphur 5.16",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "TEBUONAZOLE 6.7% + CAPTAN 26.9% SC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "FMC SIDRA 250 GM  Tebuconazole 10% + Sulphur 65%",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Propiconazole 25% EC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Picoxystrobin 7.05% + Propiconazole 11.71% SC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tebuconazole 10% + sulphur 65%",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tubiconazole 10%+sulphur65%",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Acrobat",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Hexaconazolen75%",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azoxystrobin 11% +Tebuconazole 18.30% SC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Fluopyram17.7% w/w+Tebuconazole 17.7%w/w SC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Thiofinate methyl",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Propiconazole 13.9% EC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Picoxystrobin 22.52 % Sc",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Metiram 55% + Pyraclostrobin 5% WG",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "TEBUCONAZOLE 6.7% + CAPTAN 26.9% SC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azo 11.5% + Manco 30% WP",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Carbendazim 50%",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Propined 70 Wp",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Powder Azoxystrobin 8.3 Mancozeb 66.7 Wg",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tebuconazole 10% WP",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Kasugamycin 5% + Copper Oxychloride 45% WP",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azoxystron 18.2 + Difenconazole 11.4 % SC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azoxystrobin 11% + Tebuconazole 18.3% w/w SC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azoxystrobin 11",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tebuconazole 6.7% + Captan 26.9 % SE",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tricyclazole 75%",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tebuconazole 10% + Sulphur 65% WG",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Flusilazole 40% Ec",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Plant Extract",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azoxystrobin 18.2% +  Difenoconazole 11.4%",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Carbendazim",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "carbendazim 50% wp",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Fosetyl Al 80 Wp",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "propineb 70% wp",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Abamectin 1.9 %",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Azo 11% + Tebu 18.3% SC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tebuconzole 10% Wg",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Emamectin Benzoate 5 %",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Tebuconazole 18.3% SC",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_option_name": "Emamectin Benzoate 1.9 %",
+    "option_fill_rate": "0.9"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 2 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+--- Result 2: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(input_type_audit) ---
+---
+name: input-type-audit
+description: >
+  Use this skill to evaluate or correct the input_type of specs based purely on the
+  spec name and its existing option values — no data sources needed. Triggers: "wrong
+  input type", "radio vs multi_select", "should this be text_type", or whenever options
+  look mismatched with their input type.
+---
+
+
+## The three types
+Understanding *why* each type exists is essential to making correct decisions.
+
+
+### `radio_button`
+**One and only one value applies to a given product at a time.**
+
+
+The values are mutually exclusive by the physical or technical nature of the attribute.
+A buyer filtering by one value correctly excludes all products with a different value.
+
+
+Examples where `radio_button` is correct:
+- Phase (Single Phase / Three Phase) — a motor cannot be both
+- Voltage Rating (12 V / 24 V / 230 V) — a device has one rated voltage
+- Material (MS / GI / Stainless Steel) — a pipe is made of one material
+- Drive Type (Corded / Cordless) — a tool is one or the other
+- IS Standard (IS 694 / IS 1554) — a product conforms to one standard
+
+
+### `multi_select`
+**Multiple values can simultaneously and legitimately describe the same product.**
+
+
+A buyer selecting two values in a multi_select filter correctly retrieves products that
+match either value. A seller legitimately selects more than one option for a single
+listing.
+
+
+Examples where `multi_select` is correct:
+- Compatible Applications (Domestic / Industrial / Commercial) — a wire can be sold into all three markets
+-  Certifications (ISI / CE / RoHS) — a product can carry all three marks
+- Compatible Accessory Types (Drill Bits / Screwdriver Bits / Hole Saws) — a drill accepts multiple accessory families
+- Suitable For (Indoor / Outdoor / Underground) — a cable can be rated for multiple
+  installation environments
+
+
+### `text_type`
+**The value is free-form, unique per SKU, or has no stable, enumerable set of values.**
+
+
+There is no finite list of options that meaningfully covers the real distribution.
+Sellers need to type the value rather than select from a list. A buyer cannot usefully
+filter by this spec — it is for display and comparison only.
+
+
+Examples where `text_type` is correct:
+- Model Number — every SKU has a unique identifier
+- Catalogue Reference — brand-specific code with no standard pattern
+
+
+---
+
+
+## The two questions that decide the type
+
+
+**1. Can a single product have two of these values at the same time?**
+- No → `radio_button` (or `text_type` if free-form)
+- Yes → `multi_select`
+
+
+**2. Do the existing options form a finite, stable set?**
+- Yes → `radio_button` or `multi_select`
+- No / options are codes, identifiers, or continuous measures → `text_type`
+
+
+---
+
+
+## Platform rule — "Other" option on primary and secondary specs
+
+
+All `radio_button` and `multi_select` specs in the **primary and secondary tiers** have an
+"Other" button that lets sellers enter a custom value not in the list. This means:
+
+
+- **Do not assign `text_type` to a primary or secondary spec just because its option list
+  is incomplete.** The "Other" button covers edge cases.
+- Only use `text_type` for primary/secondary specs when the value is genuinely free-form — not simply because some values are missing.
+
+
+
+---
+
+
+## Decision rules — stop at first match
+
+
+| Rule | Condition | Action |
+|------|-----------|--------|
+| 1 → `text_type` | Options are model numbers, codes, or identifiers; or values are continuous / unique per SKU; or fewer than 2 standard values exist | Set `text_type`, clear options to `[]` |
+| 2 → `radio_button` | Values are mutually exclusive and options form a finite set | Set `radio_button` |
+| 3 → `multi_select` | Multiple values can apply to one product and options form a finite set | Set `multi_select` |
+| 4 → Keep | Current type is correct per the above | No change |
+
+
+---
+
+
+## Common misclassifications
+
+
+| Spec | Wrong type | Correct type | Why |
+|------|-----------|--------------|-----|
+| Application / Suitable For / Usage | `radio_button` | `multi_select` | One product serves multiple uses |
+| Certifications, IS Standards | `radio_button` | `multi_select` | Products carry multiple marks |
+| Phase, Voltage Rating, Insulation Class | `multi_select` | `radio_button` | One fixed value per SKU |
+| Model Number, Part Number, Catalogue Code | `radio_button` | `text_type` | Unique per SKU, not enumerable |
+
+
+
+
+
+
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(list of fungicide formulation codes india CIBRC) ---
+{
+  "query": "list of fungicide formulation codes india CIBRC",
+  "results": [
+    {
+      "title": "[PDF] MAJORUSES OF PESTICIDES (UPTO - 31/03/2024) FUNGICIDES",
+      "url": "https://ppqs.gov.in/sites/default/files/fungicides_31.03.2024.pdf",
+      "excerpt": "WebSearchResult(url='https://ppqs.gov.in/sites/default/files/fungicides_31.03.2024.pdf', excerpts=['1\\n\\nAmetoctradine\\n\\n**GovernmentofIndia**\\n\\n**MinistryofAgriculture & Farmers Welfare**\\n\\n**DepartmentofAgriculture& Farmers Welfare**\\n\\n**DirectorateofPlant Protection,Quarantine&Storage**\\n\\n**CentralInsecticideBoard&Registration Committee N.H.-IV,**\\n\\n**Faridabad-121001 (Haryana)**\\n\\n**MAJORUSES OF PESTICIDES**\\n\\n**(Registered under the Insecticides Act,1968)**\\n\\n**(UPTO - 31/03/2024** **)**\\n\\n**(Based on certificate issued)**\\n\\n**_Disclaimer_** _:_ **_The documenthas beencompiledonthebasis_**\\n\\n**_ofavailableinformation for guidanceandnotforlegalpurposes._**\\n\\n**FUNGICIDES**\\n\\n1\\\\. Fungicides single product formulations use (Page No. \u2013 02 to 34).\\n\\n2\\\\. Fungicides combination uses (Page No. \u2013 35 to 59)\\n\\n2\\n\\n**1\\\\. Fungicides single product formulations use**\\n\\n**Crop**\\n\\n**Common name**\\n\\n**of the disease**\\n\\n**Dosage per ha**\\n\\n**Waiting**\\n\\n**period from**\\n\\n**last**\\n\\n**application**\\n\\n**to**\\n\\n**harvest**\\n\\n**(in days)**\\n\\n**a. i. (g)**\\n\\n**Formulation**\\n\\n**(g/ml)/%**\\n\\n**Dilution**\\n\\n**in**\\n\\n**water(L)**\\n**Amisulbrom 20% SC**\\n\\nPotato\\n\\nLate blight\\n\\n( _Phytophthora_\\n\\n_infestans_ )\\n\\n100\\n\\n500\\n\\n375-500\\n\\n19\\n\\nGrape\\n\\nDowny mildew\\n\\n( _Plasmopara_\\n\\n_viticola_ )\\n\\n75\\n\\n375\\n\\n400-1000\\n\\n59\\n\\n**Azoxystrobin 23% SC**\\n\\nGrapes\\n\\nDowny mildew,\\n\\nPowdery mildew\\n\\n125gm\\n\\n500 ml\\n\\n500-750\\n\\n7\\n\\nChilli\\n\\nFruitrot,\\n\\nPowdery mildew\\n\\n125gm\\n\\n500 ml\\n\\n500-750\\n\\n5\\n\\nMango\\n\\nAnthracnose,\\n\\nPowdery mildew\\n\\n0\\\\.025%\\n\\n0\\\\.1%\\n\\n100ml/ 100\\n\\nLtr.\\n\\n(depending\\n\\nupon size of\\n\\ntree)\\n\\n5\\n\\nTomato\\n\\nEarly & Late\\n\\nblight\\n\\n125gm\\n\\n500ml\\n\\n500\\n\\n3\\n\\nPotato\\n\\nLate Blight\\n\\n0\\\\.025%(125)\\n\\ngm\\n\\n500 ml\\n\\n500\\n\\n12\\n\\nCucumber\\n\\nDowny mildew,\\n\\nPowdery mildew\\n\\n125 gm\\n\\n500\\n\\n500\\n\\n5\\n\\nCumin\\n\\nBlight &\\n\\nPowdery mildew\\n\\n115 gm\\n\\n500\\n\\n500\\n\\n28\\n\\nPomegranate\\n\\nLeaf & Fruit spot\\n\\n0\\\\.023%\\n\\n0\\\\.1%\\n\\n500 L/ha (or\\n\\ndepending on\\n\\nsize of tree)\\n\\n5\\n\\n**Aureofungin 46.15% w/v SP**\\n\\n3\\n\\nPaddy(Rice)\\n\\nBlast, Brown leaf\\n\\n\\\\-\\n\\n0\\\\.005%\\n\\n500\\n\\n30\\n\\nspot\\n\\nGrapes\\n\\nDowny mildew\\n\\nAnthracnose\\n\\n\\\\-\\n\\n\\\\-\\n\\n0\\\\.005%\\n\\n0\\\\.05%\\n\\n750\\n\\n750\\n\\n15\\n\\nCitrus\\n\\nGummosis\\n\\n\\\\-\\n\\n1\\\\.0%\\n\\n750\\n\\n(Soil drench)\\n\\n30\\n\\nApple\\n\\nPowdery mildew\\nWhite root rot\\n\\n\\\\-\\n\\n\\\\-\\n\\n0\\\\.005%\\n\\n0\\\\.2%\\n\\n10 lit./tree\\n\\n5-10 injection\\n\\n2 gm/tree\\n\\n30\\n\\nPotato\\n\\nEarly blight\\n\\n\\\\-\\n\\n0\\\\.005%\\n\\n750\\n\\n30\\n\\n**Bitertanol25%WP**\\n\\nGroundnut\\n\\nRust\\n\\n250gm\\n\\n1000gm\\n\\n500\\n\\n30\\n\\nTikka\\n\\n250gm\\n\\n1000gm\\n\\n500\\n\\n30\\n\\nWheat\\n\\nKarnal bunt\\n\\n560gm\\n\\n2240gm\\n\\n750\\n\\n\\\\-\\n\\n**Bupirimate 26.7% w/w EC**\\n\\nRose\\n\\nPowdery mildew\\n\\n1000\\n\\n4000\\n\\n1000\\n\\n5\\n\\n**Captan 50% WG**\\n\\nChilli\\n\\nFruitrot\\n\\n(Anthracnose)\\n\\n750gm\\n\\n1500gm\\n\\n500\\n\\n5\\n\\nPotato\\n\\nEarly\\n\\nBlight & Late\\n\\nblight\\n\\n750gm\\n\\n1500gm\\n\\n500\\n\\n21\\n\\n**Captan 50% WP**\\n\\nApple\\n\\nScab\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\nCherry\\n\\nBrown rot\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\nGrapes\\n\\nDowney mildew\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\nPotato\\n\\nEarly blight\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\nLate blight\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\n4\\n\\nTomato\\n\\nEarly blight\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\nLate blight\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\n**Captan 75% WP**\\n\\nApple\\\\*\\n\\nScab, Fly speck &\\n\\nBitter rot\\n\\n0\\\\.12%\\\\*\\\\*\\n\\n1667gm\\n\\n15-20\\\\*\\\\*\\n\\n8\\n\\nCherry\\n\\nBrown rot\\n\\n0\\\\.12%\\\\*\\\\*\\n\\n1667gm\\n\\n15-20\\\\*\\\\*\\n\\nNA\\n\\nGrape\\n\\nDowny mildew\\n ... \\nLeafspot, Die-\\n\\nback\\n\\n**Oxathiapiprolin 10.1% OD**\\n\\nPotato\\n\\nLate blight\\n\\n20\\n\\n200\\n\\n500\\n\\n22 days\\n\\nGrapes\\n\\nDowney mildew\\n\\n40\\n\\n400\\n\\n1000\\n\\n5 days\\n\\n**Penconazole 10% EC**\\n\\nGrapes\\n\\nPowdery mildew\\n\\n0\\\\.005%\\n\\nor5\\n\\ngm/100\\n\\nLtr. water\\n\\n50ml/100Ltr.\\n\\nwater\\n\\nDepending upon\\n\\nthe requirement\\n\\n30\\n\\nApple\\n\\nScab\\n\\n0\\\\.005%\\n\\nor5 gm\\n\\n/100 Ltr.\\n\\nwater\\n\\n50ml/100Ltr.\\n\\nwater\\n\\n10Ltr.\\n\\nWater per tree\\n\\n30\\n\\nMango\\n\\nPowdery mildew\\n\\n0\\\\.005%\\n\\nor5\\n\\ngm/100\\n\\nLtr. water\\n\\n50ml/100Ltr.\\n\\nwater\\n\\n10Ltr.\\n\\nWater per tree\\n\\n30\\n\\nPulses\\n\\n(Black gram\\n\\n/Greengram)\\n\\nPowdery mildew\\n\\n0\\\\.005%\\n\\nor5\\n\\ngm/100\\n\\nLtr. water\\n\\n50ml/100Ltr.\\n\\nwater\\n\\n500Ltr./ha\\n\\n30\\n\\n**Penflufen 22.43% FS**\\n\\n20\\n\\nPotato\\n\\nBlack Scurf\\n\\n0\\\\.02\\n\\n0\\\\.083\\n\\n83\\n\\n800 kg seed\\n\\ntubers of\\n\\npotato are\\n\\ndipped in the\\n\\nsolutions of\\n\\nfungicide for\\n\\n10 minutes.\\n\\nTubers after\\n\\ntreatment are\\n\\ndried in shade\\n\\nand then\\n\\nsown.\\n\\n**Pencycuron 22.9% SC**\\n\\nRice (Paddy)\\n\\nSheathblight\\n\\n150-187.5gm\\n\\n600-750ml\\n\\n500\\n\\n69\\n\\nPotato tuber\\n\\nBlack scurf\\n\\n0\\\\.0625-\\n\\n0\\\\.125\\n\\n0\\\\.25-0.50\\n\\n\\\\-\\n\\n78\\n\\n**Picoxystrobin 22.\\n ... \\nDowny mildew\\n\\n1\\\\.125-\\n\\n1\\\\.5KG\\n\\n1\\\\.5-2KG\\n\\n750-1000 Lt\\n\\nGuava\\n\\nFruit rot\\n\\n1\\\\.125-\\n\\n1\\\\.5KG\\n\\n1\\\\.5-2KG\\n\\n750-1000 Lt\\n\\n**Ziram 80%WP**\\n\\nGrape\\n\\nDowny mildew\\n\\n1\\\\.2-\\n\\n1\\\\.6 kg\\n\\n1\\\\.5-2.0kg\\n\\n750-1000\\n\\n\\\\--\\n\\nAnthracnose\\n\\n1\\\\.2-\\n\\n1\\\\.6 kg\\n\\n1\\\\.5-2.0kg\\n\\n750-1000\\n\\n\\\\--\\n\\nApple\\n\\nscab\\n\\n1\\\\.2-\\n\\n1\\\\.6 kg\\n\\n1\\\\.5-2.0kg\\n\\n750-1000\\n\\n21\\n\\nPotato\\n\\nEarly blight\\n\\n1\\\\.2-\\n\\n1\\\\.6 kg\\n\\n1\\\\.5-2.0kg\\n\\n750-1000\\n\\n3\\n\\nTomato\\n\\nEarly blight\\n\\n1\\\\.2-\\n\\n1\\\\.6 kg\\n\\n1\\\\.5-2.0kg\\n\\n750-1000\\n\\n3\\n\\n35\\n\\n**2\\\\. Fungicides Combination Uses**\\n\\n**Crop**\\n\\n**Common**\\n\\n**name**\\n\\n**of the**\\n\\n**disease**\\n\\n**Dosage/ha**\\n\\n**(a.i.)**\\n\\n**Dosage/ha**\\n\\n**(Formulation)**\\n\\n**Dilution**\\n\\n**Waiting**\\n\\n**Period**\\n\\n**Azoxystrobin 4.8% w/w + Chlorothalonil 40% w/w SC**\\n\\nWatermelon\\n\\nLeaf spot, downy\\n\\nmildew and powdery\\n\\nmildew\\n\\n1\\\\.344\\n\\n(0.144+1.2)\\n\\n3\\\\.0\\n\\n500\\n\\n5\\n\\nCucumber\\n\\nLeaf spot, downy\\n\\nmildew and\\n\\npowdery mildew\\n\\n1\\\\.344\\n\\n(0.144+1.2)\\n\\n3\\\\.0\\n\\n500\\n\\n3\\n\\nCauliflower\\n\\nLeaf spot, downy\\n\\nmildew\\n\\n1\\\\.344\\n\\n(0.144+1.2)\\n\\n3\\\\.0\\n\\n500\\n\\n3\\n\\n**Azoxystrobin 18.2% w/w + Cyproconazole 7.3% w/w SC**'], publish_date=None, title='[PDF] MAJORUSES OF PESTICIDES (UPTO - 31/03/2024) FUNGICIDES')"
+    },
+    {
+      "title": "[PDF] Fungicides",
+      "url": "https://ppqs.gov.in/sites/default/files/mup-fungicides.doc.pdf",
+      "excerpt": "WebSearchResult(url='https://ppqs.gov.in/sites/default/files/mup-fungicides.doc.pdf', excerpts=['**Government of India**\\n\\n**Ministry of Agriculture & Farmers Welfare**\\n\\n**Department of Agriculture, Cooperation & Farmers Welfare**\\n\\n**Directorate of Plant Protection, Quarantine & Storage**\\n\\n**Central Insecticide Board & Registration Committee N.H.-IV,**\\n\\n**Faridabad-121001**\\n\\n**MAJORUSES OFPESTICIDES**\\n\\n**Registered under the InsecticidesAct,1968**\\n\\n**AS ON 31.10.2019**\\n\\n**FUNGICIDES**\\n\\n**Disclaimer** : **The document has been compiled on the basis of available information for**\\n\\n**guidance and not for legal purposes.**\\n\\n**Fungicides single product formulations uses**\\n\\n**Fungicides combination uses**\\n\\n**Fungicides**\\n\\n**Crop**\\n\\n**Common name**\\n\\n**of the**\\n\\n**disease**\\n\\n**Dosage perha**\\n\\n**Waitingperio**\\n\\n**d fromlast**\\n\\n**applicationto**\\n\\n**harvest(in**\\n\\n**days)**\\n\\n**a.i. (g)**\\n\\n**Formulation**\\n\\n**(g/ml)/%**\\n\\n**Dilutionin**\\n\\n**water(L)**\\n\\n**Azoxystrobin 23% SC**\\n\\nGrapes\\n\\nDowny mildew\\n\\nPowdery mildew\\n\\n125gm\\n\\n500 ml\\n\\n500-750\\n\\n7\\n\\nChilli\\n\\nFruitrot\\n\\nPowdery mildew\\n\\n125gm\\n\\n500 ml\\n\\n500-750\\n5\\n\\nMango\\n\\nAnthracnosePow\\n\\ndery mildew\\n\\n0\\\\.025%\\n\\n0\\\\.1%\\n\\n100ml/ 100\\n\\nlitofwater\\n\\ndepending\\n\\nonthesize\\n\\nofthetree\\n\\ncanopy\\n\\n5\\n\\nTomato\\n\\nEarly&\\n\\nLateblight\\n\\n125gm\\n\\n500ml\\n\\n500\\n\\n3\\n\\nPotato\\n\\nLate Blight\\n\\n125 gm\\n\\n500 ml\\n\\n500\\n\\n12\\n\\nCucumber\\n\\nDowney mildew\\n\\nPowdery mildew\\n\\n125 gm\\n\\n500\\n\\n500\\n\\n5\\n\\nCumin\\n\\nBlight &\\n\\nPowdery mildew\\n\\n115 gm\\n\\n500\\n\\n500\\n\\n28\\n\\n**Bitertanol25%WP**\\n\\nGroundnut\\n\\nRust\\n\\n250gm\\n\\n1000gm\\n\\n500\\n\\n30\\n\\nTikka\\n\\n250gm\\n\\n1000gm\\n\\n500\\n\\n30\\n\\nWheat\\n\\nKarnalbunt\\n\\n560gm\\n\\n2240gm\\n\\n750\\n\\n\\\\-\\n\\n**Captan 50% WG**\\n\\nChillies\\n\\nFruitrot\\n\\n(Anthracnose)\\n\\n750gm\\n\\n1500gm\\n\\n500\\n\\n5\\n\\nPotato\\n\\nEarly\\n\\nblight&Latebligh\\n\\nt\\n\\n750gm\\n\\n1500gm\\n\\n500\\n\\n21\\n\\n**Captan 50% WP**\\n\\nApple\\n\\nScab\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\nCherry\\n\\nBrownrot\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\nGrapes\\n\\nDowney mildew\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\nPotato\\n\\nEarly blight\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\nLateblight\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\nTomato\\n\\nEarly blight\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\nLateblight\\n\\n1250gm\\n\\n2\\\\.5kg\\n\\n750-1000\\n\\n\\\\-\\n\\n**Captan 75% WP**\\n\\nApple\\\\*\\nScabFly speck\\n\\nBitterrot\\n\\n0\\\\.12%\\\\*\\\\*\\n\\n1667gm\\n\\n15-20\\\\*\\\\*\\n\\n8\\n\\nCherry\\n\\nBrownrot\\n\\n0\\\\.12%\\\\*\\\\*\\n\\n1667gm\\n\\n15-20\\\\*\\\\*\\n\\nNA\\n\\nGrape\\n\\nDowny mildew\\n\\n1250gm\\n\\n1667gm\\n\\n1000\\n\\n8\\n\\nCabbage/\\n\\nCauliflower,\\n\\nTomato,\\n\\nBrinjal,\\n\\nChillies,\\n\\nBeans,\\n\\nOrnamental\\n\\nDamping off\\n\\n(Nursery)\\n\\n0\\\\.25%\\n\\n2500gm\\n\\n1000\\n\\nSoildrench\\n\\ninthe nursery\\n\\nNA\\n\\nPotato\\n\\nEarly blight\\n\\n1250gm\\n\\n1667gm\\n\\n1000\\n\\n8\\n\\nLateblight\\n\\n1250gm\\n\\n1667gm\\n\\n1000\\n\\n8\\n\\nTomato\\n\\nEarly blight\\n\\n1250gm\\n\\n1667gm\\n\\n1000\\n\\n6\\n\\nLateblight\\n\\n1250gm\\n\\n1667gm\\n\\n1000\\n\\n6\\n\\nChillies\\n\\nEarly blight\\n\\n1250gm\\n\\n1667gm\\n\\n1000\\n\\n8\\n\\nFruitrot\\n\\n1500gm\\n\\n2000gm\\n\\n1000\\n\\n8\\n\\nCitrus\\n\\nBrownrot\\n\\n0\\\\.25\\\\*\\\\*\\n\\n2500gm\\n\\n15-20\\\\*\\\\*\\n\\nNA\\n\\nScab\\n\\n0\\\\.12\\\\*\\\\*\\n\\n1667gm\\n\\n15-20\\\\*\\\\*\\n\\nNA\\n\\nRose\\n\\nBlackspot\\n\\n1250gm\\n\\n1667\\n\\n1000\\n\\nNA\\n\\nPaddy\\n\\nLeafspot\\n\\n750gm\\n\\n1000gm\\n\\n750\\n\\nNA\\n\\n**Captan75%WS**\\n\\nChillies\\n\\n(soildrench)\\n\\nDamping off\\n\\n(soil drench)\\n\\n15-25\\n\\ngmper\\n\\nkgseed\\n\\n20-30gm\\n\\nperkgseed\\n\\n1\\n\\nCabbage\\n\\nDamping off\\n\\n(soil drench)\\n\\n15-\\n\\n25gmper\\n\\nkgseed\\n\\n20-30gm\\n\\nperkgseed\\n\\n1\\n\\nTomato\\n\\nDamping off\\n\\n(soil drench)\\n\\n15-25\\n\\ngmper\\n\\nkgseed\\n\\n20-30gm\\nperkgseed\\n\\n1\\n\\nTobacco\\n\\nDamping off\\n\\n(soil drench)\\n\\n15-25\\n\\ngmper\\n\\nkgseed\\n\\n20-30gm\\n\\nperkgseed\\n\\n1\\n\\n**Carbendazim 5% GR**\\n\\nPaddy\\n\\nBrownleaf spot\\n\\n0\\\\.62kg\\n\\n12\\\\.5 kg\\n\\n\\\\-\\n\\n**Carbendazim 46.27% SC**\\n\\nGrape\\n\\nPowdery\\n\\nmildew\\n\\n0\\\\.046%\\n\\nor 46 g /100\\n\\nlitwater\\n\\n0\\\\.1%or100\\n\\nml/\\n\\n100litWater\\n\\nAsrequired\\n\\n30\\n\\nMango\\n\\nPowdery\\n\\nmildew\\n\\n0\\\\.046%\\n\\nor 46 g/100\\n\\nlitwater\\n\\n0\\\\.1%or100\\n\\nml/100litW\\n\\nater\\n\\nAsrequired\\n\\n15\\n\\n**Carbendazim 50%WP**\\n\\nPaddy\\n\\nBlast\\n\\n125-250 gm\\n\\n250-500gm\\n\\n750L\\n\\n\\\\-\\n\\nSheath blight\\n\\n1gm/ kg\\n\\nseed\\n\\n2 gm/ kg\\n\\nseed\\n\\n(1ltr/10 kg\\n\\nseed)(seed\\n\\ntreatment)\\n\\n(wet slurry\\n\\ntreatment)\\n\\nAerial phase\\n\\n125-250 gm\\n\\n250-500gm\\n\\n750\\n\\n\\\\-\\n\\nWheat\\n\\nLoosesmut\\n\\n1gm/kg\\n\\nseed\\n\\n2g/kg seed\\n\\n(1ltr/10 kg\\n\\nseed)(seed\\n\\ntreatment\\n\\nbefore sowing)\\n\\n(wet slurry\\n\\ntreatment)\\n\\nBarley\\n\\nLoosesmut\\n\\n1 gm/kg\\n\\n2 gm/kg\\n\\n(1ltr/10 kg\\n\\nseed)(seed\\n\\ntreatmentbefore\\n\\nsowing)\\n\\n(wet slurry\\n\\ntreatment)\\n\\nTapioca\\n\\nSetrot\\n\\n0\\\\.5gm\\n\\n1gm\\n\\n1\\n\\n\\\\-\\n\\nCotton\\n\\nLeafspot\\n\\n125\\n\\n250\\n\\n750\\n\\n\\\\-\\n\\nJute\\n\\nSeedling\\n\\nblight\\n\\n1gm/kg\\n\\nseed\\n\\n2gm/kg\\n\\nseed\\n\\n(1ltr/10kg\\n ... \\n**Dosage/ha**\\n\\n**(Formulation)**\\n\\n**Dilution**\\n\\n**Waiting**\\n\\n**Period**\\n\\n**Azoxystrobin 4.8% w/w + Chlorthalonil 40% w/w SC**\\n\\nWatermelo\\n\\nn\\n\\nLeaf spot, downy\\n\\nmildew and powdery\\n\\nmildew\\n\\n1\\\\.344\\n\\n(0.144+1.2)\\n\\n3\\\\.0\\n\\n500\\n\\n5\\n\\nCucumber\\n\\nLeaf spot, downy\\n\\nmildew and\\n\\npowdery mildew\\n\\n1\\\\.344\\n\\n(0.144+1.2)\\n\\n3\\\\.0\\n\\n500\\n\\n3\\n\\nCauliflower\\n\\nLeaf spot, downy\\n\\nmildew\\n\\n1\\\\.344\\n\\n(0.144+1.2)\\n\\n3\\\\.0\\n\\n500\\n\\n3\\n\\n**Azoxystrobin 18.2% w/w + Cyproconazole 7.3% w/w SC**\\n\\nWheat\\n\\nRust, Powdery\\n\\nMildew\\n\\n0\\\\.26\\n\\n1\\n\\n500\\n\\n50\\n\\nMaize\\n\\nDowny mildew,\\n\\nTurcicum leaf\\n\\nblight, Rust\\n\\n0\\\\.26\\n\\n1\\n\\n500\\n\\n52\\n\\n**Ametoctradin + Dimethomorph 20.27% w/w SC**\\n\\nGrape\\n\\nDowney Mildew\\n\\n420-525\\n\\n800-1000ml\\n\\n750\\n\\n34\\n\\nCucurbits\\n\\nDowney Mildew\\n\\n420-525\\n\\n800-1000ml\\n\\n500\\n\\n03\\n\\nPotato\\n\\nLate Blight\\n\\n420-525\\n\\n800-1000ml\\n\\n500\\n\\n32\\n\\n**Azoxystrobin 18.2% w/w + Cyproconazole 7.3% w/w SC**\\n\\nWheat\\n\\nRust, Powdery\\n\\nMildew\\n\\n0\\\\.26\\n\\n1\\n\\n500\\n\\n50\\n\\nMaize\\n\\nDowny mildew,\\n\\nTurcicum leaf\\n\\nblight, Rust\\n\\n0\\\\.26\\n\\n1\\n\\n500\\n\\n52\\n\\n**Azoxystrobin 18.2% w/w + Difenoconazole 11.4% w/w SC**'], publish_date=None, title='[PDF] Fungicides')"
+    },
+    {
+      "title": "Pesticide Formulation Codes List | PDF | Biocides | Chemistry - Scribd",
+      "url": "https://www.scribd.com/document/686301819/AppendixD-CIPAC-Formulation-Codes",
+      "excerpt": "WebSearchResult(url='https://www.scribd.com/document/686301819/AppendixD-CIPAC-Formulation-Codes', excerpts=['Open navigation menu \\n\\nClose suggestions Search Search\\n\\nen Change Language Upload Sign in Sign in\\n\\n0 ratings 0% found this document useful (0 votes)\\n\\n757 views 2 pages\\n\\nFormulation Codes for Pesticide Products\\n\\nThe document provides a list of codes for pesticide formulations in 3 categories: solids, liquids, and gases. There are over 80 unique codes that represent common formulations like granular \u2026\\n\\nFull description\\n\\n## Uploaded by\\n\\n[240724109](https://www.scribd.com/user/705977094/240724109)\\n\\nAI-enhanced title and description\\n\\n* Download\\n* Save Save AppendixD CIPAC Formulation Codes For Later\\n* Share\\n* 0% 0% found this document useful, undefined\\n* 0% , undefined\\n* Print\\n* Embed\\n* Ask AI\\n* Report\\n\\n0 ratings 0% found this document useful (0 votes)\\n\\n757 views 2 pages\\n\\n# Formulation Codes for Pesticide Products\\n\\nThe document provides a list of codes for pesticide formulations in 3 categories: solids, liquids, and gases.\\nThere are over 80 unique codes that represent common formulations like granular baits, emulsifiable concentrates, dusts, and more. The codes are intended to standardize how formulations are referred to across different products, regions, and languages.\\n\\nRead more\\n\\nDownload\\n\\n0 ratings 0% found this document useful (0 votes)\\n\\n757 views 2 pages\\n\\nFormulation Codes for Pesticide Products\\n\\nThe document provides a list of codes for pesticide formulations in 3 categories: solids, liquids, and gases. There are over 80 unique codes that represent common formulations like granular \u2026\\n\\nFull description\\n\\n## Uploaded by\\n\\n[240724109](https://www.scribd.com/user/705977094/240724109)\\n\\nAI-enhanced title and description\\n\\nGo to previous items Go to next items\\n\\n* Download\\n* Save Save AppendixD CIPAC Formulation Codes For Later\\n* Share\\n* 0% 0% found this document useful, undefined\\n* 0% , undefined\\n* Print\\n* Embed\\n* Ask AI\\n* Report\\n\\nDownload\\n\\nSave AppendixD CIPAC Formulation Codes For Later\\n\\nSearch\\nFullscreen\\n\\nYou are on page 1 2\\n\\n## Share this document\\n\\n* Share on Facebook, opens a new window\\n* Share on LinkedIn, opens a new window\\n* Share with Email, opens mail client\\n* Copy link\\n\\n[Millions of documents at your fingertips, ad-freeSubscribe with a free trial](https://www.scribd.com/oauth/signup?doc_id=686301819)\\n\\n## Footer menu\\n\\nBack to top\\n\\nGet our free apps\\n\\n* [](https://apps.apple.com/us/app/6448807714?mt=8&pt=298534)\\n* [](https://play.google.com/store/apps/details?id=com.scribd.app.reader0.docs)\\n\\n* Documents\\n\\nLanguage:\\n\\nEnglish\\n\\nWe take content rights seriously. [Learn more](https://support.scribd.com/hc/en-us/articles/210129026-Frequently-Asked-Questions-about-Copyrights-and-the-DMCA) in our FAQs or [report infringement here](https://support.scribd.com/hc/en-us/articles/210129146-REPORT-COPYRIGHT-INFRINGEMENTS-AND-ABUSE-HERE) .\\n\\nWe take content rights seriously. [Learn more](https://support.scribd.\\ncom/hc/en-us/articles/210129026-Frequently-Asked-Questions-about-Copyrights-and-the-DMCA) in our FAQs or [report infringement here](https://support.scribd.com/hc/en-us/articles/210129146-REPORT-COPYRIGHT-INFRINGEMENTS-AND-ABUSE-HERE) .\\n\\nLanguage:\\n\\nEnglish\\n\\n576648e32a3d8b82ca71961b7a986505'], publish_date=None, title='Pesticide Formulation Codes List | PDF | Biocides | Chemistry - Scribd')"
+    },
+    {
+      "title": "[PDF] Fungi & Herbi_176P_13-3-17",
+      "url": "https://keralaagriculture.gov.in/wp-content/uploads/2021/04/Fungicides_registered_in_India___1___1_-1.pdf",
+      "excerpt": "WebSearchResult(url='https://keralaagriculture.gov.in/wp-content/uploads/2021/04/Fungicides_registered_in_India___1___1_-1.pdf', excerpts=['**Trade / Brand Name**\\n\\n**Recommended Dose**\\n\\nDifenoconazole25% EC\\n\\nHexaconazole 75 % WG\\n\\nIprodione 50% WP\\n\\nKitazin 48% EC\\n\\nAgni (22), Beam (27), Blastin (14), Boom Plus (61),\\n\\nFORCE 11 (36), Gunshot (59), Indofil Baan (35),\\n\\nIPL Tricyclo (37), Lallari (15), Logik (50),\\n\\nMangala Surakshith (45), Mantis 75 WP (52),\\n\\nNo Blast (43), Protozone (24), SAMAR (66), Tric (41),\\n\\nTricyclo (2), Trion (17), Trizole (58) and Veer (38)\\n\\nScore (64)\\n\\nSeveral (73)\\n\\nOverall, Proturf G, Rovral, Trilogy SC\\n\\nKitazin (74)\\n\\n3g/kg of seeds\\n\\n(For Seed Treatment) or\\n\\n0\\\\.75-1.25 g/Litre of water\\n\\n(For Spray)\\n\\n0\\\\.5ml/ Litre of water\\n\\n0\\\\.13g/ Litre of water\\n\\n3 g/ Litre of water\\n\\n1 ml/ Litre of water\\n\\nPropiconazole 10.7%+\\n\\nTricyclazole 34.2% SE\\n\\nNew (64)\\n\\n0\\\\.5- 1 ml/ Liter of water\\n\\nTricyclazole 75% WP\\n\\n37\\n\\nA Compendium of Fungicides and Herbicides Registered in India. Rangaswamy K. T. et al., 2017, Dept. of Plant Pathology, UAS, GKVK, Bengaluru\\n\\n**Trade / Brand Name**\\n\\n**Recommended Dose**\\n\\n**Chemical Name**\\n\\n2\\\\.\\n6g/ Litre of water\\n\\n1\\\\.5 g/ Litre of water\\n\\n1ml/ Litre of water\\n\\n2 ml/Litre of water\\n\\n1g/ Litre of water\\n\\n1ml/ Litre of water\\n\\nValidamycin3%L\\n\\nAzoxytrobin 11% +\\n\\nTebuconazole-18.3%\\n\\nSC W/W\\n\\nAzoxystrobin 18.2% w/w\\n\\n\\\\+ Difenoconazole 11.4%\\n\\nw/w SC\\n\\nCarbendazim 25 %+\\n\\nFlusilazole 12.5% SE\\n\\nIprodione25%+\\n\\nCarbendazim25%WP\\n\\nPropiconazole 13.9% +\\n\\nDifenoconazole 13.9% EC\\n\\nRhizocin (59), Sheathmar (26)\\n\\nCustodia (Adama India Pvt. Ltd.)\\n\\nAmister top (64)\\n\\n\\\\-\\n\\nQuintol (12)\\n\\n\\\\-\\n\\nThifluzamide24%SC\\n\\nThiram 40 FS\\n\\nVista (59) Pulsor (36)\\n\\nThiram\\n\\n0\\\\.75g/ Litre of water\\n\\n0\\\\.5 - 1 ml/ Litre of water\\n\\nNOTE: Serial number in parenthesis corresponds to manufacturing company (see Appendix)\\n\\n38\\n\\nA Compendium of Fungicides and Herbicides Registered in India. Rangaswamy K. T. et al., 2017, Dept. of Plant Pathology, UAS, GKVK, Bengaluru\\n\\n**Chemical Name**\\n\\n**Trade / Brand Name**\\n\\n**Recommended Dose**\\n\\nCarbendazim 50% WP\\n\\n2 g/kg of seeds\\n\\n(Seed Treatment),\\n\\n1 g/Litre of water\\n\\n(Foliar spray)\\nBavistin (11), Benfil (35), Bengard (27), Benze (67),\\n\\nBystell (18), Carzim-50 (20), Dazim-50 (3),\\n\\nDerosal 50 WP (12), Goldstin (23), IPL Carba (37),\\n\\nRustone 50 (32), Sahara (36), Sahib Carb (57), Sten (22),\\n\\nTristin (58) and Warrant (32)\\n\\nChlorothalonil 82.5%\\n\\nWDG\\n\\nBravo Ultrex (64) and Daconil Ultrex (64)\\n\\n0\\\\.6-1.2 kg/ac\\n\\nChlorothalonil 75% WP\\n\\nCymoxanil 8% +\\n\\nMancozeb 64% WP\\n\\nCopper hydroxide\\n\\n77 WP\\n\\nCluch 70 (17),Ishaan (52), Jatayu (22),Kavach (64)\\n\\nand Ovate (20)\\n\\nCurzate (28) and Moximate (35)\\n\\nHydrocop (18), Kocide 101 (28) and\\n\\nVimint - 05 (68)\\n\\n1\\\\.5 g/Litre of water\\n\\n2 g/Litre of water\\n\\n1\\\\.5 g/Litre of water\\n\\nMancozeb 35% SC\\n\\nEurofil-NT (35) and Sahib - Manco (57)\\n\\n2 ml//Litre of water\\n\\n39\\n\\nA Compendium of Fungicides and Herbicides Registered in India. Rangaswamy K. T. et al., 2017, Dept. of Plant Pathology, UAS, GKVK, Bengaluru\\n\\n**11\\\\. List of Fungicides effective against Anthracnose diseases**\\n\\n**Chemical Name**\\n\\n**Trade / Brand Name**\\n\\n**Recommended Dose**\\n ... \\nCarboxin 37.5% +\\n\\nThiram 37.5% DS\\n\\nVitavax Powder (26) and Vitavax-Thiram (12)\\n\\n2-3 g/kg of seeds\\n\\n(Seed Treatment)\\n\\nNOTE: Serial number in parenthesis corresponds to manufacturing company (see Appendix)\\n\\n52\\n\\nA Compendium of Fungicides and Herbicides Registered in India. Rangaswamy K. T. et al., 2017, Dept. of Plant Pathology, UAS, GKVK, Bengaluru\\n\\n**14\\\\. List of Fungicides effective against smut diseases**\\n\\n**Chemical Name**\\n\\n**Trade / Brand Name**\\n\\n**Recommended Dose**\\n\\nBenomyl 50 % WP\\n\\nBenlate (28), Benocil (67), Benofit (22), CHEMYL 50\\n\\nWP (17) and Kirben (41)\\n\\n2 g/kg of seeds (For Seed\\n\\nTreatment) or 1 g/Litre of\\n\\nwater ( For Foliar spray)\\n\\nBavistin (11), Benfil (35), Bengard (27), Benze (67),\\n\\nBystell (18), Carzim-50 (20), Dazim-50 (3),\\n\\nDerosal 50 WP (12), Goldstin (23), IPL Carba (37),\\n\\nRustone 50 (32), Sahara (36), Sahib Carb (57), Sten (22),\\n\\nTristin (58) and Warrant (32)\\n\\nCarbendazim 50% WP\\n\\n2 g/kg of seeds (Seed\\n\\nTreatment), 1 g/Litre of\\n\\nwater (Foliar spray)\\n ... \\nA Compendium of Fungicides and Herbicides Registered in India. Rangaswamy K. T. et al., 2017, Dept. of Plant Pathology, UAS, GKVK, Bengaluru\\n\\n**Chemical Name**\\n\\n**Trade / Brand Name**\\n\\n**Recommended Dose**\\n\\nStreptocycline (0.05%)\\n\\n\\\\+ Copper\\n\\noxychloride (0.2%)(COC)\\n\\nNumbers in the Parenthesis are Referring to the Manufacturing Companies of Different Fungicides;\\n\\nFor Details Refer Annexure-I\\n\\nDisclaimer\\n\\nThe information provided here in supplied with the understanding that no descrimination is inteded and\\n\\nno endorsement by the UAS, Bangalore is implied. The authors have assembled\\n\\nthe most reliable information at the time of publication\\n\\n0\\\\.50 g Streptocycline +\\n\\n2\\\\.50 g Copper oxychloride\\n\\n(COC) / Litre of water\\n\\n75\\n\\nA Compendium of Fungicides and Herbicides Registered in India. Rangaswamy K. T. et al., 2017, Dept. of Plant Pathology, UAS, GKVK, Bengaluru\\n\\n**24\\\\. List of Fungicides effective against Bacterial wilt / Bacterial diseases diseases**\\n\\n**Annexure I**\\n\\n**Sl.**\\n\\n**No.**'], publish_date=None, title='[PDF] Fungi & Herbi_176P_13-3-17')"
+    },
+    {
+      "title": "Formulation codes - Cipac.org",
+      "url": "https://www.cipac.org/index.php/m-p/further-information/formulation-codes",
+      "excerpt": "WebSearchResult(url='https://www.cipac.org/index.php/m-p/further-information/formulation-codes', excerpts=['1. You are here:\\n2. Home\\n3. Publications\\n4. Further information\\n5. Formulation codes\\n\\n### Formulation codes\\n\\nCatalogue of pesticide formulation types and international coding system, Technical Monograph n\u00b02, 7 th Edition Revised March 2017, CropLife International\\n\\n|AE |Aerosol dispenser |MC |Mosquito coil |\\n| --- | --- | --- | --- |\\n|AL |Other liquids to applied undiluted |ME |Micro emulsion |\\n|AP |All other products to be applied undiluted |MR |Matrix release |\\n|BR |Briquette |OD |Oil dispersion |\\n|CB |Bait concentrate |OF |Oil miscible flowable concentrate (oil miscible suspension) |\\n|CP |Contact powder |OL |Oil miscible liquid |\\n|CS |Capsule suspension |OP |Oil dispersible powder |\\n|DC |Dispersible concentrate |PA |Paste |\\n|DP |Dustable powder |PR |Plant rodiet |\\n|DS |Powder for dry seed treatment |RB |Bait (ready for use) |\\n|DT |Tablets for direct application |SC |Suspension concentrate (= flowable concentrate) |\\n|EC |Emulsifiable concentrate |SL |Soluble concentrate |\\n|EG |Emulsifiable granule |SO |Spreading oil |\\n|EW |Emulsion, water in oil |SP |Water soluble powder |\\n|FS |Flowable concentrate for seed treatment |ST |Water soluble tablets |\\n|FU |Smoke generator |SU |Ultralow volume (ULV) suspension |\\n|GA |Gas |TB |Tablet |\\n|GD |Gel for direct application |TC |Technical material. |\\n|GE |Gas generating product |TK |Technical concentrate |\\n|GL |Emulsifiable gel |UL |Ultralow volume (UVL) liquid |\\n|GR |Granule |VP |Vapour releasing product |\\n|GS |Grease |WG |Water dispersible granule |\\n|GR |Water soluble gel |WP |Wettable powder |\\n|HN |Hot fogging concentrate |WS |Water disperible powder for slurry treatment |\\n|KK |Compi-pack solid/liquid\\\\* |WT |Water dispersible tablets |\\n|KL |Combi-pack liquid/liquid\\\\* |XX |Others |\\n|KN |Cold-fogging concentrate |ZC |A mixed formulation of CS and SC |\\n|LB |Long-lasting storage bag |ZE |A mixed formulation ofCS and SE |\\n|LN |Long-lsting insecticidal net |ZW |A mixed formulation of CS and EW |\\n|LS |Solution for seed treatment | | |\\n\\nDisclaimer'], publish_date='2023-05-04', title='Formulation codes - Cipac.org')"
+    },
+    {
+      "title": "[PDF] FUNGICIDES - TNAU Agritech Portal",
+      "url": "https://agritech.tnau.ac.in/crop_protection/pdf/6_Major_use_fungicides.pdf",
+      "excerpt": "WebSearchResult(url='https://agritech.tnau.ac.in/crop_protection/pdf/6_Major_use_fungicides.pdf', excerpts=['Citrus. Leaf Spot. 1.25. 2.5. 750-1000. -. Canker. 1.25. 2.5. 750-1000. -. Cardamom. Clump Rot. 1.87-3.75. 3.75-5.5. 750-1000. -. Leaf Spot. 1.25.'], publish_date=None, title='[PDF] FUNGICIDES - TNAU Agritech Portal')"
+    },
+    {
+      "title": "[PDF] FRAC Code List\u00a9* 2025: Fungal control agents sorted by cross ...",
+      "url": "https://www.frac.info/media/ljsi3qrv/frac-code-list-2025.pdf",
+      "excerpt": "WebSearchResult(url='https://www.frac.info/media/ljsi3qrv/frac-code-list-2025.pdf', excerpts=['chemicals in that group (chemical structure as accepted in literature, e.g., The Pesticide Manual).\\n\\n**Chemical or Biological Group**\\n\\nGrouping is based on chemical considerations. Nomenclature is according to IUPAC and Chemical\\n\\nAbstract name. Taxonomic information may be used for agents of biological origin.\\n\\n**Common name**\\n\\nBSI/ISO accepted (or proposed) common name for an individual active ingredient expected to appear\\n\\non the product label as definition of the product.\\n\\n**Comments on Resistance**\\n\\nDetails are given for the (molecular) mechanism of resistance and the resistance risk. If field-\\n\\nresistance is known to one member of the Group, it is most likely but not exclusively valid that cross-\\n\\nresistance to other group members will be present. There is increasing evidence that the degree of\\n\\ncross-resistance can differ between group members and pathogen species or even within species. For\\nthe latest information on resistance and cross-resistance status of a pathogen / fungicide combination,\\n\\nit is advised to contact local FRAC representatives , product manufacturer\u2019s representative s or crop\\n\\nprotection advisors. The intrinsic risk for resistance evolution to a given fungicide group is estimated\\n\\nto be **low, medium, or high** according to the principles described in FRAC Monographs 1, 2 and 3.\\n\\nResistance management is driven by intrinsic risk of fungicide, pathogen risk and agronomic risk (see\\n\\nFRAC pathogen risk list).\\n\\nFRAC Code List <sup>\u00a9</sup> 2025\\n\\nPage 3 of 18\\n\\nSimilar classification lists of fungicides have been published by T. Locke on behalf of FRAG - UK\\n\\n(Fungicide Resistance, August 2001), and by P. Leroux (Classification des fongicides agricoles et\\n\\nr\u00e9sistance, Phytoma, La D\u00e9fense des V\u00e9g\u00e9taux, No. 554, 43-51, November 2002).\\n\\n**FRAC Code**\\n\\nNumbers and letters are used to distinguish the fungicide groups according to their cross-resistance\\nbehaviour. This code should be used to define the \u201c FUNGICIDE GROUP \u201d code, e.g., on product\\n\\nlabels. The numbers were assigned primarily according to the time of product introduction to the\\n\\nmarket. The letters refer to P = host plant defence inducers, M = chemical multi-site inhibitors, U =\\n\\nunknown mode of action and unknown resistance risk, and BM = biologicals with multiple modes of\\n\\naction. Reclassification of compounds based on new research may result in codes to expire. This is\\n\\nmost likely in the U - section when the mode of action gets clarified. These codes are not re-used for\\n\\nnew groups; a note is added to indicate reclassification into a new code.\\n\\n**Last update: March 2025**\\n\\nNext update decisions: July 2025\\n\\n_\\\\* Disclaimer_\\n\\n_The FRAC Code List is the property of FRAC and protected by copyright laws. The FRAC Code_\\n\\n_List may be used for educational purposes without permission from FRAC. Commercial use of this_\\n ... \\nfungal species, target site\\n\\nmutations in cyt b gene (G143A,\\n\\nF129L) and additional\\n\\nmechanisms\\n\\ncross-resistance shown between\\n\\nall members of the Code 11\\n\\nfungicides for G143A mutants\\n\\n**High Risk**\\n\\nResistance Management required\\n\\nsee FRAC QoI Guidelines\\n\\nfor Resistance Management\\n\\n**11**\\n\\nmethoxy-acetamide\\n\\nmandestrobin\\n\\nmethoxy-carbamates\\n\\npyraclostrobin\\n\\npyrametostrobin\\n\\ntriclopyricarb\\n\\noximino-acetates\\n\\nkresoxim-methyl\\n\\ntrifloxystrobin\\n\\noximino-acetamides\\n\\ndimoxystrobin\\n\\nfenaminstrobin\\n\\nmetominostrobin\\n\\norysastrobin\\n\\noxazolidine-diones\\n\\nfamoxadone\\n\\ndihydro-dioxazines\\n\\nfluoxastrobin\\n\\nimidazolinones\\n\\nfenamidone\\n\\nbenzyl-carbamates\\n\\npyribencarb\\n\\n**QoI** \\\\-fungicides\\n\\n( **Q** uinone **o** utside\\n\\n**I** nhibitors;\\n\\nSubgroup A)\\n\\ntetrazolinones\\n\\nmetyltetraprole\\n\\nResistance not known, not\\n\\ncross-resistant with Code 11\\n\\nfungicides on G143A mutants\\n\\n**High Risk**\\n\\nsee FRAC QoI Guidelines\\n\\nfor Resistance Management\\n\\n**11A**\\n\\nFRAC Code List <sup>\u00a9</sup> 2025\\n\\nPage 8 of 18\\n\\n**MOA**\\n ... \\n**TARGET SITE**\\n\\n**AND CODE**\\n\\n**GROUP NAME**\\n\\n**CHEMICAL OR**\\n\\n**BIOLOGICAL GROUP**\\n\\n**(ISO)**\\n\\n**COMMON NAME**\\n\\n**COMMENTS**\\n\\n**FRAC**\\n\\n**GROUP**\\n\\n**CODE**\\n\\n**G: sterol biosynthesis in membranes**\\n\\n**G1**\\n\\nC14-demethylase\\n\\nin sterol\\n\\nbiosynthesis\\n\\n_(erg11/cyp51)_\\n\\n**DMI** \\\\-fungicides\\n\\n( **D** e **M** ethylation\\n\\n**I** nhibitors)\\n\\n(SBI: Class I)\\n\\npiperazines\\n\\ntriforine\\n\\nthere are big differences in the\\n\\nactivity spectra of DMI\\n\\nfungicides\\n\\nresistance is known in various\\n\\nfungal species, several\\n\\nresistance mechanisms are\\n\\nknown incl. target site mutations\\n\\nin _cyp_ 51 (erg 11) gene, e.g.,\\n\\nV136A, Y137F, A379G, I381V;\\n\\n_cyp_ 51 promotor; ABC\\n\\ntransporters and others\\n\\ngenerally wise to accept that\\n\\ncross-resistance is present\\n\\nbetween DMI fungicides active\\n\\nagainst the same fungus\\n\\nDMI fungicides are Sterol\\n\\nBiosynthesis Inhibitors (SBIs)\\n\\nbut show no cross-resistance to\\n\\nother SBI classes\\n\\n**Medium risk**\\n\\nsee FRAC SBI Guidelines\\n\\nfor Resistance Management\\n\\n**3**\\n\\npyridines\\n\\npyrifenox'], publish_date=None, title='[PDF] FRAC Code List\u00a9* 2025: Fungal control agents sorted by cross ...')"
+    },
+    {
+      "title": "[PDF] FUNGICIDES, BACTERICIDES, AND NEMATICIDES",
+      "url": "https://pnwhandbooks.org/sites/pnwhandbooks/files/plant/pesticide-articles/contentpdf/pdfs/fungicides-bactercides-table.pdf",
+      "excerpt": "WebSearchResult(url='https://pnwhandbooks.org/sites/pnwhandbooks/files/plant/pesticide-articles/contentpdf/pdfs/fungicides-bactercides-table.pdf', excerpts=['**F** **ungicides** **, B** **actericides** **,** **and** **n** **ematicides**\\n\\n**Common or**\\n\\n**Trade or**\\n\\n**Fungicide**\\n\\n**Trade Name**\\n\\n**Common Name**\\n\\n**Action\\\\***\\n\\n**Group #\\\\*\\\\* Use**\\n\\nAbound\\n\\nazoxystrobin\\n\\nB, F, Ls, P\\n\\n11\\n\\nEffective against a large number of fungi including\\n\\npowdery and downy mildews. Severe phytotoxicity\\n\\non apples with a McIntosh heritage.\\n\\nAbsolute\\n\\ntebuconazole +\\n\\nB, C, F, Ls, P\\n\\n3 + 11\\n\\nFor rust and powdery mildew control in grasses\\n\\ntrifloxystrobin\\n\\ngrown for seed in the PNW.\\n\\nAcademy\\n\\nfludioxonil + difenoconazole\\n\\nB-N, F, P\\n\\n12 + 3\\n\\nPostharvest fungicide.\\n\\nAccrue\\n\\nspiroxamine\\n\\nF, N, P\\n\\n5\\n\\n**Discontinued** .\\n\\nacibenzolar-S-methyl\\n\\nActigard, Blockade\\n\\nA\\n\\nP1\\n\\nLabeled for certain vegetable crops and fruit.\\n\\n(Heritage Action)\\n\\nAcquire\\n\\nmetalaxyl\\n\\nFs, N, P, S\\n\\n4\\n\\nFor seed treatment to control ooymcetes in specified\\n\\nrow crops and vegetables.\\n\\nAcrobat\\n\\ndimethomorph\\n\\nF, P\\n\\n40\\n\\n**Discontinued** .\\n\\nAcrobat MZ\\n\\ndimethomorph +\\n\\nF, P\\n\\n40 + M3\\n\\n**Discontinued** .\\nmancozeb\\n\\nActi-dione\\n\\ncycloheximide\\n\\nF\\n\\n**Discontinued** . Antibiotic and fungicide.\\n\\nActigard\\n\\nacibenzolar-S-methyl\\n\\nA\\n\\nP1\\n\\nLabeled for certain vegetable crops and fruit.\\n\\nActinovate\\n\\n_Streptomyces lydicus_\\n\\nF\\n\\nNC\\n\\nFilamentous bacteria as a Biological control agent.\\n\\nActino-Iron\\n\\n_Streptomyces lydicus_\\n\\nF, P\\n\\nNC\\n\\nFor control of soilborne pathogens of indoor/outdoor\\n\\nornamentals and vegetable crops.\\n\\nAdament\\n\\ntebuconazole + trifloxystrobin\\n\\nB, C, F, Ls, P\\n\\n3 + 11\\n\\n**Discontinued** .\\n\\nAdorn\\n\\nfluopicolide\\n\\nF, N, P\\n\\n43\\n\\nOrnamental label for control of oomycetes. Must be\\n\\ntank-mixed with another fungicide.\\n\\nAffirm\\n\\nPolyoxin D zinc salt\\n\\nF\\n\\n19\\n\\nAntibiotic active against certain fungi and bacteria.\\n\\nAframe\\n\\nazoxystrobin\\n\\nB-N, C, F, Ls, P\\n\\n11\\n\\nAnother generic fungicide for many diseases.\\n\\nAframe Plus\\n\\nazoxystrobin + propiconazole\\n\\nB-N, C, F, Ls, P 3 + 11\\n\\nGeneric combination product for many diseases.\\n\\nAgclor\\n\\nsodium hypochlorite\\n\\nB, Bact, E, F\\n\\nUsed as postharvest dip.\\nMany fruits and vegetables\\n\\non label.\\n\\nAgri-Fos\\n\\nphosphorous acid\\n\\nA, Fs, N, P, S\\n\\nP7\\n\\nActive against oomycete fungal-like organisms.\\n\\nAgri-Mycin\\n\\nstreptomycin\\n\\nBact, P\\n\\n25\\n\\nAntibiotic to control a number of commercially\\n\\nimportant bacterial plant pathogens including\\n\\nfire blight.\\n\\nAgri-Strep\\n\\nstreptomycin\\n\\n**Discontinued** name.\\n\\nAlamo\\n\\npropiconazole\\n\\nB-N, C, F,\\n\\n3\\n\\nTrunk injection for diseases such as Dutch elm\\n\\nLs, P\\n\\ndisease.\\n\\nAldesan Microbiocide\\n\\nformaldehyde\\n\\nB, D, F\\n\\nUsed on ornamental bulb crops for nematode\\n\\nand _Sclerotium_ management.\\n\\naldicarb\\n\\nTemik\\n\\nI, Nem, S\\n\\n**Discontinued** .\\n\\nAliette\\n\\naluminum tris\\n\\nA, Fs, N, P, S\\n\\nP7\\n\\nUsed against oomycete fungal-like microorganisms;\\n\\nalso some low bactericidal activity. Very acidic, so\\n\\nincompatible with copper products.\\n\\nAllBan\\n\\nthiophanate-methyl\\n\\nB, F, P, S\\n\\n1\\n\\n**Discontinued** .\\n\\nAllegiance\\n\\nmetalaxyl\\n\\nFs, N, P, S\\n\\n4\\n\\nSeed treatment to control damping-off caused by\\n\\noomycetes.\\n\\nAllisan\\n\\n(DCNA) dichloran\\n\\nF, N, P\\n\\n14\\n**Discontinued** .\\n\\nNot all chemicals listed are recommended or currently registered for use.\\n\\nSee listings for individual crops for recommended uses.\\n\\n\\\\*Action:\\n\\nA = Activator of plant defense\\n\\nAr = Acaricide - substance\\n\\npoisonous to mites or ticks\\n\\nB = Broad-spectrum activity\\n\\nBact = Bactericidal\\n\\nB-N = Broad to narrow\\n\\nspectrum of activity\\n\\nC = Curative\\n\\nD = Disinfectant\\n\\nE = Eradicant\\n\\nF = Fungicidal\\n\\nFs = Fungistatic\\n\\nFum = Fumigant\\n\\nI = Insecticidal\\n\\nLs = Locally systemic\\n\\nN = Narrow-spectrum\\n\\nactivity\\n\\nNem = Nematicide\\n\\n\\\\*\\\\*Not Classified.\\n\\nH <sup>= Homeowner packaging commonly available.</sup>\\n\\nO = Acceptable in organic production\\n\\nP = Protection\\n\\nS = Systemic\\n\\nV = Vapor active\\n\\n? = Unknown\\n\\n2020 PNW Plant Disease Management Handbook\\n\\n5-7\\n\\nallyl isothiocyanate\\n\\nDominus\\n\\nB, F, Fum, Nem\\n\\n?\\n\\nBroad spectrum pre-plant soil biofumigant for the\\n\\ncontrol of certain soil borne fungi, nematodes,\\n\\nweeds, and insects in high-value crops.\\n\\nAmplitude\\n\\n_Bacillus_\\n\\nF, P\\n\\n44\\n ... \\nCaptan + fenhexamid\\n\\nB, F, P\\n\\nM4 + 17\\n\\nFor _Botrytis_ and brown rot control in some fruit\\n\\ncrops.\\n\\nCarbamate\\n\\nferbam\\n\\nB, F, P\\n\\n**Discontinued** name.\\n\\ncarbofuran\\n\\nFuradan\\n\\nB, I, Nem\\n\\n**Restricted-use pesticide** breaks down rapidly with\\n\\ncertain soil microbial populations.\\n\\nCarboject\\n\\noxycarboxin\\n\\nF, Ls, N\\n\\n**Discontinued** . Used for tree injection.\\n\\ncarbon bisulfide\\n\\ncarbon disulfide\\n\\nF, Fum, I, V\\n\\nOne of the most widely used fumigants for insects\\n\\nin stored grain, usually in combination with carbon\\n\\ntetrachloride to reduce fire hazard. Also a soil\\n\\nfumigant to control soil fungi and deep-rooted\\n\\nperennial weeds.\\n\\ncarboxin\\n\\nVitavax\\n\\nF, S\\n\\n7\\n\\nSeed treatment. Controls smuts and _Rhizoctonia_\\n\\n_solani._\\n\\nCavalier\\n\\nthiophanate-methyl\\n\\nB, F, P, S\\n\\n1\\n\\n**Discontinued** .\\n\\nCease\\n\\n_Bacillus subtilis_\\n\\nF, P\\n\\nNC\\n\\nBiological for several crops. O\\n\\nstrain QST 713\\n\\nCela W524\\n\\ntriforine\\n\\nB-N, C, F, P, S\\n\\n**Discontinued** . Old experimental code name.\\n\\nChamp\\n\\ncopper hydroxide\\n\\nB, Bact, F, P\\n\\nM1'], publish_date=None, title='[PDF] FUNGICIDES, BACTERICIDES, AND NEMATICIDES')"
+    },
+    {
+      "title": "[PDF] MAJOR USES OF PESTICIDES (UPTO - 31/01/2020) FUNGICIDES",
+      "url": "https://ppqs.gov.in/sites/default/files/approved_use_of_fungicide.pdf",
+      "excerpt": "WebSearchResult(url='https://ppqs.gov.in/sites/default/files/approved_use_of_fungicide.pdf', excerpts=['1\\n\\n**Government of India**\\n\\n**Ministry of Agriculture & Farmers Welfare**\\n\\n**Department of Agriculture, Cooperation & Farmers Welfare**\\n\\n**Directorate of Plant Protection, Quarantine & Storage**\\n\\n**Central Insecticide Board & Registration Committee N.H.-IV,**\\n\\n**Faridabad-121 001 (Haryana)**\\n\\n**MAJOR USES OF PESTICIDES**\\n\\n**(Registered under the Insecticides Act, 1968)**\\n\\n**(UPTO - 31/01/2020** **)**\\n\\n**(Based on certificate issued)**\\n\\n**_Disclaimer_** _:_ **_The document has been compiled on the basis of available_**\\n\\n**_information for guidance and not for legal purposes._**\\n\\n**FUNGICIDES**\\n\\n1\\\\. Fungicides single product formulations use (Page No. \u2013 02 to 31).\\n\\n2\\\\. Fungicides combination uses (Page No. \u2013 32 to 44)\\n\\n2\\n\\n**1\\\\. Fungicides single product formulations use**\\n\\n**Crop**\\n\\n**Common name**\\n\\n**of the disease**\\n\\n**Dosage per ha**\\n\\n**Waiting**\\n\\n**period**\\n\\n**from last**\\n\\n**application**\\n\\n**to harvest**\\n\\n**(in days)**\\n\\n**a. i. (g)**\\n\\n**Formulation**\\n\\n**(g/ml)/%**\\n**Dilution in**\\n\\n**water (L)**\\n\\n**Azoxystrobin 23% SC**\\n\\nGrapes\\n\\nDowny mildew,\\n\\nPowdery mildew\\n\\n125 gm\\n\\n500 ml\\n\\n500-750\\n\\n7\\n\\nChilli\\n\\nFruit rot,\\n\\nPowdery mildew\\n\\n125 gm\\n\\n500 ml\\n\\n500-750\\n\\n5\\n\\nMango\\n\\nAnthracnose,\\n\\nPowdery mildew\\n\\n0\\\\.025%\\n\\n0\\\\.1%\\n\\n100 ml/ 100 Ltr.\\n\\n(depending\\n\\nupon size of\\n\\ntree)\\n\\n5\\n\\nTomato\\n\\nEarly &\\n\\nLate blight\\n\\n125 gm\\n\\n500ml\\n\\n500\\n\\n3\\n\\nPotato\\n\\nLate Blight\\n\\n0\\\\.025% (125)\\n\\ngm\\n\\n500 ml\\n\\n500\\n\\n12\\n\\nCucumber\\n\\nDowney mildew,\\n\\nPowdery mildew\\n\\n125 gm\\n\\n500\\n\\n500\\n\\n5\\n\\nCumin\\n\\nBlight &\\n\\nPowdery mildew\\n\\n115 gm\\n\\n500\\n\\n500\\n\\n28\\n\\nPomegranate Leaf & Fruit spot\\n\\n0\\\\.023%\\n\\n0\\\\.1%\\n\\n500 L/ha (or\\n\\ndepending on\\n\\nsize of tree)\\n\\n5\\n\\n**Bitertanol 25% WP**\\n\\nGroundnut\\n\\nRust\\n\\n250 gm\\n\\n1000 gm\\n\\n500\\n\\n30\\n\\nTikka\\n\\n250 gm\\n\\n1000 gm\\n\\n500\\n\\n30\\n\\nWheat\\n\\nKarnal bunt\\n\\n560 gm\\n\\n2240 gm\\n\\n750\\n\\n\\\\-\\n\\n**Captan 50% WG**\\n\\n3\\n\\nChillies\\n\\nFruit rot\\n\\n(Anthracnose)\\n\\n750 gm\\n\\n1500 gm\\n\\n500\\n\\n5\\n\\nPotato\\n\\nEarly blight &\\n\\nLate blight\\n\\n750 gm\\n\\n1500 gm\\n\\n500\\n\\n21\\n\\n**Captan 50% WP**\\n\\nApple\\n\\nScab\\n\\n1250 gm\\n\\n2\\\\.5 kg\\n\\n750-1000\\n\\n\\\\-\\n\\nCherry\\n\\nBrown rot\\n\\n1250 gm\\n2\\\\.5 kg\\n\\n750-1000\\n\\n\\\\-\\n\\nGrapes\\n\\nDowney mildew\\n\\n1250 gm\\n\\n2\\\\.5 kg\\n\\n750-1000\\n\\n\\\\-\\n\\nPotato\\n\\nEarly blight\\n\\n1250 gm\\n\\n2\\\\.5 kg\\n\\n750-1000\\n\\n\\\\-\\n\\nLate blight\\n\\n1250 gm\\n\\n2\\\\.5 kg\\n\\n750-1000\\n\\n\\\\-\\n\\nTomato\\n\\nEarly blight\\n\\n1250 gm\\n\\n2\\\\.5 kg\\n\\n750-1000\\n\\n\\\\-\\n\\nLate blight\\n\\n1250 gm\\n\\n2\\\\.5 kg\\n\\n750-1000\\n\\n\\\\-\\n\\n**Captan 75% WP**\\n\\nApple\\\\*\\n\\nScab, Fly speck\\n\\n& Bitter rot\\n\\n0\\\\.12%\\\\*\\\\*\\n\\n1667 gm\\n\\n15-20\\\\*\\\\*\\n\\n8\\n\\nCherry\\n\\nBrown rot\\n\\n0\\\\.12%\\\\*\\\\*\\n\\n1667 gm\\n\\n15-20\\\\*\\\\*\\n\\nNA\\n\\nGrape\\n\\nDowny mildew\\n\\n1250 gm\\n\\n1667 gm\\n\\n1000\\n\\n8\\n\\nCabbage/\\n\\nCauliflower,\\n\\nTomato,\\n\\nBrinjal,\\n\\nChillies,\\n\\nBeans,\\n\\nOrnamental\\n\\nDamping off\\n\\n(Nursery)\\n\\n0\\\\.25%\\n\\n2500 gm\\n\\n1000\\n\\nSoil drench\\n\\nIn the nursery\\n\\nNA\\n\\nPotato\\n\\nEarly blight\\n\\n1250 gm\\n\\n1667 gm\\n\\n1000\\n\\n8\\n\\nLate blight\\n\\n1250 gm\\n\\n1667 gm\\n\\n1000\\n\\n8\\n\\nTomato\\n\\nEarly blight\\n\\n1250 gm\\n\\n1667 gm\\n\\n1000\\n\\n6\\n\\nLate blight\\n\\n1250 gm\\n\\n1667 gm\\n\\n1000\\n\\n6\\n\\nChillies\\n\\nEarly blight\\n\\n1250 gm\\n\\n1667 gm\\n\\n1000\\n\\n8\\n\\nFruit rot\\n\\n1500 gm\\n\\n2000 gm\\n\\n1000\\n\\n8\\n\\nCitrus\\n\\nBrown rot\\n\\n0\\\\.25\\\\*\\\\*\\n\\n2500 gm\\n\\n15-20\\\\*\\\\*\\n\\nNA\\n\\nScab\\n\\n0\\\\.12\\\\*\\\\*\\n\\n1667gm\\n\\n15-20\\\\*\\\\*\\n\\nNA\\n\\n4\\n\\nRose\\n ... \\nPowdery\\n\\nmildew, Leaf\\n\\nspot, Die-back\\n\\n0\\\\.004%\\n\\n0\\\\.04%\\n\\n500lit/ha\\n\\n03\\n\\n**Oxathiapiprolin 10.1% OD**\\n\\nPotato\\n\\nLate blight\\n\\n20\\n\\n200\\n\\n500\\n\\n22 days\\n\\nGrapes\\n\\nDowney mildew\\n\\n40\\n\\n400\\n\\n1000\\n\\n5 days\\n\\n18\\n\\n**Penconazole 10% EC**\\n\\nGrapes\\n\\nPowdery mildew\\n\\n0\\\\.005%\\n\\nor5\\n\\ngm/100\\n\\nLt. water\\n\\n50ml/100Lt.\\n\\nwater\\n\\nDepending upon\\n\\nthe requirement\\n\\n30\\n\\nApple\\n\\nScab\\n\\n0\\\\.005%\\n\\nor5 gm\\n\\n/100 lit\\n\\nwater\\n\\n50ml/100Lt.\\n\\nwater\\n\\n10Lt.\\n\\nWater per tree\\n\\n30\\n\\nMango\\n\\nPowdery mildew\\n\\n0\\\\.005%\\n\\nor5\\n\\ngm/100\\n\\nLt. water\\n\\n50ml/100Lt.\\n\\nwater\\n\\n10Lt.\\n\\nWater per tree\\n\\n30\\n\\nPulses\\n\\n(Black gram\\n\\n/Green gram)\\n\\nPowdery mildew\\n\\n0\\\\.005%\\n\\nor 5\\n\\ngm/100\\n\\nLt. water\\n\\n50ml/100Lt.\\n\\nwater\\n\\n500Lt/ha\\n\\n30\\n\\n**Penflufen 22.43 % FS**\\n\\nPotato\\n\\nBlack Scurf\\n\\n0\\\\.02\\n\\n0\\\\.083\\n\\n83\\n\\n800 kg seed\\n\\ntubers of\\n\\npotato are\\n\\ndipped in the\\n\\nsolutions of\\n\\nfungicide for\\n\\n10 minutes.\\n\\nTubers after\\n\\ntreatment are\\n\\ndried in shade\\n\\nand then\\n\\nsown.\\n\\n**Pencycuron 22.9% SC**\\n\\nRice (Paddy)\\n\\nSheath blight\\n\\n150-187.5gm\\n\\n600-750 ml\\n\\n500 Ltr.\\n\\n69\\n\\nPotato tuber\\n\\nBlack scurf\\n\\n0\\\\.0625-\\n ... \\nLeaf spot\\n\\n1\\\\.125-\\n\\n1\\\\.5KG\\n\\n1\\\\.5-2KG\\n\\n750-1000 Lt\\n\\nCauliflower\\n\\nLeaf spot\\n\\n1\\\\.125-\\n\\n1\\\\.5KG\\n\\n1\\\\.5-2KG\\n\\n750-1000 Lt\\n\\nCumin\\n\\nEarly blight\\n\\n1\\\\.125-\\n\\n1\\\\.5KG\\n\\n1\\\\.5-2KG\\n\\n750-1000 Lt\\n\\nApple\\n\\nScab\\n\\n1\\\\.125-\\n\\n1\\\\.5KG\\n\\n1\\\\.5-2KG\\n\\n750-1000 Lt\\n\\nBlack rot\\n\\n1\\\\.125-\\n\\n1\\\\.5KG\\n\\n1\\\\.5-2KG\\n\\n750-1000 Lt\\n\\nCitrus\\n\\nGreasy spot\\n\\n1\\\\.125-\\n\\n1\\\\.5KG\\n\\n1\\\\.5-2KG\\n\\n750-1000 Lt\\n\\nCherries\\n\\nLeaf spot\\n\\n1\\\\.125-\\n\\n1\\\\.5KG\\n\\n1\\\\.5-2KG\\n\\n750-1000 Lt\\n\\nGrapes\\n\\nDowny mildew\\n\\n1\\\\.125-\\n\\n1\\\\.5KG\\n\\n1\\\\.5-2KG\\n\\n750-1000 Lt\\n\\nGuava\\n\\nFruit rot\\n\\n1\\\\.125-\\n\\n1\\\\.5KG\\n\\n1\\\\.5-2KG\\n\\n750-1000 Lt\\n\\n**Ziram 80% WP**\\n\\nGrape\\n\\nDowny mildew\\n\\n1\\\\.2-\\n\\n1\\\\.6 kg\\n\\n1\\\\.5-2.0kg\\n\\n750-1000\\n\\n\\\\--\\n\\nAnthracnose\\n\\n1\\\\.2-\\n\\n1\\\\.6 kg\\n\\n1\\\\.5-2.0kg\\n\\n750-1000\\n\\n\\\\--\\n\\nApple\\n\\nscab\\n\\n1\\\\.2-\\n\\n1\\\\.6 kg\\n\\n1\\\\.5-2.0kg\\n\\n750-1000\\n\\n21\\n\\nPotato\\n\\nEarly blight\\n\\n1\\\\.2-\\n\\n1\\\\.6 kg\\n\\n1\\\\.5-2.0kg\\n\\n750-1000\\n\\n3\\n\\nTomato\\n\\nEarly blight\\n\\n1\\\\.2-\\n\\n1\\\\.6 kg\\n\\n1\\\\.5-2.0kg\\n\\n750-1000\\n\\n3\\n\\n32\\n\\n**2\\\\. Fungicides combination uses**\\n\\n**Crop**\\n\\n**Common**\\n\\n**name**\\n\\n**of the**\\n\\n**disease**\\n\\n**Dosage/ha**\\n\\n**(a.i.)**\\n\\n**Dosage/ha**\\n\\n**(Formulation)**'], publish_date=None, title='[PDF] MAJOR USES OF PESTICIDES (UPTO - 31/01/2020) FUNGICIDES')"
+    },
+    {
+      "title": "[PDF] Formulation codes - LSU AgCenter",
+      "url": "https://www.lsuagcenter.com/~/media/system/5/5/6/4/55646c0ef9404ad2073c46b006e13b51/pesticide%20formulation%20codespdf.pdf",
+      "excerpt": "WebSearchResult(url='https://www.lsuagcenter.com/~/media/system/5/5/6/4/55646c0ef9404ad2073c46b006e13b51/pesticide%20formulation%20codespdf.pdf', excerpts=['1\\n\\n**Formulation codes**\\n\\nThe following standard codes are used. For further details, see _Catalogue of Pesticide_\\n\\n_Formulation Types and International Coding System,_ Technical monograph No. 2, 5 <sup>th</sup>\\n\\nEdition, March 2002; CropLife International , Brussels. Detailed descriptions of each\\n\\nformulation type are given in the monograph, for convenience they have been classified\\n\\ninto 7 major use groupings, as follows:\\n\\nApplied as liquid sprays:\\n\\nMiscellaneous others **(M)** :\\n\\nPO - pour on (animals)\\n\\nGS - grease\\n\\n_etc._\\n\\nDP\\n\\nGR\\n\\nMG\\n\\nDry **(D)**\\n\\nSL, SP\\n\\nWP\\n\\nEC\\n\\nSC\\n\\nWG\\n\\nFor mixing and spraying with water **(W)**\\n\\nMajor uses and examples of formulations\\n\\nULV: UL, OF\\n\\nUsually used undiluted **(U)**\\n\\n(or limited dilution with organic carrier)\\n\\nFogging\\n\\nformulations\\n\\nSeed treatments **(S)**\\n\\nSeed treatments **(S)**\\n\\nSeed treatments **(S)**\\n\\nFumigants and smokes **(F)**\\n\\nFumigants and smokes **(F)**\\n\\nFormulations for baiting **(B)**\\n\\nFormulations for baiting **(B)**\\n\\n**CODE**\\n**TERM**\\n\\n**Use**\\n\\nAB\\n\\nGrain bait\\n\\nB\\n\\nAE\\n\\nAerosol dispenser\\n\\nU\\n\\nAL\\n\\nAny other liquid\\n\\nM\\n\\nAP\\n\\nAny other powder\\n\\nM\\n\\nBB\\n\\nBlock bait\\n\\nB\\n\\nBR\\n\\nBriquette (controlled release of a.i. into water)\\n\\nM\\n\\nCB\\n\\nBait concentrate\\n\\nB\\n\\nCF\\n\\nCapsule Suspension for Seed Treatment\\n\\nS\\n\\nCG\\n\\nEncapsulated granule (protective or release control coating)\\n\\nD\\n\\nCL\\n\\nContact liquid or gel (insecticidal or rodenticidal)\\n\\nM\\n\\nCP\\n\\nContact powder (formerly TP)\\n\\nB\\n\\nCS\\n\\nCapsule suspension\\n\\nW\\n\\nDC\\n\\nDispersible concentrate\\n\\nW\\n\\n\\\\# [DL Driftless formulation]#\\n\\n\\\\-\\n\\nDP\\n\\nDispersible powder\\n\\nD\\n\\nDS\\n\\nPowder for dry seed treatment\\n\\nS\\n\\nDT\\n\\nTablet for direct application\\n\\nM\\n\\nEC\\n\\nEmulsifiable concentrate\\n\\nW\\n\\nED\\n\\nElectrochargeable liquid\\n\\nU\\n\\n2\\n\\nEG\\n\\nEmulsifiable granule\\n\\nW\\n\\nEO\\n\\nEmulsion, water in oil\\n\\nW\\n\\nES\\n\\nEmulsion for seed treatment\\n\\nS\\n\\nEW\\n\\nEmulsion, oil in water\\n\\nW\\n\\nFD\\n\\nSmoke tin\\n\\nF\\n\\nFG\\n\\nFine granule (300-2500 \u00b5m)\\n\\nD\\n\\nFK\\n\\nSmoke candle\\n\\nF\\n\\nFP\\n\\nSmoke cartridge\\n\\nF\\n\\nFR\\n\\nSmoke rodlet\\n\\nF\\n\\nFS\\n\\nFlowable concentrate for seed treatment\\n\\nS\\n\\nFT\\nSmoke tablet\\n\\nF\\n\\nFU\\n\\nSmoke generator\\n\\nF\\n\\nFW\\n\\nSmoke pellet\\n\\nF\\n\\nGA\\n\\nGas\\n\\nF\\n\\nGB\\n\\nGranular bait\\n\\nB\\n\\nGE\\n\\nGas generating product\\n\\nF\\n\\nGF\\n\\nGel for Seed Treatment\\n\\nS\\n\\nGG\\n\\nMacrogranule (2000-6000 \u00b5m)\\n\\nD\\n\\nGL\\n\\nEmulsifiable gel\\n\\nW\\n\\nGP\\n\\nFlo-dust (very fine for use in greenhouses)\\n\\nD\\n\\nGR\\n\\nGranule (generic, but defined size range)\\n\\nD\\n\\nGS\\n\\nGrease\\n\\nM\\n\\nGW\\n\\nWater soluble gel\\n\\nW\\n\\nHN\\n\\nHot fogging concentrate\\n\\nU\\n\\nKK\\n\\nCombi-pack solid/liquid\\n\\nW\\n\\nKL\\n\\nCombi-pack liquid/liquid\\n\\nW\\n\\nKN\\n\\nCold fogging concentrate\\n\\nU\\n\\nKP\\n\\nCombi-pack solid/solid\\n\\nW\\n\\nLA\\n\\nLacquer\\n\\nM\\n\\nLS\\n\\nSolution for seed treatment\\n\\nS\\n\\nLV\\n\\nLiquid vaporiser\\n\\nF\\n\\nMC\\n\\nMosquito coil\\n\\nF\\n\\nME\\n\\nMicro-emulsion\\n\\nW\\n\\nMG\\n\\nMicrogranule (100-600 \u00b5m)\\n\\nW\\n\\nMV\\n\\nVaporising mat\\n\\nF\\n\\nOD\\n\\nOil dispersion\\n\\nW\\n\\nOF\\n\\nOil miscible flowable concentrate (oil miscible suspension)\\n\\nU\\n\\nOL\\n\\nOil miscible liquid\\n\\nU\\n\\nOP\\n\\nOil dispersible powder\\n\\nU\\n\\nPA\\n\\nPaste (water-based, film forming)\\n\\nM\\n\\nPB\\n\\nPlate bait\\n\\nB\\n\\nPC\\n\\nGel or paste concentrate\\n\\nM\\n\\nPO\\n\\nPour-on\\n\\nM\\n\\nPR\\n\\nPlant rodlet\\n\\nM\\n\\nPS\\nSeed coated with a pesticide\\n\\nS\\n\\nRB\\n\\nBait (ready for use)\\n\\nB\\n\\nSA\\n\\nSpot-on\\n\\nM\\n\\nSB\\n\\nScrap bait\\n\\nB\\n\\nSC\\n\\nSuspension concentrate (= flowable concentrate)\\n\\nW\\n\\n3\\n\\nSD\\n\\nSuspension concentrate for direct application ( _e.g_ . to rice\\n\\npaddy water surface)\\n\\nU\\n\\nSE\\n\\nSuspo-emulsion\\n\\nW\\n\\nSG\\n\\nWater soluble granules\\n\\nW\\n\\nSL\\n\\nSoluble concentrate\\n\\nW\\n\\nSO\\n\\nSpreading oil (applied as large drops to water surface)\\n\\nU\\n\\nSP\\n\\nWater soluble powder\\n\\nW\\n\\nSS\\n\\nWater soluble powder for seed treatment\\n\\nW\\n\\nST\\n\\nWater soluble tablet\\n\\nW\\n\\nSU\\n\\nUltra-low volume (ULV) suspension\\n\\nU\\n\\nTB\\n\\nTablet\\n\\nM\\n\\nTC\\n\\nTechnical material\\n\\nM\\n\\nTK\\n\\nTechnical concentrate\\n\\nM\\n\\nTP\\n\\nTracking powder\\\\*\\n\\n\\\\-\\n\\nUL\\n\\nUltra-low volume (ULV) liquid\\n\\nU\\n\\nVP\\n\\nVapour releasing product\\n\\nF\\n\\nWG\\n\\nWater dispersible granules\\n\\nW\\n\\nWP\\n\\nWettable powder\\n\\nW\\n\\nWS\\n\\nWater dispersible powder for slurry seed treatment\\n\\nW\\n\\nWT\\n\\nWater dispersible tablet\\n\\nW\\n\\nXX\\n\\nOthers\\n\\nM\\n\\nZC\\n\\nA mixed formulation of CS and SC.\\n\\nW\\n\\nZE\\n\\nA mixed heterogeneous formulation of CS and SE\\n\\nW\\n\\nZW\\nA mixed heterogeneous formulation CS and EW\\n\\nW\\n\\n\\\\* Discontinued term; see CP.\\n\\n\\\\# Japan; not a CropLife International code.'], publish_date=None, title='[PDF] Formulation codes - LSU AgCenter')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

@@ -1,0 +1,1953 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 2028,
+        "mcat_name": "Antibiotic Medicine",
+        "current_specs": [
+            {
+                "spec_name": "Drug Name",
+                "options": [
+                    "Amoxicillin",
+                    "Cefixime",
+                    "Ceftriaxone",
+                    "Azithromycin",
+                    "Cefuroxime",
+                    "Ciprofloxacin",
+                    "Levofloxacin",
+                    "Ofloxacin",
+                    "Cefpodoxime",
+                    "Cefoperazone"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Strength",
+                "options": [
+                    "125 mg",
+                    "250 mg",
+                    "500 mg",
+                    "625 mg",
+                    "1 g",
+                    "100 mg",
+                    "200 mg",
+                    "400 mg",
+                    "50 mg",
+                    "150 mg"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Dosage Form",
+                "options": [
+                    "Tablet",
+                    "Capsule",
+                    "Injection",
+                    "Dry Syrup",
+                    "Oral Suspension",
+                    "Syrup",
+                    "Infusion",
+                    "Ointment",
+                    "Eye Drops",
+                    "Ear Drops"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Packing Type",
+                "options": [
+                    "Strip",
+                    "Blister Pack",
+                    "Alu Alu Pack",
+                    "Bottle",
+                    "Vial",
+                    "Ampoule",
+                    "PFS",
+                    "Sachet",
+                    "Tray Pack",
+                    "Single Dose Pack"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Pack Size",
+                "options": [
+                    "10x10",
+                    "10x1",
+                    "1x10",
+                    "1x6",
+                    "1x3",
+                    "30 ml",
+                    "60 ml",
+                    "100 ml",
+                    "1 vial",
+                    "10 vials"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Prescription",
+                "options": [
+                    "Prescription",
+                    "Non Prescription"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "Sun",
+                    "Cipla",
+                    "Zydus",
+                    "Mankind",
+                    "Abbott",
+                    "Alkem",
+                    "Torrent",
+                    "Lupin",
+                    "Intas",
+                    "Dr Reddys"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Usage",
+                "options": [
+                    "Human Use",
+                    "Veterinary Use"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Shelf Life",
+                "options": [
+                    "12 months",
+                    "18 months",
+                    "24 months",
+                    "36 months"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Storage",
+                "options": [
+                    "Below 25 C",
+                    "Below 30 C",
+                    "Refrigerated",
+                    "Room Temperature"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Antibiotic Medicine",
+            "mcat_id": 2028,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Drug Name",
+                            "options": [
+                                "Amoxicillin",
+                                "Cefixime",
+                                "Ceftriaxone",
+                                "Azithromycin",
+                                "Cefuroxime",
+                                "Ciprofloxacin",
+                                "Levofloxacin",
+                                "Ofloxacin",
+                                "Cefpodoxime",
+                                "Cefoperazone"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Strength",
+                            "options": [
+                                "125 mg",
+                                "250 mg",
+                                "500 mg",
+                                "625 mg",
+                                "1 g",
+                                "100 mg",
+                                "200 mg",
+                                "400 mg",
+                                "50 mg",
+                                "150 mg"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Dosage Form",
+                            "options": [
+                                "Tablet",
+                                "Capsule",
+                                "Injection",
+                                "Dry Syrup",
+                                "Oral Suspension",
+                                "Syrup",
+                                "Infusion",
+                                "Ointment",
+                                "Eye Drops",
+                                "Ear Drops"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Packing Type",
+                            "options": [
+                                "Strip",
+                                "Blister Pack",
+                                "Alu Alu Pack",
+                                "Bottle",
+                                "Vial",
+                                "Ampoule",
+                                "PFS",
+                                "Sachet",
+                                "Tray Pack",
+                                "Single Dose Pack"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Pack Size",
+                            "options": [
+                                "10x10",
+                                "10x1",
+                                "1x10",
+                                "1x6",
+                                "1x3",
+                                "30 ml",
+                                "60 ml",
+                                "100 ml",
+                                "1 vial",
+                                "10 vials"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Prescription",
+                            "options": [
+                                "Prescription",
+                                "Non Prescription"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "Sun",
+                                "Cipla",
+                                "Zydus",
+                                "Mankind",
+                                "Abbott",
+                                "Alkem",
+                                "Torrent",
+                                "Lupin",
+                                "Intas",
+                                "Dr Reddys"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Usage",
+                            "options": [
+                                "Human Use",
+                                "Veterinary Use"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Shelf Life",
+                            "options": [
+                                "12 months",
+                                "18 months",
+                                "24 months",
+                                "36 months"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Storage",
+                            "options": [
+                                "Below 25 C",
+                                "Below 30 C",
+                                "Refrigerated",
+                                "Room Temperature"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Application",
+            "option_value": "Anti Aging",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Mode",
+            "option_value": "Topical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Avibactam Strength",
+            "option_value": "0.5 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Abbott",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Acne Angel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Acne NC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Acnotop",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Acnylux",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Alantika Pharma",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Alves",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Any Brand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Avidham",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Bactono",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Blizore Mediscience",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "CLIN-N",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "CZ-Back",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ceplokem SB",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Cipla",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Clindol",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Clinic Gel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dermacopolice Life Science",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Endace",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Enzomac CM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Faceclin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Fine Face",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Foxifine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Fusion",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Glenmark",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "HK Vital",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Henic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "INM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Indo-Greek Pharmaceuticals",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Jerta",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kevim",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Lectagard",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "M Coccus",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Magnex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Maxigar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Monoce-f O",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mopin FM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mupicol",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Muprecon",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Mylan",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Nimastin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Orbis-Lefs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Pencaps",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Pfizer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Pfizerpen",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Prejotrus SV",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "T-Bact",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Taizim",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Vufic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Zavicefta",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Zavitas",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Zepi-Cepta",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Zevirich",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Zocef",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Zydus",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Zylam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Business Model",
+            "option_value": "PCD Franchise",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cefepime Strength",
+            "option_value": "2 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Ceftazidime Strength",
+            "option_value": "2 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "GMP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "WHO",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Clindamycin Strength",
+            "option_value": "1 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Acne C Gel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Benzathine Penicillin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Benzathine Penicillin G",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Cefepime & Enmetazobactam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Cefepime & Sulbactam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Cefoperazone & Sulbactam",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Ceftazidime & Avibactam",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Clindamycin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Clindamycin & Nicotinamide",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Clindamycin & Tretinoin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Clindamycin Phosphate & Nicotinamide",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Ertapenem",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Imipenem & Cilastatin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Linezolid",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Mupirocin",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Nicotinamide",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Penicillin G",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Penicillin G Potassium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Potassium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Procaine Penicillin & Penicillin G Sodium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Composition",
+            "option_value": "Sodium (Salt Form)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dispatch Location",
+            "option_value": "Haryana",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Antibiotic Disk",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Capsule",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Gel",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Injection",
+            "prod_count": 44
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Lotion",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Mist Spray",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Ointment",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Particles",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Powder",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Saline Injection",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Tablet",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Dosage Form",
+            "option_value": "Vial",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Enmetazobactam Strength",
+            "option_value": "500 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Expiry Date",
+            "option_value": "November 2025",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Apple",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flavor",
+            "option_value": "Orange",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "License Status",
+            "option_value": "Valid Drug License (4 years old)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturer",
+            "option_value": "Ekant Pharma",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturer",
+            "option_value": "Glaxo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturer",
+            "option_value": "Pfizer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturer Type",
+            "option_value": "Local",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Maximum Retail Price (MRP)",
+            "option_value": "5000",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Medicine Type",
+            "option_value": "Anti-Acne Gel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Medicine Type",
+            "option_value": "Generic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Nicotinamide Strength",
+            "option_value": "4 %",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "1 per box",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "1.5 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "10 g",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "10 Strips per Box",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "10 Tablets per Strip",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "10 Tablets/Strip",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "15 g",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "20 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "25 vials per box",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "5 g",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "7.5 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Size",
+            "option_value": "7.5 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "100 Vials/Box",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Cartridge",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Tube",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Vial",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Ethical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Generic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Service Area",
+            "option_value": "Thrissur, Kollam, Ernakulam",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shelf Life Details",
+            "option_value": "April",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shelf Life Details",
+            "option_value": "Short Expiry (April)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Standard Grade",
+            "option_value": "IP",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "1 %",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "1 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "1 mg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "1.125 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "1.5 g",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "10 Lakh Units",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "100 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "1000000 unit",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "1200000 unit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "2 % w/w",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "2 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "2 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "2 lakh",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "2.5 g",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "2.5 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "20 Lakh Units",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "200 mg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "2000000 unit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "250 mg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "3 g",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "3.5 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "40 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "400 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "400000 unit",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "5 lakh IU",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "500 mg",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "500 mg / 500 mg unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "600 MU",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "750 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Strength",
+            "option_value": "800 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Total Quantity",
+            "option_value": "100 Pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage",
+            "option_value": "Pimples Treatment",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Shell Life",
+            "option_value": "36 Months"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made In India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made In India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Uses",
+            "option_value": "Bacterial infections"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Manufacturer",
+            "option_value": "Cipla Ltd"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Shelif LIfe",
+            "option_value": "24 Months"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Brand Name",
+            "option_value": "Zanocin"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Brand",
+            "option_value": "Azimax"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Brand Name",
+            "option_value": "Minoz ER"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Shell Life",
+            "option_value": "36 Months"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Manufacturer",
+            "option_value": "Leeford"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Manufacturer",
+            "option_value": "Leeford"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Shell Life",
+            "option_value": "36 Months"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Prescription/Non Prescription",
+            "option_value": "Non Prescription"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Shell Life",
+            "option_value": "36 Months"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Brand Name",
+            "option_value": "Monocef O"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Brand Name",
+            "option_value": "ZIPRAX 100 DT"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Brand Name",
+            "option_value": "Zinox"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Country of Origin",
+            "option_value": "Made in India"
+        },
+        {
+            "mcat_id": "2028",
+            "mcat_name": "Antibiotic Medicine",
+            "spec_name": "Manufacturer",
+            "option_value": "Cipla"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Strength",
+            "spec_fill_rate": "84.2",
+            "product_count": "16"
+        },
+        {
+            "spec_name": "Prescription",
+            "spec_fill_rate": "78.9",
+            "product_count": "15"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_fill_rate": "68.4",
+            "product_count": "13"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "63.2",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_fill_rate": "57.9",
+            "product_count": "11"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_fill_rate": "47.4",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Form",
+            "spec_fill_rate": "31.6",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "31.6",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_fill_rate": "26.3",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_fill_rate": "26.3",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_fill_rate": "21.1",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_fill_rate": "15.8",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_fill_rate": "15.8",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Drug Name",
+            "spec_fill_rate": "10.5",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "10.5",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_fill_rate": "10.5",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Storage",
+            "spec_fill_rate": "5.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Animal Type",
+            "spec_fill_rate": "5.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "5.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Indication",
+            "spec_fill_rate": "5.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_fill_rate": "5.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Tablet Type",
+            "spec_fill_rate": "5.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Packing Size",
+            "spec_fill_rate": "5.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_fill_rate": "5.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_fill_rate": "5.3",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Route Of Administration",
+            "spec_fill_rate": "5.3",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Shelif LIfe",
+            "spec_option_name": "24 Months",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Animal Type",
+            "spec_option_name": "Dog",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Bacterial Infection",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Animal Type",
+            "spec_option_name": "Goat",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Patient Type",
+            "spec_option_name": "Adult",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Route Of Administration",
+            "spec_option_name": "IM",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "API Name",
+            "spec_option_name": "Ciprofloxacin",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Dose Form",
+            "spec_option_name": "Tablet",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Drug Type",
+            "spec_option_name": "Tablet",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packing Size",
+            "spec_option_name": "1*10",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Tablet Type",
+            "spec_option_name": "Tablet",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Strip",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Acne Treatment",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Route Of Administration",
+            "spec_option_name": "IV",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Animal Type",
+            "spec_option_name": "Pig",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Route",
+            "spec_option_name": "Oral",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Formulation",
+            "spec_option_name": "Powder with distilled water",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Shell Life",
+            "spec_option_name": "36 Months",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Storage",
+            "spec_option_name": "Room Temperature",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Animal Type",
+            "spec_option_name": "Cat",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Animal Type",
+            "spec_option_name": "Sheep",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Prescription Type",
+            "spec_option_name": "Prescription",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Manufacturer Name",
+            "spec_option_name": "Sun Pharma",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Uses",
+            "spec_option_name": "Bacterial infections",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Monocef O",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "36 months",
+            "option_fill_rate": "93.8"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "1*10",
+            "option_fill_rate": "85.7"
+        },
+        {
+            "spec_name": "Prescription",
+            "spec_option_name": "Non Prescription",
+            "option_fill_rate": "82.4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Tablet",
+            "option_fill_rate": "71.4"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made in India",
+            "option_fill_rate": "71.4"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Tablet",
+            "option_fill_rate": "69.2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Hospital",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "Azithromycin",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Indication",
+            "spec_option_name": "Skin Infection",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Indication",
+            "spec_option_name": "Diarrhoea",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Strip",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Human Use",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Indication",
+            "spec_option_name": "Urinary Infection",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Indication",
+            "spec_option_name": "Respiratory Infection",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Indication",
+            "spec_option_name": "Mastitis",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Indication",
+            "spec_option_name": "Enteritis",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Sun Pharma",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_option_name": "Vial",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Packing Type",
+            "spec_option_name": "Strip",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "10 tablets",
+            "option_fill_rate": "28.6"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Alu Alu",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "Levofloxacin",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Composition",
+            "spec_option_name": "Cefdinir",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Box",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Drug Name",
+            "spec_option_name": "cindamycin Phosphate",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Drug Name",
+            "spec_option_name": "Minocycline",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Drug Name",
+            "spec_option_name": "Nitazoxanide",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Drug Name",
+            "spec_option_name": "Johncef",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Drug Name",
+            "spec_option_name": "Ceftriaxone+tazobactum",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Prescription",
+            "spec_option_name": "Prescription",
+            "option_fill_rate": "17.6"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Cipla",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Cipla Ltd",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "IND-SWIFT LTD.",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Manufacturer",
+            "spec_option_name": "Leeford",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "250 mg",
+            "option_fill_rate": "15"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "200 mg",
+            "option_fill_rate": "15"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "500 mg",
+            "option_fill_rate": "15"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "100 mg",
+            "option_fill_rate": "15"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Injection",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1*6",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Dispersible Tablet",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "60 tablets",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "10x10 Tablets",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1x10",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "562.5 mg",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made In India",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "25 ml",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Cyflox",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Dispersible Tablet",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Topical solution",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Film coated tablet",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Dosage Form",
+            "spec_option_name": "Injection",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Azimax",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 months",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Minoz",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Droxyl",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Ciplox",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Nizonide",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Levoheal",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Hifi",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Zanocin",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Cefdinir",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Augmentin",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Farospect",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Johncef",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Cefyxim",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Minoz ER",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "1000 mg",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "400 mg",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "562mg",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "200 Mg",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "625 mg",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "1%w/v",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "65 Mg",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Strength",
+            "spec_option_name": "300 mg",
+            "option_fill_rate": "5"
+        }
+    ]
+}

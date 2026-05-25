@@ -1,0 +1,3109 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 3983,
+        "mcat_name": "Conference Tables",
+        "current_specs": [
+            {
+                "spec_name": "Seating Capacity",
+                "options": [
+                    "8 Seater",
+                    "10 Seater",
+                    "12 Seater",
+                    "6 Seater",
+                    "4 Seater",
+                    "14 Seater",
+                    "16 Seater",
+                    "18+ Seater"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Top Material",
+                "options": [
+                    "Particle Board",
+                    "MDF",
+                    "Wood Veneer",
+                    "Glass",
+                    "HPL",
+                    "Metal",
+                    "Solid Wood"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Shape",
+                "options": [
+                    "Rectangular",
+                    "Boat",
+                    "U-Shape",
+                    "Round",
+                    "Oval",
+                    "Square"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Leg Type",
+                "options": [
+                    "Metal Legs",
+                    "Panel Base",
+                    "Pedestal Base"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Features",
+                "options": [
+                    "Wire Management",
+                    "Modular",
+                    "Foldable",
+                    "With Wheels"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Top Finish",
+                "options": [
+                    "Wood Grain",
+                    "White",
+                    "Black",
+                    "Grey"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Top Thickness",
+                "options": [
+                    "25 mm",
+                    "18 mm",
+                    "36 mm",
+                    "45 mm",
+                    "50 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Frame Material",
+                "options": [
+                    "Mild Steel (MS)",
+                    "Particle Board",
+                    "MDF",
+                    "Stainless Steel",
+                    "Aluminium"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Conference Tables",
+            "mcat_id": 3983,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Seating Capacity",
+                            "options": [
+                                "8 Seater",
+                                "10 Seater",
+                                "12 Seater",
+                                "6 Seater",
+                                "4 Seater",
+                                "14 Seater",
+                                "16 Seater",
+                                "18+ Seater"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Top Material",
+                            "options": [
+                                "Particle Board",
+                                "MDF",
+                                "Wood Veneer",
+                                "Glass",
+                                "HPL",
+                                "Metal",
+                                "Solid Wood"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Seating Capacity is chosen as the foremost primary spec because it's the most common starting point for a buyer's inquiry (e.g., \"8-seater table,\" \"table for 20 people\"). It directly relates to the table's size and intended use. Top Material is the second primary spec as it is a major differentiator for price, aesthetics, and durability."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Shape",
+                            "options": [
+                                "Rectangular",
+                                "Boat",
+                                "U-Shape",
+                                "Round",
+                                "Oval",
+                                "Square"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Leg Type",
+                            "options": [
+                                "Metal Legs",
+                                "Panel Base",
+                                "Pedestal Base"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Shape is a crucial functional and aesthetic attribute that defines the table's suitability for different room layouts. Leg Type significantly impacts the table's stability, style, and cleaning accessibility, making it a common point of comparison."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Features",
+                            "options": [
+                                "Wire Management",
+                                "Modular",
+                                "Foldable",
+                                "With Wheels"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Top Finish",
+                            "options": [
+                                "Wood Grain",
+                                "White",
+                                "Black",
+                                "Grey"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Top Thickness",
+                            "options": [
+                                "25 mm",
+                                "18 mm",
+                                "36 mm",
+                                "45 mm",
+                                "50 mm"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Frame Material",
+                            "options": [
+                                "Mild Steel (MS)",
+                                "Particle Board",
+                                "MDF",
+                                "Stainless Steel",
+                                "Aluminium"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Features are listed as multi_select because not all tables have them, making them suitable for detailed filtering. Wire management is a common requirement. Top Finish and Top Thickness are important details for aesthetic matching and perceived quality, typically considered after primary selections have been made."
+                }
+            },
+            "scratchpad": "The selection and tiering of specifications are based on their commercial significance observed in buyer-seller conversations and seller catalogs. Primary specs (Seating Capacity, Top Material) are high-impact attributes for search. Secondary specs (Shape, Leg Type) are crucial for functional and aesthetic differentiation. Tertiary specs (Features, Top Finish, Top Thickness, Frame Material) are for detailed filtering of finer details."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "8 seater",
+            "prod_count": 21
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "10 seater",
+            "prod_count": 21
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "6 seater",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "25 seater",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "4 seater",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "20 seater",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "12 seater",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "8-10 seater",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "6-7 seater",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "14 seater",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "18 seater",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "10-12 seater",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "13 seater",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "15 seater",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "16 seater",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "option_value": "9 seater",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "8 ft",
+            "prod_count": 26
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "10 ft",
+            "prod_count": 18
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "6 ft",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "12 ft",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "16 ft",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "5 ft",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "6.5 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "7 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "9 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "15-16 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "4 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "20 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "12-14 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "18 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "3000 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "40 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "60 inches",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "7.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "8-10 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "As per requirement unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "Large unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Wood",
+            "prod_count": 36
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Particle Board",
+            "prod_count": 24
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Plywood",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Metal",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Glass",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "MDF",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Commercial Ply, Wood",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Commercial Plywood",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Iron",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Stainless Steel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Steel, Particle Board / Plywood",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Rectangular",
+            "prod_count": 29
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "U-Shaped",
+            "prod_count": 14
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Round",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Oval",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Square",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Boat-Shaped",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Capsule",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "L-Shape",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "One side square/straight",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Rounded Corners",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "4 ft",
+            "prod_count": 42
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "3 ft",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "5 ft",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "2.5 ft",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "3.5 ft",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "2 ft",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "8 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "3-4 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "6 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "7 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "As per requirement unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Top Thickness",
+            "option_value": "25 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Top Thickness",
+            "option_value": "18 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Top Thickness",
+            "option_value": "40 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Brown and Black",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Silver",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Brown",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "White and Black",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Construction",
+            "option_value": "2 parts",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Construction",
+            "option_value": "2-part assembly with design-covered joint",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Construction",
+            "option_value": "2 parts",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Construction",
+            "option_value": "2-part assembly",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Construction",
+            "option_value": "3 parts",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Construction",
+            "option_value": "Customized",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Construction",
+            "option_value": "Single piece or Two pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Construction",
+            "option_value": "Two parts (5x4 each)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Construction",
+            "option_value": "Wooden box base with top",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "i4 modulars",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "14 Modular",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "As per buyer picture",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Seating Layout",
+            "option_value": "5 on each side",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Pop-up Box Quantity",
+            "option_value": "2 pcs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Wire Management",
+            "option_value": "Metal or Plastic strip underneath",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "2 Pop-up Box",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Power Sockets and Connectivity",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Wire management system",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Aluminum charging point and sockets, Soft edges / Rounded corners",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "1 head and 6 on each side",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "25 mm leg thickness",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "3 people per side arrangement",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "5 people on each side",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Action Tesa brand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Arrangement: 3+3 sides and 1+1 ends",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Configurable: Round by joining two U-tables",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Custom/Made-to-order",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Customizable Seating",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Dismantlable and portable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Electric plug point options",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Executive Style",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Expandable / Compact when closed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Imported",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Included Chair",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Included Drawers",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Integrated Wire Management",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Legs and top only",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Minimal central support",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "No Cabin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "No Cabinets",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "No Drawers",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "No Middle Space",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "No Power Pop-up Box",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "No Power Pop-up Box Provision",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "PVC Taping",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Pop-up box (Charging points)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Shiny Finish",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Simple design",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Slow-close access card slot",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Staff Meeting usage",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Table Tennis table style",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Wire Management Channel: Metal or Plastic strip",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tabletop Thickness",
+            "option_value": "25 mm",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Tabletop Thickness",
+            "option_value": "12 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tabletop Thickness",
+            "option_value": "16-18 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tabletop Thickness",
+            "option_value": "17 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tabletop Thickness",
+            "option_value": "40 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Action Tesa",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Action Tesa or Century",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Blue Fox",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Club Club",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "JK Corporation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "Dark Walnut",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "Good",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "Good finish",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "Laminate",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "Laminated",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "Shiny",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Table Type",
+            "option_value": "Conference Table",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Table Type",
+            "option_value": "Custom Made",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Type",
+            "option_value": "Modular",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Table Type",
+            "option_value": "Imported",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Type",
+            "option_value": "Customized",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Type",
+            "option_value": "Dais",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Type",
+            "option_value": "Foldable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "2.5 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "Conference table chair size height",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage",
+            "option_value": "Office",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage",
+            "option_value": "Office Meeting Hall",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage",
+            "option_value": "Staff Meeting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Diameter",
+            "option_value": "1500 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Conference",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Office",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Modular",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Simple",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality",
+            "option_value": "Good",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality",
+            "option_value": "Medium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "2 years",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Assembly Type",
+            "option_value": "Knock Down",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Board Brand",
+            "option_value": "Action Tesa",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Center Gap Width",
+            "option_value": "3 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chair Capacity",
+            "option_value": "8 chairs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Condition",
+            "option_value": "Used",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customizable",
+            "option_value": "Yes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customizable Seating",
+            "option_value": "Yes",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Description",
+            "option_value": "Professional Look",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Items",
+            "option_value": "Chairs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Leg Material",
+            "option_value": "Metal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Leg Type",
+            "option_value": "4 Leg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturer",
+            "option_value": "Sheela Steel Furniture",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material Grade",
+            "option_value": "202",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Middle Space",
+            "option_value": "No",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "India",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Placement",
+            "option_value": "Center",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Category",
+            "option_value": "Office",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Room Dimensions",
+            "option_value": "30x20 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Room Length",
+            "option_value": "7.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Room Width",
+            "option_value": "5.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Source",
+            "option_value": "Manufacturer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Stock Status",
+            "option_value": "Ready-made",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Support Thickness",
+            "option_value": "17 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Tabletop Width",
+            "option_value": "2 ft",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Brand",
+            "option_value": "Cubiclecraft"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "White Night Grey"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "White Night Grey"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Dark Walnut"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Dark walnut"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Dark walnut"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "White Black"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "White Black"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "White Black"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Frosty white"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Frosty white"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Frosty white"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Carrara marble"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Carrara marble"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Carrara marble"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Carrara Marble"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Dark Walnut"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Frosty White"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "Frosty white - Black"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "White Black"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "White Night Grey"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Colour",
+            "option_value": "White Night Grey"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Finish",
+            "option_value": "Polished"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Full-Size Table Dual Color Combination of Dark walnut & Black 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Full-Size Table Dual Color Combination of Dark walnut & Black 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Full-Size Table Dual Color Combination of Dark walnut & Black 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Full-Size Table Dual Color Combination of White & Black 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Full-Size Table Dual Color Combination of White & Black 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Single color particle board 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Single color particle board 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Single color particle board 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Single color particle board 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "single color particle board 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Single color particle board 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Single color particle board 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Full-Size Table Dual Color Combination of Dark walnut & Black 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Single color particle board 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Feature",
+            "option_value": "Full-Size Table Dual Color Combination of White & Black 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Product Features",
+            "option_value": "Full-Size Table Dual Color Combination of White & Black 25mm Thick"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Room Type",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping Time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Shipping time",
+            "option_value": "10-12 days"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "10x4 Feet(LXW)"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "300L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "3600L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "180L x 90W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "300L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "3600L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "240L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "300L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "3600L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "240L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "300L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "3600L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "240L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "300L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "3600L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "180L x 90W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "240L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "180L x 90W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "180L x 90W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "180L x 90W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Size",
+            "option_value": "240L x 120W cm"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Usage",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Usage",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Usage",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Usage",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Usage/Application",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Usage/Application",
+            "option_value": "Office"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 years"
+        },
+        {
+            "mcat_id": "3983",
+            "mcat_name": "Conference Tables",
+            "spec_name": "Warranty",
+            "option_value": "3 Years"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Seating Capacity",
+            "spec_fill_rate": "58.7",
+            "product_count": "74"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_fill_rate": "53.2",
+            "product_count": "67"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_fill_rate": "52.4",
+            "product_count": "66"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_fill_rate": "44.4",
+            "product_count": "56"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "44.4",
+            "product_count": "56"
+        },
+        {
+            "spec_name": "Features",
+            "spec_fill_rate": "41.3",
+            "product_count": "52"
+        },
+        {
+            "spec_name": "Frame Material",
+            "spec_fill_rate": "34.1",
+            "product_count": "43"
+        },
+        {
+            "spec_name": "Top Thickness",
+            "spec_fill_rate": "33.3",
+            "product_count": "42"
+        },
+        {
+            "spec_name": "Top Finish",
+            "spec_fill_rate": "28.6",
+            "product_count": "36"
+        },
+        {
+            "spec_name": "Table Type",
+            "spec_fill_rate": "2.4",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_fill_rate": "2.4",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Storage Type",
+            "spec_fill_rate": "2.4",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_fill_rate": "1.6",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Primary Material",
+            "spec_fill_rate": "1.6",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_fill_rate": "1.6",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Furniture Type",
+            "spec_fill_rate": "1.6",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Tabletop Thickness",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Wire Management",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Leg Material",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Table Length",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Storage",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Workstation Layout",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Tabletop Material",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Table Shape",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Height Adjustable",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_fill_rate": "0.8",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Table Width",
+            "spec_option_name": "900 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "Office",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Storage Availability",
+            "spec_option_name": "Without Storage",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Conference Table",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Table Shape",
+            "spec_option_name": "Oval",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Table Top Glass Type",
+            "spec_option_name": "Toughened Glass",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "6 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Room Type",
+            "spec_option_name": "Office",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Shipping Time",
+            "spec_option_name": "10-12 days",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Features",
+            "spec_option_name": "Full-Size Table Dual Color Combination of White & Black 25mm Thick",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Workstation Layout",
+            "spec_option_name": "Round Table",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Office, Corporate Office",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Primary Material",
+            "spec_option_name": "MDF",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage Area",
+            "spec_option_name": "Office",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Tabletop Thickness",
+            "spec_option_name": "25 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Table Height",
+            "spec_option_name": "750 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sheet Size",
+            "spec_option_name": "2440Ãâ760 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Shipping time",
+            "spec_option_name": "10-12 days",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Table Top Thickness",
+            "spec_option_name": "10 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Furniture Type",
+            "spec_option_name": "Conference Table",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Color Family",
+            "spec_option_name": "White",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Cubiclecraft",
+            "option_fill_rate": "95"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "3 years",
+            "option_fill_rate": "94.1"
+        },
+        {
+            "spec_name": "Table Type",
+            "spec_option_name": "Conference Table",
+            "option_fill_rate": "85.7"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Modular",
+            "option_fill_rate": "76.9"
+        },
+        {
+            "spec_name": "Top Thickness",
+            "spec_option_name": "25 mm",
+            "option_fill_rate": "73.6"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_option_name": "Particle Board",
+            "option_fill_rate": "72.4"
+        },
+        {
+            "spec_name": "Storage Type",
+            "spec_option_name": "No Storage",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Tabletop Material",
+            "spec_option_name": "Wood",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Rectangular",
+            "option_fill_rate": "62.7"
+        },
+        {
+            "spec_name": "Top Finish",
+            "spec_option_name": "Wood Grain",
+            "option_fill_rate": "55.9"
+        },
+        {
+            "spec_name": "Frame Material",
+            "spec_option_name": "Particle Board",
+            "option_fill_rate": "54.5"
+        },
+        {
+            "spec_name": "Style",
+            "spec_option_name": "Modern",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Leg Material",
+            "spec_option_name": "Wood",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Wire Management",
+            "spec_option_name": "No",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Height Adjustable",
+            "spec_option_name": "No",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Style",
+            "spec_option_name": "Traditional",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Height Adjustable",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Wire Management",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_option_name": "Engineered Wood",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Storage",
+            "spec_option_name": "Without Storage",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Leg Material",
+            "spec_option_name": "Metal",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Storage",
+            "spec_option_name": "With Storage",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "Metal Legs",
+            "option_fill_rate": "44.6"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Veneer",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Natural",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Product Feature",
+            "spec_option_name": "Single color particle board 25mm Thick",
+            "option_fill_rate": "38.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Wire Management",
+            "option_fill_rate": "36.6"
+        },
+        {
+            "spec_name": "Top Finish",
+            "spec_option_name": "White",
+            "option_fill_rate": "34.3"
+        },
+        {
+            "spec_name": "Frame Material",
+            "spec_option_name": "Mild Steel (MS)",
+            "option_fill_rate": "34.3"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "Panel Base",
+            "option_fill_rate": "33.7"
+        },
+        {
+            "spec_name": "Tabletop Material",
+            "spec_option_name": "Engineered Wood",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Storage Type",
+            "spec_option_name": "Open Shelf",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Table Length",
+            "spec_option_name": "3600 mm (12 ft)",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Table Length",
+            "spec_option_name": "900 mm",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Table Length",
+            "spec_option_name": "1200 mm (4 ft)",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Product Feature",
+            "spec_option_name": "Full-Size Table Dual Color Combination of Dark walnut & Black 25mm Thick",
+            "option_fill_rate": "30.8"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "3600L x 120W cm",
+            "option_fill_rate": "27.8"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "300L x 120W cm",
+            "option_fill_rate": "27.8"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_option_name": "Metal",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_option_name": "Stainless Steel",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "8 Seater",
+            "option_fill_rate": "23.9"
+        },
+        {
+            "spec_name": "Product Feature",
+            "spec_option_name": "Full-Size Table Dual Color Combination of White & Black 25mm Thick",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "180L x 90W cm",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "240L x 120W cm",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "White Night Grey",
+            "option_fill_rate": "21.1"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "White Black",
+            "option_fill_rate": "21.1"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Powder Coated",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Glossy",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Oak",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Black",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Polished",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "6 Seater",
+            "option_fill_rate": "18.5"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Frosty white",
+            "option_fill_rate": "15.8"
+        },
+        {
+            "spec_name": "Top Thickness",
+            "spec_option_name": "18 mm",
+            "option_fill_rate": "14.5"
+        },
+        {
+            "spec_name": "Table Type",
+            "spec_option_name": "Meeting Table",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "10 Seater",
+            "option_fill_rate": "13.7"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Carrara marble",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Dark walnut",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Dark Walnut",
+            "option_fill_rate": "10.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "12 Seater",
+            "option_fill_rate": "10.2"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "4 Seater",
+            "option_fill_rate": "9.8"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_option_name": "MDF",
+            "option_fill_rate": "9.4"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Round",
+            "option_fill_rate": "8.8"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "U-Shape",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Top Thickness",
+            "spec_option_name": "36 mm",
+            "option_fill_rate": "8.2"
+        },
+        {
+            "spec_name": "Product Feature",
+            "spec_option_name": "single color particle board 25mm Thick",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_option_name": "Solid Wood",
+            "option_fill_rate": "7.3"
+        },
+        {
+            "spec_name": "Frame Material",
+            "spec_option_name": "MDF",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "14 Seater",
+            "option_fill_rate": "6.8"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_option_name": "Wood Veneer",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Top Finish",
+            "spec_option_name": "Grey",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "3 Years",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "14.7ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "11.75ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "8.2ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "6.85ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "7.55ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "8.70ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "8.15ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "15.25ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "10.75ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "9.55ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "16.75ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "8.75ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "13.7ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "16.52ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "12.7ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "6.75ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "10.95ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "8.60ft",
+            "option_fill_rate": "5.6"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Frosty White",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Frosty white - Black",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Boat",
+            "option_fill_rate": "5.2"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Oval",
+            "option_fill_rate": "5.2"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "The advent",
+            "option_fill_rate": "5"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Square",
+            "option_fill_rate": "4.7"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "16 Seater",
+            "option_fill_rate": "4.4"
+        },
+        {
+            "spec_name": "Frame Material",
+            "spec_option_name": "Stainless Steel",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Top Finish",
+            "spec_option_name": "Black",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "With Wheels",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "Pedestal Base",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "A - type Metal leg White Powder Coating 50x50mm Thick Pipe.",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "wooden",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "18+ Seater",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Foldable",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "Wooden Legs",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Top Thickness",
+            "spec_option_name": "50 mm",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Top Thickness",
+            "spec_option_name": "45 mm",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_option_name": "Glass",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "7 Seater",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "PLB Leg",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "A - type Metal leg Black Powder Coating 50x50mm Thick Pipe.",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "Plb leg",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "2 Seater",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "MDF base",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "wood",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "Wooden",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "As per client Requirement",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "MDF",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "Wood",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "customize",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "Profiled Legs",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "STAINLESS STEEL",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "A - type Metal leg",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "PLB leg",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "Multi",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "Stainless Steel",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Leg Type",
+            "spec_option_name": "Solid Wood",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "Modular",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "No seating capacity",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "18 Seater",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Multi",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "4",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Boat shape",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Any Shape",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "49 Seater",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "6",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "2 seater",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "6 to 8 Seater",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_option_name": "Wood",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Cylinder",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_option_name": "LaminateTop",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "L-Shape",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "as per the requirement",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "V Shape",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "all",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "all",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Trapezium",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "20 Seater",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "19 Seater",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Customized / Oval",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_option_name": "Prelam Board",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "All",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_option_name": "Wooden",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "5 Seater",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_option_name": "Concrete",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "All seating capacity available",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "As per Requirement",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Top Material",
+            "spec_option_name": "As per Requirement",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Seating Capacity",
+            "spec_option_name": "Multi",
+            "option_fill_rate": "0.5"
+        }
+    ]
+}

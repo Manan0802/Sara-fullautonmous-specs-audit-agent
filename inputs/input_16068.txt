@@ -1,0 +1,3087 @@
+=== SYSTEM PROMPT ===
+# Spec Audit Orchestrator Agent
+
+
+
+
+You are an expert spec auditor for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+
+
+---
+
+
+
+
+## YOUR OBJECTIVE
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+
+
+
+You have three tools available. Use them whenever they help you.
+
+
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+
+
+## RULES
+
+
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+
+
+---
+
+
+
+
+## BEGIN
+
+
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 16068
+category_name: HDPE Bottle
+seller_specs (current spec sheet): {
+  "category_name": "HDPE Bottle",
+  "mcat_id": 16068,
+  "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Capacity",
+          "options": [
+            "50 ml",
+            "100 ml",
+            "200 ml",
+            "250 ml",
+            "500 ml",
+            "1 l",
+            "2 l",
+            "5 l",
+            "10 l",
+            "20 l"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Bottle Use",
+          "options": [
+            "Pharma",
+            "Agro",
+            "Chemicals",
+            "Lubricants",
+            "Household",
+            "Food"
+          ],
+          "input_type": "multi_select"
+        },
+        {
+          "spec_name": "Neck Size",
+          "options": [
+            "18 mm",
+            "20 mm",
+            "24 mm",
+            "25 mm",
+            "28 mm",
+            "30 mm",
+            "38 mm",
+            "46 mm",
+            "63 mm",
+            "100 mm"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Bottle Shape",
+          "options": [
+            "Round",
+            "Square",
+            "Rectangular",
+            "Flat",
+            "Jerry Can",
+            "Jar"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Color",
+          "options": [
+            "White",
+            "Natural",
+            "Blue",
+            "Black",
+            "Yellow",
+            "Green"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Handle Type",
+          "options": [
+            "Without Handle",
+            "Side Handle",
+            "Top Handle",
+            "D Handle"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Food Grade",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Cap Type",
+          "options": [
+            "Screw Cap",
+            "TE Cap",
+            "CRC Cap",
+            "Plug Cap"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Surface Finish",
+          "options": [
+            "Matt",
+            "Glossy",
+            "Embossed"
+          ],
+          "input_type": "multi_select"
+        }
+      ]
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 15 specs) ---
+[
+  {
+    "spec_name": "Capacity",
+    "total_product_count": 130,
+    "example_values": [
+      "0.5 Litre",
+      "1 Litre",
+      "1 kg",
+      "1.75 Litre",
+      "100 ml"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 89,
+    "example_values": [
+      "Agriculture Products",
+      "Agriculture Products; Religious Packaging",
+      "Aquarium Feed Packaging",
+      "Automotive Chemicals Packaging",
+      "Beverage Packaging"
+    ]
+  },
+  {
+    "spec_name": "Material",
+    "total_product_count": 69,
+    "example_values": [
+      "HDPE",
+      "HDPE/PP"
+    ]
+  },
+  {
+    "spec_name": "Color",
+    "total_product_count": 36,
+    "example_values": [
+      "Black",
+      "Blue",
+      "Blue/Black",
+      "Clear",
+      "Colored"
+    ]
+  },
+  {
+    "spec_name": "Cap Type",
+    "total_product_count": 24,
+    "example_values": [
+      "Dropper",
+      "Flip Top",
+      "Harpic set type cap",
+      "Included",
+      "Lock type"
+    ]
+  },
+  {
+    "spec_name": "Features & Accessories",
+    "total_product_count": 18,
+    "example_values": [
+      "Airtight",
+      "Cap",
+      "Cap and Wad",
+      "Handle",
+      "Included"
+    ]
+  },
+  {
+    "spec_name": "Shape",
+    "total_product_count": 18,
+    "example_values": [
+      "Custom Design Required",
+      "Flat",
+      "Harpic type",
+      "Lizol type",
+      "Long"
+    ]
+  },
+  {
+    "spec_name": "Weight",
+    "total_product_count": 12,
+    "example_values": [
+      "100 g",
+      "17-18 g",
+      "210 g",
+      "230 g",
+      "37 g"
+    ]
+  },
+  {
+    "spec_name": "Bottle Type",
+    "total_product_count": 11,
+    "example_values": [
+      "Barfi Cut",
+      "Castrol Model",
+      "Churna Bottle",
+      "Coex",
+      "Custom"
+    ]
+  },
+  {
+    "spec_name": "Quality",
+    "total_product_count": 6,
+    "example_values": [
+      "Heavy",
+      "Low",
+      "Sturdy",
+      "Thick"
+    ]
+  },
+  {
+    "spec_name": "Cap Color",
+    "total_product_count": 5,
+    "example_values": [
+      "Black",
+      "Green",
+      "Multi-color",
+      "Red",
+      "Yellow"
+    ]
+  },
+  {
+    "spec_name": "Mouth Type",
+    "total_product_count": 5,
+    "example_values": [
+      "Narrow Mouth",
+      "Wide Mouth"
+    ]
+  },
+  {
+    "spec_name": "Transparency",
+    "total_product_count": 5,
+    "example_values": [
+      "Opaque",
+      "Transparent"
+    ]
+  },
+  {
+    "spec_name": "Content Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Liquid"
+    ]
+  },
+  {
+    "spec_name": "Neck Diameter/Size",
+    "total_product_count": 3,
+    "example_values": [
+      "24 mm",
+      "28 mm",
+      "Small"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "Material",
+    "count": 31,
+    "options": [
+      "HDPE"
+    ]
+  },
+  {
+    "spec_name": "Model Name",
+    "count": 16,
+    "options": [
+      "Glyphosate",
+      "EW",
+      "Partila",
+      "Buta EW",
+      "CH"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "material",
+    "total_impressions": 2285,
+    "options": [
+      "hdpe",
+      "hdpe plastic"
+    ]
+  },
+  {
+    "spec_name": "capacity",
+    "total_impressions": 170,
+    "options": [
+      "1 liter",
+      "1 litre",
+      "100 gram",
+      "100 ml",
+      "1000 ml"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (35 specs) ---
+[
+  {
+    "spec_name": "Capacity",
+    "spec_fill_rate": "62.2",
+    "product_count": "56"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_fill_rate": "55.6",
+    "product_count": "50"
+  },
+  {
+    "spec_name": "Color",
+    "spec_fill_rate": "54.4",
+    "product_count": "49"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_fill_rate": "53.3",
+    "product_count": "48"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "42.2",
+    "product_count": "38"
+  },
+  {
+    "spec_name": "Food Grade",
+    "spec_fill_rate": "42.2",
+    "product_count": "38"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_fill_rate": "41.1",
+    "product_count": "37"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_fill_rate": "33.3",
+    "product_count": "30"
+  },
+  {
+    "spec_name": "Cap Type",
+    "spec_fill_rate": "27.8",
+    "product_count": "25"
+  },
+  {
+    "spec_name": "Surface Finish",
+    "spec_fill_rate": "22.2",
+    "product_count": "20"
+  },
+  {
+    "spec_name": "Material",
+    "spec_fill_rate": "8.9",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "2.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_fill_rate": "2.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Recyclable",
+    "spec_fill_rate": "2.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Bottle Color",
+    "spec_fill_rate": "2.2",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Bottle Type",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Sealing Mechanism",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Solvent Name",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Bottle color",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Sterility",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Country Of Origin",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Application",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Finish Type",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Bottle Material",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Neck Type",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Seal Type",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Dropper Type",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Suitable For Oil",
+    "spec_fill_rate": "1.1",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (273 rows) ---
+[
+  {
+    "spec_name": "Chemical Grade",
+    "spec_option_name": "Industrial Grade",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Refill Type",
+    "spec_option_name": "Bottle",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Recyclable",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "PMK",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Country Of Origin",
+    "spec_option_name": "India",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "With Handle",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Closure Type",
+    "spec_option_name": "Screw Cap",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Sterility",
+    "spec_option_name": "Non Sterile",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Can Shape",
+    "spec_option_name": "Round",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Question",
+    "spec_option_name": "100ml 60ml 50ml and 30ml capacity",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable For Oil",
+    "spec_option_name": "Soybean Oil",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Segment",
+    "spec_option_name": "Factory",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Segment",
+    "spec_option_name": "Office",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "20-1000ML",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Height-135mm",
+    "spec_option_name": "Dia-42mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Solvent Name",
+    "spec_option_name": "SOLVENTS",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Bottle Material",
+    "spec_option_name": "HDPE",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Seal Type",
+    "spec_option_name": "Wad Seal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Segment",
+    "spec_option_name": "Hospital",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Bottle",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Container Material",
+    "spec_option_name": "HDPE",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Container Color",
+    "spec_option_name": "White",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Material",
+    "spec_option_name": "HDPE",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Segment",
+    "spec_option_name": "Retail",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Printing Method",
+    "spec_option_name": "Sticker Label",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable For Oil",
+    "spec_option_name": "Coconut Oil",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable For Oil",
+    "spec_option_name": "Sunflower Oil",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Segment",
+    "spec_option_name": "Warehouse",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Dropper Type",
+    "spec_option_name": "Nozzle Dropper",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable For Oil",
+    "spec_option_name": "Groundnut Oil",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Chemicals",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Segment",
+    "spec_option_name": "School",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "250ml",
+    "spec_option_name": "As per requirement",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "5 L",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Bottle color",
+    "spec_option_name": "White",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "HDPE",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Segment",
+    "spec_option_name": "Hotel",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Pharmaceutical",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Printing Method",
+    "spec_option_name": "Shrink Label",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Handle",
+    "spec_option_name": "Without Handle",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Agrochemical",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Glossy",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Cosmetics",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Home Care",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable For Oil",
+    "spec_option_name": "Rice Bran Oil",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable For Oil",
+    "spec_option_name": "Mustard Oil",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Pattern",
+    "spec_option_name": "Plain",
+    "option_fill_rate": "98"
+  },
+  {
+    "spec_name": "Cap Type",
+    "spec_option_name": "Screw Cap",
+    "option_fill_rate": "95.4"
+  },
+  {
+    "spec_name": "Usage and Application",
+    "spec_option_name": "Household and Cleaning Products",
+    "option_fill_rate": "86.1"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "India",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Bottle Color",
+    "spec_option_name": "White",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Recyclable",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Surface Finish",
+    "spec_option_name": "Matt",
+    "option_fill_rate": "73.8"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "Without Handle",
+    "option_fill_rate": "72.2"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "Plain Seal",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Sealing Mechanism",
+    "spec_option_name": "Inner Plug",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Material Grade",
+    "spec_option_name": "Non Food Grade",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "Round",
+    "option_fill_rate": "62"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "White",
+    "option_fill_rate": "61.8"
+  },
+  {
+    "spec_name": "Food Grade",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "54.7"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Chemicals",
+    "option_fill_rate": "50.7"
+  },
+  {
+    "spec_name": "Finish Type",
+    "spec_option_name": "Glossy",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Food & Beverage",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Finish Type",
+    "spec_option_name": "Matte",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Reusable",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Bottle Type",
+    "spec_option_name": "As Per The Image",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Food Grade",
+    "spec_option_name": "No",
+    "option_fill_rate": "45.3"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Cylindrical",
+    "option_fill_rate": "42.9"
+  },
+  {
+    "spec_name": "Neck Diameter",
+    "spec_option_name": "28 mm",
+    "option_fill_rate": "42.9"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Pharma",
+    "option_fill_rate": "41.8"
+  },
+  {
+    "spec_name": "Neck Type",
+    "spec_option_name": "Screw Cap",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Household",
+    "option_fill_rate": "38.2"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Agro",
+    "option_fill_rate": "36"
+  },
+  {
+    "spec_name": "Neck Diameter",
+    "spec_option_name": "32 mm",
+    "option_fill_rate": "35.7"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "Tamper Evident",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "Heat Sealed",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Bottle Type",
+    "spec_option_name": "Standard Bottle",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "Leak Proof",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Sealing Mechanism",
+    "spec_option_name": "Induction Seal",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Sealing Type",
+    "spec_option_name": "Induction Sealed",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Surface Finish",
+    "spec_option_name": "Glossy",
+    "option_fill_rate": "32.3"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Square",
+    "option_fill_rate": "28.6"
+  },
+  {
+    "spec_name": "Bottle Color",
+    "spec_option_name": "AS PER REQUIREMENT",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Temperature Resistance",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "Made In India",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Material Grade",
+    "spec_option_name": "Food Grade",
+    "option_fill_rate": "23.8"
+  },
+  {
+    "spec_name": "Neck Diameter",
+    "spec_option_name": "24 mm",
+    "option_fill_rate": "21.4"
+  },
+  {
+    "spec_name": "Neck Type",
+    "spec_option_name": "Flip Top Cap",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Neck Type",
+    "spec_option_name": "Wide Mouth",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Neck Type",
+    "spec_option_name": "Narrow Mouth",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "18 mm",
+    "option_fill_rate": "19.9"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "38 mm",
+    "option_fill_rate": "18.4"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Automotive Coolant",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Industrial Coolant",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Body Talc",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Baby Powder",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Radiator Coolant",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Medicated Talc",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Cosmetic",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Face Powder",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "500 ml",
+    "option_fill_rate": "17"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Built In Handle",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Bottle Type",
+    "spec_option_name": "Bottle with Pump",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Leak Proof",
+    "option_fill_rate": "16.7"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "As Per The Image",
+    "option_fill_rate": "14.9"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "As Per The Image",
+    "option_fill_rate": "14.9"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Round",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Rectangular",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "28 mm",
+    "option_fill_rate": "13.5"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Food",
+    "option_fill_rate": "13.3"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Lubricants",
+    "option_fill_rate": "12.9"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Green",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "As Per The Image",
+    "option_fill_rate": "12.2"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "1 l",
+    "option_fill_rate": "11.5"
+  },
+  {
+    "spec_name": "Usage and Application",
+    "spec_option_name": "Chemical Packaging",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "250 ml",
+    "option_fill_rate": "11.1"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "As Per The Image",
+    "option_fill_rate": "10.2"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "Square",
+    "option_fill_rate": "10"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "20 mm",
+    "option_fill_rate": "9.9"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "100 ml",
+    "option_fill_rate": "9.9"
+  },
+  {
+    "spec_name": "Material Grade",
+    "spec_option_name": "HDPE",
+    "option_fill_rate": "9.5"
+  },
+  {
+    "spec_name": "Surface Finish",
+    "spec_option_name": "Embossed",
+    "option_fill_rate": "9.2"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Engine Oil",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Hydraulic Oil",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Industrial Oil",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Agro Chemical",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Tablets",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Water",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Bathroom Cleaner",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Paint And Coating",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Pharma Liquid",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Gear Oil",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Grease Oil",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Any",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Cutting Oil",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Liquid Oral, Ear Drop",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Household Chemical",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "24 mm",
+    "option_fill_rate": "8.5"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "BPA-Free",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "Flat",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "As Per The Usage",
+    "option_fill_rate": "7.1"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Natural",
+    "option_fill_rate": "6.6"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "Side Handle",
+    "option_fill_rate": "5.7"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "25 mm",
+    "option_fill_rate": "5"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "46 mm",
+    "option_fill_rate": "5"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "30 mm",
+    "option_fill_rate": "5"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "ALL",
+    "option_fill_rate": "4.9"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "Rectangular",
+    "option_fill_rate": "4.8"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "1 liter",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "As Per The Image",
+    "option_fill_rate": "4.3"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "As Per Usage",
+    "option_fill_rate": "4"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "MULTIPLE",
+    "option_fill_rate": "3.4"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "Top Handle",
+    "option_fill_rate": "3.1"
+  },
+  {
+    "spec_name": "Usage and Application",
+    "spec_option_name": "Food and Beverages",
+    "option_fill_rate": "2.8"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "60 ML",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "200 ml",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "100 mm",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Milky White",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Pattern",
+    "spec_option_name": "Printed",
+    "option_fill_rate": "2"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Any",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Toner Powder",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Cap Type",
+    "spec_option_name": "Plug Cap",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Any",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Transparent",
+    "option_fill_rate": "1.7"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Black",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "19 mm",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Yellow",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "1 L",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "300 ml",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "30 ML",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "Round",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Blue",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Shampoo",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "1L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Cap Type",
+    "spec_option_name": "CRC Cap",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "800ML",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "As Per the Usage",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "1000 ml",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Cap Type",
+    "spec_option_name": "Flip Top",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "5 l",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "32mm",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "50mm",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "As per requirement",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "White (Base)",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "42mm",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "As per requirement",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "19",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "48mm",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "ALL",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "As Per The Image",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "63 mm",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "36 mm",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Neck Size",
+    "spec_option_name": "24mm & 20mm",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "2 l",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "100 g",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "75 g",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "50 ml",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "800ml",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "ALL",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "850ML",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "30 ml",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "all",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "Screw cap",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "As Per the Image",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "ALL",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "Nil",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Cap Type",
+    "spec_option_name": "Pump Dispenser Cap",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Handle Type",
+    "spec_option_name": "all type",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Cap Type",
+    "spec_option_name": "TE Cap",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Paint & Epoxy",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "As per requirement",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Beauty & Non-Food Packaging",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Multipurpose",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "Costmize",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "Triangle & Oval",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Sewing Machine Oil Bottle",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "all",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "MULTIPURPOSE",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "As Per Image",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Floor Cleaner",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "OIL",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Spices",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Churan",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "ALL",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Per Usage",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "TALCUM POWDER, DUSTING POWDER",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "ALL",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Use",
+    "spec_option_name": "Cosmetic",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "Curved",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "375 ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "2L",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "15 ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "125 ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Grey (Base)",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "40ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "250 gm",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "As per requirement",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "350ML",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "3 ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "30ml, 50ml, 60ml and 100ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Grey",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "50ml to 1000ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Multicolor",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "all",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "125ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "1100ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Golden",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Any colour",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "60ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "2.5 Litre",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "800 ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "100 & 200 ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "10/30/60/150/300 ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "50 to 200 ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "450",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "5 ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "60",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Black (Base)",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "200 gm",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "As Per Image",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "50ML AND 100ML",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "1 kg",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "350 gm",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "100ml ,250ml ,500ml,1 liter",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "250 & 500 ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Red",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "ULTIPLE",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "500ml, 200ml, 100ml, 50ml, 25ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Black & Dark Green",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "75 ml",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "200ML",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "300gm",
+    "option_fill_rate": "0.3"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "50, 90, 100, 175ml",
+    "option_fill_rate": "0.3"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Missing Spec Identification — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to evaluate whether specs are missing from the current platform spec
+sheet — read this document. It gives you the framework to identify genuine gaps,
+avoid false positives, define new specs completely, and generate correct option
+values. You apply all of this reasoning yourself using the data in your context.
+
+
+---
+
+
+## The core problem
+
+
+Data sources will surface many candidate specs. The hard part is not finding
+candidates — it is knowing which are genuine gaps versus duplicates under a
+different name, composite attributes already captured, or noise that looks like
+a spec but is not.
+
+
+A false positive — adding a spec that duplicates an existing one — is harder to
+fix than missing a genuine gap. When genuinely uncertain, do not add.
+
+
+---
+
+
+## How to recognise a genuine gap
+
+
+A candidate spec is a genuine gap only if all three of the following are true:
+
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same real-world
+attribute, even approximately, the candidate is not a gap.
+
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+
+---
+
+
+## Common false positives — check these before acting
+
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common synonym.
+
+
+Common equivalences in Indian B2B:
+
+
+| These terms often mean the same thing |
+|--------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Type / Variant / Form / Format / Category |
+| Size / Dimensions / Measurement / Specification |
+| Capacity / Volume / Output / Throughput |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Purity / Concentration / Assay / Composition |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade |
+| Brand / Make / Manufacturer / OEM / Make & Model |
+| Certifications / Standards / Compliance / Approvals |
+
+
+**Composite attributes**
+Some specs appearing in call or search data are natural-language composites.
+"10mm HDPE pipe" → "10mm" is not a new Diameter spec if Dimensions already exists.
+
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+
+**Call data noise**
+"Good quality", "ISI certified", "fast delivery" appearing as candidates from call
+data are purchase context, not product attributes.
+
+
+**Low-signal custom specs**
+A custom spec added by only one or two sellers is seller-idiosyncratic, not a
+category-wide gap.
+
+
+---
+
+
+## How to read each data source for gap evidence
+
+
+**Buyer-Seller Call Data (Buyer-Seller Call Data)**
+Look for attributes buyers ask about early in calls — these matter most to purchase
+decisions. Product count = signal strength. Higher count across more calls = stronger evidence.
+
+
+Discount: implied specs, generic values (As per requirement, Standard, Normal),
+re-statements of the category name.
+
+
+When evaluating option values from call data, read the distribution within each spec: values that cluster near the top are genuine market options; values with a marked drop-off from the leaders are tail noise — discard them. Also strip generic,non-committal values ("As per requirement", "Standard", "Normal", "Any") before reading the distribution — these are not real options regardless of their count.
+
+
+**Custom Specs Data (Custom Seller Specs)**
+Most reliable gap signal. A seller adding a custom spec is telling you buyers need
+this information and the platform has no field for it. Multiple sellers independently
+adding the same custom spec is strong confirmation.
+
+
+Discount: one-off specs from a single seller, vague or placeholder values,
+internal seller codes.
+
+
+Apply the same option relevance filter to custom spec values: discard generic fillers and tail values with far lower frequency than the leading values for that spec.
+
+
+
+
+**Buyer Search Data (Buyer Search Data)**
+Shows what attributes buyers filter by when browsing. High impressions on a
+candidate confirm buyer demand.
+
+
+Discount: platform default filters, implied category specs, single-option specs
+where >90% of impressions fall on one value.
+
+
+**Domain knowledge**
+When data signals are weak or absent, use your understanding of how this product
+is specified and sold in Indian B2B trade. What would a seller know by heart?
+What would a buyer mention first? Domain knowledge supplements data — it does not
+override clear data signals.
+
+
+---
+
+
+## Evidence strength — how much do you need
+
+
+| Evidence | Decision |
+|----------|----------|
+| 2+ independent sources agree (e.g. call data + custom specs) | Add with high confidence |
+| 1 strong source (high call count, or multiple custom spec sellers, or strong domain reasoning) | Add — note single source |
+| Weak or indirect signal only (low count, single occurrence, vague intuition) | Do not add — note as unconfirmed |
+
+
+---
+
+
+## Consolidating candidates that mean the same thing
+
+
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning.
+
+
+"Usage" from custom specs + "Application" from call data + "End Use" from search
+→ one spec, not three. Pick the most standard name and add once.
+
+
+Rule: one underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+
+---
+
+
+## How to define a spec you are adding
+
+
+When you have confirmed a genuine gap, define it completely.
+
+
+### Spec name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+
+### Input type — decide this first
+
+
+**Must be `text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Brand names only when the category has no dominant brands
+  (generate options if 3+ brands are known in Indian B2B)
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+
+**Must be `radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Yes / No, Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+
+
+**Must be `multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → multi_select
+
+
+
+
+## Platform rule — "Other" option on primary and secondary specs
+
+
+Primary and secondary specs on this platform have an "Other" button that lets sellers enter a custom value not in the list. This has a direct impact on input type decisions when adding new specs:
+
+
+- **Do not assign `text_type` to a spec just because its option list feels
+  incomplete**, if the spec is clearly important and its core values are known.
+  The "Other" button handles edge cases for primary and secondary specs.
+- If a spec has clear, standard option values AND strong signal that it will be
+  Primary or Secondary, define it as `radio_button` or `multi_select` with the
+  known options. Incompleteness alone is not a reason for `text_type`.
+- Reserve `text_type` for specs where the value is genuinely free-form or unique per SKU (model numbers, catalogue codes, free-form dimensions) — not for specs where you simply haven't enumerated all options yet.
+
+
+
+
+### Options — how to generate them
+
+
+Draw from example values in call data, custom spec submissions, and search option
+values. Also apply Indian B2B market knowledge to fill gaps.
+
+
+**Quality rules:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only.
+2. No vague fillers — never use: Other, Custom, NA, Various, As Required, Any, Miscellaneous, General Purpose (unless genuinely traded as a category value)
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+
+
+**Formatting rules:**
+6. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+7. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+8. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm 
+9. Categorical options by frequency — most common in Indian market first
+10. Use ISI/BIS standards where applicable
+11. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+12. Do not use range options unless they are the market standard for this spec
+13. Think like an Indian B2B seller — what values would a seller actually select?
+
+
+**How to handle values from data:**
+
+
+| Value quality | What to do |
+|---------------|------------|
+| Clean, consistent values | Use as format reference; generate full standard market set |
+| Mixed quality | Extract the pattern; discard outliers |
+| 1–2 values only | Use to confirm spec meaning; generate full options from market knowledge |
+| Completely messy | Ignore; generate entirely from category + spec name knowledge |
+| Empty | Generate entirely from category + spec name knowledge |
+| Contains NA / Other / Custom | Ignore these; treat as empty |
+
+
+### Tier placement
+
+
+Add all new specs as Tertiary by default. Tier is determined by sequencing
+reasoning using actual signal data — not at the point of addition.
+
+
+Exception: if call data product count is very high and the spec is clearly a
+primary purchase decision attribute for this category, you may propose Secondary
+or Primary as provisional. Note this explicitly and treat it as provisional until
+sequencing confirms it.
+
+
+---
+
+
+## Validation checklist — before finalising any spec addition
+
+
+- Options are directly about this spec, not adjacent attributes
+- Options make sense for this specific category
+- A real buyer would use these as search filters
+- No duplicates or near-duplicates in the option list
+- No vague or filler options
+- Correct input_type for the spec's nature
+- Logical order (ascending numeric or frequency-based categorical)
+- All options under 30 characters
+- Units are standardised
+
+
+---
+
+
+## Yes/No specs
+
+
+Options: ["Yes", "No"] with input_type: "radio_button"
+
+
+---
+
+
+## What missing spec identification does NOT do
+
+
+- Does not determine final tier placement — that is sequencing reasoning
+- Does not validate or correct options of existing specs — that is option validator
+- Does not make final decisions when evidence is genuinely ambiguous — flag
+  these clearly and explain what additional evidence would resolve the uncertainty
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

@@ -1,0 +1,1436 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+### Tool 4: Fetch DS5 Data
+
+[FETCH_DS5] — loads Option Fill Rate data on demand. 
+Use only when you need to validate specific option values.
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 2020
+category_name: Insecticides
+seller_specs (current spec sheet): {
+  "category_name": "Insecticides",
+  "mcat_id": 2020,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Technical Content",
+          "options": [
+            "Thiamethoxam+Lambda-Cy ZC",
+            "CTPR 18.5% SC",
+            "Emamectin 5% SG",
+            "Fipronil 5% SC",
+            "Lambda-Cy 5% EC",
+            "Chlorpy+Cyper EC",
+            "Imida 17.8% SL",
+            "Thiamethoxam 25% WG",
+            "Profenofos 50% EC",
+            "Monocroto 36% SL"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Packaging Size",
+          "options": [
+            "1 L",
+            "500 ml",
+            "250 ml",
+            "100 ml",
+            "1 kg",
+            "500 g",
+            "250 g",
+            "100 g",
+            "5 L",
+            "50 ml"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "These were chosen as they are the absolute core differentiators influencing both price and product selection. Technical Content is the most crucial specification, defining the product's efficacy and primary use. Packaging Size is a primary commercial lever in B2B transactions."
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Physical Form",
+          "options": [
+            "Liquid",
+            "Granules",
+            "Powder",
+            "Gel",
+            "Chalk"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Target Pest",
+          "options": [
+            "Larvae & Caterpillars",
+            "Sucking Pests",
+            "Bollworms",
+            "Thrips & Mites",
+            "Termites",
+            "Fruit Borer",
+            "Household Pests"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Mode of Action",
+          "options": [
+            "Systemic",
+            "Contact",
+            "Stomach",
+            "Translaminar",
+            "Nervous System Action",
+            "Repellent",
+            "Fumigant"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "These specs define the product's functional characteristics and are essential for filtering and search. Physical Form determines application method, Target Pest addresses buyer inquiries based on need, and Mode of Action is important for experienced buyers."
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Application",
+          "options": [
+            "Agriculture",
+            "Household Use",
+            "Public Health"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Target Crops",
+          "options": [
+            "Cotton",
+            "Paddy",
+            "Chilli",
+            "Soybean",
+            "Vegetables",
+            "Sugarcane",
+            "Maize",
+            "Fruits",
+            "Groundnut"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Toxicity Level",
+          "options": [
+            "Blue Label",
+            "Yellow Label",
+            "Green Label",
+            "Red Label"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "These provide supplementary information for safety, compliance, and specific applications. Application filters for different buyer segments, Target Crops helps buyers find suitable products, and Toxicity Level is a mandatory regulatory requirement in India."
+    }
+  },
+  "scratchpad": "The overall strategy, based on analysis of 100 source files, was to identify attributes consistently used by buyers and sellers to describe, differentiate, and purchase insecticides in the Indian B2B market. The specifications are prioritized by commercial significance and influence on buyer decisions, with a key distinction made between agricultural and household use. Specs like Brand Name and Dosage were omitted as they are considered SKU-level details or usage instructions, not core model attributes."
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 18 specs) ---
+[
+  {
+    "spec_name": "Target Pest",
+    "total_product_count": 66,
+    "example_values": [
+      "Thrips",
+      "Caterpillar / Larva",
+      "Mites",
+      "Termite",
+      "Cockroach"
+    ]
+  },
+  {
+    "spec_name": "Packaging Size",
+    "total_product_count": 65,
+    "example_values": [
+      "1 L",
+      "250 ml",
+      "5 L",
+      "100 ml",
+      "500 ml"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 58,
+    "example_values": [
+      "Bayer",
+      "Envu",
+      "Sir Farmtech",
+      "KK",
+      "Indo 505"
+    ]
+  },
+  {
+    "spec_name": "Target Crop",
+    "total_product_count": 40,
+    "example_values": [
+      "Paddy",
+      "Chilli",
+      "All Crops",
+      "Soyabean",
+      "Chickpea"
+    ]
+  },
+  {
+    "spec_name": "Form",
+    "total_product_count": 29,
+    "example_values": [
+      "Liquid",
+      "Powder",
+      "EC (Emulsifiable Concentrate)",
+      "BT Formulation",
+      "Dusting Powder"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "total_product_count": 27,
+    "example_values": [
+      "Premise",
+      "Ultra",
+      "121",
+      "KK 400",
+      "Fly Out"
+    ]
+  },
+  {
+    "spec_name": "Active Ingredient",
+    "total_product_count": 16,
+    "example_values": [
+      "Imidacloprid",
+      "Chlorpyrifos",
+      "Chlorantraniliprole",
+      "Alpha plus Chloro",
+      "Bacillus thuringiensis"
+    ]
+  },
+  {
+    "spec_name": "Product Type",
+    "total_product_count": 16,
+    "example_values": [
+      "Insecticide",
+      "Bio",
+      "Larvicide",
+      "Anti-Termite",
+      "Bait"
+    ]
+  },
+  {
+    "spec_name": "Dosage",
+    "total_product_count": 12,
+    "example_values": [
+      "20 ml/15 L",
+      "2.1 ml",
+      "20 ml",
+      "10 ml",
+      "1 ml/L"
+    ]
+  },
+  {
+    "spec_name": "Concentration",
+    "total_product_count": 9,
+    "example_values": [
+      "30.5 %",
+      "0.04 %",
+      "15 %",
+      "25 %"
+    ]
+  },
+  {
+    "spec_name": "Application Method",
+    "total_product_count": 6,
+    "example_values": [
+      "Spray",
+      "Soil drenching via irrigation",
+      "Spreading"
+    ]
+  },
+  {
+    "spec_name": "Packaging Type",
+    "total_product_count": 5,
+    "example_values": [
+      "Bottle",
+      "Bucket",
+      "New"
+    ]
+  },
+  {
+    "spec_name": "Dilution Volume",
+    "total_product_count": 5,
+    "example_values": [
+      "15 L",
+      "100 L",
+      "150 L",
+      "200 L"
+    ]
+  },
+  {
+    "spec_name": "Previous Brand",
+    "total_product_count": 4,
+    "example_values": [
+      "Bayer"
+    ]
+  },
+  {
+    "spec_name": "Usage Purpose",
+    "total_product_count": 4,
+    "example_values": [
+      "Pest Control",
+      "Industrial",
+      "Preventive"
+    ]
+  },
+  {
+    "spec_name": "Suggested Active Ingredient",
+    "total_product_count": 3,
+    "example_values": [
+      "Bifenthrin",
+      "Emamectin",
+      "Lambda"
+    ]
+  },
+  {
+    "spec_name": "Authenticity Mark",
+    "total_product_count": 3,
+    "example_values": [
+      "KK tape behind sticker"
+    ]
+  },
+  {
+    "spec_name": "Strength",
+    "total_product_count": 3,
+    "example_values": [
+      "30"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 3 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "count": 38,
+    "options": [
+      "Sumitomo",
+      "Envu",
+      "Tractor",
+      "Godrej",
+      "Mankind Agritech"
+    ]
+  },
+  {
+    "spec_name": "Product Brand",
+    "count": 5,
+    "options": [
+      "Cannon",
+      "Defence",
+      "Mankind Agritech",
+      "Green Agritech",
+      "Aventi"
+    ]
+  },
+  {
+    "spec_name": "Technical Name",
+    "count": 5,
+    "options": [
+      "Bifenthrin 10 % EC",
+      "Chlorantraniliprole 9.3 % +  Lambdacyhalot 4.6%",
+      "Deltamethrin 11 %",
+      "Dinotefuran 15 % + Pymetrozine 45 %",
+      "Diafenthiuron 47 %+ Bifenthrin 9.4 %"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 9 specs) ---
+[
+  {
+    "spec_name": "form",
+    "total_impressions": 50017,
+    "options": [
+      "cream",
+      "gel",
+      "granule",
+      "liquid",
+      "powder"
+    ]
+  },
+  {
+    "spec_name": "packaging size",
+    "total_impressions": 40670,
+    "options": [
+      "1 kg",
+      "1 litre",
+      "1 ltr",
+      "10 g",
+      "10 gm"
+    ]
+  },
+  {
+    "spec_name": "brand",
+    "total_impressions": 37831,
+    "options": [
+      "abacin",
+      "action 505",
+      "agro",
+      "arrow",
+      "bang"
+    ]
+  },
+  {
+    "spec_name": "color",
+    "total_impressions": 3936,
+    "options": [
+      "black",
+      "gold",
+      "white"
+    ]
+  },
+  {
+    "spec_name": "language",
+    "total_impressions": 1274,
+    "options": [
+      "hindi",
+      "telugu"
+    ]
+  },
+  {
+    "spec_name": "model name/number",
+    "total_impressions": 415,
+    "options": [
+      "550",
+      "fighter 505",
+      "slayer pro",
+      "super",
+      "super 505"
+    ]
+  },
+  {
+    "spec_name": "strength",
+    "total_impressions": 358,
+    "options": [
+      "20",
+      "25",
+      "80"
+    ]
+  },
+  {
+    "spec_name": "grade standard",
+    "total_impressions": 125,
+    "options": [
+      "technical"
+    ]
+  },
+  {
+    "spec_name": "technical name",
+    "total_impressions": 62,
+    "options": [
+      "dichlorvo",
+      "endosulfan",
+      "premise"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (49 specs) ---
+[
+  {
+    "spec_name": "Packaging Size",
+    "spec_fill_rate": "68.3",
+    "product_count": "41"
+  },
+  {
+    "spec_name": "Target Pest",
+    "spec_fill_rate": "55",
+    "product_count": "33"
+  },
+  {
+    "spec_name": "Mode of Action",
+    "spec_fill_rate": "48.3",
+    "product_count": "29"
+  },
+  {
+    "spec_name": "Formulation",
+    "spec_fill_rate": "46.7",
+    "product_count": "28"
+  },
+  {
+    "spec_name": "Active Ingredient",
+    "spec_fill_rate": "40",
+    "product_count": "24"
+  },
+  {
+    "spec_name": "Physical Form",
+    "spec_fill_rate": "38.3",
+    "product_count": "23"
+  },
+  {
+    "spec_name": "Technical Content",
+    "spec_fill_rate": "38.3",
+    "product_count": "23"
+  },
+  {
+    "spec_name": "Target Crop",
+    "spec_fill_rate": "31.7",
+    "product_count": "19"
+  },
+  {
+    "spec_name": "Pesticide Type",
+    "spec_fill_rate": "30",
+    "product_count": "18"
+  },
+  {
+    "spec_name": "Target Crops",
+    "spec_fill_rate": "28.3",
+    "product_count": "17"
+  },
+  {
+    "spec_name": "Farming Type",
+    "spec_fill_rate": "28.3",
+    "product_count": "17"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "25",
+    "product_count": "15"
+  },
+  {
+    "spec_name": "Formulation Type",
+    "spec_fill_rate": "23.3",
+    "product_count": "14"
+  },
+  {
+    "spec_name": "Technical Name",
+    "spec_fill_rate": "20",
+    "product_count": "12"
+  },
+  {
+    "spec_name": "Concentration",
+    "spec_fill_rate": "18.3",
+    "product_count": "11"
+  },
+  {
+    "spec_name": "Dosage",
+    "spec_fill_rate": "13.3",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Crop",
+    "spec_fill_rate": "13.3",
+    "product_count": "8"
+  },
+  {
+    "spec_name": "Application",
+    "spec_fill_rate": "10",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Usage Type",
+    "spec_fill_rate": "10",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Product Name",
+    "spec_fill_rate": "8.3",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Recommended Crops",
+    "spec_fill_rate": "8.3",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_fill_rate": "8.3",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "8.3",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Crop Usage",
+    "spec_fill_rate": "6.7",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_fill_rate": "6.7",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Composition",
+    "spec_fill_rate": "5",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Application Type",
+    "spec_fill_rate": "5",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Type",
+    "spec_fill_rate": "5",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Product Brand",
+    "spec_fill_rate": "3.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Toxicity Level",
+    "spec_fill_rate": "3.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Physical State",
+    "spec_fill_rate": "3.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Target Insect",
+    "spec_fill_rate": "3.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Form",
+    "spec_fill_rate": "3.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Target Pests",
+    "spec_fill_rate": "3.3",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "I Deal In",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Batch No",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Model Name",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Packing Type",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Target Disease",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Mode Of Action",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Grade Standard",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Mode Of Operation",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Country Of Origin",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "25 kg",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Purity",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Application Method",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Chemical Group",
+    "spec_fill_rate": "1.7",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data ---
+Not pre-loaded. Use [FETCH_DS5] to load when needed.
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Spec Validation and Definition 
+
+
+## What this skill is for
+
+When candidate missing specs have been surfaced by the Buyer-Seller Call, Custom Spec,
+or Buyer Search skills — read this document. It gives you the framework to
+validate whether each candidate is a genuine new spec or a false positive, and
+if genuine, define it completely and  correctly for the Indian B2B marketplace.
+
+---
+
+## Step 1 — Validate: Is this a genuine new spec?
+
+A candidate missing spec is genuine only if all three of the following are true:
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same
+real-world attribute, even approximately, the candidate is not a gap.
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+---
+
+## Common false positives — check these before acting
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common
+synonym.
+
+Common equivalences in Indian B2B:
+
+| These terms often mean the same thing |
+|---------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Size / Dimensions / Measurement / Specification |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade ||
+
+**Composite attributes**
+Some candidates are natural-language composites. "10mm HDPE pipe" → "10mm" is
+not a new Diameter spec if Dimensions already exists.
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+**Multiple candidates meaning the same thing**
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning. "Usage" from custom specs + "Application" from call data + "End Use"
+from search → one spec, not three. Pick the most standard name and add once.
+
+One underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+---
+
+## Step 2 — Define: Build the spec completely
+
+Once a candidate passes validation, define it fully across four elements.
+
+### Spec Name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+### Input Type
+
+**`text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+**`radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+- Boolean attributes where the only meaningful values are Yes and No
+  (e.g. ISI Certified, Waterproof, Fire Resistant). Options: `["Yes", "No"]`
+
+**`multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → `multi_select`
+
+
+### Options — How to Generate Them
+
+Draw from example values in call data, custom spec submissions, and search
+option values. When data values are sparse, inconsistent, or absent, generate
+the full option set from Indian B2B market knowledge for this category and spec.
+
+**Understanding option values from data sources:**
+
+Option values surfaced by the data source skills vary significantly in quality.
+Here is what each quality level looks like and what it tells you:
+
+| Data Quality | What it looks like |
+|---|---|
+| Clean and consistent | Values are specific, formatted, and repeated across sources — reliable signal for what the real market options are |
+| Mixed quality | Some specific values mixed with vague or inconsistently formatted ones — the specific values are the signal; the rest is noise |
+| 1–2 values only | Too sparse to define the full option set — useful for confirming what the spec means, but market knowledge is needed to complete the list |
+| Completely messy | No usable signal — generate entirely from Indian B2B market knowledge |
+| Empty | No data at all — generate entirely from Indian B2B market knowledge |
+| Contains NA / Other / Custom | These are non-values — ignore them and treat the remaining data at its actual quality level |
+
+**Quality rules for new option to be created:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only
+2. **No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose**
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz.
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+5. Ideally the option count should be limited to 10 most common options 
+
+**Formatting rules:**
+1. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+2. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+3. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm
+4. Categorical options by frequency — most common in Indian market first
+5. Use ISI/BIS standards where applicable
+6. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+7. Do not use range options unless they are the market standard for this spec
+
+### Tier Placement
+
+All new specs are added as Tertiary. Sequencing reasoning determines the final
+tier based on actual signal data.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(input_type_audit) ---
+---
+name: input-type-audit
+description: >
+  Use this skill to evaluate or correct the input_type of specs based purely on the
+  spec name and its existing option values — no data sources needed. Triggers: "wrong
+  input type", "radio vs multi_select", "should this be text_type", or whenever options
+  look mismatched with their input type.
+---
+
+
+## The three types
+Understanding *why* each type exists is essential to making correct decisions.
+
+
+### `radio_button`
+**One and only one value applies to a given product at a time.**
+
+
+The values are mutually exclusive by the physical or technical nature of the attribute.
+A buyer filtering by one value correctly excludes all products with a different value.
+
+
+Examples where `radio_button` is correct:
+- Phase (Single Phase / Three Phase) — a motor cannot be both
+- Voltage Rating (12 V / 24 V / 230 V) — a device has one rated voltage
+- Material (MS / GI / Stainless Steel) — a pipe is made of one material
+- Drive Type (Corded / Cordless) — a tool is one or the other
+- IS Standard (IS 694 / IS 1554) — a product conforms to one standard
+
+
+### `multi_select`
+**Multiple values can simultaneously and legitimately describe the same product.**
+
+
+A buyer selecting two values in a multi_select filter correctly retrieves products that
+match either value. A seller legitimately selects more than one option for a single
+listing.
+
+
+Examples where `multi_select` is correct:
+- Compatible Applications (Domestic / Industrial / Commercial) — a wire can be sold into all three markets
+-  Certifications (ISI / CE / RoHS) — a product can carry all three marks
+- Compatible Accessory Types (Drill Bits / Screwdriver Bits / Hole Saws) — a drill accepts multiple accessory families
+- Suitable For (Indoor / Outdoor / Underground) — a cable can be rated for multiple
+  installation environments
+
+
+### `text_type`
+**The value is free-form, unique per SKU, or has no stable, enumerable set of values.**
+
+
+There is no finite list of options that meaningfully covers the real distribution.
+Sellers need to type the value rather than select from a list. A buyer cannot usefully
+filter by this spec — it is for display and comparison only.
+
+
+Examples where `text_type` is correct:
+- Model Number — every SKU has a unique identifier
+- Catalogue Reference — brand-specific code with no standard pattern
+
+
+---
+
+
+## The two questions that decide the type
+
+
+**1. Can a single product have two of these values at the same time?**
+- No → `radio_button` (or `text_type` if free-form)
+- Yes → `multi_select`
+
+
+**2. Do the existing options form a finite, stable set?**
+- Yes → `radio_button` or `multi_select`
+- No / options are codes, identifiers, or continuous measures → `text_type`
+
+
+---
+
+
+## Platform rule — "Other" option on primary and secondary specs
+
+
+All `radio_button` and `multi_select` specs in the **primary and secondary tiers** have an
+"Other" button that lets sellers enter a custom value not in the list. This means:
+
+
+- **Do not assign `text_type` to a primary or secondary spec just because its option list
+  is incomplete.** The "Other" button covers edge cases.
+- Only use `text_type` for primary/secondary specs when the value is genuinely free-form — not simply because some values are missing.
+
+
+
+---
+
+
+## Decision rules — stop at first match
+
+
+| Rule | Condition | Action |
+|------|-----------|--------|
+| 1 → `text_type` | Options are model numbers, codes, or identifiers; or values are continuous / unique per SKU; or fewer than 2 standard values exist | Set `text_type`, clear options to `[]` |
+| 2 → `radio_button` | Values are mutually exclusive and options form a finite set | Set `radio_button` |
+| 3 → `multi_select` | Multiple values can apply to one product and options form a finite set | Set `multi_select` |
+| 4 → Keep | Current type is correct per the above | No change |
+
+
+---
+
+
+## Common misclassifications
+
+
+| Spec | Wrong type | Correct type | Why |
+|------|-----------|--------------|-----|
+| Application / Suitable For / Usage | `radio_button` | `multi_select` | One product serves multiple uses |
+| Certifications, IS Standards | `radio_button` | `multi_select` | Products carry multiple marks |
+| Phase, Voltage Rating, Insulation Class | `multi_select` | `radio_button` | One fixed value per SKU |
+| Model Number, Part Number, Catalogue Code | `radio_button` | `text_type` | Unique per SKU, not enumerable |
+
+
+
+
+
+
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(list of insecticide formulation codes CIBRC India) ---
+{
+  "query": "list of insecticide formulation codes CIBRC India",
+  "results": [
+    {
+      "title": "[PDF] Formulation registered",
+      "url": "https://ppqs.gov.in/sites/default/files/registered_formulations.pdf",
+      "excerpt": "WebSearchResult(url='https://ppqs.gov.in/sites/default/files/registered_formulations.pdf', excerpts=['Apr 1, 2022 \u00b7 PESTICIDES AND FORMULATIONS REGISTERED FOR USE IN THE. COUNTRY UNDER ... 494. 495. Triflumizole 42.14% SC. Trifluralin{The registration, import,\\xa0...'], publish_date=None, title='[PDF] Formulation registered')"
+    },
+    {
+      "title": "[PDF] List of Insecticide",
+      "url": "https://diragri.assam.gov.in/sites/default/files/swf_utility_folder/departments/diragri_medhassu_in_oid_4/do_u_want_2_know/Types%20of%20Pesticides%20and%20uses_0.pdf",
+      "excerpt": "WebSearchResult(url='https://diragri.assam.gov.in/sites/default/files/swf_utility_folder/departments/diragri_medhassu_in_oid_4/do_u_want_2_know/Types%20of%20Pesticides%20and%20uses_0.pdf', excerpts=['**List of Insecticide**\\n\\n**Sl.No**\\n\\n**Trade name**\\n\\n**Chemical Composition**\\n\\n**Mode of**\\n\\n**Action**\\n\\n**Active**\\n\\n**ingredient**\\n\\n**Recmdn.**\\n\\n**Against**\\n\\n1\\n\\nAcephate/\\n\\nAsatof/Starthene\\n\\nO-S Dimethyl\\n\\nacetylphosphoramidothioate\\n\\nS\\n\\n75% wp\\n\\n0\\\\.75-1 g/ltr\\n\\nAphids, jassids, bolllworms\\n\\n2\\n\\nActara\\n\\nThiamethoxam\\n\\nS\\n\\n25%\\n\\n0\\\\.2g/l\\n\\nSucking pest,\\n\\nAphids,Hoppers,WF,Root grub\\n\\n3\\n\\nAdmire\\n\\nImidacloprid\\n\\nS\\n\\n70% WG\\n\\n0\\\\.5-0.8ml/ltr\\n\\nSucking pests\\n\\n4\\n\\nAvaunt\\n\\nIndoxacarb\\n\\nC\\n\\n15\\\\.8%EC\\n\\n0\\\\.5-0.8ml/ltr\\n\\nDBM,Bollworm\\n\\n5\\n\\nConfidor\\n\\nImidacloprid\\n\\nS\\n\\n17\\\\.80%\\n\\n0\\\\.25-0.5ml/l\\n\\nSucking pests\\n\\n6\\n\\nCorogen\\n\\nChlorantraniliprole\\n\\nC\\n\\n18\\\\.50%\\n\\n0\\\\.5 ml/l\\n\\nBorer & Caterpillar\\n\\n7\\n\\nCuracron\\n\\nProfenofos\\n\\nC\\n\\n50% EC\\n\\n1\\\\.5-2 ml/l\\n\\nBollworm, sucking pests\\n\\n(15dsys)\\n\\n8\\n\\nCymbush\\n\\nCypermethrin\\n\\nC\\n\\n25% EC\\n\\n0\\\\.5ml/l\\n\\nBorer, bollworm, sucking pests\\n\\n9\\n\\nDecis\\n\\nDeltamethrin\\n\\nC\\n\\n2\\\\.8% EC\\n\\n1ml/l\\n\\nLeafminor, white flies\\n\\n10\\n\\nDursban\\n\\nChlorpyrifos\\n\\nC\\n\\n20% EC\\n\\n1\\\\.5-2.5 ml/l\\n\\nLeaf hopper, BPH, termites,\\n\\nsucking pests\\n\\n11\\n\\nEkalux\\n\\nQuinolphos\\n\\nC\\n\\n25%\\n\\n0\\\\.5-1.5ml/l\\n\\nsucking pests, borer,\\n\\n12\\n\\nFame\\n\\nFlubendiamide\\n\\nS\\n\\n39\\\\.35%\\n\\n1 ml/l\\n\\nBorer & Caterpillar\\n\\n13\\n\\nFuradon/Tata\\n\\nFuran\\n\\nCarbofuron\\n\\nS\\n\\n3%G\\n\\n5 kg/acre\\n\\nstem borer,cutworm white\\n\\ngrub,termite,shootfly,stem\\n\\nborer,aphids,thrips,jassids\\n\\n14\\n\\nHostathian\\n\\nTriazophos\\n\\nCTL\\n\\n40% EC\\n\\n1ml/ltr\\n\\nLeaf minor, white flies\\n\\n15\\n\\nJump\\n\\nFipronil\\n\\nS\\n\\n80%\\n\\n0\\\\.2g/l\\n\\nSucking pests\\n\\n16\\n\\nKarate\\n\\nLambda-cyhalothrin\\n\\nC\\n\\n5% EC\\n\\n0\\\\.5ml/ltr\\n\\nBorer, weevils, aphids, jossids,\\n\\nthrips, whiteflies\\n\\n17\\n\\nColonel-S\\n\\nDicofol\\n\\nC\\n\\n18\\\\.50%\\n\\n2\\\\.7ml/l\\n\\nMites\\n\\n18\\n\\nLannate\\n\\nMethomyl\\n\\nC\\n\\n40%\\n\\n1 ml/l\\n\\nBollworms, borer, succing pests\\n\\n19\\n\\nLarvin\\n\\nThiodicarb\\n\\nC\\n\\n75%WP\\n\\n2-3 g/l\\n\\nBollworm,shoot & fruit\\n\\nborer,pod borer, DBM\\n\\n20\\n\\nMagister\\n\\nFenazaquin\\n\\nS\\n\\n10%\\n\\n0\\\\.5 ml/l\\n\\nMites\\n\\n21\\n\\nMalathion\\n\\nMelathion\\n\\nS\\n\\n50% EC\\n\\n1 ml/l\\n\\ncaterpillars,fruitborer,gallmidge\\n\\nfly,leaf eating caterpillar,stem\\n\\nborer\\n\\n22\\n\\nMarshal [liquid]\\n\\nCarbosulfan\\n\\nC\\n\\n25% EC\\n\\n1-1.5ml/l\\n\\nAphid, borer, hoppers\\n\\n23\\n\\nMatador\\n\\nLambda-cyhalothrin\\n\\nC\\n\\n4\\\\.9% EC\\n\\n0\\\\.5 - 0.7 ml\\n\\nBorer in paddy & cotton\\n\\n24\\n\\nMetasystox\\n\\nOxidematon methyle\\n\\nS\\n\\n25%EC\\n\\n2 ml/l\\n\\nSucking pests\\n\\n25\\n\\nNuvan\\n\\nDichlorvos\\n\\nC\\n\\n76%EC\\n\\n0\\\\.5-1.0ml/l\\n\\ncut worms, leaf roller, aphids,\\n\\nsucking pests\\n\\n26\\n\\nMonostar/Tata\\n\\nMono\\n\\nMonocrotophos\\n\\nC\\n\\n36%\\n\\n1ml\\n\\nSuccing pests, bollworm\\n\\n27\\n\\nOberan\\n\\nSpiromesifen\\n\\nC\\n\\n22\\\\.9%\\n\\n0\\\\.2ml/l\\n\\nMites\\n\\n28\\n\\nPolitrin-C\\n\\nProfenofos + Cypermethrin\\n\\nC\\n\\n40 %+4%\\n\\n1-1.5ml/l\\n\\nBollworm, sucking pests\\n\\n(15dsys)\\n\\n29\\n\\nPegasus\\n\\nDiafenthiuron\\n\\nC\\n\\n50%\\n\\n1\\\\.25g/l\\n\\nPod borer, fruit borer,\\n\\n30\\n\\nProclaim\\n\\nEmamectin benzoate\\n\\nBiological\\n\\ninsecticide\\n\\n5% SG\\n\\n00\\\\.5g/ltr\\n\\nBolworm, fruit & shoot borer\\n\\n31\\n\\nRegent\\n\\nFipronil\\n\\nC & S\\n\\n5%\\n\\n1-1.5ml/l\\n\\nBorer, bollworm, sucking pests\\n\\n32\\n\\nPride/ Rekord\\n\\nAcetamiprid\\n\\nS\\n\\n20% SP\\n\\n0\\\\.2 g/l\\n\\nAphids,jassids,thrips,whitefly\\n\\n33\\n\\nRogar\\n\\nDimethoate\\n\\nS\\n\\n30%\\n\\n1-1.3ml/l\\n\\nBorer, mites, catterpillars,\\n\\nsucking pests\\n\\n34\\n\\nSevin\\n\\nCarbaryl\\n\\nC\\n\\n50% WDP\\n\\n4g/l\\n\\nBorer, bollworm, sucking pests\\n\\n35\\n\\nSpark\\n\\nDeltamethrin + Triazophos\\n\\nC\\n\\n1%+35%\\n\\n1\\\\.5ml\\n\\nSuccing pests, bollworm & leaf\\n\\nminor\\n\\n36\\n\\nStarphor\\n\\nPhorate\\n\\nS\\n\\n10%\\n\\n25-30 kg/ha\\n\\nTrrmites,nematodes\\n\\n37\\n\\nThimet\\n\\nPhorate\\n\\nS\\n\\n10%G\\n\\n30kg/ha\\n\\nTermites, nematodes\\n\\n38\\n\\nVertimac\\n\\nAbamectin\\n\\nS\\n\\n1\\\\.90%\\n\\n0\\\\.25 - 0.5ml\\n\\nSpoders & mites in ornamentals\\n\\n39\\n\\nWetttasul -80\\n\\nSulphur\\n\\nC\\n\\n80% WP\\n\\n2-5g/l\\n\\nMites\\n\\n**List of Fungicide & Bactericide**\\n\\n**Sl..No**\\n\\n**Trade name**\\n\\n**Chemical concentration**\\n\\n**Mode of**\\n\\n**Action**\\n\\n**Active**\\n\\n**ingredient**\\n\\n**Recmdn.**\\n\\n**Against**\\n\\n1\\n\\nAliette\\n\\nFosetyl-AL\\n\\nS\\n\\n80 % WP\\n\\n1 g/l\\n\\nDM\\n\\n2\\n\\nAmistar\\n\\nAzyoxystrobin\\n\\nS\\n\\n23% SC\\n\\n1ml/ ltr\\n\\nDM & PM in vegetables &\\n\\ngrapes\\n\\n3\\n\\nAureofungin\\n\\nAureofungin\\n\\nS\\n\\n46\\\\.15 SP\\n\\n0\\\\.1 g/lit\\n\\nBacterial diseases\\n\\n4\\n\\nBeam\\n\\nTricyclazole\\n\\nS\\n\\n75% WP\\n\\n0\\\\.5 - 0.8g\\n\\nPaddy blast &sheath blight\\n\\n5\\n\\nBavistin\\n\\nCarbendaziem\\n\\nS\\n\\n50%\\n\\n2g/Kg or 0.5g/l\\n\\nBlasts, blight, PM, rots, wilts\\n\\n6\\n\\nBayleton\\n\\nTraidimefon\\n\\nS\\n\\n25% WP\\n\\n0\\\\.5g\\n\\nPowdery mildew & Rust (25-40\\n\\ndays)\\n\\n7\\n\\nBenomyl/Benofit Benomyl\\n\\nS\\n\\n50% WP\\n\\n0\\\\.5ml/l\\n\\nPM, Anthrachnose, leaf spot,\\n\\nrots, rust\\n\\n8\\n\\nBlitox\\n\\nCOC\\n\\nC\\n\\n50% WP\\n\\n2\\\\.5ml/l\\n\\nRots, leaf spots, damping off,\\n\\n9\\n\\nCalixin\\n\\nTridemorph\\n\\nS\\n\\n80% EC\\n\\n0\\\\.5 -1 ml/lit\\n\\nPM, wilts\\n\\n10\\n\\nCaptan/ Foltaf/\\n\\nCaptaf\\n\\nCaptan\\n\\nC\\n\\n50% WP\\n\\n2 - 2.5g/ltr\\n\\nDaming off, rots\\n\\n11\\n\\nContaf\\n\\nHexaconozole\\n\\nS\\n\\n5%\\n\\n0\\\\.5-1ml/l\\n\\nPM\\n\\n12\\n\\nCuman\\n\\nZiram\\n\\nC\\n\\n27% SL\\n\\n1ml/ltr\\n\\nBlight, DM, Anthrachnose\\n\\n13\\n\\nCurzate M8\\n\\nCymoxanil + Mancozeb\\n\\nC & S\\n\\n8 % + 64 %\\n\\n3 g/l\\n\\nLate blight, DM\\n\\n14\\n\\nEquation Pro\\n\\nFamoxadone +Cymoxanil\\n\\nC & S\\n\\n16\\\\.6\\n\\n%+22.1%\\n\\n1 ml/l\\n\\nLate blight,DM\\n\\n15\\n\\nFolicur\\n\\nTebuconazole\\n\\nS\\n\\n25\\\\.9% m/m\\n\\n2\\\\.5 ml/l\\n\\nTikka, Rust, Sheath\\n\\nblight,Dieback,\\n\\nAnthracnose,Spots\\n\\n16\\n\\nIM-45/Abic M-\\n\\n45\\n\\nIndofil-Mancozeb\\n\\nC\\n\\n45%\\n\\n2-2.5g/l\\n\\nBlasts, blight, DM, rots, Leaf\\n\\nspots, buck eye rot,\\n\\n17\\n\\nKavach\\n\\nChlorthalonil\\n\\nC\\n\\n75%\\n\\n1-2g/l\\n\\nFruit rots, rust, blight, DM\\n\\n(Grape) (10-60 days)\\n\\n18\\n\\nKarathane\\n\\nDinocap\\n\\nS\\n\\n48% EC\\n\\n0\\\\.3-0.5ml/l\\n\\nPM\\n\\n19\\n\\nKocide\\n\\nCopper hydroxide\\n\\nC\\n\\n77WP\\n\\n2 g/l\\n\\nAnthracnose, Cercospora,Leaf\\n\\nspot\\n\\n20\\n\\nQuintal 50WP\\n\\nIprodione + Carbendazime\\n\\nC & S\\n\\n25%'], publish_date=None, title='[PDF] List of Insecticide')"
+    },
+    {
+      "title": "[PDF] (Updated on 15.05.2019) 1. PESTICIDES AND FORMULATIONS ...",
+      "url": "https://ppqs.gov.in/sites/default/files/list_of_pesticide_and_their_formulation.pdf",
+      "excerpt": "WebSearchResult(url='https://ppqs.gov.in/sites/default/files/list_of_pesticide_and_their_formulation.pdf', excerpts=['May 15, 2019 \u00b7 a) 2, 4-D Sodium Salt used as Tech a.i. 80% w/w min. 1 b) 2,4-D Amine Salt 58% SL 22.5% SL. 2 c) 2,4-D Ethyl Ester 38% EC, 4.5% Gr., 20%WP,.'], publish_date=None, title='[PDF] (Updated on 15.05.2019) 1. PESTICIDES AND FORMULATIONS ...')"
+    },
+    {
+      "title": "Pesticide Formulation Codes List | PDF | Biocides | Chemistry - Scribd",
+      "url": "https://www.scribd.com/document/686301819/AppendixD-CIPAC-Formulation-Codes",
+      "excerpt": "WebSearchResult(url='https://www.scribd.com/document/686301819/AppendixD-CIPAC-Formulation-Codes', excerpts=['Open navigation menu \\n\\nClose suggestions Search Search\\n\\nen Change Language Upload Sign in Sign in\\n\\n0 ratings 0% found this document useful (0 votes)\\n\\n757 views 2 pages\\n\\nFormulation Codes for Pesticide Products\\n\\nThe document provides a list of codes for pesticide formulations in 3 categories: solids, liquids, and gases. There are over 80 unique codes that represent common formulations like granular \u2026\\n\\nFull description\\n\\n## Uploaded by\\n\\n[240724109](https://www.scribd.com/user/705977094/240724109)\\n\\nAI-enhanced title and description\\n\\n* Download\\n* Save Save AppendixD CIPAC Formulation Codes For Later\\n* Share\\n* 0% 0% found this document useful, undefined\\n* 0% , undefined\\n* Print\\n* Embed\\n* Ask AI\\n* Report\\n\\n0 ratings 0% found this document useful (0 votes)\\n\\n757 views 2 pages\\n\\n# Formulation Codes for Pesticide Products\\n\\nThe document provides a list of codes for pesticide formulations in 3 categories: solids, liquids, and gases. There are over 80 unique codes that represent common formulations like granular baits, emulsifiable concentrates, dusts, and more. The codes are intended to standardize how formulations are referred to across different products, regions, and languages.\\n\\nRead more\\n\\nDownload\\n\\n0 ratings 0% found this document useful (0 votes)\\n\\n757 views 2 pages\\n\\nFormulation Codes for Pesticide Products\\n\\nThe document provides a list of codes for pesticide formulations in 3 categories: solids, liquids, and gases. There are over 80 unique codes that represent common formulations like granular \u2026\\n\\nFull description\\n\\n## Uploaded by\\n\\n[240724109](https://www.scribd.com/user/705977094/240724109)\\n\\nAI-enhanced title and description\\n\\nGo to previous items Go to next items\\n\\n* Download\\n* Save Save AppendixD CIPAC Formulation Codes For Later\\n* Share\\n* 0% 0% found this document useful, undefined\\n* 0% , undefined\\n* Print\\n* Embed\\n* Ask AI\\n* Report\\n\\nDownload\\n\\nSave AppendixD CIPAC Formulation Codes For Later\\n\\nSearch\\n\\nFullscreen\\n\\nYou are on page 1 2\\n\\n## Share this document\\n\\n* Share on Facebook, opens a new window\\n* Share on LinkedIn, opens a new window\\n* Share with Email, opens mail client\\n* Copy link\\n\\n[Millions of documents at your fingertips, ad-freeSubscribe with a free trial](https://www.scribd.com/oauth/signup?doc_id=686301819)\\n\\n## Footer menu\\n\\nBack to top\\n\\nGet our free apps\\n\\n* [](https://apps.apple.com/us/app/6448807714?mt=8&pt=298534)\\n* [](https://play.google.com/store/apps/details?id=com.scribd.app.reader0.docs)\\n\\n* Documents\\n\\nLanguage:\\n\\nEnglish\\n\\nWe take content rights seriously. [Learn more](https://support.scribd.com/hc/en-us/articles/210129026-Frequently-Asked-Questions-about-Copyrights-and-the-DMCA) in our FAQs or [report infringement here](https://support.scribd.com/hc/en-us/articles/210129146-REPORT-COPYRIGHT-INFRINGEMENTS-AND-ABUSE-HERE) .\\n\\nWe take content rights seriously. [Learn more](https://support.scribd.com/hc/en-us/articles/210129026-Frequently-Asked-Questions-about-Copyrights-and-the-DMCA) in our FAQs or [report infringement here](https://support.scribd.com/hc/en-us/articles/210129146-REPORT-COPYRIGHT-INFRINGEMENTS-AND-ABUSE-HERE) .\\n\\nLanguage:\\n\\nEnglish\\n\\n576648e32a3d8b82ca71961b7a986505'], publish_date=None, title='Pesticide Formulation Codes List | PDF | Biocides | Chemistry - Scribd')"
+    },
+    {
+      "title": "Formulation codes - Cipac.org",
+      "url": "https://www.cipac.org/index.php/m-p/further-information/formulation-codes",
+      "excerpt": "WebSearchResult(url='https://www.cipac.org/index.php/m-p/further-information/formulation-codes', excerpts=['1. You are here:\\n2. Home\\n3. Publications\\n4. Further information\\n5. Formulation codes\\n\\n### Formulation codes\\n\\nCatalogue of pesticide formulation types and international coding system, Technical Monograph n\u00b02, 7 th Edition Revised March 2017, CropLife International\\n\\n|AE |Aerosol dispenser |MC |Mosquito coil |\\n| --- | --- | --- | --- |\\n|AL |Other liquids to applied undiluted |ME |Micro emulsion |\\n|AP |All other products to be applied undiluted |MR |Matrix release |\\n|BR |Briquette |OD |Oil dispersion |\\n|CB |Bait concentrate |OF |Oil miscible flowable concentrate (oil miscible suspension) |\\n|CP |Contact powder |OL |Oil miscible liquid |\\n|CS |Capsule suspension |OP |Oil dispersible powder |\\n|DC |Dispersible concentrate |PA |Paste |\\n|DP |Dustable powder |PR |Plant rodiet |\\n|DS |Powder for dry seed treatment |RB |Bait (ready for use) |\\n|DT |Tablets for direct application |SC |Suspension concentrate (= flowable concentrate) |\\n|EC |Emulsifiable concentrate |SL |Soluble concentrate |\\n|EG |Emulsifiable granule |SO |Spreading oil |\\n|EW |Emulsion, water in oil |SP |Water soluble powder |\\n|FS |Flowable concentrate for seed treatment |ST |Water soluble tablets |\\n|FU |Smoke generator |SU |Ultralow volume (ULV) suspension |\\n|GA |Gas |TB |Tablet |\\n|GD |Gel for direct application |TC |Technical material. |\\n|GE |Gas generating product |TK |Technical concentrate |\\n|GL |Emulsifiable gel |UL |Ultralow volume (UVL) liquid |\\n|GR |Granule |VP |Vapour releasing product |\\n|GS |Grease |WG |Water dispersible granule |\\n|GR |Water soluble gel |WP |Wettable powder |\\n|HN |Hot fogging concentrate |WS |Water disperible powder for slurry treatment |\\n|KK |Compi-pack solid/liquid\\\\* |WT |Water dispersible tablets |\\n|KL |Combi-pack liquid/liquid\\\\* |XX |Others |\\n|KN |Cold-fogging concentrate |ZC |A mixed formulation of CS and SC |\\n|LB |Long-lasting storage bag |ZE |A mixed formulation ofCS and SE |\\n|LN |Long-lsting insecticidal net |ZW |A mixed formulation of CS and EW |\\n|LS |Solution for seed treatment | | |\\n\\nDisclaimer'], publish_date='2023-05-04', title='Formulation codes - Cipac.org')"
+    },
+    {
+      "title": "[PDF] Minutes of 59th CIB Meeting held on 12.11.2020",
+      "url": "https://www.acfiindia.com/home/central-notice/Minutesofthe59thMeetingoftheCentralInsecticidesBoard(CIB)heldon12.11.2020(uploadedon01.12.2020).pdf",
+      "excerpt": "WebSearchResult(url='https://www.acfiindia.com/home/central-notice/Minutesofthe59thMeetingoftheCentralInsecticidesBoard(CIB)heldon12.11.2020(uploadedon01.12.2020).pdf', excerpts=['Nov 12, 2020 \u00b7 List of Pesticides and New Formulations Approved by the Registration Committee under section 9(3) of the Insecticides Act 1968. S. No. Name'], publish_date=None, title='[PDF] Minutes of 59th CIB Meeting held on 12.11.2020')"
+    },
+    {
+      "title": "[PDF] IRS formulations and dosage S.No. Name of Insecticide Class of ...",
+      "url": "https://ncvbdc.mohfw.gov.in/Doc/tech-specification/Insecticides-Formulations_Dosage(IRS%20and%20Larvicide).pdf",
+      "excerpt": "WebSearchResult(url='https://ncvbdc.mohfw.gov.in/Doc/tech-specification/Insecticides-Formulations_Dosage(IRS%20and%20Larvicide).pdf', excerpts=['\"For any further information regarding any product in this list, the CIB registration certificate for the product may be referred to\". \"For any further\\xa0...'], publish_date=None, title='[PDF] IRS formulations and dosage S.No. Name of Insecticide Class of ...')"
+    },
+    {
+      "title": "[PDF] PESTICIDE FORMULATIONS REGISTERED FOR USE IN THE ...",
+      "url": "https://ppqs.gov.in/sites/default/files/list_pf_pesticide_formulations_registered_as_on_30.10.2025.pdf",
+      "excerpt": "WebSearchResult(url='https://ppqs.gov.in/sites/default/files/list_pf_pesticide_formulations_registered_as_on_30.10.2025.pdf', excerpts=['Oct 30, 2025 \u00b7 Page 1. Page 2. Page 3. Page 4. Page 5. Page 6. Page 7. Page 8. Page 9. Page 10. Page 11. Page 12. Page 13. Page 14. Page 15. |. Page 16'], publish_date=None, title='[PDF] PESTICIDE FORMULATIONS REGISTERED FOR USE IN THE ...')"
+    },
+    {
+      "title": "[PDF] TECHNICAL MONOGRAPH n\u00b0 2, 7th Edition Revised March 2017",
+      "url": "https://croplife.org/wp-content/uploads/2017/04/Technical-Monograph-2-7th-Edition-Revised-March-2017.pdf",
+      "excerpt": "WebSearchResult(url='https://croplife.org/wp-content/uploads/2017/04/Technical-Monograph-2-7th-Edition-Revised-March-2017.pdf', excerpts=['Helping Farmers Grow\\n\\n**CropLife International aisbl,** 326 avenue Louise, box 35, B-1050 Brussels Belgium\\n\\n1\\n\\n**TECHNICAL MONOGRAPH n\u00b0 2, 7** <sup>**th**</sup> **Edition**\\n\\n**Revised March 2017**\\n\\n**Catalogue of pesticide formulation types and international coding**\\n\\n**system**\\n\\n**Technical Monograph No: 2**\\n\\n**Edition: March 2017**\\n\\nHelping Farmers Grow\\n\\n**CropLife International aisbl,** 326 avenue Louise, box 35, B-1050 Brussels Belgium\\n\\n2\\n\\nIntroduction\\n\\nThe Catalogue of pesticide formulation types and international coding system provides guidance\\n\\nfor appropriately assigning Formulation Types during development and registration of new\\n\\nproducts. In individual cases, more than one Formulation Type may be possible.\\n\\nHelping Farmers Grow\\n\\n**CropLife International aisbl,** 326 avenue Louise, box 35, B-1050 Brussels Belgium\\n\\n3\\n\\n**Code**\\n\\n**Term**\\n\\n**Definition**\\n\\nAE\\n\\nAerosol dispenser\\n\\nA container-held formulation which is dispersed\\n\\ngenerally by a propellant as fine droplets or particles\\n\\nupon the actuation of a valve.\\n\\nAL\\n\\nAny other liquid\\n\\nA liquid not yet designated by a specific code, to be\\n\\napplied undiluted.\\n\\nAP\\n\\nAny other powder\\n\\nA powder not yet designated by a specific code, to be\\n\\napplied undiluted.\\n\\nBR\\n\\nBriquette\\n\\nSolid block designed for controlled release of active\\n\\ningredient into water.\\n\\nCB\\n\\nBait concentrate\\n\\nA solid or liquid intended for dilution before use as a\\n\\nbait.\\n\\nCP\\n\\nContact powder\\n\\nRodenticidal or insecticidal formulation in powder form\\n\\nfor direct application. Formerly known as tracking\\n\\npowder (TP).\\n\\nCS\\n\\nCapsule suspension A stable suspension of capsules in a fluid, normally\\n\\nintended for dilution with water before use.\\n\\nDC\\n\\nDispersible\\n\\nconcentrate\\n\\nA liquid homogeneous formulation to be applied as a\\n\\nsolid dispersion after dilution in water. (Note: there are\\n\\nsome formulations which have characteristics\\n\\nintermediate between DC and EC).\\n\\nDP\\n\\nDustable powder\\n\\nA free-flowing powder suitable for dusting.\\n\\nDS\\n\\nPowder for dry seed\\n\\ntreatment\\n\\nA powder for application in the dry state directly to the\\n\\nseed.\\n\\nDT\\n\\nTablet for direct\\n\\napplication\\n\\nFormulation in the form of tablets to be applied\\n\\nindividually and directly in the field, and/or bodies of\\n\\nwater, without preparation of a spraying solution or\\n\\ndispersion.\\n\\nEC\\n\\nEmulsifiable\\n\\nconcentrate\\n\\nA liquid, homogeneous formulation to be applied as an\\n\\nemulsion after dilution in water.\\n\\nEG\\n\\nEmulsifiable granule A granular formulation, which may contain water-\\n\\ninsoluble formulants, to be applied as an oil-in-water\\n\\nemulsion of the active ingredient(s) after disintegration\\n\\nin water.\\n\\nEO\\n\\nEmulsion, water in oil A fluid, heterogeneous formulation consisting of a\\n\\nsolution of pesticide in water dispersed as fine globules\\n\\nin a continuous organic liquid phase.\\n\\nEP\\n\\nEmulsifiable powder A powder formulation, which may contain water-\\n\\ninsoluble formulants, to be applied as an oil-in-water\\n\\nemulsion of the active ingredient(s) after dispersion in\\n\\nwater.\\n\\nHelping Farmers Grow\\n\\n**CropLife International aisbl,** 326 avenue Louise, box 35, B-1050 Brussels Belgium\\n\\n4\\n\\nES\\n\\nEmulsion for seed\\n\\ntreatment\\n\\nA stable emulsion for application to the seed either\\n\\ndirectly or after dilution.\\n\\nEW\\n\\nEmulsion, oil in water A fluid, heterogeneous formulation consisting of a\\n\\nsolution of pesticide in an organic liquid dispersed as\\n\\nfine globules in a continuous water phase.\\n\\nFS\\n\\nFlowable concentrate\\n\\nfor seed treatment\\n\\nA stable suspension for application to the seed, either\\n\\ndirectly or after dilution.\\n\\nFU\\n\\nSmoke generator\\n\\nA combustible formulation, generally solid, which upon\\n\\nignition releases the active ingredient(s) in the form of\\n\\nsmoke.\\n\\nGA\\n\\nGas\\n\\nA gas packed in pressure bottle or pressure tank.\\n\\nGD\\n\\nGel for direct\\n\\napplication\\n\\nA gel like preparation to be applied undiluted.\\n\\nGE\\n\\nGas generating\\n\\nproduct\\n\\nA formulation which generates a gas by chemical\\n\\nreaction.\\n\\nGL\\n\\nEmulsifiable gel\\n\\nA gelatinized formulation to be applied as an emulsion\\n\\nin water.\\n\\nGR\\n\\nGranule\\n\\nA free-flowing solid formulation of a defined granule size\\n\\nrange ready for use.\\n\\nGS\\n\\nGrease\\n\\nVery viscous formulation based on oil or fat.\\n\\nGW\\n\\nWater soluble gel\\n\\nA gelatinized formulation to be applied as an aqueous\\n\\nsolution.\\n\\nHN\\n\\nHot fogging\\n\\nconcentrate\\n\\nA formulation suitable for application by hot fogging\\n\\nequipment, either directly or after dilution.\\n\\nKK\\n\\nCombi-pack\\n\\nsolid/liquid\\n\\nA solid and a liquid formulation, separately contained\\n\\nwithin one outer pack, intended for simultaneous\\n\\napplication in a tank mix.\\n\\nKL\\n\\nCombi-pack\\n\\nliquid/liquid\\n\\nTwo liquid formulations, separately contained within one\\n\\nouter pack, intended for simultaneous application in a\\n\\ntank mix.\\n\\nKN\\n\\nCold fogging\\n\\nconcentrate\\n\\nA formulation suitable for application by cold fogging\\n\\nequipment, either directly or after dilution.\\n\\nLB\\n\\nLong-lasting storage\\n\\nbag\\n\\nA slow- or controlled-release formulation in the form of a\\n\\ntreated bag for storage, providing physical and chemical\\n\\nbarriers, e.g. to pests\\n\\nLN\\n\\nLong-lasting\\n\\ninse'], publish_date=None, title='[PDF] TECHNICAL MONOGRAPH n\u00b0 2, 7th Edition Revised March 2017')"
+    },
+    {
+      "title": "[PDF] READY RECKONER - Department of Agriculture & Farmers Welfare",
+      "url": "https://agriwelfare.gov.in/sites/default/files/ready_reckoner_pp_new.pdf",
+      "excerpt": "WebSearchResult(url='https://agriwelfare.gov.in/sites/default/files/ready_reckoner_pp_new.pdf', excerpts=['Central Insecticides Board and Registration Committee (CIB&RC) registration related matters of various individuals/ firms/ associations/ State Government/.'], publish_date=None, title='[PDF] READY RECKONER - Department of Agriculture & Farmers Welfare')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

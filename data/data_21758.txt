@@ -1,0 +1,4961 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 21758,
+        "mcat_name": "Aluminium Profiles",
+        "current_specs": [
+            {
+                "spec_name": "Profile Shape",
+                "options": [
+                    "T-Slot",
+                    "G-Profile",
+                    "Corner Profile",
+                    "Handle Profile",
+                    "L-Angle",
+                    "U-Channel",
+                    "Shutter Profile",
+                    "Square Tube",
+                    "Round Tube",
+                    "Flat Bar"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Cross-Section (WxH)",
+                "options": [
+                    "40x40 mm",
+                    "20x20 mm",
+                    "30x30 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Finish",
+                "options": [
+                    "Anodized",
+                    "Powder Coated Black",
+                    "Matt Black",
+                    "SS Brush",
+                    "Rose Gold",
+                    "Gold",
+                    "Wooden Finish",
+                    "Mill Finish",
+                    "Chrome/CP Brush",
+                    "Glossy"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Length",
+                "options": [
+                    "3 m (10 ft)",
+                    "2.7 m (9 ft)",
+                    "2.5 m (8 ft)",
+                    "2 m (6.5 ft)",
+                    "3.65 m (12 ft)",
+                    "6 m (20 ft)"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Alloy & Temper",
+                "options": [
+                    "6063-T6",
+                    "6063",
+                    "6061-T6",
+                    "6061",
+                    "6082-T6",
+                    "6351-T6"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Grade",
+                "options": [
+                    "Heavy Duty",
+                    "Medium Duty",
+                    "Light Duty"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Application",
+                "options": [
+                    "Furniture/Wardrobe",
+                    "LED Lighting",
+                    "Window/Door",
+                    "Structural Framing",
+                    "Partition",
+                    "Glass Railing",
+                    "Kitchen Cabinet",
+                    "Skirting"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Mounting Type",
+                "options": [
+                    "Surface Mounted",
+                    "Recessed",
+                    "Corner Mounted",
+                    "Hanging/Suspended"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Glass Compatibility",
+                "options": [
+                    "4-6 mm",
+                    "8-10 mm",
+                    "10-12 mm",
+                    "5 mm",
+                    "6 mm",
+                    "8 mm",
+                    "10 mm",
+                    "12 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Aluminium Profiles",
+            "mcat_id": 21758,
+            "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Profile Shape",
+                            "options": [
+                                "T-Slot",
+                                "G-Profile",
+                                "Corner Profile",
+                                "Handle Profile",
+                                "L-Angle",
+                                "U-Channel",
+                                "Shutter Profile",
+                                "Square Tube",
+                                "Round Tube",
+                                "Flat Bar"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Prefix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Cross-Section (WxH)",
+                            "options": [
+                                "40x40 mm",
+                                "20x20 mm",
+                                "30x30 mm"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Profile Shape and Cross-Section Dimensions were chosen as Primary because they are the most fundamental identifiers for an aluminium profile. They define the product's form and fit, making them essential for search and title creation. 'Profile Shape' is a Prefix for sub-categories, while 'Cross-Section' is a Suffix for specific sizing."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Finish",
+                            "options": [
+                                "Anodized",
+                                "Powder Coated Black",
+                                "Matt Black",
+                                "SS Brush",
+                                "Rose Gold",
+                                "Gold",
+                                "Wooden Finish",
+                                "Mill Finish",
+                                "Chrome/CP Brush",
+                                "Glossy"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Length",
+                            "options": [
+                                "3 m (10 ft)",
+                                "2.7 m (9 ft)",
+                                "2.5 m (8 ft)",
+                                "2 m (6.5 ft)",
+                                "3.65 m (12 ft)",
+                                "6 m (20 ft)"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Alloy & Temper",
+                            "options": [
+                                "6063-T6",
+                                "6063",
+                                "6061-T6",
+                                "6061",
+                                "6082-T6",
+                                "6351-T6"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Finish, Length, and Alloy & Temper are critical for function, aesthetics, and cost, but are secondary to shape and size. Finish is a major cost factor, Length is a standard logistical unit, and Alloy & Temper is a crucial technical specification for industrial applications."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Grade",
+                            "options": [
+                                "Heavy Duty",
+                                "Medium Duty",
+                                "Light Duty"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Application",
+                            "options": [
+                                "Furniture/Wardrobe",
+                                "LED Lighting",
+                                "Window/Door",
+                                "Structural Framing",
+                                "Partition",
+                                "Glass Railing",
+                                "Kitchen Cabinet",
+                                "Skirting"
+                            ],
+                            "input_type": "multi_select",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Mounting Type",
+                            "options": [
+                                "Surface Mounted",
+                                "Recessed",
+                                "Corner Mounted",
+                                "Hanging/Suspended"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Glass Compatibility",
+                            "options": [
+                                "4-6 mm",
+                                "8-10 mm",
+                                "10-12 mm",
+                                "5 mm",
+                                "6 mm",
+                                "8 mm",
+                                "10 mm",
+                                "12 mm"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "These specs address more detailed, application-specific needs. Application helps buyers filter for end-use. Grade abstracts the frequent buyer need for 'heavy duty' or 'lightweight' profiles. Mounting Type is essential for LED profiles. Glass Compatibility is for profiles used in partitions and railings."
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Accessories",
+            "option_value": "10",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "5 per shutter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Acrylic / Polycarbonate",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Beading for the glass",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Black Beading",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Black End Cap",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Corner Fittings",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Diffuser and Aluminium Frame",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "End Cap and Rubber",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "End Cap, Out Corner, In Corner",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Gasket Included",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Grey Rubber",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Lock",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Rubber",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Rubber Inserts (Not Available)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Rubber, End cap",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Silver Screw",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "With Diffuser",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Accessories",
+            "option_value": "Without collar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Angle",
+            "option_value": "0 degree",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "4mm Glass",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "AHU",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Bathroom Door",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Ceiling",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Construction",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Customized",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Decorative",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Door",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Door Window Frame",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Edge Binding",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Finished",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Fixed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Fixed Glass Window",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Floor",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Framing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Furniture",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Gate",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Gate Section",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Glass",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Glass Fitting",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Glass Frame",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Glass Partition",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Gypsum Board",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Haadi Door",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Hanging",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Kitchen",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "LED Skirting",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Lighting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Mini Door",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Office",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Partition",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Pasting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Profile Shutter",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Railing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Raw Material",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Sheet Joining",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Shutter",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Shutters",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Sliding",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Sliding Window",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Slim",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Soft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Top and Bottom",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "UV Board Edge",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Wardrobe",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Wardrobe Handle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Wardrobe Shutter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Window",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Wooden Surface",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Board Thickness Compatibility",
+            "option_value": "18 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Altema",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Astoria",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Clozma",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Domal",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Eron Aluminium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Jindal",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Local",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Our own make",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "RAC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sagar Aluminium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Stars",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bundle Length",
+            "option_value": "400 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "BIS, ISI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Coating Thickness",
+            "option_value": "70 to 80 micron",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Collar Feature Diameter",
+            "option_value": "2 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Collar Size",
+            "option_value": "7 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component",
+            "option_value": "ACP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component",
+            "option_value": "Frame",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Component",
+            "option_value": "Shutter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Configuration",
+            "option_value": "Two-way LED",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cut Size",
+            "option_value": "1 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cutting Size",
+            "option_value": "17 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Depth",
+            "option_value": "6 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Diffuser Material",
+            "option_value": "Polycarbonate (PC)",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dimensions",
+            "option_value": "8 x 6 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "0 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "10 8 unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "100 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "11 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "14 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "16 x 45 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "17 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "18 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "19 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "1x1.5 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "2 x 1.5 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "20 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "22 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "23.6 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "25 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "2x2 unknown",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "3 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "40 mm",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "40x40 mm",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "40x80 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "45 mm",
+            "prod_count": 32
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "50x35 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "52 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "60 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "65 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "67 mm",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "70 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dimensions (Cross Section)",
+            "option_value": "80x80 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Duty Type",
+            "option_value": "Heavy Duty",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Duty Type",
+            "option_value": "Light Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Feature",
+            "option_value": "Thermal Break",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Final Diameter",
+            "option_value": "14 - 15 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "10 Colors",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "All Colors",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Anodized",
+            "prod_count": 22
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Antique",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Antique Brass",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Black",
+            "prod_count": 35
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Black Matte",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Black Powder Coat",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Brush Finish",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Chrome Plated",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Coating",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Color",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Copper",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Diamond Cut",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Glossy",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Gold",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Gold, Rose Gold, Glossy Black, Matte Black, Grey, Chrome, SS Brush, Silver Finish",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Grey",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Grey, Rose gold, Black, Brush golden",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Guaranteed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Hardening",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Ivory",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Jet Black",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Light Grey",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Matches Imported Finish",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Matt",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Mill Finish",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Mirror Finish",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Natural Finish",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Natural Silver",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Off White / Cream",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Powder Coated",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Rose Gold",
+            "prod_count": 21
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Silver",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "White",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "White Coated",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Without Coating",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Without Guarantee",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish/Color",
+            "option_value": "Wood Finish",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Flexibility",
+            "option_value": "Solid",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Frame Compatibility",
+            "option_value": "Stainless Steel Gate",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gap Size",
+            "option_value": "10 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glass Included",
+            "option_value": "Yes",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Glass Specification",
+            "option_value": "6+1.5+6",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Glass Thickness",
+            "option_value": "4 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Glass Thickness",
+            "option_value": "6 mm",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Glass Treatment",
+            "option_value": "Toughened",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Glass/Infill Type",
+            "option_value": "Fluted Glass",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Glass/Infill Type",
+            "option_value": "Mirror",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Grade",
+            "option_value": "6063",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Groove Depth",
+            "option_value": "1 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Groove Height",
+            "option_value": "25 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Groove Width",
+            "option_value": "1.5 - 2 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Groove Width",
+            "option_value": "18 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Handle Type",
+            "option_value": "With Handle",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Handle Type",
+            "option_value": "Without Handle",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "100 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "12 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "12 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "16 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "160 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "2 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "20 mm",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "20 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "22 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "3 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "4 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "4.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "40 mm",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "45 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "5-6 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "5.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "50 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "6 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "6 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "6.5 ft",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "60 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "69 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "7.5 ft",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "70 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "75 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "8 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "8.5 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "88 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "9 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Height",
+            "option_value": "90 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Hinges Required",
+            "option_value": "5 per shutter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Installation Type",
+            "option_value": "Male-Female",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Installation Type",
+            "option_value": "Screw-on",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "LED Configuration",
+            "option_value": "Two side LED",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "10 ft",
+            "prod_count": 46
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "11 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "12 ft",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "15 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "16 ft",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "2 m",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "250 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "2900 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "3 m",
+            "prod_count": 32
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "3 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "4 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "4 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "5 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "5.8 m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "6 m",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "6 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "6.5 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "7 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "8 ft",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "9.5 - 10 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Lock",
+            "option_value": "Without Lock",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Machine Compatibility",
+            "option_value": "45",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Magnetic",
+            "option_value": "No",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Manufacturing Process",
+            "option_value": "Extruded",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Aluminium",
+            "prod_count": 30
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Aluminium Alloy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Aluminium Ingots",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Full Aluminium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Normal Aluminium",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Number of Capsules",
+            "option_value": "3",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Doors",
+            "option_value": "2",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Number of Grooves",
+            "option_value": "5",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Number of Parts",
+            "option_value": "2",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Number of Tracks",
+            "option_value": "3",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Opening Type",
+            "option_value": "Openable",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Opening Type",
+            "option_value": "Sliding",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Orientation",
+            "option_value": "Horizontal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Orientation",
+            "option_value": "Vertical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "China",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Heavy",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Imported",
+            "prod_count": 32
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Imported and Indian",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Indian",
+            "prod_count": 21
+        },
+        {
+            "spec_name": "Packaging",
+            "option_value": "Cardboard packing",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Position",
+            "option_value": "Outer",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Press Size",
+            "option_value": "6, 9 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Status",
+            "option_value": "Finished",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Best",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Premium",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Project Approved",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quality Grade",
+            "option_value": "Top brand",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Quantity per Box",
+            "option_value": "200 lengths per box",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Section Code",
+            "option_value": "1645",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "C Section",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "C track top bottom",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Capsule",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Concealed Profile",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Corner",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Door Section",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Double box with clip-on mechanism",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Flat",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Frame Profile",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "G Section",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "H Section",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Handle Profile",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Housing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Interlock",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "J Section",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Kangi Design",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Khada Wali",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "L Section",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "LED Profile",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Louvers Panel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Medium",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Mirror Profile",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Moulding Section",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Oval",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Pipe Section",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Plain",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Profile Channel",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Quarter Round Section",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Rectangular",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Regular",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Rolled",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Round Bar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Skone One",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Slim",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Slotted",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Square",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Standard",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Sticon",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "T Section",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "T-slot",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Three Track",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "U Section",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "With Collar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "Z Section",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Shape",
+            "option_value": "pauna inch handle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Skin Type",
+            "option_value": "Single Skin",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Stem Design",
+            "option_value": "Serrated",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Surface Protection",
+            "option_value": "Film",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Temper",
+            "option_value": "Soft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Temper",
+            "option_value": "T6",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "0 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "1 mm",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "1-1.2 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "1.25 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "1.5 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "14 gauge",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "16 Gauge Gauge",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "18 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "2 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "22 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "25 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "3 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "6 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "Heavy",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "Light",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "Medium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "Pona",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.05 kg/m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.1 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.1 kg/m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.2 kg/m",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.2 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.25 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.250 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.27 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.3 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.3 kg/m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.300 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.6 kg/m",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.7 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "10 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "3 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "3.2 - 3.3 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "4 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "4.5 - 4.7 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "4.5-4.75 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "6.5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "7 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "7.5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "700-750 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "8-10 kg/length",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "12 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "12 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "150 mm",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "16 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "17 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "19 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "2 inch",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "2.5 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "20 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "22 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "28 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "3 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "3 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "3.5 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "30 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "4 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "40 mm",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "45 mm",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "5 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "5 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "5.8 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "50 mm",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "6 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "6 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "6.6 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "67 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "68 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "69 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "7.8 ft",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "8.5 ft",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "9 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Window Size",
+            "option_value": "9 x 4",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Material",
+            "option_value": "Aluminium"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Usage",
+            "option_value": "Kitchen Cabinet"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Material",
+            "option_value": "Aluminium"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Material",
+            "option_value": "Aluminium"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "option_value": "v-rail"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "slot size",
+            "option_value": "10 mm"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "option_value": "v-rail"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "option_value": "v-rail"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "option_value": "v-rail"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "option_value": "v-rail"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Bottom",
+            "option_value": "90mm x 60mm"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Bottom",
+            "option_value": "60mmx 34mm"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "option_value": "v-rail"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "BRAND",
+            "option_value": "V-RAIL"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Material",
+            "option_value": "Aluminium"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Material",
+            "option_value": "Aluminium"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Material",
+            "option_value": "Aluminium"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Material",
+            "option_value": "Aluminium"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Material",
+            "option_value": "Aluminium"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Length",
+            "option_value": "3660 mm"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Length",
+            "option_value": "3660 mm"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Length",
+            "option_value": "3660 mm"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Length",
+            "option_value": "3660 mm"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Length",
+            "option_value": "3660 mm"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Length",
+            "option_value": "3660 mm"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Length",
+            "option_value": "3660 mm"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Length",
+            "option_value": "3660 mm"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand prefer",
+            "option_value": "Gibson"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Gibson"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Material",
+            "option_value": "Aluminium"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Material",
+            "option_value": "Aluminium"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        },
+        {
+            "mcat_id": "21758",
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "Brand",
+            "option_value": "Phoenix"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "spec_option": "alom",
+            "impression": "54"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "spec_option": "cnr",
+            "impression": "64"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "spec_option": "creative",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "spec_option": "ebco",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "spec_option": "indiamart",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "spec_option": "jagdamba",
+            "impression": "35"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "spec_option": "jindal",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "spec_option": "phoenix",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "brand",
+            "spec_option": "saint gobain",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "color",
+            "spec_option": "black",
+            "impression": "30"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "color",
+            "spec_option": "rose gold",
+            "impression": "200"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "dimensions",
+            "spec_option": "40 x 40",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "dimensions",
+            "spec_option": "40 x 80",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "grade",
+            "spec_option": "2080",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "material",
+            "spec_option": "alluminium",
+            "impression": "51"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "material",
+            "spec_option": "aluminium",
+            "impression": "5148"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "product",
+            "spec_option": "profile",
+            "impression": "779"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "product",
+            "spec_option": "railing profile",
+            "impression": "217"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "f profile",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "g profile",
+            "impression": "55"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "hat",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "i type",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "j",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "j profile",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "l shape",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "square",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "stick",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "t",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "t profile",
+            "impression": "158"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "t slot",
+            "impression": "25"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "triangle",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "u profile",
+            "impression": "207"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "shape",
+            "spec_option": "z profile",
+            "impression": "22"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "size",
+            "spec_option": "16 x 45",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "size",
+            "spec_option": "40 mm",
+            "impression": "137"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "thickness",
+            "spec_option": "12 mm",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "type",
+            "spec_option": "clip on",
+            "impression": "45"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "type",
+            "spec_option": "corner profile",
+            "impression": "33"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "type",
+            "spec_option": "gola",
+            "impression": "56"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "ahu",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "expansion joint",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "gate",
+            "impression": "120"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "greenhouse",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "mirror frame",
+            "impression": "42"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "office",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "partition",
+            "impression": "374"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "polyhouse",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "railing",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "shop",
+            "impression": "25"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "wall",
+            "impression": "56"
+        },
+        {
+            "mcat_name": "Aluminium Profiles",
+            "spec_name": "usage",
+            "spec_option": "wardrobe",
+            "impression": "7"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Finish",
+            "spec_fill_rate": "60.8",
+            "product_count": "144"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_fill_rate": "58.2",
+            "product_count": "138"
+        },
+        {
+            "spec_name": "Length",
+            "spec_fill_rate": "55.7",
+            "product_count": "132"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_fill_rate": "54",
+            "product_count": "128"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "53.6",
+            "product_count": "127"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_fill_rate": "51.5",
+            "product_count": "122"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_fill_rate": "48.1",
+            "product_count": "114"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_fill_rate": "48.1",
+            "product_count": "114"
+        },
+        {
+            "spec_name": "Glass Compatibility",
+            "spec_fill_rate": "43.9",
+            "product_count": "104"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "37.1",
+            "product_count": "88"
+        },
+        {
+            "spec_name": "Material",
+            "spec_fill_rate": "7.2",
+            "product_count": "17"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "6.3",
+            "product_count": "15"
+        },
+        {
+            "spec_name": "Service Location",
+            "spec_fill_rate": "3.4",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Profile Type",
+            "spec_fill_rate": "2.5",
+            "product_count": "6"
+        },
+        {
+            "spec_name": "Profile Design",
+            "spec_fill_rate": "1.7",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Profile Width",
+            "spec_fill_rate": "1.7",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Compatible Panel Thickness",
+            "spec_fill_rate": "1.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Glass Thickness",
+            "spec_fill_rate": "1.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Standard Length",
+            "spec_fill_rate": "1.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "0.8",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Glass Type",
+            "spec_fill_rate": "0.8",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Railing System Type",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Frame Material",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Ladder Type",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Number Of Keys",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Installation Location",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Features",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Overall Length",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Frame Color",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Profile Series",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Aluminium Grade",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Accessory Type",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Total Height",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Weight Category",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Track System",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Locking Mechanism",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Number of Steps",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Load Capacity",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Size (Hole to Hole)",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Step Type",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Lock Type",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Profile Material",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Alloy Grade",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Profile Size",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Temper",
+            "spec_fill_rate": "0.4",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Total Height",
+            "spec_option_name": "14 ft",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Glazing Type",
+            "spec_option_name": "Single Glazed",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Slot Size",
+            "spec_option_name": "50X50",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "45 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Platform",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "brand",
+            "spec_option_name": "v-rail",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_option_name": "Aluminium",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Aluminium Grade",
+            "spec_option_name": "6063-T6",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Lock Type",
+            "spec_option_name": "Shutter Lock",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Frame Finish",
+            "spec_option_name": "Powder Coated",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "slot size",
+            "spec_option_name": "10 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Slot Type",
+            "spec_option_name": "T Slot",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Window Type",
+            "spec_option_name": "Sliding",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Standard Length",
+            "spec_option_name": "3 Mtr (10 Ft)",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Load Capacity",
+            "spec_option_name": "180 kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Profile Material",
+            "spec_option_name": "Aluminium",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Locking Mechanism",
+            "spec_option_name": "Key Lock",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight Category",
+            "spec_option_name": "Standard",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Size (Hole to Hole)",
+            "spec_option_name": "UP TO 48\"",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand prefer",
+            "spec_option_name": "Gibson",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Installation Location",
+            "spec_option_name": "Commercial",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Infill Material",
+            "spec_option_name": "Glass",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Overall Length",
+            "spec_option_name": "UP TO 1200MM",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Temper",
+            "spec_option_name": "T6",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Slot Width",
+            "spec_option_name": "10 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Door Integration",
+            "spec_option_name": "Sliding Door",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Step Type",
+            "spec_option_name": "Round/Fluted Steps",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_option_name": "New Only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Series",
+            "spec_option_name": "50 Series",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Origin",
+            "spec_option_name": "Indian",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Partition Style",
+            "spec_option_name": "Standard Aluminium",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "160 gm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Service Location",
+            "spec_option_name": "All India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Number Of Keys",
+            "spec_option_name": "2",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Frame Color",
+            "spec_option_name": "Grey",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Frame Material",
+            "spec_option_name": "Aluminium",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "45 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "for 8 to 18 mm floor",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "T Profile",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Number of Steps",
+            "spec_option_name": "10",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Flint brand",
+            "spec_option_name": "12pc per box",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Partition Type",
+            "spec_option_name": "Slim Profile",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Handle Type",
+            "spec_option_name": "KITCHEN PROFILE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Glazing Thickness",
+            "spec_option_name": "8Ã¢â¬â12 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Profile Series",
+            "spec_option_name": "30 Series",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Accessory Type",
+            "spec_option_name": "Profile",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "1 Year",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Compatible Panel Thickness",
+            "spec_option_name": "4 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Colour",
+            "spec_option_name": "Grey",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Track System",
+            "spec_option_name": "2-Track",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Glass Type",
+            "spec_option_name": "Toughened",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Railing System Type",
+            "spec_option_name": "Continuous Profile",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ladder Type",
+            "spec_option_name": "Platform Ladder",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "97.7"
+        },
+        {
+            "spec_name": "BRAND",
+            "spec_option_name": "V-RAIL",
+            "option_fill_rate": "96.2"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Aluminium",
+            "option_fill_rate": "96"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_option_name": "Mill Finish",
+            "option_fill_rate": "95.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Phoenix",
+            "option_fill_rate": "90"
+        },
+        {
+            "spec_name": "Profile Application",
+            "spec_option_name": "Hvac Air Grill",
+            "option_fill_rate": "90"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Silver",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Architectural",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Glass Thickness",
+            "spec_option_name": "12 mm",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_option_name": "6063",
+            "option_fill_rate": "65.7"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Surface Mounted",
+            "option_fill_rate": "65.6"
+        },
+        {
+            "spec_name": "Alloy Grade",
+            "spec_option_name": "6063",
+            "option_fill_rate": "57.8"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Furniture/Wardrobe",
+            "option_fill_rate": "52.2"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Heavy Duty",
+            "option_fill_rate": "51.6"
+        },
+        {
+            "spec_name": "Profile Size",
+            "spec_option_name": "20x20 mm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Bottom",
+            "spec_option_name": "90mm x 60mm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Profile Design",
+            "spec_option_name": "Standard",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Section Type",
+            "spec_option_name": "Structural Profile",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Profile Size",
+            "spec_option_name": "30x60 mm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Section Type",
+            "spec_option_name": "Kitchen Profile",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Exhibition Stall",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Section Size",
+            "spec_option_name": "2.9",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Section Size",
+            "spec_option_name": "27 mm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Partition",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Bottom",
+            "spec_option_name": "60mmx 34mm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Glass Compatibility",
+            "spec_option_name": "8-10 mm",
+            "option_fill_rate": "49.2"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Medium Duty",
+            "option_fill_rate": "43.8"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "3 m (10 ft)",
+            "option_fill_rate": "43.6"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Anodized",
+            "option_fill_rate": "36.7"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "LED Lighting",
+            "option_fill_rate": "34.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Structural Framing",
+            "option_fill_rate": "34.3"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Angle Section",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "Flat Bar",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Shape",
+            "spec_option_name": "U-Channel",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Window/Door",
+            "option_fill_rate": "29.1"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_option_name": "6063-T6",
+            "option_fill_rate": "27.5"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Powder Coated Black",
+            "option_fill_rate": "25.9"
+        },
+        {
+            "spec_name": "Glass Compatibility",
+            "spec_option_name": "4-6 mm",
+            "option_fill_rate": "25.1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Heat Sink",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Automotive",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Glass Thickness",
+            "spec_option_name": "All",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Furniture",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Rose Gold",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Drawer",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Kitchen Cabinet",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Solar Panel Frame",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Profile Design",
+            "spec_option_name": "Curve",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Profile Design",
+            "spec_option_name": "Square",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "2.7 m (9 ft)",
+            "option_fill_rate": "24.9"
+        },
+        {
+            "spec_name": "Alloy Grade",
+            "spec_option_name": "6061",
+            "option_fill_rate": "24.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "T-Slot",
+            "option_fill_rate": "23.5"
+        },
+        {
+            "spec_name": "Profile Type",
+            "spec_option_name": "Frame Profile",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Kitchen Cabinet",
+            "option_fill_rate": "21.3"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Recessed",
+            "option_fill_rate": "20.1"
+        },
+        {
+            "spec_name": "Profile Width",
+            "spec_option_name": "22 mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Profile Width",
+            "spec_option_name": "22mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Profile Width",
+            "spec_option_name": "73.6mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Profile Width",
+            "spec_option_name": "68 mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Profile Width",
+            "spec_option_name": "30 mm",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Glass Railing",
+            "option_fill_rate": "18.7"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "17 mm",
+            "option_fill_rate": "18.1"
+        },
+        {
+            "spec_name": "Alloy Grade",
+            "spec_option_name": "6082",
+            "option_fill_rate": "17.8"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "45 mm",
+            "option_fill_rate": "17.7"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Square Tube",
+            "option_fill_rate": "15.5"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Corner Profile",
+            "option_fill_rate": "14.8"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "G-Profile",
+            "option_fill_rate": "12.6"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Skirting",
+            "option_fill_rate": "12.2"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "40x40 mm",
+            "option_fill_rate": "11.8"
+        },
+        {
+            "spec_name": "Profile Type",
+            "spec_option_name": "Frame",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Profile Type",
+            "spec_option_name": "Gola Profile",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Profile Type",
+            "spec_option_name": "Partition Profile",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Profile Type",
+            "spec_option_name": "sqar profile",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Profile Type",
+            "spec_option_name": "All",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Profile Type",
+            "spec_option_name": "G-Profile Handle",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Profile Type",
+            "spec_option_name": "Handle Profile",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Glass Compatibility",
+            "spec_option_name": "6 mm",
+            "option_fill_rate": "10.4"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Corner Mounted",
+            "option_fill_rate": "9.5"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "20x20 mm",
+            "option_fill_rate": "9.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "50 mm",
+            "option_fill_rate": "8.7"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Mill Finish",
+            "option_fill_rate": "7.6"
+        },
+        {
+            "spec_name": "Profile Application",
+            "spec_option_name": "Hvac Clean Room",
+            "option_fill_rate": "7.5"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Rose Gold",
+            "option_fill_rate": "7.2"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Handle Profile",
+            "option_fill_rate": "6.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "6 m (20 ft)",
+            "option_fill_rate": "6.6"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Matt Black",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Glass Compatibility",
+            "spec_option_name": "10 mm",
+            "option_fill_rate": "6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "3.65 m (12 ft)",
+            "option_fill_rate": "5.8"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Shutter Profile",
+            "option_fill_rate": "5.8"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "16*45",
+            "option_fill_rate": "5.5"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "3660 mm",
+            "option_fill_rate": "5.4"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Hanging/Suspended",
+            "option_fill_rate": "4.2"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Cast Iron",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "25 mm",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "BRAND",
+            "spec_option_name": "v-rail",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "U-Channel",
+            "option_fill_rate": "3.6"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "30x30 mm",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "2 m (6.5 ft)",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Round Tube",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "L-Angle",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Light Duty",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Glass Compatibility",
+            "spec_option_name": "8 mm",
+            "option_fill_rate": "2.7"
+        },
+        {
+            "spec_name": "Glass Compatibility",
+            "spec_option_name": "5 mm",
+            "option_fill_rate": "2.7"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "SS Brush",
+            "option_fill_rate": "2.5"
+        },
+        {
+            "spec_name": "Profile Application",
+            "spec_option_name": "HVAC Air Grill",
+            "option_fill_rate": "2.5"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Gold",
+            "option_fill_rate": "2.5"
+        },
+        {
+            "spec_name": "Country Of Origin",
+            "spec_option_name": "China",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_option_name": "Powder Coated",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Surface Finish",
+            "spec_option_name": "Anodised",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Glossy",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Glass Compatibility",
+            "spec_option_name": "12 mm",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_option_name": "6061",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Local/Unbranded",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "V-RAIL",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Gibson",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "RAC Extrusion",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "DIKAY",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "V-Rail",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Glass Compatibility",
+            "spec_option_name": "10-12 mm",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "70 mm",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "16 x 45",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Slim Partition",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Flat Bar",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_option_name": "6061-T6",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "custom",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "2.5 m (8 ft)",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "16Ãâ45 mm",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Imported",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Indian",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "All",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "All",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "60x60 mm",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "60x60",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "40x80",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "PVD Coating Powder",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Black, Rose Gold, Silver, Gold",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "All",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Powder Coated",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "custom",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_option_name": "ALl",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_option_name": "n/a",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_option_name": "6082-T6",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Mounting Type",
+            "spec_option_name": "Floor Mounted",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_option_name": "NA",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_option_name": "Aluminium",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_option_name": "Dk",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Alloy & Temper",
+            "spec_option_name": "AI-11",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "10x10 mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Wooden Finish",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Machine Frame",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "power coated",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "25x25 mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "16x45 Aluminium profile connectors",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "69x69mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "16*45",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "25mm x 25mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "all type",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "50x20.5 mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "Free size",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Grey Matt",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Shutter",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "T-Slot Profile",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "8 foot",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "handle less gola profile connectors",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "Multiple",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "50 x 50mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "19.5 FIT",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "4.5 m ( 15 ft )",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "All finish available",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "12MM",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "6m",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "80X80 mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Rectangle",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Office Partition",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "3 mtr",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "CUSTOMIZED",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "10 ft",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "L shape connector",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Aluminium",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "3.6 Mtr (12 ft)",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "CUSTOMIZED",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "3.66 m (12 ft)",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "silver",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "customize",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "SLIM PROFILE",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "400MTR",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "AS PER REQUIRMENT",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "40x120",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Glass Partition",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "16Ãâ45 & 25Ãâ45 and other",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Available in multiple finish",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "40mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "16 x 45mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "45x16",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "Various",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Kitchen",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "J type",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "All",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Black , brush gold ,  brush rose gold , antique gold",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "40x160",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Anodized Matt Black Glossy Black SS Brush Gold Brush Gold Rose Gold CP Champagne",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Partision profile",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "All finish available.",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "R80",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Mill Finish, Powder Coating, Anodised",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "H-Shape",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "80x40 mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "customize",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "Multiple Length Available",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Glass Partition profile",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Black , gold , rose gold , chrome finish",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Balcony",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "40x40 mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "22 mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "80x120",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "Multiple size",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Anodized as well as wooden finish",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "L connector",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "16x45 vartical",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "frame 45mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "14ft and 19ft",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Rectangular",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "glass railing",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "40X80",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "4 meter",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Mirror profile",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "16x45",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Shutter profile shutter handle",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "3 m",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Customize",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "45 Radius",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Rose gold Brush gold Black Matt",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Black Matt",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Door",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "40mm and 26mm",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "All finish availeble",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Wood Finish aluminium Profiles",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "5 miter",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "Ceramic black",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Finish",
+            "spec_option_name": "ALL",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "Custom",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "Dk",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Profile Shape",
+            "spec_option_name": "45mm Aluminium Profile",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "Aluminium shutter profile connector",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Cross-Section (WxH)",
+            "spec_option_name": "Custom",
+            "option_fill_rate": "0.4"
+        }
+    ]
+}

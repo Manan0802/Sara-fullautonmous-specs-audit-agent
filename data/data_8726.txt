@@ -1,0 +1,2655 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 8726,
+        "mcat_name": "Promotional Polo T-Shirts",
+        "current_specs": [
+            {
+                "spec_name": "Fabric",
+                "options": [
+                    "Poly Cotton",
+                    "Cotton",
+                    "Polyester",
+                    "Honeycomb",
+                    "Pique",
+                    "Dry Fit"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Print Type",
+                "options": [
+                    "Embroidery",
+                    "Screen Print",
+                    "Digital Print",
+                    "Heat Transfer"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "GSM",
+                "options": [
+                    "180 GSM",
+                    "200 GSM",
+                    "220 GSM",
+                    "240 GSM"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Sleeve Type",
+                "options": [
+                    "Half Sleeve",
+                    "Full Sleeve",
+                    "Cap Sleeve"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Fit Type",
+                "options": [
+                    "Regular Fit",
+                    "Slim Fit",
+                    "Comfort Fit"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Size",
+                "options": [
+                    "S",
+                    "M",
+                    "L",
+                    "XL",
+                    "XXL",
+                    "3XL",
+                    "4XL"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Button Placket",
+                "options": [
+                    "2 Button",
+                    "3 Button",
+                    "4 Button"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Usage",
+                "options": [
+                    "Corporate Uniform",
+                    "Event Promotion",
+                    "Retail Staff",
+                    "Sports Team"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Pattern",
+                "options": [
+                    "Plain",
+                    "Striped",
+                    "Contrast Collar",
+                    "Logo Printed"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Promotional Polo T-Shirts",
+            "mcat_id": 8726,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Fabric",
+                            "options": [
+                                "Poly Cotton",
+                                "Cotton",
+                                "Polyester",
+                                "Honeycomb",
+                                "Pique",
+                                "Dry Fit"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Print Type",
+                            "options": [
+                                "Embroidery",
+                                "Screen Print",
+                                "Digital Print",
+                                "Heat Transfer"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "GSM",
+                            "options": [
+                                "180 GSM",
+                                "200 GSM",
+                                "220 GSM",
+                                "240 GSM"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Sleeve Type",
+                            "options": [
+                                "Half Sleeve",
+                                "Full Sleeve",
+                                "Cap Sleeve"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Fit Type",
+                            "options": [
+                                "Regular Fit",
+                                "Slim Fit",
+                                "Comfort Fit"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Size",
+                            "options": [
+                                "S",
+                                "M",
+                                "L",
+                                "XL",
+                                "XXL",
+                                "3XL",
+                                "4XL"
+                            ],
+                            "input_type": "multi_select"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Button Placket",
+                            "options": [
+                                "2 Button",
+                                "3 Button",
+                                "4 Button"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Usage",
+                            "options": [
+                                "Corporate Uniform",
+                                "Event Promotion",
+                                "Retail Staff",
+                                "Sports Team"
+                            ],
+                            "input_type": "multi_select"
+                        },
+                        {
+                            "spec_name": "Pattern",
+                            "options": [
+                                "Plain",
+                                "Striped",
+                                "Contrast Collar",
+                                "Logo Printed"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Brand",
+            "option_value": "Casablanca",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "S-Zone",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sri Creation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Staggly",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Black",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Black & White",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Black & Yellow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Black, White, Blue, Red",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Blackish Green (Green Leaves)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Blue",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Blue Garment with Yellow Logo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Colored",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Dark (Orange/Black)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Green",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Grey",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Maroon",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Multicolor",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Pista Green",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Red",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Sky Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "White",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Wine",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Yellow",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color Detail",
+            "option_value": "Yellow (Logo)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Blank",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Blank (No Printing)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Company Logo Printing",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Custom Design Provided",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Customized",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "DTF",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Digital, DTF and Sublimation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Durasol (Patented Tech)",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Embroidery",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Embroidery and Name Printing",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Flipkart Logo",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Front right side and back",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Front right side and back logo placement",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Full body sublimation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Included",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "L&T Logo",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Logo Printed",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Logo and Name Printing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Logo and Name Printing (Pocket Size Logo on front, Organization Name on back)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Logo on chest and Company name on back",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Monogram",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Printed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Printing",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Printing and Embroidery",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Sublimation",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "TDP (Telugu Desam Party)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Transfer print (Rubber/Pasting)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Customization Method",
+            "option_value": "Water-based",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "100 %",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "100 % Cotton",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "100% Micro Dry-Fit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Antimicrofiber Polyester",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "BCCI Approved",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Cotton",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Cotton Matty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Cotton Mesh (Lacoste Quality)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Dot Knit",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Dry-fit",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Honeycomb",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Honeycomb (Antimicrofiber Polyester)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Honeycomb Matty",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Jersey",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Lycra",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Matty",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Micro Polyester",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Nirmal Knit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Nylon",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "PC Matty Cotton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "PP",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Pique",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Poly Cotton",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Polyester",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Spun Matty",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Fabric Material",
+            "option_value": "Techno Matty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "No sweat, no shrinkage, no bubbling",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "Suitable for Sublimation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Features",
+            "option_value": "With Pocket",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fit Type",
+            "option_value": "Standard",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "100 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "145 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "160 GSM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "180 GSM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "180-200 GSM",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "200 GSM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "220 GSM",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "220-230 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "220-240 GSM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "230-240",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "240 GSM",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "250 GSM",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "250+ GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "80-100 GSM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "GSM",
+            "option_value": "Light (Halka)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Garment Status",
+            "option_value": "Blank",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gender",
+            "option_value": "Unisex",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Logo Placement",
+            "option_value": "Back",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Logo Placement",
+            "option_value": "Both sides",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Logo Placement",
+            "option_value": "Front",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Logo Placement",
+            "option_value": "Front and Back",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Logo Placement",
+            "option_value": "Left and Right pocket designs (Front) and Individual designations (Back)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Neck Type",
+            "option_value": "Fabric Collar",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Neck Type",
+            "option_value": "Polo",
+            "prod_count": 98
+        },
+        {
+            "spec_name": "Neck Type",
+            "option_value": "Self Collar",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Pattern and Design",
+            "option_value": "Cuff",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Pattern and Design",
+            "option_value": "Matching Body Color",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Pattern and Design",
+            "option_value": "Plain",
+            "prod_count": 14
+        },
+        {
+            "spec_name": "Pattern and Design",
+            "option_value": "Red strips on collar and arms",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Pattern and Design",
+            "option_value": "Stripe Detail",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality",
+            "option_value": "BCCI Approved",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Quality",
+            "option_value": "High Quality",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality",
+            "option_value": "Ludhiana Finishing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality",
+            "option_value": "Medium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality",
+            "option_value": "Premium",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Quality",
+            "option_value": "Standard",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality",
+            "option_value": "Standard/Heavy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Production Type",
+            "option_value": "Made to order",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Reference Model",
+            "option_value": "Pro Ultimate Pro (Aalok)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Reference Model",
+            "option_value": "TVS Uniform",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "19 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "20 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "20 number",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "38 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "40 inch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "Free Size",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "L",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "L, XL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "M",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "Multiple",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "S, M",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "S, M, L",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "Small to XXL",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "XL",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "XXL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sizing Information",
+            "option_value": "XXL, XXXL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Sleeve Type",
+            "option_value": "Half",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Usage and Application",
+            "option_value": "Adult Men",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Usage and Application",
+            "option_value": "Casual",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage and Application",
+            "option_value": "Corporate Gifting",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Usage and Application",
+            "option_value": "Office Wear",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Usage and Application",
+            "option_value": "Restaurant Staff",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Usage and Application",
+            "option_value": "Sports",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Color",
+            "option_value": "Navy Blue"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Gender",
+            "option_value": "Men"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Color",
+            "option_value": "Ink Blue"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Gender",
+            "option_value": "Men"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Color",
+            "option_value": "Royal Blue"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Gender",
+            "option_value": "Men"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Gender",
+            "option_value": "Grey"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Color",
+            "option_value": "Men"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Gender",
+            "option_value": "Men"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "XL"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Black and Red"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Orange"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "S ( 36 )"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Light Grey"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "S ( 36 )"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Lavender"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Grey"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "S ( 36 )"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Color",
+            "option_value": "Navy Blue"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Color",
+            "option_value": "Grey"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "M ( 38 )"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Red"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "M ( 40 )"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Cloud Grey"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "L ( 44 )"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Light Brown"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "S ( 36 )"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "M ( 38 )"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Pink"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "M ( 38 )"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Deep Yellow"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Dark Blue"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "M ( 40 )"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Product Color",
+            "option_value": "Black"
+        },
+        {
+            "mcat_id": "8726",
+            "mcat_name": "Promotional Polo T-Shirts",
+            "spec_name": "Size",
+            "option_value": "S ( 36 )"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Sleeve Type",
+            "spec_fill_rate": "62.3",
+            "product_count": "43"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_fill_rate": "55.1",
+            "product_count": "38"
+        },
+        {
+            "spec_name": "Fit Type",
+            "spec_fill_rate": "49.3",
+            "product_count": "34"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_fill_rate": "47.8",
+            "product_count": "33"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_fill_rate": "40.6",
+            "product_count": "28"
+        },
+        {
+            "spec_name": "Pattern",
+            "spec_fill_rate": "39.1",
+            "product_count": "27"
+        },
+        {
+            "spec_name": "Size",
+            "spec_fill_rate": "34.8",
+            "product_count": "24"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "33.3",
+            "product_count": "23"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "30.4",
+            "product_count": "21"
+        },
+        {
+            "spec_name": "Button Placket",
+            "spec_fill_rate": "30.4",
+            "product_count": "21"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_fill_rate": "27.5",
+            "product_count": "19"
+        },
+        {
+            "spec_name": "GSM (Fabric Weight)",
+            "spec_fill_rate": "17.4",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_fill_rate": "17.4",
+            "product_count": "12"
+        },
+        {
+            "spec_name": "Material",
+            "spec_fill_rate": "15.9",
+            "product_count": "11"
+        },
+        {
+            "spec_name": "Gender",
+            "spec_fill_rate": "14.5",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Features",
+            "spec_fill_rate": "13",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Available Sizes",
+            "spec_fill_rate": "13",
+            "product_count": "9"
+        },
+        {
+            "spec_name": "Fit",
+            "spec_fill_rate": "11.6",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Available Colors",
+            "spec_fill_rate": "10.1",
+            "product_count": "7"
+        },
+        {
+            "spec_name": "Fabric GSM",
+            "spec_fill_rate": "5.8",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Fabric Weight (GSM)",
+            "spec_fill_rate": "4.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Sleeve Style",
+            "spec_fill_rate": "4.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_fill_rate": "4.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Customization",
+            "spec_fill_rate": "4.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Neck Style",
+            "spec_fill_rate": "4.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "GSM (Grams per Square Meter)",
+            "spec_fill_rate": "4.3",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Fabric Type",
+            "spec_fill_rate": "2.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Sleeve Length",
+            "spec_fill_rate": "2.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Fit/Style",
+            "spec_fill_rate": "2.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_fill_rate": "2.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Product Color",
+            "spec_fill_rate": "2.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Fabric Finish",
+            "spec_fill_rate": "2.9",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Pocket Availability",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Printing Type",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Collar Type",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Fabric Treatment",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Weave",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Sleeves",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Style",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Placket Type",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Fabric Blend",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Customization Options",
+            "spec_fill_rate": "1.4",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Fit",
+            "spec_option_name": "Regular Fit",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weave",
+            "spec_option_name": "Pique",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_option_name": "New Only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Uniform Piece",
+            "spec_option_name": "T Shirt",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Print Design Theme",
+            "spec_option_name": "Logo",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Pocket Availability",
+            "spec_option_name": "Without Pocket",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Institution Type",
+            "spec_option_name": "Training Center",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Institution Type",
+            "spec_option_name": "School",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "With Logo",
+            "spec_option_name": "Printed Logo",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Institution Type",
+            "spec_option_name": "Coaching",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fabric Finish",
+            "spec_option_name": "Bio-Wash",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Institution Type",
+            "spec_option_name": "Cooperative",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sleeves",
+            "spec_option_name": "Half Sleeve",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Placket Type",
+            "spec_option_name": "2-Button Placket",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Institution Type",
+            "spec_option_name": "Sports Academy",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Customization Options",
+            "spec_option_name": "Embroidery",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fit/Style",
+            "spec_option_name": "Regular Fit",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Student",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Printing Type",
+            "spec_option_name": "Screen Printing",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Wash Care",
+            "spec_option_name": "Machine Wash",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "SIZE",
+            "spec_option_name": "S TO 3XL",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Customization Options",
+            "spec_option_name": "Printing",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Driver",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Office Staff",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Institution Type",
+            "spec_option_name": "NGO",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Delivery Boy",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Housekeeping Staff",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Print Method",
+            "spec_option_name": "DTF Printing",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Institution Type",
+            "spec_option_name": "Trust",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fabric Blend",
+            "spec_option_name": "60/40 Cotton Poly",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Uniform Style",
+            "spec_option_name": "Half Sleeve",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Style",
+            "spec_option_name": "Polo",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Fabric Treatment",
+            "spec_option_name": "Biowash",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Print Method",
+            "spec_option_name": "Heat Transfer",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Hospitality Staff",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Industrial Worker",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made in India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Security Guard",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sleeve Style",
+            "spec_option_name": "Half Sleeve",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Occasion",
+            "spec_option_name": "Corporate",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "Uniform",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Institution Type",
+            "spec_option_name": "Government Dept",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Medical Staff",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Print Method",
+            "spec_option_name": "Digital Printing",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Season",
+            "spec_option_name": "All Season",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Size Group",
+            "spec_option_name": "Adults",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sleeve Length",
+            "spec_option_name": "Half Sleeve",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Target User",
+            "spec_option_name": "Teacher",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Institution Type",
+            "spec_option_name": "Hostel",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Institution Type",
+            "spec_option_name": "College",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Collar Type",
+            "spec_option_name": "Stand Collar",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Sleeve Type",
+            "spec_option_name": "Half Sleeve",
+            "option_fill_rate": "97.7"
+        },
+        {
+            "spec_name": "Available Sizes",
+            "spec_option_name": "M",
+            "option_fill_rate": "94.4"
+        },
+        {
+            "spec_name": "Fit Type",
+            "spec_option_name": "Regular Fit",
+            "option_fill_rate": "94.4"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Corporate Uniform",
+            "option_fill_rate": "92.9"
+        },
+        {
+            "spec_name": "Neck Style",
+            "spec_option_name": "Polo / Collar",
+            "option_fill_rate": "87.5"
+        },
+        {
+            "spec_name": "Customization",
+            "spec_option_name": "Embroidery",
+            "option_fill_rate": "83.3"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Event Promotion",
+            "option_fill_rate": "78.6"
+        },
+        {
+            "spec_name": "Available Sizes",
+            "spec_option_name": "L",
+            "option_fill_rate": "77.8"
+        },
+        {
+            "spec_name": "Printing Type",
+            "spec_option_name": "Sublimation",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Printing Type",
+            "spec_option_name": "DTF Printing",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_option_name": "Polo / Collar",
+            "option_fill_rate": "74.5"
+        },
+        {
+            "spec_name": "Button Placket",
+            "spec_option_name": "2 Button",
+            "option_fill_rate": "73.7"
+        },
+        {
+            "spec_name": "Available Colors",
+            "spec_option_name": "Black",
+            "option_fill_rate": "73.3"
+        },
+        {
+            "spec_name": "Available Colors",
+            "spec_option_name": "Navy Blue",
+            "option_fill_rate": "73.3"
+        },
+        {
+            "spec_name": "Available Colors",
+            "spec_option_name": "White",
+            "option_fill_rate": "73.3"
+        },
+        {
+            "spec_name": "Available Colors",
+            "spec_option_name": "Green",
+            "option_fill_rate": "73.3"
+        },
+        {
+            "spec_name": "Available Colors",
+            "spec_option_name": "Grey",
+            "option_fill_rate": "73.3"
+        },
+        {
+            "spec_name": "Available Sizes",
+            "spec_option_name": "XL",
+            "option_fill_rate": "72.2"
+        },
+        {
+            "spec_name": "Available Sizes",
+            "spec_option_name": "XXL",
+            "option_fill_rate": "72.2"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Retail Staff",
+            "option_fill_rate": "69"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Bio-Wash",
+            "option_fill_rate": "68.2"
+        },
+        {
+            "spec_name": "GSM (Grams per Square Meter)",
+            "spec_option_name": "220 GSM",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "Corporate Wear",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Available Colors",
+            "spec_option_name": "Royal Blue",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Available Colors",
+            "spec_option_name": "Red",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "Casual Wear",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Available Colors",
+            "spec_option_name": "Yellow",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Available Colors",
+            "spec_option_name": "Maroon",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Available Sizes",
+            "spec_option_name": "S",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "Promotional",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Gender",
+            "spec_option_name": "Unisex",
+            "option_fill_rate": "64.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "L",
+            "option_fill_rate": "64.2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "XL",
+            "option_fill_rate": "62.3"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "M",
+            "option_fill_rate": "62.3"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "Screen Printing",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Available Colors",
+            "spec_option_name": "Orange",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Fabric Weight (GSM)",
+            "spec_option_name": "220 GSM",
+            "option_fill_rate": "57.1"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "DTF Printing",
+            "option_fill_rate": "57.1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "S",
+            "option_fill_rate": "56.6"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "XXL",
+            "option_fill_rate": "50.9"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Sports Team",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Occasion",
+            "spec_option_name": "Promotional",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Printing Type",
+            "spec_option_name": "Embroidery",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Printing Type",
+            "spec_option_name": "HD Print",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Customization",
+            "spec_option_name": "Printing",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "FABRIC",
+            "spec_option_name": "PC KULTI",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "SEMI FORMAL",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "FABRIC",
+            "spec_option_name": "POLYSTER",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Usage/Application",
+            "spec_option_name": "AS PREFERENCE",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Printing Type",
+            "spec_option_name": "Puff Printing",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Black",
+            "option_fill_rate": "46.2"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Navy Blue",
+            "option_fill_rate": "46.2"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "Embroidery",
+            "option_fill_rate": "45.7"
+        },
+        {
+            "spec_name": "Pattern",
+            "spec_option_name": "Logo Printed",
+            "option_fill_rate": "45.7"
+        },
+        {
+            "spec_name": "Pattern",
+            "spec_option_name": "Plain",
+            "option_fill_rate": "39.1"
+        },
+        {
+            "spec_name": "GSM (Fabric Weight)",
+            "spec_option_name": "220 GSM",
+            "option_fill_rate": "38.5"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Maroon",
+            "option_fill_rate": "38.5"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Poly-Cotton",
+            "option_fill_rate": "37.2"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Polyester",
+            "option_fill_rate": "37.2"
+        },
+        {
+            "spec_name": "Gender",
+            "spec_option_name": "Men",
+            "option_fill_rate": "35.7"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "Sublimation",
+            "option_fill_rate": "34.3"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "Sportswear",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Fabric GSM",
+            "spec_option_name": "220 GSM",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Fabric Type",
+            "spec_option_name": "Pique",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "Promotional Events",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Ideal For",
+            "spec_option_name": "Corporate Use",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Fabric Type",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Fabric Type",
+            "spec_option_name": "PC Matty",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "180 GSM",
+            "option_fill_rate": "31.7"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Poly Cotton",
+            "option_fill_rate": "31.4"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "White",
+            "option_fill_rate": "30.8"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Bottle Green",
+            "option_fill_rate": "30.8"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_option_name": "Screen Print",
+            "option_fill_rate": "30"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_option_name": "Embroidery",
+            "option_fill_rate": "30"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "220 GSM",
+            "option_fill_rate": "28.3"
+        },
+        {
+            "spec_name": "Button Placket",
+            "spec_option_name": "3 Button",
+            "option_fill_rate": "26.3"
+        },
+        {
+            "spec_name": "Fabric Treatment",
+            "spec_option_name": "Silicon Wash",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Fabric Treatment",
+            "spec_option_name": "Acid Wash",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Fabric Finish",
+            "spec_option_name": "Silicone Wash",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Fabric Treatment",
+            "spec_option_name": "Gold Finish",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Fabric Finish",
+            "spec_option_name": "Acid Wash",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Fabric Treatment",
+            "spec_option_name": "Double Biowash",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "24.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Red",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Grey Melange",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Royal Blue",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Bio Wash",
+            "option_fill_rate": "22.7"
+        },
+        {
+            "spec_name": "Available Sizes",
+            "spec_option_name": "3XL",
+            "option_fill_rate": "22.2"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "200 GSM",
+            "option_fill_rate": "21.7"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "3XL",
+            "option_fill_rate": "20.8"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Polyester",
+            "option_fill_rate": "18.6"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_option_name": "Digital Print",
+            "option_fill_rate": "18"
+        },
+        {
+            "spec_name": "GSM (Fabric Weight)",
+            "spec_option_name": "200 GSM",
+            "option_fill_rate": "17.9"
+        },
+        {
+            "spec_name": "Customization",
+            "spec_option_name": "Sublimation",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Available Sizes",
+            "spec_option_name": "All Sizes",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Customization",
+            "spec_option_name": "Screen Printing",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Fabric GSM",
+            "spec_option_name": "160 gsm",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Customization",
+            "spec_option_name": "DTF Printing",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Available Sizes",
+            "spec_option_name": "XS",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "GSM (Grams per Square Meter)",
+            "spec_option_name": "240 GSM",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Fabric GSM",
+            "spec_option_name": "180 gsm",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Fabric GSM",
+            "spec_option_name": "180 GSM",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Fabric GSM",
+            "spec_option_name": "200 GSM",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "GSM (Grams per Square Meter)",
+            "spec_option_name": "200 GSM",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Cotton",
+            "option_fill_rate": "16.3"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Light Blue",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Grey",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "GSM (Fabric Weight)",
+            "spec_option_name": "180 GSM",
+            "option_fill_rate": "15.4"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "4XL",
+            "option_fill_rate": "15.1"
+        },
+        {
+            "spec_name": "Fabric Weight (GSM)",
+            "spec_option_name": "240 GSM",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Fabric Weight (GSM)",
+            "spec_option_name": "180 GSM",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Fabric Weight (GSM)",
+            "spec_option_name": "160 GSM",
+            "option_fill_rate": "14.3"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Moisture Wicking",
+            "option_fill_rate": "13.6"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Quick Dry",
+            "option_fill_rate": "13.6"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Pre-Shrunk",
+            "option_fill_rate": "13.6"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "all size",
+            "option_fill_rate": "13.2"
+        },
+        {
+            "spec_name": "GSM (Fabric Weight)",
+            "spec_option_name": "240 GSM",
+            "option_fill_rate": "12.8"
+        },
+        {
+            "spec_name": "Neck Style",
+            "spec_option_name": "Polo Neck",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "240 GSM",
+            "option_fill_rate": "11.7"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "Rubber Print",
+            "option_fill_rate": "11.4"
+        },
+        {
+            "spec_name": "Product Color",
+            "spec_option_name": "Black",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Product Color",
+            "spec_option_name": "Dark Blue",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Product Color",
+            "spec_option_name": "Pink",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Product Color",
+            "spec_option_name": "Red",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Product Color",
+            "spec_option_name": "Blue",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Product Color",
+            "spec_option_name": "Light Brown",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Product Color",
+            "spec_option_name": "Lavender",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Product Color",
+            "spec_option_name": "Cloud Grey",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Product Color",
+            "spec_option_name": "Deep Yellow",
+            "option_fill_rate": "11.1"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_option_name": "Heat Transfer",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Anti-Pilling",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Pattern",
+            "spec_option_name": "Solid",
+            "option_fill_rate": "8.7"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_option_name": "Polo/Collar Neck",
+            "option_fill_rate": "7.8"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_option_name": "Round Neck",
+            "option_fill_rate": "7.8"
+        },
+        {
+            "spec_name": "GSM (Fabric Weight)",
+            "spec_option_name": "160 GSM",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Brown",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Sky Blue",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "AS PER REQUIREMENT",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "All colour avilabel",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Cream",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Dry Fit",
+            "option_fill_rate": "7.1"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "M ( 38 )",
+            "option_fill_rate": "5.7"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "HD Print",
+            "option_fill_rate": "5.7"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "Puff Printing",
+            "option_fill_rate": "5.7"
+        },
+        {
+            "spec_name": "GSM (Fabric Weight)",
+            "spec_option_name": "210 GSM",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Lycra Blend",
+            "option_fill_rate": "4.7"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Wrinkle Resistant",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Bio-Washed",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Side Vents",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Cut and Sew",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Anti-Odour",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Mercerised",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Wrinkle-Free",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Anti-Odor",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Anti-Static",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Tipping",
+            "option_fill_rate": "4.5"
+        },
+        {
+            "spec_name": "Pattern",
+            "spec_option_name": "With Logo",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "100% Cotton",
+            "option_fill_rate": "4.3"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_option_name": "DTF",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_option_name": "Polo Neck",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_option_name": "Polo",
+            "option_fill_rate": "3.9"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "S ( 36 )",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "M ( 40 )",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "All Size",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Poly-Cotton",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "PC Cotton",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "Screen Print",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "Puff Print",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "High Density Print",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "Vinyl Print",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Honeycomb",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "DTF Print",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Customization Type",
+            "spec_option_name": "Vinyl Printing",
+            "option_fill_rate": "2.9"
+        },
+        {
+            "spec_name": "Fit Type",
+            "spec_option_name": "Oversized Fit",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "GSM (Fabric Weight)",
+            "spec_option_name": "200-250 GSM",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Promotional",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Sportswear",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Dry-Fit",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Matty",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Pattern",
+            "spec_option_name": "Cut & Sew",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_option_name": "Customized print",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_option_name": "As per requirement",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Neck Type",
+            "spec_option_name": "V Neck",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_option_name": "Customized",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Print Type",
+            "spec_option_name": "Sublimation Print",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "L ( 44 )",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Size",
+            "spec_option_name": "XS",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "260 GSM",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "140 GSM",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "160",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "GSM",
+            "spec_option_name": "190 GSM",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Fit Type",
+            "spec_option_name": "Comfort Fit",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Lycra Blend",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Cotton , Polycotton , Polyster",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Dry-Fit",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "PC Matty",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Pique",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Polycotton",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Fit Type",
+            "spec_option_name": "Slim Fit",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Wool Blend",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Fabric",
+            "spec_option_name": "Premium Matty",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Sleeve Type",
+            "spec_option_name": "As per requirement",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Sleeve Type",
+            "spec_option_name": "Full Sleeve",
+            "option_fill_rate": "1.1"
+        }
+    ]
+}

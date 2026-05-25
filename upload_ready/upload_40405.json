@@ -1,0 +1,179 @@
+{
+  "pmcat_id": 2603,
+  "pmcat_name": "Turmeric Products",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Turmeric Curcumin Powder",
+      "mcat_id": 40405,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Curcumin Content (%)",
+              "options": [],
+              "input_type": "text_type",
+              "affix_flag": "Suffix",
+              "affix_presence_flag": "0"
+            },
+            {
+              "spec_name": "Form",
+              "options": [
+                "Powder",
+                "Finger",
+                "Extract",
+                "Bulb",
+                "Sliced",
+                "Granules",
+                "Liquid"
+              ],
+              "input_type": "radio_button",
+              "affix_flag": "Suffix",
+              "affix_presence_flag": "0"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Variety",
+              "options": [
+                "Lakadong",
+                "Kandhamal",
+                "Salem",
+                "Erode",
+                "Waigaon",
+                "Rajapuri",
+                "Alleppey",
+                "Nizamabad"
+              ],
+              "input_type": "radio_button",
+              "affix_flag": "None",
+              "affix_presence_flag": "0"
+            },
+            {
+              "spec_name": "Grade",
+              "options": [
+                "Food Grade",
+                "Pharmaceutical Grade",
+                "Nutraceutical Grade",
+                "Cosmetic Grade",
+                "Feed Grade",
+                "A-Grade",
+                "FAQ (Fair Average Quality)",
+                "Broken"
+              ],
+              "input_type": "radio_button",
+              "affix_flag": "None",
+              "affix_presence_flag": "0"
+            },
+            {
+              "spec_name": "Processing Type",
+              "options": [
+                "Organic",
+                "Water Soluble",
+                "Oil Soluble",
+                "Steam Sterilized",
+                "Solvent Extracted",
+                "Double Polished",
+                "Single Polished",
+                "Unpolished",
+                "Sun-Dried"
+              ],
+              "input_type": "multi_select",
+              "affix_flag": "None",
+              "affix_presence_flag": "0"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Application",
+              "options": [
+                "Food & Beverage",
+                "Nutraceutical",
+                "Pharmaceutical",
+                "Cosmetics",
+                "Ayurvedic",
+                "Animal Feed"
+              ],
+              "input_type": "multi_select",
+              "affix_flag": "None",
+              "affix_presence_flag": "0"
+            },
+            {
+              "spec_name": "Packaging Type",
+              "options": [
+                "PP Bag",
+                "Jute Bag",
+                "HDPE Drum",
+                "Carton Box",
+                "Bottle"
+              ],
+              "input_type": "radio_button",
+              "affix_flag": "None",
+              "affix_presence_flag": "0"
+            },
+            {
+              "spec_name": "Packaging Size",
+              "options": [],
+              "input_type": "text_type",
+              "affix_flag": "None",
+              "affix_presence_flag": "0"
+            },
+            {
+              "spec_name": "Certification",
+              "options": [
+                "FSSAI",
+                "ISO",
+                "GMP",
+                "USDA Organic",
+                "GI Certified",
+                "HALAL",
+                "KOSHER"
+              ],
+              "input_type": "multi_select",
+              "affix_flag": "None",
+              "affix_presence_flag": "0"
+            },
+            {
+              "spec_name": "Testing Method",
+              "options": [
+                "By HPLC",
+                "By UV",
+                "By Gravimetric"
+              ],
+              "input_type": "radio_button",
+              "affix_flag": "None",
+              "affix_presence_flag": "0"
+            },
+            {
+              "spec_name": "Extraction Solvent",
+              "options": [
+                "Ethanol",
+                "Ethyl Acetate",
+                "Water (Aqueous)",
+                "Acetone",
+                "Methanol"
+              ],
+              "input_type": "radio_button",
+              "affix_flag": "None",
+              "affix_presence_flag": "0"
+            },
+            {
+              "spec_name": "Botanical Name",
+              "options": [
+                "Curcuma longa"
+              ],
+              "input_type": "radio_button",
+              "affix_flag": "None",
+              "affix_presence_flag": "0"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

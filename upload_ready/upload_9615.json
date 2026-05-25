@@ -1,0 +1,154 @@
+{
+  "pmcat_id": 2483,
+  "pmcat_name": "Toilet Cleaners",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Liquid Toilet Cleaners",
+      "mcat_id": 9615,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Volume",
+              "options": [
+                "200 ml",
+                "250 ml",
+                "500 ml",
+                "750 ml",
+                "1 L",
+                "2 L",
+                "5 L",
+                "10 L",
+                "20 L",
+                "25 L",
+                "35 L",
+                "50 L"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Usage Level",
+              "options": [
+                "Ready To Use",
+                "Concentrate"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Brand",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Form",
+              "options": [
+                "Liquid",
+                "Gel",
+                "Spray"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Fragrance",
+              "options": [
+                "Fresh",
+                "Lemon",
+                "Floral",
+                "Pine",
+                "Ocean",
+                "Rose",
+                "Lavender",
+                "Citrus",
+                "Herbal",
+                "Unscented"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Toilet Type Suitability",
+              "options": [
+                "Indian Style",
+                "Western Style",
+                "Urinals"
+              ],
+              "input_type": "multi_select"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Feature",
+              "options": [
+                "Kills 99.9% of Germs",
+                "Tough Stain Removal",
+                "Removes Limescale & Hard Water Stains",
+                "Thick Formula",
+                "Prevents Odour",
+                "Eco Friendly"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Packaging Type",
+              "options": [
+                "Bottle",
+                "Can",
+                "Jerry Can",
+                "Pouch",
+                "Carboy / Drum"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Recommended Application Area",
+              "options": [
+                "Toilet Bowl",
+                "Under the Rim",
+                "Urinals",
+                "Wash Basin",
+                "Floor",
+                "Tiles & Grout"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "pH Level",
+              "options": [
+                "Acidic",
+                "Neutral",
+                "Alkaline"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Color",
+              "options": [
+                "Blue",
+                "Green",
+                "Yellow",
+                "Red",
+                "White / Colorless"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Septic Tank Safe",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

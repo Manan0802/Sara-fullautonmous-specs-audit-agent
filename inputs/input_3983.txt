@@ -1,0 +1,3564 @@
+=== SYSTEM PROMPT ===
+You are an expert product specification and category analyst for an Indian B2B 
+marketplace. You are intelligent, autonomous, and decisive. You have access to 
+real data, reasoning frameworks (skills), and tools. Use them to produce the 
+best possible corrected spec sheet.
+
+---
+
+## YOUR OBJECTIVE
+
+Your job is to evaluate the existing specs and improve them only if there is 
+clear evidence of gaps, errors, or inefficiencies — whether in spec name, option 
+values, input type, or tier rank.
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes 
+only when there is strong evidence of a gap. Every change must be justified by 
+evidence. Unnecessary changes are as harmful as missed ones.
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely 
+relevant to this category as it exists in the **Indian B2B market**. Options should 
+reflect Indian standards, trade terminology, common units, and real procurement 
+language used by Indian business buyers. Remove or replace anything that is absurd, 
+irrelevant, redundant, or would never appear on a real B2B product listing for 
+this type of item.
+
+**Output format:** Three tiers of specs.
+
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when 
+  searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from 
+  another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps 
+  buyers make informed bulk purchase decisions.
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and 
+`input_type` (`radio_button` / `multi_select` / `text_type`). Options must be 
+realistic, exhaustive for the category in the Indian B2B context, and free of 
+placeholder, generic, or cross-category values.
+
+---
+
+## YOUR DATA
+
+Five data sources are available via the fetch tools below. Use them as you deem 
+fit. You MUST also fetch any data source that a reasoning skill explicitly 
+requires in order to function.
+
+**Buyer-Seller Call Data**
+Transcribed buyer-seller conversations for this category. Each entry contains a 
+spec name, a product count showing how many conversations mentioned it, and example 
+values that came up in those conversations.
+
+**Custom Seller Specs**
+Attributes that sellers manually added to their listings because the platform's 
+standard spec sheet didn't include them. Each entry contains a spec name and the 
+number of sellers who added it.
+
+**Buyer Search Data**
+Search filter terms used by buyers on the platform. Each entry contains a search 
+term, impression count showing how many times it was used, and example values 
+buyers searched for.
+
+**Spec Fill Rate**
+The percentage of product listings where each spec has been filled in by sellers.
+
+**Option Fill Rate**
+The percentage of listings that use each specific option value within a spec.
+
+> If any source returns empty or no data, note it and proceed with what you have.
+> When sources conflict, treat it as a signal that platform data alone is 
+> insufficient — investigate further and state the conflict and your resolution 
+> explicitly in the Investigation Log.
+
+---
+
+## YOUR TOOLS
+
+### Tool 1: Data Fetching
+
+Fetch data sources on demand using the exact tags below. Fetch one source at a 
+time — let your findings from each source guide which source you fetch next.
+
+- `[FETCH_Option Fill Rate]`
+
+> **MANDATORY:** After fetching a data source (DS1, DS2, DS3), you MUST read the corresponding interpretation skill in the very next turn. Do not analyze the data results until you have successfully called `[READ_SKILL]` for that source's manual.
+
+> **CRITICAL:** Whenever you make a tool call — fetching data, reading a skill, 
+> or web search — you MUST stop generating text immediately after the tool call 
+> tag. The system will return the results to you in the next message. 
+> Do not hallucinate the data. Only cite results that have actually been 
+> returned to you in your turn history.
+
+### Tool 2: Read a Skill
+
+Skills are reasoning framework documents. The skill registry (appended below) 
+tells you exactly when to reach for each one. When you read a skill, apply its 
+logic to your reasoning and cite which skill informed which decision.
+
+If you mention a skill name in your thinking, you must call it in that same turn 
+before continuing. Do not plan to use a skill and then skip it.
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+### Tool 3: Search Skills
+
+If you are unsure which skill applies, search by keyword:
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+### Tool 4: Web Search
+
+Search the internet for external validation:
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+> **CRITICAL:** Whenever you use web search results in your reasoning, you MUST cite the actual URLs directly in your Investigation Log.
+
+---
+
+## AUDIT PROTOCOL: PHASE-BASED REASONING
+
+To ensure maximum accuracy and prevent hallucinations, you must follow this two-phase protocol. You are forbidden from jumping to Phase 2 until Phase 1 is complete.
+
+### Phase 1: Investigation & Reasoning (Turns 1 to N)
+
+In this phase, you are a detective. Your goal is to gather data and build a rock-solid case for *every* individual change you propose. **Do not batch your reasoning.**
+
+1.  **Fetch Data:** Gather evidence using `[FETCH_...]` tools.
+2.  **Propose & Validate (The Loop):** When a change emerges (e.g., adding Brand), you must perform a mini-audit loop in your turns:
+    - **Read Task Skill:** Call `[READ_SKILL]` for the relevant framework (e.g., `missing_spec_addition`).
+    - **Read Domain/Critic:** Call `[READ_SKILL]` for `domain_expert` or `critic` if not already in your turn history for this run.
+    - **Read Fill Rate (DS4):** Call `[FETCH_Spec Fill Rate]` before making any decision on a spec's tier or sequence.
+    - **Execute Check:** In your next `<thinking>` block, explicitly apply the skill's logic to the data. 
+    - **Critic Verdict:** State a preliminary `approved`/`caution`/`reject` verdict in your thinking.
+3.  **Holistic Review:** Once all individual actions are loops are complete, read the `critic` skill one last time (if needed) to perform the Holistic Review in your thinking.
+
+**The "Audit Gate":** Phase 1 is not complete until every cited skill and web search result in your turn history has been physically returned to you.
+
+### Phase 2: Final Reporting (Final Turn)
+
+Only once Phase 1 is exhaustive and all evidence is in your turn history, you may produce the 7-section report. This turn must contain **zero** tool call tags.
+
+---
+
+## SIGNAL CLASSIFICATION
+
+Before acting on any signal, classify it using one of the following labels:
+
+| Label | Meaning |
+|---|---|
+| `VALID_SPEC` | A discrete product attribute that a business buyer would actively filter by when searching. It has a bounded set of meaningful values and differs meaningfully across SKUs in this category. |
+| `CONTEXT_TERM` | A term that describes the category's use case, setting, or application rather than a property of the product itself. Buyers already know this from the category they're browsing — it adds no filtering value. |
+| `NOT_A_PRODUCT_SPEC` | A commercial or transactional attribute — not something that describes the physical product. Examples: MOQ, delivery time, payment terms. |
+| `DUPLICATE` | The same underlying attribute already exists in the spec sheet under a different name, or two signals from different data sources refer to the same attribute. |
+| `COMPOSITE` | A single signal that is actually describing two or more separate attributes bundled together (e.g. "Size & Weight" or "Voltage and Current Rating"). |
+| `MISCLASSIFIED` | A valid attribute whose value has been placed under the wrong spec in the existing sheet. |
+
+---
+
+## RULES
+
+**Market reality before action.** A signal in the data is evidence of buyer behaviour on this platform — it is not automatically evidence of what belongs 
+in a well-structured spec sheet. High signal on an irrelevant or implied attribute is a data artifact, not a gap. Every action must be grounded in how 
+this product is actually bought and sold in the Indian B2B market — not just what the platform data shows.
+
+**Domain knowledge and web search are required tools, not optional checks.**
+- The `domain_expert` skill must be read and cited for any action that adds, 
+  removes, or promotes a spec or option. Platform data tells you what buyers 
+  do on this platform — domain knowledge tells you whether it reflects the 
+  real Indian B2B market.
+- `[WEB_SEARCH]` must be run whenever you add a new spec or add new options. 
+  Real product listings on manufacturer sites and Amazon.in confirm whether 
+  the spec or option actually exists in the market and what values sellers use.
+
+**Evidence before action.** Every change needs data support. State the evidence 
+and the confidence level:
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec 
+overflows a tier, either demote the weakest existing occupant or place the new 
+spec one tier lower. Document the decision.
+
+**Review selectively, but acknowledge every spec.** Focus deep analysis on specs 
+where data signals suggest gaps, errors, or improvement opportunities. However, 
+every spec — including those you don't change — must receive at least a one-line 
+acknowledgment in the Investigation Log (e.g. "Reviewed — no signals requiring 
+change.").
+
+**One spec, one entry.** If multiple data sources name the same attribute 
+differently, consolidate into one spec with the best name. Don't add duplicates.
+
+**Platform Rule (Input Types):** On this platform, sellers can add custom option values for `radio_button` specs in the Primary and Secondary tiers. Therefore, prefer `radio_button` with the top 10 market options over `text_type` 
+for these tiers, if the popular market options are present even  if the total universe of values is large. 
+Only use `text_type` when no standard enumerable set of options exists (e.g. SKU codes, 
+precise technical measurements unique per SKU).
+
+
+
+---
+
+## OUTPUT (PHASE 2 ONLY)
+
+**LOCKED:** You are forbidden from generating this report until Phase 1 is complete. Specifically, you must have successfully called `[READ_SKILL]` for every framework cited in your Investigation Log.
+
+Produce exactly these 7 sections. Each piece of information appears in exactly one section.
+
+### 1. Investigation Plan
+
+What is this category, and what are its B2B seller and buyer personas in the 
+Indian market?
+
+Look at the current spec sheet. Without consulting any data source or skill yet, 
+write your honest first impression — what looks right, what looks suspicious, what 
+looks missing, what looks out of place. These are instincts, not decisions.
+
+List the questions these instincts raise — the things you would need to verify 
+before making any change. Questions must be framed as genuine unknowns. Do not 
+include a preferred answer or early conclusion within the question itself.
+
+### 2. Investigation Log
+
+Your reasoning, evidence, and decisions. Work through your analysis by fetching data, reading skills, and forming findings.
+
+Your reasoning, evidence, and decisions. For each proposed action, follow this exact sequence:
+
+1. State the proposed action, the raw signal/evidence, and the confidence level.
+2. **Analysis via Relevant Skill:** Explicitly cite the specific reasoning framework used (e.g., "Applying `spec_sequencing` reasoning from Turn 4"). You MUST have successfully read the skill in a previous turn to cite it here.
+3. **Validate via Domain Knowledge:** Apply `domain_expert` (Skill 7) reasoning to confirm this change fits the Indian B2B market context.
+4. **Validate via Web Search:** Cite the specific `[WEB_SEARCH]` result (URL and summary) from your turn history that supports the change.
+5. Invoke the Critic: switch perspective and challenge the action by answering — 
+   what is the strongest evidence against this? What is the most plausible 
+   alternative explanation for the signal? If this action is wrong, what is 
+   the cost?
+6. **Critic Verdict:** Assign a verdict: `approved` if the evidence survives the challenge; `caution` if the action should proceed but with a noted limitation; `reject` if the challenge reveals the evidence is insufficient.
+7. **Alternative Requirement:** If `reject` — state what evidence would be needed to act on this in the future.
+8. **Final Decision:** A clear, concise statement of the final decision for this action (e.g., "Proceed with addition of Brand to Primary tier") based on results and reasoning.
+
+Each action must be challenged by the critic before making the changes
+
+End with a holistic review of the full action set, plus a one-line acknowledgment 
+of every spec you did not individually investigate.
+
+> **Verdict values:** `approved` = evidence is strong and action is justified; 
+> `caution` = proceed but note the limitation; `reject` = insufficient evidence, 
+> action dropped.
+
+### 3. Skipped Gaps
+
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+### 4. Corrected Specs JSON
+
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+### 5. Spec Changes Summary Table
+
+Every spec-level change across all specs. One row per spec that was added, 
+removed, merged, or renamed. Do not skip any spec that was removed.
+
+The Critic Verdict column must contain exactly one of: `approved`, `caution`, 
+or `reject` — no other values are valid.
+
+Valid actions: `ADDED` / `REMOVED` / `RENAMED` / `RE-TIERED` / `MERGED INTO [target spec]`
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+### 6. Option Changes Summary Table
+
+Every option-level change across all specs. One row per option where changes were 
+made. Specs with no option changes are not listed.
+
+The Critic Verdict column must contain exactly one of: `approved`, `caution`, 
+or `reject` — no other values are valid.
+
+Valid actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+| # | Action | Spec | Option Value(s) | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|-----------------|--------|------------|----------------|----------|--------------|
+
+### 7. Self-Reflection
+
+Were all high-signal gaps addressed? Any contradictions? Was every spec 
+acknowledged in the log (including untouched ones)? Were tier and option count 
+limits respected? Any low-confidence actions flagged for human review? One 
+paragraph overall assessment.
+
+---
+
+## BEGIN (PHASE 1)
+
+Always wrap your reasoning in `<thinking>...</thinking>` tags before making a 
+tool call or generating your response. Analyse the current spec sheet, decide 
+which data source to fetch first, output exactly ONE tool call, and then STOP. 
+
+**CRITICAL:** Do not attempt to produce the 7-section report in the same turn as 
+a tool call. Do not attempt to produce the report until you have read the 
+`critic` skill and all other relevant reasoning frameworks for your proposed 
+changes.
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: Read this immediately after fetching Buyer-Seller Call Data to correctly interpret the signals — product count thresholds, what counts as high vs low signal, how to extract spec candidates from conversation context, and how to avoid false positives from noisy call data.
+  Tags: `buyer-calls, signal-interpretation, product-count, DS1`
+- **custom_spec_analysis**: Read this immediately after fetching Custom Seller Specs to correctly interpret what sellers are adding and why — distinguishing genuine gaps from noise, context terms, and duplicate signals across data sources.
+  Tags: `custom-specs, gap-detection, seller-signal, DS2`
+- **buyer_search_analysis**: Read this immediately after fetching Buyer Search Data to correctly interpret impression counts, identify which search terms are genuine filter signals vs context terms, and understand cross-category pollution.
+  Tags: `buyer-search, impressions, filter-discovery, DS3`
+- **missing_spec_addition**: Read this to add new specifications after identifying gaps from buyer–seller calls, buyer search data, and custom inputs. Validate whether a candidate specification is suitable, and define it completely, including its name, input type, options, and tier.
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification, new-spec, missing spec`
+- **spec_sequencing**: Read this when you are ready to assign or change the tier of a spec — It provides the convergence logic, signal calibration, and override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE) needed to justify Primary vs Secondary vs Tertiary placement. Read it after fetching the Fill Rate data, Buyer Seller Call Data and Buyer Search Data
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: Read this when you need to audit and correct the option list for any spec.It tells you how to first check whether the spec belongs in this category,then evaluate each existing option (keep, reject, or merge), identify newoptions to add, and apply structural fixes. You produce the validation outputyourself using this reasoning framework
+  Tags: `options, validation, option-audit, corrections`
+- **domain_expert**: Read this when you identify a potential spec or option to add, remove, or re-tier — not upfront and not at the end. Use it during your Phase 1 investigation to sanity-check a candidate change against the real Indian B2B market before finalizing your reasoning for that action.
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards, market-reality`
+- **critic**: Read this whenever you are about to finalize your reasoning for a specific action in Phase 1 (addition, removal, merge, etc.). Apply the per-action challenge framework to your thinking block for every individual action you propose. Do not wait until the final report to invoke the critic.
+  Tags: `critic, review, challenge, evidence-quality, verdict, holistic`
+- **input_type_audit**: Read this when you are deciding or changing the input_type of a spec — not upfront. Read it when you have a specific spec in front of you and need to determine whether radio_button, multi_select, or text_type is correct based on the spec's nature and the platform rules.
+  Tags: `input-type, radio_button, multi-select, text-type, options`
+- **brand_option_review**: Read this only when you are auditing or removing options from a Brand spec. It provides the web-confirmation requirement before any brand option can be removed, and rules for handling oversized brand lists.
+  Tags: `brand, brand-options, oem, web-check, option-removal`
+
+**Important:** Read skills selectively and at the right moment — each skill description tells you exactly when to reach for it. The `domain_expert` skill must be read before finalising any action that adds, removes, or promotes a spec or option. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 3983
+category_name: conference tables
+seller_specs (current spec sheet): {
+  "category_name": "Conference Tables",
+  "mcat_id": 3983,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Seating Capacity",
+          "options": [
+            "8 Seater",
+            "10 Seater",
+            "12 Seater",
+            "6 Seater",
+            "4 Seater",
+            "14 Seater",
+            "16 Seater",
+            "18+ Seater"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Top Material",
+          "options": [
+            "Particle Board",
+            "MDF",
+            "Wood Veneer",
+            "Glass",
+            "HPL",
+            "Metal",
+            "Solid Wood"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Seating Capacity is chosen as the foremost primary spec because it's the most common starting point for a buyer's inquiry (e.g., \"8-seater table,\" \"table for 20 people\"). It directly relates to the table's size and intended use. Top Material is the second primary spec as it is a major differentiator for price, aesthetics, and durability."
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Shape",
+          "options": [
+            "Rectangular",
+            "Boat",
+            "U-Shape",
+            "Round",
+            "Oval",
+            "Square"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Leg Type",
+          "options": [
+            "Metal Legs",
+            "Panel Base",
+            "Pedestal Base"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Shape is a crucial functional and aesthetic attribute that defines the table's suitability for different room layouts. Leg Type significantly impacts the table's stability, style, and cleaning accessibility, making it a common point of comparison."
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Features",
+          "options": [
+            "Wire Management",
+            "Modular",
+            "Foldable",
+            "With Wheels"
+          ],
+          "input_type": "multi_select",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Top Finish",
+          "options": [
+            "Wood Grain",
+            "White",
+            "Black",
+            "Grey"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Top Thickness",
+          "options": [
+            "25 mm",
+            "18 mm",
+            "36 mm",
+            "45 mm",
+            "50 mm"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Frame Material",
+          "options": [
+            "Mild Steel (MS)",
+            "Particle Board",
+            "MDF",
+            "Stainless Steel",
+            "Aluminium"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "Features are listed as multi_select because not all tables have them, making them suitable for detailed filtering. Wire management is a common requirement. Top Finish and Top Thickness are important details for aesthetic matching and perceived quality, typically considered after primary selections have been made."
+    }
+  },
+  "scratchpad": "The selection and tiering of specifications are based on their commercial significance observed in buyer-seller conversations and seller catalogs. Primary specs (Seating Capacity, Top Material) are high-impact attributes for search. Secondary specs (Shape, Leg Type) are crucial for functional and aesthetic differentiation. Tertiary specs (Features, Top Finish, Top Thickness, Frame Material) are for detailed filtering of finer details."
+}
+
+No data has been loaded. Use the [FETCH_...] tools to retrieve data when you need it.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: FETCH_Buyer-Seller Call Data ---
+[
+  {
+    "spec_name": "Seating Capacity",
+    "total_product_count": 99,
+    "example_values": [
+      "8 seater",
+      "10 seater",
+      "6 seater",
+      "25 seater",
+      "4 seater"
+    ]
+  },
+  {
+    "spec_name": "Length",
+    "total_product_count": 90,
+    "example_values": [
+      "8 ft",
+      "10 ft",
+      "6 ft",
+      "12 ft",
+      "16 ft"
+    ]
+  },
+  {
+    "spec_name": "Material",
+    "total_product_count": 88,
+    "example_values": [
+      "Wood",
+      "Particle Board",
+      "Plywood",
+      "Metal",
+      "Glass"
+    ]
+  },
+  {
+    "spec_name": "Width",
+    "total_product_count": 78,
+    "example_values": [
+      "4 ft",
+      "3 ft",
+      "5 ft",
+      "2.5 ft",
+      "3.5 ft"
+    ]
+  },
+  {
+    "spec_name": "Shape",
+    "total_product_count": 71,
+    "example_values": [
+      "Rectangular",
+      "U-Shaped",
+      "Round",
+      "Oval",
+      "Square"
+    ]
+  },
+  {
+    "spec_name": "Features",
+    "total_product_count": 43,
+    "example_values": [
+      "2 Pop-up Box",
+      "Power Sockets and Connectivity",
+      "Wire management system",
+      "Aluminum charging point and sockets, Soft edges / Rounded corners",
+      "1 head and 6 on each side"
+    ]
+  },
+  {
+    "spec_name": "Color",
+    "total_product_count": 14,
+    "example_values": [
+      "White",
+      "Brown and Black",
+      "Silver",
+      "Brown",
+      "White and Black"
+    ]
+  },
+  {
+    "spec_name": "Construction",
+    "total_product_count": 9,
+    "example_values": [
+      "2 parts",
+      "2-part assembly with design-covered joint",
+      "2-part assembly",
+      "3 parts",
+      "Customized"
+    ]
+  },
+  {
+    "spec_name": "Tabletop Thickness",
+    "total_product_count": 9,
+    "example_values": [
+      "25 mm",
+      "12 mm",
+      "16-18 mm",
+      "17 mm",
+      "40 mm"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 7,
+    "example_values": [
+      "Action Tesa",
+      "Action Tesa or Century",
+      "Blue Fox",
+      "Club Club",
+      "JK Corporation"
+    ]
+  },
+  {
+    "spec_name": "Finish",
+    "total_product_count": 6,
+    "example_values": [
+      "Dark Walnut",
+      "Good",
+      "Good finish",
+      "Laminate",
+      "Laminated"
+    ]
+  },
+  {
+    "spec_name": "Top Thickness",
+    "total_product_count": 5,
+    "example_values": [
+      "25 mm",
+      "18 mm",
+      "40 mm"
+    ]
+  },
+  {
+    "spec_name": "Table Type",
+    "total_product_count": 5,
+    "example_values": [
+      "Conference Table",
+      "Custom Made",
+      "Imported"
+    ]
+  },
+  {
+    "spec_name": "Type",
+    "total_product_count": 5,
+    "example_values": [
+      "Modular",
+      "Customized",
+      "Dais",
+      "Foldable"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "total_product_count": 4,
+    "example_values": [
+      "i4 modulars",
+      "14 Modular",
+      "As per buyer picture"
+    ]
+  },
+  {
+    "spec_name": "Height",
+    "total_product_count": 3,
+    "example_values": [
+      "2.5 ft",
+      "Conference table chair size height"
+    ]
+  },
+  {
+    "spec_name": "Usage",
+    "total_product_count": 3,
+    "example_values": [
+      "Office",
+      "Office Meeting Hall",
+      "Staff Meeting"
+    ]
+  }
+]
+
+
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# buyer_call_analysis
+
+
+## What this skill is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+Apply relative logic within each spec's own value distribution:
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+If an individual option value has a product count < 3, treat it as noise and ignore it — do not add it to the option list, even if the parent spec is strong.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+   counts because every product has a material, not because Material is a differentiator.
+
+---
+
+
+
+
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: FETCH_Custom Seller Specs ---
+[
+  {
+    "spec_name": "Brand",
+    "count": 21,
+    "options": [
+      "Cubiclecraft"
+    ]
+  },
+  {
+    "spec_name": "Colour",
+    "count": 21,
+    "options": [
+      "White Night Grey",
+      "Dark Walnut",
+      "Dark walnut",
+      "White Black",
+      "Frosty white"
+    ]
+  },
+  {
+    "spec_name": "Room Type",
+    "count": 21,
+    "options": [
+      "Office"
+    ]
+  },
+  {
+    "spec_name": "Size",
+    "count": 21,
+    "options": [
+      "10x4 Feet(LXW)",
+      "300L x 120W cm",
+      "3600L x 120W cm",
+      "180L x 90W cm",
+      "240L x 120W cm"
+    ]
+  },
+  {
+    "spec_name": "Warranty",
+    "count": 19,
+    "options": [
+      "3 years",
+      "3 Years"
+    ]
+  },
+  {
+    "spec_name": "Shipping time",
+    "count": 18,
+    "options": [
+      "10-12 days"
+    ]
+  },
+  {
+    "spec_name": "Product Feature",
+    "count": 15,
+    "options": [
+      "Full-Size Table Dual Color Combination of Dark walnut & Black 25mm Thick",
+      "Full-Size Table Dual Color Combination of White & Black 25mm Thick",
+      "Single color particle board 25mm Thick",
+      "single color particle board 25mm Thick"
+    ]
+  }
+]
+
+
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# custom_spec_analysis
+
+
+## What this skill is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 products:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+**Count 5–14 products:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+**Count 15–29 products:** Strong signal. High probability of a genuine platform gap.
+
+**Count 30+ products with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# missing_spec_addition
+
+## What this skill is for
+
+When candidate missing specs have been surfaced by the Buyer-Seller Call, Custom Spec,
+or Buyer Search skills — read this document. It gives you the framework to
+validate whether each candidate is a genuine new spec or a false positive, and
+if genuine, define it completely and correctly for the Indian B2B marketplace.
+
+---
+
+## Step 1 — Validate: Is this a genuine new spec?
+
+A candidate missing spec is genuine only if all three of the following are true:
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same
+real-world attribute, even approximately, the candidate is not a gap.
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+---
+
+## Common false positives — check these before acting
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common
+synonym.
+
+Common equivalences in Indian B2B:
+
+| These terms often mean the same thing |
+|---------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Size / Dimensions / Measurement / Specification |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade |
+
+**Composite attributes**
+Some candidates are natural-language composites. "10mm HDPE pipe" → "10mm" is
+not a new Diameter spec if Dimensions already exists.
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+**Multiple candidates meaning the same thing**
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning. "Usage" from custom specs + "Application" from call data + "End Use"
+from search → one spec, not three. Pick the most standard name and add once.
+
+One underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+---
+
+## Step 2 — Define: Build the spec completely
+
+Once a candidate passes validation, define it fully across four elements.
+
+### Spec Name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+### Input Type
+
+**Platform rule for Primary and Secondary specs:**
+On this platform, sellers can add their own custom option values on Primary and
+Secondary specs beyond the list you define. This means you only need to define
+the top market options — the platform handles edge cases. Do not choose
+`text_type` for a Primary or Secondary spec just because the full universe of
+values is large. If the top 10 market options are known, define them as
+`radio_button`.
+
+**`text_type` (options = []):**
+Use only when no standard commercial values exist for this spec — meaning there
+is no enumerable set of options that would cover the market, even partially.
+
+- Model numbers, SKU codes, part numbers, serial numbers
+- Free-form numerical values with no standard set — values that are unique per
+  SKU with no market standard (e.g. exact protein per serving in grams, a
+  precise torque value, a custom dimension)
+- Specs where values are entirely seller-specific with no recognisable pattern
+  across products
+
+Do not use `text_type` simply because the option list is long or feels
+incomplete. If the top options are known, use `radio_button`. If a spec has
+well-known standard commercial values in the Indian B2B market, it should be
+`radio_button` even if the data shows variation — variation is often data noise,
+not evidence of infinite valid values.
+
+**`radio_button`:**
+- Single-choice attributes where a product has exactly one value
+- Attributes with a known, enumerable set of market options
+- Mutually exclusive states (Indoor / Outdoor)
+- Single numeric ratings with standard market values (Voltage, Power, Speed)
+- Boolean attributes: Yes / No. Options: `["Yes", "No"]`
+- Use for Primary and Secondary specs wherever the top options can be defined —
+  the platform's custom option entry handles values outside your list
+
+**`multi_select`:**
+- Attributes where one product can simultaneously have multiple values at the
+  same time
+- Test: can one product genuinely have more than one value simultaneously?
+  If yes → `multi_select`
+- Examples: Certifications (a product can hold ISO AND BIS AND CE at the same
+  time), Dietary Features (Vegan AND Gluten-Free AND Sugar-Free simultaneously),
+  Compatible With (a fitting compatible with multiple pipe types at the same time)
+- Do not use `multi_select` for specs where a product has exactly one value,
+  even if the universe of possible values is large. A protein powder has one
+  protein source. A wire has one conductor material. These are `radio_button`.
+
+---
+
+### Options — How to Generate Them
+
+Draw from example values in call data, custom spec submissions, and search
+option values. When data values are sparse, inconsistent, or absent, generate
+the full option set from Indian B2B market knowledge for this category and spec.
+
+**Understanding option values from data sources:**
+
+Option values surfaced by the data source skills vary significantly in quality.
+Here is what each quality level looks like and what it tells you:
+
+| Data Quality | What it looks like |
+|---|---|
+| Clean and consistent | Values are specific, formatted, and repeated across sources — reliable signal for what the real market options are |
+| Mixed quality | Some specific values mixed with vague or inconsistently formatted ones — the specific values are the signal; the rest is noise |
+| 1–2 values only | Too sparse to define the full option set — useful for confirming what the spec means, but market knowledge is needed to complete the list |
+| Completely messy | No usable signal — generate entirely from Indian B2B market knowledge |
+| Empty | No data at all — generate entirely from Indian B2B market knowledge |
+| Contains NA / Other / Custom | These are non-values — ignore them and treat the remaining data at its actual quality level |
+
+**Quality rules:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only
+2. No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz.
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+5. Limit to the 10 most common options for the Indian market
+
+**Formatting rules:**
+1. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+2. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+3. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm
+4. Categorical options by frequency — most common in Indian market first
+5. Use ISI/BIS standards where applicable
+6. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+7. Do not use range options unless they are the market standard for this spec
+
+---
+
+### Tier Placement
+
+All new specs are added as Tertiary. Sequencing reasoning determines the final
+tier based on actual signal data.
+
+---
+
+
+
+
+=== TOOL RESULTS (Turn 6) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(domain_expert) ---
+# domain_expert
+
+
+## What this skill is for
+
+
+This skill tells you whether a proposed change reflects how this product is actually bought and sold in the Indian B2B market. Read it when you are about to add, remove, or promote a spec or option. Platform data tells you what buyers do on this platform — this skill tells you whether it makes sense for the real Indian B2B market.
+
+
+
+This is not a fallback. The domain expert perspective runs alongside every
+strategic decision. Data tells you what buyers and sellers do on the platform.
+Domain knowledge tells you why — and whether the platform behaviour makes sense
+given how this product is actually traded in Indian B2B.
+
+
+---
+
+
+## The domain expert's role
+
+
+Reason about the real world. Data skills analyse signals — domain reasoning
+interprets what those signals mean in the context of how this product is
+manufactured, sold, and purchased in India. When signals are ambiguous,
+contradictory, or absent, your judgment fills the gap.
+
+
+This is not a rubber stamp. Apply it specifically when there is a question data
+alone cannot resolve.
+
+
+---
+
+
+## Types of questions domain reasoning handles
+
+
+### 1. Signal conflict resolution
+
+
+Two data sources disagree. Explain why and decide which signal to trust.
+
+
+**Common conflict patterns and what they mean:**
+
+
+| Conflict | Likely explanation | What to do |
+|----------|-------------------|------------|
+| High search + zero fill rate | Spec exists but options are wrong — buyers want to filter but can't find the right value | Fix the options, do not remove the spec |
+| High fill rate + zero search | Seller-oriented spec — they describe it even though buyers don't filter on it | Keep, but consider Secondary or Tertiary depending on call signal |
+| High calls + zero search | Attribute matters in negotiation but isn't surfaced in discovery flow | Strong candidate for addition — buyers discuss it but can't filter on it |
+| High search + zero calls | Could be search noise (buyers typing category name words) or a genuine discovery gap | Check if the term is a CONTEXT_TERM or a real filterable attribute |
+
+
+### 2. Category sanity checks
+
+
+Is a proposed spec appropriate for this specific product and market?
+
+
+Apply this reasoning framework:
+- What is this product physically and functionally?
+- Who buys it in Indian B2B? Manufacturers? Traders? Retailers? Institutions? SMEs?
+- What attributes drive purchase decisions for this product type?
+- Are there IS/BIS standards, FSSAI regulations, or industry certifications that
+  dictate certain specs as mandatory?
+- What do sellers in this category typically differentiate on?
+- Is this a commodity (specs less critical — price and quantity dominate) or a
+  differentiated product (specs are everything — buyers filter heavily)?
+
+
+### 3. Spec relationship reasoning
+
+
+Two specs seem related or duplicative. Determine if they are truly the same
+attribute or genuinely distinct.
+
+
+Ask:
+- Do the two specs answer different buyer questions? If yes → keep separate.
+- Can a single product have different values for each spec simultaneously? If yes → keep separate.
+- Would merging them cause information loss? If yes → keep separate.
+- Do buyers in this market mentally distinguish them when making a purchase? If no → merge.
+
+
+### 4. Tier arbitration
+
+
+Data suggests one tier; domain logic suggests another.
+
+
+Apply the domain perspective and state your reasoning explicitly. Data is the
+primary evidence — domain knowledge is the tiebreaker when signals are moderate
+or conflicting. If your domain judgment contradicts strong data signals, respect
+the data and note the tension rather than overriding it.
+
+
+### 5. Option coherence for Indian B2B
+
+
+An option list looks wrong from a market perspective — too many options, wrong
+options, missing industry-standard values, or values that don't match how the
+Indian B2B market actually works.
+
+
+Apply Indian B2B market context:
+- IS/BIS grades dominate in metals, construction, electrical, and chemicals
+- Local trade terminology differs from international standards ("MS" for Mild Steel
+  is universally understood; "A36" is not)
+- Regional naming conventions exist (pipe sizes often quoted in inches even when
+  metric is the standard)
+- Dominant domestic manufacturers (Tata, JSW, Hindalco, Asian Paints) define the
+  de facto option values in many categories
+- Import categories use different naming conventions than domestically manufactured goods
+
+
+### 6. Format conflict resolution — canonical format establishment
+
+
+When the format of a spec or option in the existing spec sheet differs from how
+it appears in data sources, determine the correct canonical format.
+
+
+**Common format conflicts:**
+
+
+| Conflict type | Example | What to check |
+|--------------|---------|---------------|
+| Unit inconsistency | Existing: "3 mm", Call: "3mm", "3MM" | Which format do manufacturers actually use? |
+| Abbreviation vs full form | Existing: "PVDF", Call: "Polyvinylidene Fluoride" | Which does Indian B2B use in practice? |
+| Numeric vs descriptive | Existing: "S, M, L", Call: "7.5, 8, 9" | Are these different sizing systems or the same? |
+| Mixed unit systems | Existing: "2 mm", Call: "0.08 inches" | Which system dominates in Indian B2B trade? |
+| Grade naming | Existing: "Exterior", Call: "Bond", "Chalu" | Map informal trade terms to formal grades |
+| IS standard notation | Existing: "IS 2062", Call: "E250", "E350" | Which IS grade notation is actually used? |
+
+
+**When you detect a format conflict:**
+1. Identify the conflict precisely — existing format vs data source format
+2. Apply domain knowledge of how this spec is described by manufacturers and traders
+3. If uncertain, flag for a web search: `[WEB_SEARCH] query="<spec name> <category> standard format India" [END]`
+4. Determine the canonical form — the format Indian B2B buyers and sellers actually use
+5. Recommend the specific correction action: `CORRECT_OPTION`, `RENAME_SPEC`, or `ADD_OPTIONS`
+
+
+### 7. New spec validation
+
+
+A candidate spec has been identified from data. Confirm whether it genuinely
+makes sense for this category before adding it.
+
+
+Ask:
+- Is this attribute something a seller in this category would know by heart?
+- Would a buyer mention this in the first sentence of a product enquiry?
+- Does this spec help differentiate products in this category, or do all products
+  have the same value (making it a CONTEXT_TERM or IMPLIED)?
+- Is this covered under a different name that already exists in the spec set?
+
+
+---
+
+
+## Indian B2B market context — always apply
+
+
+This is an Indian B2B marketplace. Every domain judgment must account for:
+
+
+**Market conventions:**
+- IS/BIS standards dominate in metals, construction, electrical, chemicals
+- Trade terminology often differs from international standards
+- Regional naming conventions exist (pipes in inches, textiles in yards, etc.)
+- Buyers often use informal names that map to formal spec names
+
+
+**Buyer types in Indian B2B:**
+- Industrial procurers buying in bulk on specification → primary signal: call data and fill rate
+- SME buyers buying by application or use case → primary signal: search impressions
+- Traders and distributors buying by brand and grade → primary signal: brand and grade specs
+
+
+The category's typical buyer type changes which signals to weight more heavily.
+
+
+**Supply structure:**
+- Many categories have dominant domestic manufacturers whose product ranges define
+  the de facto option values
+- Import categories often have different naming conventions than domestically
+  manufactured goods
+
+
+---
+
+
+## How to frame your domain reasoning
+
+
+The question you are applying domain reasoning to must be specific. Vague questions
+produce vague answers.
+
+
+**Specific enough:**
+"Search data shows 1,350 impressions for 'usage' in this category, but zero sellers
+added it as a custom spec and zero call mentions. For a [category type], is 'usage'
+a real spec or a context term?"
+
+
+**Too vague:**
+"Is this spec relevant?"
+
+
+If the question is not specific enough, reframe it before applying domain reasoning.
+
+
+---
+
+
+## What your domain reasoning must produce
+
+
+For each question you apply domain reasoning to:
+
+```
+question_summary: [the specific question being resolved]
+classification: VALID_SPEC / CONTEXT_TERM / NOT_A_PRODUCT_SPEC / MISCLASSIFIED /
+               DUPLICATE / COMPOSITE / INDUSTRY_STANDARD / FORMAT_CONFLICT
+judgment: [your domain reasoning — 2–5 sentences citing category logic, Indian B2B
+          conventions, or industry norms]
+recommendation: [specific action — what to do]
+confidence: high / medium / low
+confidence_reason: [why this confidence level — established domain knowledge or best estimate?]
+web_search_needed: [specific query if external verification would strengthen the judgment,
+                   or "None" if domain reasoning is sufficient]
+caveats: [conditions or exceptions to this judgment]
+```
+
+
+For format conflicts, also produce:
+```
+existing_format: [how it appears in current spec sheet]
+data_source_format: [how it appears in Buyer-Seller Call Data/Custom Spec Data/Buyer Search Data]
+canonical_format: [the correct format for Indian B2B]
+correction_action: CORRECT_OPTION / RENAME_SPEC / ADD_OPTIONS
+```
+
+
+---
+
+
+## Confidence calibration
+
+
+**High confidence:** Well-established domain knowledge for this category type.
+Industry standards exist and are unambiguous. You have clear reasoning grounded
+in how this market actually works.
+
+
+**Medium confidence:** General domain reasoning applied to this category. Plausible
+but you are not a specialist in this specific product. State this explicitly.
+
+
+**Low confidence:** You know little about this specific category. Provide general
+reasoning principles but flag that a subject-matter expert or web search should
+confirm before acting.
+
+
+---
+
+
+## Boundaries
+
+- You DO provide domain judgments — this is the core function.
+- You DO recommend canonical formats for format conflicts.
+- You DO flag when web search would strengthen a judgment.
+- You do NOT fabricate data or claim signals exist that do not.
+- You do NOT make structural changes — you advise; the decision follows from your
+  reasoning but remains with the orchestrator.
+- When data strongly contradicts your domain intuition → respect the data. State
+  your expectation, acknowledge the contradiction, suggest investigating further
+  rather than overriding the data.
+- When genuinely uncertain → say so. Mark confidence as medium or low. A wrong
+  domain judgment confidently stated is worse than an honest uncertainty.
+
+---
+
+
+
+
+=== TOOL RESULTS (Turn 7) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(top conference table brands in India for office) ---
+{
+  "query": "top conference table brands in India for office",
+  "results": [
+    {
+      "title": "Board-Room Furniture Tables | Conference-Room Tables",
+      "url": "https://furniture-india.com/board-conference-room-tables/",
+      "excerpt": "WebSearchResult(url='https://furniture-india.com/board-conference-room-tables/', excerpts=['Foster collaboration and make bold impressions with our boardroom and conference tables . Designed for functionality, comfort, and modern aesthetics.'], publish_date=None, title='Board-Room Furniture Tables | Conference-Room Tables')"
+    },
+    {
+      "title": "Conference Tables Manufacturers in India",
+      "url": "https://dir.indiamart.com/impcat/conference-tables.html?biz=10",
+      "excerpt": "WebSearchResult(url='https://dir.indiamart.com/impcat/conference-tables.html?biz=10', excerpts=['Wooden Rectangular Brown Conference Table , Warranty: 1 Year ; Godrej Office Chair ; Godrej Office Tables ; Geeken Office Chairs ; Herman Miller Office Chairs.'], publish_date=None, title='Conference Tables Manufacturers in India')"
+    },
+    {
+      "title": "Modern Meeting Tables by Office Table Manufacturer Geeken",
+      "url": "https://geeken.in/collections/meeting-table",
+      "excerpt": "WebSearchResult(url='https://geeken.in/collections/meeting-table', excerpts=[\"STARRY STAR CORD SET\\n\\n1. [Home](https://geeken.in)\\n2. [Table](https://geeken.in/collections/table)\\n3. Meeting Table\\n\\n# Meeting Table\\n\\n[All](https://geeken.in/collections/meeting-table)\\n\\n[Conference Table](https://geeken.in/collections/conference-table)\\n\\n[Discussion Table](https://geeken.in/collections/discussion-table)\\n\\nFILTERS Showing 1\u20139 of 24 results\\n\\n*\\n\\nFILTERS\\n\\n#### Collection\\n\\n* Seating Range\\n* Desking Range\\n* Office Storage\\n* Institutional Ranges\\n* Lab & hospital\\n* Living & dining\\n* Loose furniture\\n* Healthcare Furniture\\n\\n#### Filter by price\\n\\nPrice: \u20b9 10\\\\.00 \u2014 \u20b9 230\\\\.00\\n\\n##### Price Range\\n\\nRs. 100 - Rs. 500\\n\\nRs. 501 - Rs. 1000\\n\\nRs. 1001 - Rs. 1500\\n\\nRs. 1501 - Rs. 2000\\n\\nRs. 2001 - Rs. 2500\\n\\nShow Product\\n\\nFacilitate productive collaborations with Geeken's professional meeting tables, designed for conference rooms and discussion spaces.\\nAs experienced **meeting table manufacturers** , we understand the importance of functional meeting environments in driving business success.\\n\\nOur meeting table collection includes large conference tables for formal presentations and compact discussion tables for smaller group interactions. Whether you're setting up boardrooms, training centers, or collaborative workspaces, Geeken's meeting tables provide the perfect foundation for effective communication and decision-making.\\n\\nTrusted by businesses across Delhi NCR, our tables combine functionality with professional aesthetics for modern workplace needs.\\n\\n## About Geeken \u2013 Trusted Office Furniture Manufacturer\\n\\nFor over 35 years, Geeken has been recognized as reliable office furniture suppliers in India . Our meeting tables are chosen by businesses for their robust construction, professional appearance, and versatile functionality that supports effective collaboration in corporate and institutional environments across India.\\n## Our Meeting Table Range:\\n\\n[Conference Tables](https://geeken.in/collections/conference-table) : Large tables designed for formal meetings and extensive collaborative sessions with multiple participants.\\n\\n[Discussion Tables](https://geeken.in/collections/discussion-table) : Compact tables ideal for smaller groups, informal brainstorming, and focused dialogue sessions.\\n\\n## Our Related Product\\n\\n[MDF Top 25mm Thick](https://geeken.in/products/accent-2) , [MDF Structure,](https://geeken.in/products/stelo-3) [Conference Table](https://geeken.in/products/conference-1) , [Extruded Aluminum Profile,](https://geeken.in/products/conference-2) [Particle Board Edge Bended Top](https://geeken.in/products/conference-4)\\n\\n[](https://geeken.in/products/conference-4) Our Process \u2013 How We Work:\\n\\nStep 1: Consultation & Site Assessment Understanding your space and specific hospital furniture needs.\\n\\nStep 2: Custom Product Proposal Providing detailed 2D/3D layouts and product specs.\\nStep 3: Manufacturing & Quality Checks Precision manufacturing backed by stringent quality standards.\\n\\nStep 4: Delivery & Installation On-time delivery and setup handled by our in-house team.\\n\\nStep 5: Ongoing Support Post-installation assistance and service support available on request.\\n\\n## Why Choose Geeken for Meeting Tables in India?\\n\\n~ 35 Years of Office Furniture Experience  \\n Established office furniture dealers in Delhi NCR with proven expertise in collaborative workspace solutions.\\n\\n~ Professional Conference Solutions  \\n Purpose-built tables that facilitate effective meetings and enhance corporate communication.\\n\\n~ Size & Configuration Options  \\n Various dimensions and shapes to accommodate different meeting room sizes and group requirements.\\n\\n~ Durable Construction  \\n Commercial-grade materials and construction ensuring longevity in high-use conference environments.\\n\\n~ Technology Integration Ready\\n ... \\nFeatures like smooth surfaces for documents, integrated technology, appropriate height for comfortable discussion, and finishes that photograph well for video conferences.\\n\\nQ8: What makes Geeken meeting tables perfect for Indian boardrooms?\\n\\nOur meeting tables are designed keeping Indian business culture in mind. We understand that meetings in India often involve larger groups and longer discussions, so our tables are spacious and comfortable. The designs blend modern aesthetics with traditional Indian preferences, making them suitable for both corporate offices and family businesses.\\n\\nQ9: Do you offer different sizes for various meeting room requirements?\\n\\nYes! We manufacture meeting tables in various sizes - from compact 6-seater tables for small team meetings to large 20-seater conference tables for board meetings. We understand that Indian businesses range from startups working in small spaces to large corporations with expansive boardrooms, so we offer flexible sizing options.\"], publish_date=None, title='Modern Meeting Tables by Office Table Manufacturer Geeken')"
+    },
+    {
+      "title": "Conference Table For Office | Affordable Prices | Ergoflex",
+      "url": "https://www.ergoflex.in/conference-table?srsltid=AfmBOopSiraGsojHPfs-yTN-vxlbTGo_oTWugSRlavZalCbaweQuQjtV",
+      "excerpt": "WebSearchResult(url='https://www.ergoflex.in/conference-table?srsltid=AfmBOopSiraGsojHPfs-yTN-vxlbTGo_oTWugSRlavZalCbaweQuQjtV', excerpts=['top of page\\n\\n# Conference Tables\\n\\n# FOR YOUR CLASSIC CONFERENCES\\n\\n## Conference Table for Office - An Overview\\n\\n### MODERN CONFERENCE ROOM FURNITURE\\n\\n### \\u200b\\n\\nEvery office needs to have a conference table for regular meetings, reviews and other official gatherings. Official discussions will be more productive if you have a proper conference table for office spaces where people can interact, brainstorm, share knowledge and come up with scopes for innovation. Moreover, modern conference room furniture will also enhance your corporate image. Being a leading furniture manufacturer in eastern India, we have a tremendous capacity of producing modern conference room furniture that can transform a meeting space into a modern conference room. Our collection boasts a variety of choices that consists of 16 seater, 14 seater, 12 seater, 10 seater and 8 seater conference table for office space.\\nWe have a wide range of designs that are octagonal, rectangular, U shaped, oval, squarish and much more to choose from.\\n\\n\\u200b\\n\\n### TOP 5 TIPS ON PURCHASING LARGE MODERN CONFERENCE TABLE\\n\\n### \\u200b\\n\\nSeating arrangements : The seating arrangement depends completely on the space available with your office. It is wise to have a separate room to accommodate your large modern conference table. It is also important that you are left with enough space for free movement after placing your conference table. Based on the number of departments and volume of office staffs you must choose the number of seating.\\n\\nMaterial: In recent times the demand of modern and stylish furniture has increased exponentially. Corporate and office set ups are preferring furniture that are lightweight. Hence solid wood furniture has gone cliche these days, rather conference table for offices are manufactured with a combination of wood and metal in order to produce a smart appearance.\\n\\n\\u200b\\nDesign: This is one of the important factors for purchasing a large modern conference table. Ergoflex produces uniquely designed and smartly manufactured modern conference room furniture with a variety of sizes. We generate popular designs that give better finishes.\\n\\nColour: Choose your furniture with the colour of the office wall. Office walls are usually light in themes which accommodates dark colored furniture. With us, you can choose from a wide variety of colour combinations that include dark walnut, oak, metallic brown, apple, glossy kempas, creamy maple, ivory and whole bunch of attractive colours that will make your conference space vibrant and energetic.\\n\\nBudget: If you are looking for a conference table at affordable price then you have just arrived at the right website. Check our huge collection of modern conference table for office that are well within your budget.\\n\\nServices\\n\\n[Size Guide](https://www.ergoflex.in/size-guide)  \\n[Installation](https://www.ergoflex.\\nin/furniture-installation)  \\n[Support](https://www.ergoflex.in/contact-us)  \\n[F.A.Qs](https://www.ergoflex.in/faqs)  \\n[Bank Details](https://www.ergoflex.in/bank-details)\\n\\nEssentials\\n\\nCase Study\\n\\nOur Projects  \\n[Our e-brochures](https://www.ergoflex.in/downloadfurniturebrochures)\\n\\nCSR\\n\\n[Hooghly](https://www.ergoflex.in/hooghly)\\n\\n[Insights](https://www.ergoflex.in/blog)\\n\\nConnect\\n\\n[Our Dealer](https://www.ergoflex.in/our-dealer)  \\n[Contact Us](https://www.ergoflex.in/contact-us)  \\n[Careers](https://www.ergoflex.in/career)  \\n[Book a visit](https://www.ergoflex.in/visit-our-furniture-showroom)  \\n[Dealership Program](https://www.ergoflex.in/furniture-dealership-india)\\n\\nPolicy\\n\\n[Terms & Conditions](https://www.ergoflex.in/terms-conditions)  \\n[Privacy](https://www.ergoflex.in/privacy)  \\n[Disclaimer](https://www.ergoflex.in/disclaimer)\\n\\nSubscribe to our newsletter\\n\\nSubscribe\\n\\nThanks for subscribing!\\n\\n* [](https://www.facebook.com/ErgoflexIndiaOfficial/)\\n* [](https://www.linkedin.\\ncom/company/ergoflex-pvt-ltd/)\\n* [](https://www.instagram.com/ergoflexindia/)\\n\\n[Book A Visit To Our Showroom](https://www.ergoflex.in/visit-our-furniture-showroom)\\n\\nbottom of page'], publish_date=None, title='Conference Table For Office | Affordable Prices | Ergoflex')"
+    },
+    {
+      "title": "Conference Tables Manufacturer | Best Boardroom Solutions",
+      "url": "https://woodbine.co.in/product-category/office-furniture/conference-and-meeting/conference-tables/?srsltid=AfmBOopNpi7N_k_3QECLmyZu0LwSl9nDihqYmuSJVHdJCLXRec2Zn1qX",
+      "excerpt": "WebSearchResult(url='https://woodbine.co.in/product-category/office-furniture/conference-and-meeting/conference-tables/?srsltid=AfmBOopNpi7N_k_3QECLmyZu0LwSl9nDihqYmuSJVHdJCLXRec2Zn1qX', excerpts=['Premium Conference Tables Manufacturer in India | Best Boardroom Solutions with modern designs and unmatched quality by Woodbine. Get 40% off. Shop now!'], publish_date=None, title='Conference Tables Manufacturer | Best Boardroom Solutions')"
+    },
+    {
+      "title": "Buy Conference Tables Online \u2013 Durable, Sleek & Functional | Godrej Godrej Interio",
+      "url": "https://interio.com/business/products/tables/conference-tables?srsltid=AfmBOooCyRF_9se41tbjktHoeUhnuOSKZNOYcbS-bMmMIAZL3nVeC6ay",
+      "excerpt": "WebSearchResult(url='https://interio.com/business/products/tables/conference-tables?srsltid=AfmBOooCyRF_9se41tbjktHoeUhnuOSKZNOYcbS-bMmMIAZL3nVeC6ay', excerpts=['The store will not work correctly when cookies are disabled.\\n\\n[Become a dealer](https://interio.com/business/become-a-dealer)\\n\\n[Store locator](https://interio.com/business/furniture-shop-near-me)\\n\\n[Contact us](https://interio.com/business/contact-us)\\n\\n[Services](https://interio.com/business/services)\\n\\nSkip to Content\\n\\n[For Businesses](https://interio.com/business/?selected_store=interio_b2b_view)\\n\\n[For Homes](https://interio.com/?selected_store=interio_b2c_view)\\n\\nToggle Nav [](https://interio.com/business/)\\n\\n**Search**\\n\\nSearch\\n\\nTop searches\\n\\n* office chair\\n* chair\\n* Office Table\\n* Table\\n* thrill\\n\\n[Workspace](https://interio.com/business/workspace)\\n\\n[Education](https://interio.com/business/education)\\n\\n[Healthcare](https://interio.com/business/healthcare)\\n\\n[Laboratory](https://interio.com/business/laboratory)\\n\\n[Personal Space](https://interio.com/business/workspace/personal-space)\\n\\n[Learning Spaces](https://interio.com/business/education/learning-spaces)\\n\\n[Patient Care](https://interio.\\ncom/business/healthcare/patient-care)\\n\\n[Lab Facilities](https://interio.com/business/laboratory/lab-facilities)\\n\\nSearch\\n\\n* \\n  \\n    + \\n    + \\n\\n[](https://interio.com/business/wishlist/)\\n\\n[My Cart](https://interio.com/business/checkout/cart/)\\n\\nMenu\\n\\n[](https://interio.com/business/customer/account/ \"My Account\") Toggle Nav [](https://interio.com/business/)\\n\\n* [Home](https://interio.com/business/ \"Go to Home Page\")\\n* [Products](https://interio.com/business/products)\\n* [Tables](https://interio.com/business/products/tables)\\n* **Conference Tables**\\n\\n# Conference Tables\\n\\nConference Tables\\n\\nCollaboration. Durability. Aesthetics. Designed for modern workspaces, our conference room tables create an environment where ideas take shape. A discreet power module keeps devices charged and tables clutter-free, while durable materials and premium finishes make the tables last long.\\n\\n**Filter**\\n\\nAll filters\\n\\nCheck Compare\\nSort by Best Match Newly Arrived Price: Low to High Price: High to Low Discounts (High to Low) Product Rating\\n\\n**Filter**\\n\\n**Shopping Options**\\n\\nProduct Category\\n\\n1. Tables\\n\\nPrimary Material\\n\\n1. Wood\\n   \\n   4 items\\n\\nPrimary Material Subtype\\n\\n1. MDF 1 item\\n2. Particle Board 2 items\\n3. MDF, Particle Board 1 item\\n\\nFrame Material\\n\\n1. Wood 4 items\\n\\nPrice\\n\\n[Apply](https://interio.com/business/products/tables/conference-tables?price=32000-98000)\\n\\nDelivery Condition\\n\\n1. Knock Down 4 items\\n\\nFrame Material Subtype\\n\\n1. MDF 1 item\\n2. Particle Board 2 items\\n3. MDF, Particle Board 1 item\\n\\nClear all filters\\n\\nApply filters\\n\\nAll filters\\n\\n**Compare**\\n\\n1. Remove This Item\\n\\n*\\n\\n* \\n*\\n\\n* \\n* \\n*\\n\\n* \\n* \\n* \\n*\\n\\nCompare\\n\\nClear All Clear All\\n\\nYou have no items to compare.\\n\\nYou have reached the maximum limit for comparison\\n\\n0\\n\\n24\\n\\n4\\n\\n1. [](https://interio.com/business/product/mingle-unitized-14-seater-av-conference-table-56101706SD00343)\\nor  to start creating wishlists and easily save your favourite items for later.\\n   \\n   **[Mingle Unitized 14 Seater AV Conference Table](https://interio.com/business/product/mingle-unitized-14-seater-av-conference-table-56101706SD00343)** Tobacco Ash, Membrane, All Wood Conference table\\n   \\n   \u20b91,10,668\\n2. [](https://interio.com/business/product/colab-vc-high-seating-collaborative-table-56101706SD00360)\\n   \\n    or  to start creating wishlists and easily save your favourite items for later.\\n   \\n   **[Colab VC High Seating Collaborative Table](https://interio.com/business/product/colab-vc-high-seating-collaborative-table-56101706SD00360)** Nova Magnolia, Laminate, Video Conferencing Table\\n   \\n   \u20b91,03,107\\n3. [](https://interio.com/business/product/gather-two-sided-conference-table-5000-x-1200-56101706SD00370)\\n   \\n    or  to start creating wishlists and easily save your favourite items for later.\\n   \\n   **[Gather Two Sided Conference Table 5000 X 1200](https://interio.\\ncom/business/product/gather-two-sided-conference-table-5000-x-1200-56101706SD00370)** Rimini Walnut, Laminate finish, All Wood Community Table\\n   \\n   \u20b992,796\\n4. [](https://interio.com/business/product/mingle-pod-1000w-collaborative-table-56101706SD00385)\\n   \\n    or  to start creating wishlists and easily save your favourite items for later.\\n   \\n   **[Mingle Pod 1000W Collaborative Table](https://interio.com/business/product/mingle-pod-1000w-collaborative-table-56101706SD00385)** Tobaco Ash, All Wood Table\\n   \\n   \u20b932,460\\n\\n9 18 27 36\\n\\nper page\\n\\n## Search on Interio using an image\\n\\n##### How does it work ?\\n\\nSaw a product you liked somewhere? Upload an image and get similar looking products that you can include in your homes\\n\\n \\n\\nEnter list name\\n\\nCancel Create List\\n\\nGodrej Enterprises Group 2025\\n\\n#### Visit\\nyour nearest stores in your city\\n\\n[Ahmedabad](https://interio.com/business/furniture-stores/ahmedabad/) | [Bengaluru](https://interio.\\n ... \\nsi=FHCZrwwAFnzIeg2Q) [](https://www.linkedin.com/showcase/interio-by-godrej/)\\n\\n\u00a9 Interio by Godrej, A Godrej Enterprises Group 2025'], publish_date=None, title='Buy Conference Tables Online \u2013 Durable, Sleek & Functional | Godrej Godrej Interio')"
+    },
+    {
+      "title": "Conference Table in India - Dealers, Manufacturers & Suppliers - Justdial",
+      "url": "https://www.justdial.com/india/Conference-Table",
+      "excerpt": "WebSearchResult(url='https://www.justdial.com/india/Conference-Table', excerpts=[\"Conference Table in India\\nProducts Suppliers\\nSelect your city\\nYou have blocked Jdmart from\\ntracking your location.\\nTo use this, change your location\\nsetting in browser.\\nOk, Got it\\n    * Near Me\\n\\nAll Filters\\nNo Results found\\nShow More\\nShow More\\nAll Filters\\nReset\\nApply Filters\\nJustdial is India's premier online B2B marketplace, uniting buyers with dealers and suppliers on a single, all-inclusive platform. It's your one-stop solution, empowering Conference Table across India, irrespective of size or type, to spotlight their offerings, boost brand visibility, and generate leads, ultimately driving increased sales.\\nNo matter where your business falls on the spectrum, whether you're a wholesaler, retailer, SME, international corporation, large enterprise, franchise, startup, or even an individual on the verge of success, we are here to amplify your presence all across India. With Justdial, you can showcase and digitally market your product or service to a broader audience.\\nBenefits for Buyers\\n    * Connect with dealers and suppliers effortlessly\\n    * Get access to a wide range of products and services\\n    * Match and compare criteria and prices\\n    * Browse ratings and reviews for better insight\\n\\nBenefits for Dealers and Suppliers\\n    * Increase business visibility\\n    * Reach real and genuinely interested customers\\n    * Enhance brand value and credibility\\n    * Generate relevant and valid leads\\n\\nFollow us on\\nQuick Links\\n\\n\\nJd Verticals\\n\\n\\nCopyrights 2008-25. \\xa0All Rights Reserved. Privacy Terms Infringement Contact Us FAQs\\nFree Listing Advertise\"], publish_date=None, title='Conference Table in India - Dealers, Manufacturers & Suppliers - Justdial')"
+    },
+    {
+      "title": "Modular Conference Meeting Tables Furniture in India",
+      "url": "https://officecube.in/products/conference-meeting-tables/",
+      "excerpt": "WebSearchResult(url='https://officecube.in/products/conference-meeting-tables/', excerpts=['OfficeCube is a leading modular conference office furniture manufacturing company in India, Explore conference meeting tables to enhance your boardroom'], publish_date=None, title='Modular Conference Meeting Tables Furniture in India')"
+    },
+    {
+      "title": "Conference and Meeting Tables - Modular Office Conference Table Manufacturer from Manesar",
+      "url": "https://www.encoresystem.in/conference-and-meeting-tables.html",
+      "excerpt": "WebSearchResult(url='https://www.encoresystem.in/conference-and-meeting-tables.html', excerpts=['We supply **Conference and Meeting Tables** across **India** including **Gurgaon** **, Delhi NCR, Noida, Faridabad, Jaipur,** Ludhiana, Ambala, Chandigarh, Jalandhar, Jammu, Kashmir, Srinagar, Amritsar, Dehradun, Haridwar, Lucknow, Shimla, Allahabad, Mumbai, Shillong, Bengaluru, Chennai, Ahmedabad, Kanpur, Hyderabad etc.\\n\\n### Modular Office Conference Table\\n\\nGet Best Quote\\n\\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n*\\n\\nRequest Callback\\n\\n\u20b9 265000 / Set Get Latest Price\\n\\nProduct Brochure\\n\\n|Seating Capacity |10 Seater |\\n| --- | --- |\\n|Primary Material |Particle Board |\\n|Shape |Rectangular |\\n|Storage |Without Storage |\\n|Material |Pre-Laminated Particle Board |\\n|Brand |Encore Modular Furniture |\\n|Dimensions |3600\\\\*1200\\\\*750 MM |\\n|Warranty |1 Year |\\n|Colour |Natural Wood |\\n|Onsite Assembly provided |Yes |\\n|Application |Commercial Spaces,Corporates,Offices,Universities,Hospitals,Industries,Retail Sores |\\n|Usage/Application |Corporate Office |\\n|Country of Origin |Made in India |\\nMinimum order quantity: 1 Set\\n\\nWith experience of more than 3 decades, more than 200 products, Pan-India presence Encore Modular Furniture gives solution customized modular furniture. Our product range includes seating solutions, Conference and Meeting Room Tables, Tables, workstations & desking, storage solutions, educational furniture.  \\nWe manufacture tables with different range of designs, prices are also affordable.\\n\\nYes! I am interested\\n\\n### Conference Wooden Office Tables\\n\\nGet Best Quote\\n\\n* \\n*\\n\\nRequest Callback\\n\\n\u20b9 45000 / Set Get Latest Price\\n\\nProduct Brochure\\n\\n|Seating Capacity |8 Seater |\\n| --- | --- |\\n|Shape |Rectangular |\\n|Storage |Without Storage |\\n|Storage Type |Open Storage |\\n|Projector Facility |Yes |\\n|Warranty |1 Year |\\n|Suitable For |Conference Halls |\\n|Table Top Material |Engineered Wood |\\n|Brand |Encore Modular Funiture Pvt Ltd |\\n|Finish Type |Laminated |\\n|Onsite Assembly Provided |Yes |\\n|Delivery Charges |Yes |\\n|Table Height |2\\\\.5 Feet |\\n|Country of Origin |Made in India |\\n|Material |Particle Board |\\n\\nMinimum order quantity: 1 Set\\n\\n**Encore Modular Furniture Pvt. Ltd** has a pioneering legacy in offering **customised modular furniture solutions** and utility accessories since **1999\\\\.** All products are manufactured in-house completely. Our manufacturing plant has completely automatic machines, certified production processes with latest technology. For our quality and manufacturing we have received **ISO 9001, 14001 and 18001 certifications** .  \\nOur product range includes Tables, Seating Solutions, Storage Solutions, Workstations and Desking, Industrial Storage solutions Corporates, Commercial Spaces, Institutional Spaces, Industries.  \\nOur brand **Encore Prime Modular Furniture** offers solutions customised for your space and to fit your style.\\n\\nYes! I am interested\\n\\n### Rectangular Wooden Conference Table\\n\\nGet Best Quote\\n\\n* \\n* \\n*\\n\\nRequest Callback\\n\\n\u20b9 65000 / Piece Get Latest Price\\n\\nProduct Brochure\\n|Shape |Rectangular |\\n| --- | --- |\\n|Storage |Without Storage |\\n|Material |Pre-Laminated Particle Board |\\n|Brand |Encore Modular Furniture |\\n|Dimensions |3600\\\\*1200\\\\*750 mm |\\n|Material Type |Walnut, Teak Wood, Oak Wood |\\n|Suitable For |Conference Halls |\\n|Colour |Brown |\\n|Finish Type |Polished |\\n|Warranty |1 Year |\\n|Country of Origin |Made in India |\\n\\nMinimum order quantity: 1 Piece\\n\\nWe are amongst the famous manufacturer and service provider of the wide assortment of Furniture and Storage Racks. The features attributes of this range are like the attractive pattern and fine finishing.  \\nWe manufacture tables with different range of designs, prices are also affordable.\\n\\nYes! I am interested\\n\\n### Conference Room Table\\n\\nGet Best Quote\\n\\n* \\n* \\n*\\n\\nRequest Callback\\n\\n\u20b9 45000 / Piece Get Latest Price\\n\\nProduct Brochure\\n\\n|Shape |Rectangular |\\n| --- | --- |\\n|Storage |Without Storage |\\n|Brand |Encore Modular Furniture |\\n|Material |Wooden |\\n|No. Of Drawers |No Drawer |\\n|Warranty |1 Year |\\n|Suitable For |Conference Halls |\\n|Delivery Charges |Yes |\\n|Onsite Assembly provided |Yes |\\n|Table Height |750 mm |\\n|Country of Origin |Made in India |\\n|Base Material |Prelaminated particle board |\\n|Table Length |2400 mm |\\n|Table Width |1200 mm |\\n\\nMinimum order quantity: 10 Piece\\n\\nEncore Modular Furniture Pvt Ltd, Gurgaon is one of the leading manufacturers of modular furniture in North India. We offer customized modular furniture solutions for your requirements. Our range of tables includes Modular Conference Table, executive tables, coffee and side tables, conference tables, meeting tables, office tables, reception tables and cafeteria tables with different range of designs, prices.\\n\\nYes! I am interested\\n\\n### Modern Conference Room Table\\n\\nGet Best Quote\\n\\n* \\n* \\n*\\n\\nRequest Callback\\n\\nGet Latest Price\\n\\nProduct Brochure\\n\\n|Shape |Rectangular |\\n| --- | --- |\\n|Material |Metal |\\n|Projector Facility |No |\\n|Warranty |1 Year |\\n\\nMinimum order quantity: 1 Set'], publish_date=None, title='Conference and Meeting Tables - Modular Office Conference Table Manufacturer from Manesar')"
+    },
+    {
+      "title": "Conference Table - Office Conference Table Manufacturer from Bengaluru",
+      "url": "https://www.monsoonmodular.in/conference-table.html",
+      "excerpt": "WebSearchResult(url='https://www.monsoonmodular.in/conference-table.html', excerpts=['[](https://www.monsoonmodular.in/)\\n\\n[Monsoon Modular System Bengaluru, Karnataka GST No. **29AAVFM2463J1ZL**](https://www.monsoonmodular.in/)\\n\\nCall 08048989388 69% Response Rate\\n\\nSend Email\\n\\n* [Home](https://www.monsoonmodular.in/)\\n* \u00bb\\n* Products & Services\\n* \u00bb\\n* Conference Table\\n\\n# Conference Table\\n\\nManufacturer of a wide range of products which include office conference table, conference meeting table and conference room table.\\n\\n## Office Conference Table\\n\\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n* \\n*\\n\\nGet Best Quote\\n\\nProduct Price: Rs 24,500 / Piece Get Best Price\\n\\nMinimum Order Quantity: 05 Piece\\n\\nProduct Details:\\n\\n|Brand |Monsoon |\\n| --- | --- |\\n|Material |Wooden |\\n|Color |White |\\n|Warranty |5 Year |\\n|Shape |Square |\\n\\nmeterial:25mm PLPB/Ply Wood With Laminated Finish With 2mm PVC Edge banded tape Bottom 18mm PLPB/Ply Wood Finish With Popup Box For Electrical and Net Work Points for Table  \\n  \\n**Additional Information:**\\n\\n* **Production Capacity:** 150 per day\\n* **Delivery Time:** 5 days\\n\\nYes! I am Interested Request A Callback\\n\\n## Conference Meeting Table\\n\\n* \\n* \\n* \\n* \\n* \\n* \\n*\\n\\nGet Best Quote\\n\\nProduct Price: Rs 5,500 / Piece Get Best Price\\n\\nMinimum Order Quantity: 10 Piece\\n\\nProduct Details:\\n\\n|Brand |Monsoon |\\n| --- | --- |\\n|Material |Wooden |\\n|Color |White |\\n|Warranty |5 Year |\\n|Shape |Round |\\n|Seating Capacity |4 person-6 person |\\n\\nMaterial PLPB 25mm With Edge Banded tape with Modular Hardwares & Fittings. With Flip Top For Projector,Laptop Data Network points,\\n\\nYes! I am Interested Request A Callback\\n\\n## Conference Room Table\\n\\n* \\n* \\n*\\n\\nGet Best Quote\\n\\nProduct Price: Rs 9,500 / Unit Get Best Price\\n\\nProduct Details:\\n\\n|Shape |Rectangular |\\n| --- | --- |\\n|Seating Capacity |6 Seater |\\n|Color |White |\\n|Material |Wooden |\\n|Brand |Monsoon |\\n|Storage / Drawers |Yes |\\n|Warranty |1 Year |\\n**Monsoon Modular System** , began its operations in the year **2012** , as one of the leading **Manufacturers** and **Suppliers** of this highly commendable and wide range of **Laboratory Workstation, Office Workstation, Office Table, Modular Kitchen, Table Tops, Conference Table, Antistatic Wrist Strap, Storage Cabinet** , makes up this highly commendable range\\n\\nYes! I am Interested Request A Callback\\n\\nContact Us\\n\\nMr. Ms. Mrs. Dr.\\n\\nPlease enter description\\n\\nMonsoon Modular System\\n\\nContact Person Manjunath Reddy (Partner)\\n\\n[Address Monsoon Modular System 166/9 chikkabegur industrial area, behind Aecs layout b block, Singasandra, Bengaluru - 560068, Karnataka, India](https://maps.google.com?q=12.87990000,77.63939000) [Get Directions](https://maps.google.com?q=12.87990000,77.63939000)\\n\\nCall Us 8048989388 Call Response Rate: 69%\\n\\nSend SMS\\n\\nSend Email\\n\\nCompany Profile\\n\\n* [Home](https://www.monsoonmodular.in/)\\n* Profile\\n* Products & Services\\n* Contact Us\\n* Sitemap\\n\\nShare Us [](https://www.\\nfacebook.com/sharer.php?u=https://www.monsoonmodular.in/) [](https://twitter.com/share?url=https://www.monsoonmodular.in/&text=Monsoon Modular System) [](https://www.linkedin.com/cws/share?url=https://www.monsoonmodular.in/)\\n\\n\u00a9 Monsoon Modular System. All Rights Reserved ( [Terms of Use](https://www.indiamart.com/terms-of-use.html) ) Developed and managed by [IndiaMART InterMESH Ltd.](https://corporate.indiamart.com)\\n\\n[](https://www.indiamart.com)\\n\\nX'], publish_date=None, title='Conference Table - Office Conference Table Manufacturer from Bengaluru')"
+    }
+  ],
+  "count": 10
+}
+
+
+
+=== TOOL RESULTS (Turn 8) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(input_type_audit) ---
+---
+# input-type-audit
+
+## What this skill is for
+  Use this skill to evaluate or correct the input_type of specs based purelyon the
+  spec name and its existing option values — no data sources needed. Triggers: "wrong
+  input type", "radio vs multi_select", "should this be text_type", or whenever options
+  look mismatched with their input type.
+---
+
+
+## The three types
+Understanding *why* each type exists is essential to making correct decisions.
+
+
+### `radio_button`
+**One and only one value applies to a given product at a time.**
+
+
+The values are mutually exclusive by the physical or technical nature of the attribute.
+A buyer filtering by one value correctly excludes all products with a different value.
+
+
+Examples where `radio_button` is correct:
+- Phase (Single Phase / Three Phase) — a motor cannot be both
+- Voltage Rating (12 V / 24 V / 230 V) — a device has one rated voltage
+- Material (MS / GI / Stainless Steel) — a pipe is made of one material
+- Drive Type (Corded / Cordless) — a tool is one or the other
+- IS Standard (IS 694 / IS 1554) — a product conforms to one standard
+
+
+### `multi_select`
+**Multiple values can simultaneously and legitimately describe the same product.**
+
+
+A buyer selecting two values in a multi_select filter correctly retrieves products that
+match either value. A seller legitimately selects more than one option for a single
+listing.
+
+
+Examples where `multi_select` is correct:
+- Compatible Applications (Domestic / Industrial / Commercial) — a wire can be sold into all three markets
+-  Certifications (ISI / CE / RoHS) — a product can carry all three marks
+- Compatible Accessory Types (Drill Bits / Screwdriver Bits / Hole Saws) — a drill accepts multiple accessory families
+- Suitable For (Indoor / Outdoor / Underground) — a cable can be rated for multiple
+  installation environments
+
+
+### `text_type`
+**The value is free-form, unique per SKU, or has no stable, enumerable set of values.**
+
+
+There is no finite list of options that meaningfully covers the real distribution.
+Sellers need to type the value rather than select from a list. A buyer cannot usefully
+filter by this spec — it is for display and comparison only.
+
+
+Examples where `text_type` is correct:
+- Model Number — every SKU has a unique identifier
+- Catalogue Reference — brand-specific code with no standard pattern
+
+
+---
+
+
+## The two questions that decide the type
+
+
+**1. Can a single product have two of these values at the same time?**
+- No → `radio_button` (or `text_type` if free-form)
+- Yes → `multi_select`
+
+
+**2. Do the existing options form a finite, stable set?**
+- Yes → `radio_button` or `multi_select`
+- No / options are codes, identifiers, or continuous measures → `text_type`
+
+
+---
+
+
+## Platform rule — "Other" option on primary and secondary specs
+
+
+All `radio_button` and `multi_select` specs in the **primary and secondary tiers** have an
+"Other" button that lets sellers enter a custom value not in the list. This means:
+
+
+- **Do not assign `text_type` to a primary or secondary spec just because its option list
+  is incomplete.** The "Other" button covers edge cases.
+- Only use `text_type` for primary/secondary specs when the value is genuinely free-form — not simply because some values are missing.
+
+
+
+---
+
+
+## Decision rules — stop at first match
+
+
+| Rule | Condition | Action |
+|------|-----------|--------|
+| 1 → `text_type` | Options are model numbers, codes, or identifiers; or values are continuous / unique per SKU; or fewer than 2 standard values exist | Set `text_type`, clear options to `[]` |
+| 2 → `radio_button` | Values are mutually exclusive and options form a finite set | Set `radio_button` |
+| 3 → `multi_select` | Multiple values can apply to one product and options form a finite set | Set `multi_select` |
+| 4 → Keep | Current type is correct per the above | No change |
+
+
+---
+
+
+## Common misclassifications
+
+
+| Spec | Wrong type | Correct type | Why |
+|------|-----------|--------------|-----|
+| Application / Suitable For / Usage | `radio_button` | `multi_select` | One product serves multiple uses |
+| Certifications, IS Standards | `radio_button` | `multi_select` | Products carry multiple marks |
+| Phase, Voltage Rating, Insulation Class | `multi_select` | `radio_button` | One fixed value per SKU |
+| Model Number, Part Number, Catalogue Code | `radio_button` | `text_type` | Unique per SKU, not enumerable |
+
+---
+
+
+
+
+=== TOOL RESULTS (Turn 9) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: FETCH_Spec Fill Rate ---
+[
+  {
+    "spec_name": "Seating Capacity",
+    "spec_fill_rate": "58.7",
+    "product_count": "74"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_fill_rate": "53.2",
+    "product_count": "67"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_fill_rate": "52.4",
+    "product_count": "66"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_fill_rate": "44.4",
+    "product_count": "56"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "44.4",
+    "product_count": "56"
+  },
+  {
+    "spec_name": "Features",
+    "spec_fill_rate": "41.3",
+    "product_count": "52"
+  },
+  {
+    "spec_name": "Frame Material",
+    "spec_fill_rate": "34.1",
+    "product_count": "43"
+  },
+  {
+    "spec_name": "Top Thickness",
+    "spec_fill_rate": "33.3",
+    "product_count": "42"
+  },
+  {
+    "spec_name": "Top Finish",
+    "spec_fill_rate": "28.6",
+    "product_count": "36"
+  },
+  {
+    "spec_name": "Table Type",
+    "spec_fill_rate": "2.4",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Color",
+    "spec_fill_rate": "2.4",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Storage Type",
+    "spec_fill_rate": "2.4",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_fill_rate": "1.6",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Primary Material",
+    "spec_fill_rate": "1.6",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_fill_rate": "1.6",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Furniture Type",
+    "spec_fill_rate": "1.6",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Tabletop Thickness",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Wire Management",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Leg Material",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Table Length",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Storage",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Workstation Layout",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Base Material",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Tabletop Material",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Table Shape",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Height Adjustable",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_fill_rate": "0.8",
+    "product_count": "1"
+  }
+]
+
+
+
+=== TOOL RESULTS (Turn 10) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# spec_sequencing
+
+
+## What this skill is for
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+## The three signals you have and what they mean
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## Tier overflow — what to do when limits are breached
+
+**Primary overflow:** If more than 3 specs qualify for Primary, demote the weakest — lowest convergence, or an override tag present — to Secondary. If Secondary is also full, demote to Tertiary. Document the decision.
+
+**Secondary overflow:** If more than 3 specs qualify for Secondary, demote the weakest to Tertiary. Document the decision.
+
+One spec, one tier. No ties, no shared ranks.
+
+---
+
+
+
+
+=== TOOL RESULTS (Turn 11) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(critic) ---
+
+## What this skill is for
+
+Apply this document every time you propose a specific action during your Phase 1 investigation. Do not wait until the final report turn. 
+
+It provides the framework to challenge your own reasoning for each individual spec addition, removal, or re-tiering as it emerges from the data. Use it to avoid bias and ensure only strong, validated actions reach Phase 2.
+
+---
+
+## The critic's job
+
+Challenge proposed actions before they become final. Not to reject everything —
+to find what is weak, what is thin, and what could be wrong. A critic that
+approves everything has failed. A critic that rejects everything has also failed.
+The goal is calibrated skepticism: approve what is strong, flag what is thin,
+reject what is unsupported.
+
+---
+
+## Two modes — when to apply each
+
+**Per-action critique**
+Apply immediately after proposing each action. Challenge the single action in
+isolation before moving on.
+
+**Holistic review**
+Apply once after all individual actions have been proposed and critiqued. Review
+the complete action set as a whole for contradictions, missed gaps, and coherence.
+
+---
+
+## Per-action critique — what to check
+
+### Check 1: Evidence quality
+
+| Question | What makes it weak | What makes it strong |
+|----------|--------------------|----------------------|
+| How many independent sources support this? | 1 source only | 2+ sources converge |
+| How strong are the signal numbers? | 3 call mentions, 10 impressions | 90 call mentions, 5000 impressions |
+| Is there contradictory evidence? | Another source actively argues against it | All sources point the same direction |
+| Is the evidence the right type for this action? | ADD_SPEC based only on domain knowledge | ADD_SPEC backed by call data + search |
+
+### Check 2: Alternative explanations
+
+Every data pattern has multiple possible explanations. Articulate at least one:
+
+- High search volume → could be a CONTEXT_TERM, not a missing spec
+- Low fill rate → could be bad options, not an irrelevant spec
+- Zero call mentions → could be a spec buyers check in listings, not discussed verbally
+- Multiple sellers adding custom spec → could be one seller's duplicate listings
+
+The alternative does not have to be right — it must be plausible enough that
+it should have been addressed.
+
+### Check 3: Related signals not considered
+
+When an action targets one spec, check whether related attributes were examined:
+
+- Adding `Length` → Was `Width` also investigated? Dimensions are a family.
+- Adding options to `Finish` → Were the same values checked in `Color`?
+- Moving a spec up in tier → What gets displaced? Was the displaced spec evaluated?
+- Removing an option → Is there a niche segment that actually uses this value?
+
+### Check 4: When to execute a web search
+
+Execute a web search immediately — do not flag it for later — when:
+- The action relies solely on domain reasoning with no quantitative signal
+- Two internal sources conflict and platform data cannot resolve which is correct
+- An option value's canonical format is uncertain
+- A spec has high volume in one source but zero signal elsewhere
+
+### Check 5: Assign verdict
+
+**`approved`**
+Evidence is strong across multiple sources. Reasoning is sound. No significant
+alternative explanation undermines the action. Proceed.
+
+**`caution`**
+Evidence exists but is thin — single source, low volume, or domain-only reasoning.
+Or the reasoning has a gap that was not addressed. Action can proceed but must be
+flagged as lower confidence. A suggested revision is required.
+
+**`reject`**
+Evidence does not support the action. Either: no quantitative data backs it,
+a strong alternative explanation was ignored, or the action contradicts other
+accepted actions. State what evidence would be needed to act on this in future.
+
+---
+
+## Per-action critique output
+
+Produce this after every proposed action:
+
+```
+Critic — [action type + spec name]
+Verdict: approved / caution / reject
+Challenge: [the strongest evidence gap or alternative explanation, citing
+signal numbers. If caution or reject: what evidence would change the verdict.]
+```
+
+Keep it tight — 2-3 sentences. The goal is a genuine challenge, not a
+comprehensive report. Scale depth to the impact of the action: a minor option
+addition needs less scrutiny than a full spec removal or tier restructuring.
+
+---
+
+## Heightened scrutiny — apply to destructive actions
+
+Destructive actions require stronger evidence than constructive ones:
+
+- `REMOVE_SPEC` — requires multi-source evidence. Domain reasoning alone is
+  insufficient. Zero signal across all sources is required, or strong evidence
+  that the spec is a duplicate or context term.
+- `REMOVE_OPTIONS` — requires zero signal across option fill rate, impressions,
+  and call data simultaneously.
+- `MERGE_SPECS` — requires clear evidence that both specs capture exactly the
+  same attribute with no information lost by merging.
+
+When reviewing a destructive action, explicitly state: "This is a destructive
+action. Evidence reviewed: [list sources checked]."
+
+---
+
+## Holistic review — what to check
+
+Apply this once after all individual actions are complete.
+
+### Check 1: Contradictions between accepted actions
+Do any accepted actions conflict with each other?
+- Adding a spec AND removing a spec that captures the same attribute
+- Moving a spec up in tier AND reducing its option list
+- Two specs promoted to Primary when combined they exceed the tier maximum
+
+### Check 2: Missed gaps
+Review all signals from the data sources and ask: is there anything the analysis
+noticed but never proposed an action for, and never classified as a Skipped Gap?
+
+### Check 3: Skipped gap justifications
+Check the Skipped Gaps list. For each:
+- Is the reason for skipping defensible?
+- Was the classification validated with data, or just assumed?
+- Should any skipped gap be reconsidered given other accepted actions?
+
+### Check 4: Overall coherence
+Does the final spec set make sense as a whole for how this product is actually
+bought and sold in Indian B2B? What is the biggest strength? What is the biggest
+remaining weakness?
+
+---
+
+## Holistic review output
+
+```
+Holistic Review
+Contradictions: [list any conflicting accepted actions, or "None"]
+Missed gaps: [any signals not acted on and not in Skipped Gaps, or "None"]
+Skipped gaps: [are the skipped gap justifications defensible, or should any be reconsidered]
+Overall: [one paragraph — coherence, strength, weakness, confidence in final output]
+```
+
+---
+
+## Calibration rules
+
+**Be specific, not vague**
+Wrong: "This seems weak."
+Right: "This action is based on search data alone (164 impressions) with zero
+call mentions and zero custom spec signal — single-source evidence at moderate volume."
+
+**Be evidence-based, not contrarian**
+Challenge based on data gaps and reasoning flaws. If the evidence is genuinely
+strong, approving is the right call.
+
+**Be proportional**
+A minor option addition with solid evidence does not need the same scrutiny as
+a full spec removal or complete resequencing.
+
+**Be constructive**
+Every `caution` or `reject` must include a suggested revision — a way to fix
+the problem, not just a complaint.
+
+
+
+
+
+
+=== VALIDATION REJECTION (Turn 12) ===
+### ❌ AUDIT GATE REJECTION
+
+Your report has been rejected because it violates the **PHASE-BASED AUDIT PROTOCOL**. You included citations for reasoning skills or web searches that were never physically executed. This is considered a critical accuracy failure.
+
+**Required Actions before Phase 2:**
+- Your report contains option-level changes but Option Fill Rate data was never fetched. Call [FETCH_Option Fill Rate] to see which options are actually being used before finalising changes.
+
+**Instructions:**
+1. Execute the missing [READ_SKILL] or [WEB_SEARCH] calls immediately.
+2. Process the results in your thinking.
+3. Fully recreate your 7-section report once Phase 1 is genuinely complete.
+
+=== TOOL RESULTS (Turn 13) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: FETCH_Option Fill Rate ---
+[
+  {
+    "spec_name": "Table Width",
+    "spec_option_name": "900 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_option_name": "Office",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Storage Availability",
+    "spec_option_name": "Without Storage",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Conference Table",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Table Shape",
+    "spec_option_name": "Oval",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Table Top Glass Type",
+    "spec_option_name": "Toughened Glass",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Thickness",
+    "spec_option_name": "6 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Room Type",
+    "spec_option_name": "Office",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Shipping Time",
+    "spec_option_name": "10-12 days",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Features",
+    "spec_option_name": "Full-Size Table Dual Color Combination of White & Black 25mm Thick",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Workstation Layout",
+    "spec_option_name": "Round Table",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Office, Corporate Office",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Primary Material",
+    "spec_option_name": "MDF",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage Area",
+    "spec_option_name": "Office",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Tabletop Thickness",
+    "spec_option_name": "25 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Table Height",
+    "spec_option_name": "750 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Sheet Size",
+    "spec_option_name": "2440\u00c3\u0083\u00e2\u0080\u0094760 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Shipping time",
+    "spec_option_name": "10-12 days",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Table Top Thickness",
+    "spec_option_name": "10 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Furniture Type",
+    "spec_option_name": "Conference Table",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Color Family",
+    "spec_option_name": "White",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Cubiclecraft",
+    "option_fill_rate": "95"
+  },
+  {
+    "spec_name": "Warranty",
+    "spec_option_name": "3 years",
+    "option_fill_rate": "94.1"
+  },
+  {
+    "spec_name": "Table Type",
+    "spec_option_name": "Conference Table",
+    "option_fill_rate": "85.7"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Modular",
+    "option_fill_rate": "76.9"
+  },
+  {
+    "spec_name": "Top Thickness",
+    "spec_option_name": "25 mm",
+    "option_fill_rate": "73.6"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_option_name": "Particle Board",
+    "option_fill_rate": "72.4"
+  },
+  {
+    "spec_name": "Storage Type",
+    "spec_option_name": "No Storage",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Tabletop Material",
+    "spec_option_name": "Wood",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Rectangular",
+    "option_fill_rate": "62.7"
+  },
+  {
+    "spec_name": "Top Finish",
+    "spec_option_name": "Wood Grain",
+    "option_fill_rate": "55.9"
+  },
+  {
+    "spec_name": "Frame Material",
+    "spec_option_name": "Particle Board",
+    "option_fill_rate": "54.5"
+  },
+  {
+    "spec_name": "Style",
+    "spec_option_name": "Modern",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Leg Material",
+    "spec_option_name": "Wood",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Wire Management",
+    "spec_option_name": "No",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Height Adjustable",
+    "spec_option_name": "No",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Style",
+    "spec_option_name": "Traditional",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Height Adjustable",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Wire Management",
+    "spec_option_name": "Yes",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Base Material",
+    "spec_option_name": "Engineered Wood",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Storage",
+    "spec_option_name": "Without Storage",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Leg Material",
+    "spec_option_name": "Metal",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Storage",
+    "spec_option_name": "With Storage",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "Metal Legs",
+    "option_fill_rate": "44.6"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Veneer",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Natural",
+    "option_fill_rate": "40"
+  },
+  {
+    "spec_name": "Product Feature",
+    "spec_option_name": "Single color particle board 25mm Thick",
+    "option_fill_rate": "38.5"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Wire Management",
+    "option_fill_rate": "36.6"
+  },
+  {
+    "spec_name": "Top Finish",
+    "spec_option_name": "White",
+    "option_fill_rate": "34.3"
+  },
+  {
+    "spec_name": "Frame Material",
+    "spec_option_name": "Mild Steel (MS)",
+    "option_fill_rate": "34.3"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "Panel Base",
+    "option_fill_rate": "33.7"
+  },
+  {
+    "spec_name": "Tabletop Material",
+    "spec_option_name": "Engineered Wood",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Storage Type",
+    "spec_option_name": "Open Shelf",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Table Length",
+    "spec_option_name": "3600 mm (12 ft)",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Table Length",
+    "spec_option_name": "900 mm",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Table Length",
+    "spec_option_name": "1200 mm (4 ft)",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Product Feature",
+    "spec_option_name": "Full-Size Table Dual Color Combination of Dark walnut & Black 25mm Thick",
+    "option_fill_rate": "30.8"
+  },
+  {
+    "spec_name": "Size",
+    "spec_option_name": "3600L x 120W cm",
+    "option_fill_rate": "27.8"
+  },
+  {
+    "spec_name": "Size",
+    "spec_option_name": "300L x 120W cm",
+    "option_fill_rate": "27.8"
+  },
+  {
+    "spec_name": "Base Material",
+    "spec_option_name": "Metal",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Base Material",
+    "spec_option_name": "Stainless Steel",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "8 Seater",
+    "option_fill_rate": "23.9"
+  },
+  {
+    "spec_name": "Product Feature",
+    "spec_option_name": "Full-Size Table Dual Color Combination of White & Black 25mm Thick",
+    "option_fill_rate": "23.1"
+  },
+  {
+    "spec_name": "Size",
+    "spec_option_name": "180L x 90W cm",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Size",
+    "spec_option_name": "240L x 120W cm",
+    "option_fill_rate": "22.2"
+  },
+  {
+    "spec_name": "Colour",
+    "spec_option_name": "White Night Grey",
+    "option_fill_rate": "21.1"
+  },
+  {
+    "spec_name": "Colour",
+    "spec_option_name": "White Black",
+    "option_fill_rate": "21.1"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Powder Coated",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Glossy",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Oak",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Black",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "White",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Finish",
+    "spec_option_name": "Polished",
+    "option_fill_rate": "20"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "6 Seater",
+    "option_fill_rate": "18.5"
+  },
+  {
+    "spec_name": "Colour",
+    "spec_option_name": "Frosty white",
+    "option_fill_rate": "15.8"
+  },
+  {
+    "spec_name": "Top Thickness",
+    "spec_option_name": "18 mm",
+    "option_fill_rate": "14.5"
+  },
+  {
+    "spec_name": "Table Type",
+    "spec_option_name": "Meeting Table",
+    "option_fill_rate": "14.3"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "10 Seater",
+    "option_fill_rate": "13.7"
+  },
+  {
+    "spec_name": "Colour",
+    "spec_option_name": "Carrara marble",
+    "option_fill_rate": "10.5"
+  },
+  {
+    "spec_name": "Colour",
+    "spec_option_name": "Dark walnut",
+    "option_fill_rate": "10.5"
+  },
+  {
+    "spec_name": "Colour",
+    "spec_option_name": "Dark Walnut",
+    "option_fill_rate": "10.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "12 Seater",
+    "option_fill_rate": "10.2"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "4 Seater",
+    "option_fill_rate": "9.8"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_option_name": "MDF",
+    "option_fill_rate": "9.4"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Round",
+    "option_fill_rate": "8.8"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "U-Shape",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Top Thickness",
+    "spec_option_name": "36 mm",
+    "option_fill_rate": "8.2"
+  },
+  {
+    "spec_name": "Product Feature",
+    "spec_option_name": "single color particle board 25mm Thick",
+    "option_fill_rate": "7.7"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_option_name": "Solid Wood",
+    "option_fill_rate": "7.3"
+  },
+  {
+    "spec_name": "Frame Material",
+    "spec_option_name": "MDF",
+    "option_fill_rate": "7.1"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "14 Seater",
+    "option_fill_rate": "6.8"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_option_name": "Wood Veneer",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Top Finish",
+    "spec_option_name": "Grey",
+    "option_fill_rate": "5.9"
+  },
+  {
+    "spec_name": "Warranty",
+    "spec_option_name": "3 Years",
+    "option_fill_rate": "5.9"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "14.7ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "11.75ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "8.2ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "6.85ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "7.55ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "8.70ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "8.15ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "15.25ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "10.75ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "9.55ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "16.75ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "8.75ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "13.7ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "16.52ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "12.7ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "6.75ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "10.95ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Length",
+    "spec_option_name": "8.60ft",
+    "option_fill_rate": "5.6"
+  },
+  {
+    "spec_name": "Colour",
+    "spec_option_name": "Frosty White",
+    "option_fill_rate": "5.3"
+  },
+  {
+    "spec_name": "Colour",
+    "spec_option_name": "Frosty white - Black",
+    "option_fill_rate": "5.3"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Boat",
+    "option_fill_rate": "5.2"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Oval",
+    "option_fill_rate": "5.2"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "The advent",
+    "option_fill_rate": "5"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Square",
+    "option_fill_rate": "4.7"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "16 Seater",
+    "option_fill_rate": "4.4"
+  },
+  {
+    "spec_name": "Frame Material",
+    "spec_option_name": "Stainless Steel",
+    "option_fill_rate": "4"
+  },
+  {
+    "spec_name": "Top Finish",
+    "spec_option_name": "Black",
+    "option_fill_rate": "3.9"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "With Wheels",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "Pedestal Base",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "A - type Metal leg White Powder Coating 50x50mm Thick Pipe.",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "wooden",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "18+ Seater",
+    "option_fill_rate": "2.4"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Foldable",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "Wooden Legs",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Top Thickness",
+    "spec_option_name": "50 mm",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Top Thickness",
+    "spec_option_name": "45 mm",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_option_name": "Glass",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "7 Seater",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "PLB Leg",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "A - type Metal leg Black Powder Coating 50x50mm Thick Pipe.",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "Plb leg",
+    "option_fill_rate": "1.2"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "2 Seater",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "MDF base",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "wood",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "Wooden",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "As per client Requirement",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "MDF",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "Wood",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "customize",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "Profiled Legs",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "STAINLESS STEEL",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "A - type Metal leg",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "PLB leg",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "Multi",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "Stainless Steel",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Leg Type",
+    "spec_option_name": "Solid Wood",
+    "option_fill_rate": "0.6"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "Modular",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "No seating capacity",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "18 Seater",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Multi",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "4",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Boat shape",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Any Shape",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "49 Seater",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "6",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "2 seater",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "6 to 8 Seater",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_option_name": "Wood",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Cylinder",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_option_name": "LaminateTop",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "L-Shape",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "as per the requirement",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "V Shape",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "all",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "all",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Trapezium",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "20 Seater",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "19 Seater",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "Customized / Oval",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_option_name": "Prelam Board",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Shape",
+    "spec_option_name": "All",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_option_name": "Wooden",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "5 Seater",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_option_name": "Concrete",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "All seating capacity available",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "As per Requirement",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Top Material",
+    "spec_option_name": "As per Requirement",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Seating Capacity",
+    "spec_option_name": "Multi",
+    "option_fill_rate": "0.5"
+  }
+]
+
+
+
+=== TOOL RESULTS (Turn 14) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# option_validator
+
+## What this skill is for
+
+Read this when you need to audit and correct the option list for any spec in a B2B category.
+It tells you how to first check whether the spec belongs in this category,
+then evaluate each existing option (keep, reject, or merge), identify new
+options to add, and apply structural fixes. You produce the validation output
+yourself using this reasoning framework.
+
+---
+
+## Step 0 — Check spec relevance before touching options
+
+Before auditing any option, ask: **does this spec belong in this category at all?**
+
+A spec can have filled options while being fundamentally wrong for the category.
+Cleaning its options would waste effort and leave a bad spec in place.
+
+Ask these two questions:
+
+**1. Does this spec describe a real property of products in this category?**
+- A `Color` spec on Perfume Oils is valid — oil color is a real property.
+- A `Gender` spec on Perfume Oils raw material is not — the formulator decides gender targeting for the finished product, not the oil supplier.
+- An `Application` spec on a raw chemical ingredient is valid — buyers need to know what the ingredient is for.
+
+**2. Do the options make sense for this specific spec in this category?**
+- `Form: Liquid` on Perfume Oils is absurd — every product in the category is a liquid. The option is implied by the category itself.
+- `Color: Red` on a Color spec for fabric is correct.
+- `Motor Type: Servo` on a Protein Powder spec is a type mismatch — wrong category entirely.
+
+**How to measure Step 0:**
+Use fill rate data as the primary signal here, since impressions and call data are only reliable once you are inside the spec. Calculate what share of filled listings use the most common single value. If 95%+ of products share the same value, or if all options show fill rate below 5%, the spec is a gate-fail candidate.
+
+**If spec relevance is in doubt:**
+- Flag it explicitly: *"Spec relevance questionable — [reason]. Recommend reviewing whether this spec should exist before auditing its options."*
+- Apply the `domain_expert` skill to validate relevance.
+- Use `[WEB_SEARCH]` if you cannot resolve doubt from domain knowledge alone.
+- Do not silently proceed with option cleaning on a potentially invalid spec.
+
+**Spec failure conditions — flag and stop if any apply:**
+- 95%+ of filled listings share the same value
+- All options have fill rate below 5% (sellers do not recognise the spec)
+- No impressions and no buyer call data across all options
+- Options fail category-spec fit across the board
+
+If any condition above is met, output: *"Spec structurally weak — recommend removal or redesign."* Do not proceed with option cleaning.
+
+**If spec is relevant:** proceed to Step 1.
+
+---
+
+## Step 1 — The three option-level signals you have
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+**Option Fill Rate (from Option Fill Rate Data)**
+Percentage of listings using this specific option value. High means sellers actually
+select this option. Low means sellers ignore it or cannot find it. This signal is
+noisy — low fill can reflect a bad UI or a missing option, not irrelevance.
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High means buyers
+actively look for this value. Low means buyers do not care about or cannot find it.
+
+**Option Product Count (from Buyer-Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High means discussed in actual transactions. This is the most reliable signal.
+
+**Signal priority when signals conflict: Buyer Calls > Search Impressions > Fill Rate.**
+
+**Signal thresholds:**
+
+| Signal        | Strong | Moderate | Weak |
+| ------------- | ------ | -------- | ---- |
+| Fill Rate     | ≥20%   | 5%–19%   | <5%  |
+| Impressions   | ≥5     | 3–4      | <3   |
+| Product Count | ≥10    | 3–9      | <3   |
+
+---
+
+## Step 2 — Audit existing options
+
+Apply these rules in strict priority order. Stop at the first matching rule.
+
+### Rule 1 — CATEGORY-SPEC MISMATCH (highest priority, no exceptions)
+
+Reject immediately if the option value does not make sense for this spec in
+this category — regardless of fill rate or any signal data.
+
+Signal data cannot rehabilitate a mismatched option. High fill rate on a wrong
+option only means sellers are selecting it because no correct option exists.
+Remove it and add the correct value instead.
+
+Reject if the option is:
+- **Type mismatch** — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a color value (e.g. `Red`) under a Size spec; a weight under a Brand spec; a brand name under a Color spec
+- **Implied by category** — the option describes what every product in the category already is (e.g. `Form: Liquid` in Perfume Oils; `Type: Servo` in AC Servo Motor). Reject only when 95%+ of products share this value AND it is inherent to the category definition, not a coincidental majority.
+- **Wrong category entirely** — the option belongs to a different category (e.g. `Motor Type: Servo` appearing under a Protein Powder spec)
+- **Brand leakage** — a brand name appearing under a non-Brand spec (e.g. `Tata Steel` under Material; `Bosch Blue` under Color)
+
+### Rule 2 — ABSURD OPTIONS
+
+Reject immediately regardless of signals:
+- Junk or gibberish — `asdf`, `xxx`, `123abc`, `multimedia speaker`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`, `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+### Rule 3 — STRONG SIGNAL → KEEP
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+### Rule 4 — MODERATE SINGLE SIGNAL → KEEP
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+**When signals are ambiguous** — fill rate 5%–19% with no impressions and no call
+data, or impressions of 3–4 with no other signal — do not auto-keep or auto-reject.
+Flag the option for human review: *"Uncertain — insufficient signal, requires review."*
+
+### Rule 5 — SEMANTIC OVERLAP
+
+When two options represent the same concept in different words, keep the most
+standard B2B industry term and reject the vague or marketing variant.
+
+Examples:
+- `Heavy Duty` / `Industrial` / `Commercial` → keep `Industrial` (most standard B2B term)
+- `Food Grade` / `Food Safe` / `FSSAI Approved` → keep `FSSAI Approved` (regulatory standard)
+
+Document which term was kept and why so the decision is auditable.
+
+### Rule 6 — MERGE DUPLICATES
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- If two formats have equal standing, prefer the one with the higher product count
+- The merge target must already exist in the option list or be created as a new canonical option
+- After merging, the absorbed option is removed; the canonical form is kept
+
+---
+
+## Step 3 — Add new options from your data
+
+Beyond auditing existing options, identify values from your data that should be
+added but are missing from the current option list.
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Seller Specs) not in current options
+
+Every candidate new option must pass all of these before you add it:
+
+| Check | Requirement |
+|-------|-------------|
+| Category-spec fit | Value makes sense for this spec in this specific category |
+| Type match | Value is the correct type for this spec (not a mismatch) |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+**When uncertain about a candidate option:**
+Use domain knowledge first. If still unresolved, validate against a trusted external
+source — BIS (Bureau of Indian Standards) for Indian market standards, ISO for
+internationally standardised specs, or industry trade catalogs such as IndiaMart
+category listings or manufacturer datasheets. Use `[WEB_SEARCH]` to reach these
+sources. Apply the `domain_expert` skill to interpret what you find. Do not add an
+option you cannot validate.
+
+---
+
+## Step 4 — Fix structural problems
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+**Numeric explosion**
+More than 15 distinct numeric options. Convert to ranges for continuous values,
+or change the spec to `text_type` if values are too varied to band cleanly.
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+Example: `< 0.5 kg`, `0.5–1 kg`, `1–5 kg`, `> 5 kg`.
+
+**Too many options**
+More than 25 options after cleaning. Consolidate into groups or convert to ranges
+or `text_type`.
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant standard values → change to `text_type` with empty options list
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+---
+
+## What low option fill rate actually means — do not auto-reject
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+To distinguish a niche-but-valid option from a wrong one: if the option represents
+a real product property that exists in the Indian B2B market and can be verified
+through domain knowledge or an external source, keep it. If it is vague, cannot
+be verified, or does not describe a real product attribute, reject it.
+
+---
+
+## Formatting rules — apply when adding or correcting options
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first, then alphabetical | Alphabetical only |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+---
+
+

@@ -1,0 +1,139 @@
+{
+  "pmcat_id": 6711,
+  "pmcat_name": "Dried Chillies & Pepper",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Dry Red Chilli",
+      "mcat_id": 12018,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Variety",
+              "options": [
+                "Teja (S17)",
+                "Sannam (S4 / 334)",
+                "Byadgi",
+                "Guntur",
+                "Kashmiri",
+                "273 Wrinkle",
+                "341",
+                "5531",
+                "2043",
+                "Endo 5 (No. 5)",
+                "DD (Devanur)",
+                "Super 10 (S10)",
+                "Mundu (S9)",
+                "Wonder Hot",
+                "Bhut Jolokia",
+                "Reshampatti",
+                "Longi"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Grade",
+              "options": [
+                "Super Deluxe",
+                "Deluxe",
+                "Best",
+                "Medium",
+                "FAQ (Standard)",
+                "Export Quality",
+                "Fatki (Broken)"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Stem Presence",
+              "options": [
+                "With Stem",
+                "Without Stem"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Drying Process",
+              "options": [
+                "Sun Dried",
+                "Machine Dried",
+                "Air Dried"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Crop Year",
+              "options": [
+                "Current Year Crop",
+                "Last Year Crop",
+                "Mixed Crop"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Pungency (SHU)",
+              "options": [
+                "Above 75,000 SHU",
+                "50,000 - 75,000 SHU",
+                "30,000 - 50,000 SHU",
+                "15,000 - 30,000 SHU",
+                "Below 15,000 SHU"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Color (ASTA)",
+              "options": [
+                "Above 120 ASTA",
+                "100 - 120 ASTA",
+                "80 - 100 ASTA",
+                "60 - 80 ASTA",
+                "Below 60 ASTA"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Moisture Content",
+              "options": [
+                "Below 10%",
+                "10 - 12%",
+                "Above 12%"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Packaging Type",
+              "options": [
+                "Jute Bag",
+                "PP Bag",
+                "HDPE Bag",
+                "Carton Box"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Origin",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Shelf Life",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

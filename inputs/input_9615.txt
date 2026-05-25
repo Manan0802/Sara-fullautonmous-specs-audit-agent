@@ -1,0 +1,3789 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 9615
+category_name: Liquid Toilet Cleaners
+seller_specs (current spec sheet): {
+  "category_name": "Liquid Toilet Cleaners",
+  "mcat_id": 9615,
+  "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Brand",
+          "options": [
+            "Harpic",
+            "Domex",
+            "Sanifresh",
+            "Patanjali",
+            "Lizol",
+            "Diversey",
+            "Taski",
+            "Local Brand",
+            "Premium Brand",
+            "Eco Brand"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Pack Size",
+          "options": [
+            "250 ml",
+            "500 ml",
+            "750 ml",
+            "1 L",
+            "2 L",
+            "5 L",
+            "10 L",
+            "20 L",
+            "50 L",
+            "200 L"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Usage Level",
+          "options": [
+            "Ready To Use",
+            "Concentrate"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Form",
+          "options": [
+            "Liquid",
+            "Gel",
+            "Thick Liquid"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Suitability",
+          "options": [
+            "Indian Toilet",
+            "Western Toilet",
+            "Porcelain",
+            "Ceramic",
+            "Stainless Steel",
+            "Septic Tank Safe"
+          ],
+          "input_type": "multi_select"
+        },
+        {
+          "spec_name": "Fragrance",
+          "options": [
+            "Lemon",
+            "Rose",
+            "Pine",
+            "Floral",
+            "Fresh",
+            "Jasmine",
+            "Lavender",
+            "Ocean",
+            "Herbal",
+            "Unscented"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Application",
+          "options": [
+            "Toilet Bowl",
+            "Under Rim",
+            "Urinal",
+            "Wash Basin"
+          ],
+          "input_type": "multi_select"
+        },
+        {
+          "spec_name": "Feature",
+          "options": [
+            "Disinfectant",
+            "Stain Removal",
+            "Limescale Removal",
+            "Thick Formula",
+            "Fragrance Boost",
+            "Eco Friendly"
+          ],
+          "input_type": "multi_select"
+        },
+        {
+          "spec_name": "pH Level",
+          "options": [
+            "Acidic",
+            "Neutral",
+            "Alkaline"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 14 specs) ---
+[
+  {
+    "spec_name": "Net Volume/Weight",
+    "total_product_count": 120,
+    "example_values": [
+      "0.5 L",
+      "1 L",
+      "1 kg",
+      "2 L",
+      "2.9 L"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 102,
+    "example_values": [
+      "Branded",
+      "Custom Branding / Private Labeling",
+      "Dabur",
+      "Diversey",
+      "Doctor"
+    ]
+  },
+  {
+    "spec_name": "Packaging Type",
+    "total_product_count": 38,
+    "example_values": [
+      "72 pieces per carton",
+      "Bottle",
+      "Can",
+      "Carton",
+      "Case"
+    ]
+  },
+  {
+    "spec_name": "Physical Form",
+    "total_product_count": 33,
+    "example_values": [
+      "Concentrate",
+      "Liquid",
+      "Ready to use"
+    ]
+  },
+  {
+    "spec_name": "Product Variant/Series",
+    "total_product_count": 17,
+    "example_values": [
+      "10 Max",
+      "10 Max Pro",
+      "Blue",
+      "Bold",
+      "Harpic style"
+    ]
+  },
+  {
+    "spec_name": "Product Quality/Grade",
+    "total_product_count": 14,
+    "example_values": [
+      "28 56",
+      "D",
+      "Economy",
+      "Harpic Compatible",
+      "High Quality"
+    ]
+  },
+  {
+    "spec_name": "Packaging Configuration",
+    "total_product_count": 8,
+    "example_values": [
+      "16 pcs",
+      "2 Pieces",
+      "24 pcs",
+      "28 Pieces",
+      "4 Pieces"
+    ]
+  },
+  {
+    "spec_name": "Product Type",
+    "total_product_count": 7,
+    "example_values": [
+      "Housekeeping",
+      "Phenyl Type",
+      "Pine Oil",
+      "Ready-made",
+      "Toilet Cleaner"
+    ]
+  },
+  {
+    "spec_name": "Price/MRP",
+    "total_product_count": 6,
+    "example_values": [
+      "115 INR",
+      "225 INR",
+      "235 INR",
+      "60 INR",
+      "895 INR"
+    ]
+  },
+  {
+    "spec_name": "Product Chemistry Type",
+    "total_product_count": 5,
+    "example_values": [
+      "Acidic",
+      "Harpic Type",
+      "Toilet Bowl Cleaner"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 4,
+    "example_values": [
+      "Office Cleaning",
+      "To use or check",
+      "Toilet Cleaning"
+    ]
+  },
+  {
+    "spec_name": "Liquid Color",
+    "total_product_count": 4,
+    "example_values": [
+      "Blue",
+      "White",
+      "Yellow"
+    ]
+  },
+  {
+    "spec_name": "Consistency",
+    "total_product_count": 3,
+    "example_values": [
+      "Thick"
+    ]
+  },
+  {
+    "spec_name": "Fragrance",
+    "total_product_count": 3,
+    "example_values": [
+      "Domex Scent",
+      "Floral",
+      "Unfragranced"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 1 specs) ---
+[
+  {
+    "spec_name": "Color",
+    "count": 6,
+    "options": [
+      "Green",
+      "Blue",
+      "Yellow"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 4 specs) ---
+[
+  {
+    "spec_name": "form",
+    "total_impressions": 3503,
+    "options": [
+      "cream",
+      "gel",
+      "liquid",
+      "spray"
+    ]
+  },
+  {
+    "spec_name": "brand",
+    "total_impressions": 1689,
+    "options": [
+      "aqua care",
+      "beyond",
+      "cleanzo",
+      "gainda",
+      "go go"
+    ]
+  },
+  {
+    "spec_name": "packaging size",
+    "total_impressions": 568,
+    "options": [
+      "5 litre",
+      "5 ltr",
+      "500 ml"
+    ]
+  },
+  {
+    "spec_name": "usage",
+    "total_impressions": 192,
+    "options": [
+      "toilet",
+      "toilet bowl cleaner",
+      "toilet cleaning",
+      "toilet tank cleaner"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (41 specs) ---
+[
+  {
+    "spec_name": "Pack Size",
+    "spec_fill_rate": "72.6",
+    "product_count": "61"
+  },
+  {
+    "spec_name": "Form",
+    "spec_fill_rate": "70.2",
+    "product_count": "59"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "65.5",
+    "product_count": "55"
+  },
+  {
+    "spec_name": "Usage Level",
+    "spec_fill_rate": "54.8",
+    "product_count": "46"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_fill_rate": "54.8",
+    "product_count": "46"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_fill_rate": "52.4",
+    "product_count": "44"
+  },
+  {
+    "spec_name": "Application",
+    "spec_fill_rate": "33.3",
+    "product_count": "28"
+  },
+  {
+    "spec_name": "Feature",
+    "spec_fill_rate": "32.1",
+    "product_count": "27"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "31",
+    "product_count": "26"
+  },
+  {
+    "spec_name": "pH Level",
+    "spec_fill_rate": "27.4",
+    "product_count": "23"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_fill_rate": "20.2",
+    "product_count": "17"
+  },
+  {
+    "spec_name": "Recommended Surface",
+    "spec_fill_rate": "19",
+    "product_count": "16"
+  },
+  {
+    "spec_name": "Cleaner Type",
+    "spec_fill_rate": "19",
+    "product_count": "16"
+  },
+  {
+    "spec_name": "Physical Form",
+    "spec_fill_rate": "15.5",
+    "product_count": "13"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_fill_rate": "15.5",
+    "product_count": "13"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_fill_rate": "3.6",
+    "product_count": "3"
+  },
+  {
+    "spec_name": "Application Area",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Product Code",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Marketed By",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Color",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Manufactured By",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Batch No",
+    "spec_fill_rate": "2.4",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Model Number",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Pack Type",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Variant",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "550",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Recyclable",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Finish Type",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Material",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Seal Type",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "50 lit can",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Application Use",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_fill_rate": "1.2",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (316 rows) ---
+[
+  {
+    "spec_name": "Concentration",
+    "spec_option_name": "20%",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage",
+    "spec_option_name": "Toilet Cleaner",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Material",
+    "spec_option_name": "HDPE",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Capacity",
+    "spec_option_name": "500 ml",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "50 lit can",
+    "spec_option_name": "50 liter can",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Brand Name",
+    "spec_option_name": "Happy Care",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Manufactured By",
+    "spec_option_name": "JC Group",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Usage / Application",
+    "spec_option_name": "Toilet Bowl Cleaning",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Recommended Dilution",
+    "spec_option_name": "20-50 ml/L",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Acid Type",
+    "spec_option_name": "Hydrochloric Acid",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Bottle Shape",
+    "spec_option_name": "Angled Neck",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Physical State",
+    "spec_option_name": "Liquid",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application Use",
+    "spec_option_name": "Concrete Admixture",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "550",
+    "spec_option_name": "3 inchi",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Marketed By",
+    "spec_option_name": "Janki Chemical India Online Market",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Code",
+    "spec_option_name": "Taski R6",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Type",
+    "spec_option_name": "Bathroom & Tile Cleaner",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Finish Type",
+    "spec_option_name": "Glossy",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Recommended For",
+    "spec_option_name": "Ceramic Surface",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Features",
+    "spec_option_name": "Ready to Use",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Seal Type",
+    "spec_option_name": "No Seal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Model",
+    "spec_option_name": "R6",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application Area",
+    "spec_option_name": "Toilet Bowl",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Recyclable",
+    "spec_option_name": "No",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Batch No",
+    "spec_option_name": "08 JC -0024",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Brand",
+    "spec_option_name": "One Swipe",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "We have all type clinic product please contact us",
+    "spec_option_name": "250ml to 5 ltr",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Net Quantity",
+    "spec_option_name": "500ml",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Model Number",
+    "spec_option_name": "FCSF0103",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Toilet Bowl",
+    "option_fill_rate": "96.2"
+  },
+  {
+    "spec_name": "Recommended Surface",
+    "spec_option_name": "Toilet Bowl",
+    "option_fill_rate": "95.8"
+  },
+  {
+    "spec_name": "Usage Level",
+    "spec_option_name": "Ready To Use",
+    "option_fill_rate": "94.5"
+  },
+  {
+    "spec_name": "Physical Form",
+    "spec_option_name": "Liquid",
+    "option_fill_rate": "88.5"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "Indian Toilet",
+    "option_fill_rate": "86.6"
+  },
+  {
+    "spec_name": "Chemical Base",
+    "spec_option_name": "Acidic",
+    "option_fill_rate": "81.3"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "Western Toilet",
+    "option_fill_rate": "79.1"
+  },
+  {
+    "spec_name": "Feature",
+    "spec_option_name": "Disinfectant",
+    "option_fill_rate": "76.9"
+  },
+  {
+    "spec_name": "Recommended For",
+    "spec_option_name": "Toilet Bowl",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Pack Type",
+    "spec_option_name": "Bottle",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Recommended For",
+    "spec_option_name": "Tiles & Grout",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Recommended For",
+    "spec_option_name": "Urinal",
+    "option_fill_rate": "75"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "Kills 99.9% Germs",
+    "option_fill_rate": "74.5"
+  },
+  {
+    "spec_name": "pH Level",
+    "spec_option_name": "Acidic",
+    "option_fill_rate": "72.1"
+  },
+  {
+    "spec_name": "Feature",
+    "spec_option_name": "Stain Removal",
+    "option_fill_rate": "71.8"
+  },
+  {
+    "spec_name": "Cleaner Type",
+    "spec_option_name": "Acidic",
+    "option_fill_rate": "69.7"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Mall",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Airport",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Technical Grade",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Hospital",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Hotel",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Office",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "24 Month",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Industrial",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Housekeeping",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "Thick Formula",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Bottle",
+    "option_fill_rate": "64.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Urinal",
+    "option_fill_rate": "58.2"
+  },
+  {
+    "spec_name": "Feature",
+    "spec_option_name": "Thick Formula",
+    "option_fill_rate": "53.8"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "Removes Limescale",
+    "option_fill_rate": "52.9"
+  },
+  {
+    "spec_name": "Recommended Surface",
+    "spec_option_name": "Urinal",
+    "option_fill_rate": "52.1"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "Stain Removal",
+    "option_fill_rate": "51"
+  },
+  {
+    "spec_name": "Application Area",
+    "spec_option_name": "Urinal",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "Made in India",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Blue",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Variant",
+    "spec_option_name": "Power Plus",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Country of Origin",
+    "spec_option_name": "India",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Variant",
+    "spec_option_name": "Original",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Liquid",
+    "option_fill_rate": "49.8"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Under Rim",
+    "option_fill_rate": "45.6"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "Eco-Friendly",
+    "option_fill_rate": "41.2"
+  },
+  {
+    "spec_name": "Feature",
+    "spec_option_name": "Limescale Removal",
+    "option_fill_rate": "41"
+  },
+  {
+    "spec_name": "Recommended Surface",
+    "spec_option_name": "Bathroom Tiles",
+    "option_fill_rate": "40.8"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "Hard Water Formula",
+    "option_fill_rate": "37.3"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "Ceramic",
+    "option_fill_rate": "36.6"
+  },
+  {
+    "spec_name": "Feature",
+    "spec_option_name": "Eco Friendly",
+    "option_fill_rate": "35.9"
+  },
+  {
+    "spec_name": "Recommended Surface",
+    "spec_option_name": "Wash Basin",
+    "option_fill_rate": "35.2"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Stainless Steel",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Granite",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Marble",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "225 ml",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Shelf Life",
+    "spec_option_name": "24 Months",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Suitable For",
+    "spec_option_name": "Concrete",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Grade",
+    "spec_option_name": "Cleaning domestic",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "5KG",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Packaging Size",
+    "spec_option_name": "5 ltr",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Bathroom Floor",
+    "option_fill_rate": "32.9"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "Porcelain",
+    "option_fill_rate": "32.1"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "500 ml",
+    "option_fill_rate": "31"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Fresh",
+    "option_fill_rate": "30.1"
+  },
+  {
+    "spec_name": "Recommended Surface",
+    "spec_option_name": "Multi-Surface",
+    "option_fill_rate": "29.6"
+  },
+  {
+    "spec_name": "Feature",
+    "spec_option_name": "Fragrance Boost",
+    "option_fill_rate": "28.2"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Wash Basin",
+    "option_fill_rate": "27.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "5 L",
+    "option_fill_rate": "27.5"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Ready to Use",
+    "option_fill_rate": "27.1"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Yellow",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Pack Type",
+    "spec_option_name": "Can",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Recommended For",
+    "spec_option_name": "bathroom fitings",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Color",
+    "spec_option_name": "Light Yellow",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "pH Level",
+    "spec_option_name": "Neutral",
+    "option_fill_rate": "24.6"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Wall Tiles",
+    "option_fill_rate": "24.1"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "Septic Tank Safe",
+    "option_fill_rate": "22.4"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "Stainless Steel",
+    "option_fill_rate": "21.6"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "1 L",
+    "option_fill_rate": "21.2"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "Biodegradable",
+    "option_fill_rate": "19.6"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Can",
+    "option_fill_rate": "19.6"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Lemon",
+    "option_fill_rate": "19.6"
+  },
+  {
+    "spec_name": "Cleaner Type",
+    "spec_option_name": "Neutral",
+    "option_fill_rate": "18.2"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Unscented",
+    "option_fill_rate": "13.1"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Floral",
+    "option_fill_rate": "13.1"
+  },
+  {
+    "spec_name": "Chemical Base",
+    "spec_option_name": "Non-Acidic",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Thick Liquid",
+    "option_fill_rate": "10.9"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Squeeze Bottle",
+    "option_fill_rate": "10.7"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "Germ Protection",
+    "option_fill_rate": "9.8"
+  },
+  {
+    "spec_name": "Physical Form",
+    "spec_option_name": "Gel",
+    "option_fill_rate": "9.6"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Harpic",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Premium Brand",
+    "option_fill_rate": "8.6"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "Descaler",
+    "option_fill_rate": "7.8"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "Tough Stain Rmv",
+    "option_fill_rate": "7.8"
+  },
+  {
+    "spec_name": "Cleaner Type",
+    "spec_option_name": "Alkaline",
+    "option_fill_rate": "7.6"
+  },
+  {
+    "spec_name": "Chemical Base",
+    "spec_option_name": "Bleach Based",
+    "option_fill_rate": "6.3"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Ready-to-Use",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "For Hard Water",
+    "option_fill_rate": "5.9"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "250 ml",
+    "option_fill_rate": "5.1"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "5L",
+    "option_fill_rate": "4.7"
+  },
+  {
+    "spec_name": "Usage Level",
+    "spec_option_name": "Concentrate",
+    "option_fill_rate": "4.1"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Ocean",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Rose",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Pine",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "pH Level",
+    "spec_option_name": "Alkaline",
+    "option_fill_rate": "3.3"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Gel",
+    "option_fill_rate": "3.1"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Herbal",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Concentrate",
+    "option_fill_rate": "2.2"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "50 L",
+    "option_fill_rate": "2"
+  },
+  {
+    "spec_name": "Key Features",
+    "spec_option_name": "Sanitizer",
+    "option_fill_rate": "2"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Citrus",
+    "option_fill_rate": "2"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Lavender",
+    "option_fill_rate": "2"
+  },
+  {
+    "spec_name": "Physical Form",
+    "spec_option_name": "Thick Liquid",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "HDPE Bottle",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Pouch",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Packaging Type",
+    "spec_option_name": "Paper Bag",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "500ml",
+    "option_fill_rate": "1.6"
+  },
+  {
+    "spec_name": "Cleaner Type",
+    "spec_option_name": "Toilet cleaner",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Cleaner Type",
+    "spec_option_name": "TOILET  BOWL CLEANER",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "Indian Toilet, Western Toilet",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Cleaner Type",
+    "spec_option_name": "Harpic type",
+    "option_fill_rate": "1.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Zefrix",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Local Brand",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Suhimax",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Taski",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Clinzal",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Clean Magic",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Usage Level",
+    "spec_option_name": "For Toilet Cleaner",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Brirak",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Minitek",
+    "option_fill_rate": "1.4"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Original",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Toilet cleaning",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Toilet Rim",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Jasmine",
+    "option_fill_rate": "1.3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "minitek",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "NEUCLEAN",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Dora",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Haizer",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Private Label",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Shreya",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Rudra",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Power Max",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Shine Time",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Kimjo",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Pro clear",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Shine N Clean",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Buzil Rossari",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "UNIWASH",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Vooki",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "no brand",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Ayupri",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Germisol",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "HEX",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "20 L",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "750ML",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "750 ml",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "200 ml",
+    "option_fill_rate": "0.8"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "All type",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "Indian and Western Toilet",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Fragrance Free",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "All",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "No small",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Advanced Hydrochloric Acid-Based Toilet Cleaner.",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "rose",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "rose , jasmine",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Aromatic Minty",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "all",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Normal",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Suitability",
+    "spec_option_name": "All Toilet",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Fragrance",
+    "spec_option_name": "Non",
+    "option_fill_rate": "0.7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Nypto",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Mr Warrior",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Gainda",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "CAPTAIN HYGIENE",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Explore",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Coltchem",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "MR.THINDZ",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "M2 Power Plus",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Cleanx",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Gocleans",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Runway",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Ramson",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Supreme Shiny Clean",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "good quality",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Parryware",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Hunter",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Stan Fresh",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Khadi",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Toxlet",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Maids Magic",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "SAKSHI",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Bulandi",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "SHINOX",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "JIVTARA",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "B.T.H.",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Grahni",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "jestobrite",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Mr. Saffa",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Blumist",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "CLYNORA",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "m2 power plus",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Penta Clean Toilet Cleaner",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "HYQLEEN",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "FLOROXX",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "One Swipe",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Rotex",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Sri sivaymbhu traders",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "super cleaner",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Floral",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "G Plus green prodact",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Sugandha",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "PM",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Topsellers",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "CleanGod",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Care Clean",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "R.k mr cleaner",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Neuutrack",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Satol",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "New shine",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Ultra shine",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "SHINE TIME",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Xcleaner",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Milestone",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "ozell",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Harplin Pro",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "SAVVYPRO",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Shinex",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Buzil rossari",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Mast",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Force 100",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "SWASH GHAR",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Schevaran",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Folex",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Hexa Wash",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Aumic",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Supreme cleaner",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Nutrashield",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Enaksh",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "AS REQUIRED",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Brightos",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "care clean",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Doctor clean",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Generic",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Liquid Toilet Cleaners",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "URXY",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "AuraShine",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Gulf",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Prakarti",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Organic",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Zerodor",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Havit plus",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Clearish",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "INDIANA CLEAN",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "ciean off plus",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Royal House",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "SANSEE",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Rozan",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "nalofy",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Saralom Max Clean",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "NAIDA",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Diksha Plus",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "WoW Fresh",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "CLINZAI",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Shuddhi Care",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "FAWE",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Eco Brand",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Stark Chem",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Toilet cleaning acid",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Master Freshner",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Z PLUS",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "careclean",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "5 star",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Woolish",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Veldon",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "SAFE Planet & U",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "TT",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Natural Light",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "FLEEXO",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Shyno",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Glimzo",
+    "option_fill_rate": "0.5"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "1000ml",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "30L",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "AS REQUIRED",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "5kg",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "Spray",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "500ml and 1L",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "all",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "As per Requirement",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "25 L",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "5 kg",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Pack Size",
+    "spec_option_name": "550ml",
+    "option_fill_rate": "0.4"
+  },
+  {
+    "spec_name": "Form",
+    "spec_option_name": "LIQUID",
+    "option_fill_rate": "0.4"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_search_analysis) ---
+# Buyer Search Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer Search Data output — use this document to understand
+what impression counts mean, how to classify each search signal, and how to use
+search findings in your audit decisions. You apply this interpretation yourself —
+no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer search data contains spec-option combinations that buyers selected as filters
+when searching the marketplace, along with impression counts showing how many times
+each filter was used. When a buyer clicks "Thickness: 3mm" as a search filter, that
+generates one impression for that spec-option combination.
+
+
+This data tells you what buyers actively want to narrow their search by. High
+impressions mean many buyers are expressing demand for this attribute as a filter.
+It is your most direct measure of buyer intent on the platform.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The name of the spec buyers used as a filter. May not match the platform spec name
+exactly — use semantic matching, not exact string matching. "Wattage" and "Power"
+refer to the same buyer intent.
+
+
+**spec_option / option value**
+The specific value buyers filtered by. Values appearing here but absent from your
+current option list are strong candidates for addition.
+
+
+**impression / total_impressions**
+How many times buyers used this spec-option combination as a filter. Your primary
+signal from this data source. Higher = more buyer demand.
+
+
+---
+
+
+## How to read impression counts — orientation thresholds
+
+
+These are not hard rules — calibrate relative to the distribution in your category.
+
+
+| Total impressions for a spec | Signal strength |
+|-----------------------------|-----------------|
+| Below 50 | Noise — do not act on this alone |
+| 50 to 500 | Weak — needs corroboration from another source |
+| 500 to 2000 | Moderate — worth investigating, check for artifacts |
+| Above 2000 | Strong — genuine buyer demand |
+
+
+A spec with 200 impressions that also appears in call data is stronger evidence than
+a spec with 1000 impressions that has zero product count and looks like a UI default.
+Always cross-reference.
+
+
+---
+
+
+## The two types of specs in search data
+
+
+**Present specs** — Buyers are using a spec the platform already has. High impressions
+for a present spec validate that it belongs where it is. Very high impressions for a
+present Tertiary spec is a signal it may be misplaced.
+
+
+**Missing specs** — Buyers are filtering on an attribute the platform does not offer
+as a standardised spec. These are discovery gaps — buyers are either finding no
+results or settling for imprecise results. High-value candidates for addition.
+
+
+Use semantic matching when classifying — "Wattage" is present if the platform has
+"Power". The buyer intent is the same regardless of the label difference.
+
+
+---
+
+
+## Signal classification — apply to every search spec before acting
+
+
+Not every high-impression term should become a spec. Classify first:
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute, impressions ≥ 50, not already covered | Addition candidate |
+| `CONTEXT_TERM` | A word describing context or setting, not a filterable attribute | Do not add |
+| `IMPLIED` | Category name already defines this value for every product | Do not add — artifact |
+| `DUPLICATE` | Semantically same as an existing platform spec under a different name | Do not add — already covered |
+| `NOT_A_PRODUCT_SPEC` | Delivery, payment, warranty, MOQ | Do not add |
+| `DATA_ARTIFACT` | One option has over 90% of impressions, or known default UI filter | Do not promote based on this alone |
+
+
+**Category-implied check — apply every time:**
+If the category name itself tells you the value of this spec for every product,
+buyer impressions are an artifact. Example: buyers searching "Material: Aluminium"
+in an Aluminium Profiles category are not expressing a new spec need. Every product
+is already aluminium. The impressions come from the filter existing, not from genuine
+buyer differentiation need.
+
+
+**Data artifact check — apply when impressions look disproportionate:**
+- Does one option account for over 90% of total impressions for this spec?
+- Is this likely a default filter the platform pre-selects for buyers?
+- Does product count in call data = 0 despite very high impressions?
+
+
+If yes to any of these, tag as `DATA_ARTIFACT` and do not promote based on this signal.
+
+
+---
+
+
+## How to use search data in your audit
+
+
+**Finding discovery gaps**
+Search for specs classified as missing with impressions above 50. These are attributes
+buyers want to filter on but the platform does not offer. High-priority addition
+candidates. Cross-reference with call data and custom specs before adding.
+
+
+**Validating tier placement**
+A spec currently in Tertiary with thousands of impressions is almost certainly
+misplaced. Bring this signal into your sequencing reasoning alongside fill rate
+and product count.
+
+
+**Finding option gaps**
+When buyers filter by a specific value that does not exist in the current option list,
+that is a direct signal to add that option. Example: "48V" appearing in search but
+absent from the Voltage spec options. Bring to your option validation reasoning with
+this as evidence.
+
+
+**Cross-source confirmation**
+A spec appearing as missing in search AND in call data is confirmed from both the
+demand side (buyers want to filter) and the transactional side (buyers and sellers
+discuss it). This combination reaches high confidence for addition.
+
+
+---
+
+
+## What search data cannot tell you alone
+
+
+**Whether a spec is genuinely missing** — High impressions may reflect an artifact,
+a context term, or a spec that already exists under a different name. Always classify
+before acting.
+
+
+**Final tier placement** — Impressions are one of three signals. You need fill rate
+ and product count  to make a well-supported tier decision.
+
+
+**Option quality** — Search data shows which values buyers look for, not whether your
+current option list is structurally correct. Use these values as evidence in your
+option validation reasoning.
+
+
+**Why impressions are high** — Search data shows that buyers filtered on something,
+not why. A spec with 5000 impressions could be a genuinely important attribute or
+a default UI filter every buyer sees. Investigate before acting.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(missing_spec_addition) ---
+# Spec Validation and Definition 
+
+
+## What this skill is for
+
+When candidate missing specs have been surfaced by the Buyer-Seller Call, Custom Spec,
+or Buyer Search skills — read this document. It gives you the framework to
+validate whether each candidate is a genuine new spec or a false positive, and
+if genuine, define it completely and  correctly for the Indian B2B marketplace.
+
+---
+
+## Step 1 — Validate: Is this a genuine new spec?
+
+A candidate missing spec is genuine only if all three of the following are true:
+
+**1. It captures a real-world property not already covered**
+The test is semantic, not textual. "Wattage" and "Power Rating" cover the same
+property. "End Use" and "Application" cover the same property. "Make" and "Brand"
+cover the same property. Do not compare names — compare what the spec is actually
+measuring or describing. If any existing platform spec captures the same
+real-world attribute, even approximately, the candidate is not a gap.
+
+**2. It gives buyers information they cannot express using existing specs**
+Ask whether a buyer could communicate the same product requirement using specs
+that already exist. If yes, the candidate is not adding new information.
+
+**3. It is atomic — not derivable from or decomposable into existing specs**
+A spec that combines existing specs (e.g. "Size: 10×20×5mm" when Length, Width,
+Height already exist separately) is not a gap. A spec that is a component of a
+broader existing spec is not a gap.
+
+If any of the three conditions is not clearly met, do not add the spec.
+
+---
+
+## Common false positives — check these before acting
+
+**Naming variation across sources**
+Data sources use different terminology for the same underlying attribute. Before
+treating something as a gap, check whether it already exists under any common
+synonym.
+
+Common equivalences in Indian B2B:
+
+| These terms often mean the same thing |
+|---------------------------------------|
+| Application / Usage / End Use / Purpose / Use Case |
+| Finish / Coating / Treatment / Surface Treatment / Plating |
+| Size / Dimensions / Measurement / Specification |
+| Speed / RPM / Rotation Speed / Operating Speed |
+| Power / Wattage / HP / KW / Rated Power |
+| Colour / Color / Shade / Tint |
+| Grade / IS Grade / ASTM Grade / Quality Grade ||
+
+**Composite attributes**
+Some candidates are natural-language composites. "10mm HDPE pipe" → "10mm" is
+not a new Diameter spec if Dimensions already exists.
+
+**Category-implied attributes**
+If the category name contains the attribute value, the spec has no differentiation
+value. In "HDPE Tarpaulin", Material = HDPE is implied. High signal on such specs
+is a data artifact.
+
+**Multiple candidates meaning the same thing**
+Before deciding how many specs to add, consolidate candidates that share the
+same meaning. "Usage" from custom specs + "Application" from call data + "End Use"
+from search → one spec, not three. Pick the most standard name and add once.
+
+One underlying real-world property = one spec. Different names in different
+sources is a normalisation artifact, not evidence of multiple gaps.
+
+---
+
+## Step 2 — Define: Build the spec completely
+
+Once a candidate passes validation, define it fully across four elements.
+
+### Spec Name
+- Title Case, singular form, no trailing punctuation
+- Use industry-standard terminology for this category
+- Match the most common name from data sources
+- Prefer the term a seller in this category would naturally use
+
+### Input Type
+
+**`text_type` (options = []):**
+- Model numbers, SKU codes, part numbers, serial numbers
+- Free-form descriptions with infinite valid variations
+- Specs where no standard commercial values exist
+
+**`radio_button`:**
+- Single-choice attributes (Material Type, Power Source, Grade)
+- Mutually exclusive states (Indoor / Outdoor)
+- Single numeric ratings (Voltage, Power, Speed)
+- Attributes where a product has exactly one value
+- Boolean attributes where the only meaningful values are Yes and No
+  (e.g. ISI Certified, Waterproof, Fire Resistant). Options: `["Yes", "No"]`
+
+**`multi_select`:**
+- Attributes where one product can simultaneously have multiple values
+- Examples: Certifications (ISO 9001 AND CE AND BIS), Compatible With
+  (multiple machine types), Features (Soft Start AND Overload Protection)
+- Test: can one product have more than one value? If yes → `multi_select`
+
+
+### Options — How to Generate Them
+
+Draw from example values in call data, custom spec submissions, and search
+option values. When data values are sparse, inconsistent, or absent, generate
+the full option set from Indian B2B market knowledge for this category and spec.
+
+**Understanding option values from data sources:**
+
+Option values surfaced by the data source skills vary significantly in quality.
+Here is what each quality level looks like and what it tells you:
+
+| Data Quality | What it looks like |
+|---|---|
+| Clean and consistent | Values are specific, formatted, and repeated across sources — reliable signal for what the real market options are |
+| Mixed quality | Some specific values mixed with vague or inconsistently formatted ones — the specific values are the signal; the rest is noise |
+| 1–2 values only | Too sparse to define the full option set — useful for confirming what the spec means, but market knowledge is needed to complete the list |
+| Completely messy | No usable signal — generate entirely from Indian B2B market knowledge |
+| Empty | No data at all — generate entirely from Indian B2B market knowledge |
+| Contains NA / Other / Custom | These are non-values — ignore them and treat the remaining data at its actual quality level |
+
+**Quality rules for new option to be created:**
+1. No duplicates — "10 kg", "10kg", "10 Kg" are the same. One canonical form only
+2. **No vague fillers — never use: Other, Custom, NA, Various, As Required, Any,
+   Miscellaneous, General Purpose**
+3. Under 30 characters per option
+4. Standardised units — use: kg, mm, V, W, A, rpm, °C, %, L, mL, Hz.
+   Never use: kgs, MM, Volt, Watts, Amps, Celsius
+5. Ideally the option count should be limited to 10 most common options 
+
+**Formatting rules:**
+1. Compact numeric format — "12V" not "12 Volt"; "50Hz" not "50 cycles per second"
+2. Title Case for text — "Stainless Steel" not "stainless steel" or "STAINLESS STEEL"
+3. Numeric options in ascending order — 5mm, 10mm, 15mm, 20mm
+4. Categorical options by frequency — most common in Indian market first
+5. Use ISI/BIS standards where applicable
+6. Use local trade terminology — "GI" for Galvanized Iron, "MS" for Mild Steel
+7. Do not use range options unless they are the market standard for this spec
+
+### Tier Placement
+
+All new specs are added as Tertiary. Sequencing reasoning determines the final
+tier based on actual signal data.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 6) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 7) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(top liquid toilet cleaner brands in India for commercial use) ---
+{
+  "query": "top liquid toilet cleaner brands in India for commercial use",
+  "results": [
+    {
+      "title": "Top 7 Toilet Cleaner Liquids in India 2025 \u2013 Safe & Powerful Picks",
+      "url": "https://klinolindia.com/top-7-toilet-cleaner-liquids/?srsltid=AfmBOooIdl5FjFn8ZMoR7LdVGg2VIjjq4kHR_KB6ar1PPbjyGo5-S7XM",
+      "excerpt": "WebSearchResult(url='https://klinolindia.com/top-7-toilet-cleaner-liquids/?srsltid=AfmBOooIdl5FjFn8ZMoR7LdVGg2VIjjq4kHR_KB6ar1PPbjyGo5-S7XM', excerpts=['### Verifying that you are not a robot...'], publish_date=None, title='Top 7 Toilet Cleaner Liquids in India 2025 \u2013 Safe & Powerful Picks')"
+    },
+    {
+      "title": "Best Toilet Cleaner in India 2026 (Updated List) - VVD",
+      "url": "https://www.vvd.in/best-toilet-cleaner-in-india/",
+      "excerpt": "WebSearchResult(url='https://www.vvd.in/best-toilet-cleaner-in-india/', excerpts=['in/hygiene-products/)\\n        - [VVD MAXX Clean Phenyl](https://www.vvd.in/hygiene-products/)\\n        - [VVD MAXX Clean Toilet Cleaner](https://www.vvd.in/hygiene-products/)\\n* [Blogs](https://www.vvd.in/blogs/)\\n* [Contact Us](https://www.vvd.in/contact-us/)\\n* [VVD Store](https://store.vvd.in/)\\n\\n# Top 10 Toilet Cleaners for Strong Stain Removal [2026]\\n\\nYou are here:\\n\\n1. [Home](https://www.vvd.in/ \"Home\")\\n2. [Home Hygiene](https://www.vvd.in/category/home-hygiene/ \"Home Hygiene\")\\n3. Top 10 Toilet Cleaners for\u2026\\n\\nLet\u2019s be practical \u2014 no one enjoys cleaning the toilet.\\n\\nBut choosing the best toilet cleaner can make the job faster, safer, and far more effective.\\n\\nIn India, hard water stains, yellow rings, limescale buildup, and bad odour are common problems.\\n\\nThat\u2019s why selecting the best toilet cleaner in India isn\u2019t just about fragrance \u2014 it\u2019s about stain removal power, disinfecting ability, surface safety, and long-lasting freshness.\\nIf you\u2019ve been wondering which is the best toilet cleaner for your home, this guide will help you decide confidently.\\n\\nWe evaluated product formulation, stain removal strength, germ protection claims, brand trust, consumer preference, and suitability for Indian bathrooms.\\n\\n## Top 5 Best Toilet Cleaners in India 2026\\n\\n1. MAXX Clean Toilet Cleaner\\n2. Harpic White & Shine Disinfectant Toilet Cleaner\\n3. Vooki Heavy Duty Toilet Bowl Cleaner\\n4. Domex Professional Disinfectant Toilet Bowl Cleaner\\n5. Amazon Brand Presto! Disinfectant Toilet Cleaner Rose\\n\\nLet\u2019s break them down properly.\\n\\n### 1\ufe0f\u20e3 MAXX Clean Toilet Cleaner \u2013 Best Overall Toilet Cleaner\\n\\n#### Brand Overview\\n\\n**[MAXX Clean](https://www.vvd.in/hygiene-products/)** is a home hygiene brand focused on delivering effective and affordable cleaning solutions for Indian households. The range includes toilet cleaners, floor cleaners, [dish wash products](https://www.vvd.\\nin/best-dishwash-bar-in-india/) , and disinfectant solutions designed to tackle tough stains, germs, hard water marks, and odour. With performance-driven formulations and practical pricing, MAXX Clean aims to make everyday bathroom and home cleaning simple, reliable, and hygienic for families.\\n\\n#### Why It Stands Out\\n\\n* Thick best toilet cleaner liquid formula\\n* Designed to remove yellow stains & water marks\\n* Helps control bad odour\\n* Good balance of cleaning power + affordability\\n\\n#### Who It\u2019s For\\n\\n* Families looking for a dependable best bathroom toilet cleaner **  \\n  **\\n* Homes with moderate hard water issues\\n* Users who want effective cleaning without premium pricing\\n\\n#### How to Use\\n\\n1. Apply under the rim and across bowl surface\\n2. Leave for 5\u201310 minutes\\n3. Scrub thoroughly\\n4. Flush\\n\\n#### Pack & Price\\n\\n* Approx **\u20b988** for 500ml bottle\\n* Widely available online via [VVD store](https://store.vvd.in/)\\n\\n> **Expert Insight \u2013 Dr. Meera Iyer, Hygiene Consultant:**\\n>\\n ... \\nVooki focuses on heavy-duty cleaning formulas made for tough mineral deposits and scale buildup.\\n\\n#### Why It Works\\n\\n* Designed for hard water conditions\\n* Effective on limescale and rust stains\\n* Concentrated heavy-duty formulation\\n\\n#### Who It\u2019s For\\n\\n* Homes in cities with severe hard water\\n* Bathrooms with old, deep stains\\n* Commercial usage\\n\\n#### How to Use\\n\\nAllow longer contact time (10\u201315 minutes) before scrubbing.\\n\\n#### Pack & Price\\n\\n* Approx **\u20b9200** for 500ml bottle\\n\\nIf hard water is your biggest issue, this may be the **best toilet cleaner liquid** option.\\n\\n### 4\ufe0f\u20e3 Domex Professional Disinfectant Toilet Bowl Cleaner\\n\\n#### Brand Overview\\n\\nDomex is known for professional-grade disinfectant solutions focused on hygiene and germ elimination.\\n\\n#### Key Benefits\\n\\n* Strong disinfectant formula\\n* Suitable for shared bathrooms\\n* Helps reduce odour-causing bacteria\\n\\n#### Who It\u2019s For\\n\\n* Families with kids\\n* Shared or common toilets\\n* Hygiene-focused households\\n\\n#### How to Use\\n ... \\n\u2714 Overall value for money\\n\\n## How to Choose the Best Toilet Cleaner for Your Home\\n\\nChoosing the best toilet cleaner isn\u2019t about picking the most popular brand \u2014 it\u2019s about matching the formula to your bathroom\u2019s real needs. Indian homes face different issues like hard water stains, yellow rings, bacterial buildup, and odour. So before you buy, here\u2019s a practical guide to help you decide.\\n\\n### 1\ufe0f\u20e3 Identify Your Problem\\n\\n* **Yellow/Brown stains?** \u2192 Choose bleach-based cleaner\\n* **Hard water & limescale?** \u2192 Go for heavy-duty formula\\n* **Bad odour & germs?** \u2192 Pick strong disinfectant cleaner\\n* **Daily maintenance?** \u2192 Use thick gel-based cleaner\\n\\n### 2\ufe0f\u20e3 Check Your Water Condition\\n\\nIf stains return quickly or you see white chalky buildup, you likely have hard water.  \\nIn that case, select a best toilet cleaner liquid with thick consistency and longer contact time.\\n\\n### 3\ufe0f\u20e3 Consider Usage Frequency\\n\\n* High-usage bathroom \u2192 Strong stain + germ protection'], publish_date='2026-03-17', title='Best Toilet Cleaner in India 2026 (Updated List) - VVD')"
+    },
+    {
+      "title": "Top 10 Toilet Cleaner Brands - Barsana Hychem Industries",
+      "url": "https://www.barsana.co.in/blog/top-10-toilet-cleaner-brands.html",
+      "excerpt": "WebSearchResult(url='https://www.barsana.co.in/blog/top-10-toilet-cleaner-brands.html', excerpts=['Feb 18, 2026 \u00b7 1. Barsana Toilet Cleaner \u2013 A Strong Wholesale Performer \u00b7 2. Harpic \u2013 Market Leader in Retail Segment \u00b7 3. Domex \u2013 Strong Institutional'], publish_date=None, title='Top 10 Toilet Cleaner Brands - Barsana Hychem Industries')"
+    },
+    {
+      "title": "Top 5 best liquid toilet cleaner in India, 5L, Form: Ready-to-Use",
+      "url": "https://www.indiamart.com/proddetail/top-5-best-liquid-toilet-cleaner-in-india-2858125397797.html?srsltid=AfmBOoomxC77g6Wb8QhX5hRFYmjEDpThliH-xN7XOgAohPWcijk80QmG",
+      "excerpt": "WebSearchResult(url='https://www.indiamart.com/proddetail/top-5-best-liquid-toilet-cleaner-in-india-2858125397797.html?srsltid=AfmBOoomxC77g6Wb8QhX5hRFYmjEDpThliH-xN7XOgAohPWcijk80QmG', excerpts=['Dec 14, 2025 \u00b7 Top 5 best liquid toilet cleaner in India, 5L, Form: Ready-to-Use ; Brand: NeatVel ; Chemical Base: Acidic ; Pack Size: 5L ; Usage Level: Ready To'], publish_date=None, title='Top 5 best liquid toilet cleaner in India, 5L, Form: Ready-to-Use')"
+    },
+    {
+      "title": "List of Popular Toilet Cleaner making Companies in India - Tradeindia",
+      "url": "https://www.tradeindia.com/blog/list-of-popular-toilet-cleaner-making-companies-in-india/",
+      "excerpt": "WebSearchResult(url='https://www.tradeindia.com/blog/list-of-popular-toilet-cleaner-making-companies-in-india/', excerpts=['Apr 9, 2024 \u00b7 Kavit Polybind Pvt. Ltd. is a premium brand very well recognized as one of the largest toilet cleaner making companies in India. They produce a'], publish_date=None, title='List of Popular Toilet Cleaner making Companies in India - Tradeindia')"
+    },
+    {
+      "title": "Top Toilet Cleaner Company | Best Toilet Cleaner Liquid in India",
+      "url": "https://droliachemicalworks.com/toilet-cleaner-company/",
+      "excerpt": "WebSearchResult(url='https://droliachemicalworks.com/toilet-cleaner-company/', excerpts=['Eagle Super Toilet Cleaner is effective yet safe for toilet surfaces. Its non-corrosive formula is gentle on porcelain while being strong on stains, allowing for regular use without the risk of erosion or scratches. This thoughtful formulation makes Eagle Super Toilet Cleaner ideal for homes needing deep cleaning while preserving the toilet\u2019s appearance over time.\\n\\n## **Key Benefits of Eagle Super Toilet Cleaner**\\n\\nFirst reason for cleaning toilets is removal of persistent stains and bacteria, which cause sickness. The eagle super toilet cleaner has been made to ensure that a toilet bowl is hygienic every time it is used. This feature reassures the user that he or she is restoring a clean, healthy atmosphere within the home.\\n\\nThis is one of the great benefits from regular use in the **Eagle Super Toilet Cleaner** \\\\-it does not let grime, minerals, and bacteria collect and deposit.\\n ... \\n**Scrub and Rinse:** Use a toilet brush to scrub the entire bowl, focusing on stained areas and under the rim.\\n3. **Flush:** Flush the toilet to rinse away any remaining cleaner, revealing a spotless, refreshed toilet bowl.\\n\\nFor very heavy stains, allow the product to sit for 15 to 20 minutes. It can give the active agents additional time to penetrate for good results. Worst cases can be addressed using a pumice stone whenever possible on your toilet when dealing with hard-to-reach stains. Eagle Super Toilet Cleaner does the trick most of the time, but sometimes further application techniques are necessary with some of the tougher messes.\\n\\n## **Comparing Eagle Toilet Cleaner with Other Products**\\n\\nThe ingredients of Eagle Super Toilet Cleaner Company have been selected to ensure that a balance between strong cleaning power and safety is achieved.\\nCompared to other brands that tend to be very reliant on bleach or harsh chemicals, Eagle Super Toilet Cleaner formulates with grime and bacteria without causing any side effects. This makes it safer for people and surfaces as well, making it more suitable for frequent cleaning.\\n\\nThis provides an eagle super toilet cleaner for more time-lasting power, thus making it use less of the product for every cleaning. With this efficiency, the longer it lasts, saving a considerable amount of money since it goes further than most products. Its protective formula cuts down on constant scrubbing and provides a quality high-end solution that is also cost-effective.\\n\\n## **Science Behind Eagle Toilet Cleaner\u2019s Formula**\\n\\nThe formula of the **Eagle Super Toilet Cleaner** contains powerful yet safe cleaning agents, such as surfactants, which break down and lift away dirt and grime. In this way, these ingredients work together to provide deep cleaning without being abrasive on surfaces.\\nThe science behind **Eagle Super [Toilet Cleaner company](https://droliachemicalworks.com/product/toilet-cleaner-manufacturers/)** is its balance of cleaning agents. Surfactants weaken the bonds between stains and the toilet surface, making it easier to scrub away even mineral build-up. That\u2019s why this product is suitable for deep cleaning and everyday cleaning.\\n\\n**Drolia Chemical** Works has obtained an effective and environmentally friendly formula. This one, Eagle Super Toilet Cleaner contains elements that are biodegradable, thus good for family use in promoting cleanliness with no harm to the environment.\\n\\n## **Conclusion**\\n\\n**Eagle Super [Toilet Cleaner](https://en.wikipedia.org/wiki/Toilet_cleaner) by Drolia Chemical** Works is a top-of-the-line toilet cleaning solution that provides effective stain removal and refreshing fragrance. Its formula is soft enough for daily use yet tough enough to keep toilets clean and hygienic.\\nWith its easy application and durability, Eagle Super Toilet Cleaner Company is recommended for anyone looking to maintain a clean and neat bathroom.\\n\\nThus, delay not. Try **Eagle Super Toilet Cleaner** today. Come and see the difference between a clean, fresh toilet that you can depend upon.\\n\\nTags: [toilet cleaner company](https://droliachemicalworks.com/tag/toilet-cleaner-company/) [toilet cleaner liquid in india](https://droliachemicalworks.com/tag/toilet-cleaner-liquid-in-india/)\\n\\nShare:\\n\\n* [](http://www.facebook.com/sharer.php?u=https://droliachemicalworks.com/toilet-cleaner-company/)\\n* [](https://twitter.com/share?url=https://droliachemicalworks.com/toilet-cleaner-company/&text=Looking+for+the+Best+Toilet+Cleaner+That+Works+Wonders%3F++See+Why+Eagle+Toilet+Cleaner+Is+the+Best+Choice+for+Toilet+Cleaning)\\n* [](http://www.pinterest.com/pin/create/button/?url=https://droliachemicalworks.com/toilet-cleaner-company/)\\n* [](http://www.linkedin.com/shareArticle?'], publish_date='2025-04-07', title='Top Toilet Cleaner Company | Best Toilet Cleaner Liquid in India')"
+    },
+    {
+      "title": "Toilet Cleaner - 5 Litre Mr Best Liquid Toilet Cleaner Trader - Wholesaler / Distributor from Bhiwandi",
+      "url": "https://www.sachindustries.com/toilet-cleaner.html",
+      "excerpt": "WebSearchResult(url='https://www.sachindustries.com/toilet-cleaner.html', excerpts=['[](https://www.sachindustries.com/)\\n\\n[Sach Industries Bhiwandi, Thane, Maharashtra GST No. **27BRQPS4236Q1ZQ**](https://www.sachindustries.com/)\\n\\nCall 08046074049 91% Response Rate\\n\\nSend Email\\n\\n* [Home](https://www.sachindustries.com/)\\n* \u00bb\\n* Our Products\\n* \u00bb\\n* Toilet Cleaner\\n\\n# Toilet Cleaner\\n\\nProminent & Leading Manufacturer from Bhiwandi, we offer 5 litre mr best liquid toilet cleaner and 500 ml mr best liquid toilet cleaners.\\n\\n## 5 Litre Mr Best Liquid Toilet Cleaner\\n\\nGet Best Quote\\n\\nProduct Price: Rs 20 / Litre Get Best Price\\n\\nMinimum Order Quantity: 100 Litre\\n\\nProduct Details:\\n\\n|Packaging Size |5 Litre |\\n| --- | --- |\\n|Brand |Mr Best |\\n|Packaging Type |Can |\\n|Usage/Application |Toilet Clean |\\n|Shelf Life |1 Year |\\n|Color |Dark Blue |\\n|Form |Liquid |\\n|Country of Origin |Made in India |\\n|Manufactured By |Sach Industries |\\n\\nSpecification/Additional Details\\n\\nMaterialPlastic\\n\\nBristle StiffnessMedium\\n\\nColorPink, Maroon, Green And Blue\\n\\nUsage/ApplicationCleaning\\n\\nBristle MaterialPVC\\nBrush TypeHandle Brush\\n\\nYes! I am Interested Request A Callback\\n\\n## 500 Ml Mr Best Liquid Toilet Cleaners\\n\\nGet Best Quote\\n\\nProduct Price: Rs 20 / Bottle Get Best Price\\n\\nProduct Brochure\\n\\nProduct Details:\\n\\n|Form |Liquid |\\n| --- | --- |\\n|Brand |Cleaner |\\n|Viscosity |Yes |\\n|Color |Blue |\\n|Packaging Type |Bottle |\\n|Packaging Size |5L |\\n\\nToilet cleaners are chemical solutions used for cleaning the toilet, usually in conjunction with a toilet brush. Toilet Cleaners are generally formulated using one or more surfactants to improve their cleaning performance. Toilet cleaner have become an essential commodity in our daily lives.\\n\\nYes! I am Interested Request A Callback\\n\\nContact Us\\n\\nMr. Ms. Mrs. Dr.\\n\\nPlease enter description\\n\\nSach Industries\\n\\nContact Person Santosh Singh (Proprietor)\\n\\n[Address Sach Industries H No 2428, H-14-6, Vrindavan Complex Bhavesh Compound, Sonale, Bhiwandi - 421302, Thane, Maharashtra, India](https://maps.google.com?q=19.28600000,73.10572000) [Get Directions](https://maps.\\ngoogle.com?q=19.28600000,73.10572000)\\n\\nCall Us 8046074049 Call Response Rate: 91%\\n\\nSend SMS\\n\\nSend Email\\n\\nCompany Profile\\n\\n* [Home](https://www.sachindustries.com/)\\n* About Us\\n* Our Products\\n* Contact Us\\n* Sitemap\\n\\nShare Us [](https://www.facebook.com/sharer.php?u=https://www.sachindustries.com/) [](https://twitter.com/share?url=https://www.sachindustries.com/&text=Sach Industries) [](https://www.linkedin.com/cws/share?url=https://www.sachindustries.com/)\\n\\n\u00a9 Sach Industries. All Rights Reserved ( [Terms of Use](https://www.indiamart.com/terms-of-use.html) ) Developed and managed by [IndiaMART InterMESH Ltd.](https://corporate.indiamart.com)\\n\\n[](https://www.indiamart.com)\\n\\nX'], publish_date=None, title='Toilet Cleaner - 5 Litre Mr Best Liquid Toilet Cleaner Trader - Wholesaler / Distributor from Bhiwandi')"
+    },
+    {
+      "title": "Best Toilet Cleaner Brand in India - Industrybuying",
+      "url": "https://www.industrybuying.com/articles/best-toilet-cleaner-in-india",
+      "excerpt": "WebSearchResult(url='https://www.industrybuying.com/articles/best-toilet-cleaner-in-india', excerpts=['Have a question? Call us now at +91 9650660070 care@industrybuying.com * Stock Clearance Sale\\n* Write to Management\\n* Track Order\\n* Write Review\\n* [Chat](https://wa.me/message/DACYJS2IV2D3D1 \"Chat\") Categories   DAILY ESSENTIALS SPECIAL DEALS  Request for Quotes  Buy On Credit [](https://www.industrybuying.com/faq) [Help Center](https://www.industrybuying.com/faq) \\n\\n* [Home](https://www.industrybuying.com/articles/category/cleaning/) /\\n* Ultimate Guide to the Best Toilet Cleaners in India (Harpic, Lizol &amp; More) India\u2019s leading B2B e-commerce, shop monthly essentials and save with GST invoices # Ultimate Guide to the Best Toilet Cleaners in India (Harpic, Lizol & More) Last Updated on July 8, 2025 Just imagine you run to check the bathroom just before your guests arrive because you notice the stubborn stains and an unpleasant odor from the toilet. The sudden realisation that your usual cleaning practices cannot handle the situation. Sounds familiar? We\u2019ve all been there!\\nProper toilet maintenance is important for both visual and health reasons, as it helps prevent disease transmission and maintain sanitary conditions.\\n\\nThe task of cleaning toilets stands as an essential requirement in every facility but remains an unappreciated chore. The proper toilet cleaning solution creates an organised work environment while offering bathrooms fresh spaces without needing extra manual labour. Present-day toilet cleaning products require an approach to identify the top available solution. This article discusses how India\u2019s leading toilet cleaning products offer different features.\\n\\n## **How to Choose the Best Toilet Cleaners in India?**\\n\\nThe suitable [toilet cleaning](https://www.industrybuying.com/cleaning-1550/toilet-cleaner-16500) solution depends on what type of products you need. Selecting the best toilet cleaning solution will not just simplify the challenging process but potentially allow you to clean less frequently.\\nBefore you check the suggestions for top toilet cleaners in India, let\u2019s begin by reviewing the decision-making factors that influenced our choice of the best products. The market offers various types of toilet cleaners, which include:\\n\\n1 **.** The **liquid toilet cleaners** remain the most chosen cleaning products because they give excellent stain removal and germ-killing power, combined with easy usage.  \\n2\\\\. **Cleaning tablets** function by releasing continuous sanitization with each flush through a simple drop-and-go operation.  \\n3\\\\. Powerful **bleach-based** products function as strong antimicrobial agents, yet they generate a noticeably strong odor.  \\n4\\\\. **Ecologically** sound toilet cleaning products known as natural/herbal variants use only plant-derived components.  \\n5\\\\. **Gel-based cleaners** have thick formulas that provide better stain absorption through their adhesive nature.\\n\\n## **Top 6 Best Toilet Cleaner Brands in India**\\n\\n### **1\\\\. Harpic Power Plus**\\nThe Indian marketplace trusts [Harpic toilet cleaners](https://www.industrybuying.com/brands/harpic-11265) because of their strong disinfectant properties and deep cleaning capability. The strong chemical composition of this cleaner removes heavy stains, along with wiping out 99.9% of infectious bacteria.\\n\\n**Features** : Thick liquid formula, removes tough stains, kills germs, and prevents limescale buildup.\\n\\n**Benefit** : Highly effective, easily available, strong disinfectant, works well on hard water stains.\\n\\n**Cons** : Strong chemical smell; may require scrubbing for older stains.\\n\\n### **2\\\\. Domex Fresh Guard**\\n\\nThe well-known [household brand Domex](https://www.industrybuying.com/brands/domex-22524) provides customers with a strong toilet cleaning solution that creates long-lasting protection against both stains and germs.\\n\\n**Features** : It kills 99.9% of bacteria, prevents stains from recurring, and offers a fresh fragrance.\\n ... \\nEzee Pine serves as a dependable toilet cleaning solution that uses pine-based chemicals to offer a natural alternative cleaning power to users.\\n\\n**Features** : Pine oil-based formula disinfects and deodorises; mild yet effective cleaning power.\\n\\n**Benefit** : Eco-friendly option, pleasant pine fragrance, gentle yet effective.\\n\\n**Cons** : May not be as strong on extremely tough stains compared to chemical-based cleaners.\\n\\n## **Best Toilet Cleaner for Tough Stains in India**\\n\\nThe proper selection of toilet cleaning products makes toilet tasks simpler while keeping your bathroom looking clean and fresh without heavy work.\\n\\n### **Features to Consider**\\n\\n* Strong stain-removing power\\n* Disinfectant properties\\n* Long-lasting effect\\n\\n### **Top Brand Recommendations**\\n\\n* **Harpic Power Plus: Best for Hard Water Stains**\\n\\nHarpic Power Plus stands out because it contains an innovative stain-removal solution that works wonderfully on deposits from hard water in bathrooms.'], publish_date=None, title='Best Toilet Cleaner Brand in India - Industrybuying')"
+    },
+    {
+      "title": "Amazon.in Bestsellers: The most popular items in Toilet Cleaners",
+      "url": "https://www.amazon.in/gp/bestsellers/hpc/1374558031",
+      "excerpt": "WebSearchResult(url='https://www.amazon.in/gp/bestsellers/hpc/1374558031', excerpts=['4.3 986 Kleenest Bathroom & Toilet Cleaner Combo | Plant-Based Cleaning Liquid | Zero Bleach Formula | Rose Fragrance | Limescale & Stain Remover | Safe for Daily'], publish_date=None, title='Amazon.in Bestsellers: The most popular items in Toilet Cleaners')"
+    }
+  ],
+  "count": 9
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

@@ -1,0 +1,3196 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 4786,
+        "mcat_name": "Electric Angle Grinder",
+        "current_specs": [
+            {
+                "spec_name": "Disc Diameter",
+                "options": [
+                    "100 mm (4 inch)",
+                    "115 mm (4.5 inch)",
+                    "125 mm (5 inch)",
+                    "150 mm (6 inch)",
+                    "180 mm (7 inch)",
+                    "230 mm (9 inch)"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Input Power",
+                "options": [
+                    "500 W",
+                    "600 W",
+                    "700 W",
+                    "750 W",
+                    "800 W",
+                    "900 W",
+                    "1000 W",
+                    "1200 W",
+                    "1500 W",
+                    "2200 W"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "No Load Speed",
+                "options": [
+                    "8500 rpm",
+                    "9000 rpm",
+                    "10000 rpm",
+                    "11000 rpm",
+                    "12000 rpm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Power Source",
+                "options": [
+                    "Corded",
+                    "Cordless"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Disc Bore Size",
+                "options": [
+                    "16 mm",
+                    "20 mm",
+                    "22.23 mm",
+                    "25.4 mm"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Switch Type",
+                "options": [
+                    "Slide Switch",
+                    "Paddle Switch",
+                    "Trigger Switch"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Rated Voltage",
+                "options": [
+                    "220 V",
+                    "230 V",
+                    "240 V"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Spindle Thread",
+                "options": [
+                    "M10",
+                    "M14",
+                    "5/8 inch"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Body Grip Type",
+                "options": [
+                    "Slim Body",
+                    "Standard Body"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Features",
+                "options": [
+                    "Variable Speed",
+                    "Soft Start",
+                    "Overload Protection",
+                    "Restart Protection",
+                    "Anti Vibration Handle",
+                    "Dust Protection",
+                    "Lock On Switch"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Electric Angle Grinder",
+            "mcat_id": 4786,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Disc Diameter",
+                            "options": [
+                                "100 mm (4 inch)",
+                                "115 mm (4.5 inch)",
+                                "125 mm (5 inch)",
+                                "150 mm (6 inch)",
+                                "180 mm (7 inch)",
+                                "230 mm (9 inch)"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Input Power",
+                            "options": [
+                                "500 W",
+                                "600 W",
+                                "700 W",
+                                "750 W",
+                                "800 W",
+                                "900 W",
+                                "1000 W",
+                                "1200 W",
+                                "1500 W",
+                                "2200 W"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "No Load Speed",
+                            "options": [
+                                "8500 rpm",
+                                "9000 rpm",
+                                "10000 rpm",
+                                "11000 rpm",
+                                "12000 rpm"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Power Source",
+                            "options": [
+                                "Corded",
+                                "Cordless"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Disc Bore Size",
+                            "options": [
+                                "16 mm",
+                                "20 mm",
+                                "22.23 mm",
+                                "25.4 mm"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Switch Type",
+                            "options": [
+                                "Slide Switch",
+                                "Paddle Switch",
+                                "Trigger Switch"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Rated Voltage",
+                            "options": [
+                                "220 V",
+                                "230 V",
+                                "240 V"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Spindle Thread",
+                            "options": [
+                                "M10",
+                                "M14",
+                                "5/8 inch"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Body Grip Type",
+                            "options": [
+                                "Slim Body",
+                                "Standard Body"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Features",
+                            "options": [
+                                "Variable Speed",
+                                "Soft Start",
+                                "Overload Protection",
+                                "Restart Protection",
+                                "Anti Vibration Handle",
+                                "Dust Protection",
+                                "Lock On Switch"
+                            ],
+                            "input_type": "multi_select"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Application Type",
+            "option_value": "Electrical",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Type",
+            "option_value": "Heavy Duty",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Application Type",
+            "option_value": "Professional",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Type",
+            "option_value": "Professional Heavy Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Type",
+            "option_value": "Standard Duty",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Type",
+            "option_value": "Tile",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application Type",
+            "option_value": "Wall Cutting",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "40",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "4T",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Bosch",
+            "prod_count": 95
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Bosta",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Camron",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "China",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "DCA",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "DEWALT",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "DLX",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dongcheng",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Eubric",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Forte",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Hitachi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Ingco",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Jordex Gold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "KPT",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "King",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "ML",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Makita",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Maxim",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Saw Master",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sayra",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Supertech",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Three King",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Toolmaster",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "White Horse",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "XP Power",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "iBELL",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Black and Yellow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Blue",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Electricity Saving",
+            "option_value": "70-80 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "Armature",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Included Components",
+            "option_value": "PCB included",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "1068",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "1425",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "2200-230",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "3007",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "4002",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "4005",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "600",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "600 (6-100)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "800",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "801",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "AG4",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "AP 11700",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "DW803",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 14-125 CI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 18-125",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 2000",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 2200",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 24-180",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 600",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 700-100",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 750-100",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 800",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 900",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 900-100",
+            "prod_count": 10
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "GWS 900-125",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "JD 3007",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "KBS 712",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "KP 312 N",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Type",
+            "option_value": "AC DC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Motor Winding",
+            "option_value": "Full Copper",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "No-load Speed",
+            "option_value": "1100 RPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "No-load Speed",
+            "option_value": "11000 RPM",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "No-load Speed",
+            "option_value": "750 RPM",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1000 W",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1100 W",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1200 W",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1250 W",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1400 W",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1500 W",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "1650 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "2000 W",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "2200 W",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "600 W",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "650 W",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "660 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "670 W",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "680 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "700 W",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "720 W",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "750 W",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "800 W",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "850 W",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "900 W",
+            "prod_count": 13
+        },
+        {
+            "spec_name": "Power",
+            "option_value": "950 A",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Power Source",
+            "option_value": "Electric",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Angle Grinder",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Black Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Goldline",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Series",
+            "option_value": "Professional",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Speed Type",
+            "option_value": "Variable Speed",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Spindle Thread",
+            "option_value": "M10",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Switch Type",
+            "option_value": "Back Switch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Switch Type",
+            "option_value": "Side Switch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Technology",
+            "option_value": "BLDC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Voltage",
+            "option_value": "220 V",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "1 year",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "6 months",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Warranty",
+            "option_value": "6-12 months",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Warranty Coverage",
+            "option_value": "Coil and Armature",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1.8 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "2 kg",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "4-5 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Wheel Diameter",
+            "option_value": "100 mm",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Wheel Diameter",
+            "option_value": "125 mm",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Wheel Diameter",
+            "option_value": "180 mm",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Wheel Diameter",
+            "option_value": "4 inch",
+            "prod_count": 53
+        },
+        {
+            "spec_name": "Wheel Diameter",
+            "option_value": "5 inch",
+            "prod_count": 18
+        },
+        {
+            "spec_name": "Wheel Diameter",
+            "option_value": "6 inch",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Wheel Diameter",
+            "option_value": "7 inch",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Wheel Diameter",
+            "option_value": "9 inch",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Wheel Diameter",
+            "option_value": "Small unknown",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "I deal in",
+            "option_value": "New only"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Gaocheng"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Number",
+            "option_value": "GC 801N"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Frequency",
+            "option_value": "50 Hz"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Number",
+            "option_value": "GC AG1050"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Gaocheng"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Frequency",
+            "option_value": "50 Hz"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Gaocheng"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Number",
+            "option_value": "GC AG150H"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Frequency",
+            "option_value": "50 Hz"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "I DEAL IN",
+            "option_value": "New only"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "I deal in",
+            "option_value": "New only"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "I deal in",
+            "option_value": "New only"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "I deal in",
+            "option_value": "New only"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name",
+            "option_value": "TP 001 1190W"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Topper"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "DYK"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name",
+            "option_value": "D1A EE01 100C"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Number",
+            "option_value": "EG4100"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Global Power"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "BRAND",
+            "option_value": "Hikkoi"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand Name",
+            "option_value": "Mactic"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Hyco"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Hi Max"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model",
+            "option_value": "IC 200"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand Name",
+            "option_value": "Yuri"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name",
+            "option_value": "YR AG801"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name",
+            "option_value": "YR AG901"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand Name",
+            "option_value": "Yuri"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name",
+            "option_value": "YR AG1001"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand Name",
+            "option_value": "Yuri"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name",
+            "option_value": "YR AG1002"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand Name",
+            "option_value": "Yuri"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Voltage",
+            "option_value": "220V"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name",
+            "option_value": "YR AG1005"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand Name",
+            "option_value": "Yuri"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand Name",
+            "option_value": "Yuri"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Frequency",
+            "option_value": "50Hz"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name",
+            "option_value": "YR AG1001"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name",
+            "option_value": "G10SS2"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Hikoki"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Availability",
+            "option_value": "In Stock"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name",
+            "option_value": "RH 322R"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Red Horse"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Plus 7"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Working Width",
+            "option_value": "100 mm"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Weight",
+            "option_value": "2 kg"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model",
+            "option_value": "PG 9500Y FRHT"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Planet Power"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Forte"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model",
+            "option_value": "FAG 100 7"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "No Load Speed",
+            "option_value": "10500 RPM"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Color",
+            "option_value": "Yellow"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Product Voltage",
+            "option_value": "230 V"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Planet Power"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name",
+            "option_value": "PG 900 HD"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Metro",
+            "option_value": "100mm"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Apprpx Weight",
+            "option_value": "6.9 Kgs"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Kress"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model",
+            "option_value": "KU720"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Durevole"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model",
+            "option_value": "DU AG 801"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Weight",
+            "option_value": "1 kg"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Weight",
+            "option_value": "1.8 kg"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "PART NO.",
+            "option_value": "RB-2025"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Krystal Kut"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "PART NO.",
+            "option_value": "2021"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "PART NO.",
+            "option_value": "2022"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "PART NO.",
+            "option_value": "2023"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Mactic Tools"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "PART NO",
+            "option_value": "5021"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "PART NO",
+            "option_value": "5022"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "PART NO",
+            "option_value": "1021"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "PART NO",
+            "option_value": "1022"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Warranty",
+            "option_value": "3 months"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "No Load Speed (Important)",
+            "option_value": "11000 rpm"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Model Name/Number",
+            "option_value": "FAG 4 - 1100"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Brand",
+            "option_value": "Forte"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Input Power (Important)",
+            "option_value": "1100 W"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Lock On-Off Switch",
+            "option_value": "Yes"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Battery Voltage",
+            "option_value": "670 W"
+        },
+        {
+            "mcat_id": "4786",
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "Is It Spindle Lock",
+            "option_value": "non spindle"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "aeg",
+            "impression": "25"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "agni",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "anchor",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "asian paint",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "auto power",
+            "impression": "16"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "buildskill",
+            "impression": "25"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "caltex",
+            "impression": "19"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "camron",
+            "impression": "53"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "camron pro",
+            "impression": "225"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "cumi",
+            "impression": "37"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "damier",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "dca",
+            "impression": "137"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "dong cheng",
+            "impression": "1008"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "dongcheng",
+            "impression": "38"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "eastman",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "electrex",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "ferm",
+            "impression": "120"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "forever gold",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "forte",
+            "impression": "620"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "gaocheng",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "golden bullet",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "hcc",
+            "impression": "77"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "hid",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "hikoki",
+            "impression": "174"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "hilti",
+            "impression": "14"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "hypermax",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "ideal",
+            "impression": "85"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "ingco",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "jcb",
+            "impression": "26"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "jordache",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "ken",
+            "impression": "51"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "khaitan",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "kpt",
+            "impression": "135"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "laser tech",
+            "impression": "22"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "max",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "maxim",
+            "impression": "84"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "metabo",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "polymak",
+            "impression": "21"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "powerbilt",
+            "impression": "860"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "powertex",
+            "impression": "36"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "powertuff",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "prithvi",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "saw master",
+            "impression": "46"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "stanley",
+            "impression": "89"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "super tech",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "total",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "turtle",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "velmoc",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "vertigo gold",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "wolf",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "yuri",
+            "impression": "49"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "brand",
+            "spec_option": "zogo",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "condition",
+            "spec_option": "new",
+            "impression": "231"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "condition",
+            "spec_option": "used",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "disc diameter",
+            "spec_option": "125 mm",
+            "impression": "184"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "disc diameter",
+            "spec_option": "4 inch",
+            "impression": "616"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "disc diameter",
+            "spec_option": "5 inch",
+            "impression": "899"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "disc diameter",
+            "spec_option": "6 inch",
+            "impression": "40"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "disc diameter",
+            "spec_option": "7 inch",
+            "impression": "43"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "model name/number",
+            "spec_option": "1000",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "model name/number",
+            "spec_option": "9710",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "model name/number",
+            "spec_option": "ag 4",
+            "impression": "205"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "model name/number",
+            "spec_option": "ag 7",
+            "impression": "22"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "model name/number",
+            "spec_option": "ag4",
+            "impression": "29"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "model name/number",
+            "spec_option": "ag5",
+            "impression": "35"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "model name/number",
+            "spec_option": "ag7",
+            "impression": "59"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "model name/number",
+            "spec_option": "classic master",
+            "impression": "36"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "model name/number",
+            "spec_option": "pda 100 m",
+            "impression": "31"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "power consumption",
+            "spec_option": "1100 w",
+            "impression": "711"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "power consumption",
+            "spec_option": "1100 watt",
+            "impression": "32"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "power consumption",
+            "spec_option": "900 watt",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "power consumption",
+            "spec_option": "950 watt",
+            "impression": "34"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "power source",
+            "spec_option": "battery",
+            "impression": "220"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "power source",
+            "spec_option": "electric",
+            "impression": "12015"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "power source",
+            "spec_option": "electronic",
+            "impression": "54"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "product",
+            "spec_option": "grinder",
+            "impression": "16508"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "product",
+            "spec_option": "grinding",
+            "impression": "217"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "product",
+            "spec_option": "grinding machine",
+            "impression": "142"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "product",
+            "spec_option": "hand grinder",
+            "impression": "1626"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "size",
+            "spec_option": "large",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "speed",
+            "spec_option": "variable speed",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Electric Angle Grinder",
+            "spec_name": "usage",
+            "spec_option": "kitchen",
+            "impression": "153"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Disc Diameter",
+            "spec_fill_rate": "58.8",
+            "product_count": "57"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_fill_rate": "53.6",
+            "product_count": "52"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_fill_rate": "53.6",
+            "product_count": "52"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "45.4",
+            "product_count": "44"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_fill_rate": "40.2",
+            "product_count": "39"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_fill_rate": "32",
+            "product_count": "31"
+        },
+        {
+            "spec_name": "Rated Voltage",
+            "spec_fill_rate": "25.8",
+            "product_count": "25"
+        },
+        {
+            "spec_name": "Disc Bore Size",
+            "spec_fill_rate": "22.7",
+            "product_count": "22"
+        },
+        {
+            "spec_name": "Body Grip Type",
+            "spec_fill_rate": "17.5",
+            "product_count": "17"
+        },
+        {
+            "spec_name": "Spindle Thread",
+            "spec_fill_rate": "16.5",
+            "product_count": "16"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "10.3",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Features",
+            "spec_fill_rate": "10.3",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "PART NO",
+            "spec_fill_rate": "5.2",
+            "product_count": "5"
+        },
+        {
+            "spec_name": "PART NO.",
+            "spec_fill_rate": "4.1",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_fill_rate": "4.1",
+            "product_count": "4"
+        },
+        {
+            "spec_name": "Frequency",
+            "spec_fill_rate": "3.1",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_fill_rate": "2.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Power Input",
+            "spec_fill_rate": "2.1",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Apprpx Weight",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Speed Settings",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Length",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Model",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "pattern",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Metro",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Model Name / Number",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Cutting Capacity",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "design",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "brand",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Height",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Material",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Voltage/Frequency",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "packing type",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "colour",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "material",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Model No.",
+            "spec_fill_rate": "1",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Yuri",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Lock On-Off Switch",
+            "spec_option_name": "Yes",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Ink",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Shade",
+            "spec_option_name": "Orange",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "yellow",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Voltage/Frequency",
+            "spec_option_name": "220V",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "brand",
+            "spec_option_name": "sarvasva worldwide",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I deal in",
+            "spec_option_name": "New only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Motor Power",
+            "spec_option_name": "850",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "pH Range",
+            "spec_option_name": "6-Apr",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "4 ball bearing machine",
+            "spec_option_name": "Interchangeable spare parts",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "material",
+            "spec_option_name": "steel",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Granules",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Hand Held",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Apprpx Weight",
+            "spec_option_name": "6.9 Kgs",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Color Index",
+            "spec_option_name": "Acid Orange 10",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "232 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "design",
+            "spec_option_name": "simple",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Phase",
+            "spec_option_name": "Single Phase",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power",
+            "spec_option_name": "1200 W",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Height",
+            "spec_option_name": "115 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Plastic Drum",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model No.",
+            "spec_option_name": "OR DW801",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "BRAND",
+            "spec_option_name": "Hikkoi",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Battery Voltage",
+            "spec_option_name": "670 W",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cord Length",
+            "spec_option_name": "1.5 m",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Input Power (Important)",
+            "spec_option_name": "1100 W",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "No Load Speed (Important)",
+            "spec_option_name": "11000 rpm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model Name / Number",
+            "spec_option_name": "GSC 160 Professional Angle Grinder",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Metro",
+            "spec_option_name": "100mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Tool Type",
+            "spec_option_name": "Angle Grinder",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Purity",
+            "spec_option_name": "98%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Speed Settings",
+            "spec_option_name": "1",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "pattern",
+            "spec_option_name": "plain",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "packing type",
+            "spec_option_name": "box",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "steel up to 400 N/mm2 at 1.6mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "colour",
+            "spec_option_name": "black",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Cutting Capacity",
+            "spec_option_name": "1.6 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "25 kg",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made in India",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Solubility",
+            "spec_option_name": "Water Soluble",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "KU720",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Corded",
+            "option_fill_rate": "90.3"
+        },
+        {
+            "spec_name": "Spindle Thread",
+            "spec_option_name": "M10",
+            "option_fill_rate": "87.5"
+        },
+        {
+            "spec_name": "Rated Voltage",
+            "spec_option_name": "220 V",
+            "option_fill_rate": "86"
+        },
+        {
+            "spec_name": "Is It Spindle Lock",
+            "spec_option_name": "Spindle Lock",
+            "option_fill_rate": "83.3"
+        },
+        {
+            "spec_name": "Frequency",
+            "spec_option_name": "50Hz",
+            "option_fill_rate": "76.9"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "100 mm (4 inch)",
+            "option_fill_rate": "70.5"
+        },
+        {
+            "spec_name": "Body Grip Type",
+            "spec_option_name": "Standard Body",
+            "option_fill_rate": "67.2"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "11000 rpm",
+            "option_fill_rate": "55.7"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "220V",
+            "option_fill_rate": "54.5"
+        },
+        {
+            "spec_name": "Disc Bore Size",
+            "spec_option_name": "16 mm",
+            "option_fill_rate": "53.6"
+        },
+        {
+            "spec_name": "Power Input",
+            "spec_option_name": "720 W",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Power Input",
+            "spec_option_name": "1050",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Soft Start",
+            "option_fill_rate": "43.1"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "6 months",
+            "option_fill_rate": "40"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Slide Switch",
+            "option_fill_rate": "39.6"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Dust Protection",
+            "option_fill_rate": "39.2"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Anti Vibration Handle",
+            "option_fill_rate": "39.2"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Variable Speed",
+            "option_fill_rate": "35.3"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "2.15 kg",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "1.8 kg",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "2.1 kg",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Body Grip Type",
+            "spec_option_name": "Slim Body",
+            "option_fill_rate": "32.8"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Lock On Switch",
+            "option_fill_rate": "31.4"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Paddle Switch",
+            "option_fill_rate": "27.1"
+        },
+        {
+            "spec_name": "PART NO.",
+            "spec_option_name": "2023",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Model Number",
+            "spec_option_name": "GC AG1050",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Model Number",
+            "spec_option_name": "GC AG150H",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "PART NO.",
+            "spec_option_name": "RB-2024",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "PART NO.",
+            "spec_option_name": "2021",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Model Number",
+            "spec_option_name": "EG4100",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "PART NO.",
+            "spec_option_name": "RB-2025",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Model Number",
+            "spec_option_name": "GC 801N",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Overload Protection",
+            "option_fill_rate": "23.5"
+        },
+        {
+            "spec_name": "Frequency",
+            "spec_option_name": "50 Hz",
+            "option_fill_rate": "23.1"
+        },
+        {
+            "spec_name": "Disc Bore Size",
+            "spec_option_name": "20 mm",
+            "option_fill_rate": "21.7"
+        },
+        {
+            "spec_name": "PART NO",
+            "spec_option_name": "5022",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "PART NO",
+            "spec_option_name": "1021",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "PART NO",
+            "spec_option_name": "1022",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "YR AG1001",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "PART NO",
+            "spec_option_name": "RB-4005",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "No warranty",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "PART NO",
+            "spec_option_name": "5021",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Disc Bore Size",
+            "spec_option_name": "22.23 mm",
+            "option_fill_rate": "18.8"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Trigger Switch",
+            "option_fill_rate": "18.8"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "220v",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Is It Spindle Lock",
+            "spec_option_name": "non spindle",
+            "option_fill_rate": "16.7"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Restart Protection",
+            "option_fill_rate": "15.7"
+        },
+        {
+            "spec_name": "Rated Voltage",
+            "spec_option_name": "230 V",
+            "option_fill_rate": "12.8"
+        },
+        {
+            "spec_name": "Spindle Thread",
+            "spec_option_name": "M14",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Gaocheng",
+            "option_fill_rate": "11.5"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "125 mm (5 inch)",
+            "option_fill_rate": "11.4"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "12000 rpm",
+            "option_fill_rate": "10.8"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "8500 rpm",
+            "option_fill_rate": "10.1"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "EP-AG-801",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "HX-922",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "D1A-EE01-100C",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "3 months",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "OXG-1530W / 2146",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "YR AG801",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "G 10SS",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "FAG 4 - 1100",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "AKSHAR AIAG-1200",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "DH-801",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "YR AG1002",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "9104-HG",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "1 year",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "OXG-1100W / 2141",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "YR AG1005",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "SS AG4 1200",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "1 Year",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "6 Months",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "FAG 100 7",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "AG801",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name",
+            "spec_option_name": "YR AG901",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Model Name/Number",
+            "spec_option_name": "EDG-100PB",
+            "option_fill_rate": "10"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "750",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "850 W",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "220 V",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "800 W",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Voltage",
+            "spec_option_name": "230 V",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Back Switch",
+            "option_fill_rate": "8.3"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1000 W",
+            "option_fill_rate": "7.9"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Oxi Power",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Forte",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1200 W",
+            "option_fill_rate": "6.7"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "900 W",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Disc Bore Size",
+            "spec_option_name": "25.4 mm",
+            "option_fill_rate": "5.8"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "11000 RPM",
+            "option_fill_rate": "5.7"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "4 inch",
+            "option_fill_rate": "5.7"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1100 W",
+            "option_fill_rate": "5.5"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "9000 rpm",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1500 W",
+            "option_fill_rate": "4.8"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "600 W",
+            "option_fill_rate": "4.2"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "750 W",
+            "option_fill_rate": "4.2"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Cordless",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Electric",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Hikoki",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Mactic Tools",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Super Steel",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Kress",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Harde Power",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Eastman",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Orange",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "PROGEN POWER",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Krystal Kut",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Dhurandar",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Akshar",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Enon",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Global Power",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Bosch",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Golden Bullet",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "DYK",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Plus 7",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Camron Pro",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Progen",
+            "option_fill_rate": "3.8"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "115 mm (4.5 inch)",
+            "option_fill_rate": "3.4"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "13000 rpm",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "10000 rpm",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Back switch",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "850W",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "700 W",
+            "option_fill_rate": "3"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1400 W",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1250 W",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "850",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "500 W",
+            "option_fill_rate": "2.4"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "180 mm (7 inch)",
+            "option_fill_rate": "2.3"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1100W",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "850w",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "8000 rpm",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1100w",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "850 Watt",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "950W",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1100 Watt",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1200 Watt",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Rated Voltage",
+            "spec_option_name": "240 V",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1150W",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "750 Watt",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "2200 W",
+            "option_fill_rate": "1.2"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "100 mm",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "105 mm (4 inch)",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "105 mm",
+            "option_fill_rate": "1.1"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "lockable Switch",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "Back Awitch",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Switch Type",
+            "spec_option_name": "BACK SWITCH",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "ELECTRIC",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Power Source",
+            "spec_option_name": "Electric operated",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "18 Volt",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1200W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1700 W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "650 W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1050 W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "all",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "11800 rpm",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "750W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "0Ã¢â¬â11000 rpm",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "950 W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "12000 RPM",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "2000 W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "132Ãâ132Ãâ10 mm",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "710W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1300 W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "9800 rpm",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "2400W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "950",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "7000 rpm",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1050W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "150 mm (6 inch)",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "125 mm",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "300 W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1600 W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "11800 RPM",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "6500",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1020 W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "5 inch",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1100",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "860 W",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1530 Watt",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "1050",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "980w",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Input Power",
+            "spec_option_name": "950 Watt",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "Disc Diameter",
+            "spec_option_name": "150 mm",
+            "option_fill_rate": "0.6"
+        },
+        {
+            "spec_name": "No Load Speed",
+            "spec_option_name": "5000 spm",
+            "option_fill_rate": "0.6"
+        }
+    ]
+}

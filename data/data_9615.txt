@@ -1,0 +1,3087 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 9615,
+        "mcat_name": "Liquid Toilet Cleaners",
+        "current_specs": [
+            {
+                "spec_name": "Brand",
+                "options": [
+                    "Harpic",
+                    "Domex",
+                    "Sanifresh",
+                    "Patanjali",
+                    "Lizol",
+                    "Diversey",
+                    "Taski",
+                    "Local Brand",
+                    "Premium Brand",
+                    "Eco Brand"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Pack Size",
+                "options": [
+                    "250 ml",
+                    "500 ml",
+                    "750 ml",
+                    "1 L",
+                    "2 L",
+                    "5 L",
+                    "10 L",
+                    "20 L",
+                    "50 L",
+                    "200 L"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Usage Level",
+                "options": [
+                    "Ready To Use",
+                    "Concentrate"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Form",
+                "options": [
+                    "Liquid",
+                    "Gel",
+                    "Thick Liquid"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Suitability",
+                "options": [
+                    "Indian Toilet",
+                    "Western Toilet",
+                    "Porcelain",
+                    "Ceramic",
+                    "Stainless Steel",
+                    "Septic Tank Safe"
+                ],
+                "input_type": "multi_select",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Fragrance",
+                "options": [
+                    "Lemon",
+                    "Rose",
+                    "Pine",
+                    "Floral",
+                    "Fresh",
+                    "Jasmine",
+                    "Lavender",
+                    "Ocean",
+                    "Herbal",
+                    "Unscented"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Application",
+                "options": [
+                    "Toilet Bowl",
+                    "Under Rim",
+                    "Urinal",
+                    "Wash Basin"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Feature",
+                "options": [
+                    "Disinfectant",
+                    "Stain Removal",
+                    "Limescale Removal",
+                    "Thick Formula",
+                    "Fragrance Boost",
+                    "Eco Friendly"
+                ],
+                "input_type": "multi_select",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "pH Level",
+                "options": [
+                    "Acidic",
+                    "Neutral",
+                    "Alkaline"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Liquid Toilet Cleaners",
+            "mcat_id": 9615,
+            "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Brand",
+                            "options": [
+                                "Harpic",
+                                "Domex",
+                                "Sanifresh",
+                                "Patanjali",
+                                "Lizol",
+                                "Diversey",
+                                "Taski",
+                                "Local Brand",
+                                "Premium Brand",
+                                "Eco Brand"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Pack Size",
+                            "options": [
+                                "250 ml",
+                                "500 ml",
+                                "750 ml",
+                                "1 L",
+                                "2 L",
+                                "5 L",
+                                "10 L",
+                                "20 L",
+                                "50 L",
+                                "200 L"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Usage Level",
+                            "options": [
+                                "Ready To Use",
+                                "Concentrate"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Form",
+                            "options": [
+                                "Liquid",
+                                "Gel",
+                                "Thick Liquid"
+                            ],
+                            "input_type": "radio_button"
+                        },
+                        {
+                            "spec_name": "Suitability",
+                            "options": [
+                                "Indian Toilet",
+                                "Western Toilet",
+                                "Porcelain",
+                                "Ceramic",
+                                "Stainless Steel",
+                                "Septic Tank Safe"
+                            ],
+                            "input_type": "multi_select"
+                        },
+                        {
+                            "spec_name": "Fragrance",
+                            "options": [
+                                "Lemon",
+                                "Rose",
+                                "Pine",
+                                "Floral",
+                                "Fresh",
+                                "Jasmine",
+                                "Lavender",
+                                "Ocean",
+                                "Herbal",
+                                "Unscented"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Application",
+                            "options": [
+                                "Toilet Bowl",
+                                "Under Rim",
+                                "Urinal",
+                                "Wash Basin"
+                            ],
+                            "input_type": "multi_select"
+                        },
+                        {
+                            "spec_name": "Feature",
+                            "options": [
+                                "Disinfectant",
+                                "Stain Removal",
+                                "Limescale Removal",
+                                "Thick Formula",
+                                "Fragrance Boost",
+                                "Eco Friendly"
+                            ],
+                            "input_type": "multi_select"
+                        },
+                        {
+                            "spec_name": "pH Level",
+                            "options": [
+                                "Acidic",
+                                "Neutral",
+                                "Alkaline"
+                            ],
+                            "input_type": "radio_button"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Application",
+            "option_value": "Office Cleaning",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "To use or check",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Application",
+            "option_value": "Toilet Cleaning",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Availability/Variant Options",
+            "option_value": "All sizes available",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Availability/Variant Options",
+            "option_value": "With packaging or loose",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Bottle Color",
+            "option_value": "Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Branded",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Custom Branding / Private Labeling",
+            "prod_count": 12
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Dabur",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Diversey",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Doctor",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Generic",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Glamic",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Harpic",
+            "prod_count": 58
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Harpic (Copy)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Hatric",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Herenow",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Hunder",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Kaizen",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Lion",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "RZUI",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Rahul Industries",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Rozari",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Sparkle",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Super Clear",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "TC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Taski",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Trishul",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "VEDOX",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Vara",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Winto",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Wonder Clean",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Brand",
+            "option_value": "Wunderpress",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Cap Color",
+            "option_value": "Red",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chemical Composition",
+            "option_value": "HCL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Consistency",
+            "option_value": "Thick",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Dilution Ratio",
+            "option_value": "1:20-25",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Dilution Ratio",
+            "option_value": "25-30 liters water per liter",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Distribution Channel",
+            "option_value": "Wholesale",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fragrance",
+            "option_value": "Domex Scent",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fragrance",
+            "option_value": "Floral",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Fragrance",
+            "option_value": "Unfragranced",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Liquid Color",
+            "option_value": "Blue",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Liquid Color",
+            "option_value": "White",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Liquid Color",
+            "option_value": "Yellow",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Material Certification",
+            "option_value": "Government Approved",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Model",
+            "option_value": "BC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "0.5 L",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "1 L",
+            "prod_count": 33
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "1 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "2 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "2.9 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "20 L",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "200 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "200 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "250 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "30 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "300 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "5 L",
+            "prod_count": 37
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "50 L",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "50 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "500 ml",
+            "prod_count": 26
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "500 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "520 ml",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "675 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Net Volume/Weight",
+            "option_value": "900 ml",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Components",
+            "option_value": "Inner Cap",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Configuration",
+            "option_value": "16 pcs",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Packaging Configuration",
+            "option_value": "2 Pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Configuration",
+            "option_value": "24 pcs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Configuration",
+            "option_value": "28 Pieces",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Configuration",
+            "option_value": "4 Pieces",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "72 pieces per carton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Bottle",
+            "prod_count": 14
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Can",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Carton",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Case",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Container",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Drum",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Harpic Type Bottle",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Jar",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Jerry Can",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Loose",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Packaging Type",
+            "option_value": "Seal Pack",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Concentrate",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Liquid",
+            "prod_count": 19
+        },
+        {
+            "spec_name": "Physical Form",
+            "option_value": "Ready to use",
+            "prod_count": 11
+        },
+        {
+            "spec_name": "Price/MRP",
+            "option_value": "115 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Price/MRP",
+            "option_value": "225 INR",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Price/MRP",
+            "option_value": "235 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Price/MRP",
+            "option_value": "60 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Price/MRP",
+            "option_value": "895 INR",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Chemistry Type",
+            "option_value": "Acidic",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Chemistry Type",
+            "option_value": "Harpic Type",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Chemistry Type",
+            "option_value": "Toilet Bowl Cleaner",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality/Grade",
+            "option_value": "28 56",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality/Grade",
+            "option_value": "D",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality/Grade",
+            "option_value": "Economy",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality/Grade",
+            "option_value": "Harpic Compatible",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality/Grade",
+            "option_value": "High Quality",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Quality/Grade",
+            "option_value": "Local",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality/Grade",
+            "option_value": "Medium",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality/Grade",
+            "option_value": "Original",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Quality/Grade",
+            "option_value": "Regular",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Quality/Grade",
+            "option_value": "Standard",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Housekeeping",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Phenyl Type",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Pine Oil",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Ready-made",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Type",
+            "option_value": "Toilet Cleaner",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Product Variant/Series",
+            "option_value": "10 Max",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant/Series",
+            "option_value": "10 Max Pro",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant/Series",
+            "option_value": "Blue",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Product Variant/Series",
+            "option_value": "Bold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant/Series",
+            "option_value": "Harpic style",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant/Series",
+            "option_value": "Power",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant/Series",
+            "option_value": "Power Plus 10x",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant/Series",
+            "option_value": "R Series",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Product Variant/Series",
+            "option_value": "R6",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Product Variant/Series",
+            "option_value": "Sanifresh",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Product Yield",
+            "option_value": "6 kg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Service Offering",
+            "option_value": "Contract Manufacturing",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Service Offering",
+            "option_value": "Full Packaging Provided by Seller",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Specific Gravity",
+            "option_value": "1:1",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Marketed By",
+            "option_value": "Ibrahim Vohra"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Color",
+            "option_value": "Green"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Model",
+            "option_value": "Stirrogel"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Product By",
+            "option_value": "MIG"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Expiry Date",
+            "option_value": "36 Months"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Model",
+            "option_value": "Stirrogel"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Model",
+            "option_value": "Stirrogel"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Model",
+            "option_value": "Stirrogel"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Model Name",
+            "option_value": "Smartflush Rose Kandy Blast 500"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Model Number",
+            "option_value": "FCSF0503"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Manufactured By",
+            "option_value": "Vaata Smart Private Limited"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Model Name",
+            "option_value": "Smartflush Green Punch 500"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Model Number",
+            "option_value": "FCSP0102"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Model Number",
+            "option_value": "FCSF0103"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Model Name",
+            "option_value": "Sanclean"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Model Name",
+            "option_value": "Smartflush Aqua 750"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Tested By",
+            "option_value": "NABL Authorized Lab"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Recommended Surface",
+            "option_value": "Toilet Bowl"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "12 inch",
+            "option_value": "5kg"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Colour",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Brand",
+            "option_value": "GeniX"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Brand Name",
+            "option_value": "Happy Care"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Brand",
+            "option_value": "Servlin"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Manufactured By",
+            "option_value": "JC Group"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Marketed By",
+            "option_value": "Janki Chemical India Online Market"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Batch No",
+            "option_value": "08 JC -0024"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Shelf Life",
+            "option_value": "24 Month"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Manufactured By",
+            "option_value": "JC Group"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Shelf Life",
+            "option_value": "24 Month"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Marketed By",
+            "option_value": "Janki Chemical India Online Market"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Batch No",
+            "option_value": "08 JC -0024"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Pack Type",
+            "option_value": "Bottle"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Pack Type",
+            "option_value": "Bottle"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Color",
+            "option_value": "Yellow"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Color",
+            "option_value": "Blue"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Shelf Life",
+            "option_value": "24 Month"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Shelf Life",
+            "option_value": "24 Month"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Pack Type",
+            "option_value": "Bottle"
+        },
+        {
+            "mcat_id": "9615",
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "Pack Type",
+            "option_value": "Can"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "aqua care",
+            "impression": "796"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "beyond",
+            "impression": "431"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "cleanzo",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "gainda",
+            "impression": "12"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "go go",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "hardik",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "hero",
+            "impression": "26"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "lexa",
+            "impression": "11"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "modicare",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "mr bond",
+            "impression": "132"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "presto",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "pristino",
+            "impression": "186"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "sindhu",
+            "impression": "28"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "sunny",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "brand",
+            "spec_option": "tiger",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "form",
+            "spec_option": "cream",
+            "impression": "68"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "form",
+            "spec_option": "gel",
+            "impression": "24"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "form",
+            "spec_option": "liquid",
+            "impression": "3401"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "form",
+            "spec_option": "spray",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "model number",
+            "spec_option": "btc",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "model number",
+            "spec_option": "k6",
+            "impression": "8"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "packaging size",
+            "spec_option": "5 litre",
+            "impression": "33"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "packaging size",
+            "spec_option": "5 ltr",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "packaging size",
+            "spec_option": "500 ml",
+            "impression": "529"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "usage",
+            "spec_option": "toilet",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "usage",
+            "spec_option": "toilet bowl cleaner",
+            "impression": "26"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "usage",
+            "spec_option": "toilet cleaning",
+            "impression": "142"
+        },
+        {
+            "mcat_name": "Liquid Toilet Cleaners",
+            "spec_name": "usage",
+            "spec_option": "toilet tank cleaner",
+            "impression": "17"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Pack Size",
+            "spec_fill_rate": "72.6",
+            "product_count": "61"
+        },
+        {
+            "spec_name": "Form",
+            "spec_fill_rate": "70.2",
+            "product_count": "59"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_fill_rate": "65.5",
+            "product_count": "55"
+        },
+        {
+            "spec_name": "Usage Level",
+            "spec_fill_rate": "54.8",
+            "product_count": "46"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_fill_rate": "54.8",
+            "product_count": "46"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_fill_rate": "52.4",
+            "product_count": "44"
+        },
+        {
+            "spec_name": "Application",
+            "spec_fill_rate": "33.3",
+            "product_count": "28"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_fill_rate": "32.1",
+            "product_count": "27"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "31",
+            "product_count": "26"
+        },
+        {
+            "spec_name": "pH Level",
+            "spec_fill_rate": "27.4",
+            "product_count": "23"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_fill_rate": "20.2",
+            "product_count": "17"
+        },
+        {
+            "spec_name": "Recommended Surface",
+            "spec_fill_rate": "19",
+            "product_count": "16"
+        },
+        {
+            "spec_name": "Cleaner Type",
+            "spec_fill_rate": "19",
+            "product_count": "16"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_fill_rate": "15.5",
+            "product_count": "13"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_fill_rate": "15.5",
+            "product_count": "13"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_fill_rate": "3.6",
+            "product_count": "3"
+        },
+        {
+            "spec_name": "Application Area",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Product Code",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Marketed By",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Color",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Manufactured By",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Batch No",
+            "spec_fill_rate": "2.4",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Model Number",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "550",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Recyclable",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Finish Type",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Material",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Seal Type",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "50 lit can",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Application Use",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_fill_rate": "1.2",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Concentration",
+            "spec_option_name": "20%",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage",
+            "spec_option_name": "Toilet Cleaner",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "HDPE",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Capacity",
+            "spec_option_name": "500 ml",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "50 lit can",
+            "spec_option_name": "50 liter can",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "Happy Care",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Manufactured By",
+            "spec_option_name": "JC Group",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Usage / Application",
+            "spec_option_name": "Toilet Bowl Cleaning",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended Dilution",
+            "spec_option_name": "20-50 ml/L",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Acid Type",
+            "spec_option_name": "Hydrochloric Acid",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Bottle Shape",
+            "spec_option_name": "Angled Neck",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Physical State",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application Use",
+            "spec_option_name": "Concrete Admixture",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "550",
+            "spec_option_name": "3 inchi",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Marketed By",
+            "spec_option_name": "Janki Chemical India Online Market",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Code",
+            "spec_option_name": "Taski R6",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Type",
+            "spec_option_name": "Bathroom & Tile Cleaner",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Finish Type",
+            "spec_option_name": "Glossy",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recommended For",
+            "spec_option_name": "Ceramic Surface",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Features",
+            "spec_option_name": "Ready to Use",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Seal Type",
+            "spec_option_name": "No Seal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model",
+            "spec_option_name": "R6",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application Area",
+            "spec_option_name": "Toilet Bowl",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Recyclable",
+            "spec_option_name": "No",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Batch No",
+            "spec_option_name": "08 JC -0024",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Product Brand",
+            "spec_option_name": "One Swipe",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "We have all type clinic product please contact us",
+            "spec_option_name": "250ml to 5 ltr",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Net Quantity",
+            "spec_option_name": "500ml",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Model Number",
+            "spec_option_name": "FCSF0103",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Toilet Bowl",
+            "option_fill_rate": "96.2"
+        },
+        {
+            "spec_name": "Recommended Surface",
+            "spec_option_name": "Toilet Bowl",
+            "option_fill_rate": "95.8"
+        },
+        {
+            "spec_name": "Usage Level",
+            "spec_option_name": "Ready To Use",
+            "option_fill_rate": "94.5"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "88.5"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "Indian Toilet",
+            "option_fill_rate": "86.6"
+        },
+        {
+            "spec_name": "Chemical Base",
+            "spec_option_name": "Acidic",
+            "option_fill_rate": "81.3"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "Western Toilet",
+            "option_fill_rate": "79.1"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Disinfectant",
+            "option_fill_rate": "76.9"
+        },
+        {
+            "spec_name": "Recommended For",
+            "spec_option_name": "Toilet Bowl",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Recommended For",
+            "spec_option_name": "Tiles & Grout",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Recommended For",
+            "spec_option_name": "Urinal",
+            "option_fill_rate": "75"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "Kills 99.9% Germs",
+            "option_fill_rate": "74.5"
+        },
+        {
+            "spec_name": "pH Level",
+            "spec_option_name": "Acidic",
+            "option_fill_rate": "72.1"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Stain Removal",
+            "option_fill_rate": "71.8"
+        },
+        {
+            "spec_name": "Cleaner Type",
+            "spec_option_name": "Acidic",
+            "option_fill_rate": "69.7"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Mall",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Airport",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Technical Grade",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Hospital",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Hotel",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Office",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 Month",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Industrial",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Housekeeping",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "Thick Formula",
+            "option_fill_rate": "66.7"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Bottle",
+            "option_fill_rate": "64.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Urinal",
+            "option_fill_rate": "58.2"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Thick Formula",
+            "option_fill_rate": "53.8"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "Removes Limescale",
+            "option_fill_rate": "52.9"
+        },
+        {
+            "spec_name": "Recommended Surface",
+            "spec_option_name": "Urinal",
+            "option_fill_rate": "52.1"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "Stain Removal",
+            "option_fill_rate": "51"
+        },
+        {
+            "spec_name": "Application Area",
+            "spec_option_name": "Urinal",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made in India",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Blue",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_option_name": "Power Plus",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Variant",
+            "spec_option_name": "Original",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Liquid",
+            "option_fill_rate": "49.8"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Under Rim",
+            "option_fill_rate": "45.6"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "Eco-Friendly",
+            "option_fill_rate": "41.2"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Limescale Removal",
+            "option_fill_rate": "41"
+        },
+        {
+            "spec_name": "Recommended Surface",
+            "spec_option_name": "Bathroom Tiles",
+            "option_fill_rate": "40.8"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "Hard Water Formula",
+            "option_fill_rate": "37.3"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "Ceramic",
+            "option_fill_rate": "36.6"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Eco Friendly",
+            "option_fill_rate": "35.9"
+        },
+        {
+            "spec_name": "Recommended Surface",
+            "spec_option_name": "Wash Basin",
+            "option_fill_rate": "35.2"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Stainless Steel",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Granite",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Marble",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "225 ml",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Shelf Life",
+            "spec_option_name": "24 Months",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Suitable For",
+            "spec_option_name": "Concrete",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Grade",
+            "spec_option_name": "Cleaning domestic",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "5KG",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Packaging Size",
+            "spec_option_name": "5 ltr",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Bathroom Floor",
+            "option_fill_rate": "32.9"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "Porcelain",
+            "option_fill_rate": "32.1"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "500 ml",
+            "option_fill_rate": "31"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Fresh",
+            "option_fill_rate": "30.1"
+        },
+        {
+            "spec_name": "Recommended Surface",
+            "spec_option_name": "Multi-Surface",
+            "option_fill_rate": "29.6"
+        },
+        {
+            "spec_name": "Feature",
+            "spec_option_name": "Fragrance Boost",
+            "option_fill_rate": "28.2"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Wash Basin",
+            "option_fill_rate": "27.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "5 L",
+            "option_fill_rate": "27.5"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Ready to Use",
+            "option_fill_rate": "27.1"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Yellow",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Pack Type",
+            "spec_option_name": "Can",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Recommended For",
+            "spec_option_name": "bathroom fitings",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Light Yellow",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "pH Level",
+            "spec_option_name": "Neutral",
+            "option_fill_rate": "24.6"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Wall Tiles",
+            "option_fill_rate": "24.1"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "Septic Tank Safe",
+            "option_fill_rate": "22.4"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "Stainless Steel",
+            "option_fill_rate": "21.6"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1 L",
+            "option_fill_rate": "21.2"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "Biodegradable",
+            "option_fill_rate": "19.6"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Can",
+            "option_fill_rate": "19.6"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Lemon",
+            "option_fill_rate": "19.6"
+        },
+        {
+            "spec_name": "Cleaner Type",
+            "spec_option_name": "Neutral",
+            "option_fill_rate": "18.2"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Unscented",
+            "option_fill_rate": "13.1"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Floral",
+            "option_fill_rate": "13.1"
+        },
+        {
+            "spec_name": "Chemical Base",
+            "spec_option_name": "Non-Acidic",
+            "option_fill_rate": "12.5"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Thick Liquid",
+            "option_fill_rate": "10.9"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Squeeze Bottle",
+            "option_fill_rate": "10.7"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "Germ Protection",
+            "option_fill_rate": "9.8"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_option_name": "Gel",
+            "option_fill_rate": "9.6"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Harpic",
+            "option_fill_rate": "9.1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Premium Brand",
+            "option_fill_rate": "8.6"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "Descaler",
+            "option_fill_rate": "7.8"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "Tough Stain Rmv",
+            "option_fill_rate": "7.8"
+        },
+        {
+            "spec_name": "Cleaner Type",
+            "spec_option_name": "Alkaline",
+            "option_fill_rate": "7.6"
+        },
+        {
+            "spec_name": "Chemical Base",
+            "spec_option_name": "Bleach Based",
+            "option_fill_rate": "6.3"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Ready-to-Use",
+            "option_fill_rate": "6.1"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "For Hard Water",
+            "option_fill_rate": "5.9"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "250 ml",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "5L",
+            "option_fill_rate": "4.7"
+        },
+        {
+            "spec_name": "Usage Level",
+            "spec_option_name": "Concentrate",
+            "option_fill_rate": "4.1"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Ocean",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Rose",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Pine",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "pH Level",
+            "spec_option_name": "Alkaline",
+            "option_fill_rate": "3.3"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Gel",
+            "option_fill_rate": "3.1"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Herbal",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Concentrate",
+            "option_fill_rate": "2.2"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "50 L",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Key Features",
+            "spec_option_name": "Sanitizer",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Citrus",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Lavender",
+            "option_fill_rate": "2"
+        },
+        {
+            "spec_name": "Physical Form",
+            "spec_option_name": "Thick Liquid",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "HDPE Bottle",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Pouch",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Paper Bag",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "500ml",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Cleaner Type",
+            "spec_option_name": "Toilet cleaner",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Cleaner Type",
+            "spec_option_name": "TOILET  BOWL CLEANER",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "Indian Toilet, Western Toilet",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Cleaner Type",
+            "spec_option_name": "Harpic type",
+            "option_fill_rate": "1.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Zefrix",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Local Brand",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Suhimax",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Taski",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Clinzal",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Clean Magic",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Usage Level",
+            "spec_option_name": "For Toilet Cleaner",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Brirak",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Minitek",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Original",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Toilet cleaning",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Application",
+            "spec_option_name": "Toilet Rim",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Jasmine",
+            "option_fill_rate": "1.3"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "minitek",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "NEUCLEAN",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Dora",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Haizer",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Private Label",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Shreya",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Rudra",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Power Max",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Shine Time",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Kimjo",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Pro clear",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Shine N Clean",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Buzil Rossari",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "UNIWASH",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Vooki",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "no brand",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Ayupri",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Germisol",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "HEX",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "20 L",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "750ML",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "750 ml",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "200 ml",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "All type",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "Indian and Western Toilet",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Fragrance Free",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "All",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "No small",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Advanced Hydrochloric Acid-Based Toilet Cleaner.",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "rose",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "rose , jasmine",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Aromatic Minty",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "all",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Normal",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Suitability",
+            "spec_option_name": "All Toilet",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Fragrance",
+            "spec_option_name": "Non",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Nypto",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Mr Warrior",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Gainda",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "CAPTAIN HYGIENE",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Explore",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Coltchem",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "MR.THINDZ",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "M2 Power Plus",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Cleanx",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Gocleans",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Runway",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Ramson",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Supreme Shiny Clean",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "good quality",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Parryware",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Hunter",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Stan Fresh",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Khadi",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Toxlet",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Maids Magic",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SAKSHI",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Bulandi",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SHINOX",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "JIVTARA",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "B.T.H.",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Grahni",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "jestobrite",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Mr. Saffa",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Blumist",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "CLYNORA",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "m2 power plus",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Penta Clean Toilet Cleaner",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "HYQLEEN",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "FLOROXX",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "One Swipe",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Rotex",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Sri sivaymbhu traders",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "super cleaner",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Floral",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "G Plus green prodact",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Sugandha",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "PM",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Topsellers",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "CleanGod",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Care Clean",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "R.k mr cleaner",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Neuutrack",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Satol",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "New shine",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Ultra shine",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SHINE TIME",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Xcleaner",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Milestone",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "ozell",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Harplin Pro",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SAVVYPRO",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Shinex",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Buzil rossari",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Mast",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Force 100",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SWASH GHAR",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Schevaran",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Folex",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Hexa Wash",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Aumic",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Supreme cleaner",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Nutrashield",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Enaksh",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "AS REQUIRED",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Brightos",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "care clean",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Doctor clean",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Generic",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Liquid Toilet Cleaners",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "URXY",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "AuraShine",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Gulf",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Prakarti",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Organic",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Zerodor",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Havit plus",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Clearish",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "INDIANA CLEAN",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "ciean off plus",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Royal House",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SANSEE",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Rozan",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "nalofy",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Saralom Max Clean",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "NAIDA",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Diksha Plus",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "WoW Fresh",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "CLINZAI",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Shuddhi Care",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "FAWE",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Eco Brand",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Stark Chem",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Toilet cleaning acid",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Master Freshner",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Z PLUS",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "careclean",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "5 star",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Woolish",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Veldon",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "SAFE Planet & U",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "TT",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Natural Light",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "FLEEXO",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Shyno",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Glimzo",
+            "option_fill_rate": "0.5"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "1000ml",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "30L",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "AS REQUIRED",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "5kg",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "Spray",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "500ml and 1L",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "all",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "As per Requirement",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "25 L",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "5 kg",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Pack Size",
+            "spec_option_name": "550ml",
+            "option_fill_rate": "0.4"
+        },
+        {
+            "spec_name": "Form",
+            "spec_option_name": "LIQUID",
+            "option_fill_rate": "0.4"
+        }
+    ]
+}

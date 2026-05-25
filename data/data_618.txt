@@ -1,0 +1,2769 @@
+{
+    "DS-0 (Platform Specs)": {
+        "mcat_id": 618,
+        "mcat_name": "Gold Chains",
+        "current_specs": [
+            {
+                "spec_name": "Purity (Karat)",
+                "options": [
+                    "22K (916)",
+                    "18K (750)",
+                    "14K (585)"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Design/Link Style",
+                "options": [
+                    "Cuban",
+                    "Figaro",
+                    "Rope",
+                    "Box",
+                    "Curb",
+                    "Franco",
+                    "Anchor",
+                    "Coimbatore"
+                ],
+                "input_type": "radio_button",
+                "tier": "Primary"
+            },
+            {
+                "spec_name": "Weight (g)",
+                "options": [
+                    "10 g",
+                    "20 g",
+                    "15 g",
+                    "30 g",
+                    "50 g",
+                    "5 g",
+                    "100 g"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Length",
+                "options": [
+                    "18 in",
+                    "20 in",
+                    "22 in",
+                    "24 in",
+                    "16 in",
+                    "26 in"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Construction Type",
+                "options": [
+                    "Solid",
+                    "Hollow"
+                ],
+                "input_type": "radio_button",
+                "tier": "Secondary"
+            },
+            {
+                "spec_name": "Gold Color",
+                "options": [
+                    "Yellow Gold",
+                    "Rose Gold",
+                    "White Gold",
+                    "Two-Tone"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Making Process",
+                "options": [
+                    "Machine-made",
+                    "Handmade"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Clasp Type",
+                "options": [
+                    "S-Hook",
+                    "Lobster Claw",
+                    "Spring Ring"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            },
+            {
+                "spec_name": "Hallmarking",
+                "options": [
+                    "HUID Hallmarked"
+                ],
+                "input_type": "radio_button",
+                "tier": "Tertiary"
+            }
+        ],
+        "raw": {
+            "category_name": "Gold Chains",
+            "mcat_id": 618,
+            "finalized_specs": {
+                "finalized_primary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Purity (Karat)",
+                            "options": [
+                                "22K (916)",
+                                "18K (750)",
+                                "14K (585)"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Suffix",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Design/Link Style",
+                            "options": [
+                                "Cuban",
+                                "Figaro",
+                                "Rope",
+                                "Box",
+                                "Curb",
+                                "Franco",
+                                "Anchor",
+                                "Coimbatore"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "Prefix",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Primary Specs (Purity, Design/Link Style) are the first-level filters buyers use. A buyer typically searches for a specific style of chain (e.g., 'Cuban Chain') in a specific purity (e.g., '22K'). These attributes are fundamental to product identity and initial price range."
+                },
+                "finalized_secondary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Weight (g)",
+                            "options": [
+                                "10 g",
+                                "20 g",
+                                "15 g",
+                                "30 g",
+                                "50 g",
+                                "5 g",
+                                "100 g"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Length",
+                            "options": [
+                                "18 in",
+                                "20 in",
+                                "22 in",
+                                "24 in",
+                                "16 in",
+                                "26 in"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Construction Type",
+                            "options": [
+                                "Solid",
+                                "Hollow"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Secondary Specs (Weight, Length, Construction Type): After identifying the style, buyers narrow down their needs based on these core functional and cost attributes. Weight is the single biggest determinant of final price. Length defines the fit and target customer. Construction Type (Solid vs. Hollow) is a critical cost-saving vs. durability trade-off in B2B."
+                },
+                "finalized_tertiary_specs": {
+                    "specs": [
+                        {
+                            "spec_name": "Gold Color",
+                            "options": [
+                                "Yellow Gold",
+                                "Rose Gold",
+                                "White Gold",
+                                "Two-Tone"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Making Process",
+                            "options": [
+                                "Machine-made",
+                                "Handmade"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Clasp Type",
+                            "options": [
+                                "S-Hook",
+                                "Lobster Claw",
+                                "Spring Ring"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        },
+                        {
+                            "spec_name": "Hallmarking",
+                            "options": [
+                                "HUID Hallmarked"
+                            ],
+                            "input_type": "radio_button",
+                            "affix_flag": "None",
+                            "affix_presence_flag": "0"
+                        }
+                    ],
+                    "scratchpad": "Tertiary Specs (Gold Color, Making Process, etc.): These are supplementary details that help finalize a decision. While important, they are typically considered after the primary and secondary characteristics are met. Hallmarking is included as a crucial, legally mandated trust and quality indicator in the Indian market."
+                }
+            },
+            "scratchpad": "The specifications and their classifications are derived from a comprehensive analysis of the provided buyer-seller call recordings and seller catalogs. The hierarchy of specifications reflects the typical B2B purchasing journey. Primary specs are for initial filtering, Secondary specs narrow down choices based on function and cost, and Tertiary specs provide supplementary details to finalize a decision. Hallmarking is included as a crucial, legally mandated trust and quality indicator in the Indian market."
+        }
+    },
+    "DS-1 (Buyer Call Data)": [
+        {
+            "spec_name": "Additional Features",
+            "option_value": "5-10 Designs",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Additional Features",
+            "option_value": "Anti-tarnish",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Additional Features",
+            "option_value": "Stone: Green diamond",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Availability",
+            "option_value": "Order basis",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "BIS Hallmark",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Certification",
+            "option_value": "HUID Pass",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "2 Tanch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "Adjustable Bolo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "Chain",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "Gold Forming",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "Handmade",
+            "prod_count": 16
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "Highway",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "Hollow",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "Joint",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "Lightweight",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "Machine Made",
+            "prod_count": 6
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "Solid",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Chain Type",
+            "option_value": "Stretch Chain",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Color",
+            "option_value": "Rose Gold",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Component Size",
+            "option_value": "4 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Adjustable Bolo",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Anchor Diamond Cut (DC)",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Antique",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Ball",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Batani",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Beaded",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Biscuit",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Box",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "CNC Beads",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Cable",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Casting Beads",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Coimbatore",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Cuban",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Cuban link",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Curb",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Dhoni",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Diamond (Kattappa/Bahubali)",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Diamond Cut",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Double Design",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Fancy",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Figaro",
+            "prod_count": 8
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Ghatmal",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Highway",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Hollow Nawabi",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Italian",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Kadap Chain (Bottom)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Kamal Chain (Top)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Kande wali",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Leaf",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Leaf family",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Lightweight",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Lotus",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Miami Cuban",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Moti wali (Beaded)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Mysore",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Nawabi",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Paper Clip",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Patla dhaga (Thin thread like)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Plain",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Rope",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "SPL",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Sadak",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Sleek/Delicate",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Triple Box",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Design",
+            "option_value": "Turkey",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "3 to 4 types (300, 450, 550)",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "DC",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "Gold plated",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "Polished",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Finish",
+            "option_value": "Rose Gold",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gemstone",
+            "option_value": "Without Diamond",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gold Content",
+            "option_value": "11.25 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gold Content",
+            "option_value": "4 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Gold Reference",
+            "option_value": "1 Gram",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Inlay Material",
+            "option_value": "Mother of Pearl",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "16 in",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "18 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "20 in",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "20-24 in",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "22-24 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "3.5 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "3.5 in per side",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "30 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Length",
+            "option_value": "32 in",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Lock Type",
+            "option_value": "Special Lock System",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Brass",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Gold",
+            "prod_count": 15
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Imitation",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Material",
+            "option_value": "Silver",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Coimbatore",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Origin",
+            "option_value": "Imported",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "10 K",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "10 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "14 K",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "18 K",
+            "prod_count": 14
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "2 Tanch",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "20 K",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "22 K",
+            "prod_count": 46
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "22 92",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "28 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "84",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "9 K",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "91.6 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "91.80",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "916",
+            "prod_count": 7
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "918",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "92",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "92-94",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Purity",
+            "option_value": "Hallmark",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Target Gender",
+            "option_value": "Ladies",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Target Gender",
+            "option_value": "Men",
+            "prod_count": 5
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "One size larger/thicker than the current sample",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Thickness",
+            "option_value": "Thick",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Wastage",
+            "option_value": "1.5 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Wastage",
+            "option_value": "1.8",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Wastage",
+            "option_value": "12 %",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Wastage",
+            "option_value": "15-20 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Wastage",
+            "option_value": "2.5 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Wastage",
+            "option_value": "3-5 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Wastage",
+            "option_value": "5-6 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Wastage",
+            "option_value": "8 %",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1 g",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1-10 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1-2 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "1-4 g",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "10 g",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "10-12 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "10-20 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "10.700 mg",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "100 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "12 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "15 g",
+            "prod_count": 4
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "15-20 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "15-50 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "150-170 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "16 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "18 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "2 tola",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "20 g",
+            "prod_count": 9
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "22 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "3 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "3.25-3.5 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "30 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "4 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "40 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "5-20 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "5-6 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "50 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "50-60 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "6 g",
+            "prod_count": 3
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "6-25 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "6-7 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "6-8 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "7 Sovereign",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "8 g",
+            "prod_count": 2
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "8-12 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "9 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Weight",
+            "option_value": "up to 100 g",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "14 mm",
+            "prod_count": 1
+        },
+        {
+            "spec_name": "Width",
+            "option_value": "4 mm",
+            "prod_count": 1
+        }
+    ],
+    "DS-2 (Custom Specs)": [
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Material",
+            "option_value": "Gold and Alloy"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Occasion",
+            "option_value": "Daily Wear"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Material",
+            "option_value": "Gold and Alloy"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Ocassion",
+            "option_value": "Daily Wear"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Material",
+            "option_value": "Gold and Alloy"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Occasion",
+            "option_value": "Daily Wear"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Ocassion",
+            "option_value": "Party Wear"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Material",
+            "option_value": "Gold and Alloy"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Material",
+            "option_value": "Gold and Alloy"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Ocassion",
+            "option_value": "Party Wear"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Ocassion",
+            "option_value": "Party Wear"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Material",
+            "option_value": "Gold and Alloy"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "90.00 gram",
+            "option_value": "26 inch and all size avilable"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "60.00 gram",
+            "option_value": "26 inch and all size avilable"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "60.00gm",
+            "option_value": "All size avilable"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "50 inch",
+            "option_value": "50.00 gm"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "24 inch",
+            "option_value": "50.00 gram"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "60.00 gram",
+            "option_value": "24 inch"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "70 gram",
+            "option_value": "All size avilable"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "90 gram",
+            "option_value": "All size avilable"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "14 to 22 gram",
+            "option_value": "22 inch to 24 inch"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "14 gram to 21 gram",
+            "option_value": "All size avilable"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Material",
+            "option_value": "Gold and Alloy"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Material",
+            "option_value": "Gold"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Set Contains",
+            "option_value": "3 Pieces"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Weight starts from 12gms",
+            "option_value": "18inches"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Material",
+            "option_value": "Gold"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "200gms"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "Brand Name",
+            "option_value": "MSJ"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "PART NO",
+            "option_value": "RB-2717"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "PART NO",
+            "option_value": "RB-5710"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "PART NO",
+            "option_value": "RB-5711"
+        },
+        {
+            "mcat_id": "618",
+            "mcat_name": "Gold Chains",
+            "spec_name": "PART NO",
+            "option_value": "RB-5712"
+        }
+    ],
+    "DS-3 (Buyer Search Data)": [
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "brand",
+            "spec_option": "indo",
+            "impression": "73"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "brand",
+            "spec_option": "kamal",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "brand",
+            "spec_option": "kdm",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "brand",
+            "spec_option": "sachin",
+            "impression": "47"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "brand",
+            "spec_option": "tanishq",
+            "impression": "292"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "color",
+            "spec_option": "black",
+            "impression": "10"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "color",
+            "spec_option": "golden",
+            "impression": "24447"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "design",
+            "spec_option": "bahubali",
+            "impression": "181"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "design",
+            "spec_option": "fancy",
+            "impression": "65"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "design",
+            "spec_option": "lady",
+            "impression": "2634"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "design",
+            "spec_option": "simple",
+            "impression": "578"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "design",
+            "spec_option": "sundari",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "gender",
+            "spec_option": "boy",
+            "impression": "6207"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "gender",
+            "spec_option": "female",
+            "impression": "15057"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "gender",
+            "spec_option": "unisex",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "jewellery type",
+            "spec_option": "ear chain",
+            "impression": "1888"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "material",
+            "spec_option": "gold",
+            "impression": "1212249"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "purity",
+            "spec_option": "10000",
+            "impression": "28"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "purity",
+            "spec_option": "15000",
+            "impression": "41"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "purity",
+            "spec_option": "18 carat",
+            "impression": "317"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "purity",
+            "spec_option": "18 karat",
+            "impression": "2595"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "purity",
+            "spec_option": "22 carat",
+            "impression": "2028"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "purity",
+            "spec_option": "22 k",
+            "impression": "11931"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "purity",
+            "spec_option": "22 kt",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "purity",
+            "spec_option": "23 k",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "purity",
+            "spec_option": "24 carat",
+            "impression": "849"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "purity",
+            "spec_option": "24 karat",
+            "impression": "26"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "purity",
+            "spec_option": "916",
+            "impression": "3354"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "set contains",
+            "spec_option": "chain with pendant",
+            "impression": "748"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "size",
+            "spec_option": "1 tola",
+            "impression": "2207"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "size",
+            "spec_option": "10 tola",
+            "impression": "15"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "size",
+            "spec_option": "24 inch",
+            "impression": "4"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "size",
+            "spec_option": "3",
+            "impression": "674"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "size",
+            "spec_option": "5",
+            "impression": "295"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "size",
+            "spec_option": "5 tola",
+            "impression": "512"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "size",
+            "spec_option": "big",
+            "impression": "54"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "size",
+            "spec_option": "long",
+            "impression": "71"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "stone type",
+            "spec_option": "rudraksha",
+            "impression": "258"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "style",
+            "spec_option": "cuban chain",
+            "impression": "165"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "style",
+            "spec_option": "snake",
+            "impression": "84"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "style",
+            "spec_option": "snake chain",
+            "impression": "166"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "type",
+            "spec_option": "chain",
+            "impression": "1174901"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "type",
+            "spec_option": "price chain",
+            "impression": "30"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "usage",
+            "spec_option": "mop",
+            "impression": "31"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "1 gm",
+            "impression": "5"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "1 gram",
+            "impression": "2405"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "1 kg",
+            "impression": "89"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "10 gm",
+            "impression": "498"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "10 gram",
+            "impression": "53060"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "100 gm",
+            "impression": "295"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "100 gram",
+            "impression": "3673"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "11 gram",
+            "impression": "9"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "12 gram",
+            "impression": "3143"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "15 gram",
+            "impression": "9017"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "16 gram",
+            "impression": "1073"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "17 gram",
+            "impression": "74"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "2 gram",
+            "impression": "7022"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "20 gram",
+            "impression": "6207"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "200 gram",
+            "impression": "76"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "24 gram",
+            "impression": "641"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "25 gm",
+            "impression": "46"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "25 gram",
+            "impression": "1056"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "250 gram",
+            "impression": "39"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "3 gram",
+            "impression": "893"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "30 g",
+            "impression": "6"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "30 gm",
+            "impression": "209"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "30 gram",
+            "impression": "6104"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "32 gram",
+            "impression": "75"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "4 gram",
+            "impression": "2284"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "40 gram",
+            "impression": "4166"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "5 gm",
+            "impression": "369"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "5 gram",
+            "impression": "60084"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "50 gm",
+            "impression": "450"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "50 gram",
+            "impression": "6426"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "500 gram",
+            "impression": "13"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "6 gram",
+            "impression": "6688"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "60 gram",
+            "impression": "112"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "7 gram",
+            "impression": "1766"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "70 gram",
+            "impression": "7"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "8 gm",
+            "impression": "170"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "8 gram",
+            "impression": "10691"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "80 gram",
+            "impression": "81"
+        },
+        {
+            "mcat_name": "Gold Chains",
+            "spec_name": "weight",
+            "spec_option": "one gram",
+            "impression": "685"
+        }
+    ],
+    "DS-4 (Fill Rate Data)": [
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_fill_rate": "71.7",
+            "product_count": "38"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_fill_rate": "67.9",
+            "product_count": "36"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_fill_rate": "66",
+            "product_count": "35"
+        },
+        {
+            "spec_name": "Length",
+            "spec_fill_rate": "64.2",
+            "product_count": "34"
+        },
+        {
+            "spec_name": "Construction Type",
+            "spec_fill_rate": "62.3",
+            "product_count": "33"
+        },
+        {
+            "spec_name": "Gold Color",
+            "spec_fill_rate": "56.6",
+            "product_count": "30"
+        },
+        {
+            "spec_name": "Making Process",
+            "spec_fill_rate": "39.6",
+            "product_count": "21"
+        },
+        {
+            "spec_name": "",
+            "spec_fill_rate": "37.7",
+            "product_count": "20"
+        },
+        {
+            "spec_name": "Clasp Type",
+            "spec_fill_rate": "18.9",
+            "product_count": "10"
+        },
+        {
+            "spec_name": "Hallmarking",
+            "spec_fill_rate": "15.1",
+            "product_count": "8"
+        },
+        {
+            "spec_name": "Metal Color",
+            "spec_fill_rate": "3.8",
+            "product_count": "2"
+        },
+        {
+            "spec_name": "Stone Color",
+            "spec_fill_rate": "1.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Weight starts from 12gms",
+            "spec_fill_rate": "1.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_fill_rate": "1.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Occasion",
+            "spec_fill_rate": "1.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_fill_rate": "1.9",
+            "product_count": "1"
+        },
+        {
+            "spec_name": "Stone Size",
+            "spec_fill_rate": "1.9",
+            "product_count": "1"
+        }
+    ],
+    "DS-5 (Option Fill Rate Data)": [
+        {
+            "spec_name": "Pitch",
+            "spec_option_name": "12 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Diameter",
+            "spec_option_name": "3 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight starts from 12gms",
+            "spec_option_name": "18inches",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Weight",
+            "spec_option_name": "15g",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Link Shape",
+            "spec_option_name": "Oval",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "24 inch",
+            "spec_option_name": "50.00 gram",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Plating Color",
+            "spec_option_name": "Gold",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "50 inch",
+            "spec_option_name": "50.00 gm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Width",
+            "spec_option_name": "6 mm",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Embellishment",
+            "spec_option_name": "With Pendant",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Warranty",
+            "spec_option_name": "1 Year",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Packaging Type",
+            "spec_option_name": "Box",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Stone Size",
+            "spec_option_name": "SS14",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Finishing Type",
+            "spec_option_name": "Polished",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "70 gram",
+            "spec_option_name": "All size avilable",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Type",
+            "spec_option_name": "Chain",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "90 gram",
+            "spec_option_name": "All size avilable",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "14 gram to 21 gram",
+            "spec_option_name": "All size avilable",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "14 to 22 gram",
+            "spec_option_name": "22 inch to 24 inch",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Occasion",
+            "spec_option_name": "Part Wear",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Color",
+            "spec_option_name": "Golden",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Brand",
+            "spec_option_name": "Tata",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Stone Color",
+            "spec_option_name": "AB Crystal",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Hallmarking",
+            "spec_option_name": "HUID Hallmarked",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Base Material",
+            "spec_option_name": "gold",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "I Deal In",
+            "spec_option_name": "New Only",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "90.00 gram",
+            "spec_option_name": "26 inch and all size avilable",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Plating Type",
+            "spec_option_name": "1 Gram Gold",
+            "option_fill_rate": "100"
+        },
+        {
+            "spec_name": "Gold Color",
+            "spec_option_name": "Yellow Gold",
+            "option_fill_rate": "94.3"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "MSJ",
+            "option_fill_rate": "92.3"
+        },
+        {
+            "spec_name": "Clasp Type",
+            "spec_option_name": "S-Hook",
+            "option_fill_rate": "73.1"
+        },
+        {
+            "spec_name": "Construction Type",
+            "spec_option_name": "Solid",
+            "option_fill_rate": "63.5"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "22K (916)",
+            "option_fill_rate": "63.4"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Gold",
+            "option_fill_rate": "60"
+        },
+        {
+            "spec_name": "Making Process",
+            "spec_option_name": "Machine-made",
+            "option_fill_rate": "53.2"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "Made In India",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Gender",
+            "spec_option_name": "Unisex",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "2 mm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Chain Style",
+            "spec_option_name": "Curb",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Gender",
+            "spec_option_name": "Women",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Thickness",
+            "spec_option_name": "6 mm",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Metal Color",
+            "spec_option_name": "Yellow Gold",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Chain Style",
+            "spec_option_name": "Figaro",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Country of Origin",
+            "spec_option_name": "India",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Metal Color",
+            "spec_option_name": "Gold",
+            "option_fill_rate": "50"
+        },
+        {
+            "spec_name": "Making Process",
+            "spec_option_name": "Handmade",
+            "option_fill_rate": "46.8"
+        },
+        {
+            "spec_name": "Construction Type",
+            "spec_option_name": "Hollow",
+            "option_fill_rate": "33.7"
+        },
+        {
+            "spec_name": "60.00 gram",
+            "spec_option_name": "24 inch",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "60.00 gram",
+            "spec_option_name": "26 inch and all size avilable",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "60.00 gram",
+            "spec_option_name": "24 inch and all size are avilable",
+            "option_fill_rate": "33.3"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "18 in",
+            "option_fill_rate": "32.7"
+        },
+        {
+            "spec_name": "PART NO",
+            "spec_option_name": "RB-5710",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "PART NO",
+            "spec_option_name": "RB-5712",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "PART NO",
+            "spec_option_name": "RB-5711",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "PART NO",
+            "spec_option_name": "RB-2717",
+            "option_fill_rate": "25"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "24 in",
+            "option_fill_rate": "22.1"
+        },
+        {
+            "spec_name": "Clasp Type",
+            "spec_option_name": "Spring Ring",
+            "option_fill_rate": "21.2"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "10 g",
+            "option_fill_rate": "20.5"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Gold patta chain",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Material",
+            "spec_option_name": "Stainless Steel",
+            "option_fill_rate": "20"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Rope",
+            "option_fill_rate": "19.4"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "18K (750)",
+            "option_fill_rate": "17.6"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "20 in",
+            "option_fill_rate": "16.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Cuban",
+            "option_fill_rate": "14.5"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "20 g",
+            "option_fill_rate": "12"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "100 g",
+            "option_fill_rate": "10.3"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Box",
+            "option_fill_rate": "9.7"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "22 in",
+            "option_fill_rate": "8.8"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "30 g",
+            "option_fill_rate": "8.5"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Franco",
+            "option_fill_rate": "8.1"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Figaro",
+            "option_fill_rate": "8.1"
+        },
+        {
+            "spec_name": "Brand Name",
+            "spec_option_name": "200gms",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "15 g",
+            "option_fill_rate": "7.7"
+        },
+        {
+            "spec_name": "Clasp Type",
+            "spec_option_name": "Lobster Claw",
+            "option_fill_rate": "5.8"
+        },
+        {
+            "spec_name": "Gold Color",
+            "spec_option_name": "Rose Gold",
+            "option_fill_rate": "5.7"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "16 in",
+            "option_fill_rate": "5.3"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "40 gms",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "50 g",
+            "option_fill_rate": "5.1"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "18K to 22K",
+            "option_fill_rate": "4.9"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Coimbatore",
+            "option_fill_rate": "4"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Curb",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Anchor",
+            "option_fill_rate": "3.2"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "14K",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "20K",
+            "option_fill_rate": "2.8"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "60.00 gram",
+            "option_fill_rate": "2.6"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "Brass",
+            "option_fill_rate": "2.1"
+        },
+        {
+            "spec_name": "Construction Type",
+            "spec_option_name": "As per product specification",
+            "option_fill_rate": "1.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "26 in",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "18 in - 24 in",
+            "option_fill_rate": "1.8"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "6 g to 9 g",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "24 gms",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "12",
+            "option_fill_rate": "1.7"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Fancy Mugappu Gold Chain",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Peacock Mugappu Gold Chain",
+            "option_fill_rate": "1.6"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "18K To 22K",
+            "option_fill_rate": "1.4"
+        },
+        {
+            "spec_name": "Construction Type",
+            "spec_option_name": "stone",
+            "option_fill_rate": "1"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "32 gsm",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "From 8gms",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "7 - 10 g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "90.00 gram",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "168 gms",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "5 g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "8",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "55 gram",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "20-24 in",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "14 gram to 20 gram",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "20 in or 22 in",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "18 in/  24 in",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "8g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "Above 8g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "3.210 g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "18 inch (46 cm)",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "56 gsm",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "20 inch to 24 inch",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "200gms",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "7p gram",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "all lengths",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "19 in",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "5 g/ 10 g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "4.880g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "40g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "7.060 g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "90 gram",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "10 Inch",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "2.5g onwards",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "16gms",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "60g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "6 - 12 g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "all type",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "2.664 g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "24 inch (61 cm)",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "24gms",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Weight (g)",
+            "spec_option_name": "6g-10g",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "16.5 in",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Length",
+            "spec_option_name": "20 - 22 in",
+            "option_fill_rate": "0.9"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "CC Cutting Gold Chian",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Spiral Mugappu Gold Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Super Hollow Gold Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Fancy Designer Chain / Machine Cut Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Fancy chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "HR Gold Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Pushpa Gold Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Lakshmi Mugappu Gold Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Local+Bombay",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Signity Mugappu Gold Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Choco model",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Electro",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Kerala model",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Bahubali",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Gejri",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Box, Rope, Anchor, Curb",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Modern Fancy Link",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Paperclip Link Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Cylon Kodi Gold Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Dollar Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Italian",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Kerala",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Nawabi",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Paper Clip Link / Elongated Link Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Fancy",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Chain Set",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "HR Mugappu Gold Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Paper Clip Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "all type",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Bar chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Antique Mugappu Gold Chain",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "Fancy Chai",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Design/Link Style",
+            "spec_option_name": "fancy designer machine-cut chains",
+            "option_fill_rate": "0.8"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "All Purity Available",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "9k",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "18K 22K",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "18k to 22k",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "24K",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "24k",
+            "option_fill_rate": "0.7"
+        },
+        {
+            "spec_name": "Purity (Karat)",
+            "spec_option_name": "14K (585)",
+            "option_fill_rate": "0.7"
+        }
+    ]
+}

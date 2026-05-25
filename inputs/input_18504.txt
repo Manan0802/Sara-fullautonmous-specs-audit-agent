@@ -1,0 +1,2641 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 18504
+category_name: Reciprocating Air Compressor
+seller_specs (current spec sheet): {
+  "category_name": "Reciprocating Air Compressor",
+  "mcat_id": 18504,
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Motor Power",
+          "options": [
+            "2 HP",
+            "3 HP",
+            "5 HP",
+            "1 HP",
+            "7.5 HP",
+            "10 HP",
+            "15 HP",
+            "0.5 HP",
+            "20 HP",
+            "25 HP"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "2"
+        },
+        {
+          "spec_name": "Tank Capacity",
+          "options": [
+            "160 L",
+            "220 L",
+            "100 L",
+            "300 L",
+            "500 L",
+            "50 L",
+            "90 L",
+            "150 L",
+            "40 L",
+            "250 L"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "Suffix",
+          "affix_presence_flag": "2"
+        }
+      ],
+      "scratchpad": "Motor Power (HP) and Tank Capacity (Liters) are the first two questions buyers ask, determining the compressor's size, price, and suitability for an application. They are set as Suffix with affix presence '2' to create titles like '... 5 HP 220 L'."
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Maximum Pressure",
+          "options": [
+            "8 bar (116 psi)",
+            "12 bar (175 psi)",
+            "10 bar (145 psi)",
+            "7 bar (100 psi)",
+            "30 bar (435 psi)",
+            "35 bar (500 psi)"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Air Delivery (FAD)",
+          "options": [
+            "9 CFM",
+            "15 CFM",
+            "5 CFM",
+            "21 CFM",
+            "30 CFM",
+            "40 CFM",
+            "50 CFM",
+            "60 CFM"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Number of Stages",
+          "options": [
+            "Single Stage",
+            "Two Stage",
+            "Multi Stage"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "These specs define the core performance. Maximum Pressure is critical for tool compatibility. Air Delivery (CFM) is the true measure of output. Number of Stages is a fundamental design difference that directly impacts pressure capabilities and efficiency."
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Lubrication Type",
+          "options": [
+            "Oil Lubricated",
+            "Oil-Free"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Motor Phase",
+          "options": [
+            "Single Phase",
+            "Three Phase"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Brand",
+          "options": [
+            "ELGI",
+            "Ingersoll Rand",
+            "Atlas Copco",
+            "Kirloskar",
+            "Frank",
+            "FS-Curtis",
+            "Comptech",
+            "Adarsh",
+            "Kaeser",
+            "Airmake"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        },
+        {
+          "spec_name": "Portability",
+          "options": [
+            "Portable",
+            "Stationary"
+          ],
+          "input_type": "radio_button",
+          "affix_flag": "None",
+          "affix_presence_flag": "0"
+        }
+      ],
+      "scratchpad": "These specs provide crucial details for final decision-making. Lubrication Type is critical for specific industries like food processing. Motor Phase is a vital installation requirement. Portability distinguishes between workshop and factory models. Brand is a significant factor in B2B purchasing."
+    }
+  },
+  "scratchpad": "The specification tiers are derived from buyer-seller call analysis and seller catalog data. Primary specs (Motor Power, Tank Capacity) are the initial filters for buyers. Secondary specs (Pressure, Air Delivery, Stages) define performance capabilities. Tertiary specs (Lubrication, Phase, Portability, Brand) address specific application needs and user preferences for final selection."
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 26 specs) ---
+[
+  {
+    "spec_name": "Horsepower",
+    "total_product_count": 132,
+    "example_values": [
+      "1 HP",
+      "1.5 HP",
+      "10 HP",
+      "15 HP",
+      "2 HP"
+    ]
+  },
+  {
+    "spec_name": "Brand",
+    "total_product_count": 76,
+    "example_values": [
+      "Aerotic",
+      "Airwing",
+      "Best",
+      "Betali",
+      "Coimbatore Manufacturing"
+    ]
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "total_product_count": 72,
+    "example_values": [
+      "100 L",
+      "110 L",
+      "135 L",
+      "150 L",
+      "155 L"
+    ]
+  },
+  {
+    "spec_name": "Cylinder Configuration",
+    "total_product_count": 34,
+    "example_values": [
+      "1 Heads",
+      "3 Cylinders",
+      "Double Cylinder",
+      "One big cylinder and one small cylinder",
+      "Single Cylinder"
+    ]
+  },
+  {
+    "spec_name": "Motor Phase",
+    "total_product_count": 33,
+    "example_values": [
+      "Single Phase",
+      "Single Phase or Three Phase",
+      "Three Phase"
+    ]
+  },
+  {
+    "spec_name": "Compressor Type",
+    "total_product_count": 27,
+    "example_values": [
+      "Air",
+      "Assembled using LG spares",
+      "Belt Type",
+      "High Pressure",
+      "Oil Type"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 20,
+    "example_values": [
+      "3 Bores",
+      "Agriculture",
+      "Ball Mill",
+      "Bicycle and Two-wheeler puncture repair",
+      "Borewell"
+    ]
+  },
+  {
+    "spec_name": "Borewell Depth Capacity",
+    "total_product_count": 18,
+    "example_values": [
+      "1000 feet",
+      "1100 feet",
+      "1300 feet",
+      "175 feet",
+      "250 feet"
+    ]
+  },
+  {
+    "spec_name": "Operating Pressure",
+    "total_product_count": 13,
+    "example_values": [
+      "10 bar",
+      "10 kg",
+      "12 bar",
+      "12.5 bar",
+      "175 PSI"
+    ]
+  },
+  {
+    "spec_name": "Warranty",
+    "total_product_count": 13,
+    "example_values": [
+      "1 year",
+      "2 years",
+      "2 Year",
+      "3 months",
+      "6 months"
+    ]
+  },
+  {
+    "spec_name": "Motor Brand",
+    "total_product_count": 11,
+    "example_values": [
+      "Crompton",
+      "Crompton / Bharat Bijlee",
+      "Crompton/Godrej",
+      "RK",
+      "Rajdhani"
+    ]
+  },
+  {
+    "spec_name": "Model",
+    "total_product_count": 9,
+    "example_values": [
+      "70/50",
+      "BT 50 MSC",
+      "DT-550",
+      "KP 140",
+      "SS 02"
+    ]
+  },
+  {
+    "spec_name": "Flow Rate",
+    "total_product_count": 8,
+    "example_values": [
+      "12 CFM",
+      "140 CFM",
+      "20 CFM",
+      "230 LPM",
+      "249 LPM"
+    ]
+  },
+  {
+    "spec_name": "Motor Inclusion",
+    "total_product_count": 6,
+    "example_values": [
+      "Included",
+      "Without Motor"
+    ]
+  },
+  {
+    "spec_name": "Compression Stage",
+    "total_product_count": 5,
+    "example_values": [
+      "Double Stage",
+      "Single Stage"
+    ]
+  },
+  {
+    "spec_name": "Included Components",
+    "total_product_count": 5,
+    "example_values": [
+      "Compressor Unit (Motor not included)",
+      "Compressor, Bed, Guard",
+      "Compressor, Bed, Guard, Motor",
+      "Motor and Compressor",
+      "Motor and Compressor Machine (Full Set)"
+    ]
+  },
+  {
+    "spec_name": "Condition",
+    "total_product_count": 4,
+    "example_values": [
+      "New",
+      "Used"
+    ]
+  },
+  {
+    "spec_name": "Form Factor",
+    "total_product_count": 4,
+    "example_values": [
+      "Portable"
+    ]
+  },
+  {
+    "spec_name": "Product Configuration",
+    "total_product_count": 4,
+    "example_values": [
+      "Complete Unit",
+      "Compressor Head Only",
+      "Double Head"
+    ]
+  },
+  {
+    "spec_name": "Age",
+    "total_product_count": 3,
+    "example_values": [
+      "2 year",
+      "3 years",
+      "7 years"
+    ]
+  },
+  {
+    "spec_name": "Country of Origin",
+    "total_product_count": 3,
+    "example_values": [
+      "American",
+      "India"
+    ]
+  },
+  {
+    "spec_name": "Drive Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Belt Driven"
+    ]
+  },
+  {
+    "spec_name": "Lubrication Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Oil-based"
+    ]
+  },
+  {
+    "spec_name": "Operation Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Automatic"
+    ]
+  },
+  {
+    "spec_name": "Power Source",
+    "total_product_count": 3,
+    "example_values": [
+      "Electric",
+      "Motor"
+    ]
+  },
+  {
+    "spec_name": "Size",
+    "total_product_count": 3,
+    "example_values": [
+      "250 mm",
+      "Medium",
+      "Small (Chota)"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "Product Brand",
+    "count": 5,
+    "options": [
+      "SPS",
+      "Airborn Equipment",
+      "CompAir"
+    ]
+  },
+  {
+    "spec_name": "Brand Name",
+    "count": 5,
+    "options": [
+      "Hyco",
+      "JSK"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 1 specs) ---
+[
+  {
+    "spec_name": "compressor technology",
+    "total_impressions": 235,
+    "options": [
+      "reciprocating"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (28 specs) ---
+[
+  {
+    "spec_name": "Motor Power",
+    "spec_fill_rate": "58",
+    "product_count": "40"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_fill_rate": "56.5",
+    "product_count": "39"
+  },
+  {
+    "spec_name": "Number of Stages",
+    "spec_fill_rate": "52.2",
+    "product_count": "36"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_fill_rate": "52.2",
+    "product_count": "36"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_fill_rate": "50.7",
+    "product_count": "35"
+  },
+  {
+    "spec_name": "Lubrication Type",
+    "spec_fill_rate": "49.3",
+    "product_count": "34"
+  },
+  {
+    "spec_name": "Motor Phase",
+    "spec_fill_rate": "40.6",
+    "product_count": "28"
+  },
+  {
+    "spec_name": "",
+    "spec_fill_rate": "37.7",
+    "product_count": "26"
+  },
+  {
+    "spec_name": "Portability",
+    "spec_fill_rate": "34.8",
+    "product_count": "24"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "13",
+    "product_count": "9"
+  },
+  {
+    "spec_name": "Supplier",
+    "spec_fill_rate": "2.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Horse Power (HP)",
+    "spec_fill_rate": "2.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Location",
+    "spec_fill_rate": "2.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "Compressor Type",
+    "spec_fill_rate": "2.9",
+    "product_count": "2"
+  },
+  {
+    "spec_name": "voltage",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Cooling Type",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Power Source",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Tank Coating",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Material of Construction",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "brand 2",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "BRAND 2",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Shell Thickness",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Orientation",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Speed",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Horsepower (HP)",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Application",
+    "spec_fill_rate": "1.4",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data (173 rows) ---
+[
+  {
+    "spec_name": "Maximum Flow Rate (CFM)",
+    "spec_option_name": "19 CFM",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Free Air Delivery",
+    "spec_option_name": "200 l/min",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Compressor",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Speed",
+    "spec_option_name": "18000 rpm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Compressor Technology",
+    "spec_option_name": "Reciprocating",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Cooling Method",
+    "spec_option_name": "Air Cooled",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Brand",
+    "spec_option_name": "SPS",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Model No/Name",
+    "spec_option_name": "CP 7.5 TS",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Max Pressure",
+    "spec_option_name": "8 bar",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "CNC Machine",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "430",
+    "spec_option_name": "6.5 foot height",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Motor Power (HP)",
+    "spec_option_name": "15 HP",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_option_name": "2hp",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "brand 2",
+    "spec_option_name": "universal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Grinding",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Orientation",
+    "spec_option_name": "Horizontal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Product Series",
+    "spec_option_name": "LD",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_option_name": "1.5kw",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Electrical Phase",
+    "spec_option_name": "Three Phase",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Laboratory",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Cooling Type",
+    "spec_option_name": "Self Ventilated",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Horsepower (HP)",
+    "spec_option_name": "10 HP",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "COMP. BRAND",
+    "spec_option_name": "GLOBAL",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Oil Type",
+    "spec_option_name": "Oil Lubricated",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Medical",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Mounting Type",
+    "spec_option_name": "Tank Mounted",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Material of Construction",
+    "spec_option_name": "Mild Steel (MS)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Power source",
+    "spec_option_name": "AC Three phase",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Configuration",
+    "spec_option_name": "Tank Mounted",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "wire type",
+    "spec_option_name": "Copper 100%",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Shell Thickness",
+    "spec_option_name": "5 mm",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Location",
+    "spec_option_name": "Coimbatore",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Air Flow Rate",
+    "spec_option_name": "50 CFM",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "BRAND 2",
+    "spec_option_name": "universal",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Maximum Working Pressure",
+    "spec_option_name": "12 bar (175 psi)",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Application",
+    "spec_option_name": "Dental",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Power Supply",
+    "spec_option_name": "Three Phase",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Mounting",
+    "spec_option_name": "Tank Mounted",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "voltage",
+    "spec_option_name": "220v",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Model name/ Number",
+    "spec_option_name": "Ironwind",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Phase",
+    "spec_option_name": "Single Phase",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Supplier",
+    "spec_option_name": "Unique Industrial Solutions",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Power",
+    "spec_option_name": "15 HP",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Tank Coating",
+    "spec_option_name": "Painted",
+    "option_fill_rate": "100"
+  },
+  {
+    "spec_name": "Compressor Type",
+    "spec_option_name": "Reciprocating",
+    "option_fill_rate": "91.7"
+  },
+  {
+    "spec_name": "Lubrication Type",
+    "spec_option_name": "Oil Lubricated",
+    "option_fill_rate": "89.7"
+  },
+  {
+    "spec_name": "Motor Phase",
+    "spec_option_name": "Three Phase",
+    "option_fill_rate": "69.2"
+  },
+  {
+    "spec_name": "Power Source",
+    "spec_option_name": "Electric (3-Phase)",
+    "option_fill_rate": "66.7"
+  },
+  {
+    "spec_name": "Portability",
+    "spec_option_name": "Stationary",
+    "option_fill_rate": "57.4"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "12 bar (175 psi)",
+    "option_fill_rate": "55.3"
+  },
+  {
+    "spec_name": "Lubrication",
+    "spec_option_name": "Oil Free",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Lubrication",
+    "spec_option_name": "Oil Lubricated",
+    "option_fill_rate": "50"
+  },
+  {
+    "spec_name": "Number of Stages",
+    "spec_option_name": "Two Stage",
+    "option_fill_rate": "49.5"
+  },
+  {
+    "spec_name": "Portability",
+    "spec_option_name": "Portable",
+    "option_fill_rate": "42.6"
+  },
+  {
+    "spec_name": "Horse Power (HP)",
+    "spec_option_name": "5 HP",
+    "option_fill_rate": "37.5"
+  },
+  {
+    "spec_name": "Number of Stages",
+    "spec_option_name": "Single Stage",
+    "option_fill_rate": "35.1"
+  },
+  {
+    "spec_name": "Power Source",
+    "spec_option_name": "Electric (1-Phase)",
+    "option_fill_rate": "33.3"
+  },
+  {
+    "spec_name": "Motor Phase",
+    "spec_option_name": "Single Phase",
+    "option_fill_rate": "30.8"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "ELGI",
+    "option_fill_rate": "30.3"
+  },
+  {
+    "spec_name": "Horse Power (HP)",
+    "spec_option_name": "1 HP",
+    "option_fill_rate": "25"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "500 L",
+    "option_fill_rate": "21.9"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Ingersoll Rand",
+    "option_fill_rate": "21.2"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "8 bar (116 psi)",
+    "option_fill_rate": "19.4"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "9 CFM",
+    "option_fill_rate": "19.3"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "220 L",
+    "option_fill_rate": "18.4"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "300 L",
+    "option_fill_rate": "17.5"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "15 CFM",
+    "option_fill_rate": "15.9"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "30 CFM",
+    "option_fill_rate": "13.6"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "5 HP",
+    "option_fill_rate": "13.2"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "3 HP",
+    "option_fill_rate": "13.2"
+  },
+  {
+    "spec_name": "Horse Power (HP)",
+    "spec_option_name": "7.5 HP",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Horse Power (HP)",
+    "spec_option_name": "10 HP",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Horse Power (HP)",
+    "spec_option_name": "3 HP",
+    "option_fill_rate": "12.5"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "10 HP",
+    "option_fill_rate": "11.4"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "2 HP",
+    "option_fill_rate": "11.4"
+  },
+  {
+    "spec_name": "Lubrication Type",
+    "spec_option_name": "Oil-Free",
+    "option_fill_rate": "10.3"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "7.5 HP",
+    "option_fill_rate": "9.6"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "FS-Curtis",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "21 CFM",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Anest Iwata",
+    "option_fill_rate": "9.1"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "15 HP",
+    "option_fill_rate": "8.8"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "10 bar (145 psi)",
+    "option_fill_rate": "8.7"
+  },
+  {
+    "spec_name": "Compressor Type",
+    "spec_option_name": "Piston Air Compressor",
+    "option_fill_rate": "8.3"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "1 HP",
+    "option_fill_rate": "7.9"
+  },
+  {
+    "spec_name": "Number of Stages",
+    "spec_option_name": "Multi Stage",
+    "option_fill_rate": "7.2"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "20 HP",
+    "option_fill_rate": "7"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "160 L",
+    "option_fill_rate": "7"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "250 L",
+    "option_fill_rate": "7"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Kirloskar",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Atlas Copco",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Adarsh",
+    "option_fill_rate": "6.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "60 CFM",
+    "option_fill_rate": "5.7"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "40 CFM",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "5 CFM",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "50 CFM",
+    "option_fill_rate": "4.5"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "25 HP",
+    "option_fill_rate": "3.5"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "100 L",
+    "option_fill_rate": "3.5"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Airmake",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "KPT",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Manatec",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_option_name": "Kaeser",
+    "option_fill_rate": "3"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "8 bar (115 psi)",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "30 bar (435 psi)",
+    "option_fill_rate": "2.9"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "0.5 HP",
+    "option_fill_rate": "2.6"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "45 CFM",
+    "option_fill_rate": "2.3"
+  },
+  {
+    "spec_name": "Number of Stages",
+    "spec_option_name": "Single Stage / Multi Stage",
+    "option_fill_rate": "2.1"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "35 bar (500 psi)",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "7 bar (100 psi)",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "8 / 10 / 13 Bar",
+    "option_fill_rate": "1.9"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "3 hP upto 30 hP",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "110 L",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "Depending on requirement",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "Acc. to Customer",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "200 L",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "35 L",
+    "option_fill_rate": "1.8"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "9.8",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "All CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "185 CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "9.79",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "3.2",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "8 CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "10 CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "28.5 CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "13 CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "59.8 CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "20 CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "5-50 cfm",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "3 TO 50 CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "7 CFM to 33.5 CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "3 CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "63",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "1 to 50 cfm",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Air Delivery (FAD)",
+    "spec_option_name": "42.78 CFM",
+    "option_fill_rate": "1.1"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "1000 PSI",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Number of Stages",
+    "spec_option_name": "THREE STAGE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Number of Stages",
+    "spec_option_name": "ALL TYPE",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Number of Stages",
+    "spec_option_name": "3",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "12PSI",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Number of Stages",
+    "spec_option_name": "Two Stage & Multi Stage",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "$12 \\text{ Kg/cm}^2",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Number of Stages",
+    "spec_option_name": "Three Stage",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "800 PSI",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Maximum Pressure",
+    "spec_option_name": "150 Psi",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Number of Stages",
+    "spec_option_name": "All type",
+    "option_fill_rate": "1"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "30 L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "70",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "100, 200, 250, 300, 500 l",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "150 L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "135 L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "200 l",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "7.5 hp",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "3/5 HP",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "50 L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "1 , 2, 3, 5, 7.5, 10, 15, 20 HP",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "1 to 15 hp",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "200-2000L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "210 L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "150  to 500 LITRE",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "40 L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "620 Ltr",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "100 to 500 ltrs",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "2-20 HP",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "1 HP to 10 HP",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "225 L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "70 L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "400",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "75 Ltr to 300 Ltr",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "7 HP",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "Upto 50L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "90 L",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Tank Capacity",
+    "spec_option_name": "200",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "All",
+    "option_fill_rate": "0.9"
+  },
+  {
+    "spec_name": "Motor Power",
+    "spec_option_name": "45 HP",
+    "option_fill_rate": "0.9"
+  }
+]
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(elgi reciprocating air compressor pressure range bar india) ---
+{
+  "query": "elgi reciprocating air compressor pressure range bar india",
+  "results": [
+    {
+      "title": "Reciprocating Air Compressor | Piston Compressor - ELGi India",
+      "url": "https://www.elgi.com/in/reciprocating-air-compressors/",
+      "excerpt": "WebSearchResult(url='https://www.elgi.com/in/reciprocating-air-compressors/', excerpts=['RECIPROCATING AIR COMPRESSORS\\nELGi Reciprocating air compressors are designed to work efficiently in various industrial applications. The wide range of ELGi reciprocating piston compressors offers reliable, quick, and easy-to-maintain compressed air solutions. ELGi reciprocating compressors come with a portfolio of oil-lubricated pistons ranging from 1-2 HP single drive, 1-3 HP belt drive, and high pressures to 3-40 single & two-stage industrial air compressors. ELGi also has an extensive range of oil-free piston air compressors from single & two stages.\\nCONTACT OUR AIR EXPERT\\n    * HOME\\n    * PRODUCTS\\n    * RECIPROCATING COMPRESSORS\\n\\nOil lubricated Oil Free\\nALUMINIUM COAXIAL RECIPROCATING AIR COMPRESSORS\\n1-2 HP SINGLE-STAGE DIRECT DRIVE RECIPROCATING COMPRESSOR\\nELGi\u2019s portable direct-drive reciprocating piston air compressors offer superior performance via the uniquely integrated design of the motor and top block.\\nIn addition, each component is designed for reliability and ease of maintenance, making this model an excellent investment for customers who require compressed air for light-duty applications. The single-stage direct-drive reciprocating piston air compressor provides better oil control and cooling, low noise, easy mobility, and easy maintenance, which helps save power. The reciprocating piston air compressors from ELGi are suitable for spray painting, fabrication workshops, pneumatic tools, etc. KNOW MORE CONNECT WITH US\\nCAST BELT DRIVEN RECIPROCATING AIR COMPRESSORS 1-3 HP\\n1-3 HP SINGLE-STAGE BELT DRIVE RECIPROCATING AIR COMPRESSOR\\nELGi\u2019s single-stage reciprocating air compressors are designed for continuous-duty applications. ELGi reciprocating compressors are reliable workhorses that generate up to 10 bar (g) pressure, suitable for most general engineering and automotive industrial applications.\\nThese reciprocating air compressors are designed for continuous duty with automatic start and stop loop control. The ELGi 1-3 HP single-stage reciprocating air compressors come with aluminium cooler tubes, an aerodynamically designed fan for efficient cooling, and a pressure relief valve for extra safety. These reciprocating piston air compressors are applicable in garages, LPG dispensing units, small manufacturing workshops, etc. KNOW MORE CONNECT WITH US\\nLD SERIES RECIPROCATING AIR COMPRESSOR 2.2 \u2013 7.5 kW\\n3-10 HP TWO\u2013STAGE DIRECT DRIVE RECIPROCATING AIR COMPRESSOR\\nELGi\u2019s LD series reciprocating air compressors are designed to offer time-proven reliability at low operational speed and assure minimum direct cost with high energy savings. The two-stage piston compressors are ideal for customers looking for a significant impact on power, cost, low noise capacity, small air demands, and long-running capacity of more than 8 hours a day.\\n ... \\nKNOW MORE CONNECT WITH US\\nHIGH PRESSURE RECIPROCATING AIR COMPRESSORS 3-20 HP / UPTO 60 BAR\\n3-20 HP HIGH PRESSURE RECIPROCATING AIR COMPRESSORS\\nELGi\u2019s robust three-stage high-pressure piston compressors come with suction loaders for optimal energy consumption and safety valves for enhanced safety. In addition, these reciprocating piston air compressors are equipped with an efficient cooling system with double Poly-V belts to ensure low transmission loss, making them highly efficient. ELGi\u2019s reciprocating piston air compressors are ideal for pet blowing, engine starting, circuit breakers, marine applications, the plastic industry, the packaging industry, etc. KNOW MORE CONNECT WITH US\\nCUSTOM BUILT COMPRESSORS\\nELGi manufactures custom-built compressors for varied applications, including mining, diesel engine starting, hydel and concrete pumps. ELGi provides custom-built features specific to your requirements. KNOW MORE CONNECT WITH US\\nWhy Should I Buy Elgi Piston Compressors?\\n ... \\nSuccessive volumes of air are confined within a closed space, elevating this air to a higher pressure. The reciprocating air compressor accomplishes this by using a piston within a cylinder as the compressing and displacing element. One of the key advantages of using reciprocating compressors is that the initial cost of installing them is typically lower. Other benefits of using reciprocating compressors include:\\n    * Ability to produce both high-power and high-pressure air.\\n    * It can compress gases and refrigerants of many molecular densities.\\n    * High efficiency and flexibility.\\n    * Relatively low maintenance costs and ability to provide continuous flow.\\n    * High durability, low-priced & readily available spare parts.\\n\\nUses of Reciprocating Compressors\\nReciprocating air compressors are used for a wide range of pressures, from vacuum to 2000 bar g and more, for various industrial applications.'], publish_date=None, title='Reciprocating Air Compressor | Piston Compressor - ELGi India')"
+    },
+    {
+      "title": "Elgi 7.5 HP Reciprocating Air Compressor, Discharge ...",
+      "url": "https://www.indiamart.com/proddetail/reciprocating-air-compressor-17135892888.html?srsltid=AfmBOoojoyH_W8hyeFvqQmJXtX4n542BJNTA3YNd8xLy5R2PZxSWQk3S",
+      "excerpt": "WebSearchResult(url='https://www.indiamart.com/proddetail/reciprocating-air-compressor-17135892888.html?srsltid=AfmBOoojoyH_W8hyeFvqQmJXtX4n542BJNTA3YNd8xLy5R2PZxSWQk3S', excerpts=['Elgi 7.5 HP Reciprocating Air Compressor, Discharge Pressure: 30 Bar , Maximum Flow Rate (CFM): 11.51 Cfm ; Warranty: 3 Years ; Weight: 248 Kg ; Voltage: 280 V'], publish_date=None, title='Elgi 7.5 HP Reciprocating Air Compressor, Discharge ...')"
+    },
+    {
+      "title": "ELGi's High Pressure Reciprocating Air Compressors",
+      "url": "https://www.elgi.com/kr/wp-content/uploads/2019/04/ELGi-High-Pressure-Compressors.pdf",
+      "excerpt": "WebSearchResult(url='https://www.elgi.com/kr/wp-content/uploads/2019/04/ELGi-High-Pressure-Compressors.pdf', excerpts=['CIN: L29120TZ1960PLC000351\\n\\nELGi\u2019s High Pressure\\n\\nReciprocating Air\\n\\nCompressors\\n\\n**www.elgi.com**\\n\\n**3 - 20 HP / 2.2 - 15 kW**\\n\\nE\\n\\nLGi, established in 1960, designs and manufactures a wide range of air compressors. ELGi reciprocating compressor has ben our DNA. Over the\\n\\nyears, it has emerged as a multi-product, multi-market enterprise providing total compressed air solutions in all segments. E\\n\\n\u2019s design\\n\\nLGi\\n\\ncapabilities translated into a wide range of products ranging from oil-lubricated and oil-free rotary screw compressors, reciprocating compressors\\n\\nand centrifugal compressors. ELGi has its own manufacturing operations in India Italy and USA with subsidiaries in Australia, Brazil, UA\\n\\n,\\n\\nE and\\n\\nIndonesia. The company is fast expanding its global footprint attracting distributors and customers with its latest generation products.\\n\\nA Tradition of Reliability\\n\\nFor so many of our customers, seeing\\n\\nis believing. They know a quality-built\\n\\nmachine when they see it. That\u2019s why\\nevery part on a ELGi compressor is a\\n\\nquality part.\\n\\nThis speaks to the engineering and\\n\\ndesign of our products. Our R&D is\\n\\ndedicated to designing machines that\\n\\nrun cooler, cleaner and longer... that are\\n\\neasy to service... with longer service\\n\\nintervals.\\n\\nHere is where we back our pledge,\\n\\nOur industry leading warranties,\\n\\nparts availability and call centers\\n\\nstaffed by experts assure peace-of-\\n\\nmind to our customers.\\n\\n**AIR UP.**\\n\\n**UPTIME Design**\\n\\n**UPTIME Components**\\n\\n**UPTIME Assurance**\\n\\nInnovative Technology\\n\\nRobust Infrastructure\\n\\nTrue to the leadership position it aspires, ELGi has through the\\n\\ndecades maintained a technological edge in the air compressor\\n\\nmarket with incremental and breakthrough innovation, through\\n\\nincorporation of latest technologies in its products. ELGi is known in\\n\\nthe industry for providing custom-engineered solutions to meet our\\n\\nclients\u2019 needs. The company collaborates with clients to understand\\ntheir changing needs and designs solutions accordingly. Long-term\\n\\npartnering has been our key differentiating factor.\\n\\nELGi is one of the few companies in the world capable of\\n\\ndesigning and manufacturing entire compressor package in-\\n\\nhouse. Reciprocating compressor parts and top blocks are\\n\\nmanufactured in our state-of-the-art foundry and machining\\n\\ncenter and air receivers in our dedicated facility. All the\\n\\ncompressors are subject to 100% automatic testing during\\n\\nassembly\\n\\n**8**\\n\\n**6**\\n\\n**10**\\n\\n**11**\\n\\nELGi\u2019s exclusive PET compressor range is ideally suited for PET blowing application which operate with one or more PET blowing\\n\\nmachines and offers a low cost of ownership and very high UPTIME.\\n\\nThe compressors are designed for operator and plant safety with OSHA standards with twin sided belt guard, sealed safety valves as\\n\\nthe compressors operate at higher pressures. ELGi offers these compressors with a host of ELGi \u2018Airmate\u2019 downstream accessories\\n ... \\n500 Lts high pressure receiver\\n\\ndesigned as per ASME standards\\n\\n**9\\\\. Suction Unloaders**\\n\\nRuns the compressor in un-load\\n\\nmode when there is no demand\\n\\n**5\\\\. Starter**\\n\\nDual operation mode\\n\\n(Load/un-load and on/off)\\n\\nat a single touch\\n\\n**7\\\\. V-Belts**\\n\\nDouble poly V belts with low\\n\\ntransmission loss\\n\\n**3 piece forged crank shaft and**\\n\\n**forged connecting rods**\\n\\nwith a high mechanical life offers even\\n\\nthrow and makes the compression\\n\\nsystem run smooth without any\\n\\nunwanted vibration.\\n\\n**Technical Specification :**\\n\\nELGi PET High Pressure Reciprocating Air Compressor\\n\\n**Note:**\\n\\n1\\\\. \\\\* Without electrical\\n\\n2\\\\. Free air delivery in accordance with IS5456\\n\\n3\\\\. Due to continuous improvements, specifications are subject to change.\\n\\n4\\\\. The pictures shown in this brochure are representative and not the entire range.\\n\\n**Technical Specification :**\\n\\nHigh Pressure & Super Pressure Reciprocating Air Compressor\\n\\nCircuit Breaking\\n\\nPlastic and Packaging industry\\n\\nPet Blowing\\n\\nGenset Starting\\n ... \\nD&I/SPSLEF6080/01/06/0000/2018/11/01/A\\n\\n**ELGI EQUIPMENTS LIMITED**\\n\\n**CORPORATE OFFICE:** Trichy Road, Singanallur, Coimbatore - 641005,\\n\\nT:\\n\\nE:\\n\\n\\\\+91-422-2589555, enquiry@elgi.com, w:\\n\\nwww.elgi.com\\n\\nCustomer care mobile no.: \\\\+91 92821 11224 _(SMS only)_\\n\\nToll-free no: **1800-425-3544** _(applicable for India only)_\\n\\n**Distributed by**\\n\\n02CAT0002/R02\\n\\n**Elgi Airmate Accessories**\\n\\n**Moisture Separator**\\n\\n\u2022 Capacity : 20 - 80 cfm\\n\\n\u2022 Max. pressure : 35 - 60 bar g\\n\\n**Refrigeration Air Dryer**\\n\\n\u2022 Capacity : 20 - 80 cfm\\n\\n\u2022 Max. pressure: 35 - 60 bar g\\n\\n**Air Receiver**\\n\\n\u2022 Capacity : 1000 Litres\\n\\n\u2022 Max. pressure : 60 bar g\\n\\n**Particulate Filter**\\n\\n\u2022 Capacity : 20 - 60 cfm\\n\\n\u2022 Max. pressure : 42 - 60 bar g\\n\\n**Oil Removal Filter**\\n\\n\u2022 Capacity : 20 - 60 cfm\\n\\n\u2022 Max. pressure : 42 - 60 bar g\\n\\n**After filter**\\n\\n\u2022 Capacity : 20 - 60 cfm\\n\\n\u2022 Max. pressure : 42 - 60 bar g\\n\\n**Downstream filter**'], publish_date=None, title=\"ELGi's High Pressure Reciprocating Air Compressors\")"
+    },
+    {
+      "title": "High Pressure Piston Air Compressors | 3-20 HP | ELGi India",
+      "url": "https://www.elgi.com/in/3-20-hp-high-pressure-piston-compressors/",
+      "excerpt": "WebSearchResult(url='https://www.elgi.com/in/3-20-hp-high-pressure-piston-compressors/', excerpts=[\"- [OIL LUBRICATED COMPRESSORS](https://www.elgi.com/in/oil-lubricated-compressors/)\\n        - [OIL FREE COMPRESSORS](https://www.elgi.com/in/oil-free-compressors/)\\n        - [ROTARY SCREW COMPRESSORS](https://www.elgi.com/in/rotary-screw-air-compressors/)\\n        - [RECIPROCATING COMPRESSORS](https://www.elgi.com/in/reciprocating-air-compressors/)\\n        - [PORTABLE COMPRESSORS](https://www.elgi.com/in/portable-compressors/)\\n        - [RAILWAY COMPRESSORS](https://www.elgi.com/in/railway-compressors/)\\n        - [HEAT RECOVERY SYSTEMS](https://www.elgi.com/in/heat-recovery-systems/)\\n        - [AIR ACCESSORIES](https://www.elgi.com/in/air-accessories/)\\n        - [MEDICAL AIR COMPRESSORS](https://www.pattonsmedical.com/)\\n        - [VACUUM PUMPS](https://www.elgi.com/in/elgi-vacuum-solutions/)\\n    + [PRODUCTS BY INDUSTRY](https://www.elgi.com/in/products-by-industry/)\\n        \\n        - [MANUFACTURING](https://www.elgi.com/in/air-compressor-manufacturing/)\\n ... \\n[HOME](https://www.elgi.com/in/)\\n2. [PRODUCTS](https://www.elgi.com/in/air-compressor-products/)\\n3. [RECIPROCATING COMPRESSORS](https://www.elgi.com/in/reciprocating-air-compressors/)\\n\\n#### HIGH PRESSURE COMPRESSORS 3-20 HP / UPTO 60 BAR\\n\\n# 3-20 HP HIGH-PRESSURE PISTON COMPRESSORS\\n\\nRequest a Quote Download brochure\\n\\nSuction Filter\\n\\nElectric Motor\\n\\nStarter\\n\\nDelivery Un-loader\\n\\nV-Belts\\n\\nSafety Valves\\n\\nSuction Unloaders\\n\\nAir Receiver\\n\\nELGi is a leading industrial high-pressure air compressor manufacturer renowned for precision engineering and innovative design. ELGi piston compressors feature a robust 3-stage high-pressure block, ensuring peak performance. The heavy-duty suction filter extends the compressor's lifespan, while the TEFC, CE-certified electric motor powers through challenging conditions, guaranteeing consistent operation. Prioritising safety, ELGi incorporates a close-mesh belt guard and four safety valves, aligning with international standards.\\n ... \\nWhat applications is a 500-litre air compressor typically employed for?\\n\\nA 500-litre air compressor is vital for applications requiring a large storage capacity of compressed air. Industries, such as manufacturing and construction, utilise it to ensure a consistent and ample supply for various operations.\\n\\nHow do 10 Bar, 20 Bar, and 30 Bar Air Compressors differ, and in what applications are they commonly utilised?\\n\\n10 Bar, 20 Bar, and 30 Bar Air Compressors represent varying pressure levels designed to cater to diverse industrial needs. A 10-bar compressor with moderate pressure finds versatility in applications like pneumatic tools and general manufacturing processes. On the other hand, a 20-bar air compressor is tailored for more demanding tasks, often employed in precision manufacturing and specialised machinery.\\nFor applications requiring extremely high-pressure compressed air, the 30 Bar air compressor shines, making it indispensable in industries such as aerospace and defence, where precision and efficiency are paramount. The choice among these compressors depends on the specific pressure requirements of the intended application, ensuring optimal performance and reliability.\\n\\nWhere can I buy a 10-bar air compressor?\\n\\nExplore ELGi\u2019s diverse range of high-quality 10 10-bar air Compressors for sale, catering to various industrial needs with precision and efficiency. Request a quote for more information on the 10-bar air compressor price.\\n\\nPRODUCT RELATED ARTICLES\\n\\n#### How to choose the right piston air compressor? (Belt Drive or Direct Drive)\\n\\nIrrespective of the technology, choosing the right compressor for your application is very critical. This will optimise the performance and save money in terms of energy, maintenance and service.\\n\\n[READ MORE](https://www.elgi.\\ncom/in/wiki/belt-drive-or-direct-drive-how-to-choose-the-right-piston-air-compressor/)\\n\\n#### The difference between rotary screw air compressors and reciprocating air compressors\\n\\nThe key difference between Rotary Screw Air Compressors and Reciprocating Air Compressors is the mechanism in which they compress air.\\n\\n[READ MORE](https://www.elgi.com/in/wiki/the-difference-between-rotary-screw-air-compressors-and-reciprocating-air-compressors/)\\n\\n#### How to calculate the right CFM or airflow for air compressors\\n\\nWhat is CFM or airflow, and what are the requirements of some common pneumatic tools?\\n\\n[READ MORE](https://www.elgi.com/in/wiki/how-to-calculate-the-right-cfm-or-airflow-for-air-compressors/)\\n\\nWANT TO BUY HIGH-PRESSURE PISTON COMPRESSORS?\\n\\nNo matter your industry, The ELGi's high-pressure compressors are engineered to meet your specific needs. Discover how we can empower your business and ensure maximum efficiency and cost savings.\\n\\n**call our compressed air experts now.**\"], publish_date='2024-10-29', title='High Pressure Piston Air Compressors | 3-20 HP | ELGi India')"
+    },
+    {
+      "title": "High Pressure Reciprocating Air Compressor - 20hp PET Air Compressor Manufacturer from Coimbatore",
+      "url": "https://www.elgiequipments.net/high-pressure-reciprocating-air-compressor.html",
+      "excerpt": "WebSearchResult(url='https://www.elgiequipments.net/high-pressure-reciprocating-air-compressor.html', excerpts=['The high pressure range of compressors is suitable for usage in the range of 30-40 bar for applications like engine starting, circuit breakers and marine applications.\\n\\n**  \\nA Tradition of Reliability:  \\n**\\n\\n* ELGi, established in 1960, designs and manufactures a wide range of air compressors. The company has gained its reputation for design and manufacture of screw compressors through strategic partnerships and continuous research and development.Over the years, it has emerged as a multi-product,multi-market enterprise providing total compressed air solutions in all segments. ELGi\u2019s design capabilities translated into a wide range of products ranging from oil-lubricated and oil-free rotary screw compressors,reciprocating compressors and centrifugal compressors. ELGi has its own manufacturing operations in India, Italy and USA with subsidiaries in Australia, Brazil, UAE and Indonesia.\\n ... \\nI am Interested\\n\\n## ELGI PET Air Compressor\\n\\n* \\n* \\n*\\n\\nAsk For Price\\n\\nProduct Price : Get Latest Price Product Brochure\\n\\n**Product Details:**\\n\\n|Air Tank Capacity |500 L |\\n| --- | --- |\\n|Brand |ELGi |\\n|Number of Compression Stages |Two Stage |\\n|Motor Power |20 HP |\\n|Cooling System |Air Cooled |\\n|Maximum Flow Rate(CFM) |40 CFM |\\n|Maximum Pressure |33 Bar |\\n|Country of Origin |Made in India |\\n\\n  \\n**PET Air Compressor** are ideal for PET bottle blowing applications which operate with semi-automatic machines.\\n\\n**  \\nApplications:  \\n**\\n\\n* PET bottle blowing\\n\\n**  \\nFeatures:  \\n**\\n\\n* Use of sealed safety valves ensures operational safety\\n* Product available in 30 & 40 bar to suit both PET bottle blowing of different wall thickness\\n* Consistent flow ensures sustained productivity of PET bottles\\n* Product best suited for use in manually operated PET bottling machines\\n\\nRequest  \\n**Callback**\\n\\nYes! I am Interested\\n\\n## Heavy Duty Reciprocating Air Compressor\\n\\n* \\n* \\n*\\n\\nAsk For Price\\nProduct Price : Get Latest Price Product Brochure\\n\\n**Product Details:**\\n\\n|Minimum Order Quantity |1 Number |\\n| --- | --- |\\n|Tank Capacity |500 L |\\n|Maximum Pressure |30 Bar |\\n|Motor Power |20 HP |\\n|Number of Stages |Two Stage |\\n|Brand |ELGi |\\n\\n  \\nELGi\u2019s robust high-pressure piston compressors come with suction loaders for optimal energy consumption and safety valves for enhanced safety. In addition, these reciprocating piston air compressors are equipped with an efficient cooling system with double Poly-V belts to ensure low transmission loss, making them highly efficient.  \\n  \\nELGi\u2019s reciprocating piston air compressors are ideal for pet blowing, engine starting, circuit breakers, marine applications, the plastic industry, the packaging industry, etc.\\n\\nRequest  \\n**Callback**\\n\\nYes! I am Interested\\n\\n## 20hp Reciprocating Air Compressor\\n\\n* \\n* \\n*\\n\\nAsk For Price\\n\\nProduct Price : Get Latest Price Product Brochure\\n\\n**Product Details:**\\n\\n|Tank Capacity |500 L |\\n| --- | --- |\\n|Air Tank Capacity |500 L |\\n|Maximum Pressure |33 Bar |\\n|Motor Power |20 HP |\\n|Number of Stages |Two Stage |\\n|Brand |ELGi |\\n|Cooling System |Water Cooled |\\n\\n  \\nELGi\u2019s exclusive PET compressor range is ideally suited for PET blowing application which operate with one or more PET blowing machines and offers a low cost of ownership and very high UPTIME.\\n\\nThe compressors are designed for operator and plant safety with OSHA standards with twin sided belt guard, sealed safety valves as the compressors operate at higher pressures. ELGi offers these compressors with a host of ELGi \u2018Airmate\u2019 downstream accessories\\n\\nsuch as Pre and after filters, oil and moisture separators, refrigerant dryers and vertical air receivers designed to ASME standards\\n\\nChoose from ELGi\u2019s wide range of high pressure compressors which are designed to precisely meet your high pressure Air demands.\\nWidely used in different applications such as PET blowing, Plastic and Packaging Industry, Gen-set starting, Circuit breaking, Power plants and Testing labs.\\n\\nRequest  \\n**Callback**\\n\\nYes! I am Interested\\n\\nX\\n\\n## Product Videos\\n\\n## 250 kW EG Series Screw Compressors\\n\\nGet Best Quote\\n\\n## 5 hp ELGi Tank Mounted Screw Air Compressor\\n\\nGet Best Quote\\n\\n## 90 kW Oil Free Screw Air Compressor\\n\\nGet Best Quote\\n\\nWatch More Videos\\n\\n## Explore More Products\\n\\nPiston Air Compressor\\n\\nGet Best Quote\\n\\n500 CFM Diesel Powered Trolley Mounted Compressors\\n\\nGet Best Quote\\n\\nHeavy Duty Piston Air Compressor\\n\\nGet Best Quote\\n\\nDiesel Locomotive RR 80101\\n\\nGet Best Quote\\n\\nTS 10 LB ELGi Reciprocating Air Compressor, 10 hp\\n\\nGet Best Quote\\n\\nELGi Electric Locomotive Air compressors\\n\\nGet Best Quote\\n\\nView All Products\\n\\nTell Us What Are You Looking For ?\\n\\nMr. Ms. Mrs. Dr.\\n\\nThank you  \\nYour Enquiry has been sent successfully.\\n\\nKindly Describe Your Requirement.\\n\\n**Your Contact Information:** (not me)  \\n  \\n  \\n  \\nReach Us'], publish_date=None, title='High Pressure Reciprocating Air Compressor - 20hp PET Air Compressor Manufacturer from Coimbatore')"
+    },
+    {
+      "title": "20 HP ELGi High Pressure Reciprocating Air Compressor, ...",
+      "url": "https://www.aajjo.com/product/20-hp-elgi-high-pressure-reciprocating-air-compressor-model-ms-20-l-b-pet-in-chennai-ashveera-pneumatic-services",
+      "excerpt": "WebSearchResult(url='https://www.aajjo.com/product/20-hp-elgi-high-pressure-reciprocating-air-compressor-model-ms-20-l-b-pet-in-chennai-ashveera-pneumatic-services', excerpts=['\u20b9 55,000. Application : Industrial. Discharge Pressure (in bar ) : 10-12 Bar . Horse Power (HP) : 5 Hp. Material : Mild Steel. Mech India , ... Motor Rating : 1 Hp.'], publish_date=None, title='20 HP ELGi High Pressure Reciprocating Air Compressor, ...')"
+    },
+    {
+      "title": "High Pressure Reciprocating Compressors, Best Price, ELGi, Coimbatore, Tamil Nadu",
+      "url": "https://www.elgiaircompressor.com/high-pressure-reciprocating-compressors-8017533.html",
+      "excerpt": "WebSearchResult(url='https://www.elgiaircompressor.com/high-pressure-reciprocating-compressors-8017533.html', excerpts=['08045479715\\n\\nEmail Us : sarathkumarr@elgi.com\\n\\n* [Home](https://www.elgiaircompressor.com/)\\n* [Products](https://www.elgiaircompressor.com/products.html)\\n* [Oil Lubricated Air Compressors](https://www.elgiaircompressor.com/oil-lubricated-air-compressors.html)\\n* High Pressure Reciprocating Compressors\\n\\n# High Pressure Reciprocating Compressors\\n\\nGet a Price/Quote\\n\\n### Product Details:\\n\\n* Usage Industrial\\n* Type Of Compressor Reciprocating\\n* Configuration Stationary\\n* Product Type Air Compressor\\n* Power Source Ac Power\\n* Color Grey, Black\\n* Click to View more\\n* _Share Your Product:_\\n\\nRequest to Call Back Send Inquiry\\n\\nX\\n\\n## High Pressure Reciprocating Compressors Price And Quantity\\n\\n* Minimum Order Quantity 1 Unit\\n\\n## High Pressure Reciprocating Compressors Product Specifications\\n\\n* Type Of Compressor Reciprocating\\n* Configuration Stationary\\n* Color Grey, Black\\n* Product Type Air Compressor\\n* Power Source Ac Power\\n* Usage Industrial\\n## High Pressure Reciprocating Compressors Trade Information\\n\\n* Delivery Time 7-10 Days\\n\\n## Product Description\\n\\nELGi robust three stage high pressure reciprocating compressors come with suction loaders and double poly v belts that make them highly efficient. These reciprocating air compressors are ideal for pet blowing, engine starting, circuit breakers and marine applications.\\n\\n**  \\n**\\n\\n**Product details**\\n\\n|Dimension |1980 x 865 x 1405 mm (L x B x H ) |\\n| --- | --- |\\n|Free Air Delivery |51 m3/hr,30 cfm |\\n|Maximum Working Pressure |30 bar g,435 psi |\\n|Motor Power |11 kW,15 HP |\\n|Tank |500 Liters |\\n|Weight |735 kg |\\n\\n## FAQs of High Pressure Reciprocating Compressors:\\n\\n  \\n### Q: What is a High Pressure Reciprocating Compressor?\\n\\nA: A High Pressure Reciprocating Compressor is a type of compressor that uses a piston to compress air or other gases to a higher pressure.\\nIt is commonly used in industrial applications to provide compressed air for power tools, air conditioning systems, and other machinery.  \\n  \\n### Q: What colors are available for the High Pressure Reciprocating Compressor?\\n\\nA: The High Pressure Reciprocating Compressor is available in Grey and Black.  \\n  \\n### Q: What is the configuration of the High Pressure Reciprocating Compressor?\\n\\nA: The High Pressure Reciprocating Compressor is a stationary compressor.  \\n  \\n### Q: What type of power source does the High Pressure Reciprocating Compressor use?\\n\\nA: The High Pressure Reciprocating Compressor uses AC power.\\n\\nTell us about your requirement\\n\\nPrice:\\n\\nQuantity\\n\\nSelect Unit\\n\\n* 50\\n* 100\\n* 200\\n* 250\\n* 500\\n* 1000+\\n\\nAdditional detail\\n\\nMobile number\\n\\nEmail\\n\\nName\\n\\nComapny Name\\n\\nPhone Number\\n\\nEmail Id\\n\\nCity / State\\n\\nConfirm Your Requirement\\n\\nVerification Code\\n\\nDid not receive yet?\\n\\nResend OTP\\n\\nYou\u2019re Done!\\n\\nWe have received your requirements and will reply shortly with the best price.\\nProducts You May Like\\n\\n**Please Wait...**\\n\\n### Other Products in \\'Oil Lubricated Air Compressors\\' category\\n\\nELGi Demand=Match Rotary Screw Air Compressor - EQ Series (11-45kW) Minimum Order Quantity : 1 Product Type : Rotary Screw Air Compressor Type Of Compressor : Rotary Power Source : Ac Power Lubrication Type : Lubricated Configuration : Portable Usage : Industrial Silent : Yes\\n\\nSend Inquiry\\n\\nSingle and Two Stage Industrial Reciprocating Compressor Minimum Order Quantity : 1 Product Type : Air Compressor Type Of Compressor : Reciprocating Power Source : Ac Power Lubrication Type : Lubricated Color : Grey, Black Configuration : Stationary Usage : Industrial Silent : Yes\\n\\nSend Inquiry\\n\\nElectric Lubricated Screw Air Compressor EG Series Minimum Order Quantity : 1 Product Type : Compressor Type Of Compressor : Screw Power Source : Ac Power Lubrication Type : Lubricated Color : Grey, Black Usage : Industrial\\n\\nSend Inquiry\\n ... \\nWe have received your details and will get back to you shortly.\\n\\n\u00d7\\n\\nGet a price quote for **High Pressure Reciprocating Compressors**\\n\\nEmail Id\\n\\nMobile number\\n\\nEnter Quantity\\n\\nSelect unit Kilograms Nos Pieces Tons Units\\n\\nPlease Enter the Pincode\\n\\n\\\\--Area/Sale Branch--\\n\\n_Select nearest Area/Sale Branch_\\n\\nEnter your Name\\n\\nCompany / Business Name\\n\\n**Please Wait...**\\n\\n\u00d7\\n\\nInquiry Sent\\n\\nFor immediate response, call this customer.\\n\\n\\\\+918045479715\\n\\nContact Details\\n\\nELGI Equipments Limited  \\nGST : 33AAACE4784E1ZU\\n\\n* Elgi Industrial Complex, Trichy Road, Singanallur,Coimbatore - 641005, Tamil Nadu, India\\n* Phone : 08045479715\\n* \\n\\n* Mr Sarath Kumar R ( ISAAME-MARKETING )\\n* Mobile : 08045479715\\n* sarathkumarr@elgi.com\\n  \\n  Send Inquiry\\n*\\n\\nMenu\\n\\n* Home Page\\n* Company Profile\\n* Our Products\\n* Contact Us\\n* Site Map\\n\\n- [](https://www.tradeindia.com/truststamp-member/ELGI-Equipments-Limited-5290737/)\\n- \\n- \\n- \\n||[](https://www.facebook.com/elgiaircompressors/ \"Facebook\") [](https://www.linkedin.'], publish_date=None, title='High Pressure Reciprocating Compressors, Best Price, ELGi, Coimbatore, Tamil Nadu')"
+    },
+    {
+      "title": "ELGi 11 kW Reciprocating Compressor TS 20 L B 30 CFM",
+      "url": "https://lntsufin.com/product/elgi-11-kw-reciprocating-compressor-ts-20-l-b-30-cfm/16364-555",
+      "excerpt": "WebSearchResult(url='https://lntsufin.com/product/elgi-11-kw-reciprocating-compressor-ts-20-l-b-30-cfm/16364-555', excerpts=['Reciprocating. Number of Stages. Single Stage. Type of Fluid. Air. Power Source. Electric. Maximum Pressure. 30 bar . Brand. ELGi. Model. TS 20 L B. More'], publish_date=None, title='ELGi 11 kW Reciprocating Compressor TS 20 L B 30 CFM')"
+    },
+    {
+      "title": "Industrial Air Compressors - Super Pressure Bar Compressor Trader - Wholesaler / Distributor from Nagpur",
+      "url": "https://www.premierindiaenterprise.com/industrial-air-compressors.html",
+      "excerpt": "WebSearchResult(url='https://www.premierindiaenterprise.com/industrial-air-compressors.html', excerpts=['With our emergence in the year of **2004** , we **\"Premier India Enterprise\"** an Sister Concern of **Punjab Machine Tools** are a dominant name in the industry involved in supplying a comprehensive list of products. **We are Authorized Distributor of ELGi , Timken, SKF, Cumi, Shanti Gears, Crompton Greaves, HPL and Champion.**\\n\\nYes! I am interested\\n\\n## **High Pressure Air Compressor**\\n\\nREQUEST CALLBACK\\n\\n* \\n*\\n\\nGet Best Quote\\n\\n\u2713 Thanks for Contacting Us.\\n\\nApprox. Rs 2,83,300 / Piece Get Latest Price\\n\\nProduct Brochure Product Details:  \\n|Horse Power |20 HP |\\n| --- | --- |\\n|Capacity |500 ltr |\\n|Compressor Technology |Reciprocating Compressor |\\n|Discharge Pressure |7-14 |\\n|Air Tank Capacity |500 Ltr |\\n|Maximum Flow Rate |51 - 120 cfm |\\n|Model Name/Number |High Pressure |\\n|Brand |ELGI |\\n|Air Quality Standard |Class I |\\n|Rental Available |No |\\n|Spares Available |Yes |\\n|Is It Portable |Yes |\\n|Installation/After Sales Service Available |Yes |\\n ... \\nBeing one of the reputed organizations in the market, we are engaged in manufacturing, trading and supplying an exclusive range of **Air Cooled Compressor** . The offered compressor is compressor using premium quality components and advanced technology at vendors\u2019 end. Our provided compressor is widely demanded by the clients owing to its high strength and light weight. Moreover, the compact and air cooled design of this range of non-lubricated compressor fulfils the requirements of industries that need round-the-clock oil-free air.  \\n  \\n**Features:**  \\n  \\n* Maximum work ability\\n* Low power consumption\\n* Elevated service life\\n\\n  \\n**Other Details:  \\n  \\n**\\n\\n* Only air cooled compressor in its product class that saves precious cooling water\\n* Compact footprint- motor & compressor occupy only 1.74 sq m of floor space\\n* AVMs prevent the need for expensive foundation\\n* Three pressure variants \u2013 7, 8.5 and 10.5 bar\\n\\n  \\n**Applications** :  \\n  \\n* Nitrogen generation plants\\n* Power generation\\n* Sugar industry\\n* Textiles\\n* Power generation\\n* Food processing\\n* Pharmaceutical\\n* Cement industry\\n\\n  \\n**Specifications:**  \\n|Model |Max Pressure m3/hr |Max Pressure CFM |Max Pressure kg/cm2 |Max Pressure psi |Power kW |Power HP |\\n| --- | --- | --- | --- | --- | --- | --- |\\n|HV 25 07 0 OF |169\\\\.8 |100 |7\\\\.5 |100 |18\\\\.5 |25 |\\n|HV 30 08 0 OF |167\\\\.4 |99 |8\\\\.5 |125 |22 |30 |\\n|HV 30 10 0 OF |166\\\\.8 |98 |10\\\\.5 |150 |22 |30 |\\n\\nAdditional Information:\\n\\n* **Item Code:** 25-30HP\\n\\nYes! I am interested\\n\\n## **Reciprocating Air Compressor**\\n\\nREQUEST CALLBACK\\n\\n* \\n* \\n* \\n* \\\\+5\\n\\nAsk for Price\\n\\n\u2713 Thanks for Contacting Us.\\n\\nProduct Price : Get Latest Price\\n\\nProduct Brochure Product Details:  \\n|Tank Capacity |50 L |\\n| --- | --- |\\n|Discharge Pressure |2 bar |\\n|Maximum Flow Rate |5 CFM |\\n|Motor Power |0\\\\.5 HP |\\n|Cooling System |Air Cooled |\\n|No. of Cylinders |1 |\\n|Voltage |120 V |\\n|Brand |Elgi |\\n|Country of Origin |Made in India |\\nwe are providing quality products which include Electric Lubricated Screw Compressors Reciprocating Piston Compressors and Industrial Air Compressors\\n\\nYes! I am interested\\n\\n## **Portable Air Compressor**\\n\\nREQUEST CALLBACK\\n\\n* \\n* \\n* \\n* \\\\+5\\n\\nAsk for Price\\n\\n\u2713 Thanks for Contacting Us.\\n\\nProduct Price : Get Latest Price\\n\\nProduct Brochure Product Details:  \\n|Tank Capacity |25 L |\\n| --- | --- |\\n|Motor Power |0\\\\.5 HP |\\n|Operating Power |2 HP |\\n|Material |Aluminum |\\n|Maximum Flow Rate |5 CFM |\\n|Discharge Pressure |2 Bar |\\n|Brand |IR |\\n\\n  \\nwe are providing quality products which include Electric Lubricated Screw Compressors Reciprocating Piston Compressors and Industrial Air Compressors\\n\\nYes! I am interested\\n\\n## **Chicago Pneumatic Air Compressors**\\n\\nREQUEST CALLBACK\\n\\n* \\n* \\n* \\n* \\\\+4\\n\\nAsk for Price\\n\\n\u2713 Thanks for Contacting Us.\\n\\nProduct Price : Get Latest Price\\n\\nProduct Brochure Product Details:  \\n|Motor Power |2 HP |\\n| --- | --- |\\n|Tank Capacity |100 L |\\n|Maximum Flow Rate |5 CFM |\\n|Discharge Pressure |2 Bar |\\n|Brand |IR |\\n|Cooling System |Air Cooled |\\n|Voltage |120 V |\\n|Frequency |50 Hz |\\n|Country of Origin |Made in India |\\n\\n  \\nwe are providing quality products which include Electric Lubricated Screw Compressors Reciprocating Piston Compressors and Industrial Air Compressors\\n\\nYes! I am interested\\n\\n## **Mini Air Compressor**\\n\\nREQUEST CALLBACK\\n\\n* \\n* \\n* \\n* \\\\+4\\n\\nAsk for Price\\n\\n\u2713 Thanks for Contacting Us.\\n\\nProduct Price : Get Latest Price\\n\\nProduct Brochure Product Details:  \\n|Discharge Pressure |4 bar |\\n| --- | --- |\\n|Motor Power |0\\\\.5 HP |\\n|Tank Capacity |3 L |\\n|Maximum Flow Rate |5 CFM |\\n|Brand |IR |\\n|Cooling System |Air Cooled |\\n|Voltage |120 V |\\n|Frequency |50 Hz |\\n|Country of Origin |Made in India |\\n\\n  \\nwe are providing quality products which include Electric Lubricated Screw Compressors Reciprocating Piston Compressors and Industrial Air Compressors\\n\\nYes! I am interested\\n\\n## **Air Compressors**\\n\\nREQUEST CALLBACK\\n\\n* \\n* \\n* \\n* \\\\+5\\n\\nAsk for Price'], publish_date=None, title='Industrial Air Compressors - Super Pressure Bar Compressor Trader - Wholesaler / Distributor from Nagpur')"
+    },
+    {
+      "title": "3 To 20 HP ELGI High Pressure Piston Compressors",
+      "url": "https://www.indiamart.com/proddetail/3-to-20-hp-elgi-high-pressure-piston-compressors-24764636930.html?srsltid=AfmBOoocJAMs_nq_MvPY3wCzXh_dOXJ4zvzLOn5RH8IiI3DUq-khLogk",
+      "excerpt": "WebSearchResult(url='https://www.indiamart.com/proddetail/3-to-20-hp-elgi-high-pressure-piston-compressors-24764636930.html?srsltid=AfmBOoocJAMs_nq_MvPY3wCzXh_dOXJ4zvzLOn5RH8IiI3DUq-khLogk', excerpts=['Reciprocating 3 To 20 HP ELGI High Pressure Piston Compressors ; Maximum Working Pressure: 25 bar g ; Compressor Speed: 1090 rpm ; Piston Displacement: 66.4 cfm'], publish_date=None, title='3 To 20 HP ELGI High Pressure Piston Compressors')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(Aerotic air compressor India) ---
+{
+  "query": "Aerotic air compressor India",
+  "results": [
+    {
+      "title": "Airotic | Home",
+      "url": "http://airoticaircompressor.com/",
+      "excerpt": "WebSearchResult(url='http://airoticaircompressor.com/', excerpts=['* \\n* \\n*\\n\\nAbout Airotic\\n\\nIncepted in the year **2005** , in **Rajkot (Gujarat, India)** , we **\u201cShiv Enterprise\u201d,** are the noteworthy **Manufacturer** and **Supplier** of an enhanced quality **Double Cylinder Air Compressor, Electric Motor, Bench Grinder, Vulcanizing Machine, Cut Off Machine, Single Stage Cylinder Air Compressor,** etc. The offered products are precisely engineered by making use of supreme grade components with the help of high-tech machines in adherence to set industry norms. Our offered products are widely demanded in number of industries for various purposes such as supplying power, grinding, creating pressure, etc. Our offered products are made available in different specifications for our clients to choose from. These products are widely demanded by our clients for their enormous features such as sturdiness, long functional life, smooth functioning, hassle free performance, high efficiency, easy to install and durability.\\nWe are manufacturing our products under own brand name **Airotic** .\\n\\nAbout Us\\n\\nProduct Category\\n\\n## Our Product Category\\n\\n##### Air Compressor\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Sprayer Pump\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Induction Motor\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Vulcanizing Machines\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Jigsaw Wood Working Machine\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Bench Grinder\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Electric Air Blower\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Cut Off Machine\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Impact Wrench\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Air Compressor Direct Driven\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Oil Free Air Compressor\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Trolley Jack\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Vacuum Cleaner\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Sprayer Pump New\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Gun\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Spares\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Air Hose Pipe\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Tyre Mounting Tools\\n\\nEnquiry Now\\n\\nView More\\n\\n##### SMC Filter\\nEnquiry Now\\n\\nView More\\n\\n##### Welding Machine\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Screw Air Compressor\\n\\nEnquiry Now\\n\\nView More\\n\\n##### Air Dryer\\n\\nEnquiry Now\\n\\nView More\\n\\nOur Certificate\\n\\n## Certificate\\n\\n#### Certifacate\\n\\nRajkot Chamber Of Commerce\\n\\n#### Certificate\\n\\nISO Certificate\\n\\n#### Certificate\\n\\nTrademark Certificate\\n\\n## Request a Quote\\n\\n## Contact\\n\\n* ##### \\\\+91 94272 58172\\n* ##### shivmanufactures.gati@gmail.com\\n* ##### Survey No.21, Plot No.9, Gel Aie Industrial Estate, Behind Dunex, Vavdi, Rajkot-4.\\n\\nSubmit\\n\\n* [](https://www.facebook.com/secorporationgujarat)\\n* \\n* \\n* \\n\\n## Quick link\\n\\n* Home\\n* About Us\\n* Image gallery\\n* video gallery\\n* Brochure\\n* Contact Us\\n\\n## Contact Info\\n\\n* _place_ Survey No.21, Plot No.9,  \\n  Gel Aie Industrial Estate,  \\n  Behind Dunex,  \\n  Vavdi, Rajkot-4.(Gujarat)\\n* _phone_ \\\\+91 94272 58172\\n* _phone_ \\\\+91 94274 96880\\n* _phone_ \\\\+91 63534 73598\\n* _email_ shivmanufactures.gati@gmail.com'], publish_date=None, title='Airotic | Home')"
+    },
+    {
+      "title": "Airotic 2.5hp Air Compressor at \u20b9 60000 | Air Compressor in Kolkata | ID: 23318407912",
+      "url": "https://www.indiamart.com/proddetail/airotic-2-5hp-air-compressor-23318407912.html?srsltid=AfmBOooL_iI9wHkemnxUe2pugAJf1fRxfoS3c4OcTVw3D1czCfV7QdnV",
+      "excerpt": "WebSearchResult(url='https://www.indiamart.com/proddetail/airotic-2-5hp-air-compressor-23318407912.html?srsltid=AfmBOooL_iI9wHkemnxUe2pugAJf1fRxfoS3c4OcTVw3D1czCfV7QdnV', excerpts=['[IndiaMART](https://www.indiamart.com/)\\n\\nAll India\\n\\n[Get Best Price](https://my.indiamart.com/buyertools/postbl?modid=PRODDTL)\\n\\n[Exporters](https://export.indiamart.com/search.php?ss=Air Compressor&VElogo=1)\\n\\nSell\\n\\nHelp\\n\\nMessages\\n\\n[](https://my.indiamart.com)\\n\\n[IndiaMART](https://dir.indiamart.com/) > [Air Compressors, Accessories & Parts](https://dir.indiamart.com/indianexporters/e_comprs.html) > [Air Compressor](https://dir.indiamart.com/impcat/air-compressors.html)\\n\\n# Airotic 2.5hp Air Compressor\\n\\n\u20b9 60,000 Get Latest Price\\n\\n|Horse Power |2\\\\.5 hp |\\n| --- | --- |\\n|Brand |Airotic |\\n|Discharge Pressure |160 psi |\\n|Air Tank Capacity |30 L |\\n|Maximum Flow Rate |140 cfm |\\n|Cooling Method |Air Cooled |\\n|Motor Speed |2300 RPM |\\n|Frequency |50 Hz |\\n|Voltage |380 V |\\n|Material |Mild Steel |\\n|Country of Origin |Made in India |\\n|Power Source |Electric |\\n|Availability |In Stock |\\n\\nGet Latest Price\\n\\nKolkata\\n\\n[## Air Equipments](https://www.indiamart.com/air-equipments-kolkata/?\\npid=23318407912&c_id=71&mid=1056&pn=Airotic 2.5hp Air Compressor)\\n\\nGST \\\\- 19ACSPJ3623L1Z3\\n\\nVerified Plus Supplier\\n\\n10 yrs\\n\\n\u2605\u2605\u2605\u2605\u2605\\n\\n\u2605\u2605\u2605\u2605\u2605\\n\\n2\\\\.5 ( 4 )\\n\\n70% Response Rate\\n\\nView Mobile Number\\n\\nContact Supplier\\n\\n## Product Details\\n\\n## Company Details\\n\\n## Shipping Information\\n\\n|Price |Excluding all taxes |\\n| --- | --- |\\n|Ships from |Kolkata |\\n|Shipping |As per delivery location |\\n\\n### Product Image\\n\\nInterested in this product? Get Latest Price from the seller\\n\\nContact Seller\\n\\n* * *\\n\\n### About the Company\\n\\nGST Registration Date 01-07-2017\\n\\nLegal Status of Firm Proprietorship\\n\\nNature of Business Manufacturer\\n\\nNumber of Employees Upto 10 People\\n\\nAnnual Turnover 1\\\\.5 - 5 Cr\\n\\nIndiaMART Member Since Sept 2015\\n\\nGST 19ACSPJ3623L1Z3\\n\\nEstablished in the year **2003** at **Kolkata, West Bengal** , we \u201c **Air Equipments** \u201d are a **Sole Proprietorship** firm, engaged as the foremost **Wholesaler** **, Retailer And Trader** of **Air Compressor, Grease Pump, Air Compressor Motor** , etc.\\n### Seller Contact Details\\n\\n[Air Equipments](https://www.indiamart.com/air-equipments-kolkata/?pid=23318407912&c_id=71&mid=1056&pn=Airotic 2.5hp Air Compressor)\\n\\nDeepak\\n\\n59, 0, 0, Madan Mohan Burman Street, Thanthania , Kolkata - 700007, West Bengal, India\\n\\n[Get Directions](https://www.google.com/maps/dir//22.58434,88.36674/@22.58434,88.36674)\\n\\n[https://www.indiamart.com/air-equipments-kolkata](https://www.indiamart.com/air-equipments-kolkata/)\\n\\nView Mobile No.\\n\\nSend SMS\\n\\nSend Email'], publish_date=None, title='Airotic 2.5hp Air Compressor at \u20b9 60000 | Air Compressor in Kolkata | ID: 23318407912')"
+    },
+    {
+      "title": "Airotic Air Compressor (@airotic_air_compressor)",
+      "url": "https://www.instagram.com/airotic_air_compressor/",
+      "excerpt": "WebSearchResult(url='https://www.instagram.com/airotic_air_compressor/', excerpts=['Rajkot se lekar India ke har kone tak, Airotic bana hai reliability aur performance ka symbol! \u2728 Airotic \u2013 Jisme Hai Power, Passion Aur Perfection!'], publish_date=None, title='Airotic Air Compressor (@airotic_air_compressor)')"
+    },
+    {
+      "title": "Airotic Oil Free Air Compressor",
+      "url": "https://www.gurunanakmachinerymart.com/oil-free-air-compressor.html",
+      "excerpt": "WebSearchResult(url='https://www.gurunanakmachinerymart.com/oil-free-air-compressor.html', excerpts=['Horse Power: 1 HP ; Compressor Technology: Reciprocating Compressor ; Maximum Flow Rate (CFM): 120CFM ; Discharge Pressure: 120 Bar ; Air Tank Capacity: 30 L.'], publish_date=None, title='Airotic Oil Free Air Compressor')"
+    },
+    {
+      "title": "Air compressor Brand -airotic Heavy duty ...",
+      "url": "https://www.instagram.com/reel/DRL9AZXDKmX/",
+      "excerpt": "WebSearchResult(url='https://www.instagram.com/reel/DRL9AZXDKmX/', excerpts=['ALL OVER INDIA DELIVERY AVAILABLE Order only this number \u260e\ufe0f 9638257550 \u260e\ufe0f \u260e\ufe0f 9265703966 \u260e\ufe0f \u260e\ufe0f 9724977550 \u260e\ufe0f ROYAL'], publish_date=None, title='Air compressor Brand -airotic Heavy duty ...')"
+    },
+    {
+      "title": "1 HP Airotic Oil Free Air Compressor, Air Tank Capacity: 30 L, Maximum Flow Rate (CFM): 110 Cfm at \u20b9 9000 in Pune",
+      "url": "https://www.indiamart.com/proddetail/airotic-oil-free-air-compressor-25768086912.html?srsltid=AfmBOorpIkvMsxNc45aXN46BMyUSBiKzZczHTAPFkxlRC6Nggkzi2pIB",
+      "excerpt": "WebSearchResult(url='https://www.indiamart.com/proddetail/airotic-oil-free-air-compressor-25768086912.html?srsltid=AfmBOorpIkvMsxNc45aXN46BMyUSBiKzZczHTAPFkxlRC6Nggkzi2pIB', excerpts=['[IndiaMART](https://www.indiamart.com/)\\n\\nEnter City\\n\\nAll India\\n\\n[Get Best Price](https://my.indiamart.com/buyertools/postbl?modid=PRODDTL)\\n\\n[Exporters](https://export.indiamart.com/search.php?ss=Oil Free Air Compressor&VElogo=1)\\n\\nSell\\n\\nHelp\\n\\nMessages\\n\\n[](https://my.indiamart.com)\\n\\n* \\n* \\n*\\n\\n[IndiaMART](https://dir.indiamart.com/) > [Air Compressors, Accessories & Parts](https://dir.indiamart.com/indianexporters/e_comprs.html) > [Air Compressor](https://dir.indiamart.com/impcat/air-compressors.html) > [Oil Free Air Compressor](https://dir.indiamart.com/impcat/oil-free-air-compressor.html)\\n\\n# 1 HP Airotic Oil Free Air Compressor, Air Tank Capacity: 30 L, Maximum Flow Rate (CFM): 110 Cfm\\n\\n\u20b9 9,000 Get Latest Price\\n\\n|Horse Power |1 HP |\\n| --- | --- |\\n|Brand |Airotic |\\n|Maximum Flow Rate (CFM) |110 CFM |\\n|Air Tank Capacity |30 L |\\n|Cooling Method |Air Cooled |\\n|Availability |In Stock |\\n\\nGet Latest Price\\n\\nPune\\n\\n[## Machine N Tools](https://www.indiamart.com/machine-n-tools/?\\npid=25768086912&c_id=71&mid=181634&pn=Airotic Oil Free Air Compressor)\\n\\nGST- 27AAGFM0187N1ZV Verified Supplier 3 yrs\\n\\nView Mobile Number\\n\\nContact Supplier\\n\\n## Find products similar to 1 HP Airotic Oil Free Air Compressor, Air Tank Capacity: 30 L, Maximum Flow Rate (CFM): 110 Cfm\\n\\n* Get Best Price [30 HP Rotary Air Compressor, Maximum Flow Rate: 100 cfm](https://www.indiamart.com/proddetail/rotary-air-compressor-2854695631455.html?pos=1&DualProdscaps) Pune, Maharashtra **\u20b9 3,50,000**\\n* Get Best Price [2 HP Silent Oil Free Air Compressor Motor](https://www.indiamart.com/proddetail/silent-oil-free-air-compressor-motor-2853566497397.html?pos=2&DualProdscaps) Pune, Maharashtra **\u20b9 10,500**\\n* Get Best Price [2 HP Oil Free Air Compressor, Model Name/Number: GA750-2-40L-D](https://www.indiamart.com/proddetail/oil-free-air-compressor-22372076091.html?pos=3&DualProdscaps) Pune, Maharashtra **\u20b9 25,135**\\n* Get Best Price [5 HP ELGi Oil Free Air Compressor, Air Tank Capacity: 300 L](https://www.\\nindiamart.com/proddetail/innoair-oil-free-air-compressor-2855172446212.html?pos=4&DualProdscaps) Pune, Maharashtra **\u20b9 80,000**\\n* Get Best Price [2 HP Oil Free Air Compressor](https://www.indiamart.com/proddetail/2-hp-oil-free-air-compressor-24349500362.html?pos=5&DualProdscaps) Pune, Maharashtra **\u20b9 19,000**\\n* Get Best Price [30 Litre 1.1 Hp Compressor Noise Less, Air Tank Capacity: 50 L](https://www.indiamart.com/proddetail/30-litre-1-1-hp-compressor-noise-less-2851649948633.html?pos=6&DualProdscaps) Pune, Maharashtra **\u20b9 8,464**\\n\\n## Find related categories\\n\\n* [#### Oil Free Screw Compressor in Pune Get Quote](https://dir.indiamart.com/pune/oil-free-screw-compressor.html)\\n* [#### Atlas Copco Oil Free Air Compressor in Pune Get Quote](https://dir.indiamart.com/pune/atlas-copco-oil-free-air-compressor.html)\\n* [#### Gahl Oil Free Air Compressor in Pune Get Quote](https://dir.indiamart.com/pune/gahl-oil-free-air-compressor.html)\\n* [#### Oil Free Compressors in Pune Get Quote](https://dir.indiamart.com/pune/oil-free-compressors.html)\\n\\n## Product Details\\n\\n ## Company Details\\n\\n## Shipping Information\\n\\n|Price |Excluding all taxes |\\n| --- | --- |\\n|Ships from |Pune |\\n|Shipping |As per delivery location |\\n\\n### Product Image\\n\\nInterested in this product? Get Latest Price from the seller\\n\\nContact Seller\\n\\n### About the Company\\n\\nGST Registration Date\\n    01-07-2017\\n\\nLegal Status of Firm\\n    Partnership\\n\\nNature of Business\\n    Retailer\\n\\nNumber of Employees\\n    11 To 25 People\\n\\nAnnual Turnover\\n    1\\\\.5 - 5 Cr\\n\\nIndiaMART Member Since\\n    May 2022\\n\\nGST\\n    27AAGFM0187N1ZV\\n\\nMachine N Tools is Retailer of Bosch Power Tools, Air Compressor and ARC Welding Machine Since 1952 in Pune, Maharashtra.\\n\\n#### Seller Contact Details\\n\\n##### [Machine N Tools](https://www.indiamart.com/machine-n-tools/?pid=25768086912&c_id=71&mid=181634&pn=Airotic Oil Free Air Compressor)\\n\\nYunus Saifuddin\\n723-b, Opp Alpana Talkies, Nana Peth , Pune - 411002, Maharashtra, India [Get Directions](https://www.google.com/maps/dir//18.51592,73.86401/@18.51592,73.86401)\\n\\n[https://www.indiamart.com/machine-n-tools](https://www.indiamart.com/machine-n-tools/)\\n\\nView Mobile No.\\n\\nSend SMS Send Email'], publish_date=None, title='1 HP Airotic Oil Free Air Compressor, Air Tank Capacity: 30 L, Maximum Flow Rate (CFM): 110 Cfm at \u20b9 9000 in Pune')"
+    },
+    {
+      "title": "Airotic Air Compressor Rajkot",
+      "url": "https://www.facebook.com/p/Airotic-Air-Compressor-Rajkot-61580503113079/",
+      "excerpt": "WebSearchResult(url='https://www.facebook.com/p/Airotic-Air-Compressor-Rajkot-61580503113079/', excerpts=['We are manufacturer of Air Compressor Sprayer Pump, Vulcanizing Machine, Bench Grinder & more. \\U000f17b4 Commercial & Industrial Equipment Supplier \u00b7 \\U000f161b Rajkot'], publish_date=None, title='Airotic Air Compressor Rajkot')"
+    },
+    {
+      "title": "1 hp Airotic Air Compressor Price in Surat, Gujarat \u2013 \u20b910,000 | J P IMPORT & EXPORT",
+      "url": "https://www.aajjo.com/product/1-hp-airotic-air-compressor-in-surat-j-p-import-export",
+      "excerpt": "WebSearchResult(url='https://www.aajjo.com/product/1-hp-airotic-air-compressor-in-surat-j-p-import-export', excerpts=[\"Home \u00bb Air Compressors, Accessories & Parts \u00bb Portable Air Compressor \u00bb 1 hp Airotic Air Compressor\\n\\n\u25c0 \u25b6\\n\\n# 1 hp Airotic Air Compressor\\n\\n\u2605 \u2605 \u2605 \u2605 \u2605\\n\\nAdd Review | FAQs\\n\\n\u20b9 10,000 Get Latest Price\\n\\n|Brand |Others |\\n| --- | --- |\\n|Horse Power |1 hp |\\n|Maximum Flow Rate |110 cfm |\\n|Voltage |240 V |\\n|Motor Speed |2850 RPM |\\n|Air Tank Capacity |30 litre |\\n|Frequency |50 Hz |\\n\\nMore Specification(s)\\n\\nJ P IMPORT & EXPORT\\n\\nGST No - 24CECPP8959K1ZT\\n\\nMember since 2024\\n\\n161, MAHAVIR SOCIETY, PUNA SIMADA ROAD, SHYAMDHAM CHOWK, SARATHANA, Surat, Gujarat, 395006\\n\\nContact Supplier\\n\\nLooking for the latest 1 hp Airotic Air Compressor price in Surat? J P IMPORT & EXPORT, one of Surat's best 1 hp Airotic Air Compressor sellers & manufacturers, offers a wide range of 1 hp Airotic A Read More...\\n\\nRequest a Callback\\n\\n\\\\- \\\\+ Qty\\n\\n  \\n\\n## Related Products\\n\\nGold Certified\\n\\n2\\\\.5 HP Portable Air Compressor\\n\\n\u20b9 13,500\\n\\n|**Brand** : Auto Serv |\\n| --- |\\n|**Cooling Method** : Air Cooled |\\n|**Cylinder Type** : Single Cylinder |\\n|**Horse Power (HP)** : 2.5 HP |\\n\\nSAMVIT GARAGE EQUIPMENTS,\\n\\nView Number Contact Supplier\\n\\nStar Performer\\n\\nPortable Airs Compressor\\n\\n\u20b9 25,000\\n\\n|**Model** : Portable Airs Compressor |\\n| --- |\\n\\nKANHIYA AIR COMPRESSOR,\\n\\nView Number Contact Supplier\\n\\nTrusted\\n\\n0\\\\.5 HP Portable Air Compressors\\n\\n\u20b9 20,000\\n\\n|**Air Tank Capacity** : 100 L |\\n| --- |\\n|**Material** : Aluminum |\\n|**Maximum Flow Rate** : 5 CFM |\\n|**Motor Power** : 0.5 HP |\\n\\nDUPRON ENGINEERING, Ahmedabad, Gujarat\\n\\nContact Supplier\\n\\nJET 2 HP Air Compressors, Maximum Flow Rate: 51 - 120 cfm\\n\\n\u20b9 23,500\\n\\n|**Compressor Brand** : JET |\\n| --- |\\n|**Cooling Method** : Air Cooled |\\n|**Horse Power** : 2 HP |\\n|**Maximum Flow Rate** : 51 - 120 cfm |\\n\\nJet Air Compressors &Pumps,\\n\\nContact Supplier\\n\\n2-5 HP Power Mac Portable Air Compressor\\n\\n\u20b9 16,000\\n\\n|**Compressor Brand** : Power Mac |\\n| --- |\\n|**Frequency** : 50-60 Hz |\\n|**Horse Power** : 2-5 HP |\\n|**Voltage** : 220-380 V |\\n\\nRajdeep Machine And Tools,\\nContact Supplier\\n\\nYCS 1 HP to 3 Hp Portable Air Compressors, Maximum Flow Rate: 0-20 cfm\\n\\n\u20b9 9,500\\n\\n|**Air Quality Standard** : Class I |\\n| --- |\\n|**Brand** : YCS |\\n|**Compressor Technology** : Reciprocating Compressor |\\n|**Horse Power** : 1 HP to 3 Hp |\\n\\nYADAV COMPRESSOR SERVICES,\\n\\nContact Supplier\\n\\nPortable Air Compressor\\n\\n\u20b9 25,000\\n\\n|**Air Tank Capacity** : 45Ltr / 100 Ltr / 160 Ltr |\\n| --- |\\n|**Discharge Pressure** : 10 Bar |\\n|**Horse Power** : 2 HP |\\n|**Maximum Flow Rate** : 0-20 cfm |\\n\\nS.K. Pneumatics Private Limited,\\n\\nContact Supplier\\n\\nAirmax 3Hp Air Compressor Diesel Driven\\n\\n\u20b9 67,000\\n\\n|**Air Tank Capacity** : 200 L |\\n| --- |\\n|**Color** : Red |\\n|**Discharge Pressure** : 12 bar |\\n|**Material** : Mild Steel |\\n\\nPiyush Machinery Co., Delhi\\n\\nContact Supplier\\n\\n20 HP Semi-Automatic Portable Air Compressor\\n\\n\u20b9 88,850\\n\\n|**Air Tank Capacity** : 220 L |\\n| --- |\\n|**Automation Grade** : Semi-Automatic |\\n|**Discharge Pressure** : 12 bar |\\n|**Horse Power** : 20 HP |\\n\\nSurana Pneumatics,\\n ... \\nJ&P Die Laser Cutting Machine, Range: 2 meter, 45 Kg\\n\\n\u20b9 2,50,000\\n\\n|**Brand** : J&amp;P |\\n| --- |\\n|**Country of Origin** : Made in India |\\n|**Model Name/Number** : mt-6040 |\\n|**Range** : 2 meter |\\n\\nContact Supplier\\n\\nHot Fix Rhinestone Machine, 220w, 100kg\\n\\n\u20b9 15,000\\n\\n|**Application** : Heat Transfer |\\n| --- |\\n|**Automation Grade** : Manual |\\n|**Automation Grade** : Semi-Automatic |\\n|**Brand** : JP |\\n\\nContact Supplier\\n\\nT-Shirt Print Machine 5 In1 Combo\\n\\n\u20b9 12,000\\n\\n|**Application** : Heat Transfer |\\n| --- |\\n|**Automation Grade** : Manual |\\n|**Automation Grade** : Semi-Automatic |\\n|**Brand** : JP |\\n\\nContact Supplier\\n\\nCoated T-Shirt Printing Machine Haet Transfer Machine, 240 Volt, Capacity: 1000 T Shirt /Day\\n\\n\u20b9 1,25,000\\n\\n|**Object To Be Printed** : T Shirt |\\n| --- |\\n|**Packaging Details** : ol indiya |\\n|**Power** : 2 kW |\\n|**Printing Capacity** : 100-200 T-Shirt/Hr |\\n\\nContact Supplier\\n\\nSemi Automatic T Shirt Printing Machines, Model Name/Number: JP16\\\\*24, Capacity: 220\\n\\n\u20b9 5,50,001\\n|**Automation Grade** : Semi-Automatic |\\n| --- |\\n|**Type Of T-Shirt Printing Machine** : Direct to Garment (DTG) Digital Inkjet Printing |\\n|**Voltage** : 380 V |\\n|**Weight** : 80KG |\\n\\nContact Supplier\\n\\nMobile Cover Printing Machine, For Mug With Handle Print, Capacity: 100 meter/hr\\n\\n\u20b9 1,15,000\\n\\n|**Minimum Order Quantity** : 35000 |\\n| --- |\\n\\nContact Supplier\\n\\n200 W Ultrasonic Hot Fixing Machine, 16\\\\*24 Inch, 45 kg\\n\\n\u20b9 35,000\\n\\n|**Minimum Order Quantity** : 35000 |\\n| --- |\\n\\nContact Supplier\\n\\nLanyard Heat Transfer Machine\\n\\n\u20b9 29,000\\n\\n|**Brand/Make** : ARC Sign |\\n| --- |\\n|**Display Size** : 10 x 40 inches |\\n|**Frequency** : 50 Hz |\\n|**Minimum Order Quantity** : 1 |\\n\\nContact Supplier\\n\\nHeat Press Machine Coated Zuky T Shirt Printing Machines, Automation Grade: Semi-Automatic\\n\\n\u20b9 12,500\\n\\n|**Country of Origin** : Made in India |\\n| --- |\\n|**Delivery Time** : 4 d |\\n|**Finish** : Coated |\\n|**Machine Type** : Heat Press Machine |\\n\\nContact Supplier\"], publish_date=None, title='1 hp Airotic Air Compressor Price in Surat, Gujarat \u2013 \u20b910,000 | J P IMPORT & EXPORT')"
+    },
+    {
+      "title": "Airotic Air Compressor, 30L Tank, 1.5 HP, Oil Free, Silent",
+      "url": "https://www.amazon.in/dp/B0GS9N3DBQ",
+      "excerpt": "WebSearchResult(url='https://www.amazon.in/dp/B0GS9N3DBQ', excerpts=['BRAND: Airotic Air Compressor delivers reliable performance for a wide range of pneumatic tasks at home or workshop. \u00b7 OIL-FREE OPERATION: The oil-free pump'], publish_date=None, title='Airotic Air Compressor, 30L Tank, 1.5 HP, Oil Free, Silent')"
+    },
+    {
+      "title": "10 Ltr Airotic Air Compressor - Flow Rate: 5 Cfm",
+      "url": "https://www.tradeindia.com/products/10-ltr-airotic-air-compressor-c10561739.html",
+      "excerpt": "WebSearchResult(url='https://www.tradeindia.com/products/10-ltr-airotic-air-compressor-c10561739.html', excerpts=['J k machine tools - offering low price 10 ltr airotic air compressor - flow rate: 5 cfm at 6500.00 inr in hathikhana main road, rajkot with product details'], publish_date=None, title='10 Ltr Airotic Air Compressor - Flow Rate: 5 Cfm')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

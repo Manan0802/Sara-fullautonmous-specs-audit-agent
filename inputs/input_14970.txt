@@ -1,0 +1,2042 @@
+=== SYSTEM PROMPT ===
+
+
+
+
+
+
+You are an expert product specification and category analyst for an Indian B2B marketplace. You are intelligent, autonomous, and decisive. You have access to real data, reasoning frameworks (skills), and tools. Use them however you see fit to produce the best possible corrected spec sheet.
+
+
+---
+
+
+## YOUR OBJECTIVE
+
+
+Your job is to evaluate the existing specs and improve it only if there is clear evidence of gaps, errors, or inefficiencies either in spec name or values or spec input type or in spec rank.
+
+
+The existing specs are largely correct — do not rebuild from scratch. Make changes only when there is strong evidence of any gap in the existing spec sheet. Every change must be justified by evidence. Unnecessary changes are as harmful as missed ones.
+
+
+**Accuracy is the top priority.** Every spec and every option must be genuinely relevant to this category as it exists in the **Indian B2B market**. Options should reflect Indian standards, trade terminology, common units, and real procurement language used by Indian business buyers. Remove or replace anything that is absurd, irrelevant, redundant, or would never appear on a real B2B product listing for this type of item.
+
+
+**Output format:** Three tiers of specs.
+- **Primary (MIN 2, MAX 3):** The first questions a business buyer asks when searching. Must-fill for a seller's listing to be discoverable.
+- **Secondary (MIN 2, MAX 3):** What distinguishes one product variant from another. Essential context but not the first filter a buyer applies.
+- **Tertiary:** Useful procurement detail. Not critical for discovery but helps buyers make informed bulk purchase decisions.
+
+
+Each spec must include `spec_name`, `options` (values sellers choose from), and `input_type` (`radio_button` / `multi_select` / `text_type`). Options must be realistic, exhaustive for the category in the Indian B2B context, and free of placeholder, generic, or cross-category values.
+
+
+---
+
+
+## YOUR DATA
+
+
+
+Five data sources are pre-fetched and in your context. Use them as you deem fit.
+
+
+**Buyer-Seller Call Data**
+Real conversations. Highest-trust signal. Shows which specs buyers actually discuss when transacting, and what option values exist in the real market. High `prod_count` = this spec matters.
+
+
+**Custom Seller Specs**
+Specs sellers added manually because the platform didn't have them. Direct evidence of gaps. Multiple sellers adding the same spec independently = strong gap signal.
+
+
+**Buyer Search Data**
+What buyers filter by on the platform. High impressions = buyers want this filter. A spec buyers search for that doesn't exist = gap.
+
+
+**Spec Fill Rate**
+What percentage of products have each spec filled. High fill = sellers find it important and clear. Low fill = confusing, irrelevant, or bad options.
+
+
+**Option Fill Rate**
+What percentage of products use each specific option value. Shows which options are real market values vs dead weight.
+
+
+
+
+> If any source has no data for this category — note it and proceed with what you have. Confidence caps at `medium` if two or more sources are missing.
+
+
+---
+
+
+
+
+## YOUR TOOLS
+
+You have three tools available. Use them whenever they help you.
+
+
+### Tool 1: Read a Skill
+
+
+Skills are detailed reasoning framework documents — specialized manuals for specific analysis tasks. You can see the skill registry (name, description, tags) appended to this prompt. To load a skill's full content:
+
+
+```
+[READ_SKILL] skill_name [END]
+```
+
+
+Example: `[READ_SKILL] missing_spec_addition [END]`
+
+
+**Important:** Read the skills that help with your current analysis step. You do NOT need to read all of them.  You can read the same skill multiple times. Skills are reference material — you apply the reasoning yourself.
+
+
+
+### Tool 2: Search Skills
+
+
+If you're unsure which skill applies, search by keyword:
+
+
+```
+[SEARCH_SKILLS] your query here [END]
+```
+
+
+### Tool 3: Web Search
+
+
+Search the internet for external validation:
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+### Tool 4: Fetch DS5 Data
+
+[FETCH_DS5] — loads Option Fill Rate data on demand. 
+Use only when you need to validate specific option values.
+
+
+## HOW TO USE SKILLS 
+Skills are reasoning frameworks. 
+When you read one: - Apply its logic to your reasoning
+Cite which skill informed which decision
+
+
+```
+[WEB_SEARCH]
+query="your search query here"
+[END]
+```
+
+
+**Trust:** Manufacturer sites, Amazon.in, Flipkart, BIS/IS documents.
+**Ignore:** IndiaMart, TradeIndia, JustDial, Wikipedia.
+
+
+> **CRITICAL:** Whenever you use Web Search results in your reasoning, you MUST cite the actual URL Links directly in your Investigation Log so the user can see them!
+
+
+
+
+### Restrictions on Tool Calls
+
+
+**DO NOT BULK-LOAD SKILLS.** You must load exactly ONE skill at a time. Read it, apply its instruction to your data, and only on the next turn ask for the next skill if you still need it.
+
+
+**CRITICAL: KEEP TOOL CALL TURNS EXTREMELY BRIEF.**
+When you decide to call a tool like `[READ_SKILL]` or `[WEB_SEARCH]`:
+- Do NOT output your internal analysis or write down what the skill says.
+- Do NOT generate the 6-section audit output.
+- Just write a 1-2 sentence thought about what you are doing, and then make the tool call. Example:
+  "I need to look at Buyer-Seller Call Data to find missing specs, so I will read the buyer call analysis framework.
+  [READ_SKILL] buyer_call_analysis [END]"
+
+
+**Only produce the 6-section final audit when you are 100% finished with ALL tool calls.**
+
+
+### Recommended workflow
+
+
+1. Review the data provided.
+2. Form a short thought (1 sentence) and call exactly ONE tool (e.g. `[READ_SKILL] buyer_call_analysis [END]`). DO NOT output anything else.
+3. On the next turn, read the skill result, and if you need another skill, make another short tool call.
+4. If you need a web search for external confirmation, call `[WEB_SEARCH]`.
+5. Once you have fetched all the skills and web searches you need, ONLY THEN produce the single, final audit output containing all 6 sections (remembering to print the URLs from web search in the Investigation Log).
+
+
+
+
+---
+
+
+
+
+## SIGNAL CLASSIFICATION
+
+
+
+
+Before acting on any signal, classify it:
+
+
+
+
+- **`VALID_SPEC`** — A real, filterable product attribute.
+- **`CONTEXT_TERM`** — Restates the category name. Not a useful filter.
+- **`NOT_A_PRODUCT_SPEC`** — MOQ, delivery time, warranty — not a physical attribute.
+- **`DUPLICATE`** — Same attribute as an existing spec under a different name.
+- **`COMPOSITE`** — A combination of multiple existing specs.
+- **`MISCLASSIFIED`** — Correct attribute, wrong spec. Move the value, not create a new spec.
+
+
+
+
+---
+
+
+## RULES
+
+
+**Evidence before action.** Every change needs data support. State the evidence. State the confidence level.
+- `high` — 2+ independent sources converge
+- `medium` — 1 strong source
+- `low` — weak or indirect signal — flag for human review
+
+
+**Tier limits are hard.** Primary MAX 3. Secondary MAX 3. If adding a spec overflows a tier, either demote the weakest existing occupant or place the new spec one tier lower. Document the decision.
+
+
+**Review selectively.** Focus on specs where data signals suggest gaps, errors, or improvement opportunities. Avoid forcing evaluation or commentary on specs that appear correct.
+
+
+**Address the critic**. For significant changes, consider potential objections from a reviewer and ensure your decision is clearly justified.
+
+
+
+**One spec, one entry.** If multiple data sources name the same attribute differently, consolidate into one spec with the best name. Don't add duplicates.
+
+
+
+---
+
+
+
+
+## OUTPUT
+
+
+
+
+Produce exactly these 6 sections. Each piece of information appears in exactly one section.
+
+
+
+
+### 1. Investigation Plan
+What is this product? Who buys it? What did the data show at a high level? What were your key questions going in?
+
+
+
+
+### 2. Investigation Log
+Your reasoning, evidence, and decisions. For each action: what signal drove it, what the confidence is, what the critic challenge was, and what you decided. End with a holistic review of the full action set and a one-line sweep of every spec you didn't individually investigate.
+
+
+
+
+### 3. Skipped Gaps
+Signals you investigated but did not act on. Each with: term, classification, reason.
+
+
+### 4. Corrected Specs JSON
+```json
+{
+  "category_name": "...",
+  "category_id": ...,
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": { "specs": [...] },
+    "finalized_secondary_specs": { "specs": [...] },
+    "finalized_tertiary_specs": { "specs": [...] }
+  }
+}
+```
+
+
+### 5. Spec Changes Summary Table
+Every spec-level change across all specs. One row per spec that was added, removed, merged, or renamed. Ensure to not skip any spec with that was removed.
+
+
+| # | Action | Spec | Detail | Confidence | Critic Verdict | Decision | Key Evidence |
+|---|--------|------|--------|------------|----------------|----------|--------------|
+
+
+
+
+### 6. Option Changes Summary Table
+Every option-level change across all specs. One row per spec options that was added, removed, merged, or renamed. Options with no change are not listed.
+
+
+| # | Spec | Option Values | Action | Reason | Key Evidence |
+
+
+|---|------|-------------|--------|--------|--------|
+
+
+Actions: `ADDED` / `REMOVED` / `MERGED INTO [target]` / `RENAMED TO [new value]`
+
+
+### 7. Self-Reflection
+
+
+Were all high-signal gaps addressed? Any contradictions? All specs reviewed? Limits respected? Any low-confidence flags? One paragraph overall assessment.
+
+
+---
+
+
+## BEGIN
+
+
+You have the category ID, current specs, and all 5 data sources in the user message. You have a skill registry with 8 reasoning frameworks available via the [READ_SKILL] tool.
+
+Start by analyzing the data, read the skills you need and then produce the complete corrected specs. If you need web search for external validation, use [WEB_SEARCH].
+
+
+
+
+
+
+
+
+
+
+---
+
+## AVAILABLE SKILLS (KNOWLEDGE LIBRARY)
+
+You have access to 10 reasoning framework documents. These are NOT sub-agents — they are reference manuals you can read on-demand.
+
+**How to access them:**
+
+1. **List all skills** — you already see the registry below
+2. **Read a skill** — when you need a specific framework, call:
+   ```
+   [READ_SKILL] skill_name [END]
+   ```
+3. **Search skills** — if you're unsure which skill applies:
+   ```
+   [SEARCH_SKILLS] your query here [END]
+   ```
+
+**Available skills:**
+
+- **buyer_call_analysis**: How to interpret Buyer-Seller Call Data — product counts, signal classification, what high/low counts mean  
+  Tags: `buyer-calls, signal-interpretation, product-count`
+- **custom_spec_analysis**: How to interpret Custom Seller Specs — identifying genuine gaps from seller-created specs  
+  Tags: `custom-specs, gap-detection, seller-signal`
+- **buyer_search_analysis**: How to interpret Buyer Search Data — impressions, search filters, discovering what buyers want to filter by  
+  Tags: `buyer-search, impressions, filter-discovery`
+- **missing_spec_addition**: How to identify genuinely missing specs — 3-condition test, false positive avoidance, spec definition rules, option generation  
+  Tags: `spec-addition, missing-specs, false-positive, gap-identification`
+- **spec_sequencing**: How to rank specs into primary/secondary/tertiary — convergence logic, signal calibration, override rules (IMPLIED, DATA_ARTIFACT, WEAK_EVIDENCE)  
+  Tags: `ranking, tiering, sequencing, convergence, primary, secondary, tertiary`
+- **option_validator**: How to audit and correct option lists — missing options, incorrect options, absurd options, structural issues, ordering  
+  Tags: `options, validation, option-audit, input-type, corrections`
+- **domain_expert**: Indian B2B domain knowledge — signal conflict resolution, category sanity checks, spec relationships, format conflicts, IS/BIS standards  
+  Tags: `domain, indian-b2b, conflict-resolution, sanity-check, standards`
+- **critic**: How to challenge your own decisions — evidence quality checks, alternative explanations, holistic review, destructive action scrutiny  
+  Tags: `critic, review, challenge, evidence-quality, holistic`
+- **input_type_audit**: How to evaluate or correct the input_type of specs (radio_button, multi_select, text_type) based on spec name and existing option values  
+  Tags: `input-type, radio, multi-select, text-type, options`
+- **brand_option_review**: How to validate options for brand categories — requires web-confirmed removal of options before deletion. For input type, use input_type_audit.  
+  Tags: `brand, brand-category, oem, options, web-check`
+
+**Important:** You do NOT need to read every skill. Read only the ones relevant to your current reasoning step. You can read the same skill multiple times if needed.
+
+
+
+=== INITIAL USER MESSAGE ===
+mcat_id: 14970
+category_name: AC Servo Motor
+seller_specs (current spec sheet): {
+  "category_name": "Ac Servo Motor",
+  "mcat_id": 14970,
+  "generated_by": "Seller_Spec_Option_Absurdity_Agent",
+  "finalized_specs": {
+    "finalized_primary_specs": {
+      "specs": [
+        {
+          "spec_name": "Input Phase",
+          "options": [
+            "Three Phase",
+            "Single Phase",
+            "Two Phase",
+            "Three Phase 380V",
+            "Three Phase 415V"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Brake",
+          "options": [
+            "With Brake",
+            "Without Brake",
+            "Electromagnetic Brake",
+            "Spring Brake",
+            "Fail-Safe Brake"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Encoder Resolution",
+          "options": [
+            "17 bit",
+            "23 bit",
+            "20 bit",
+            "13 bit",
+            "19 bit"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_secondary_specs": {
+      "specs": [
+        {
+          "spec_name": "Mounting",
+          "options": [
+            "Flange",
+            "Foot",
+            "Foot Cum Flange"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Brand",
+          "options": [
+            "Schneider",
+            "Leadshine",
+            "Panasonic",
+            "Mitsubishi",
+            "Siemens"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Voltage",
+          "options": [
+            "220 V",
+            "230 V",
+            "200 V",
+            "415 V",
+            "380 V"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    },
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Power",
+          "options": [
+            "750 W",
+            "400 W",
+            "100 W",
+            "200 W",
+            "50 W"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Speed",
+          "options": [
+            "3000 rpm",
+            "1500 rpm",
+            "2000 rpm",
+            "2500 rpm",
+            "4500 rpm"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Power Type",
+          "options": [
+            "AC"
+          ],
+          "input_type": "radio_button"
+        },
+        {
+          "spec_name": "Motor Type",
+          "options": [
+            "Servo"
+          ],
+          "input_type": "radio_button"
+        }
+      ]
+    }
+  }
+}
+
+=== DATA SOURCES ===
+
+--- Buyer-Seller Call Data (aggregated, 14 specs) ---
+[
+  {
+    "spec_name": "Brand",
+    "total_product_count": 119,
+    "example_values": [
+      "Afindo Spare",
+      "Baumuller",
+      "Delta",
+      "Fanuc",
+      "Flexem"
+    ]
+  },
+  {
+    "spec_name": "Power",
+    "total_product_count": 87,
+    "example_values": [
+      "0.04 kW",
+      "0.5 HP",
+      "0.75 kW",
+      "0.75 Watt",
+      "1 kW"
+    ]
+  },
+  {
+    "spec_name": "Series/Model",
+    "total_product_count": 49,
+    "example_values": [
+      "152 GCGM",
+      "1FK75",
+      "1FL6062-1AC61-0AA1",
+      "1S7 75 494 120",
+      "40V 30CB-A331Z-INT"
+    ]
+  },
+  {
+    "spec_name": "Motor Type",
+    "total_product_count": 32,
+    "example_values": [
+      "AC Servo Motor",
+      "Cable",
+      "Geared Motor",
+      "Permanent Magnet",
+      "Remi Motor"
+    ]
+  },
+  {
+    "spec_name": "Speed",
+    "total_product_count": 30,
+    "example_values": [
+      "1000 RPM",
+      "10000 RPM",
+      "1500 RPM",
+      "20 RPM",
+      "2000 RPM"
+    ]
+  },
+  {
+    "spec_name": "Application",
+    "total_product_count": 23,
+    "example_values": [
+      "CNC",
+      "CNC Milling",
+      "CNC Router",
+      "CNC Wood Lathe",
+      "CNC machine XY axis"
+    ]
+  },
+  {
+    "spec_name": "Included Components",
+    "total_product_count": 21,
+    "example_values": [
+      "Cable Connector",
+      "Complete Set",
+      "Connector",
+      "Encoder",
+      "Gearbox and Motor"
+    ]
+  },
+  {
+    "spec_name": "Brake Feature",
+    "total_product_count": 15,
+    "example_values": [
+      "With Brake",
+      "Without Brake"
+    ]
+  },
+  {
+    "spec_name": "Condition",
+    "total_product_count": 10,
+    "example_values": [
+      "100% Original",
+      "New",
+      "Used"
+    ]
+  },
+  {
+    "spec_name": "Phase",
+    "total_product_count": 9,
+    "example_values": [
+      "Single Phase",
+      "Three Phase"
+    ]
+  },
+  {
+    "spec_name": "Voltage",
+    "total_product_count": 5,
+    "example_values": [
+      "200 V",
+      "220 V",
+      "380-440 V"
+    ]
+  },
+  {
+    "spec_name": "Cable Length",
+    "total_product_count": 3,
+    "example_values": [
+      "10 m",
+      "2 m",
+      "3 meters"
+    ]
+  },
+  {
+    "spec_name": "Inertia Type",
+    "total_product_count": 3,
+    "example_values": [
+      "Low Inertia"
+    ]
+  },
+  {
+    "spec_name": "Torque",
+    "total_product_count": 3,
+    "example_values": [
+      "2.39 Nm",
+      "40 Nm",
+      "620 Nm"
+    ]
+  }
+]
+
+--- Custom Seller Specs (aggregated, 6 specs) ---
+[
+  {
+    "spec_name": "Model Name/Number",
+    "count": 18,
+    "options": [
+      "MOOG G405-522A",
+      "TRUTZSCHLER DS71-K35",
+      "OMRON R88M-G40030H-S2",
+      "OMRON R88M-UE40030V-S1",
+      "MOOG G404-5430"
+    ]
+  },
+  {
+    "spec_name": "Category",
+    "count": 18,
+    "options": [
+      "Hydraulic Motors and Parts",
+      "MOTOR",
+      "Motors"
+    ]
+  },
+  {
+    "spec_name": "Usage/Application",
+    "count": 18,
+    "options": [
+      "INDUSTRIAL"
+    ]
+  },
+  {
+    "spec_name": "Sub Category",
+    "count": 18,
+    "options": [
+      "Hydraulic Motors",
+      "SERVO MOTOR",
+      "Servo Motors"
+    ]
+  },
+  {
+    "spec_name": "Series",
+    "count": 6,
+    "options": [
+      "Sigma-7",
+      "MS6H Series"
+    ]
+  },
+  {
+    "spec_name": "Flange Size",
+    "count": 5,
+    "options": [
+      "180mm x 180mm",
+      "130mm x 130mm",
+      "80mm x 80mm",
+      "60mm x60mm",
+      "40mm x 40mm"
+    ]
+  }
+]
+
+--- Buyer Search Data (aggregated, 2 specs) ---
+[
+  {
+    "spec_name": "brand",
+    "total_impressions": 142,
+    "options": [
+      "allen bradley",
+      "dorna",
+      "ekomilk",
+      "hcfa",
+      "inovance"
+    ]
+  },
+  {
+    "spec_name": "usage",
+    "total_impressions": 57,
+    "options": [
+      "servo"
+    ]
+  }
+]
+
+--- Spec Fill Rate Data (31 specs) ---
+[
+  {
+    "spec_name": "",
+    "spec_fill_rate": "55.9",
+    "product_count": "38"
+  },
+  {
+    "spec_name": "Motor Type",
+    "spec_fill_rate": "42.6",
+    "product_count": "29"
+  },
+  {
+    "spec_name": "Brand",
+    "spec_fill_rate": "42.6",
+    "product_count": "29"
+  },
+  {
+    "spec_name": "Voltage",
+    "spec_fill_rate": "35.3",
+    "product_count": "24"
+  },
+  {
+    "spec_name": "Input Phase",
+    "spec_fill_rate": "35.3",
+    "product_count": "24"
+  },
+  {
+    "spec_name": "Power Type",
+    "spec_fill_rate": "33.8",
+    "product_count": "23"
+  },
+  {
+    "spec_name": "Brake",
+    "spec_fill_rate": "32.4",
+    "product_count": "22"
+  },
+  {
+    "spec_name": "Encoder Resolution",
+    "spec_fill_rate": "20.6",
+    "product_count": "14"
+  },
+  {
+    "spec_name": "Speed",
+    "spec_fill_rate": "20.6",
+    "product_count": "14"
+  },
+  {
+    "spec_name": "Power",
+    "spec_fill_rate": "16.2",
+    "product_count": "11"
+  },
+  {
+    "spec_name": "Mounting",
+    "spec_fill_rate": "14.7",
+    "product_count": "10"
+  },
+  {
+    "spec_name": "Usage/Application",
+    "spec_fill_rate": "10.3",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Category",
+    "spec_fill_rate": "10.3",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Sub Category",
+    "spec_fill_rate": "10.3",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Model Name/Number",
+    "spec_fill_rate": "10.3",
+    "product_count": "7"
+  },
+  {
+    "spec_name": "Number Of Phases",
+    "spec_fill_rate": "8.8",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Motor Principle",
+    "spec_fill_rate": "8.8",
+    "product_count": "6"
+  },
+  {
+    "spec_name": "Flange Size",
+    "spec_fill_rate": "7.4",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Frame Size",
+    "spec_fill_rate": "7.4",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Series",
+    "spec_fill_rate": "7.4",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Body Material",
+    "spec_fill_rate": "7.4",
+    "product_count": "5"
+  },
+  {
+    "spec_name": "Rated Current",
+    "spec_fill_rate": "5.9",
+    "product_count": "4"
+  },
+  {
+    "spec_name": "Rated Torque",
+    "spec_fill_rate": "1.5",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "input power",
+    "spec_fill_rate": "1.5",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Torque",
+    "spec_fill_rate": "1.5",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "F37 CMP50M/BK/KY/RH1M/SB1 SEW Eurodrive",
+    "spec_fill_rate": "1.5",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "IP Rating",
+    "spec_fill_rate": "1.5",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Input Voltage",
+    "spec_fill_rate": "1.5",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Power Rating",
+    "spec_fill_rate": "1.5",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Warranty",
+    "spec_fill_rate": "1.5",
+    "product_count": "1"
+  },
+  {
+    "spec_name": "Brake Type",
+    "spec_fill_rate": "1.5",
+    "product_count": "1"
+  }
+]
+
+--- Option Fill Rate Data ---
+Not pre-loaded. Use [FETCH_DS5] to load when needed.
+
+=== END DATA SOURCES ===
+
+INSTRUCTIONS:
+- All data above is REAL, pre-fetched from the platform. Use these exact numbers.
+- You have skill knowledge files available. Read the ones you need using [READ_SKILL] skill_name [END].
+- You have a web search tool. Use [WEB_SEARCH] query="..." [END] if you need external validation.
+- DO NOT bulk-load skills. Request exactly ONE skill at a time when you need it.
+- After reading skills and analyzing data, produce the complete audit output (all 6 sections).
+- Every tool result will be sent back to you in the next message.
+
+=== TOOL RESULTS (Turn 1) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 2) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(buyer_call_analysis) ---
+# Buyer Call Data — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you read the Buyer-Seller Call Data (Buyer-Seller Call Data) output — use this document to
+understand what the data means, how to interpret each field, what signals are
+reliable vs misleading, and how to use the findings in your audit decisions.
+You apply this interpretation yourself — no separate process runs.
+
+
+---
+
+
+## What this data source is
+
+
+Buyer call data contains spec-value pairs extracted from real phone conversations
+between buyers and sellers on the marketplace. When a buyer calls a seller and says
+"I need 3mm thickness, powder coated finish, 6 metre length" — those three
+attributes get logged as spec-value pairs for that product.
+
+
+This is your highest-confidence signal. It captures what people actually negotiate
+on, not what they search for on a screen or what sellers bother filling in a form.
+If something comes up repeatedly in buyer calls, it is genuinely important to the
+transaction.
+
+
+---
+
+
+## What the fields mean
+
+
+**spec_name**
+The normalised name of the spec discussed. If the data pipeline corrected a raw
+seller input (e.g., mapped "thicness" → "Thickness"), the corrected name appears
+here. This corrected form is the market-standard name — if your current spec uses
+a different form, that is a rename candidate.
+
+
+**total_product_count**
+The number of products where this spec was discussed in calls. This is your proxy
+for transactional importance. Sum across all values for a spec to get its overall
+weight. Higher count = more buyers and sellers consider this attribute essential
+to close a deal.
+
+
+**example_values**
+The actual values sellers quoted during calls. These are ground-truth option values
+from real products in the real market. Any value appearing here but absent from the
+current spec's option list is a strong candidate for addition.
+
+
+**correction_applied**
+A flag indicating whether the pipeline normalised the raw input. When true, the
+spec_name shown is the corrected, standardised form. If your current spec uses the
+raw/old form, this is a signal to rename or correct.
+
+
+---
+### Spec-level count (use to judge whether a spec matters)
+
+
+Product count is relative. Do not use absolute thresholds. Instead, read the full
+distribution of spec counts in the category and let the shape guide you:
+
+
+- Rank all specs by total product count, highest to lowest
+- Specs that cluster near the top are the attributes buyers consistently negotiate on — treat as strong signals
+- Specs that sit far below the top cluster, with a visible drop-off from the rest, are weak signals — treat as directional only
+- Specs at the very bottom of the distribution, especially those markedly separated from even the mid-range specs, are noise — do not act on them alone
+
+
+The key signal is the **gap between high-count and low-count specs** within the same category. A spec is weak not because it falls below a fixed number, but because the distribution reveals it as an outlier relative to its peers.
+
+
+
+
+### Option-value count (use to judge whether a specific value matters within a spec)
+
+
+Within a given spec, individual option values also carry their own product counts.
+Not every value that survives the 90% filter is equally worth adding — some may
+represent fringe usage or data noise within an otherwise valid spec.
+
+
+Apply relative logic within each spec's own value distribution:
+
+
+- Rank all values for a spec by their product count, highest to lowest
+- Values that cluster near the top of this distribution are the dominant market options — treat as strong candidates
+- Values that sit far below the top cluster, with a visible drop-off from the rest, are tail values — treat as noise and ignore unless corroborated by another source
+- If the counts across all values are similarly low with no clear leaders, the entire value set is weak — do not act on any individual value; the spec itself may be too thin to evaluate
+- If a spec has very few total products (count < 3), do not evaluate individual values at all — the spec itself is too weak to act on
+
+
+The key signal is the **gap between the high-count values and the low-count values** within the same spec. A value is noise if its count is markedly lower than the leading values in that spec — not because it falls below some fixed number, but because the distribution itself reveals it as an outlier.
+
+
+This prevents low-frequency outliers from inflating option lists with values that almost no buyer in the category actually negotiates on.
+
+
+
+
+---
+
+
+## What high product count actually means
+
+
+High product count means buyers and sellers discuss this attribute when transacting.
+It does NOT automatically mean the spec is missing from your platform — it may
+already exist under a different name.
+
+
+Before treating a high-count call spec as a missing spec, ask:
+1. Is this spec already in the current spec list under the same name? → Already covered
+2. Is this spec already in the current spec list under a different name? → Duplicate, consider rename
+3. Does the category name already define this value for every product? → Implied, do not add
+4. Is this a physical product attribute, or a commercial/logistics term? → If commercial, not a product spec
+
+
+Only after checking all four should you pass it to missing spec reasoning.
+
+
+---
+
+
+## Signal classification — apply to every call spec before acting
+
+
+| Classification | When it applies | What to do |
+|---------------|----------------|------------|
+| `VALID_SPEC` | Distinct filterable attribute with discrete values, not already in spec list | Investigate further — strong candidate |
+| `IMPLIED` | Category name already defines this value for every product in the category | Do not add. If it exists in Primary, consider demotion |
+| `DUPLICATE` | Same attribute as an existing spec under a different name | Merge with existing spec, do not add new |
+| `NOT_A_PRODUCT_SPEC` | Delivery terms, payment, packaging, MOQ, warranty | Ignore entirely |
+| `COMPOSITE` | Combines values from two specs (e.g., `10x20x5 mm`) | Break into components before evaluating |
+
+
+---
+
+
+## How to use call data in your audit
+
+
+**To establish importance baseline**
+At the start of your audit, read the full call data and rank specs by total_product_count.
+This ranking tells you which attributes genuinely drive purchase decisions in this
+category. Use it to calibrate every tier and importance judgment you make.
+
+
+**To find missing specs**
+Specs that appear in call data but are absent from the current spec list are
+candidates for addition. Apply signal classification first. Require product count
+above 2 before treating as a genuine gap signal.
+
+
+**To validate current spec tiers**
+A current Primary spec with near-zero product count in call data is suspicious.
+Low call signal + low fill rate together = strong candidate for demotion or removal.
+Call data is your check on whether the existing tier hierarchy reflects real buyer behaviour.
+
+
+**To find option gaps**
+Example values from call data are ground-truth option values. Compare them against
+your current option lists. Values that appear in calls but not in current options
+are strong candidates for addition — pass to option validation reasoning with this
+as supporting evidence.
+
+
+**To confirm cross-source signals**
+When the same spec appears in both call data AND custom specs (Custom Seller Specs), that is two
+independent signals pointing at the same gap. This combination reaches high confidence
+for a missing spec addition.
+
+
+---
+
+
+## What call data cannot tell you alone
+
+
+- **Whether a spec is missing** — it shows what is discussed, not what is absent.
+  Always cross-check against the current spec list before concluding something is missing.
+- **Final tier placement** — product count is one of three signals. You need fill rate
+  (Spec Fill Rate) and search impressions (Buyer Search Data) to make a well-supported tier decision.
+- **Option quality** — call data shows which values exist in the market, not whether
+  your current option list is structurally correct. Bring these values to option
+  validation reasoning for the full assessment.
+- **Causality** — high count means it was discussed, not that it drives the purchase
+  decision. Implied specs (e.g. Material in a Steel Pipes category) generate high
+  counts because every product has a material, not because Material is a differentiator.
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 3) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(custom_spec_analysis) ---
+# Custom Spec Analysis — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to identify spec gaps from seller-submitted custom specs — read this
+document. It tells you how to interpret the custom spec data you have received,
+how to classify each signal, and what to do with the findings. You apply this
+reasoning yourself directly from the custom spec data in your context.
+
+
+---
+
+
+## Why custom specs matter
+
+
+Custom specs are a direct market signal from the supply side. Sellers add custom
+specs when the standardised spec system doesn't cover an attribute they need to
+communicate to buyers. When a single seller adds a custom spec, it may be an edge
+case. When 5, 10, or 20 sellers independently add the same spec under slightly
+different names, it is a platform gap — the market is telling you something is
+missing.
+
+
+---
+
+
+## The data you have (Custom Spec Data)
+
+
+Your custom spec data contains seller-submitted specs filtered for this category.
+Each row tells you:
+- `spec_name` — what the seller called the spec (may be messy, abbreviated, variant)
+- `option_value` — what value the seller entered
+- `count` — how many sellers submitted this spec name
+
+
+The raw data is always messy. `WEIGHT`, `weight`, `Wt.`, `wt (kg)` may all be the
+same attribute submitted by different sellers. Before using the data, mentally
+normalise it:
+- Unify casing to Title Case
+- Expand abbreviations (`Qty` → `Quantity`, `Temp` → `Temperature`)
+- Merge obvious variants (`Size`, `Dimensions`, `Product Size` → `Size`)
+- Remove duplicates of existing platform specs
+
+
+---
+
+
+## The count threshold — your primary filter
+
+
+**Count < 5 sellers:** Treat as noise. Too idiosyncratic to standardise. Classify
+as `INSUFFICIENT_SIGNAL` and skip.
+
+
+**Count 5–14 sellers:** Meaningful gap signal. Worth investigating further against
+other data sources Buyer-Seller Call Data and Search Impressions before acting.
+
+
+**Count 15–29 sellers:** Strong signal. High probability of a genuine platform gap.
+
+
+**Count 30+ sellers with convergent option values:** Very strong — near-certain
+standardisation candidate. Pass to missing spec reasoning with high confidence.
+
+
+---
+
+
+## How to classify each custom spec signal
+
+
+Before acting on any custom spec, classify it:
+
+
+**`VALID_SPEC`**
+A distinct, filterable product attribute. Count ≥ 5. Not semantically covered by
+any existing platform spec. Has discrete, real option values.
+→ Strong addition candidate. Cross-reference with Buyer-Seller Call Data and Search Impressions before proposing.
+
+
+**`DUPLICATE`**
+Semantically the same as an existing platform spec despite a different name.
+Examples: `Product Brand` when `Brand` already exists. `Colour` when `Color` exists.
+→ Do not add. Note the naming inconsistency as an option to fix on the existing spec.
+
+
+**`NOT_A_PRODUCT_SPEC`**
+Business or logistics attributes — not physical product properties.
+Examples: MOQ, Packaging Type, Delivery Time, Payment Terms, Warranty Period.
+→ Ignore entirely. Do not pass to missing spec reasoning.
+
+
+**`INSUFFICIENT_SIGNAL`**
+Count < 5, or options are all blank, vague, or single-value.
+→ Do not add. Note as weak signal in Skipped Gaps.
+
+
+**`COMPOSITE`**
+A single name that bundles multiple distinct attributes.
+Example: `Size & Weight` combining dimensions and mass.
+→ Break into component specs. Evaluate each component separately.
+
+
+---
+
+
+## How to use the option values sellers submitted
+
+
+Seller-submitted option values are real market values — they show what actually
+exists in the market for this attribute. But they are starting material, not a
+final option list. They may be:
+- Inconsistent in units (`kg`, `kgs`, `Kilogram`)
+- Mixed in granularity (`3mm`, `3.0 mm`, `3 millimeter`)
+- Contain some noise (vague entries, test data)
+
+
+When you use these values to propose options for a new spec, apply the option
+formatting rules from the Option Validator knowledge document. Clean them before
+including them in your proposed spec.
+
+
+---
+
+
+## Cross-source confirmation — how to weight this signal
+
+
+Custom spec data is a supply-side signal — sellers telling you what they need.
+Combine it with demand-side signals for stronger evidence:
+
+
+| Combination | Evidence strength |
+|-------------|------------------|
+| Custom spec count ≥ 5 only | Moderate — single source |
+| Custom spec count ≥ 5 + Buyer-Seller Call Data call signal | Strong — supply and demand converge |
+| Custom spec count ≥ 5 + Search Impressions | Strong — supply and buyer intent converge |
+| All three sources agree | Very strong — act with high confidence |
+
+
+---
+
+
+## What your custom spec analysis must produce
+
+
+After reading Custom Spec Data for this category, produce:
+
+
+For each spec that passes the count threshold (≥ 5):
+- spec_name — your normalised canonical name
+- count — number of sellers who submitted it
+- top_options — cleaned top option values from seller submissions
+- classification — VALID_SPEC / DUPLICATE / NOT_A_PRODUCT_SPEC / COMPOSITE / INSUFFICIENT_SIGNAL
+- action — what to do: investigate further / pass to missing spec reasoning / ignore / note naming gap
+
+
+For the overall Custom Spec Data summary:
+- How many unique custom specs were found above threshold
+- Which are strongest candidates (count ≥ 15)
+- Which overlap with Buyer-Seller Call Data and Search Impressions signals (multi-source confirmation)
+
+
+---
+
+
+## What custom spec analysis does NOT determine
+
+
+- Tier placement — count is not a sequencing signal. All new specs start at Tertiary;
+  sequencing reasoning determines the final tier using fill rate, impressions, and
+  product count
+- Final option lists — seller-submitted values are starting material only; apply
+  option validator reasoning before finalising
+- Whether to add the spec — classification here is a recommendation; the missing
+  spec addition reasoning makes the final add/reject decision
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 4) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(spec_sequencing) ---
+# Spec Sequencing — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to decide whether a spec belongs in Primary, Secondary, or Tertiary —
+read this document. It tells you how to assess tier placement using the signals
+available to you, how to resolve conflicts, and what rules override signal data.
+You produce the sequencing output yourself using this reasoning framework.
+
+
+---
+
+
+## The three signals you have and what they mean
+
+
+You have three quantitative signals for every spec. Use all three together — no
+single signal is enough on its own.
+
+
+**Fill Rate (from Spec Fill Rate)**
+The percentage of seller listings where this spec is filled. High fill rate means
+sellers consider it important enough to describe. Weakness: can be inflated if the
+spec was marked mandatory at some point, or if sellers fill it out of habit without
+buyers caring.
+
+
+**Search Impressions (from Buyer Search Data)**
+How many times buyers used this spec as a filter in search. High impressions means
+buyers actively want to narrow results by this attribute. Weakness: default UI
+filters and specs that restate the category name (e.g. "Material: Aluminium" in
+an Aluminium category) can inflate this artificially.
+
+
+**Product Count / Call Count (from Buyer-Seller Call Data)**
+How many times this spec was discussed in real buyer-seller phone conversations.
+High count means it comes up during actual purchase negotiations. Weakness: implied
+specs get discussed a lot simply because every product has the same value — this
+is noise, not signal.
+
+
+---
+
+
+## How to calibrate "high" vs "low"
+
+
+Do not use absolute thresholds. Compare each spec's signals against the other specs
+in the same category. The spec with the highest fill rate is "high fill rate" — even
+if that number is 45%. The spec with the lowest impressions is "low impressions" —
+even if that number is 200. Always calibrate relative to the distribution in front of you.
+
+
+---
+
+
+## Convergence logic — how signals combine into a tier
+
+
+| Signals agreeing | Convergence | Starting point |
+|-----------------|-------------|----------------|
+| 2 or 3 signals high relative to peers | STRONG | Primary or high Secondary |
+| 1 signal high, others medium | MODERATE | Secondary |
+| 1 signal high, others low | MODERATE-WEAK | Low Secondary or Tertiary |
+| 0 signals high | WEAK | Tertiary |
+
+
+When signals conflict, apply the conflict resolution rules below before deciding.
+
+
+---
+
+
+## Conflict resolution — what to do when signals disagree
+
+
+**High Impressions + near-zero Product Count**
+Buyers filter on it but sellers and buyers don't discuss it in calls. Usually means
+the spec is a UI default filter, or it re-states something already obvious from the
+category name. Do NOT auto-promote to Primary. Check whether the category name
+already implies this attribute. Cap at Secondary pending domain validation.
+
+
+**High Product Count + near-zero Impressions**
+Comes up in negotiations but the platform doesn't surface it as a prominent filter.
+The spec matters transactionally but isn't discoverable through search. Worth
+Secondary. Can be Primary if it's the dominant signal by a clear margin and domain
+logic supports it.
+
+
+**High Fill Rate + low Impressions + low Product Count**
+Sellers fill it consistently but buyers don't search for it or discuss it much.
+Seller-oriented spec. Default to Secondary. Only demote to Tertiary if it's
+single-value across all products or is directly implied by the category name.
+
+
+**All three high**
+Strongest Primary candidate. Place here unless an override rule applies.
+
+
+**One source anomalously high, others low**
+Investigate the inflation cause before deciding. One anomalous signal does not
+override two low signals. Apply DATA_ARTIFACT check below.
+
+
+---
+
+
+## Override rules — these take priority over signal values
+
+
+Apply these before finalising any tier placement.
+
+
+### IMPLIED
+**When it applies:** The category name already fixes this spec's value for every
+product. Examples: "Inverter Type: Solar" in a Solar Inverter category. "Fabric:
+Cotton" in a Cotton Fabric category. "Material: Aluminium" in an Aluminium Profiles
+category.
+
+
+**How to detect it:** The category name contains or directly implies the dominant
+value of the spec. Nearly all example values match that implied value. High signals
+are artifacts — every product in the category has this value, so of course it appears
+everywhere.
+
+
+**What to do:** Demote to Tertiary or remove entirely if it adds no differentiation
+across products. Tag reasoning with [IMPLIED].
+
+
+### DATA_ARTIFACT
+**When it applies:** Signal numbers are inflated but don't represent genuine buyer
+choice. Key cases:
+- Brand spec where example values are all generic ("Local", "Unbranded", "As required")
+- One option accounts for over 90% of all impressions for this spec
+- Very high impressions combined with zero product count in calls
+- Fill rate disproportionately high relative to search and call signals
+
+
+**What to do:** Do not promote based on this signal. Investigate before deciding.
+Use domain knowledge to determine if the signal is genuine. Tag reasoning with
+[DATA_ARTIFACT].
+
+
+### WEAK_EVIDENCE
+**When it applies:** Impressions = 0 AND Product Count < 5, OR Fill Rate < 15% AND
+Product Count < 3, OR example values are empty or single-value across all products.
+
+
+**What to do:** Keep in Tertiary. Do not place in Primary or Secondary without
+strong domain justification stated explicitly. Tag reasoning with [WEAK_EVIDENCE].
+
+
+---
+
+
+## Tier definitions — the tests to apply
+
+
+**PRIMARY — hard maximum 3 specs**
+
+
+A buyer cannot meaningfully describe what they want without this spec. A seller
+cannot create a findable listing without this spec.
+
+
+Ask yourself:
+- What does a buyer say in the FIRST sentence when asking for this product?
+- What do sellers fill first to make a listing appear in search?
+- Is this a core attribute that defines what the product IS, not just describes it?
+
+
+If yes to all three → Primary candidate.
+
+
+Prefer radio_button input types in Primary. Multi-select can be Primary only if
+the category genuinely requires multiple simultaneous values — justify this
+explicitly if you choose it.
+
+
+**SECONDARY — maximum 3-4 specs**
+
+
+Determines whether a specific variant works for the buyer. Distinguishes one SKU
+from another within the category.
+
+
+Ask yourself:
+- After confirming the Primary specs, what does the buyer ask about next?
+- What separates one variant from another within this category?
+- Would removing this spec from the listing make it harder to find the right variant?
+
+
+If yes → Secondary candidate.
+
+
+**TERTIARY — remaining specs, no hard maximum**
+
+
+Helpful for final differentiation. Provides complete product information but is not
+critical for discovery or purchase decisions.
+
+
+Ask yourself:
+- Would the buyer still find the right product without this spec?
+- Is this a detail that matters only after the purchase decision is largely made?
+
+
+If yes to either → Tertiary.
+
+
+---
+
+
+## When to re-sequence after other changes
+
+
+**After option fixes:** If a spec had broken options, its fill rate and search
+impressions may have been artificially depressed. After options are corrected,
+re-assess that spec's tier — the real signal may be higher than the data showed.
+
+
+**After adding new specs:** Adding specs changes the relative importance landscape.
+Always re-assess the full tier balance after additions.
+
+
+---
+
+
+## What your sequencing output must include
+
+
+For every spec in the category — no exceptions:
+
+
+spec_name: [exact name, unchanged]
+current_tier: [Primary / Secondary / Tertiary]
+final_tier: [Primary / Secondary / Tertiary]
+final_rank: [1 = most important overall, sequential, no gaps]
+sanity_tags: [OK / IMPLIED / DATA_ARTIFACT / WEAK_EVIDENCE/ TEXT_NOT_PRIMARY]
+change_reason: "Imp: X [High/Med/Low], ProdCount: Y [High/Med/Low], FillRate: Z% [High/Med/Low]. Convergence: STRONG/MODERATE/WEAK. Rule: [OK/IMPLIED/etc]. Tier: Primary/Secondary/Tertiary."
+
+
+Output rules:
+- Every spec appears — nothing omitted
+- Ranks are sequential 1 through N with no gaps or duplicates
+- Spec names are exactly as received — no renames, no additions
+- Maximum 3 Primary, maximum 3-4 Secondary, rest Tertiary
+- If tier limits are breached, resolve overflow before finalising
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 5) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: WEB_SEARCH(common applications of AC servo motors in India) ---
+{
+  "query": "common applications of AC servo motors in India",
+  "results": [
+    {
+      "title": "Top 25 AC Servo Motor Manufacturers in India - JKONGMOTOR",
+      "url": "https://www.jkongmotor.com/top-25-ac-servo-motor-manufacturers-in-india.html",
+      "excerpt": "WebSearchResult(url='https://www.jkongmotor.com/top-25-ac-servo-motor-manufacturers-in-india.html', excerpts=['The key components of an AC servo motor work together to create a motion system that is precise, reliable, and efficient. From the stator and rotor to the encoder, bearings, housing, and servo drive, each part plays a distinct role in ensuring seamless performance. Understanding these components allows engineers and operators to select, maintain, and optimize [**AC servo motor**](https://www.jkongmotor.com/s1-ac-servo-motor.html \"Ac Servo Motor Manufacturer - Jkongmotor\") s for maximum productivity and longevity.\\n\\n## **Types of AC Servo Motors**\\n\\n### **1\\\\. Synchronous AC Servo Motors**\\n\\nSynchronous motors operate with a rotor that rotates at the same speed as the stator\\'s magnetic field. They are renowned for their high efficiency, precise control, and consistent torque output. Permanent magnet synchronous motors (PMSMs) are a common type, widely used in robotics and CNC machines due to their compact size and excellent dynamic response.\\n\\n### **2\\\\. Induction AC Servo Motors**\\nInduction motors, also known as asynchronous motors, rely on electromagnetic induction to generate rotor motion. While historically less precise than synchronous motors, modern induction servo systems with advanced drives offer excellent positioning accuracy and robust performance, making them suitable for heavy-duty industrial applications.\\n\\n### **3\\\\. Permanent Magnet AC Servo Motors**\\n\\nPermanent magnet [**AC servo motor**](https://www.jkongmotor.com/s1-ac-servo-motor.html \"Ac Servo Motor Manufacturer - Jkongmotor\") s integrate high-strength magnets in the rotor, which enhance efficiency and reduce energy consumption. These motors are ideal for applications requiring high torque density, low inertia, and rapid response.\\n\\n## **Operating Principles of AC Servo Motors**\\n\\nAC servo motors are widely used in automation, robotics, CNC machinery, and industrial control systems because of their ability to provide precise control of position, velocity, and torque.\\nUnlike conventional AC motors, which simply rotate when supplied with current, AC servo motors are designed to operate under closed-loop control, where feedback devices continuously monitor and adjust performance. Understanding the operating principles of AC servo motors is crucial for optimizing their use in modern applications.\\n\\n### **1\\\\. Fundamental Concept of AC Servo Motors**\\n\\nThe basic principle of an [**AC servo motor**](https://www.jkongmotor.com/s1-ac-servo-motor.html \"Ac Servo Motor Manufacturer - Jkongmotor\") lies in the interaction of magnetic fields between the stator and rotor. When an AC voltage is applied to the stator windings, a rotating magnetic field (RMF) is produced. The rotor, typically equipped with permanent magnets, aligns with this field and produces mechanical rotation.\\n\\nHowever, what differentiates a servo motor from a standard AC motor is the integration of feedback control.\\n ... \\n* Ensures the rotor reaches and holds a specified angular position.\\n* Commonly used in robotics, CNC machines, and precision automation.\\n\\n### **#### b. Velocity Control Mode**\\n\\n* Regulates the rotational speed of the motor shaft.\\n* Essential in applications like conveyors and automated packaging lines.\\n\\n### **#### c. Torque Control Mode**\\n\\n* Controls the torque output directly, regardless of speed.\\n* Useful in tension control, pressing machines, and winding systems.\\n\\nThese control modes highlight the flexibility of [**AC servo motor**](https://www.jkongmotor.com/s1-ac-servo-motor.html \"Ac Servo Motor Manufacturer - Jkongmotor\") s in adapting to varied industrial demands.\\n\\n### **5\\\\. Role of the Servo Drive**\\n\\nThe servo drive is the intelligence behind the motor\\'s operation. It performs three key functions:\\n\\n* Power Conversion: Converts input AC power into a controlled output that drives the motor.\\n ... \\nThis application highlights their ability to combine power, silence, and accuracy in creative industries.\\n\\n### **Conclusion**\\n\\nThe applications of [**AC servo motor**](https://www.jkongmotor.com/s1-ac-servo-motor.html \"Ac Servo Motor Manufacturer - Jkongmotor\") s span across industries, from robotics, CNC machining, and industrial automation to aerospace, healthcare, renewable energy, and entertainment. Their unmatched precision, versatility, efficiency, and durability make them the backbone of modern motion control systems. As industries continue to evolve toward greater automation and digitalization, the demand for AC servo motors will only increase, driving innovation and progress.\\n\\n## **Selection Criteria for AC Servo Motors**\\n\\nWhen selecting an AC servo motor, consider the following factors:\\n\\n* Torque and Speed Requirements: Determine the peak and continuous torque needed.\\n* Precision and Resolution: Match encoder or resolver capabilities to application requirements.'], publish_date=None, title='Top 25 AC Servo Motor Manufacturers in India - JKONGMOTOR')"
+    },
+    {
+      "title": "India Servo Motors and Drives Market - Industry Analysis ...",
+      "url": "https://www.linkedin.com/pulse/india-servo-motors-drives-market-industry-analysis-size-n-akhila-zyekc",
+      "excerpt": "WebSearchResult(url='https://www.linkedin.com/pulse/india-servo-motors-drives-market-industry-analysis-size-n-akhila-zyekc', excerpts=['The AC servo motors are used in a wide range of applications robotics, packaging, CNC machinery and so on where high level of precision is'], publish_date=None, title='India Servo Motors and Drives Market - Industry Analysis ...')"
+    },
+    {
+      "title": "AC Servo Motor Systems: Build, Operation & Uses",
+      "url": "https://nmagroup.in/ac-servo-motor-systems-construction-operation-function-applications/",
+      "excerpt": "WebSearchResult(url='https://nmagroup.in/ac-servo-motor-systems-construction-operation-function-applications/', excerpts=['Skip to content\\nAC Servo Motor Systems: Construction, Operation, Function, Applications\\n    * NMA Group\\n    * NMA Group\\n    * AC Servo Motor Systems: Construction, Operation, Function, Applications\\n\\n    * By admin\\n    * December 19, 2023\\nDecember 19, 2023\\n\\nIn the relentless pursuit of precision and efficiency in the realm of automation and robotics, the AC servo motor emerges as a beacon of technological prowess. As a type of servomotor, it seamlessly transforms AC electrical input into meticulously controlled mechanical acceleration, navigating the intricate dance between power and precision. This article embarks on a comprehensive exploration of the\\nAC servo motor control systems , unraveling its intricacies\u2014from construction and working principles to transfer functions and applications. We delve into the heart of this dynamic motor, dissecting its design, understanding its operational nuances, and highlighting the pivotal role it plays in driving innovation across industries.\\n ... \\nThis error signal is then sent to the servo amplifier, which produces a control voltage. The applied voltage drives the rotor to a specific speed, maintaining rotation until the error signal reaches zero, thus achieving the desired position.\\nTransfer Function of AC Servo Motor\\nThe transfer function of an AC servo motor represents the ratio of the Laplace Transform of the output variable to the Laplace Transform of the input variable. It serves as a mathematical model expressing the system\u2019s differential equation, enabling the calculation of output responses for different input types. Experimentation may be employed to determine the transfer function when it is not known.\\nAC Servo Motor Speed Control Methods\\nServo motors offer three primary control methods: position control, torque control, and speed control.\\nPosition Control: This method uses external input frequency signals to determine the rotating speed.\\nThe angle of revolution is dictated by the number of pulses, providing precise control over position and speed, making it ideal for positioning applications.\\nTorque Control: In this method, the output torque is set by analog input. Real-time adjustments to torque can be made by changing the analog input, and values can be altered through communication.\\nSpeed Control: Speed control involves regulating motor speed through analog input and pulses. It is suitable when precision is essential, and torque requirements are not a primary concern.\\nCharacteristics of AC Servo Motor\\nThe torque-speed characteristics of AC servo motors are influenced by the ratio of reactance (X) to resistance (R). Lower ratios result in more linear characteristics. The advantages of AC servo motors include excellent speed control, low heat generation, high efficiency, reliability, reduced RF noise, minimal maintenance, extended lifespan, and suitability for unstable load applications.\\nHowever, challenges such as complex control and susceptibility to constant overload exist. Gearboxes are often necessary for power transmission at high speeds.\\nApplications of AC Servo Motors\\nAC servo motors find diverse applications across various industries due to their efficiency and versatility.\\nSome key applications include:\\nPosition Regulation: Widely used in semiconductor devices, robots, aircraft, and machine tools where precise position regulation is critical.\\n    * \\n\\n\\n\\xa0\\n    *        * Servomechanism Instruments: Applied in instruments operating on servomechanism, such as computers and position control devices.\\n\\n\\n    *        * Industrial Machinery: Utilized in machine tools, robotics machinery, and tracking systems for their efficiency and reliability.\\n\\n\\n    *        * Common Appliances: Found in everyday appliances like water heaters, ovens, pumps, off-road vehicles, and gardening equipment.\\n\\n\\nConclusion\\n ... \\nJuly 2, 2025\\n    * Schneider Switchgear Dealer: Your Power Solut\u2026\\nJune 23, 2025\\n    * Finding the Best VFD Supplier Near Me\u2014A Compl\u2026\\nJune 16, 2025\\n\\nAbout\\nOur history Solar Energy was established in 2001 as a small family business with the simple mission of helping environment.\\n    * SCO 21, Sector 7-C, Madhya Marg,\\nChandigarh - 160019, India\\n    * info@tmgengineers.com\\n\\nOur Products\\n    * AC Drives\\n    * Automation\\n    * Cables and Wires\\n    * LV Switchgear\\n    * Pneumatics\\n    * Fuses\\n\\n    * Glass Hardware\\n    * Lighting\\n    * Motors\\n    * Panel Accessories\\n    * Control Panels\\n\\nUseful Links\\n    * About\\n    * Services\\n    * Blog\\n    * Faq\\n\\nSocial Media\\nFacebook Instagram Google-plus-g Whatsapp\\nWhatsapp     * Privacy\\n    * Terms Of Use\\n\\nMenu\\n    * Privacy\\n    * Terms Of Use\\n\\n\u00a9 2023 NMA Group. All Rights Reserved\\n\\n\\nContact\\n    * Head Office: SCO 21, Sector 7-C, Madhya Marg, Chandigarh - 160019\\nBranch Office :'], publish_date=None, title='AC Servo Motor Systems: Build, Operation & Uses')"
+    },
+    {
+      "title": "What are the applications of a servo motor? - Quora",
+      "url": "https://www.quora.com/What-are-the-applications-of-a-servo-motor",
+      "excerpt": "WebSearchResult(url='https://www.quora.com/What-are-the-applications-of-a-servo-motor', excerpts=['Something went wrong. Wait a moment and try again.\\n\\nTry again'], publish_date=None, title='What are the applications of a servo motor? - Quora')"
+    },
+    {
+      "title": "AC Servo Motor",
+      "url": "https://industrial.panasonic.com/ww/applications/solution-mdls/ac-servo",
+      "excerpt": "WebSearchResult(url='https://industrial.panasonic.com/ww/applications/solution-mdls/ac-servo', excerpts=['AC servo motors best suited for high speed and high precision positioning have excellent acceleration performance and reliability and allow the digitally'], publish_date=None, title='AC Servo Motor')"
+    },
+    {
+      "title": "What is Servo Motor - Advantages, Disadvantages Applications | Robu.in",
+      "url": "https://robu.in/what-is-servo-motor/",
+      "excerpt": "WebSearchResult(url='https://robu.in/what-is-servo-motor/', excerpts=['in%2Fwhat-is-servo-motor%2F&t=What is Servo Motor - Advantages, Disadvantages Applications)  \\n  \\n[](https://in.linkedin.com/share?text=Hi, Checkout the article, What is Servo Motor - Advantages, Disadvantages Applications. it\\'s very informative. Here is a link&url=https://robu.in/what-is-servo-motor/&hashtags=robuin)\\n\\nHere\u2019s a look inside how a Servo Motor operates? Its advantages, disadvantages and its applications.\\n\\nSelection of an electric motor is fundamental for any electro-mechanical project. When the project requires maximum precision, then commonly we think about the **[servo motor](https://robu.in/product-category/motors-drivers-actuators/servo-motor/)** .  In this article, we are going to discuss about what is servo motor, basics of servo motor, advantages, disadvantages, applications and construction of servo motor.\\n\\nAlso, we will know, why they are one of the basic devices in robotics and industrial sectors that require highly precise motions.\\n\\n## What is Servo Motor?\\n ... \\nin/product-category/motors-drivers-actuators/dc-motor/) connects with a gear mechanism which provides feedback to a position sensor which is mostly a potentiometer.\\n\\nIt is connected to the central shaft, and informs at all times the angle in which the motor\u2019s shaft is available\\n\\nFrom the gear box or gear reduction unit, the output of the motor delivers via servo spline to the servo arm.  the gear box is formed by gears which may increase or decrease the speed and torque.\\n\\nThe standard servo motor uses the plastic gear whereas the high power servo motor uses the metal gear.\\n\\nA control circuit allows for control over the motor\u2019s motion by sending electric pulses\\n\\nMotor consists of three wires- a black wire connected to ground. A white/yellow wire connected to control unit. And a red wire connected to power supply.\\n\\n## Advantages of Servo Motor\\n\\n* If a heavy load places on the motor, the driver will increase the current to the motor coil as it attempts to rotate the motor.\\nBasically, there is no out-of-step condition.\\n* High-speed operation is possible.\\n\\n## Disadvantages of Servo Motor\\n\\n* Since the motor tries to rotate according to the command pulses, but lags behind. it is not suitable for precision control of rotation.\\n* Higher cost.\\n* When stopped, the motor\u2019s rotor continues to move back and forth one pulse. So that, it is not suitable if you need to prevent vibration\\n\\n## Applications of Servo Motor\\n\\nIt uses in the applications requiring rapid variations in speed without the motor getting overheated.\\n\\n[](https://robu.in/wp-content/uploads/2020/04/applications.png)\\n\\n* Industries, they uses in the machine tools, packaging, factory automation, material handling, printing converting, assembly lines. In many other demanding applications robotics, CNC machinery or automated manufacturing.\\n* uses in radio controlled airplanes to control the positioning and movement of elevators.\\n* In robots because of their smooth switching on and off and accurate positioning.\\n* In the aerospace industry to maintain hydraulic fluid in their hydraulic systems.\\n* uses in many radio controlled toys.\\n* used in electronic devices such as DVDs or Blue ray Disc players to extend or replay the disc trays.\\n* used in automobiles to maintain the speed of vehicles\\n\\nHope this article helps you to understand the basics of servo motor. We at [Robu.in](https://robu.in/category/blog/) hope that you found it interesting and that you will come back for more of our educational blogs.\\n\\n  \\nTags : [servo motor](https://robu.in/tag/servo-motor/)\\n\\n  \\n## Share This Article\\n\\n[](https://www.facebook.com/sharer.php?u=https%3A%2F%2Frobu.in%2Fwhat-is-servo-motor%2F&t=What is Servo Motor - Advantages, Disadvantages Applications)\\n\\n[](https://twitter.com/intent/tweet?text=Currently reading <What is Servo Motor - Advantages, Disadvantages Applications>&url=<https://robu.in/what-is-servo-motor/>)\\n ... \\nHere is a link&url=https://robu.in/what-is-servo-motor/&hashtags=robuin)\\n\\n* * *\\n\\n#### About Robu\\n\\n[](https://robu.in)\\n\\nIndia\\'s biggest robotics E-commerce company. Robu deals with Arduino, Raspberry Pi, Sensors, Drone parts, 3D printer parts, E-bike accessories and Electronics components etc. Click here to explore range of Robotics products available at Robu. Also, do not forget to follow us on [Facebook](https://facebook.com/robulabs) , [Instagram](https://www.instagram.com/robu.in_/) and [YouTube](https://www.youtube.com/user/robulabs) because we are constantly contributing to the community by creating content around Arduino, Raspberry Pi, Drones, Sensors etc.\\n\\n* * *\\n\\n### Related Posts\\n\\n##### [Speed Control of DC Motor](https://robu.in/speed-control-of-dc-motor/ \"Speed Control of DC Motor\")\\n\\nMonday April 20, 202015036 Views\\n\\nThe speed control mechanism is applicable in many cases like controlling the movement of robotic vehicles. Know how it is achieved below....'], publish_date='2021-02-03', title='What is Servo Motor - Advantages, Disadvantages Applications | Robu.in')"
+    },
+    {
+      "title": "\n      Top 10 Servo Motor Applications in Industry and Daily Life\n \u2013 Robocraze",
+      "url": "https://robocraze.com/blogs/post/top-10-servo-motor-applications-in-industry-and-daily-life?srsltid=AfmBOoqW_dGPaYzC4jKldsu1kEworRgT0_sNyU9nYrxWoHnc517959X4",
+      "excerpt": "WebSearchResult(url='https://robocraze.com/blogs/post/top-10-servo-motor-applications-in-industry-and-daily-life?srsltid=AfmBOoqW_dGPaYzC4jKldsu1kEworRgT0_sNyU9nYrxWoHnc517959X4', excerpts=['Safely Delivering Genuine Products PAN INDIA\\n\\nFree Delivery on Orders Above Rs 999/- Pan-India\\n\\n[Support |](https://robocraze.com/pages/support) [Careers](https://robocraze.com/pages/robocraze-careers)\\n\\n0 0 items Cart\\n\\nWish Lists\\n\\n[](https://robocraze.com/customer_authentication/redirect?locale=en&region_country=IN)\\n\\n* [Track Your Order](https://robocraze.clickpost.ai/en)\\n* [Download Invoice](http://invoice.robocraze.com/)\\n* \\n* Account Options\\n  \\n    + \\n    + \\n\\nCart 0 0 items\\n\\nMy Wish List\\n\\nHome Post Top 10 Servo Motor Applications in Industry and Daily Life\\n\\n[](https://robocraze.com/)\\n\\n## Post\\n\\nClose\\n\\nSidebar\\n\\n## On this page:\\n\\n* \u2022 What Is a Servo Motor?\\n* \u2022 How Do Servo Motors Work?\\n* \u2022 Types of Servo Motors\\n* \u2022 Top 10 Servo Motor Applications in Industry and Daily Life\\n* \u2022 Servo Motor vs DC Motor vs BO Motor\\n* \u2022 Advantages of Using Servo Motors\\n* \u2022 Limitations of Servo Motors\\n* \u2022 Conclusion\\n\\n## Components and Supplies\\n\\nSale 36%\\n\\n \")\\n\\nAdd to wishlist\\n\\nQuick View\\n ... \\n12V 500 RPM DC Rectangle Gear Motor with High Torque The 12V 500 RPM DC Rectangle Gear Motor with High Torque is a powerful and reliable DC gear motor designed for demanding robotics and automation projects. With its 500 RPM gear motor capability and...\\n\\nRs. 1,134\\n\\n~~Rs. 1,520~~\\n    Rs. 1,134\\n\\nSave Rs. 386\\n\\nUnit price\\n    / per\\n\\nAdd to cart\\n\\nSale 21%\\n\\nAdd to wishlist\\n\\nQuick View\\n\\nCompare\\n\\nAdd to cart\\n\\n### 930 KV BLDC Motor\\n\\n930 KV BLDC Motor The A2212 930kV Brushless Motor is the ultimate choice for quadcopter enthusiasts seeking high-performance and reliability. Specifically designed for quadcopters and multi-rotors, this 930kV motor delivers exceptional power and efficiency. Crafted with precision, the motor boasts a versatile compatibility, making...\\n\\nRs. 474\\n\\n~~Rs. 599~~\\n    Rs. 474\\n\\nSave Rs. 125\\n\\nUnit price\\n    / per\\n\\nAdd to cart\\n\\nSale 27%\\n\\nAdd to wishlist\\n\\nQuick View\\n\\nCompare\\n\\nAdd to cart\\n\\n### A2212 1400KV BLDC Brushless Motor\\nA2212 1400KV BLDC Brushless Motor Build powerful and efficient quadcopters with the A2212 1400KV BLDC (Brushless DC) motor, designed specifically for quadcopters and multirotors. This motor offers exceptional performance and efficiency, ensuring a satisfying flight experience. Its solid metal case ensures durability and reliability,...\\n\\nRs. 379\\n\\n~~Rs. 519~~\\n    Rs. 379\\n\\nSave Rs. 140\\n\\nUnit price\\n    / per\\n\\nAdd to cart\\n\\n## Recent Post\\n\\n###### My First Internship Thanks to Robotics\\n\\n09 March 2026\\n\\n###### Why Makers Never Throw Anything Away\\n\\n09 March 2026\\n\\n###### From Gamer to Robot Builder\\n\\n09 March 2026\\n\\n# Top 10 Servo Motor Applications in Industry and Daily Life\\n\\nBy \\\\- Robocraze - 27 Nov 2025 0 Comments\\n\\n## Summary\\n\\nA servo motor stands out as a vital component in modern engineering and automation, offering precise control for a variety of applications.\\nFrom high-tech manufacturing to everyday gadgets, the applications of servo motor are impressively widespread, making them indispensable in both industry and daily life.\\n\\n## What Is a Servo Motor?\\n\\nA [servo motor](https://robocraze.com/collections/servo-motors-controllers) is an electromechanical device designed to provide precise control over angular or linear position, velocity, and acceleration. It integrates a motor, feedback [sensors](https://robocraze.com/collections/sensors) , and a control system, allowing it to adjust its movement continuously based on input signals and sensor feedback.\\n\\nThis makes it far more accurate than standard motors, especially where precise positioning is required.\\n\\n## How Do Servo Motors Work?\\n\\n[Servo motors](https://robocraze.com/blogs/post/what-is-a-servo-motor-guide-to-servo-motor-working) [](https://robocraze.com/blogs/post/5-diy-projects-using-servo-motors) work using a closed-loop system.\\n ... \\n**AC Servo Motors:** This use alternating current and are found in high-speed, high-precision applications like CNC machines and [robotics](https://robocraze.com/blogs/post/a-to-z-of-robotics) . They are known for their smooth operation and reliability.\\n\\n**DC Servo Motors:** These run on DC power and are common in robotics, consumer electronics, and small-scale automation. They are generally easier to control but may have limitations in speed and torque compared to AC types.\\n\\n## Top 10 Servo Motor Applications in Industry and Daily Life\\n\\nThe applications of servo motor span a wide range, from heavy manufacturing to simple household devices. Here are some of the most notable uses:\\n\\n* **Robotics:** [Servo motors](https://robocraze.com/blogs/post/5-diy-projects-using-servo-motors) control robotic arms, enabling precise movements for tasks like picking, placing, welding, and assembly. Their accuracy is crucial in automation and advanced manufacturing.'], publish_date='2025-11-27', title='\\n      Top 10 Servo Motor Applications in Industry and Daily Life\\n \u2013 Robocraze')"
+    },
+    {
+      "title": "The Purpose of Servo Motors | Fuji Electric Global",
+      "url": "https://www.fujielectric.com/about/column/detail/servo_01.html",
+      "excerpt": "WebSearchResult(url='https://www.fujielectric.com/about/column/detail/servo_01.html', excerpts=['Small technological pieces such as servo motors are heavily used daily in devices you least expect, as you\u2019ll learn with the continuation of this article. It is also used in the industrial field including various of Fuji Electric\u2019s products.  \\nLearn everything you need to know about servo motors - including its purpose, the list of everyday items and machines that operate using it, its advantages and disadvantages, and its parts and their functions.\\n\\n* Purpose\\n* Two Types of Servo Motors\\n* Items that Use Servo Motors\\n* Advantages and Disadvantages\\n* Servo Motors Parts and Functions\\n* Conclusion\\n\\n## Purpose\\n\\nServo motors or \u201cservos\u201d, as they are known, are electronic devices and rotary or linear actuators that rotate and push parts of a machine with precision. Servos are mainly used on angular or linear position and for specific velocity, and acceleration.\\n\\nCompanies heavily use servo motors because of how compact and potent it is.\\nDespite its size, it generates quite the amount of power and is known to be incredibly energy-efficient.\\n\\nMost of the companies that use servos are manufacturing companies that need it to position control surfaces and rotate objects at precise angles and distances. Most of the companies that use servo motors are manufacturing companies that use machines with servo motors.\\n\\n## Two Types of Servo Motors\\n\\nThere are two types of servo motors that are available and used in the industrial field.\\n\\nFirst is the AC servo motor. This type of servo is currently used today by most companies. AC servo motors are mostly used in industrial fields. AC servo motors are AC motors that rely on encoders. These types of servo motors work through controllers providing feedback and closed-loop control. They are known to function at a high accuracy and are easily controllable.\\n\\nSecond is the DC servo motor.\\nThese kind of servo motors were used in the past by Fuji Electric but are rarely used nowadays, as AC servo motors are easier to use, more effective, advanced, and reliable.\\n\\n## Items that Use Servo Motors\\n\\nServo motors are utilized by items that are used every day. Home electronic devices like DVD and Blu-ray Disc players use servos to extract and retract disc trays.\\n\\nAutomobiles also use servo motors. In modern cars, servo motors are used to control its speed. When stepping on the gas pedal, it sends electrical signals to the car\u2019s computer. The computer then processes that information and sends a signal to the servo attached to the throttle to adjust the engine speed. Even commercial aircrafts also make use of servos to push and pull everything within the plane.\\n\\nThey are also used for novelty items such as remote-controlled and scale-sized toy cars, toy airplanes, toy helicopters, and toy robots.\\nServos are especially helpful for radio-controlled airplanes to position control surfaces.\\n\\nBut servos are mostly used for industrial purposes. Important industries such as robotics, pharmaceutics, food services and in-line manufacturing also make use of servos.\\n\\nServos are also most-suited for electrically operated pieces of machinery such as elevators, rudders, walking robots, and operating grippers.\\n\\n## Advantages and Disadvantages\\n\\nServo motors provide quite a lot of advantages but as with all things, they also pose some problems and difficulties for companies who utilize this device.\\n\\n### Advantages\\n\\nServos are known to always be frequent and work at the same pace. So, if a heavy load is placed on the motor, the driver will increase the current to the motor coil as it rotates the motor. This basically means that servo motors are expected to always be mechanically on point. And because of its precision, it allows companies to operate it at a high-speed pace.\\n\\n### Disadvantages\\nAs with anything that provides convenience and efficiency, servo motors also tend to have a high cost when it comes to maintenance and operation. Moreover, when a machine using a servo is stopped, the motor continues to move back and forth one pulse, so it is not good if the machine or area is not suitable with vibrations.\\n\\n## Servo Motors Parts and Functions\\n\\nDozens of parts make up a servo motor with each and every single part playing a vital role in the device\u2019s functionality. Here are its most important parts and the significant roles they play in the functionality of the servos.\\n\\n* Stator - A stator creates a rotating magnetic field to efficiently generate torque.\\n* Winding - Current flows in the winding produces a rotating magnetic field.\\n* Shaft - The shaft transmits the motor output power. This load is driven through the transfer mechanism.\\n* Rotor - A rotor is a permanent magnet that is positioned externally to the shaft.'], publish_date=None, title='The Purpose of Servo Motors | Fuji Electric Global')"
+    },
+    {
+      "title": "Servo Motor Applications in Industry-Darwin Motion",
+      "url": "https://darwinmotion.com/blogs/servo-motor-applications-in-industry",
+      "excerpt": "WebSearchResult(url='https://darwinmotion.com/blogs/servo-motor-applications-in-industry', excerpts=[\"* \\\\+61 432112288 \\\\+91 8956113099\\n\\n* [](https://www.facebook.com/DarwinMotion/)\\n* [](https://www.linkedin.com/company/82593903/admin/feed/posts/)\\n* [](https://twitter.com/DarwinMotion)\\n* [](https://www.instagram.com/darwinmotion/)\\n* [](https://www.pinterest.com.au/pin/1033505814471171063)\\n* [](https://www.tumblr.com/darwin-motion-drive/)\\n* [](https://www.scoop.it/topic/vfd-servo-drive-manufacturer/)\\n* [](https://darwinmotionsspace.quora.com/)\\n* Blogs\\n\\n# Servo Motor Applications in Industry\\n\\nPosted on 12th Jan 2024\\n\\nServo motors play a crucial role in various industrial applications due to their precision, accuracy, and ability to provide controlled motion. Darwin Motion [servo drive manufacturers](https://darwinmotion.com/servo-drive.php) share some common applications of servo motors in industry:\\n\\n## Robotics:\\n\\nServo motors are widely used in industrial robots for precise control of movement in different axes.\\nThey enable robots to perform intricate tasks with accuracy and repeatability.\\n\\n## CNC Machinery:\\n\\nComputer Numerical Control (CNC) machines, such as milling machines and lathes, use servo motors for precise control of tool movements. This ensures high-quality machining and consistent results.\\n\\n## Automated Manufacturing Systems:\\n\\nServo motors are integral components in automated manufacturing processes, including conveyor systems, pick-and-place operations, and assembly lines. They enable efficient and controlled movement of components throughout the production process.\\n\\n## Packaging Machinery:\\n\\nServo motors are employed in packaging equipment for tasks like sealing, cutting, and labeling. Their ability to provide accurate and adjustable motion is crucial for maintaining product quality and optimizing packaging efficiency.\\n\\n## Textile Industry:\\n\\nServo motors are used in textile machinery, such as weaving and knitting machines, to precisely control the movement of threads and fabrics.\\nThis ensures uniform and high-quality textile production.\\n\\n## Printing Industry:\\n\\nPrinters, especially in high-speed and high-precision applications, use servo motors to control paper feed, print head movement, and other critical processes. This results in accurate and high-resolution printing.\\n\\n## Aerospace and Defense:\\n\\nServo motors are utilized in various aerospace applications, including aircraft control surfaces, missile guidance systems, and unmanned aerial vehicles (UAVs). Their precision and responsiveness are essential for flight control.\\n\\n## Medical Equipment:\\n\\nMany medical devices, such as surgical robots, diagnostic equipment, and imaging devices, rely on servo motors for precise movement and positioning.\\n\\n## Renewable Energy Systems:\\n\\nServo motors are used in solar tracking systems and wind turbine control to optimize the positioning of solar panels and rotor blades, improving energy efficiency.\\n\\n## Automotive Industry:\\nServo motors are employed in automotive manufacturing for tasks like welding, painting, and assembly line operations. They ensure precise and consistent movements in various stages of the production process.\\n\\n## Camera Systems:\\n\\nHigh-end camera systems, including pan-tilt-zoom (PTZ) cameras used in surveillance or broadcasting, often incorporate servo motors for smooth and accurate positioning.\\n\\nAccording to Darwin Motion [servo motor drive](https://darwinmotion.com/high-frequency-drives.php) manufacturer Servo motors continue to find new applications in various industries as technology advances and demands for precision and automation increase. Their versatility makes them a crucial component in modern industrial systems.\\n\\n#### About\\n\\n* Email : sales@darwinmotion.com\\n* Office No - 212 Xion Pacific , Hinjewadi Pune Maharashtra India 411057\\n* Darwin Motion PTY. LTD., Suite 379 Level 2/66 Victor Crescent NARRE WARREN VIC 3805\\n\\n#### Call Us Today\\n\\n\\\\+91 8956113099  \\n\\\\+61 432112288\\n#### Opening Hours\\n\\n* Mon - Sat :\\n  \\n  10\\\\.00 am - 7.00 pm\\n* Sun :\\n  \\n  Closed\\n\\n#### Quick Enquiry\\n\\n* Terms of use\\n* Privacy & Policy\\n* FAQ's\\n* Blogs\"], publish_date=None, title='Servo Motor Applications in Industry-Darwin Motion')"
+    },
+    {
+      "title": "Servo Motors and Drives | Schneider Electric India",
+      "url": "https://www.se.com/in/en/product-subcategory/2935-servo-drives-and-servo-motors/",
+      "excerpt": "WebSearchResult(url='https://www.se.com/in/en/product-subcategory/2935-servo-drives-and-servo-motors/', excerpts=['Skip To Main Content\\n\\nIndia Our Brands\\n\\n* Professionals\\n* [Access Our Online Store](https://eshop.se.com/in/?utm_campaign=access_online_store_tab&utm_source=se.com&utm_medium=referral&utm_purpose=marketo \"Access Our Online Store\")\\n\\n[Item count in basket is 0 My Products](https://www.se.com/in/en/product-cart) [Item count in basket is 0 My Documents](https://www.se.com/in/en/download/mylist/) Login/Register\\n\\nUser name\\n\\nLogout\\n\\nOur Brands\\n\\nRegister today\\n\\n* Get custom product tools and services\\n* Access training\\n* Manage support cases\\n* Create and manage your orders (authorised partners only)\\n\\n  [Read more benefits](https://www.se.com/in/en/work/support/myschneider/)\\n\\n[](https://www.se.com/in/en \"SE logo LIO white header\")\\n\\n[0 item count of documents is](https://www.se.com/in/en/product-cart)\\n\\nCancel\\n\\n[](https://www.se.com/in/en/about-us/sustainability/)\\n\\n* Professionals\\n* [Access Our Online Store](https://eshop.se.com/in/?utm_campaign=access_online_store_tab&utm_source=se.\\ncom&utm_medium=referral&utm_purpose=marketo \"Access Our Online Store\")\\n\\n* Main Menu\\n  \\n  Products\\n* Main Menu\\n  \\n  Software\\n* Main Menu\\n  \\n  Services\\n* Main Menu\\n  \\n  Solutions\\n* Main Menu\\n  \\n  Homeowner\\n* Main Menu\\n  \\n  Support\\n* Main Menu\\n  \\n  Company\\n\\nIndia Our Brands [My Products Item count in basket is 0](https://www.se.com/in/en/product-cart) [My Documents Item count in basket is 0](https://www.se.com/in/en/download/mylist/) [Login/Register opens in new window](https://www.se.com/myschneider?countrycode=in&lang=en_IN)\\n\\nUser name\\n\\nLogout\\n\\n[](https://www.se.com/in/en/about-us/sustainability/)\\n\\nWelcome to the Schneider Electric Website\\n\\nWelcome to our website.\\n\\nStay on this website Select your location'], publish_date=None, title='Servo Motors and Drives | Schneider Electric India')"
+    }
+  ],
+  "count": 10
+}
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).
+
+=== TOOL RESULTS (Turn 6) ===
+Here are the results from 1 tool call(s) you made:
+
+--- Result 1: READ_SKILL(option_validator) ---
+# Option Validator — Knowledge Reference
+
+
+## What this knowledge is for
+
+
+When you need to audit and correct the option list for any spec — read this document.
+It tells you exactly how to evaluate each existing option (keep, reject, or merge),
+how to identify new options that should be added, and what structural fixes to apply.
+You produce the option validation output yourself using this reasoning framework.
+
+
+---
+
+
+## The three option-level signals you have
+
+
+These are one level deeper than spec-level signals. A spec can have healthy overall
+fill rate while individual options within it are completely unused.
+
+
+**Option Fill Rate**
+Percentage of listings using this specific option value. High = sellers actually
+select this option. Low = sellers ignore it or can't find it.
+
+
+**Option Impressions (from Buyer Search Data)**
+How many times buyers filtered by this specific value in search. High = buyers
+actively look for this value. Low = buyers don't care about or can't find it.
+
+
+**Option Product Count (from Buyer Seller Call Data)**
+How many times this specific value appeared in real buyer-seller phone calls.
+High = discussed in actual transactions. Low = not transactionally relevant.
+
+
+---
+
+
+## How to make decisions — apply these rules in strict priority order
+
+
+### Rule 1 — ABSURD OPTIONS (highest priority, no exceptions)
+
+
+Reject immediately if the option is wrong for this category-spec combination,
+regardless of what any signal data says. Signal data cannot rehabilitate an absurd
+option — even high fill rate just means sellers are selecting it because no better
+option exists. Remove it and add the correct value instead.
+
+
+Reject without hesitation if the option is any of:
+- Type mismatch — a numeric value (e.g. `25 mm`, `120 GSM`) under a Color spec; a
+  color value (e.g. `Red`) under a Size spec; a weight under a Brand spec
+- Junk or gibberish — `asdf`, `xxx`, `123abc`
+- Test or placeholder data — `test`, `sample`, `demo`, `NA`, `N/A`, `nil`, `-`, `.`
+- Vague filler — `As per requirement`, `Customized`, `Standard`, `Other`, `General`,
+  `Miscellaneous`, `Any`
+- Excessively long — more than 50 characters
+- Promotional text — `Best Quality`, `Premium Grade`, any URL
+
+
+### Rule 2 — STRONG SIGNAL → KEEP
+
+
+Keep the option if any of these are true:
+- It appears in 2 or more independent signal sources (call data + fill rate + search)
+- Option fill rate is 20% or higher
+- Product count is 10 or higher (came up in 10+ buyer calls)
+
+
+### Rule 3 — MODERATE SINGLE SIGNAL → KEEP
+
+
+Keep if the option appears in exactly one signal source AND the value is clearly
+valid for this spec and category. Any non-zero impression count is sufficient for
+a clearly valid option.
+
+
+### Rule 4 — MERGE DUPLICATES
+
+
+When two options represent the same real value in different formats, merge them
+into one canonical form.
+
+
+Common merge situations:
+- Unit spacing: `3mm` → `3 mm`
+- Capitalisation: `blue` → `Blue`
+- Spelling variants: `Aluminium` / `Aluminum` → use Indian B2B standard form
+- Abbreviated vs full: `GI` vs `Galvanized Iron` → keep whichever Indian B2B uses
+
+
+Merge rules:
+- Always merge toward the cleaner, more standardised form
+- The merge target must already exist in the option list
+- After merging, the absorbed option is removed; the canonical form is kept
+
+
+### Rule 5 — NO SIGNAL → REJECT
+
+
+Ideally. if an option is not present in any data signal, you should reject it. However, it is extremely important to use domain knowledge and web search here to understand if the option is irrelevant or not. 
+If option is correct, it exists in the market as per your web search, then it is advised not to reject it, however its ordering should be demoted.
+
+
+---
+
+
+## Adding new options from your data
+
+
+Beyond auditing existing options, you also identify values from your data that
+should be added but are missing from the current option list.
+
+
+Sources to check for new option candidates:
+- Buyer call example values (Buyer-Seller Call Data) not present in current options
+- Buyer search filter values with meaningful impressions (Buyer Search Data) not in current options
+- Custom spec option values sellers submitted (Custom Spec Data) not in current options
+
+
+Every candidate new option must pass all of these before you add it:
+
+
+| Check | Requirement |
+|-------|-------------|
+| Type match | Value is appropriate for this spec in this category |
+| Not a duplicate | Not a variant of something already in the list |
+| Not junk | Not a placeholder, vague filler, or promotional text |
+| Standardised form | Correct units, Title Case for text, compact numeric format |
+| At least 1 signal | Evidence from at least one data source |
+
+
+---
+
+
+## Structural problems to detect and fix
+
+
+**Mixed units in one list**
+Options mixing `mm` and `inches` for the same spec. Standardise to Indian B2B
+convention — metric for most categories. Convert or remove non-standard units.
+
+
+**Overlapping ranges**
+Options like `< 1 kg`, `0.5–1 kg`, `< 500g` create ambiguity. Consolidate into
+clean, non-overlapping ranges that cover the real distribution.
+
+
+**Wrong input type — fix this:**
+- Spec has only 2–3 mutually exclusive values using `multi_select` → change to
+  `radio_button`
+- Spec has values that can apply simultaneously using `radio_button` → change to
+  `multi_select`
+- Spec has model numbers, free-form dimensions, or brand names with no dominant
+  standard values → change to `text_type` with empty options list
+
+
+**Too few options**
+A `radio_button` spec with only 1 option is useless as a filter. Find more real
+values from your data or change to `text_type`.
+
+
+
+---
+
+
+## Formatting rules — apply when adding or correcting options
+
+
+| What | Standard | Wrong forms |
+|------|----------|-------------|
+| Units | `kg`, `mm`, `V`, `W`, `A`, `rpm`, `°C`, `%`, `L`, `mL`, `Hz` | `kgs`, `MM`, `Volt`, `Watts`, `Amps` |
+| Numeric format | Compact with space: `12 V`, `120 GSM`, `3 mm` | `12Volt`, `120GSM`, `3mm` |
+| Text | Title Case | ALL CAPS, all lowercase |
+| Numeric order | Ascending | Random |
+| Categorical order | Most common in Indian B2B first | Alphabetical |
+| Indian trade terms | Use `GI`, `MS`, `PP`, `HDPE`, `ISI` | Expanded forms when abbreviated forms dominate |
+
+
+---
+
+
+## What low option fill rate actually means — do not auto-reject
+
+
+Low fill rate on an option does not automatically mean remove it. Diagnose first:
+
+
+| Situation | What it means | Correct action |
+|-----------|--------------|----------------|
+| Option is niche but valid | Rare but legitimate product variant | Keep if any product count or impressions support it |
+| Option type is wrong | Sellers can't map their product to it | Remove — add correct version |
+| Option is vague filler | Sellers skip it because it's meaningless | Remove |
+| Option was recently added | Not enough time for fill data | Keep — flag for future review |
+| ALL options have low fill | The spec itself may be broken | Flag as a spec-level issue — do not silently empty the option list |
+
+
+---
+
+
+## What your option validation output must include
+
+
+For each spec you audit, produce:
+
+
+**Per option decision:**
+- option_value — the option being decided on
+- decision — KEEP / REJECT / MERGE / ADD
+- merge_into — target option name (only when decision is MERGE)
+- reason — cite specific signal values: `ProdCount:X FillRate:Y Imp:Z — short reason`
+
+
+**Per spec summary:**
+- spec_name — exact name, unchanged
+- final_option_list — clean list of kept and added options only
+- structural_changes — any input_type change or unit standardisation applied, with reason
+
+
+---
+
+
+
+You now have this additional context. Continue your analysis. Call more tools if needed, or produce the complete final audit output (all 6 sections).

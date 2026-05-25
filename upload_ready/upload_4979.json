@@ -1,0 +1,157 @@
+{
+  "pmcat_id": 1978,
+  "pmcat_name": "Pouch Packaging Machines",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Automatic Pouch Packing Machines",
+      "mcat_id": 4979,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Machine Type",
+              "options": [
+                "Vertical Form Fill Seal (VFFS)",
+                "Horizontal Form Fill Seal (HFFS)",
+                "Premade Pouch Packing Machine"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Application",
+              "options": [
+                "Snacks & Namkeen",
+                "Grains & Pulses",
+                "Spices & Seasonings",
+                "Powders (Atta, Milk Powder, etc.)",
+                "Liquids & Pastes (Ghee, Oil, Shampoo)",
+                "Dry Fruits & Nuts",
+                "Tea & Coffee",
+                "Pharmaceuticals",
+                "Detergents & Chemicals"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Capacity (PPM)",
+              "options": [
+                "Upto 30 PPM",
+                "31-60 PPM",
+                "61-100 PPM",
+                "101-150 PPM",
+                "Above 150 PPM"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Product Form",
+              "options": [
+                "Powder",
+                "Granules",
+                "Solid Items",
+                "Liquid",
+                "Paste"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Filling System",
+              "options": [
+                "Cup Filler",
+                "Auger Filler",
+                "Weigh Filler",
+                "Multi-head Weigher",
+                "Piston Filler"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Packaging Range",
+              "options": [
+                "Up to 10 g",
+                "10 g - 50 g",
+                "50 g - 100 g",
+                "100 g - 250 g",
+                "250 g - 500 g",
+                "500 g - 1 kg",
+                "1 kg - 5 kg",
+                "Above 5 kg"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Sealing Type",
+              "options": [
+                "Center Seal",
+                "3-Side Seal",
+                "4-Side Seal"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Pouch Format",
+              "options": [
+                "Pillow Pouch",
+                "Stand-up Pouch",
+                "Sachet",
+                "Gusseted Pouch",
+                "Zipper Pouch",
+                "Stick Pack"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Drive System",
+              "options": [
+                "Pneumatic",
+                "Mechanical",
+                "Servo Driven"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Contact Parts Material",
+              "options": [
+                "SS 304",
+                "SS 316"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Power Consumption",
+              "options": [
+                "Upto 2 kW",
+                "Upto 3 kW",
+                "Upto 5 kW",
+                "Upto 7.5 kW",
+                "Above 7.5 kW"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Features",
+              "options": [
+                "Date/Batch Coding Printer",
+                "Nitrogen Flushing",
+                "Outfeed Conveyor",
+                "Automatic Pouch Counter",
+                "Tear Notch"
+              ],
+              "input_type": "multi_select"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

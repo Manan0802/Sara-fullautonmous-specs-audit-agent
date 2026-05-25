@@ -1,0 +1,188 @@
+{
+  "pmcat_id": 1451,
+  "pmcat_name": "Fungicides",
+  "generated_by": "Spec_Audit_Orchestrator_Agent",
+  "mcats": [
+    {
+      "category_name": "Fungicides",
+      "mcat_id": 1451,
+      "generated_by": "Spec_Audit_Orchestrator_Agent",
+      "finalized_specs": {
+        "finalized_primary_specs": {
+          "specs": [
+            {
+              "spec_name": "Technical Name",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Formulation",
+              "options": [
+                "WP (Wettable Powder)",
+                "WDG (Water Dispersible Granules)",
+                "WG (Water Dispersible Granules)",
+                "SC (Suspension Concentrate)",
+                "EC (Emulsifiable Concentrate)",
+                "SL (Soluble Concentrate)",
+                "SP (Water Soluble Powder)",
+                "SG (Water Soluble Granules)",
+                "GR (Granules)",
+                "DP (Dustable Powder)",
+                "CS (Capsule Suspension)",
+                "DS (Powder for Dry Seed Treatment)",
+                "FS (Flowable Concentrate for Seed Treatment)",
+                "SE (Suspo-Emulsion)",
+                "OD (Oil Dispersion)",
+                "EW (Emulsion, oil in water)",
+                "WS (Water Dispersible Powder for Slurry Treatment)",
+                "ZC (Mixed Formulation of CS and SC)"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Packaging Size",
+              "options": [],
+              "input_type": "text_type"
+            }
+          ]
+        },
+        "finalized_secondary_specs": {
+          "specs": [
+            {
+              "spec_name": "Brand",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Target Crop",
+              "options": [
+                "Paddy",
+                "Wheat",
+                "Maize",
+                "Cotton",
+                "Soybean",
+                "Groundnut",
+                "Grapes",
+                "Potato",
+                "Tomato",
+                "Chilli",
+                "Mango",
+                "Tea",
+                "Apple",
+                "Onion",
+                "Cumin",
+                "Sugarcane",
+                "Pomegranate",
+                "Vegetables"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Target Disease",
+              "options": [
+                "Powdery Mildew",
+                "Downy Mildew",
+                "Blight",
+                "Early Blight",
+                "Late Blight",
+                "Sheath Blight",
+                "Rust",
+                "Smut",
+                "Anthracnose",
+                "Leaf Spot",
+                "Fruit Rot",
+                "Wilt",
+                "Root Rot",
+                "Scab",
+                "Dieback",
+                "Blast",
+                "Tikka Disease"
+              ],
+              "input_type": "multi_select"
+            }
+          ]
+        },
+        "finalized_tertiary_specs": {
+          "specs": [
+            {
+              "spec_name": "Mode of Action",
+              "options": [
+                "Systemic",
+                "Contact",
+                "Translaminar",
+                "Protective",
+                "Curative",
+                "Eradicant",
+                "Preventive"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Type",
+              "options": [
+                "Chemical",
+                "Biological",
+                "Bactericide"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Concentration",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Application Method",
+              "options": [
+                "Foliar Spray",
+                "Soil Application",
+                "Seed Treatment",
+                "Drip Irrigation",
+                "Soil Drench"
+              ],
+              "input_type": "multi_select"
+            },
+            {
+              "spec_name": "Dosage",
+              "options": [],
+              "input_type": "text_type"
+            },
+            {
+              "spec_name": "Packaging Type",
+              "options": [
+                "Bottle",
+                "Pouch",
+                "Bag",
+                "Drum",
+                "Box",
+                "Jar",
+                "Tin"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Grade",
+              "options": [
+                "Agriculture Grade",
+                "Technical Grade",
+                "Industrial Grade"
+              ],
+              "input_type": "radio_button"
+            },
+            {
+              "spec_name": "Color",
+              "options": [
+                "White",
+                "Yellow",
+                "Blue",
+                "Brown",
+                "Green"
+              ],
+              "input_type": "radio_button"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
