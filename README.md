@@ -10,36 +10,113 @@ In large-scale B2B e-commerce platforms (like IndiaMART), standardizing and vali
 
 **SARA** (**S**kill-based **A**gent for **R**esearch and **A**uditing) is a state-of-the-art, fully autonomous AI agent designed to audit, correct, and enrich product specification sheets. Unlike naive LLM pipelines that hallucinate or struggle with context window pollution, SARA leverages a **LangGraph-enforced State Machine** and **Gemini 2.5 Pro’s Extended Thinking Mode** (with a 15,000-token private reasoning workspace) to audit specifications sequentially, fetch data on-demand, apply expert domain rules, challenge its own decisions through a critic framework, and validate its output before final delivery.
 
+---
+
+## 🗺️ High-Level System Architecture
+
+SARA operates as a single Master Agent shuttled between nodes of a directed graph. The central data structure is the typed state (`SaraState`), which preserves conversation history, loaded skills, token counts, and loaded datasets.
+
+### 1. LangGraph State Machine Flow
+This flowchart represents the mathematically bounded execution loop. The orchestrator restricts execution to strictly defined nodes, routing the agent dynamically based on state mutations:
+
+```mermaid
+graph TD
+    START(["START"]) --> init["initialize_node<br/>(Sets Up State & Langfuse Tracing)"]
+    init --> agent["agent_reasoning_node<br/>(Master LLM Call + 15K Thinking Budget)"]
+    agent --> check["check_output_node<br/>(Validates Final Report Architecture)"]
+    
+    check -->|"Tool tag detected"| exec["execute_tool_node<br/>(Strict 1-Tool-Per-Turn priority)"]
+    check -->|"Validation violations found"| violation["handle_violation_node<br/>(Constructs Correction Prompt)"]
+    check -->|"No tools called & no output"| nudge["nudge_agent_node<br/>(Nudges Agent to continue/finalize)"]
+    check -->|"Valid final output produced"| finalize["finalize_node<br/>(Saves Logs, Converts JSON & Uploads)"]
+    check -->|"Max turns (30) reached"| finalize
+    
+    exec --> return_r["return_results_node<br/>(Formats Raw Tool JSON into User Role)"]
+    
+    %% Feedback loops returning control to reasoning node
+    return_r --> agent
+    violation --> agent
+    nudge --> agent
+    
+    finalize --> END(["END"])
+
+    style START fill:#3b82f6,stroke:#1d4ed8,color:#fff
+    style END fill:#10b981,stroke:#047857,color:#fff
+    style agent fill:#8b5cf6,stroke:#6d28d9,color:#fff
+    style violation fill:#ef4444,stroke:#b91c1c,color:#fff
+    style check fill:#f59e0b,stroke:#b45309,color:#fff
+    style exec fill:#06b6d4,stroke:#0891b2,color:#fff
+    style finalize fill:#10b981,stroke:#059669,color:#fff
 ```
-                   ┌──────────────────────────────────────────────┐
-                   │               SARA SYSTEM CORE               │
-                   │    (LangGraph Orchestrator + Gemini Pro)     │
-                   └──────────────────────┬───────────────────────┘
-                                          │
-                  ┌───────────────────────┴───────────────────────┐
-                  ▼                                               ▼
-      ┌───────────────────────┐                       ┌───────────────────────┐
-      │   ON-DEMAND SKILLS    │                       │   LAZY DATA SOURCES   │
-      │   (10 MD Frameworks)  │                       │   (DS0 - DS5 Fetch)   │
-      │  • buyer_call_analysis│                       │  • DS0: Platform Spec │
-      │  • domain_expert      │                       │  • DS1: Call ISQ      │
-      │  • critic             │                       │  • DS2: Custom Seller │
-      │  • option_validator   │                       │  • DS3: Search Terms  │
-      │  • input_type_audit   │                       │  • DS4: Spec Fill Rate│
-      │  • ...and 5 more      │                       │  • DS5: Option Fill   │
-      └───────────────────────┘                       └───────────────────────┘
-                  │                                               │
-                  └───────────────────────┬───────────────────────┘
-                                          ▼
-                               ┌─────────────────────┐
-                               │  STRICT VALIDATION  │
-                               │  (Gated Graph Loop) │
-                               └──────────┬──────────┘
-                                          ▼
-                               ┌─────────────────────┐
-                               │   CONVERT & PUSH    │
-                               │   (Ingestion API)   │
-                               └─────────────────────┘
+
+### 2. End-to-End System Sequence Diagram
+This lifecycle timeline visualizes how data, frameworks, external search APIs, and output converters interact asynchronously during a successful audit:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Catalog Manager
+    participant App as main.py / dashboard.py
+    participant Graph as graph.py (LangGraph)
+    participant Agent as Gemini 2.5 Pro (Nodes)
+    participant Tool as execute_tool_node (Skills/Search)
+    participant Cloud as Cloud APIs (GCS / GSheets)
+    participant LF as Langfuse Dashboard
+    participant API as Ingestion API
+
+    User->>App: Input category_id (MCAT) & name
+    App->>Cloud: Fetch DS0 Baseline Specs from GCS (3-Hop)
+    Cloud-->>App: Return DS0 JSON
+    App->>Graph: Invoke State Graph (SaraState Init)
+    Graph->>LF: Create Session Trace Span
+    
+    loop Audit Loop (Turns 1 to N)
+        Graph->>Agent: Run agent_reasoning_node
+        LF->>Agent: Log active generation prompts & token trace
+        Agent->>Agent: Process extended thinking (15K budget)
+        Agent-->>Graph: Return response (Tool Calls or Final Report)
+        Graph->>Graph: Run check_output_node validation checks
+        
+        alt Tool Call Detected
+            Graph->>Tool: Execute Tool Node (Skills > Web > Fetch)
+            
+            alt Skill Reading
+                Tool->>Tool: Load Markdown from prompts/
+                LF->>Tool: Log Skill Read Span
+            else Web Search
+                Tool->>Cloud: Run search via Parallel AI SDK
+                Cloud-->>Tool: Return top URL snippets
+                LF->>Tool: Log Search Span
+            else Dynamic Data Fetching
+                Tool->>Cloud: Get CSV from Google Sheet
+                Cloud-->>Tool: Return raw records
+                Tool->>Tool: Run aggregate_dsX()
+                LF->>Tool: Log Cache Fetch Span
+            end
+            
+            Tool-->>Graph: Return standardized tool results
+            Graph->>Agent: Pass results via user-role message
+            
+        else Validation Violation Found (Audit Rejection Gate)
+            Graph->>Graph: Run handle_violation_node
+            Graph-->>Agent: Pass Correction Prompt (Violations list)
+            LF->>Graph: Log Validation Failure Span
+        end
+    end
+
+    Graph->>Graph: Run finalize_node
+    Graph->>App: Save raw logs & output/output_MCAT.md
+    App->>App: Run converter.py (Load sheets mapping -> Translate)
+    App->>App: Save upload_ready/upload_MCAT.json
+    
+    alt Ingestion API Upload (ENABLE_UPLOAD=true)
+        App->>API: POST payload to Ingestion API
+        API-->>App: Return Status 200 OK
+        App->>App: Save upload results to JSON
+    end
+    
+    Graph->>LF: Close active Trace & flush buffers
+    Graph-->>User: Render live metrics & formatted tabs
 ```
 
 ---
@@ -48,9 +125,46 @@ In large-scale B2B e-commerce platforms (like IndiaMART), standardizing and vali
 
 SARA operates under a strict, mathematically bounded set of engineering and operational laws designed to maintain factual accuracy, prevent token bloat, and guarantee elite outputs:
 
-### 1. Lazy-Loading (Post-Fetching) Advantage
+### 1. Lazy-Loading (Post-Fetching) Architecture
 *   **The Problem:** Naive agents fetch hundreds of kilobytes of CSV files upfront and inject them all into the first prompt. This dilutes the agent's attention, inflates token costs, and leads to context window suffocation.
 *   **The SARA Solution:** The agent starts with only **DS0** (the current active spec sheet). It must explicitly analyze what it has and call `[FETCH_...]` tools dynamically to load other datasets (DS1 to DS5) only when it determines they are needed. This lazy-loading cache system reduces token billing by up to **80%**.
+
+```
+LAZY-LOADING DATA ACQUISITION & CACHE PIPELINE:
+
+                      ┌────────────────────────┐
+                      │    INITIAL STATE INIT  │
+                      │  (Only DS0 in context) │
+                      └───────────┬────────────┘
+                                  │
+                       [FETCH_DSx] Tool Requested
+                                  │
+                                  ▼
+                     /─────────────────────────\
+                    <  Is DSx in fetch_cache?   >
+                     \─────────────────────────/
+                                  │
+                     ┌────────────┴────────────┐
+                  NO │                     YES │
+                     ▼                         ▼
+        ┌────────────────────────┐   ┌───────────────────┐
+        │  Fetch raw CSV from    │   │ Return aggregated │
+        │  Google Sheet / GCS    │   │ data directly     │
+        └────────────┬───────────┘   │ from State Cache  │
+                     │               │ (Token Cost = $0) │
+                     ▼               └───────────────────┘
+        ┌────────────────────────┐
+        │ Aggregates data &      │
+        │ filters out low-signal │
+        │ entries (< 5 counts)   │
+        └────────────┬───────────┘
+                     │
+                     ▼
+        ┌────────────────────────┐
+        │ Save to fetch_cache    │
+        │ for future turns       │
+        └────────────────────────┘
+```
 
 ### 2. The Two-Phase Detective Protocol
 To enforce structural thinking and eliminate premature reporting:
@@ -72,45 +186,87 @@ SARA is configured specifically for B2B e-commerce characteristics:
 
 ---
 
-## 🗺️ High-Level System Architecture
+## 🧠 Under the Hood: SaraState & Code-Level Architecture
 
-SARA operates as a single Master Agent shuttled between nodes of a directed graph. The central data structure is the typed state (`SaraState`), which preserves conversation history, loaded skills, token counts, and loaded datasets.
-
-### LangGraph State Machine Flow
+### 1. State Mutation Lifecycle (State Transition Diagram)
+This diagram illustrates how the `SaraState` dictionary keys mutate sequentially as the state machine transitions between nodes:
 
 ```mermaid
-graph TD
-    START(["START"]) --> init["initialize<br/>(Set Up State & Langfuse)"]
-    init --> agent["agent_reasoning<br/>(Master LLM Call + 15K Thinking Budget)"]
-    agent --> check["check_output<br/>(Inspect Final Report Structures)"]
-    
-    check -->|"Tool call detected"| exec["execute_tool<br/>(Execute 1-Tool-Per-Turn Priority)"]
-    check -->|"Verification violations found"| violation["handle_violation<br/>(Generate Rejection Prompt)"]
-    check -->|"No tools called & no output"| nudge["nudge_agent<br/>(Prompt to continue/finalize)"]
-    check -->|"Valid final output produced"| finalize["finalize<br/>(Save Logs, Convert & Upload)"]
-    check -->|"Max turns (30) reached"| finalize
-    
-    exec --> return_r["return_results<br/>(Format Tool Output into State)"]
-    
-    %% Feedback loops returning control to reasoning node
-    return_r --> agent
-    violation --> agent
-    nudge --> agent
-    
-    finalize --> END(["END"])
+stateDiagram-v2
+    [*] --> initialize_node : Run CLI/Dashboard
 
-    style START fill:#3b82f6,stroke:#1d4ed8,color:#fff
-    style END fill:#10b981,stroke:#047857,color:#fff
-    style agent fill:#8b5cf6,stroke:#6d28d9,color:#fff
-    style violation fill:#ef4444,stroke:#b91c1c,color:#fff
-    style check fill:#f59e0b,stroke:#b45309,color:#fff
+    state initialize_node {
+        [*] --> Set_MCAT_and_Category
+        Set_MCAT_and_Category --> Fetch_DS0
+        Fetch_DS0 --> Inject_System_Prompt
+        Inject_System_Prompt --> Init_Empty_Tracking
+    }
+    initialize_node --> agent_reasoning_node : messages, ds0, system_prompt ready
+
+    state agent_reasoning_node {
+        [*] --> Call_Gateway_API
+        Call_Gateway_API --> Extract_Thinking
+        Extract_Thinking --> Append_Assistant_Message
+        Append_Assistant_Message --> Log_Token_Usage
+    }
+    agent_reasoning_node --> check_output_node : last_response, last_thinking populated
+
+    state check_output_node {
+        [*] --> Scan_Final_Report_Keys
+        Scan_Final_Report_Keys --> Validate_Skills_Citations : Found report keys
+        Scan_Final_Report_Keys --> Prepare_Tool_List : Found tool tags
+        Validate_Skills_Citations --> Pass_Complete : No Violations
+        Validate_Skills_Citations --> Register_Violations : Violations found
+    }
+    
+    check_output_node --> execute_tool_node : Router selects "execute_tool"
+    check_output_node --> handle_violation_node : Router selects "handle_violation"
+    check_output_node --> nudge_agent_node : Router selects "nudge"
+    check_output_node --> finalize_node : Router selects "finalize"
+
+    state execute_tool_node {
+        [*] --> Standardize_Tool_Syntax
+        Standardize_Tool_Syntax --> Check_State_Cache
+        Check_State_Cache --> Execute_Network_API : Cache Miss
+        Check_State_Cache --> Retrieve_State_Cache : Cache Hit
+        Execute_Network_API --> Save_State_Cache
+        Retrieve_State_Cache --> Set_Last_Tool_Results
+        Save_State_Cache --> Set_Last_Tool_Results
+    }
+    execute_tool_node --> return_results_node : last_tool_results ready
+
+    state return_results_node {
+        [*] --> Format_JSON_to_Text
+        Format_JSON_to_Text --> Append_User_Message
+        Append_User_Message --> Clear_Last_Tool_Results
+    }
+    return_results_node --> agent_reasoning_node : messages updated
+
+    state handle_violation_node {
+        [*] --> Load_Active_Violations
+        Load_Active_Violations --> Format_Correction_Prompt
+        Format_Correction_Prompt --> Append_User_Message
+        Append_User_Message --> Clear_Violations
+    }
+    handle_violation_node --> agent_reasoning_node : messages updated (violations)
+
+    state nudge_agent_node {
+        [*] --> Check_Turns_Count
+        Check_Turns_Count --> Append_Nudge_Message
+    }
+    nudge_agent_node --> agent_reasoning_node : messages updated (nudge)
+
+    state finalize_node {
+        [*] --> Generate_Usage_Summary
+        Generate_Usage_Summary --> Save_Output_Files
+        Save_Output_Files --> Run_Schemas_Converter
+        Run_Schemas_Converter --> Run_Direct_Uploader
+        Run_Direct_Uploader --> Flush_Langfuse
+    }
+    finalize_node --> [*] : Save outputs
 ```
 
----
-
-## 🧠 Under the Hood: SaraState & Node Mechanics
-
-### 1. The central state schema (`state.py`)
+### 2. The central state schema (`state.py`)
 The `SaraState` dictionary is the single source of truth passed recursively between all nodes:
 
 ```python
@@ -156,14 +312,6 @@ class SaraState(TypedDict, total=False):
     input_log: str                  # Input prompts log
 ```
 
-### 2. Node Execution Logic (`nodes.py`)
-*   **`initialize_node`:** Initiates Langfuse tracing. It pulls the master prompt, appends the available Skills Registry summary (names, descriptions, triggers), and structures the initial user message presenting `ds0` and declaring that no other data sources are pre-loaded.
-*   **`agent_reasoning_node`:** Executes a POST request to the LLM Gateway (`gemini-2.5-pro`). It enables the extended thinking budget (15,000 tokens) and formats the payload. Upon response, it separates the assistant's response from the `<thinking>` blocks, updates logs, and pushes turn metrics to Langfuse.
-*   **`check_output_node`:** If the response contains the signature final audit report markers (e.g., `finalized_primary_specs` and `generated_by`), the node runs the **Validation Engine**. If the engine reports zero violations, the agent is marked complete, and the output is locked in `final_output`.
-*   **`execute_tool_node`:** Uses regex extraction (`\[READ_SKILL\]\s*(\S+)\s*\[END\]`, etc.) to capture tool calls from the assistant response. Adhering to the priority queue, it executes the selected tool type, caches results, and logs spans to Langfuse.
-*   **`return_results_node`:** Takes the results, aggregates them into a standardized user message format, appends it to `messages`, and prepares the graph to route back to `agent_reasoning_node`.
-*   **`handle_violation_node`:** Constructs an "Audit Gate Rejection" notice. This notice explains which validation rules SARA violated, providing actionable steps (e.g., "Read missing skill X before proposing Y"), and feeds this corrective prompt back to the agent in the next turn.
-
 ---
 
 ## ⚖️ The Validation Engine (Audit Gate Rules)
@@ -205,53 +353,64 @@ To completely eliminate hallucinations and verify that SARA behaves with perfect
 
 ---
 
-## 🗂️ Project Directory & File Navigation
+## 🗂️ Project Directory & Architecture Visual Map
 
-```lic
-SARA-Langraph/
-├── .env                  # Operational environment variables (API keys, host endpoints)
-├── .env.example          # Template environment file
-├── requirements.txt      # Python dependencies
-│
-├── main.py               # CLI entry point for a single category audit run
-├── dashboard.py          # Streamlit UI dashboard code
-│
-├── agent_langgraph.py    # Main LangGraph orchestrator runner
-├── graph.py              # Definitive state graph builder, nodes connection, and routers
-├── state.py              # Typed Python schema for SaraState 
-├── nodes.py              # Operational code logic for all LangGraph nodes
-├── llm.py                # Underlying OpenAI API wrapper for Gemini models
-│
-├── skill_registry.py     # Framework registry configuration (metadata, descriptions, tags)
-├── skills.py             # Internal data aggregation and formatting operations (non-LLM)
-├── web_search.py         # Search integration powered by Parallel AI SDK
-│
-├── data_fetchers.py      # Core data retrieval modules (DS0 - DS5 cloud/GSheet integrations)
-├── converter.py          # Translates Markdown output reports into platform-standard schema JSONs
-├── uploader.py           # Posts final translated JSONs to the ingestion API endpoints
-├── utils.py              # File reading/writing utilities and error-tolerant JSON parsers
-│
-├── prompts/              # Core prompts and reasoning skills folder
-│   ├── MASTER_PROMPT.md  # System instructions on reasoning, phase protocol, and tool syntax
-│   ├── SKILL_1_buyer_call.md              # DS1: Buyer Call Data interpretation instructions
-│   ├── SKILL_2_custom_spec.md             # DS2: Custom Seller Specs interpretation instructions
-│   ├── SKILL_3_buyer_search.md            # DS3: Buyer Search terms interpretation instructions
-│   ├── SKILL_4_fill_rate.md               # Guidelines on interpreting overall spec fill rates
-│   ├── SKILL_4_missing_spec_addition.md   # Structural instructions on adding new specs
-│   ├── SKILL_5_option_data.md             # Guidelines on option completeness metrics
-│   ├── SKILL_5_sequencing.md              # Structural guidelines on primary/secondary/tertiary tiering
-│   ├── SKILL_6_option_validator.md        # Comprehensive rules on option-level auditing
-│   ├── SKILL_7_domain_expert.md           # Instructions on B2B Indian marketplace standards check
-│   ├── SKILL_8_Critic.md                  # Strict self-challenge instructions for proposed edits
-│   ├── SKILL_9_Input_type.md              # Structural guidelines on radio_button/multi_select/text
-│   └── SKILL_10_Brand.md                  # Instructions for brand spec option modifications
-│
-├── data/                 # Raw aggregated data dump folder (created on run)
-├── inputs/               # Prompt history log files (created on run)
-├── output/               # Formatted audit reports (created on run)
-├── rawoutput/            # Raw JSON API returns (created on run)
-├── skilllogs/            # Trace lists of skills read by mcat (created on run)
-└── upload_ready/         # Platform-structured upload JSON files (created on run)
+This directory map showcases how files import, extend, or consume one another, providing an annotated architectural layout of the SARA agent codebase:
+
+```
+Codebase Architecture & Import Dependencies Map:
+
+               ┌────────────────────────────────────────────────────────┐
+               │                  dashboard.py (UI)                     │
+               │                   main.py (CLI)                        │
+               └───────────┬────────────────────────────────┬───────────┘
+                           │                                │
+                           ▼                                ▼
+              ┌────────────────────────┐       ┌────────────────────────┐
+              │  data_fetchers.py      │       │  agent_langgraph.py    │
+              │  (DS0 - DS5 Fetching)  │       │  (State Agent Invoker) │
+              └────────────┬───────────┘       └────────────┬───────────┘
+                           │                                │
+                           │                                ▼
+                           │                   ┌────────────────────────┐
+                           │                   │       graph.py         │
+                           │                   │ (LangGraph State Graph)│
+                           │                   └────────────┬───────────┘
+                           │                                │
+                           │           ┌────────────────────┴───────────────────┐
+                           │           │                                        │
+                           ▼           ▼                                        ▼
+                     /──────────────────────────────────────────────────────────────────\
+                    |                             nodes.py                               |
+                    |              (Graph Node Functions & Validation Gate)              |
+                     \─────────────────┬────────────────────────────────┬───────────────/
+                                       │                                │
+                 ┌─────────────────────┴──────────────┐           ┌─────┴────────────────┐
+                 ▼                                    ▼           ▼                      ▼
+      ┌─────────────────────┐               ┌───────────┐   ┌──────────┐           ┌───────────┐
+      │  skill_registry.py  │               │ skills.py │   │  llm.py  │           │  utils.py │
+      │  (Skills metadata)  │               │(Aggregates│   │(Gemini   │           │(Load/Save │
+      └──────────┬──────────┘               │   logic)  │   │ Gateway) │           │ utilities)│
+                 │                          └───────────┘   └──────────┘           └───────────┘
+                 ▼                                                                       
+      ┌─────────────────────┐                                                            
+      │  prompts/*.md       │                                                            
+      │  (10 Markdown files)│                                                            
+      └─────────────────────┘                                                            
+
+   ────────────────────────────────────────── Post-Audit Pipeline ──────────────────────────────────────────
+                                                      │
+                                                      ▼
+                                            ┌───────────────────┐
+                                            │   converter.py    │
+                                            │ (JSON Translator) │
+                                            └─────────┬─────────┘
+                                                      │
+                                                      ▼
+                                            ┌───────────────────┐
+                                            │    uploader.py    │
+                                            │  (Ingestion API)  │
+                                            └───────────────────┘
 ```
 
 ---
@@ -277,13 +436,21 @@ Downloaded via a 3-hop process:
       "specs": [
         {
           "spec_name": "Alloy Grade",
-          "options": ["6063 T6", "6061 T6", "6082 T6"],
+          "options": ["6063 T6", "6061 T6"],
           "input_type": "radio_button"
         }
       ]
     },
     "finalized_secondary_specs": { "specs": [] },
-    "finalized_tertiary_specs": { "specs": [] }
+    "finalized_tertiary_specs": {
+      "specs": [
+        {
+          "spec_name": "Aluminium Profile",
+          "options": [],
+          "input_type": "text_type"
+        }
+      ]
+    }
   }
 }
 ```
